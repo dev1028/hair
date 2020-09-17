@@ -7,6 +7,6 @@
 	</decorator>
 
 	<excludes>
-		<pattern>/hairshop/*</pattern>
+		<pattern></pattern>
 	</excludes>
 </decorators>
