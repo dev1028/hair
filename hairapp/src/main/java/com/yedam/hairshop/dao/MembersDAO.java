@@ -205,7 +205,7 @@ public class MembersDAO {
 			// 2. sql 구문 실행
 			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,MEM_ADDR,"
 					+ " MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
-					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setString(1, membersVo.getMem_no());
@@ -220,10 +220,9 @@ public class MembersDAO {
 			psmt.setString(10, membersVo.getMem_country());
 			psmt.setString(11, membersVo.getMem_township());
 			psmt.setString(12, membersVo.getMem_latitude_longitude());
-			psmt.setString(13, membersVo.getMem_saved_money());
-			psmt.setString(14, membersVo.getMem_city_latitude_longitude());
-			psmt.setString(15, membersVo.getMem_hair_length());
-			psmt.setString(16, membersVo.getMem_hair_status());
+			psmt.setString(13, membersVo.getMem_city_latitude_longitude());
+			psmt.setString(14, membersVo.getMem_hair_length());
+			psmt.setString(15, membersVo.getMem_hair_status());
 
 			psmt.executeUpdate();
 

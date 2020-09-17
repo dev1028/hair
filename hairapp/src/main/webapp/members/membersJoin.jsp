@@ -67,19 +67,19 @@
 			<table>
 				<tr>
 					<td id="title">이메일(아이디)</td>
-					<td><input type="text" name="joinemail" maxlength="50">
+					<td><input type="text" name="joinemail" maxlength="50" placeholder="sample@naver.com 형식">
 						<input type="button" value="중복확인"></td>
 				</tr>
 
 				<tr>
 					<td id="title">비밀번호</td>
-					<td><input type="password" name="joinpw" maxlength="50">
+					<td><input type="password" name="joinpw" maxlength="15" placeholder="15자 내로 적어주세요">
 					</td>
 				</tr>
 
 				<tr>
 					<td id="title">비밀번호 확인</td>
-					<td><input type="password" name="joinpwcheck" maxlength="50">
+					<td><input type="password" name="joinpwcheck" maxlength="15" placeholder="비밀번호 재입력">
 					</td>
 				</tr>
 
@@ -90,7 +90,7 @@
 
 				<tr>
 					<td id="title">휴대전화</td>
-					<td><input type="text" name="joinphone" /></td>
+					<td><input type="text" name="joinphone" placeholder="010-000-0000"></td>
 				</tr>
 
 				<tr>
@@ -101,13 +101,13 @@
 
 				<tr>
 					<td id="title">성별</td>
-					<td><input type="radio" name="joingender" value="남" checked>남
+					<td><input type="radio" name="joingender" value="남">남
 						<input type="radio" name="joingender" value="여" checked>여</td>
 				</tr>
 
 				<tr>
 					<td id="title">도로명주소 전체</td>
-					<td><input type="text" id="roadFullAddr" name="roadFullAddr" />
+					<td><input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="팝업을 먼저 눌러주세요" />
 						<input type="button" onClick="goPopup();" value="팝업" /></td>
 				</tr>
 
@@ -134,19 +134,17 @@
 				<tr>
 					<td id="title">기장 선택</td>
 					<td><input type="radio" name="joinhairlengths" value="숏" checked>숏
-						<input type="radio" name="joinhairlengths" value="턱선아래" checked>턱선 아래
-						<input type="radio" name="joinhairlengths" value="어깨선아래" checked>어깨선 아래
-						<input type="radio" name="joinhairlengths" value="가슴선아래" checked>가슴선 아래</td>
+						<input type="radio" name="joinhairlengths" value="턱선아래">턱선 아래
+						<input type="radio" name="joinhairlengths" value="어깨선아래">어깨선 아래
+						<input type="radio" name="joinhairlengths" value="가슴선아래">가슴선 아래</td>
 				</tr>
 				
 				<tr>
 					<td id="title">머릿결 상태</td>
-					<td><input type="text" name="joinhairstatus" maxlength="50"></td>
-				</tr>
-				
-				<tr>
-					<td id="title">헤어샵 요청사항</td>
-					<td><textarea name="joinhairrequest" rows="4" cols="50"></textarea></td>
+					<td><input type="radio" name="joinhairstatus" value="정상" checked>정상 모발
+						<input type="radio" name="joinhairstatus" value="손상">손상 모발
+						<input type="radio" name="joinhairstatus" value="극손상">극손상 모발
+						<input type="radio" name="joinhairstatus" value="탈색모">탈색모 모발</td>
 				</tr>
 
 			</table>
