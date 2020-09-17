@@ -190,7 +190,7 @@ public class MembersDAO {
 		try {
 			// 1. DB 연결
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
-
+//jjjj
 			// 2. sql 구문 실행
 			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,"
 					+ " MEM_ADDR,MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
