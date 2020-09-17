@@ -8,22 +8,59 @@
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
-		if (!document.membersInfo.joinemail.value) {
+		if (!document.form.joinemail.value) {
 			alert("아이디를 입력하세요.");
 			return false;
 		}
 
-		if (!document.membersInfo.joinpw.value) {
+		if (!document.form.joinpw.value) {
 			alert("비밀번호를 입력하세요.");
 			return false;
 		}
 
 		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-		if (document.membersInfo.joinpw.value != document.membersInfo.joinpwcheck.value) {
+		if (document.form.joinpw.value != document.membersInfo.joinpwcheck.value) {
 			alert("비밀번호를 동일하게 입력하세요.");
 			return false;
 		}
-	}
+		
+		if(!form.joinname.value){
+            alert("이름을 입력하세요.");
+            return false;
+        }
+        
+        if(!form.joinbirth.value){
+            alert("생년월일을 입력하세요.");
+            return false;
+        }
+
+        if(!form.joinphone.value){
+            alert("전화번호를 입력하세요.");
+            return false;
+        }
+
+    }
+    
+    // 취소 버튼 클릭시 첫화면으로 이동
+    function goFirstForm() {
+        location.href="membersLogin.jsp";
+    }    
+    
+    // 아이디 중복체크 화면open
+    function openIdChk(){
+    
+        window.name = "parentForm";
+        window.open("IdCheckForm.jsp",
+                "chkForm", "width=500, height=300, resizable = no, scrollbars = no");    
+    }
+
+    // 아이디 입력창에 값 입력시 hidden에 idUncheck를 세팅한다.
+    // 이렇게 하는 이유는 중복체크 후 다시 아이디 창이 새로운 아이디를 입력했을 때
+    // 다시 중복체크를 하도록 한다.
+    function inputIdChk(){
+        document.form.idDuplication.value ="idUncheck";
+    }
+    
 
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다.
 	// (＂팝업 API 호출 소스"도 동일하게 적용시켜야 합니다.)
@@ -67,20 +104,22 @@
 			<table>
 				<tr>
 					<td id="title">이메일(아이디)</td>
-					<td><input type="text" name="joinemail" maxlength="50" placeholder="sample@naver.com 형식">
-						<input type="button" value="중복확인"></td>
+					<td><input type="text" name="joinemail" maxlength="50" onkeydown="inputIdChk()"
+						placeholder="sample@naver.com 형식">
+						<input type="button" value="중복확인" onclick="openIdChk()">
+						<input type="hidden" name="idDuplication" value="idUncheck" ></td>
 				</tr>
 
 				<tr>
 					<td id="title">비밀번호</td>
-					<td><input type="password" name="joinpw" maxlength="15" placeholder="15자 내로 적어주세요">
-					</td>
+					<td><input type="password" name="joinpw" maxlength="15"
+						placeholder="15자 내로 적어주세요"></td>
 				</tr>
 
 				<tr>
 					<td id="title">비밀번호 확인</td>
-					<td><input type="password" name="joinpwcheck" maxlength="15" placeholder="비밀번호 재입력">
-					</td>
+					<td><input type="password" name="joinpwcheck" maxlength="15"
+						placeholder="비밀번호 재입력"></td>
 				</tr>
 
 				<tr>
@@ -90,7 +129,8 @@
 
 				<tr>
 					<td id="title">휴대전화</td>
-					<td><input type="text" name="joinphone" placeholder="010-000-0000"></td>
+					<td><input type="text" name="joinphone"
+						placeholder="010-000-0000"></td>
 				</tr>
 
 				<tr>
@@ -107,8 +147,9 @@
 
 				<tr>
 					<td id="title">도로명주소 전체</td>
-					<td><input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="팝업을 먼저 눌러주세요" />
-						<input type="button" onClick="goPopup();" value="팝업" /></td>
+					<td><input type="text" id="roadFullAddr" name="roadFullAddr"
+						placeholder="팝업을 먼저 눌러주세요" /> <input type="button"
+						onClick="goPopup();" value="팝업" /></td>
 				</tr>
 
 				<tr>
@@ -133,23 +174,25 @@
 
 				<tr>
 					<td id="title">기장 선택</td>
-					<td><input type="radio" name="joinhairlengths" value="숏" checked>숏
-						<input type="radio" name="joinhairlengths" value="턱선아래">턱선 아래
-						<input type="radio" name="joinhairlengths" value="어깨선아래">어깨선 아래
-						<input type="radio" name="joinhairlengths" value="가슴선아래">가슴선 아래</td>
+					<td><input type="radio" name="joinhairlengths" value="숏"
+						checked>숏 <input type="radio" name="joinhairlengths"
+						value="턱선아래">턱선 아래 <input type="radio"
+						name="joinhairlengths" value="어깨선아래">어깨선 아래 <input
+						type="radio" name="joinhairlengths" value="가슴선아래">가슴선 아래</td>
 				</tr>
-				
+
 				<tr>
 					<td id="title">머릿결 상태</td>
-					<td><input type="radio" name="joinhairstatus" value="정상" checked>정상 모발
-						<input type="radio" name="joinhairstatus" value="손상">손상 모발
-						<input type="radio" name="joinhairstatus" value="극손상">극손상 모발
-						<input type="radio" name="joinhairstatus" value="탈색모">탈색모 모발</td>
+					<td><input type="radio" name="joinhairstatus" value="정상"
+						checked>정상 모발 <input type="radio" name="joinhairstatus"
+						value="손상">손상 모발 <input type="radio" name="joinhairstatus"
+						value="극손상">극손상 모발 <input type="radio"
+						name="joinhairstatus" value="탈색모">탈색모 모발</td>
 				</tr>
 
 			</table>
-			<br> <input type="submit" value="가입" /> <input type="button"
-				value="취소">
+			<br> <input type="submit" value="가입" />
+			<input type="button"value="취소" onclick="goFirstForm()">
 
 
 		</form>

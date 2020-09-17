@@ -7,6 +7,6 @@
 	</decorator>
 
 	<excludes>
-		<pattern></pattern>
+		<pattern>/ajax/*</pattern>
 	</excludes>
 </decorators>
