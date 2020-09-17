@@ -1,4 +1,4 @@
-package com.yedam.hairshop.common;
+package com.yedam.hairshop.members;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,17 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.SearchDAO;
 import com.yedam.hairshop.model.SearchVo;
 
-public class SearchController implements Controller {
+public class SearchRealtimCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String term = request.getParameter("term");
 		JsonArray jsonArray = new JsonArray();
 		SearchVo searchVo = new SearchVo();
 		searchVo.setLabel(term);
-		if(term.length() < 1)
+		if(term.length() < 1) {
 			return;
+		}
 		
 		List<SearchVo> list = SearchDAO.getInstance().selectListHairshop(searchVo);
 		if(list.size() == 0)
@@ -47,6 +49,12 @@ public class SearchController implements Controller {
 		String jsonString = new Gson().toJson(jsonArray);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(jsonString);
+
+		if(request.getParameter("detail") == null) {
+			response.getWriter().write(jsonString);
+		}else {
+			request.setAttribute("datas", jsonArray);
+			request.getRequestDispatcher("/members/hairshopSelect.jsp").forward(request, response);
+		}
 	}
 }

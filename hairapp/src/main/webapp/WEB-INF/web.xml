@@ -28,4 +28,22 @@
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+
+
+	<!-- encoding filter utf-8 -->
+	<filter>
+		<filter-name>Encoding Filter</filter-name>
+		<filter-class>com.yedam.filter.Encoding</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Encoding Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
 </web-app>

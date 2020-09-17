@@ -13,6 +13,7 @@ import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
+import com.yedam.hairshop.members.SearchRealtimCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 
@@ -35,10 +36,10 @@ public class FrontController extends HttpServlet {
 		
 		//상민
 		list.put("/membersInsert.do", new TestController());
-		list.put("/search.do", new SearchController());
+		list.put("/searchRealtime.do", new SearchRealtimCtrl());
 		
 		
-		list.put("/testDB.do", new TestDBController());
+		list.put("/testDB.do", new TestDBCtrl());
 		
 		//송현
 		

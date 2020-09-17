@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.dao.MembersDAO;
 import com.yedam.hairshop.model.MembersVo;
 
-public class TestDBController implements Controller{
+public class TestDBCtrl implements Controller{
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
