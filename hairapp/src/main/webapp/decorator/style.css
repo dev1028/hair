@@ -1,0 +1,319 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:700);
+
+@import
+	url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap")
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans+KR:wght@700&display=swap')
+	;
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap')
+	;
+
+html {
+	font-family: sans-serif;
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+article, aside, figcaption, figure, footer, header, hgroup, main, nav,
+	section {
+	display: block
+}
+/*
+ nav*/
+.acc h4 {
+	color: #282F35;
+	/*  font-family: 'Josefin Sans', Arial, sans-serif; */
+	font-family: 'Gothic A1', sans-serif;
+	font-size: 15px;
+	letter-spacing: 1px;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.acc p {
+	color: #666666;
+	font-family: 'Malgun Gothic', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 20px;
+}
+
+.navBar {
+	width: 300px;
+	margin: 0 auto;
+	float: left;
+}
+
+.acc {
+	border: 1px solid;
+	width: 200px;
+	margin: 90px 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+.acc li {
+	list-style-type: none;
+	padding: 0;
+}
+
+.acc_ctrl {
+	background: #FFFFFF;
+	border: none;
+	border-bottom: solid 1px #F2F2F2;
+	cursor: pointer;
+	display: block;
+	outline: none;
+	padding: 2em;
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+
+.acc_ctrl:before {
+	background: #44596B;
+	content: '';
+	height: 2px;
+	margin-right: 37px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-ms-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+	width: 14px;
+}
+
+.acc_ctrl:after {
+	background: #44596B;
+	content: '';
+	height: 2px;
+	margin-right: 37px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 14px;
+}
+
+.acc_ctrl.active:before {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+.acc_ctrl.active h2, .acc_ctrl:focus h2 {
+	position: relative;
+}
+
+.acc_panel {
+	background: #F2F2F2;
+	display: none;
+	overflow: hidden;
+}
+/*
+ color*/
+body {
+	margin: 0;
+	font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #55595c;
+	text-align: left;
+	background-color: #fff
+}
+
+#btnox {
+	float: right;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#btnox button img {
+	width: 32px;
+	height: 32px;
+}
+
+#btnox button {
+	width: 32px;
+	height: 32px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: rgba(0, 0, 0, 0);
+	border: rgba(0, 0, 0, 0);
+}
+
+#naviar {
+	width: 200px;
+	border: 1px;
+	text-align: center;
+}
+
+.list-group {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding-left: 0;
+	margin-bottom: 0
+}
+
+.list-group-item {
+	position: relative;
+	display: block;
+	padding: 0.75rem 1.25rem;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	font-size: 1.5em;
+}
+
+.justify-content-between {
+	-webkit-box-pack: justify !important;
+	-ms-flex-pack: justify !important;
+	justify-content: space-between !important
+}
+
+.align-items-center {
+	-webkit-box-align: center !important;
+	-ms-flex-align: center !important;
+	align-items: center !important
+}
+
+.container {
+	width: 1200px;
+	margin: 0px auto;
+}
+
+/* Header */
+#header {
+	overflow: hidden;
+	width: 90%;
+	height: 150px;
+	margin: 0 auto;
+	padding: 0px 0px;
+}
+
+/* Logo */
+#logo {
+	float: left;
+	width: 200px;
+	margin: 0px;
+	padding: 0px 0px 0px 0px;
+	background: #000000;
+	color: #FFFFFF;
+}
+
+#logo h1, #logo p {
+	
+}
+
+#logo h1 {
+	display: block;
+	padding: 10px 0px 0px 0px;
+	letter-spacing: -3px;
+	text-align: center;
+	text-transform: lowercase;
+	font-size: 3em;
+}
+
+#logo h1 a {
+	color: #FFFFFF;
+}
+
+#logo p {
+	margin-top: -10px;
+	padding: 0px 0 0 0px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 10px;
+	color: #FFFFFF;
+}
+
+#logo p a {
+	color: #FFFFFF;
+}
+
+#logo a {
+	border: none;
+	background: none;
+	text-decoration: none;
+	color: #000000;
+}
+
+/* Menu */
+#menu {
+	/* float: right; */
+	width: 1000px;
+	height: 90px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#menu ul {
+	float: right;
+	margin: 0;
+	padding: 25px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	font-family: 'Noto Sans KR', sans-serif;
+	float: left;
+	height: 65px;
+	padding: 0px 50px 0px 50px;
+	padding:
+}
+
+#menu a {
+	display: block;
+	height: 70px;
+	line-height: 70px;
+	margin-right: 1px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 25px;
+	font-weight: normal;
+	color: #040509;
+	border: none;
+}
+
+#menu a:hover, #menu .current_page_item a {
+	border-bottom: 5px solid #040509;
+	text-decoration: none;
+}
+
+#menu .current_page_item a {
+	
+}
+#home{
+	float: right;
+}
+#home li {
+	font-family: 'Merriweather', serif;
+	font-size: 10px;
+}
