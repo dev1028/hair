@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.members.MembersLoginCtrl;
+import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 
@@ -48,7 +49,7 @@ public class FrontController extends HttpServlet {
 		//승연
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl());
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
-		
+		list.put("/hairshop/employeeList.do", new EmployeeListCtrl());
 	}
 
 
