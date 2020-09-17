@@ -10,7 +10,7 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
 
-public class DesignerUpdateController implements Controller{
+public class DesignerUpdateCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
