@@ -1,4 +1,4 @@
-// Load the Visualization API and the corechart package.
+//Load the Visualization API and the corechart package.
 google.charts.load('current', {
 	'packages' : [ 'corechart' ]
 });
@@ -16,19 +16,14 @@ function drawChart() {
 	data.addColumn('string', '부서');
 	data.addColumn('number', '사원수');
 
-	var datatable = [];
-	$.ajax({
-		async : false,
-		url : "ajax/ChartData.do",
-		dataType : "json",
-		success : function(datas) {
-			for (i = 0; i < datas.length; i++) {
-				var innertb = [ datas[i].name, parseInt(datas[i].cnt) ];
-				datatable.push(innertb);
-			}
-		}
-
-	});
+	var datatable = [
+        ['Mushrooms', 3],
+        ['Onions', 1],
+        ['Olives', 1],
+        ['Zucchini', 1],
+        ['Pepperoni', 2]
+      ];
+	
 
 	data.addRows(datatable);
 

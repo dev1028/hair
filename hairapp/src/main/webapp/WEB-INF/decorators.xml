@@ -2,7 +2,7 @@
 
 <decorators defaultdir="/decorator">
 
-	<decorator name="main" page="index.jsp">
+	<decorator name="main" page="hairshop_layout.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 

@@ -18,6 +18,7 @@ public class DesignerVo {
 	private String position;
 	private String salary;
 	private String incentive;
-	private String hire_date;		//
+	private String hire_date;
+	private String hs_no;//
 	
 }
