@@ -1,6 +1,7 @@
 package com.yedam.hairshop.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -182,34 +183,47 @@ public class MembersDAO {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
 	}
+	
+	public Date stringToDate(MembersVo membersVo)
+    {
+        String Mem_birth = membersVo.getMem_birth();
+        
+        Date birthday = Date.valueOf(Mem_birth);
+        
+        return birthday;
+        
+    } // end stringToDate()
 
-	// insert
-	public void insert(MembersVo membersVO) {
+
+	// membersJoinInsert
+	public void membersJoin(MembersVo membersVo) {
 		int r = 0;
 		try {
 			// 1. DB 연결
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
 
 			// 2. sql 구문 실행
-			String sql = "insert into members values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,MEM_ADDR,"
+					+ " MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
+					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, membersVO.getMem_no());
-			psmt.setString(2, membersVO.getMem_email());
-			psmt.setString(3, membersVO.getMem_pw());
-			psmt.setString(4, membersVO.getMem_name());
-			psmt.setString(5, membersVO.getMem_phone());
-			psmt.setString(6, membersVO.getMem_birth());
-			psmt.setString(7, membersVO.getMem_sex());
-			psmt.setString(8, membersVO.getMem_addr());
-			psmt.setString(9, membersVO.getMem_city());
-			psmt.setString(10, membersVO.getMem_country());
-			psmt.setString(11, membersVO.getMem_township());
-			psmt.setString(12, membersVO.getMem_latitude_longitude());
-			psmt.setString(13, membersVO.getMem_saved_money());
-			psmt.setString(14, membersVO.getMem_city_latitude_longitude());
-			psmt.setString(15, membersVO.getMem_hair_length());
-			psmt.setString(16, membersVO.getMem_hair_status());
+			psmt.setString(1, membersVo.getMem_no());
+			psmt.setString(2, membersVo.getMem_email());
+			psmt.setString(3, membersVo.getMem_pw());
+			psmt.setString(4, membersVo.getMem_name());
+			psmt.setString(5, membersVo.getMem_phone());
+			psmt.setDate(6, stringToDate(membersVo));
+			psmt.setString(7, membersVo.getMem_sex());
+			psmt.setString(8, membersVo.getMem_addr());
+			psmt.setString(9, membersVo.getMem_city());
+			psmt.setString(10, membersVo.getMem_country());
+			psmt.setString(11, membersVo.getMem_township());
+			psmt.setString(12, membersVo.getMem_latitude_longitude());
+			psmt.setString(13, membersVo.getMem_saved_money());
+			psmt.setString(14, membersVo.getMem_city_latitude_longitude());
+			psmt.setString(15, membersVo.getMem_hair_length());
+			psmt.setString(16, membersVo.getMem_hair_status());
 
 			psmt.executeUpdate();
 
