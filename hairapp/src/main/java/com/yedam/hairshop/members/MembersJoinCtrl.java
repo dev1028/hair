@@ -1,4 +1,4 @@
-package com.yedam.hairshop.hairshop;
+package com.yedam.hairshop.members;
 
 import java.io.IOException;
 
@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class hairshopMainCtrl implements Controller {
+public class MembersJoinCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/hairshop/hairshopMain.jsp").forward(request, response);
+
+		
 	}
 
 }

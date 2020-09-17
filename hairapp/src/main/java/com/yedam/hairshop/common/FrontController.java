@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
+import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
-import com.yedam.hairshop.members.HairshopSearchCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
+import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 
 /*
@@ -42,13 +43,14 @@ public class FrontController extends HttpServlet {
 		//송현
 		
 		//린아
-		list.put("/membersLogin.do", new MembersLoginCtrl());
+		list.put("/members/membersLogin.do", new MembersLoginCtrl());
+		list.put("/members/membersJoin.do", new MembersJoinCtrl());
 		
 		//강산
 		
 		//승연
-		list.put("/hairshopMain.do", new hairshopMainCtrl());
-		
+		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl());
+		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
 		
 	}
 
