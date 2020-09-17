@@ -12,7 +12,7 @@ public class hairshopMainCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.getRequestDispatcher("/hairshop/hairshopMain.jsp").forward(request, response);
 	}
 
 }

@@ -7,6 +7,6 @@
 	</decorator>
 
 	<excludes>
-		<pattern>/board/uploadForm.jsp</pattern>
+		<pattern>/hairshop/*</pattern>
 	</excludes>
 </decorators>
