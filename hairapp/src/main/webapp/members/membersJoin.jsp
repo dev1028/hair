@@ -135,8 +135,7 @@
 
 				<tr>
 					<td id="title">생일</td>
-					<td><input type="text" name="joinbirth" maxlength="10"
-						placeholder="yyyy/mm/dd 형식으로 적어주세요"></td>
+					<td><input type="date" name="joinbirth"></td>
 				</tr>
 
 				<tr>
@@ -189,7 +188,6 @@
 						value="극손상">극손상 모발 <input type="radio"
 						name="joinhairstatus" value="탈색모">탈색모 모발</td>
 				</tr>
-
 			</table>
 			<br> <input type="submit" value="가입" />
 			<input type="button"value="취소" onclick="goFirstForm()">

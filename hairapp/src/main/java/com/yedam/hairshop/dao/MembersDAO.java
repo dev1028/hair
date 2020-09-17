@@ -183,17 +183,6 @@ public class MembersDAO {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
 	}
-	
-	public Date stringToDate(MembersVo membersVo)
-    {
-        String Mem_birth = membersVo.getMem_birth();
-        
-        Date birthday = Date.valueOf(Mem_birth);
-        
-        return birthday;
-        
-    } // end stringToDate()
-
 
 	// membersJoinInsert
 	public void membersJoin(MembersVo membersVo) {
@@ -203,26 +192,24 @@ public class MembersDAO {
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
 
 			// 2. sql 구문 실행
-			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,MEM_ADDR,"
-					+ " MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
-					+ " values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,"
+					+ " MEM_ADDR,MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
+					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, membersVo.getMem_no());
-			psmt.setString(2, membersVo.getMem_email());
-			psmt.setString(3, membersVo.getMem_pw());
-			psmt.setString(4, membersVo.getMem_name());
-			psmt.setString(5, membersVo.getMem_phone());
-			psmt.setDate(6, stringToDate(membersVo));
-			psmt.setString(7, membersVo.getMem_sex());
-			psmt.setString(8, membersVo.getMem_addr());
-			psmt.setString(9, membersVo.getMem_city());
-			psmt.setString(10, membersVo.getMem_country());
-			psmt.setString(11, membersVo.getMem_township());
-			psmt.setString(12, membersVo.getMem_latitude_longitude());
-			psmt.setString(13, membersVo.getMem_city_latitude_longitude());
-			psmt.setString(14, membersVo.getMem_hair_length());
-			psmt.setString(15, membersVo.getMem_hair_status());
+			psmt.setString(1, membersVo.getMem_email());
+			psmt.setString(2, membersVo.getMem_pw());
+			psmt.setString(3, membersVo.getMem_name());
+			psmt.setString(4, membersVo.getMem_phone());
+			psmt.setString(5, membersVo.getMem_birth());
+			psmt.setString(6, membersVo.getMem_sex());
+			psmt.setString(7, membersVo.getMem_addr());
+			psmt.setString(8, membersVo.getMem_city());
+			psmt.setString(9, membersVo.getMem_country());
+			psmt.setString(10, membersVo.getMem_township());
+			psmt.setString(11, membersVo.getMem_zip());
+			psmt.setString(12, membersVo.getMem_hair_length());
+			psmt.setString(13, membersVo.getMem_hair_status());
 
 			psmt.executeUpdate();
 
