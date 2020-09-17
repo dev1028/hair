@@ -32,11 +32,13 @@
 			<scope>provided</scope>
 		</dependency>
 		<!-- 2020.09.14 jstl, beanutil -->
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
