@@ -14,7 +14,7 @@ public class MembersLoginCtrl implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("멤버로그인");
-
+		
 		// 파라미터 VO에 담기
 		MembersVo membersVO = new MembersVo();
 		membersVO.setMem_email(request.getParameter("loginid"));		// 파라미터는 name값 넘기는거
