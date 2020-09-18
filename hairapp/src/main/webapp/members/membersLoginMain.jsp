@@ -9,6 +9,10 @@
 	function logoutPro() {
 		location.href = "members/membersLogout.jsp";
 	}
+	
+	function membersModify() {
+		location.href = "members/membersInfoModify.jsp"
+	}
 </script>
 </head>
 <body>
@@ -30,6 +34,7 @@
     
     <br><br>
     <input type="button" value="로그아웃" onclick="logoutPro()" />
+    <input type="button" value="회원수정" onclick="membersModify()">
     
     <%} %>
 </body>

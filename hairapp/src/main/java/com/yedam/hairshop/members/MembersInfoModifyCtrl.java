@@ -64,7 +64,7 @@ public class MembersInfoModifyCtrl implements Controller {
 
 		request.setAttribute("modify", members);
 
-		request.getRequestDispatcher("membersInfoSuccess.jsp").forward(request, response);
+		request.getRequestDispatcher("membersInfoModify.do").forward(request, response);
 	}
 
 }
