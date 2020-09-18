@@ -10,11 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
+
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+
+import com.yedam.hairshop.members.HairSelectCtrl;
+import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.MembersMainCtrl;
+
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -38,11 +44,12 @@ public class FrontController extends HttpServlet {
 		list = new HashMap<String, Controller>();
 		
 		//상민
-		list.put("/membersInsert.do", new TestController());
-		list.put("/searchRealtime.do", new SearchRealtimCtrl());
-		
-		
 		list.put("/testDB.do", new TestDBCtrl());
+		list.put("/members/membersMain.do", new MembersMainCtrl());
+		list.put("/members/hairshopSelect.do", new HairShopSelectCtrl());
+		list.put("/members/membersInsert.do", new TestController());
+		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
+		list.put("/members/hairSelect.do", new HairSelectCtrl());
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());

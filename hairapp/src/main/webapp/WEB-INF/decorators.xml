@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="euc-kr" ?>
 
 <decorators defaultdir="/decorator">
-
-	<decorator name="main" page="hairshop_layout.jsp">
-		<pattern>/*</pattern>
+	<decorator name="hairshop" page="hairshop_layout.jsp">
+		<pattern>/hairshop/*</pattern>
+	</decorator>
+	<decorator name="user" page="left-sidebar.jsp">
+		<pattern>/member*</pattern>
 	</decorator>
 
 	<excludes>

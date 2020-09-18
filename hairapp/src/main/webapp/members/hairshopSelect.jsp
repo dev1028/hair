@@ -46,11 +46,12 @@
 $(function(){
 	function createCard(data){
 		var html = "";
-		html += '<form action="hairSelect.do">'
+		html += '<form action="../hairSelect.do" method="post">'
 		html += '<div class="horizontal-card">';
 		html += 	'<img src="http://via.placeholder.com/200x100" />'
 		html += 	'<div class="horizontal-card-body">'
 // 		html += 		'<span class="card-text"> 날짜:' + data.date + '</span>'
+		html +=         '<input type="hidden" name="hsNo" value="' + data.value + '">'
 		html += 		'<h4 class="card-title">' + data.label + '</h4>'
 		html += 		'<span class="card-text">' + data.desc + '</span>'
 		html += 	'</div>'
