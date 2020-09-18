@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
-import com.yedam.hairshop.members.MembersLoginCtrl;
+import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+import com.yedam.hairshop.members.MembersLoginCtrl;
 
 /*
 @WebServlet(name = "front", 
@@ -38,6 +39,7 @@ public class FrontController extends HttpServlet {
 		list.put("/testDB.do", new TestDBController());
 		
 		//송현
+		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		
 		//린아
 		list.put("/membersLogin.do", new MembersLoginCtrl());

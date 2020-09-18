@@ -10,7 +10,7 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
 
-public class DesignerUpdateController implements Controller{
+public class DesignerUpdateCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,16 +21,17 @@ public class DesignerUpdateController implements Controller{
 		String work_end_time = request.getParameter("work_end_time");
 		String hire_date = request.getParameter("hire_date");
 		
-		DesignerVo designerVO = new DesignerVo();
+		DesignerVo designerVo = new DesignerVo();
 		
-		designerVO.setDesigner_pw(designer_pw);
-		designerVO.setDesigner_phone(designer_phone);
-		designerVO.setDesigner_dayoff(designer_dayoff);
-		designerVO.setWork_start_time(work_start_time);
-		designerVO.setWork_end_time(work_end_time);
-		designerVO.setHire_date(hire_date);
+		designerVo.setDesigner_pw(designer_pw);
+		designerVo.setDesigner_phone(designer_phone);
+		designerVo.setDesigner_dayoff(designer_dayoff);
+		designerVo.setWork_start_time(work_start_time);
+		designerVo.setWork_end_time(work_end_time);
+		//designerVo.setHire_date(hire_date);
 		
-		int resultVO = DesignerDAO.getInstance().update(designerVO);
+		int resultVo = DesignerDAO.getInstance().update(designerVo);
+		request.setAttribute("cnt", resultVo);
 
 	}
 
