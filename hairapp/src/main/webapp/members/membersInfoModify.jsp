@@ -77,7 +77,8 @@
 </script>
 </head>
 <body>
-<%
+<%--
+	<%
         String mem_email = session.getAttribute("sessionID").toString();
         
         // 세션에 저장된 아이디를 가져와서
@@ -85,7 +86,7 @@
         MembersDAO dao = MembersDAO.getInstance();
         MembersVo memberVo = dao.getMembersInfo(mem_email);
     %>
-
+--%>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="wrap">
 		<br> <br> <b><font size="6" color="gray">회원 정보 수정</font></b> <br>

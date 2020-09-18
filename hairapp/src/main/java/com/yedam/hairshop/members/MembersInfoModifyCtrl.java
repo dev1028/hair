@@ -25,7 +25,10 @@ public class MembersInfoModifyCtrl implements Controller {
 		// 세션이 가지고있는 로그인한 ID 정보를 가져온다
         HttpSession session = request.getSession();
         String mem_email = session.getAttribute("sessionID").toString();
-
+        
+        MembersVo memberVo = dao.getMembersInfo(mem_email);
+        request.setAttribute("memberVo", memberVo);
+        
 		// 파라미터 VO에 담기
         MembersVo members = new MembersVo();
 		String modifyemail = mem_email;
