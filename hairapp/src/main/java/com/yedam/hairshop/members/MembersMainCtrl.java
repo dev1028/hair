@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class MemberMainCtrl implements Controller {
+public class MembersMainCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("memberMain.jsp").forward(request, response);
+		request.getRequestDispatcher("/members/membersMain.jsp").forward(request, response);
 	}
 
 }
