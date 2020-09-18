@@ -19,7 +19,7 @@
 		}
 
 		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-		if (document.form.joinpw.value != document.membersInfo.joinpwcheck.value) {
+		if (document.form.joinpw.value != document.form.joinpwcheck.value) {
 			alert("비밀번호를 동일하게 입력하세요.");
 			return false;
 		}
@@ -39,6 +39,7 @@
             return false;
         }
 
+        return true;
     }
     
     // 취소 버튼 클릭시 첫화면으로 이동
@@ -99,7 +100,7 @@
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
 		<form method="post"
-			action="${pageContext.request.contextPath}/membersJoin.do"
+			action="membersJoin.do"
 			name="form" id="form" onsubmit="return checkValue()">
 			<table>
 				<tr>
@@ -140,8 +141,8 @@
 
 				<tr>
 					<td id="title">성별</td>
-					<td><input type="radio" name="joingender" value="남">남
-						<input type="radio" name="joingender" value="여" checked>여</td>
+					<td><input type="radio" name="joingender" value="male">남
+						<input type="radio" name="joingender" value="female" checked>여</td>
 				</tr>
 
 				<tr>
@@ -173,20 +174,18 @@
 
 				<tr>
 					<td id="title">기장 선택</td>
-					<td><input type="radio" name="joinhairlengths" value="숏"
-						checked>숏 <input type="radio" name="joinhairlengths"
-						value="턱선아래">턱선 아래 <input type="radio"
-						name="joinhairlengths" value="어깨선아래">어깨선 아래 <input
-						type="radio" name="joinhairlengths" value="가슴선아래">가슴선 아래</td>
+					<td><input type="radio" name="joinhairlengths" value="short" checked>숏
+					<input type="radio" name="joinhairlengths" value="jawline">턱선 아래
+					<input type="radio" name="joinhairlengths" value="shoulderline">어깨선 아래
+					<input type="radio" name="joinhairlengths" value="chestline">가슴선 아래</td>
 				</tr>
 
 				<tr>
 					<td id="title">머릿결 상태</td>
-					<td><input type="radio" name="joinhairstatus" value="정상"
-						checked>정상 모발 <input type="radio" name="joinhairstatus"
-						value="손상">손상 모발 <input type="radio" name="joinhairstatus"
-						value="극손상">극손상 모발 <input type="radio"
-						name="joinhairstatus" value="탈색모">탈색모 모발</td>
+					<td><input type="radio" name="joinhairstatus" value="normal" checked>정상 모발
+					<input type="radio" name="joinhairstatus" value="damaged">손상 모발
+					<input type="radio" name="joinhairstatus" value="extremedamage">극손상 모발
+					<input type="radio" name="joinhairstatus" value="bleachedhair">탈색모 모발</td>
 				</tr>
 			</table>
 			<br> <input type="submit" value="가입" />

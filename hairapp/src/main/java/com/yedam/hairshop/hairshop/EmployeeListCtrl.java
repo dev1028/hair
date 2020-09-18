@@ -12,6 +12,8 @@ import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopVo;
 
+import net.sf.json.JSONArray;
+
 public class EmployeeListCtrl implements Controller {
 
 	@Override
@@ -21,7 +23,7 @@ public class EmployeeListCtrl implements Controller {
 		DesignerVo dVo = new DesignerVo();
 		dVo.setHs_no(hVo.getHs_no());
 		ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShop(dVo);
-		
+		request.setAttribute("emplistjson", JSONArray.fromObject(emplist));
 		request.setAttribute("emplist", emplist);
 		request.getRequestDispatcher("/hairshop/employeeList.jsp").forward(request, response);
 	}

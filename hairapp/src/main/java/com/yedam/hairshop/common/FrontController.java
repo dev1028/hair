@@ -10,16 +10,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
+import com.yedam.hairshop.members.MembersInfoModifyCtrl;
+
+import com.yedam.hairshop.designer.DesignerInfoCtrl;
+import com.yedam.hairshop.designer.DesignerUpdateCtrl;
+import com.yedam.hairshop.hairshop.EmployeeListCtrl;
+import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
+import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
+
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
+import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
-import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
-import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 
 /*
 @WebServlet(name = "front", 
@@ -47,11 +55,14 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hairSelect.do", new HairSelectCtrl());
 		
 		//송현
+		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
+		list.put("/designer/designerInfoCtrl.do", new DesignerInfoCtrl());
 		
 		//린아
 		list.put("/membersLogin.do", new MembersLoginCtrl());
-		list.put("/membersJoin.do", new MembersJoinCtrl());
+		list.put("/members/membersJoin.do", new MembersJoinCtrl());
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());
+		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());
 		
 		//강산
 		
@@ -59,6 +70,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl());
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl());
+		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl());
 	}
 
 
