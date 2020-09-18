@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
+import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -36,11 +37,10 @@ public class FrontController extends HttpServlet {
 		list = new HashMap<String, Controller>();
 		
 		//상민
+		list.put("/testDB.do", new TestDBCtrl());
 		list.put("/membersInsert.do", new TestController());
 		list.put("/searchRealtime.do", new SearchRealtimCtrl());
-		
-		
-		list.put("/testDB.do", new TestDBCtrl());
+		list.put("/hairSelect.do", new HairSelectCtrl());
 		
 		//송현
 		

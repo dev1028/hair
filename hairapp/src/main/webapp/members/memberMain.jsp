@@ -101,7 +101,6 @@ form.example::after {
 </script>
 </head>
 <body>
-	<div id="project-label">Select a project (type "j" for a start):</div>
 	<form action="hairshopSelect.jsp" method="post" style="margin:auto;max-width:300px">
 		<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
 		<input id="project" type="text" placeholder="Search.." name="term">
