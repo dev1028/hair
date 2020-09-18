@@ -59,12 +59,12 @@
 				<li><a href="#">디자이너</a></li>
 			</ul>
 		</div>
-		<div id="home">
+	<!-- 	<div id="btnox">
 			<ul>
-				<li>HOME</li>
-				<li>LOGOUT</li>
+				<li><button>HOME</button></li>
+				<li><button>LOGOUT</button></li>
 			</ul>
-		</div>
+		</div> -->
 
 	</div>
 

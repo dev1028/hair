@@ -48,7 +48,7 @@ form.example::after {
 </style>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jQuery UI Autocomplete - Custom data and display</title>
+<title>메인화면</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
@@ -79,7 +79,7 @@ form.example::after {
 	$(function() {
 		$("#project").autocomplete({
 			minLength : 1,
-			source : "../searchRealtime.do",
+			source : "../ajax/searchRealtime.do",
 			focus : function(event, ui) {
 				$("#project").val(ui.item.label);
 				return false;
@@ -101,8 +101,7 @@ form.example::after {
 </script>
 </head>
 <body>
-	<div id="project-label">Select a project (type "j" for a start):</div>
-	<form action="hairshopSelect.jsp" method="post" style="margin:auto;max-width:300px">
+	<form action="hairshopSelect.do" method="post" style="margin:auto;max-width:300px">
 		<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
 		<input id="project" type="text" placeholder="Search.." name="term">
 		<button type="submit" name="detail"><i class="fa fa-search"></i></button>
