@@ -6,6 +6,7 @@
 	</decorator>
 	<decorator name="user" page="left-sidebar.jsp">
 		<pattern>/member*</pattern>
+		<pattern>/member/*</pattern>
 	</decorator>
 
 	<excludes>
