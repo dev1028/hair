@@ -26,7 +26,7 @@ public class MembersDAO {
 		return instance;
 	}
 
-	// 단건 조회
+	// 로그인 단건 조회
 	public MembersVo loginSelectOne(MembersVo membersVO) {
 		MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
@@ -110,6 +110,51 @@ public class MembersDAO {
 		}
 		return members; // 값을 리턴해줌
 	}
+	
+	
+	// 회원정보 불러오기
+		public MembersVo getMembersInfo(String mem_email) {
+			MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select * from members where mem_email=?";
+				System.out.println(sql);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mem_email);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					members = new MembersVo();
+					members.setMem_no(rs.getString(1));
+					members.setMem_email(rs.getString(2));
+					members.setMem_pw(rs.getString(3));
+					members.setMem_name(rs.getString(4));
+					members.setMem_phone(rs.getString(5));
+					members.setMem_birth(rs.getString(6));
+					members.setMem_sex(rs.getString(7));
+					members.setMem_addr(rs.getString(8));
+					members.setMem_city(rs.getString(9));
+					members.setMem_country(rs.getString(10));
+					members.setMem_township(rs.getString(11));
+					members.setMem_latitude_longitude(rs.getString(12));
+					members.setMem_saved_money(rs.getString(13));
+					members.setMem_city_latitude_longitude(rs.getString(14));
+					members.setMem_hair_length(rs.getString(15));
+					members.setMem_hair_status(rs.getString(16));
+					members.setMem_zip(rs.getString(17));
+				} else {
+					System.out.println("no data");
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return members; // 값을 리턴해줌
+		}	// end getMembersInfo()
+	
 
 	// 전체 조회
 	public List<MembersVo> selectAll() { // 조회가 여러건이면 DeptVO를 list에 담음
@@ -149,14 +194,29 @@ public class MembersDAO {
 		return list; // 값을 리턴해줌
 	}
 
-	// login update
-	public void update(MembersVo membersVO) {
+	// membersModify
+	public void membersModify(MembersVo membersVo) {
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "update members set mem_pw =? where mem_email=?";
+			String sql = "update members "
+					+ " set MEM_PW =?, MEM_NAME=?, MEM_PHONE=?, MEM_BIRTH=?, MEM_SEX=?, MEM_ADDR=?, "
+					+ " MEM_CITY=?, MEM_COUNTRY=?, MEM_TOWNSHIP=?, MEM_ZIP=?, MEM_HAIR_LENGTH=?, MEM_HAIR_STATUS=? "
+					+ " where MEM_EMAIL=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, membersVO.getMem_pw());
-			pstmt.setString(2, membersVO.getMem_email());
+			pstmt.setString(1, membersVo.getMem_pw());
+			pstmt.setString(2, membersVo.getMem_name());
+			pstmt.setString(3, membersVo.getMem_phone());
+			pstmt.setString(4, membersVo.getMem_birth());
+			pstmt.setString(5, membersVo.getMem_sex());
+			pstmt.setString(6, membersVo.getMem_addr());
+			pstmt.setString(7, membersVo.getMem_city());
+			pstmt.setString(8, membersVo.getMem_country());
+			pstmt.setString(9, membersVo.getMem_township());
+			pstmt.setString(10, membersVo.getMem_zip());
+			pstmt.setString(11, membersVo.getMem_hair_length());
+			pstmt.setString(12, membersVo.getMem_hair_status());
+			pstmt.setString(13, membersVo.getMem_email());
+
 			int r = pstmt.executeUpdate(); // 실행
 			System.out.println(r + " 건이 수정됨"); // 결과 처리
 
@@ -165,7 +225,8 @@ public class MembersDAO {
 		} finally {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
-	}
+	}	// end membersModify()
+	
 
 	// delete
 	public void delete(MembersVo membersVO) {
@@ -185,12 +246,12 @@ public class MembersDAO {
 	}
 
 	// membersJoinInsert
-	public void membersJoin(MembersVo membersVo) {
+	public MembersVo membersJoin(MembersVo membersVo) {
 		int r = 0;
 		try {
 			// 1. DB 연결
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
-//jjjj
+
 			// 2. sql 구문 실행
 			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,"
 					+ " MEM_ADDR,MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
@@ -223,45 +284,54 @@ public class MembersDAO {
 			// 4. 연결 해제
 			ConnectionManager.close(conn);
 		}
+		return membersVo;
 
 	}
-	
-	
+
 	/**
-     * 아이디 중복체크를 한다.
-     * @param id 아이디
-     * @return x : 아이디 중복여부 확인값
-     */
-    public boolean duplicateIdCheck(String id) {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        boolean x= false;
-        
-        try {
-            // 쿼리
-            StringBuffer query = new StringBuffer();
-            query.append("SELECT MEM_EMAIL FROM MEMBERS WHERE MEM_EMAIL=?");
-                        
-            conn = ConnectionManager.getConnnect();
-            pstm = conn.prepareStatement(query.toString());
-            pstm.setString(1, id);
-            rs = pstm.executeQuery();
-            
-            if(rs.next()) x= true; //해당 아이디 존재
-            
-            return x;
-            
-        } catch (Exception sqle) {
-            throw new RuntimeException(sqle.getMessage());
-        } finally {
-            try{
-                if ( pstm != null ){ pstm.close(); pstm=null; }
-                if ( conn != null ){ conn.close(); conn=null;    }
-            }catch(Exception e){
-                throw new RuntimeException(e.getMessage());
-            }
-        }
-    } // end duplicateIdCheck()
+	 * 아이디 중복체크를 한다.
+	 * 
+	 * @param id 아이디
+	 * @return x : 아이디 중복여부 확인값
+	 */
+	public boolean duplicateIdCheck(String id) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		boolean x = false;
+
+		try {
+			// 쿼리
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT MEM_EMAIL FROM MEMBERS WHERE MEM_EMAIL=?");
+
+			conn = ConnectionManager.getConnnect();
+			pstm = conn.prepareStatement(query.toString());
+			pstm.setString(1, id);
+			rs = pstm.executeQuery();
+
+			if (rs.next())
+				x = true; // 해당 아이디 존재
+
+			return x;
+
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+					pstm = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	} // end duplicateIdCheck()
+
 
 }
