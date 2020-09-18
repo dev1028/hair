@@ -7,22 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.MembersDAO;
-import com.yedam.hairshop.model.MembersVo;
+import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.model.DesignerVo;
 
 public class DesignerInfoCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		MembersVo vo = new MembersVo();
-		vo.setMem_no("10");
-		vo.setMem_name("lee");
-		vo.setMem_email("abc@naver.com");
+		DesignerVo vo = new DesignerVo();
+		vo.setDesigner_no("19");
+		//session에서 조회하는걸로 수정해야됨.
 		
-		MembersVo mem = MembersDAO.getInstance().selectOne(vo);
-		request.setAttribute("mem", mem);
-		
+		DesignerVo designer = DesignerDAO.getInstance().selectOne(vo);
+		request.setAttribute("designer", designer);
+		System.out.println("designer NO: " + designer.getDesigner_no());
 		request.getRequestDispatcher("/designer/designerUpdate.jsp").forward(request, response);
 	}
 }

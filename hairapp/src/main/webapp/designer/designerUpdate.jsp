@@ -5,11 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function inputCheck() {
+
+//비밀번호 확인
+/* function isSame() {
+    var pw = document.twin.wUserPW.value;
+    var confirmPW = document.twin.wUserPWConfirm.value;
+    if (pw.length < 6 || pw.length > 16) {
+        window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
+        document.getElementById('pw').value=document.getElementById('pwCheck').value='';
+        document.getElementById('same').innerHTML='';
+    }
+    if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
+        if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
+            document.getElementById('same').innerHTML='비밀번호가 일치합니다.';
+            document.getElementById('same').style.color='blue';
+        }
+        else {
+            document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다.';
+            document.getElementById('same').style.color='red';
+        }
+    }
+}
+ 
+/* 	function inputCheck() {
 		// 필수입력 체크
 		if (frm.phone.value == "") {
-			window.alert("휴대폰번호 입력 ㄱ");
+			window.alert("번호 입력 ㄱ");
 			frm.phone.focus();
 			return false;
 		}
@@ -18,60 +41,74 @@
 			frm.holiday.focus();
 			return false;
 		}
-		if (frm.workstart.value == "") {
+ 		if (frm.workstart.value == "") {
 			alert("근무시작시간 입력 ㄱ");
 			frm.workstart.focus();
 			return false;
-		}
+	
 		if (frm.workend.value == "") {
 			alert("근무종료시간 입력ㄱ");
 			frm.workend.focus();
 			return false;
 		}
 		return true;
-	}
+	} */
 </script>
+<style>
+	table{
+		text-align : center;
+		margin auoto ;
+	}
+</style>
 </head>
 <body>
 	<h3>디자이너 정보 업데이트</h3>
-	<form method="post" action="/designer/designerUpdate.do" id="frm"
-		onclick="return inputCheck()">
-		<table>
+	<form method="post" action="${pageContext.request.contextPath}/designer/designerUpdate.do" id="frm">
+		 <input type="hidden" name="designer_no" value="${ designer.designer_no}">
+		<table border="1">
 			<tr>
 				<td>디자이너 번호</td>
-				<td>${mem.mem_no}</td>
+				<td>${designer.designer_no}</td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td>${mem.mem_name}</td>
+				<td>${designer.designer_name}</td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input id="phone" name="phone" type="text"></td>
+				<td><input id="designer_phone" name="designer_phone" type="text"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td>${mem.mem_email}</td>
+				<td>${designer.designer_email}</td>
 			</tr>
 			<tr>
-				<td>password</td>
-				<td><input type="password"></td>
+				<td>비밀번호</td>
+				<td><input type="password" name="designer_pw" id="designer_pw" onchange="isSame()" /></td>
 			</tr>
+<!-- 			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" name="wUserPWConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;<span id="same"></span></td>
+			</tr> -->
 			<tr>
 				<td>휴무일</td>
-				<td><input id="holiday" name="holiday" type="text"></td>
+				<td><input type="text" id="designer_dayoff" name="designer_dayoff" ></td>
 			</tr>
 			<tr>
 				<td>근무시작시간</td>
-				<td><input id="workstart" name="workstart" type="text"></td>
+				<td><input id="work_start_time" name="work_start_time" type="text"></td>
 			</tr>
 			<tr>
 				<td>근무종료시간</td>
-				<td><input id="workend" name="workstart" type="text"></td>
+				<td><input id="work_end_time" name="work_end_time" type="text"></td>
+			</tr>
+			<tr>
+				<td>입사날짜</td>
+				<td><input id ="hire_date" name="hire_date" type="date"></td>
 			</tr>
 			<tr>
 				<td>프로필</td>
-				<td><textarea id="profile" name="profile"></textarea></td>
+				<td><textarea id="designer_profile" name="designer_profile"></textarea></td>
 			</tr>
 		</table>
 		<div>

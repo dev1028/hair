@@ -2,11 +2,11 @@
 
 <decorators defaultdir="/decorator">
 
-	<decorator name="main" page="layout.jsp">
+	<decorator name="main" page="hairshop_layout.jsp">
 		<pattern>/*</pattern>
 	</decorator>
 
 	<excludes>
-		<pattern>/board/uploadForm.jsp</pattern>
+		<pattern>/ajax/*</pattern>
 	</excludes>
 </decorators>

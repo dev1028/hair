@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.DesignerVo;
+
 
 public class DesignerDAO {
 	
@@ -19,13 +22,14 @@ public class DesignerDAO {
 			instance=new DesignerDAO();
 			return instance;
 	}
-	//디자이너 정보 추가
 	
+	//디자이너 정보 추가
 	public int update(DesignerVo designerVo) {
 		int r = 0;
-		String sql = "update designer set designer_pw = ?, designer_phone = ?, designer_dayoff = ?  "
-					+ " work_start_time = ?, work_end_time = ?, hire_date = ? , designer_profile = ? where designer_no = ?" ;
+		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
+					+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? , DESIGNER_PROFILE = ? WHERE DESIGNER_NO = ?" ;
 		try {
+			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_pw());
 			pstmt.setString(2, designerVo.getDesigner_phone());
@@ -34,6 +38,7 @@ public class DesignerDAO {
 			pstmt.setString(5, designerVo.getWork_end_time());
 			pstmt.setString(6, designerVo.getHire_date());
 			pstmt.setString(7, designerVo.getDesigner_profile());
+			pstmt.setString(8, designerVo.getDesigner_no());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -41,5 +46,75 @@ public class DesignerDAO {
 		} 
 			return r;
 	}
+	//단건 조회
+		public DesignerVo selectOne(DesignerVo designerVo) {
+			DesignerVo resultVO = null;
+
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = " SELECT * FROM DESIGNER WHERE DESIGNER_NO = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,designerVo.getDesigner_no());
+				rs = pstmt.executeQuery(); 
+				if(rs.next()) {	//처음 커서 위치는 BOF 
+					resultVO = new DesignerVo();
+					resultVO.setDesigner_no(rs.getString(1));
+					resultVO.setDesigner_name(rs.getString(2));
+					resultVO.setDesigner_email(rs.getString(3));
+				}else {
+					System.out.println("no data");
+				}
+			} catch(Exception e) {
+				
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return resultVO;
+			
+		}
+	
+	//미용실별 디자이너 목록 
+	//2020.09.17 승연
+	public ArrayList<DesignerVo> selectByHairShop(DesignerVo dVo) {
+		ArrayList<DesignerVo> list = new ArrayList<DesignerVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
+					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
+					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO"
+					+ " FROM DESIGNER"
+					+ " WHERE HS_NO=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dVo.getHs_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				DesignerVo designer = new DesignerVo();
+				designer.setDesigner_no(rs.getString("DESIGNER_NO"));
+				designer.setDesigner_name(rs.getString("DESIGNER_NAME"));
+				designer.setDesigner_phone(rs.getString("DESIGNER_PHONE"));
+				designer.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
+				designer.setDesigner_pw(rs.getString("DESIGNER_PW"));
+				designer.setDesigner_dayoff(rs.getString("DESIGNER_DAYOFF"));
+				designer.setWork_start_time(rs.getString("WORK_START_TIME"));
+				designer.setWork_end_time(rs.getString("WORK_END_TIME"));
+				designer.setDesigner_access_status(rs.getString("DESIGNER_ACCESS_STATUS"));
+				designer.setPosition(rs.getString("POSITION"));
+				designer.setSalary(rs.getString("SALARY"));
+				designer.setIncentive(rs.getString("INCENTIVE"));
+				designer.setHire_date(rs.getString("HIRE_DATE"));
+				designer.setHs_no(rs.getString("HS_NO"));
+				list.add(designer);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+		
+	}
+	
+	
 	
 }

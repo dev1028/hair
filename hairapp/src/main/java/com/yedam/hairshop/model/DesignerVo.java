@@ -20,5 +20,7 @@ public class DesignerVo {
 	private String incentive;
 	private String hire_date;	
 	private String designer_profile;
+	private String hs_no;//
+
 	
 }
