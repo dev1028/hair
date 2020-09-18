@@ -52,7 +52,7 @@ public class DesignerDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
 					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
-					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO"
+					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME"
 					+ " FROM DESIGNER"
 					+ " WHERE HS_NO=?";
 			pstmt = conn.prepareStatement(sql);
@@ -75,6 +75,8 @@ public class DesignerDAO {
 				designer.setIncentive(rs.getString("INCENTIVE"));
 				designer.setHire_date(rs.getString("HIRE_DATE"));
 				designer.setHs_no(rs.getString("HS_NO"));
+				designer.setDesigner_profile(rs.getString("DESIGNER_PROFILE"));
+				designer.setFile_name(rs.getString("FILE_NAME"));
 				list.add(designer);
 			}
 		} catch (Exception e) {
@@ -83,9 +85,30 @@ public class DesignerDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return list;
-		
 	}
 	
-	
+	//디자이너 간편등록
+	//2020.09.18
+	public int simpleInsert(DesignerVo dVo) {
+		int r=0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "INSERT INTO DESIGNER"
+					+ "(DESIGNER_NO, DESIGNER_NAME, DESIGNER_PHONE, DESIGNER_EMAIL, "
+					+ "DESIGNER_PW, DESIGNER_ACCESS_STATUS, HS_NO)"
+					+ " VALUES(DESIGNER_NO_SEQ.NEXTVAL,?,?,?,?,-1,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dVo.getDesigner_name());
+			pstmt.setString(2, dVo.getDesigner_phone());
+			pstmt.setString(3, dVo.getDesigner_email());
+			pstmt.setString(4, dVo.getDesigner_pw());
+			pstmt.setString(5, dVo.getHs_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return r;
+	}
 	
 }
+
