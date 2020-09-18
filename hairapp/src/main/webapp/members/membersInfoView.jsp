@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>membersInfoModify.jsp</title>
+<title>membersInfoView.jsp</title>
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
@@ -73,6 +73,7 @@
 		document.form.zipNo.value = zipNo;
 	}
 	
+	
 </script>
 </head>
 <body>
@@ -94,7 +95,7 @@
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<form method="post"
-			action="membersInfoModify.do"
+			action="membersInfoView.do"
 			name="form" id="form" onsubmit="return checkValue()">
 			<table>
 				<tr>
@@ -187,7 +188,9 @@
 					<c:if test="${modify.mem_hair_status='bleachedhair'}">checked="checked"</c:if>>탈색모 모발</td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="수정"/>
+		</form>
+		<form method="post" action="membersInfoModify.do" name="formmodi" id="formmodi">
+			<br> <input type="submit" value="수정" />
 		</form>
 			<input type="button" value="취소" onclick="goFirstForm()">
 	</div>

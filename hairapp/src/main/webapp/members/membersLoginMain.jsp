@@ -9,6 +9,10 @@
 	function logoutPro() {
 		location.href = "members/membersLogout.jsp";
 	}
+	
+	function membersModifyView() {
+		location.href = "members/membersInfoView.do";
+	}
 </script>
 </head>
 <body>
@@ -30,6 +34,7 @@
     
     <br><br>
     <input type="button" value="로그아웃" onclick="logoutPro()" />
+    <input type="button" value="정보수정" onclick="membersModifyView()" />
     
     <%} %>
 </body>
