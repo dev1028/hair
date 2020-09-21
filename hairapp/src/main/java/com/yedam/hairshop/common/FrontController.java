@@ -16,6 +16,8 @@ import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
+import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
+import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 
 import com.yedam.hairshop.members.HairSelectCtrl;
@@ -25,8 +27,8 @@ import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
-import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
+import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
 /*
@@ -71,6 +73,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl());
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl());
+		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl());
+		list.put("/hairshop/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl());
+		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl());
 	}
 
 

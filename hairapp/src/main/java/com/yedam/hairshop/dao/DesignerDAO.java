@@ -139,5 +139,32 @@ public class DesignerDAO {
 		return r;
 	}
 	
+	//2020.09.20 김승연
+	//미용실에서 디자이너 정보 수정
+	public int updateForHair(DesignerVo designerVo) {
+		int r = 0;
+		String sql = "UPDATE DESIGNER SET POSITION = ?, SALARY = ?, INCENTIVE = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ?,"
+					+ " WORK_START_TIME = ?, WORK_END_TIME = ?, DESIGNER_PROFILE = ?, FILE_NAME = ?"
+					+ " WHERE DESIGNER_NO = ?" ;
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designerVo.getPosition());
+			pstmt.setString(2, designerVo.getSalary());
+			pstmt.setString(3, designerVo.getIncentive());
+			pstmt.setString(4, designerVo.getDesigner_phone());
+			pstmt.setString(5, designerVo.getDesigner_dayoff());
+			pstmt.setString(6, designerVo.getWork_start_time());
+			pstmt.setString(7, designerVo.getWork_end_time());
+			pstmt.setString(8, designerVo.getDesigner_profile());
+			pstmt.setString(9, designerVo.getFile_name());
+			pstmt.setString(10, designerVo.getDesigner_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+			return r;
+	}
+	
 }
 
