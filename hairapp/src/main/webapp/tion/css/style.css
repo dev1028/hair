@@ -2177,7 +2177,8 @@ transform
 #nav {
 	position: absolute;
 	right: 1em;
-	top: 1.1em;
+	top: 1.2em; 
+	
 }
 
 #nav>ul>li {

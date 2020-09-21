@@ -26,7 +26,7 @@
 		action="${pageContext.request.contextPath}/membersLogin.do"
 		onsubmit="return checkValue()">
 		<div>
-			<label for="id">ID:</label> <input type="text" id="loginid"
+			<label for="id">EMAIL:</label> <input type="email" id="loginid"
 				name="loginid">
 		</div>
 		<div>

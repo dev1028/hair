@@ -24,15 +24,18 @@ public class MembersInfoModifyCtrl implements Controller {
 		
 		// 세션이 가지고있는 로그인한 ID 정보를 가져온다
         HttpSession session = request.getSession();
-        String mem_email = session.getAttribute("sessionID").toString();
+        System.out.println("session2-1: "+session);
+        String mem_email = session.getAttribute("loginid").toString();
+        System.out.println("session2-2: "+mem_email);
         
-        MembersVo memberVo = dao.getMembersInfo(mem_email);
-        request.setAttribute("memberVo", memberVo);
+        //MembersVo memberVo = dao.getMembersInfo(mem_email);
+        //request.setAttribute("memberVo", memberVo);
         
 		// 파라미터 VO에 담기
         MembersVo members = new MembersVo();
 		String modifyemail = mem_email;
 		String modifypw = request.getParameter("modifypw");
+		System.out.println(modifypw);
 		String modifyname = request.getParameter("modifyname");
 		String modifyphone = request.getParameter("modifyphone");
 		String modifybirth = request.getParameter("modifybirth");
@@ -59,12 +62,13 @@ public class MembersInfoModifyCtrl implements Controller {
 		members.setMem_hair_length(modifyhairlengths);
 		members.setMem_hair_status(modifyhairstatus);
 		
-		
+		System.out.println("3-1 : "+members);
 		dao.membersModify(members);
 
 		request.setAttribute("modify", members);
 
-		request.getRequestDispatcher("membersInfoSuccess.jsp").forward(request, response);
+
+		request.getRequestDispatcher("membersInfoOutPut.jsp").forward(request, response);
 	}
 
 }

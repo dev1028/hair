@@ -28,7 +28,7 @@ public class HairshopHairInfoDAO {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
 
 		try {
-			String sql  = 	" SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time " +
+			String sql  = 	" SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no" +
 					" FROM hairshop_hair_info hi, hairshop hs " + 
 					" WHERE hi.hs_no = hs.hs_no AND hs.hs_no = ?";
 			conn = ConnectionManager.getConnnect();
@@ -41,6 +41,7 @@ public class HairshopHairInfoDAO {
 				vo.setHhi_name(rs.getString(2));
 				vo.setHhi_price(rs.getString(3));
 				vo.setHhi_time(rs.getString(4));
+				vo.setHs_no(rs.getString(5));
 				list.add(vo);
 			}				
 		} catch (SQLException e) {

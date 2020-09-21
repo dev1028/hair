@@ -49,14 +49,16 @@
 </style>
 </head>
 <body>
-	<c:forEach items="${list}" var="hairInfo" >
-		<form action="../designerSelect.do" method="post">
+	<c:forEach items="${list}" var="designerInfo" >
+		<form action="../members/payment.do" method="post">
 			<div class="horizontal-card">
 				<img src="http://via.placeholder.com/200x100" />
 				<div class="horizontal-card-body">
-					<span class="card-text">이름: ${hairInfo.hhi_name} </span>
-					<span class="card-text">가격: ${hairInfo.hhi_price} </span>
-					<span class="card-text">시술시간: ${hairInfo.hhi_time}분 </span>
+					<span class="card-text">이름: ${designerInfo.designer_name} </span>
+					<span class="card-text">프로필: ${designerInfo.designer_profile} </span>
+					<span class="card-text">직책: ${designerInfo.position} </span>
+					<span class="card-text">시간: ${designerInfo.work_start_time}-${hairInfo.work_end_time} </span>
+					<span class="card-text">휴일: ${designerInfo.designer_dayoff} </span>
 					<h4 class="card-title"></h4>
 					<span class="card-text"></span>
 				</div>

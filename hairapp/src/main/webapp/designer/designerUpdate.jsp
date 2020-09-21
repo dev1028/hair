@@ -65,7 +65,7 @@
 	<h3>디자이너 정보 업데이트</h3>
 	<form method="post" action="${pageContext.request.contextPath}/designer/designerUpdate.do" id="frm">
 		 <input type="hidden" name="designer_no" value="${ designer.designer_no}">
-		<table border="1">
+		<table>
 			<tr>
 				<td>디자이너 번호</td>
 				<td>${designer.designer_no}</td>

@@ -5,3 +5,5 @@
 		url="jdbc:oracle:thin:@192.168.0.57:1521:xe" username="hair2" password="hair2"
 		maxTotal="20" maxIdle="10" maxWaitMillis="-1" /> <!-- -1 무한대기 -->
 </Context>
+<!-- localhost -> url="jdbc:oracle:thin:@127.0.0.1:1521:xe" -->
+<!-- rina -> url="jdbc:oracle:thin:@192.168.0.57:1521:xe" -->

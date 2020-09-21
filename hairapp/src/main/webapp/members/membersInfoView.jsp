@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>membersInfoModify.jsp</title>
+<title>membersInfoView.jsp</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -16,10 +16,12 @@
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
+
 		if (!document.form.modifypw.value) {
 			alert("비밀번호를 입력하세요.");
 			return false;
 		}
+
 		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
 		if (document.form.modifypw.value != document.form.modifypwcheck.value) {
 			alert("비밀번호를 동일하게 입력하세요.");
@@ -35,10 +37,12 @@
             alert("생년월일을 입력하세요.");
             return false;
         }
+
         if(!form.modifyphone.value){
             alert("전화번호를 입력하세요.");
             return false;
         }
+
         return true;
     }
     
@@ -47,6 +51,7 @@
         location.href="memberMain.jsp";
     }    
     
+
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다.
 	// (＂팝업 API 호출 소스"도 동일하게 적용시켜야 합니다.)
 	//document.domain = "abc.go.kr";
@@ -72,8 +77,9 @@
 		document.form.addrDetail.value = addrDetail;
 		document.form.zipNo.value = zipNo;
 	}
+
+	$( "#datepicker" ).datepicker( "getDate" );
 	
-	$("#datepicker").datepicker("getDate");
 </script>
 </head>
 <body>
@@ -85,7 +91,9 @@
 
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
-		<form method="post" action="membersInfoModify.do" name="form" id="form" onsubmit="return checkValue()">
+		<form method="post"
+			action="membersInfoView.do"
+			name="form" id="form" onsubmit="return checkValue()">
 			<table>
 				<tr>
 					<td id="title">이메일(아이디)</td>
@@ -177,7 +185,9 @@
 					<c:if test="${modify.mem_hair_status=='bleachedhair'}">checked="checked"</c:if>>탈색모 모발</td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="수정"/>
+		</form>
+		<form method="post" action="membersInfoModify.do" name="formmodi" id="formmodi">
+			<br> <input type="submit" value="수정" />
 		</form>
 			<input type="button" value="취소" onclick="goFirstForm()">
 	</div>
