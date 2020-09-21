@@ -19,11 +19,11 @@ import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
-
+import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
-
+import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -52,9 +52,13 @@ public class FrontController extends HttpServlet {
 		list.put("/testDB.do", new TestDBCtrl());
 		list.put("/members/membersMain.do", new MembersMainCtrl());
 		list.put("/members/hairshopSelect.do", new HairShopSelectCtrl());
+		list.put("/members/hairSelect.do", new HairSelectCtrl());
+		list.put("/members/designerSelect.do", new DesignerSelectCtrl());
+		list.put("/members/payment.do", new PaymentCtrl());
+		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
-		list.put("/members/hairSelect.do", new HairSelectCtrl());
+		
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
@@ -66,6 +70,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());
 		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());
 		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl());
+		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());
 		
 		//강산
 		
@@ -88,7 +93,7 @@ public class FrontController extends HttpServlet {
 		String contextPath = req.getContextPath();			// frontWeb
 		String path = uri.substring(contextPath.length());	// memberInsert.do
 		Controller subController = list.get(path);
-		System.out.println(path);
+//		System.out.println(path);
 		if(subController == null) {
 			System.out.println("잘못된 URL: " + path);
 		}else {
