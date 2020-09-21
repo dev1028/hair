@@ -71,6 +71,11 @@ public class MembersReservationVo {
 	private String hire_date;	
 	private String designer_profile;
 	private String file_name;
+	
+	// 회원디자이너예약상세정보 테이블 : MemDesignerRsvInfoVo
+	private String mdri_detail_info;
+	private String hhi_no;
+	private String mdri_memo;
 
 	
 }
