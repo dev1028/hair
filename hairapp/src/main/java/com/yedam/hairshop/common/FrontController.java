@@ -83,14 +83,13 @@ public class FrontController extends HttpServlet {
 
 	protected void service(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		System.out.println("service");
 		req.setCharacterEncoding(charset);
 		res.setContentType("text/html; charset=UTF-8");
 		String uri = req.getRequestURI();					// frontWeb/memberInsert.do
 		String contextPath = req.getContextPath();			// frontWeb
 		String path = uri.substring(contextPath.length());	// memberInsert.do
 		Controller subController = list.get(path);
-		
+		System.out.println(path);
 		if(subController == null) {
 			System.out.println("잘못된 URL: " + path);
 		}else {

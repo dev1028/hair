@@ -46,7 +46,7 @@
 $(function(){
 	function createCard(data){
 		var html = "";
-		html += '<form action="../hairSelect.do" method="post">'
+		html += '<form action="../ajax/hairSelect.do" method="post">'
 		html += '<div class="horizontal-card">';
 		html += 	'<img src="http://via.placeholder.com/200x100" />'
 		html += 	'<div class="horizontal-card-body">'

@@ -20,6 +20,7 @@ public class SearchRealtimCtrl implements Controller {
 		JsonArray jsonArray = new JsonArray();
 		SearchVo searchVo = new SearchVo();
 		searchVo.setLabel(term);
+//		System.out.println("seach term: " + term);
 		if(term.length() < 1) {
 			return;
 		}
