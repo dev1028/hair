@@ -15,7 +15,7 @@
 	<form method="post" action="membersRD.do" name="form" id="form">
 		<div id="wrap1">
 			<h3>예약중인 헤어샵</h3>	
-			<hr style="border: solid 1px">	
+			<hr style="border: solid 1px">	<%--dfsdf --%>
 			<c:if test="${ empty booking }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
 				예약중인 헤어샵이 없습니다
 			</c:if>
