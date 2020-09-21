@@ -23,7 +23,7 @@ import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
-
+import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -70,6 +70,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());
 		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());
 		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl());
+		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());
 		
 		//강산
 		
