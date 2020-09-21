@@ -9,7 +9,13 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style>
+
+.cardContainer{
+    width: 70%;
+}
+
 .horizontal-card {
+  width: 100%;
   position: relative;
   display: flex;
   border: 1px solid gray;
@@ -46,7 +52,7 @@
 $(function(){
 	function createCard(data){
 		var html = "";
-		html += '<form action="../ajax/hairSelect.do" method="post">'
+		html += '<form action="../members/hairSelect.do" method="post">'
 		html += '<div class="horizontal-card">';
 		html += 	'<img src="http://via.placeholder.com/200x100" />'
 		html += 	'<div class="horizontal-card-body">'
@@ -66,12 +72,12 @@ $(function(){
 	
 	}
 	function test(key){
-		$.ajax( "../searchRealtime.do", {
+		$.ajax( "../ajax/searchRealtime.do", {
 				dataType : "json",
 				data: {term : key},
 				success : function(datas){
 					for(i=0; i<datas.length; i++){
-						$(".AAA").append(createCard(datas[i]));
+						$(".cardContainer").append(createCard(datas[i]));
 						
 						//$("<div>SADF<div>").appendTo(".AAA")
 					}
@@ -86,7 +92,7 @@ $(function(){
 	
 	<h1>키워드: ${param.term }</h1>
 	
-	<div class="AAA">
+	<div class="cardContainer">
 	</div>
 	
 	
