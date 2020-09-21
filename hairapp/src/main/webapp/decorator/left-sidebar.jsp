@@ -45,8 +45,7 @@
 				<!-- Logo -->
 				<div id="logo">
 					<h1>
-						<a
-							href="${pageContext.request.contextPath}/members/memberMain.jsp">salon</a>
+						<a href="${pageContext.request.contextPath}/members/membersMain.do">SALON</a>
 					</h1>
 				</div>
 
