@@ -46,14 +46,14 @@
 				<div id="logo">
 					<h1>
 						<a
-							href="${pageContext.request.contextPath}/members/memberMain.jsp">salon</a>
+							href="${pageContext.request.contextPath}/members/membersMain.do">salon</a>
 					</h1>
 				</div>
 
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="left-sidebar.html">우리동네설정 </a></li>
+						<li><a href="left-sidebar.html">우리동네설정</a></li>
 						<li class="active"><a href="left-sidebar.html">우리동네 미용실
 								모아보기</a></li>
 						<li><a href="left-sidebar.html">우리동네 미용실 순위</a></li>
@@ -69,9 +69,9 @@
 		<!-- Header -->
 
 		<!-- Banner -->
-		<div id="banner">
+		<!-- <div id="banner">
 			<div class="container"></div>
-		</div>
+		</div> -->
 		<!-- /Banner -->
 
 	</div>
@@ -81,63 +81,7 @@
 		<div class="container">
 			<div class="row">
 
-				<div class="3u">
-					<section class="sidebar">
-						<header>
-							<h2>
-								<a href="left-sidebar.html">헤어예약</a>
-							</h2>
-						</header>
-
-					</section>
-					<section class="sidebar">
-						<header>
-							<h2>
-								<a href="left-sidebar.html">헤어샵 소개와 위치</a>
-							</h2>
-						</header>
-
-					</section>
-					<section class="sidebar">
-						<header>
-							<h2>
-								<a href="left-sidebar.html">디자이너 소개</a>
-							</h2>
-						</header>
-
-					</section>
-					<section class="sidebar">
-						<header>
-							<h2>
-								<a href="left-sidebar.html">헤어 모아보기</a>
-							</h2>
-						</header>
-
-					</section>
-					<section class="sidebar">
-						<header>
-							<h2>
-								<a href="left-sidebar.html">쿠폰과 이벤트</a>
-							</h2>
-						</header>
-
-					</section>
-					<section class="sidebar">
-						<header>
-							<h2>
-								<a href="left-sidebar.html">후기 및 리뷰</a>
-							</h2>
-						</header>
-					 <ul class="default">
-							<li><a href="#">헤어예약</a></li>
-							<li><a href="#">헤어샵 소개와 위치</a></li>
-							<li><a href="#">디자이너 소개</a></li>
-							<li><a href="#">헤어 모아보기</a></li>
-							<li><a href="#">쿠폰과 이벤트</a></li>
-						</ul> 
-					</section>
-				</div>
-
+	
 				<decorator:body></decorator:body>
 
 			</div>
