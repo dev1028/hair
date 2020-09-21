@@ -67,11 +67,8 @@ public class MembersInfoModifyCtrl implements Controller {
 
 		request.setAttribute("modify", members);
 
-<<<<<<< HEAD
-		request.getRequestDispatcher("membersInfoModify.do").forward(request, response);
-=======
+
 		request.getRequestDispatcher("membersInfoOutPut.jsp").forward(request, response);
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 	}
 
 }
