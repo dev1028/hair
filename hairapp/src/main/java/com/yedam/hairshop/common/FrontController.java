@@ -88,7 +88,7 @@ public class FrontController extends HttpServlet {
 		String contextPath = req.getContextPath();			// frontWeb
 		String path = uri.substring(contextPath.length());	// memberInsert.do
 		Controller subController = list.get(path);
-		System.out.println(path);
+//		System.out.println(path);
 		if(subController == null) {
 			System.out.println("잘못된 URL: " + path);
 		}else {
