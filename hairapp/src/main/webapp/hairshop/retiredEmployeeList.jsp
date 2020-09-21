@@ -89,7 +89,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="designerInsertFrm"
+					<form id="fireemployeefrm"
 						action=""
 						method="post">
 						<div class="form-group">
