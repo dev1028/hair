@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>퇴사자 현황</title>
 <style type="text/css">
+
+/*6767676  */
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;
