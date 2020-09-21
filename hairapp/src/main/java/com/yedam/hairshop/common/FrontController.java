@@ -29,6 +29,7 @@ import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
+import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
 /*
@@ -77,6 +78,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl());
 		list.put("/hairshop/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl());
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl());
+		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl());
 	}
 
 
