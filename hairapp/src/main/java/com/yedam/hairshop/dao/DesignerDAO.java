@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.DesignerVo;
 
-
 public class DesignerDAO {
-	
+
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs = null; // 초기화
-	
+
 	static DesignerDAO instance;
+
 	public static DesignerDAO getInstance() {
-		if(instance == null)
-			instance=new DesignerDAO();
-			return instance;
+		if (instance == null)
+			instance = new DesignerDAO();
+		return instance;
 	}
-	
-	//디자이너 정보 추가
+
+	// 디자이너 정보 추가
 	public int update(DesignerVo designerVo) {
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
-					+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? , DESIGNER_PROFILE = ? WHERE DESIGNER_NO = ?" ;
+				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? , DESIGNER_PROFILE = ? WHERE DESIGNER_NO = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
@@ -43,46 +43,95 @@ public class DesignerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-			return r;
-	}
-	//단건 조회
-		public DesignerVo selectOne(DesignerVo designerVo) {
-			DesignerVo resultVO = null;
-
-			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = " SELECT * FROM DESIGNER WHERE DESIGNER_NO = ?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,designerVo.getDesigner_no());
-				rs = pstmt.executeQuery(); 
-				if(rs.next()) {	//처음 커서 위치는 BOF 
-					resultVO = new DesignerVo();
-					resultVO.setDesigner_no(rs.getString(1));
-					resultVO.setDesigner_name(rs.getString(2));
-					resultVO.setDesigner_email(rs.getString(3));
-				}else {
-					System.out.println("no data");
-				}
-			} catch(Exception e) {
-				
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
-			}
-			return resultVO;
-			
 		}
+		return r;
+	}
+
+	// 단건 조회
+	public DesignerVo selectOne(DesignerVo designerVo) {
+		DesignerVo resultVO = null;
+
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = " SELECT * FROM DESIGNER WHERE DESIGNER_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designerVo.getDesigner_no());
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 처음 커서 위치는 BOF
+				resultVO = new DesignerVo();
+				resultVO.setDesigner_no(rs.getString(1));
+				resultVO.setDesigner_name(rs.getString(2));
+				resultVO.setDesigner_email(rs.getString(4));
+			} else {
+				System.out.println("no data");
+			}
+		} catch (Exception e) {
+
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVO;
+
+	}
+
+	// 로그인시 아이디, 비밀번호 체크 메서드
+	// 아이디, 비밀번호를 인자로 받는다.
+	public int loginCheck(String email, String pw) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수
+		int x = -1;
+
+		try {
+			// 쿼리 - 먼저 입력된 아이디로 DB에서 비밀번호를 조회한다.
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT PASSWORD FROM DESIGNER WHERE DESIGNER_EMAIL= ?");
+
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
+			{
+				dbPW = rs.getString("password"); // 비번을 변수에 넣는다.
+				if (dbPW.equals(pw))
+					x = 1; // 넘겨받은 비번과 꺼내온 배번 비교. 같으면 인증성공
+				else
+					x = 0; // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패
+			} else {
+				x = -1; // 해당 아이디가 없을 경우
+			} return x;
+
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+					pstmt = null;
+				}
+				if (conn != null) {
+					conn.close();
+					conn = null;
+				}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	} // end loginCheck()
+
 	
-	//미용실별 디자이너 목록 
-	//2020.09.17 승연
+	// 미용실별 디자이너 목록
+	// 2020.09.17 승연
 	public ArrayList<DesignerVo> selectByHairShop(DesignerVo dVo) {
 		ArrayList<DesignerVo> list = new ArrayList<DesignerVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
 					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
-					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME"
-					+ " FROM DESIGNER"
+					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" + " FROM DESIGNER"
 					+ " WHERE HS_NO=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dVo.getHs_no());
@@ -115,17 +164,15 @@ public class DesignerDAO {
 		}
 		return list;
 	}
-	
-	//디자이너 간편등록
-	//2020.09.18
+
+	// 디자이너 간편등록
+	// 2020.09.18
 	public int simpleInsert(DesignerVo dVo) {
-		int r=0;
+		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO DESIGNER"
-					+ "(DESIGNER_NO, DESIGNER_NAME, DESIGNER_PHONE, DESIGNER_EMAIL, "
-					+ "DESIGNER_PW, DESIGNER_ACCESS_STATUS, HS_NO)"
-					+ " VALUES(DESIGNER_NO_SEQ.NEXTVAL,?,?,?,?,-1,?)";
+			String sql = "INSERT INTO DESIGNER" + "(DESIGNER_NO, DESIGNER_NAME, DESIGNER_PHONE, DESIGNER_EMAIL, "
+					+ "DESIGNER_PW, DESIGNER_ACCESS_STATUS, HS_NO)" + " VALUES(DESIGNER_NO_SEQ.NEXTVAL,?,?,?,?,-1,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dVo.getDesigner_name());
 			pstmt.setString(2, dVo.getDesigner_phone());
@@ -135,17 +182,17 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
+		}
 		return r;
 	}
-	
-	//2020.09.20 김승연
-	//미용실에서 디자이너 정보 수정
+
+	// 2020.09.20 김승연
+	// 미용실에서 디자이너 정보 수정
 	public int updateForHair(DesignerVo designerVo) {
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET POSITION = ?, SALARY = ?, INCENTIVE = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ?,"
-					+ " WORK_START_TIME = ?, WORK_END_TIME = ?, DESIGNER_PROFILE = ?, FILE_NAME = ?"
-					+ " WHERE DESIGNER_NO = ?" ;
+				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, DESIGNER_PROFILE = ?, FILE_NAME = ?"
+				+ " WHERE DESIGNER_NO = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
@@ -162,9 +209,8 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-			return r;
+		}
+		return r;
 	}
-	
-}
 
+}

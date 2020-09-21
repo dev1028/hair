@@ -23,6 +23,7 @@
 /*********************************************************************************/
 body {
 	background: #111111 url(images/main-wrapper-bg.jpg) repeat;
+	height: 100%;
 }
 
 body, input, textarea, select {
@@ -400,7 +401,23 @@ ul.default a {
 
 100%{
 -moz-transform
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -410,7 +427,23 @@ ul.default a {
 
 100%{
 -webkit-transform
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -420,7 +453,23 @@ ul.default a {
 
 100%{
 -o-transform
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -430,7 +479,23 @@ ul.default a {
 
 100%{
 -ms-transform
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -440,7 +505,23 @@ keyframes spin { 0%{
 
 100%{
 transform
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
 }
 }
 .fa-rotate-90 {
@@ -2112,6 +2193,7 @@ transform
 #main {
 	position: relative;
 	background: #fff;
+	min-height: 800px;
 }
 
 .homepage #main header, .homepage #main {
@@ -2143,7 +2225,6 @@ transform
 .sidebar .default a {
 	color: #333;
 }
-
 
 .3u {
 	position: relative;
@@ -2221,9 +2302,10 @@ transform
 /*********************************************************************************/
 #copyright {
 	position: relative;
-	padding: 3em 0em;
+	padding: 1em 0em;
 	text-align: center;
 	color: rgba(255, 255, 255, .4);
+	height: 50px;
 }
 
 #copyright .container {
