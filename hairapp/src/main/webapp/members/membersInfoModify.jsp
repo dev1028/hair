@@ -8,11 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>membersInfoModify.jsp</title>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="../common/datepicker.js"></script>
-<link href="../common/datepicker.css" rel="stylesheet" />
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
@@ -78,12 +73,20 @@
 		document.form.zipNo.value = zipNo;
 	}
 	
-	$("#datepicker").datepicker("getDate");
-
+	
 </script>
 </head>
 <body>
-
+<%--
+	<%
+        String mem_email = session.getAttribute("sessionID").toString();
+        
+        // 세션에 저장된 아이디를 가져와서
+        // 그 아이디 해당하는 회원정보를 가져온다.
+        MembersDAO dao = MembersDAO.getInstance();
+        MembersVo memberVo = dao.getMembersInfo(mem_email);
+    %>
+--%>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="wrap">
 		<br> <br> <b><font size="6" color="gray">회원 정보 수정</font></b> <br>
@@ -91,16 +94,18 @@
 
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
-		<form method="post" action="membersInfoModify.do" name="form" id="form" onsubmit="return checkValue()">
+		<form method="post"
+			action="membersInfoModify.do"
+			name="form" id="form" onsubmit="return checkValue()">
 			<table>
 				<tr>
 					<td id="title">이메일(아이디)</td>
-					<td><input type="email" name="modifyemail" maxlength="50" value="${modify.mem_email}" readonly="readonly"></td>
+					<td><input type="text" name="modifyemail" maxlength="50" value="${modify.modifyemail}" readonly="readonly"></td>
 				</tr>
 
 				<tr>
 					<td id="title">비밀번호</td>
-					<td><input type="password" name="modifypw" maxlength="15" value="${modify.mem_pw}"
+					<td><input type="password" name="modifypw" maxlength="15" value="${modify.modifypw}"
 						placeholder="15자 내로 적어주세요"></td>
 				</tr>
 
@@ -112,80 +117,82 @@
 
 				<tr>
 					<td id="title">이름</td>
-					<td><input type="text" name="modifyname" maxlength="50" value="${modify.mem_name}"></td>
+					<td><input type="text" name="modifyname" maxlength="50" value="${modify.modifyname}"></td>
 				</tr>
 
 				<tr>
 					<td id="title">휴대전화</td>
-					<td><input type="text" name="modifyphone"placeholder="010-000-0000" value="${modify.mem_phone}"></td>
+					<td><input type="text" name="modifyphone"placeholder="010-000-0000" value="${modify.modifyphone}"></td>
 				</tr>
 
 				<tr>
 					<td id="title">생일</td>
-					<td><input type="text" id="datepicker" name="modifybirth" value="${modify.mem_birth}"></td>
+					<td><input type="date" name="modifybirth" value="${modify.modifybirth}"></td>
 				</tr>
 
 				<tr>
 					<td id="title">성별</td>
 					<td><input type="radio" name="modifygender" value="male" 
-						<c:if test="${modify.mem_sex=='male'}">checked="checked"</c:if>>남
+						<c:if test="${modify.modifygender='male'}">checked="checked"</c:if>>남
 						<input type="radio" name="modifygender" value="female"
-						<c:if test="${modify.mem_sex=='female'}">checked="checked"</c:if>>여</td>
+						<c:if test="${modify.modifygender='female'}">checked="checked"</c:if>>여</td>
 				</tr>
 
 				<tr>
 					<td id="title">도로명주소 전체</td>
-					<td><input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="팝업을 먼저 눌러주세요" value="${modify.mem_addr}" />
+					<td><input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="팝업을 먼저 눌러주세요" value="${modify.addr1}" />
 					<input type="button" onClick="goPopup();" value="팝업" /></td>
 				</tr>
 
 				<tr>
 					<td id="title">도로명주소</td>
-					<td><input type="text" id="roadAddrPart1" name="roadAddrPart1" value="${modify.mem_city}" /></td>
+					<td><input type="text" id="roadAddrPart1" name="roadAddrPart1" value="${modify.addr2}" /></td>
 				</tr>
 
 				<tr>
 					<td id="title">고객입력 상세주소</td>
-					<td><input type="text" id="addrDetail" name="addrDetail" value="${modify.mem_country}" /></td>
+					<td><input type="text" id="addrDetail" name="addrDetail" value="${modify.addr3}" /></td>
 				</tr>
 
 				<tr>
 					<td id="title">참고주소</td>
-					<td><input type="text" id="roadAddrPart2" name="roadAddrPart2" value="${modify.mem_township}" /></td>
+					<td><input type="text" id="roadAddrPart2" name="roadAddrPart2" value="${modify.addr4}" /></td>
 				</tr>
 
 				<tr>
 					<td id="title">우편번호</td>
-					<td><input type="text" id="zipNo" name="zipNo" value="${modify.mem_zip}" /></td>
+					<td><input type="text" id="zipNo" name="zipNo" value="${modify.zipno}" /></td>
 				</tr>
 
 				<tr>
 					<td id="title">기장 선택</td>
 					<td><input type="radio" name="modifyhairlengths" value="short"
-					<c:if test="${modify.mem_hair_length=='short'}">checked="checked"</c:if>>숏
+					<c:if test="${modify.modifyhairlengths='short'}">checked="checked"</c:if>>숏
 					<input type="radio" name="modifyhairlengths" value="jawline"
-					<c:if test="${modify.mem_hair_length=='jawline'}">checked="checked"</c:if>>턱선 아래
+					<c:if test="${modify.modifyhairlengths='jawline'}">checked="checked"</c:if>>턱선 아래
 					<input type="radio" name="modifyhairlengths" value="shoulderline"
-					<c:if test="${modify.mem_hair_length=='shoulderline'}">checked="checked"</c:if>>어깨선 아래
+					<c:if test="${modify.modifyhairlengths='shoulderline'}">checked="checked"</c:if>>어깨선 아래
 					<input type="radio" name="modifyhairlengths" value="chestline"
-					<c:if test="${modify.mem_hair_length=='chestline'}">checked="checked"</c:if>>가슴선 아래</td>
+					<c:if test="${modify.modifyhairlengths='chestline'}">checked="checked"</c:if>>가슴선 아래</td>
 				</tr>
 
 				<tr>
 					<td id="title">머릿결 상태</td>
 					<td><input type="radio" name="modifyhairstatus" value="normal"
-					<c:if test="${modify.mem_hair_status=='normal'}">checked="checked"</c:if>>정상 모발
+					<c:if test="${modify.modifyhairstatus='normal'}">checked="checked"</c:if>>정상 모발
 					<input type="radio" name="modifyhairstatus" value="damaged"
-					<c:if test="${modify.mem_hair_status=='damaged'}">checked="checked"</c:if>>손상 모발
+					<c:if test="${modify.modifyhairstatus='damaged'}">checked="checked"</c:if>>손상 모발
 					<input type="radio" name="modifyhairstatus" value="extremedamage"
-					<c:if test="${modify.mem_hair_status=='extremedamage'}">checked="checked"</c:if>>극손상 모발
+					<c:if test="${modify.modifyhairstatus='extremedamage'}">checked="checked"</c:if>>극손상 모발
 					<input type="radio" name="modifyhairstatus" value="bleachedhair"
-					<c:if test="${modify.mem_hair_status=='bleachedhair'}">checked="checked"</c:if>>탈색모 모발</td>
+					<c:if test="${modify.modifyhairstatus='bleachedhair'}">checked="checked"</c:if>>탈색모 모발</td>
 				</tr>
 			</table>
-			<br> <input type="submit" value="수정"/>
-		</form>
+			<br> <input type="submit" value="수정" />
 			<input type="button" value="취소" onclick="goFirstForm()">
+
+
+		</form>
 	</div>
 </body>
 </html>

@@ -23,6 +23,7 @@
 /*********************************************************************************/
 body {
 	background: #111111 url(images/main-wrapper-bg.jpg) repeat;
+	height: 100%;
 }
 
 body, input, textarea, select {
@@ -400,7 +401,31 @@ ul.default a {
 
 100%{
 -moz-transform
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -410,7 +435,31 @@ ul.default a {
 
 100%{
 -webkit-transform
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -420,7 +469,31 @@ ul.default a {
 
 100%{
 -o-transform
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -430,7 +503,31 @@ ul.default a {
 
 100%{
 -ms-transform
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
 }
 }
 @
@@ -440,7 +537,31 @@ keyframes spin { 0%{
 
 100%{
 transform
+
+
+
+
+
+
+
+
+
+
+
+
 :rotate(359deg)
+
+
+
+
+
+
+
+
+
+
+
+
 }
 }
 .fa-rotate-90 {
@@ -2002,6 +2123,15 @@ transform
 }
 
 /*********************************************************************************/
+/* box                                                                        */
+/*********************************************************************************/
+#box {
+	float: right;
+	margin: 0.7em 1em; 
+
+}
+
+/*********************************************************************************/
 /* Header                                                                        */
 /*********************************************************************************/
 #header-wrapper {
@@ -2016,7 +2146,7 @@ transform
 }
 
 #header .container {
-	position: relative;
+	position: static;
 	padding: 3em 0em;
 }
 
@@ -2025,7 +2155,7 @@ transform
 /*********************************************************************************/
 #logo {
 	position: absolute;
-	left: 0em;
+	left: 3em;
 	top: 1.7em;
 }
 
@@ -2037,7 +2167,7 @@ transform
 	display: block;
 	text-decoration: none;
 	text-transform: lowercase;
-	font-size: 2.4em;
+	font-size: 50px;
 	font-weight: 600;
 }
 
@@ -2046,7 +2176,7 @@ transform
 /*********************************************************************************/
 #nav {
 	position: absolute;
-	right: 0em;
+	right: 1em;
 	top: 1.1em;
 }
 
@@ -2060,14 +2190,16 @@ transform
 
 #nav>ul>li>a, #nav>ul>li>span {
 	display: block;
-	margin-left: 0.7em;
-	padding: 0.80em 1.2em;
+	margin-left: 0.4em;
+	padding: 0.80em 1em;
 	letter-spacing: 0.06em;
 	text-decoration: none;
 	text-transform: uppercase;
-	font-size: 1.2em;
+	font-size: 18px;
+	font-weight: 300;
 	outline: 0;
 	color: #252525;
+	outline: 0;
 }
 
 #nav li.active a {
@@ -2112,6 +2244,7 @@ transform
 #main {
 	position: relative;
 	background: #fff;
+	min-height: 800px;
 }
 
 .homepage #main header, .homepage #main {
@@ -2143,7 +2276,6 @@ transform
 .sidebar .default a {
 	color: #333;
 }
-
 
 .3u {
 	position: relative;
@@ -2221,9 +2353,10 @@ transform
 /*********************************************************************************/
 #copyright {
 	position: relative;
-	padding: 3em 0em;
+	padding: 1em 0em;
 	text-align: center;
 	color: rgba(255, 255, 255, .4);
+	height: 50px;
 }
 
 #copyright .container {

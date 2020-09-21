@@ -5,11 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>membersJoin.jsp</title>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="../common/datepicker.js"></script>
-<link href="../common/datepicker.css" rel="stylesheet" />
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
@@ -110,11 +105,10 @@
 			<table>
 				<tr>
 					<td id="title">이메일(아이디)</td>
-					<td><input type="email" name="joinemail" maxlength="50" onkeydown="inputIdChk()"
+					<td><input type="text" name="joinemail" maxlength="50" onkeydown="inputIdChk()"
 						placeholder="sample@naver.com 형식">
 						<input type="button" value="중복확인" onclick="openIdChk()">
-						<input type="hidden" name="idDuplication" value="idUncheck" >
-						<button>인증</button></td>
+						<input type="hidden" name="idDuplication" value="idUncheck" ></td>
 				</tr>
 
 				<tr>
@@ -142,7 +136,7 @@
 
 				<tr>
 					<td id="title">생일</td>
-					<td><input type="text" id="datepicker" name="joinbirth"></td>
+					<td><input type="date" name="joinbirth"></td>
 				</tr>
 
 				<tr>

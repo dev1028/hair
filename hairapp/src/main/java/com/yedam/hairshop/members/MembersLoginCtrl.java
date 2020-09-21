@@ -32,7 +32,7 @@ public class MembersLoginCtrl implements Controller {
 		} else {
 			if (membersVO.getMem_pw().equals(resultVO.getMem_pw())) { // memberVO에 있는 pw와 resultVO의 pw를 비교해서 같으면 로그인성공
 				request.getSession().setAttribute("login", resultVO);
-				request.getSession().setAttribute("loginid", resultVO.getMem_email());	// 세션아이디
+				request.getSession().setAttribute("loginid", resultVO.getMem_email());
 				page = "/members/membersLoginMain.jsp";
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "패스워드 불일치");
