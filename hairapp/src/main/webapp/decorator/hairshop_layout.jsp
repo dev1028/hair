@@ -94,7 +94,7 @@
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">회원관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">매출관리</a></li>
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">예약관리</a></li>
 						<li class="nav-item"><a class="nav-link disabled" href="#"
 							tabindex="-1" aria-disabled="true">Disabled</a></li>
