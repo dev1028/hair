@@ -76,6 +76,9 @@ public class MembersReservationVo {
 	private String mdri_detail_info;
 	private String hhi_no;
 	private String mdri_memo;
-
+	
+	// 미용실사진 테이블 : hs_photo
+	private String hsp_no;
+	private String hsp_file;
 	
 }
