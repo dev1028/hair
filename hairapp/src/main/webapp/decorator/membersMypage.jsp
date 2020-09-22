@@ -206,7 +206,7 @@ a.article:hover {
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">마이페이지</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">마이페이지 톱</a>
+                            <a href="${pageContext.request.contextPath}/members/membersMypageTop.do">마이페이지 톱</a>
                         </li>
                         <li>
                             <a href="${pageContext.request.contextPath}/members/membersInfoView.do">회원정보수정</a>

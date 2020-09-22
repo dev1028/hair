@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>membersMypage.jsp</title>
+<style>
+#mypage {
+	display: flex;
+	position:absolute;
+	top:100px;
+	left:0px;
+}
+</style>
 </head>
 <body>
 <div id="wrap" style="float:right;">
@@ -29,7 +37,6 @@
 				디자이너 : ${book.designer_name}<br>
 				방문 일자 : ${book.mdr_date}<br>
 				예약 번호 : ${book.mdr_no}<br>
-				<input type="button" value="예약상세확인" onclick="openDR(${book.mdr_no})">
 			</div>
 			</c:forEach>
 			</c:if>
@@ -38,14 +45,10 @@
 		<div id="wrap2">
 			<h3>예약한 적이 있는 헤어샵</h3>	
 			<hr style="border: solid 1px">
-			<c:forEach items="${list}" var="reservation">
+			<c:forEach items="${onevisit}" var="one">
 			<div>
-				미용실 : ${reservation.hs_name}<br>
-				디자이너 : ${reservation.designer_name}<br>
-				방문 일자 : ${reservation.mdr_date}<br>
-				예약 번호 : ${reservation.mdr_no}<br>
-				<input type="button" value="예약상세확인" onclick="openDR()">
-				<button>후기쓰기</button>
+				<!-- 미용실사진 -->${one.hsp_file}<br>
+				<!-- 미용실이름 -->${one.hs_name}<br>
 			</div>
 			</c:forEach>
 		</div>

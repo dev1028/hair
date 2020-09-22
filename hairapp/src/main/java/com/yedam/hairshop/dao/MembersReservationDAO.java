@@ -134,7 +134,7 @@ public class MembersReservationDAO {
 	
 	
 	// 예약한 적 있는 미용실 조회
-	public List<MembersReservationVo> OnceVisitedHS(MembersReservationVo membersReservationVo) {
+	public List<MembersReservationVo> OnceVisitedHS() {
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
 		try {
@@ -147,27 +147,22 @@ public class MembersReservationDAO {
 					" on(d.designer_no=r.designer_no) join members m " + 
 					" on(r.mem_no=m.mem_no) " + 
 					" where r.mdr_status = 'i2' " + 
-					" order by 2 desc";//dd
+					" order by 2 desc";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, membersReservationVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
 			while (rs.next()) {
-				MembersReservationVo membersR = new MembersReservationVo();
+				MembersReservationVo members = new MembersReservationVo();
 				String hsName = rs.getString(1);
-				membersR.setHs_name(hsName);
-				membersR.setMdr_date(rs.getString(2));
-				membersR.setMdr_no(rs.getString(3));
-				membersR.setMdr_status(rs.getString(4));
-				membersR.setMem_no(rs.getString(5));
-				membersR.setDesigner_name(rs.getString(6));
-				membersR.setMdr_category_code(rs.getString(7));
-				membersR.setMdr_online_price(rs.getString(8));
-				membersR.setMdr_request(rs.getString(9));
-				membersR.setMem_hair_length(rs.getString(10));
-				membersR.setMem_hair_status(rs.getString(11));
+				members.setHs_name(hsName);
+				members.setMdr_date(rs.getString(2));
+				members.setMdr_no(rs.getString(3));
+				members.setMdr_status(rs.getString(4));
+				members.setMem_no(rs.getString(5));
+				members.setDesigner_name(rs.getString(6));
+				members.setHsp_file(rs.getString(7));
 				
-				list.add(membersR); // resultVo를 list에 담음
+				list.add(members); // resultVo를 list에 담음
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

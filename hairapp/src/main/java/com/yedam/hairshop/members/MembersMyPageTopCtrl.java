@@ -19,15 +19,15 @@ public class MembersMyPageTopCtrl implements Controller {
 
 		// DB 조회
 		MembersReservationDAO dao = new MembersReservationDAO();
-		List<MembersReservationVo> list = dao.reservationAll();
-		List<MembersReservationVo> list2 = dao.bookingAll();
+		List<MembersReservationVo> list = dao.bookingAll();
+		List<MembersReservationVo> list2 = dao.OnceVisitedHS();
 
 		// 결과 저장
-		request.setAttribute("list", list);
-		request.setAttribute("booking", list2);
+		request.setAttribute("booking", list);
+		request.setAttribute("onevisit", list2);
 
 		// 페이지 이동
-		request.getRequestDispatcher("membersMypage.jsp").forward(request, response);
+		request.getRequestDispatcher("membersMypageTop.jsp").forward(request, response);
 	}
 
 }
