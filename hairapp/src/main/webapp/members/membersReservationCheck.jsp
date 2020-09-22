@@ -53,7 +53,7 @@ function openDR(mdr_no){
 			</div>
 			</c:forEach>
 			</c:if>
-		</div>
+		</div><!-- ㅇ -->
 		<br><br>
 		<div id="wrap2">
 			<h3>전체 예약 내역</h3>	
