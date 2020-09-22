@@ -64,6 +64,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
+		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
 		
 		
