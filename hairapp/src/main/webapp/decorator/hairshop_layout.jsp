@@ -117,7 +117,6 @@
 
 
 	<script src="https://unpkg.com/@popperjs/core@2"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 	<!-- Icons -->
 	<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

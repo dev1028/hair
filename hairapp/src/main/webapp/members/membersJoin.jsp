@@ -97,7 +97,7 @@
 </head>
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
-	<div id="wrap">
+	<div id="wrap" style="float:right;">
 		<br> <br> <b><font size="6" color="gray">회원가입</font></b> <br>
 		<br> <br>
 
