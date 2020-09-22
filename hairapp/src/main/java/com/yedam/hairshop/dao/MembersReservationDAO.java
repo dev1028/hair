@@ -147,7 +147,7 @@ public class MembersReservationDAO {
 					" on(d.designer_no=r.designer_no) join members m " + 
 					" on(r.mem_no=m.mem_no) " + 
 					" where r.mdr_status = 'i2' " + 
-					" order by 2 desc";
+					" order by 2 desc";//dd
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, membersReservationVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
