@@ -22,28 +22,15 @@ public class MembersLoginCtrl implements Controller {
 
 		// 2. 서비스 처리(DB)
 		MembersVo resultVO = MembersDAO.getInstance().loginSelectOne(membersVO); // memberVO 집어넣고 결과를 MemberVO로 받기
-
+		request.getSession().setAttribute("login", resultVO);
+//		request.getSession().setAttribute("loginid", resultVO.getMem_email()); // 세션아이디
+//		request.getSession().setAttribute("loginpw", resultVO.getMem_pw());
+		
 		// 3. 결과 저장
-		String page = ""; // 이동할 페이지 이름 변수 선언
-		if (resultVO == null) { // id가 없는 경우
-			request.setAttribute("errormsg", "해당 ID가 없습니다.");
-			page = "/members/membersLogin.jsp";
 
-		} else {
-			if (membersVO.getMem_pw().equals(resultVO.getMem_pw())) { // memberVO에 있는 pw와 resultVO의 pw를 비교해서 같으면 로그인성공
-				request.getSession().setAttribute("login", resultVO);
-				request.getSession().setAttribute("loginid", resultVO.getMem_email());	// 세션아이디
-				page = "/members/membersLoginMain.jsp";
-			} else { // 패스워드 불일치
-				request.setAttribute("errormsg", "패스워드 불일치");
-				page = "/members/membersLogin.jsp";
-			}
-		}
-
-		System.out.println("이동: " + page);
 		
 		// 4. 뷰페이지 이동(redirect, forward) 또는 뷰페이지 출력
-		request.getRequestDispatcher(page).forward(request, response);
+		request.getRequestDispatcher("/members/membersLogin.jsp").forward(request, response);
 
 	}
 
