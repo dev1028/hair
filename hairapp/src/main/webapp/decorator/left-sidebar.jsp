@@ -57,13 +57,13 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="left-sidebar.html">우리동네설정</a></li>
-						<li class="active"><a href="left-sidebar.html">우리동네 미용실
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네설정</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 미용실
 								모아보기</a></li>
-						<li><a href="left-sidebar.html">우리동네 미용실 순위</a></li>
-						<li><a href="no-sidebar.html">우리동네 디자이너 순위</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 미용실 순위</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 디자이너 순위</a></li>
 
-						<li><a href="no-sidebar.html">인기 헤어 순위</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">인기 헤어 순위</a></li>
 
 					</ul>
 				</nav>
