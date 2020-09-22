@@ -23,6 +23,32 @@ public class HairshopHairInfoDAO {
 		return instance;
 	}
 	
+	public HairshopHairInfoVo selectHairInfo(HairshopHairInfoVo vo) {
+		try {
+			String sql  = 	" SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no" +
+					" FROM hairshop_hair_info hi, hairshop hs " + 
+					" WHERE hi.hs_no = hs.hs_no AND hi.hhi_no = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getHhi_no());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				HairshopHairInfoVo resultVo = new HairshopHairInfoVo();
+				resultVo.setHhi_no(rs.getString(1));
+				resultVo.setHhi_name(rs.getString(2));
+				resultVo.setHhi_price(rs.getString(3));
+				resultVo.setHhi_time(rs.getString(4));
+				resultVo.setHs_no(rs.getString(5));
+				return resultVo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return null;
+	}
+	
 	//헤어샵에 포함된 헤어정보 리스트
 	public List<HairshopHairInfoVo> selectListHairshopHairInfo_InHairshop(HairshopVo hairshopVo){
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
@@ -47,6 +73,8 @@ public class HairshopHairInfoDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		
 		return list;

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>퇴사자 현황</title>
-
 <script type="text/javascript">
 var employeelist = null;
 $(function(){

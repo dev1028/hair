@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML>
 <!--
 	Imagination by TEMPLATED
@@ -18,9 +20,12 @@
 	href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900'
 	rel='stylesheet' type='text/css'>
 <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="${pageContext.request.contextPath }/tion/css/skel-noscript.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/tion/css/style.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/tion/css/style-desktop.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/tion/css/skel-noscript.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/tion/css/style.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/tion/css/style-desktop.css" />
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath }/tion/js/skel.min.js"></script>
@@ -36,9 +41,17 @@
 		<!-- Header -->
 		<div id="header">
 			<div id="box">
-				<a href="${pageContext.request.contextPath}/members/memberMain.jsp">logout</a>
-				/<a href="${pageContext.request.contextPath}/members/memberMain.jsp">
-					my page</a>
+				<img src="${pageContext.request.contextPath }/tion/images/gps.png" />
+				
+				<a href="">동성로 </a> |
+				<c:if test="${empty loginid}">
+					<a href="${pageContext.request.contextPath }/membersLogin.do">로그인 </a>
+				</c:if>
+				<c:if test="${not empty loginid }">
+					<a href="${pageContext.request.contextPath }/membersLogout.do">로그아웃</a>
+				</c:if>
+			<%-- 	<img src="${pageContext.request.contextPath }/tion/images/user.png" />  --%>
+			
 			</div>
 			<div class="container">
 
@@ -46,33 +59,27 @@
 				<div id="logo">
 					<h1>
 						<a
-							href="${pageContext.request.contextPath}/members/membersMain.do">salon</a>
+							href="${pageContext.request.contextPath}/members/membersMain.do">SALON</a>
 					</h1>
 				</div>
 
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="left-sidebar.html">우리동네설정</a></li>
-						<li class="active"><a href="left-sidebar.html">우리동네 미용실
+						<li><a href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네설정</a></li>
+						<li class="active"><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 미용실
 								모아보기</a></li>
-						<li><a href="left-sidebar.html">우리동네 미용실 순위</a></li>
-						<li><a href="no-sidebar.html">우리동네 디자이너 순위</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 미용실 순위</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 디자이너 순위</a></li>
 
-						<li><a href="no-sidebar.html">인기 헤어 순위</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">인기 헤어 순위</a></li>
 
 					</ul>
 				</nav>
 
 			</div>
 		</div>
-		<!-- Header -->
 
-		<!-- Banner -->
-		<!-- <div id="banner">
-			<div class="container"></div>
-		</div> -->
-		<!-- /Banner -->
 
 	</div>
 
@@ -81,7 +88,7 @@
 		<div class="container">
 			<div class="row">
 
-	
+
 				<decorator:body></decorator:body>
 
 			</div>
