@@ -57,7 +57,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네설정</a></li>
+						<li><a href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네설정</a></li>
 						<li class="active"><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 미용실
 								모아보기</a></li>
 						<li><a href="${pageContext.request.contextPath}/members/membersMain.do">우리동네 미용실 순위</a></li>

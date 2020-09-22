@@ -29,6 +29,7 @@ import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
+import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
@@ -67,6 +68,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
+		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
 		
 		
