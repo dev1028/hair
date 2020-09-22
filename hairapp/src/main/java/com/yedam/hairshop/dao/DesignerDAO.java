@@ -49,7 +49,7 @@ public class DesignerDAO {
 
 	// 단건 조회
 	public DesignerVo selectOne(DesignerVo designerVo) {
-		DesignerVo resultVO = null;
+		DesignerVo resultVo = null;
 
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -58,10 +58,10 @@ public class DesignerDAO {
 			pstmt.setString(1, designerVo.getDesigner_no());
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 처음 커서 위치는 BOF
-				resultVO = new DesignerVo();
-				resultVO.setDesigner_no(rs.getString(1));
-				resultVO.setDesigner_name(rs.getString(2));
-				resultVO.setDesigner_email(rs.getString(4));
+				resultVo = new DesignerVo();
+				resultVo.setDesigner_no(rs.getString(1));
+				resultVo.setDesigner_name(rs.getString(2));
+				resultVo.setDesigner_email(rs.getString(4));
 			} else {
 				System.out.println("no data");
 			}
@@ -70,58 +70,60 @@ public class DesignerDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return resultVO;
+		return resultVo;
 
 	}
-
+	public DesignerVo selectOneEmail(DesignerVo designerVo) {
+		DesignerVo resultVo = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, Designer_access_status "
+						+" FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designerVo.getDesigner_email());
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 처음 커서 위치는 BOF
+				resultVo = new DesignerVo();
+				resultVo.setDesigner_no(rs.getString(1));
+				resultVo.setDesigner_pw(rs.getString(2));
+				resultVo.setDesigner_name(rs.getString(3));
+				resultVo.setDesigner_email(rs.getString(4));
+				resultVo.setDesigner_access_status(rs.getString(5));
+				
+			} else {
+				System.out.println("no data");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo;
+	}
 	// 로그인시 아이디, 비밀번호 체크 메서드
 	// 아이디, 비밀번호를 인자로 받는다.
-	public int loginCheck(String email, String pw) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수
-		int x = -1;
-
-		try {
-			// 쿼리 - 먼저 입력된 아이디로 DB에서 비밀번호를 조회한다.
-			StringBuffer query = new StringBuffer();
-			query.append("SELECT PASSWORD FROM DESIGNER WHERE DESIGNER_EMAIL= ?");
-
-			conn = ConnectionManager.getConnnect();
-			pstmt = conn.prepareStatement(query.toString());
-			pstmt.setString(1, email);
-			rs = pstmt.executeQuery();
-			if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
-			{
-				dbPW = rs.getString("password"); // 비번을 변수에 넣는다.
-				if (dbPW.equals(pw))
-					x = 1; // 넘겨받은 비번과 꺼내온 배번 비교. 같으면 인증성공
-				else
-					x = 0; // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패
-			} else {
-				x = -1; // 해당 아이디가 없을 경우
-			} return x;
-
-		} catch (Exception sqle) {
-			throw new RuntimeException(sqle.getMessage());
-		} finally {
-			try {
-				if (pstmt != null) {
-					pstmt.close();
-					pstmt = null;
-				}
-				if (conn != null) {
-					conn.close();
-					conn = null;
-				}
-			} catch (Exception e) {
-				throw new RuntimeException(e.getMessage());
-			}
-		}
-	} // end loginCheck()
-
+	/*
+	 * public int loginCheck(String email, String pw) { Connection conn = null;
+	 * PreparedStatement pstmt = null; ResultSet rs = null;
+	 * 
+	 * String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수 int x = -1;
+	 * 
+	 * try { // 쿼리 - 먼저 입력된 아이디로 DB에서 비밀번호를 조회한다. StringBuffer query = new
+	 * StringBuffer();
+	 * query.append("SELECT PASSWORD FROM DESIGNER WHERE DESIGNER_EMAIL= ?");
+	 * 
+	 * conn = ConnectionManager.getConnnect(); pstmt =
+	 * conn.prepareStatement(query.toString()); pstmt.setString(1, email); rs =
+	 * pstmt.executeQuery(); if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우 { dbPW =
+	 * rs.getString("password"); // 비번을 변수에 넣는다. if (dbPW.equals(pw)) x = 1; // 넘겨받은
+	 * 비번과 꺼내온 배번 비교. 같으면 인증성공 else x = 0; // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패 } else {
+	 * x = -1; // 해당 아이디가 없을 경우 } return x;
+	 * 
+	 * } catch (Exception sqle) { throw new RuntimeException(sqle.getMessage()); }
+	 * finally { try { if (pstmt != null) { pstmt.close(); pstmt = null; } if (conn
+	 * != null) { conn.close(); conn = null; } } catch (Exception e) { throw new
+	 * RuntimeException(e.getMessage()); } } } // end loginCheck()
+	 */
 	
 	// 미용실별 디자이너 목록
 	// 2020.09.17 승연

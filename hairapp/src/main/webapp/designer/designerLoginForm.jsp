@@ -5,68 +5,71 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href='../../css/join_style.css' rel='stylesheet' style='text/css' />
+<%
+	// 인코딩 처리
+request.setCharacterEncoding("euc-kr");
+%>
+<title>로그인 화면</title>
+
+<!-- css 파일 분리 -->
+<!-- <link href='../../css/join_style.css' rel='stylesheet' style='text/css' /> -->
+
 <script type="text/javascript">
-	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
-		if (!document.designerInfo.email.value) {
-			alert("Email을  입력하세요.");
+		inputForm = eval("document.loginInfo");
+		if (!inputForm.email.value) {
+			alert("이메일을 입력하세요");
+			inputForm.id.focus();
 			return false;
 		}
-		if (!document.designerInfo.password.value) {
-			alert("비밀번호를 입력하세요.");
-			return false;
-		}
-		// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
-		if (document.designerInfo.password.value != document.designerInfo.passwordcheck.value) {
-			alert("비밀번호를 동일하게 입력하세요.");
+		if (!inputForm.password.value) {
+			alert("비밀번호를 입력하세요");
+			inputForm.password.focus();
 			return false;
 		}
 	}
-/* 	// 취소 버튼 클릭시 로그인 화면으로 이동
-	function goLoginForm() {
-		location.href = "LoginForm.jsp";
-	} */
+
+	// 메인페이지로
+ 	function goJoinForm() {
+		location.href = "${pageContext.request.contextPath}/hairshop/hairshopDesignerLogin.jsp";
+	} 
 </script>
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
 
-body {
-	font-family: "맑은 고딕";
-	font-size: 0.75em;
-	color: #333;
-}
-
-#login-form {
-	width: 200px;
-	margin: 100px auto;
-	border: 1px solid gray;
-	border-radius: 5px;
-	padding: 15px;
-}
-/* inline이였던 요소들을 block으로 바꿈 */
-#login-form input, #login-form label {
-	display: block;
-}
-
-#login-form label {
-	margin-top: 10px;
-}
-
-#login-form input {
-	margin-top: 5px;
-}
-</style>
 </head>
 <body>
-	<form id="login-form" method="post" name="designerInfo">
-		<label class="legend">Email</label> <input name="userid" type="text">
-		<label class="legend">패스워드</label> <input name="password"
-			type="password">
-		<button>로그인</button>
-	</form>
+
+	<div id="wrap">
+		<form name="loginInfo" method="post" action="${pageContext.request.contextPath}/designer/designerLogin.do"
+			onsubmit="return checkValue()">
+			<table>
+				<tr>
+					<td bgcolor="skyblue">이메일</td>
+					<td><input type="text" name="email" maxlength="50"></td>
+				</tr>
+				<tr>
+					<td bgcolor="skyblue">비밀번호</td>
+					<td><input type="password" name="pw" maxlength="50"></td>
+				</tr>
+			</table>
+			<br> <input type="submit" value="로그인" /> 
+ 			<input type="button"
+				value="메인페이지로" onclick="goJoinForm()" /> 
+		</form>
+${errormsg }
+<%-- 		<%
+			// 아이디, 비밀번호가 틀릴경우 화면에 메시지 표시
+		// LoginPro.jsp에서 로그인 처리 결과에 따른 메시지를 보낸다.
+		String msg = request.getParameter("msg");
+
+		if (msg != null && msg.equals("0")) {
+			out.println("<br>");
+			out.println("<font color='red' size='5'>비밀번호를 확인해 주세요.</font>");
+		} else if (msg != null && msg.equals("-1")) {
+			out.println("<br>");
+			out.println("<font color='red' size='5'>아이디를 확인해 주세요.</font>");
+		}
+		%> --%>
+	</div>
 </body>
+
 </html>
