@@ -35,9 +35,10 @@ import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
+import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
-import com.yedam.hairshop.members.MembersLoginS;
+import com.yedam.hairshop.members.MembersLoginSCtrl;
 import com.yedam.hairshop.members.MembersLogoutCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
@@ -85,10 +86,11 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		
 		//린아
-		list.put("/membersLogin.do", new MembersLoginCtrl());					// 로그인 컨트롤러
-		list.put("/membersLogout.do", new MembersLogoutCtrl());					// 로그아웃 컨트롤러
-		list.put("/membersLoginS.do", new MembersLoginS());						// 로그인 넘어가는 컨트롤러
+		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 컨트롤러
+		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 컨트롤러
+		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());				// 로그인 넘어가는 컨트롤러
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 컨트롤러
+		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
 		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());	// 회원수정 컨트롤러
 		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl());		// 회원수정 정보확인 컨트롤러

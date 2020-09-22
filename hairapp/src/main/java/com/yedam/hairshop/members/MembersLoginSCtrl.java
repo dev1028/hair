@@ -10,7 +10,7 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MembersDAO;
 import com.yedam.hairshop.model.MembersVo;
 
-public class MembersLoginS implements Controller {
+public class MembersLoginSCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

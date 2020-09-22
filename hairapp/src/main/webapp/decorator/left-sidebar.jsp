@@ -45,10 +45,10 @@
 				
 				<a href="">동성로 </a> |
 				<c:if test="${empty loginid}">
-					<a href="${pageContext.request.contextPath }/membersLogin.do">로그인 </a>
+					<a href="${pageContext.request.contextPath }/members/membersLogin.do">로그인 </a>
 				</c:if>
 				<c:if test="${not empty loginid }">
-					<a href="${pageContext.request.contextPath }/membersLogout.do">로그아웃</a>
+					<a href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
 				</c:if>
 			<%-- 	<img src="${pageContext.request.contextPath }/tion/images/user.png" />  --%>
 			
@@ -95,18 +95,6 @@
 		</div>
 	</div>
 	<!-- Main -->
-
-
-
-	<!-- Copyright -->
-	<div id="copyright">
-		<div class="container">
-			Design: <a href="http://templated.co">TEMPLATED</a> Images: <a
-				href="http://unsplash.com">Unsplash</a> (<a
-				href="http://unsplash.com/cc0">CC0</a>)
-		</div>
-	</div>
-
 
 </body>
 </html>
