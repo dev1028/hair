@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML>
 <!--
 	Imagination by TEMPLATED
@@ -40,7 +42,14 @@
 		<div id="header">
 			<div id="box">
 				<img src="${pageContext.request.contextPath }/tion/images/gps.png" />
-				<a href="">동성로 </a> |<a href="${pageContext.request.contextPath }/membersLogin.do">로그인 </a> 
+				
+				<a href="">동성로 </a> |
+				<c:if test="${empty loginid}">
+					<a href="${pageContext.request.contextPath }/membersLogin.do">로그인 </a>
+				</c:if>
+				<c:if test="${not empty loginid }">
+					<a href="${pageContext.request.contextPath }/membersLogout.do">로그아웃</a>
+				</c:if>
 			<%-- 	<img src="${pageContext.request.contextPath }/tion/images/user.png" />  --%>
 			
 			</div>
