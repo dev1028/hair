@@ -12,28 +12,18 @@
 		<div class="row">
 			<div class="col-sm"></div>
 			<div class="col-sm ">
-				<div>
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-
-						<label class="btn btn-secondary active"> <input
-							type="radio" name="options" id="option1" checked> 미용실
-						</label> <label class="btn btn-secondary"> <input type="radio"
-							name="options" id="option3"> 디자이너
-						</label>
-
-					</div>
-				</div>
+				
 				<form id="hairshopLoginFrm" action="${pageContext.request.contextPath}/admin/adminLogin.do">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label> <input
 							type="text" class="form-control" id="exampleInputEmail1"
-							aria-describedby="emailHelp" name="hs_email"> <small id="emailHelp"
+							aria-describedby="emailHelp" name="emp_email"> <small id="emailHelp"
 							class="form-text text-muted">We'll never share your email
 							with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label> <input
-							type="password" class="form-control" id="exampleInputPassword1" name="hs_pw">
+							type="password" class="form-control" id="exampleInputPassword1" name="emp_password">
 					</div>
 					<div class="form-group form-check">
 						<input type="checkbox" class="form-check-input" id="exampleCheck1">

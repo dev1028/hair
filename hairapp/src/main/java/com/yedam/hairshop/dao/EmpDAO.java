@@ -29,7 +29,7 @@ public class EmpDAO {
 
 			try {
 				conn = ConnectionManager.getConnnect();
-				String sql = "SELECT emp_NO,emp_NAME,emp_hire_date,emp_phone,emp_EMAIL,emp_PW,emp_department,emp_position, emp_alias "+
+				String sql = "SELECT emp_NO,emp_NAME,emp_hiredate,emp_phone,emp_EMAIL,emp_password,emp_department,emp_position, emp_alias "+
 							" FROM employees" + 
 							" WHERE emp_EMAIL = ?" + 
 							" AND emp_password =?";
@@ -45,7 +45,7 @@ public class EmpDAO {
 					resultVo.setEmp_hiredate(rs.getString("emp_hiredate"));
 					resultVo.setEmp_phone(rs.getString("emp_phone"));
 					resultVo.setEmp_email(rs.getString("emp_EMAIL"));
-					resultVo.setEmp_password(rs.getString("emp_PW"));
+					resultVo.setEmp_password(rs.getString("emp_password"));
 					resultVo.setEmp_department(rs.getString("emp_department"));
 					resultVo.setEmp_position(rs.getString("emp_position"));
 					resultVo.setEmp_alias(rs.getString("emp_alias"));
