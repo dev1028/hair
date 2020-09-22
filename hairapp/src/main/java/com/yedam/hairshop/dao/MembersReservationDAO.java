@@ -139,15 +139,15 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status,\r\n" + 
-					"m.mem_no, d.designer_name, p.hsp_file\r\n" + 
-					"from hs_photo p join hairshop h \r\n" + 
-					"on(p.hs_no=h.hs_no) join designer d \r\n" + 
-					"on(h.hs_no=d.hs_no) join members_designer_rsv r\r\n" + 
-					"on(d.designer_no=r.designer_no) join members m\r\n" + 
-					"on(r.mem_no=m.mem_no)\r\n" + 
-					"where r.mdr_status = 'i2'\r\n" + 
-					"order by 2 desc";
+			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status," + 
+					" m.mem_no, d.designer_name, p.hsp_file " + 
+					" from hs_photo p join hairshop h " + 
+					" on(p.hs_no=h.hs_no) join designer d " + 
+					" on(h.hs_no=d.hs_no) join members_designer_rsv r " + 
+					" on(d.designer_no=r.designer_no) join members m " + 
+					" on(r.mem_no=m.mem_no) " + 
+					" where r.mdr_status = 'i2' " + 
+					" order by 2 desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, membersReservationVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
