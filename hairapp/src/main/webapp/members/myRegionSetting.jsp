@@ -7,11 +7,18 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463"></script>
 <script>
-	alert("지도맵")
 </script>
 </head>
 <body>
-	<div id="map" style="width: 500px; height: 500px;"></div>
+	<div id="map" style="width: 1000px; height: 500px;">
+	</div>
+	
+	<div>
+		<form>
+			<input type="button" value="버튼"> 
+		</form>
+	</div>
+	
 	<script>
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
