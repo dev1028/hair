@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 </script>
 </head>
@@ -14,8 +15,9 @@
 	</div>
 	
 	<div>
-		<form>
-			<input type="button" value="버튼"> 
+		<form class="frmRegion" action="myRegionSetting.do">
+			<input type="button" value="버튼">
+
 		</form>
 	</div>
 	
@@ -46,6 +48,20 @@
 		    // 마커 위치를 클릭한 위치로 옮깁니다
 		    marker.setPosition(latlng);
 		});
+	</script>
+	
+	<script>
+		$( ".frmRegion" ).click(function() {
+			//alert("좌표가 저장됩니다." + "1")
+			alert(marker.getPosition())
+			$( ".frmRegion" ).submit();
+		});
+	
+// 		$( "" ).submit(function( event ) {
+			
+// 			//event.preventDefault();
+// 			//alert(marker.getPosition());
+// 		});
 	</script>
 </body>
 </html>

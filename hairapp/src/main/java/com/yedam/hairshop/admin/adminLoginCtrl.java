@@ -21,7 +21,7 @@ public class adminLoginCtrl implements Controller {
 		// 1.파라미터 보에 담고
 		EmpVo empVo = new EmpVo();
 		empVo.setEmp_email(request.getParameter("emp_email"));
-		empVo.setEmp_password(request.getParameter("emp_pw"));
+		empVo.setEmp_password(request.getParameter("emp_password"));
 		EmpVo resultVo = EmpDAO.getInstance().loginSelectOne(empVo);
 
 		String page = "";

@@ -10,10 +10,9 @@
 <body>
 <form>
 	고객정보를 입력해 주세요 <br>
-	예약자 이름: <br>
-	전화 번호: <br>
-	메시지 받음 여부 <br>
-
+	예약자 이름: ${login.mem_name }<br>
+	전화 번호: ${login.mem_phone }<br>
+	
 	<hr>
 	<b>미용실 이름:  </b> ${hairshopInfo.hs_name } <br>
 	<b>헤어 이름   :  </b> ${hairInfo.hhi_name } <br>

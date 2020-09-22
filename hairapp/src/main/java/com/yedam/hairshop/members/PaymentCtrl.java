@@ -59,6 +59,8 @@ public class PaymentCtrl implements Controller {
 			System.out.println("디자이너 정보 로딩 실패");
 		}
 		
+		
+		
 		//결제할 고객정보
 		//MembersVo tmpMemberVo = new MembersVo();
 		
