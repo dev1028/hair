@@ -104,12 +104,14 @@ form.example::after {
 </script>
 </head>
 <body>
-	<form action="../members/hairshopSelect.do" method="post" style="margin:auto;max-width:300px">
-		<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
-		<input id="project" type="text" placeholder="Search.." name="term">
-		<button type="submit" name="detail"><i class="fa fa-search"></i></button>
-		<input type="hidden" id="project-id">
-		<p id="project-description"></p>
-	</form>
+	<div class="myForm">
+		<form action="../members/hairshopSelect.do" method="post" style="margin:auto;max-width:300px">
+			<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
+			<input id="project" type="text" placeholder="Search.." name="term">
+			<button type="submit" name="detail"><i class="fa fa-search"></i></button>
+			<input type="hidden" id="project-id">
+			<p id="project-description"></p>
+		</form>
+	</div>
 </body>
 </html>

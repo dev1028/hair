@@ -23,7 +23,7 @@
 	<%=request.getAttribute("errormsg")%>
 
 	<form method="post" name="loginFrm" id="loginFrm"
-		action="${pageContext.request.contextPath}/membersLogin.do"
+		action="${pageContext.request.contextPath}/membersLoginS.do"
 		onsubmit="return checkValue()">
 		<div>
 			<label for="id">EMAIL:</label> <input type="email" id="loginid"

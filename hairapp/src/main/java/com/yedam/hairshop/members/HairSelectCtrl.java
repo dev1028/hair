@@ -18,6 +18,7 @@ public class HairSelectCtrl implements Controller{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HairshopVo vo = new HairshopVo();
 		String hsNo = request.getParameter("hsNo");
+		request.getSession().setAttribute("hsNo", hsNo);
 		vo.setHs_no(hsNo);
 		
 		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);

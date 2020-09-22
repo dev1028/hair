@@ -54,6 +54,7 @@
 			<div class="horizontal-card">
 				<img src="http://via.placeholder.com/200x100" />
 				<div class="horizontal-card-body">
+					<span class="card-text">ID: ${designerInfo.designer_no} </span>
 					<span class="card-text">이름: ${designerInfo.designer_name} </span>
 					<span class="card-text">프로필: ${designerInfo.designer_profile} </span>
 					<span class="card-text">직책: ${designerInfo.position} </span>
@@ -70,8 +71,9 @@
 				</div>
 				
 				<div>
-					<input type="hidden" name="hsNo" value="${hairInfo.hs_no} }">
-					<input type="hidden" name="hsNo" value="${hairInfo.hhi_no}">
+					<input type="hidden" name="designerNo" value="${designerInfo.designer_no}">
+					<input type="hidden" name="hsNo" value="${hairInfo.hs_no}">
+					<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
 				</div>
 			</div>
 		</form>

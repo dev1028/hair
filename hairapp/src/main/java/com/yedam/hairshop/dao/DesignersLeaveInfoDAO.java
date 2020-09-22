@@ -2,9 +2,11 @@
 
 package com.yedam.hairshop.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import com.yedam.hairshop.common.ConnectionManager;
@@ -92,6 +94,31 @@ public class DesignersLeaveInfoDAO {
 		return list;
 	}
 	
+	//2020-09-22 김승연
+	//직원퇴사 처리 프로시저  // 7번이 해당처리가 정상적으로 되었는지 리턴함
+	public int fireDesigner(DesignersLeaveInfoVo dVo) {
+		int isInsert = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			CallableStatement pstmt = conn.prepareCall
+				     ("{call fire_designer(?,?,?,?,?,?,?)}");
+			pstmt.setString(1, dVo.getDli_leave_date());
+			pstmt.setString(2, dVo.getDesigner_no());
+			pstmt.setString(3, dVo.getHs_no());
+			pstmt.setString(4, dVo.getHire_date());
+			pstmt.setString(5, dVo.getFin_position());
+			pstmt.setString(6, dVo.getDli_reason());
+			pstmt.registerOutParameter(7, Types.INTEGER);
+			pstmt.executeUpdate();
+			isInsert = pstmt.getInt(7);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		
+		return isInsert;
+	}
 	
 	
 }

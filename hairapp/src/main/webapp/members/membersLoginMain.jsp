@@ -6,10 +6,7 @@
 <meta charset="UTF-8">
 <title>membersLoginMain.jsp</title>
 <script>
-	function logoutPro() {
-		location.href = "members/membersLogout.jsp";
-	}
-	
+
 	function membersModifyView() {
 		location.href = "members/membersInfoView.do";
 	}
@@ -38,7 +35,6 @@
     </h2>
     
     <br><br>
-    <input type="button" value="로그아웃" onclick="logoutPro()" />
     <input type="button" value="정보수정" onclick="membersModifyView()" />
     <input type="button" value="예약현황" onclick="membersReserv()" />
     
