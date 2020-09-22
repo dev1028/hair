@@ -6,12 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class PaymentCtrl implements Controller {
+public class MyRegionSettingCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("payment.jsp").forward(request, response);
+		request.getRequestDispatcher("myRegionSetting.jsp").forward(request, response);
+//		request.getRequestDispatcher("/members/memberMain.jsp").forward(request, response);
 	}
 
 }

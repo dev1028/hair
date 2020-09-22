@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
+import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
@@ -26,6 +27,7 @@ import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
+import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
@@ -66,6 +68,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
+		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
 		
 		
@@ -86,7 +89,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		
 		//강산
-		
+		list.put("/admin/adminLogin.do", new adminLoginCtrl());
 		//승연
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl());
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());

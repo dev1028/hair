@@ -16,10 +16,13 @@ public class DesignerSelectCtrl implements Controller{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//DesignerDAO.getInstance().selectByHairShop()
-		String hsNo = request.getParameter("hsNo");
-		String hhiNo = request.getParameter("hhiNo");
-		System.out.println(hsNo);
+//		System.out.println(hsNo);
 		
+		String hsNo = request.getParameter("hsNo");		//헤어샵번호
+		String hhiNo = request.getParameter("hhiNo");	//헤어번호
+		request.getSession().setAttribute("hsNo", hsNo);
+		request.getSession().setAttribute("hhiNo", hhiNo);
+
 		DesignerVo vo = new DesignerVo();
 		vo.setHs_no(hsNo);
 		List<DesignerVo> list = DesignerDAO.getInstance().selectByHairShop(vo);
