@@ -3,18 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-	crossorigin="anonymous"></script>
+
 <meta charset="UTF-8">
-<title>hairshopDesignerLogin</title>
+<title>Login</title>
 </head>
 <body>
 	<div class="container">
@@ -32,7 +23,7 @@
 
 					</div>
 				</div>
-				<form id="hairshopLoginFrm" action="${pageContext.request.contextPath}/hairshop/hairshopDesignerLogin.do">
+				<form id="hairshopLoginFrm" action="${pageContext.request.contextPath}/admin/adminLogin.do">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label> <input
 							type="text" class="form-control" id="exampleInputEmail1"
