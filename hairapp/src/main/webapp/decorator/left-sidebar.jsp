@@ -5,22 +5,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML>
-
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Imagination by TEMPLATED</title>
 
 <style>
-#user {
-	width: 30px;
-	height: 30px;
-	body
-	{
-	background-color
-	:
-	#fafafa;
-}
-
 .reveal {
 	opacity: .85;
 	display: block;
@@ -180,7 +170,7 @@
 	});
 	 */
 </script>
-
+<decorator:head></decorator:head>
 </head>
 <body>
 
@@ -202,15 +192,14 @@
 						<div class="hamb middle"></div>
 						<div class="menu-name">MYPAGE</div>
 						<ul id="menu">
-							<a href="${pageContext.request.contextPath}/members/membersMypageTop.do"> <li>마이페이지</li> </a>
-							<a href="${pageContext.request.contextPath}/members/membersRD.do"> <li>예약내역</li> </a>
+							<a href="${pageContext.request.contextPath}/members/membersMypageTop.do"> <li>마이페이지</li></a>
+							<a href="${pageContext.request.contextPath}/members/membersRD.do"> <li>예약내역</li></a>
 							<a href="#"> <li>북마크</li> </a>
 							<a href="#"> <li>쿠폰</li> </a>
-							<a href="${pageContext.request.contextPath}/members/membersLogout.do"> <li>로그아웃</li> </a>
+							<a href="${pageContext.request.contextPath}/members/membersLogout.do"> <li>로그아웃</li></a>
 						</ul>
 					</a>
 				</div>
-
 			</c:if>
 
 		</div>
@@ -243,46 +232,34 @@
 					<li class="navi"><a
 						href="${pageContext.request.contextPath}/members/membersMain.do">인기
 							헤어 순위</a></li>
-
 				</ul>
 			</div>
-
 		</div>
 	</div>
-
-
 
 	<!-- Main -->
 	<div id="main">
 
-
-
 		<decorator:body></decorator:body>
 
-
 	</div>
-	<!-- Main -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-	//Click the hamburger menu to see the animation
-	//You can click the X to close or click anywhere outside the menu
-	$(document).ready(function() {
-		$('.hamburger-shell').click(function() {
-			$('#menu').slideToggle(300);
-			$('.top').toggleClass('rotate');
-			$('.middle').toggleClass('rotate-back');
-			$('.menu-name').toggleClass('bump');
-		});
-		$('.bg-cover').click(function() {
-			$('#menu').slideToggle(300);
-			$('.top').toggleClass('rotate');
-			$('.middle').toggleClass('rotate-back');
-			$('.menu-name').toggleClass('bump');
-		})
+//햄버거
+$(document).ready(function() {
+	$('.hamburger-shell').click(function() {
+		$('#menu').slideToggle(300);
+		$('.top').toggleClass('rotate');
+		$('.middle').toggleClass('rotate-back');
+		$('.menu-name').toggleClass('bump');
 	});
+	$('.bg-cover').click(function() {
+		$('#menu').slideToggle(300);
+		$('.top').toggleClass('rotate');
+		$('.middle').toggleClass('rotate-back');
+		$('.menu-name').toggleClass('bump');
+	})
+});
 </script>
-
 </body>
-
 </html>
