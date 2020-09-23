@@ -17,35 +17,32 @@ import com.yedam.hairshop.admin.salesStatisticsCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
+import com.yedam.hairshop.designer.customerJoinCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
+import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
+import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
+import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
-import com.yedam.hairshop.members.DetailedReservationCtrl;
+import com.yedam.hairshop.members.MembersInfoModifyCtrl;
+import com.yedam.hairshop.members.MembersInfoViewCtrl;
+import com.yedam.hairshop.members.MembersJoinCtrl;
+import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
+import com.yedam.hairshop.members.MembersJoinSCtrl;
+import com.yedam.hairshop.members.MembersLoginCtrl;
+import com.yedam.hairshop.members.MembersLoginSCtrl;
+import com.yedam.hairshop.members.MembersLogoutCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
-import com.yedam.hairshop.members.MembersInfoModifyCtrl;
-import com.yedam.hairshop.members.MembersInfoViewCtrl;
-import com.yedam.hairshop.members.MembersJoinCtrl;
-import com.yedam.hairshop.members.MembersJoinSCtrl;
-import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
-import com.yedam.hairshop.members.MembersLoginCtrl;
-import com.yedam.hairshop.members.MembersLoginSCtrl;
-import com.yedam.hairshop.members.MembersLogoutCtrl;
-import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
-import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
-import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
-import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
-import com.yedam.hairshop.members.MembersMainCtrl;
-import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
 /*
@@ -84,6 +81,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfoCtrl.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
+		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
 		
 		//린아
 		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 컨트롤러
