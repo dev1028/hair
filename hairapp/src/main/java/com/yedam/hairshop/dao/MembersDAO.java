@@ -3,6 +3,7 @@ package com.yedam.hairshop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,51 +110,49 @@ public class MembersDAO {
 		}
 		return members; // 값을 리턴해줌
 	}
-	
-	
+
 	// 회원정보 불러오기
-		public MembersVo getMembersInfo(String mem_email) {
-			MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+	public MembersVo getMembersInfo(String mem_email) {
+		MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
-			try {
-				conn = ConnectionManager.getConnnect();
-				String sql = "select * from members where mem_email=?";
-				System.out.println(sql);
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, mem_email);
-				rs = pstmt.executeQuery();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select * from members where mem_email=?";
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_email);
+			rs = pstmt.executeQuery();
 
-				if (rs.next()) {
-					members = new MembersVo();
-					members.setMem_no(rs.getString(1));
-					members.setMem_email(rs.getString(2));
-					members.setMem_pw(rs.getString(3));
-					members.setMem_name(rs.getString(4));
-					members.setMem_phone(rs.getString(5));
-					members.setMem_birth(rs.getString(6));
-					members.setMem_sex(rs.getString(7));
-					members.setMem_addr(rs.getString(8));
-					members.setMem_city(rs.getString(9));
-					members.setMem_country(rs.getString(10));
-					members.setMem_township(rs.getString(11));
-					members.setMem_latitude_longitude(rs.getString(12));
-					members.setMem_saved_money(rs.getString(13));
-					members.setMem_city_latitude_longitude(rs.getString(14));
-					members.setMem_hair_length(rs.getString(15));
-					members.setMem_hair_status(rs.getString(16));
-					members.setMem_zip(rs.getString(17));
-				} else {
-					System.out.println("no data");
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
+			if (rs.next()) {
+				members = new MembersVo();
+				members.setMem_no(rs.getString(1));
+				members.setMem_email(rs.getString(2));
+				members.setMem_pw(rs.getString(3));
+				members.setMem_name(rs.getString(4));
+				members.setMem_phone(rs.getString(5));
+				members.setMem_birth(rs.getString(6));
+				members.setMem_sex(rs.getString(7));
+				members.setMem_addr(rs.getString(8));
+				members.setMem_city(rs.getString(9));
+				members.setMem_country(rs.getString(10));
+				members.setMem_township(rs.getString(11));
+				members.setMem_latitude_longitude(rs.getString(12));
+				members.setMem_saved_money(rs.getString(13));
+				members.setMem_city_latitude_longitude(rs.getString(14));
+				members.setMem_hair_length(rs.getString(15));
+				members.setMem_hair_status(rs.getString(16));
+				members.setMem_zip(rs.getString(17));
+			} else {
+				System.out.println("no data");
 			}
-			return members; // 값을 리턴해줌
-		}	// end getMembersInfo()
-	
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return members; // 값을 리턴해줌
+	} // end getMembersInfo()
 
 	// 전체 조회
 	public List<MembersVo> selectAll() { // 조회가 여러건이면 DeptVO를 list에 담음
@@ -224,8 +223,7 @@ public class MembersDAO {
 		} finally {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
-	}	// end membersModify()
-	
+	} // end membersModify()
 
 	// delete
 	public void delete(MembersVo membersVO) {
@@ -252,9 +250,10 @@ public class MembersDAO {
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
 
 			// 2. sql 구문 실행
-			String sql = "insert into members(MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE,MEM_BIRTH,MEM_SEX,"
-					+ " MEM_ADDR,MEM_CITY,MEM_COUNTRY,MEM_TOWNSHIP,MEM_ZIP,MEM_HAIR_LENGTH,MEM_HAIR_STATUS) "
-					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into members(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_PHONE, MEM_BIRTH,"
+					+ " MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,"
+					+ " MEM_HAIR_STATUS, MEM_ACCESS_STATUS) "
+					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,0)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setString(1, membersVo.getMem_email());
@@ -284,7 +283,65 @@ public class MembersDAO {
 			ConnectionManager.close(conn);
 		}
 		return membersVo;
+	}
 
+	// 이메일 할라고 만듬 membersJoinEmail
+	public int membersJoinEmail(MembersVo membersVo) {
+		int r = 1;
+		try {
+			// 1. DB 연결
+			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
+
+			// 2. sql 구문 실행
+			String sql = "insert into members(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_PHONE, MEM_BIRTH,"
+					+ " MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,"
+					+ " MEM_HAIR_STATUS, MEM_ACCESS_STATUS) "
+					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,-1)";
+
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, membersVo.getMem_email());
+			psmt.setString(2, membersVo.getMem_pw());
+			psmt.setString(3, membersVo.getMem_name());
+			psmt.setString(4, membersVo.getMem_phone());
+			psmt.setString(5, membersVo.getMem_birth());
+			psmt.setString(6, membersVo.getMem_sex());
+			psmt.setString(7, membersVo.getMem_addr());
+			psmt.setString(8, membersVo.getMem_city());
+			psmt.setString(9, membersVo.getMem_country());
+			psmt.setString(10, membersVo.getMem_township());
+			psmt.setString(11, membersVo.getMem_zip());
+			psmt.setString(12, membersVo.getMem_hair_length());
+			psmt.setString(13, membersVo.getMem_hair_status());
+
+			psmt.executeUpdate();
+
+			// 3. 결과 처리
+			System.out.println(r + " 건이 처리됨");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			// 4. 연결 해제
+			ConnectionManager.close(conn);
+		}
+		return r;
+	}
+
+	// 회원가입 인증 정보 반영
+	public int updateForAuth(String mem_email) {
+		int r = 0;
+		// 회원가입 인증 완료 0, 회원가입 인증 중 -1,
+		String sql = "UPDATE MEMBERS SET MEM_ACCESS_STATUS = 0 WHERE MEM_EMAIL = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mem_email);
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
 	}
 
 	/**
@@ -331,6 +388,5 @@ public class MembersDAO {
 			}
 		}
 	} // end duplicateIdCheck()
-
 
 }
