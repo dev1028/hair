@@ -13,6 +13,12 @@
 <html>
 <head>
 <title>Imagination by TEMPLATED</title>
+<style>
+#user {
+	width:30px;
+	height: 30px;
+}
+</style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -48,7 +54,9 @@
 					<a href="${pageContext.request.contextPath }/members/membersLogin.do">로그인 </a>
 				</c:if>
 				<c:if test="${not empty loginid }">
-					<a href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
+				<%=session.getAttribute("loginid")%>님 로그인 되었습니다 
+				<img src="${pageContext.request.contextPath}/images/members/user-bubble.png" id="user" />  |
+				<a href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
 				</c:if>
 			<%-- 	<img src="${pageContext.request.contextPath }/tion/images/user.png" />  --%>
 			
