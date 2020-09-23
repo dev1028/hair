@@ -2,11 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -16,14 +19,15 @@
 	rel='stylesheet' />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 
 <decorator:head></decorator:head>
 </head>
@@ -38,8 +42,7 @@
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
 				<div class="sidebar-sticky">
 					<div>
-						<br>
-						<br>
+						<br> <br>
 						<hr>
 					</div>
 
@@ -93,8 +96,10 @@
 								<span class="sr-only">(current)</span>
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">회원관리</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출관리</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출관리</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">예약관리</a></li>
 						<li class="nav-item"><a class="nav-link disabled" href="#"
 							tabindex="-1" aria-disabled="true">Disabled</a></li>
@@ -107,12 +112,20 @@
 				</div>
 			</nav>
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-				<div><br><br><br></div>
-				<div>
 				<decorator:body></decorator:body>
+				<div>
+					<br> <br> <br>
+				</div>
+				<div>
+				
 				</div>
 			</main>
 		</div>
+		
+		
+		
+		
+		
 	</div>
 
 
