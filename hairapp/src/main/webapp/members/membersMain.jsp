@@ -105,8 +105,14 @@ form.example::after {
 </head>
 <body>
 	<div class="myForm">
+<<<<<<< HEAD
 		<form action="../members/hairshopSelect.do" method="post" style="margin:auto;max-width:300px">
+			<img id="project-icon" src="#" class="ui-state-default" alt="">
+=======
+		<form action="../members/membersMainResult.do" method="post" style="margin:auto;max-width:300px">
 			<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
+			<!-- 여기서도 term을 보낸다. -->
+>>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 			<input id="project" type="text" placeholder="Search.." name="term">
 			<button type="submit" name="detail"><i class="fa fa-search"></i></button>
 			<input type="hidden" id="project-id">

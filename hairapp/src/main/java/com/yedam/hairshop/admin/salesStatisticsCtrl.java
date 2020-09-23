@@ -12,8 +12,7 @@ public class salesStatisticsCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/hairapp/hairshop/hairshopStatistics.jsp");
-
+		request.getRequestDispatcher("/hairshop/hairshopStatistics.jsp").forward(request, response);
 	}
 
 }

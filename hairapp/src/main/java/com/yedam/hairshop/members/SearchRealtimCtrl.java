@@ -33,6 +33,7 @@ public class SearchRealtimCtrl implements Controller {
 			jsonObject.addProperty("label", "검색결과 없음");
 			jsonObject.addProperty("desc", "");
 			jsonObject.addProperty("icon", "");
+			jsonObject.addProperty("image", "");
 			jsonArray.add(jsonObject);
 		}
 		else {
@@ -43,6 +44,7 @@ public class SearchRealtimCtrl implements Controller {
 				jsonObject.addProperty("label", vo.getLabel());
 				jsonObject.addProperty("desc", vo.getDesc());
 				jsonObject.addProperty("icon", vo.getIcon());
+				jsonObject.addProperty("image", vo.getImage());
 				jsonArray.add(jsonObject);
 			}
 		}

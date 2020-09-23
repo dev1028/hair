@@ -50,7 +50,7 @@
 </head>
 <body>
 	<c:forEach items="${list}" var="hairInfo" >
-		<form action="../members/designerSelect.do" method="post">
+		<form action="../members/hairSelectResult.do" method="post">
 			<div class="horizontal-card">
 				<img src="http://via.placeholder.com/200x100" />
 				<div class="horizontal-card-body">
@@ -68,7 +68,6 @@
 				</div>
 				
 				<div>
-					<input type="hidden" name="hsNo" value="${hairInfo.hs_no}">
 					<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
 				</div>
 			</div>

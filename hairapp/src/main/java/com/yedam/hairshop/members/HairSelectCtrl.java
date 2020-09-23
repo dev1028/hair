@@ -16,11 +16,15 @@ public class HairSelectCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HairshopVo vo = new HairshopVo();
-		String hsNo = request.getParameter("hsNo");
-		request.getSession().setAttribute("hsNo", hsNo);
-		vo.setHs_no(hsNo);
+		System.out.println("HairSelectCtrl");
 		
+//		HairshopVo vo = new HairshopVo();
+//		String hsNo = request.getParameter("hsNo");
+//		request.getSession().setAttribute("hsNo", hsNo);
+//		vo.setHs_no(hsNo);
+		
+		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
+
 		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
 		request.setAttribute("list", list);
 		System.out.println(list.size() + "개의 헤어스타일 검색");
