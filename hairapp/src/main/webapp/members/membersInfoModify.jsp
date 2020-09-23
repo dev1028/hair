@@ -15,6 +15,13 @@
 	top:100px;
 	left:0px;
 }
+
+#wrap{
+	top:50px;
+	left:400px;
+    position: absolute;
+    margin:0 auto;
+} 
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

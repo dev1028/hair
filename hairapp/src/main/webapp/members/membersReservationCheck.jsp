@@ -10,9 +10,16 @@
 #mypage {
 	display: flex;
 	position:absolute;
-	top:100px;
+	top:50px;
 	left:0px;
 }
+
+#wrap{
+	top:50px;
+	left:400px;
+    position: absolute;
+    margin:0 auto;
+} 
 </style>
 <script>
 function openDR(mdr_no){
@@ -28,7 +35,7 @@ function openDR(mdr_no){
 <body>
 
 	
-    <div id="wrap" style="float:right;">
+    <div id="wrap">
 	<h2>예약 내역</h2>
 	<hr width="1000px" style="border: solid 1px">
 	<br><br>
@@ -70,12 +77,12 @@ function openDR(mdr_no){
 			</c:forEach>
 		</div>
 		
-	<div id="mypage">
-	<%@include file="/decorator/membersMypage.jsp" %>
-	</div>
 	
 	</form>
 </div>
 
+	<div id="mypage">
+	<%@include file="/decorator/membersMypage.jsp" %>
+	</div>
 </body>
 </html>

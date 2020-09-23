@@ -14,6 +14,7 @@
 }
 
 #wrap{
+	top:120px;
 	right:500px;
     position:absolute;
     margin:0 auto;

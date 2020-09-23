@@ -184,7 +184,6 @@
 				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a>
 			</c:if>
 			<c:if test="${not empty loginid }">
-				<a href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
 				<%=session.getAttribute("loginid")%>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 				<div>
 					<a class="hamburger-shell">
