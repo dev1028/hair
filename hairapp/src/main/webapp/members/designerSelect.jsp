@@ -67,7 +67,10 @@
 					<span>Image Title</span> 
 					<a class="card-text status">#View</a>
 					<a class="card-text status">#Save</a>
-					<button>예약</button>
+					<!-- 예약은 로그인 상태만 가능 -->
+					<c:if test="${not empty sessionScope.login }">
+						<button>예약</button>
+					</c:if>
 				</div>
 				
 				<div>

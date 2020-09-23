@@ -25,17 +25,17 @@ public class PaymentDAO {
 	}
 	
 	
-	public void pay(PaymentVo vo) {
+	public void onlinePay(PaymentVo vo) {
 		//여기서  프로시저를 호출하는 식으로 결제를 한다.
 		conn = ConnectionManager.getConnnect();
 		try {
-			CallableStatement pstmt = conn.prepareCall("{call memberPay{?,?,?}");
+			CallableStatement pstmt = conn.prepareCall("{call memberPay(?,?,?,?)}");
 			pstmt.setString(1, vo.getMem_no());
 			pstmt.setString(2, vo.getDesigner_no());
 			pstmt.setString(3, vo.getHs_no());
-			
+			pstmt.setString(4, vo.getMdr_online_price());
 			//pstmt.registerOutParameter(4, Types.INTEGER);
-			//pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
