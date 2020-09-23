@@ -2,6 +2,7 @@ package com.yedam.hairshop.model;
 
 import lombok.Data;
 
+//회원이 디자이너 예약
 @Data
 public class PaymentVo {
 	String mdr_no;				//예약 번호

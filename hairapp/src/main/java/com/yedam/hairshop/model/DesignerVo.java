@@ -3,9 +3,7 @@ package com.yedam.hairshop.model;
 import lombok.Data;
 
 @Data
-
 public class DesignerVo {
-
 	private String designer_no;
 	private String designer_name;
 	private String designer_phone; 

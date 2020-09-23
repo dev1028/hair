@@ -50,7 +50,7 @@
 </head>
 <body>
 	<c:forEach items="${list}" var="designerInfo" >
-		<form action="../members/payment.do" method="post">
+		<form action="../members/designerSelectResult.do" method="post">
 			<div class="horizontal-card">
 				<img src="http://via.placeholder.com/200x100" />
 				<div class="horizontal-card-body">

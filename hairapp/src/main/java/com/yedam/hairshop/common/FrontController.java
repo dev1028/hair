@@ -17,35 +17,42 @@ import com.yedam.hairshop.admin.salesStatisticsCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
+import com.yedam.hairshop.designer.customerJoinCtrl;
+import com.yedam.hairshop.hairshop.EmployeeAuthFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
-import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
-import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
-import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
-import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
-import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
-import com.yedam.hairshop.hairshop.hairshopMainCtrl;
-import com.yedam.hairshop.members.DesignerSelectCtrl;
-import com.yedam.hairshop.members.HairSelectCtrl;
-import com.yedam.hairshop.members.HairShopSelectCtrl;
-import com.yedam.hairshop.members.DetailedReservationCtrl;
-import com.yedam.hairshop.members.MembersMainCtrl;
-import com.yedam.hairshop.members.MembersMyPageTopCtrl;
-import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
-import com.yedam.hairshop.members.PaymentCtrl;
-import com.yedam.hairshop.members.MembersInfoModifyCtrl;
-import com.yedam.hairshop.members.MembersInfoViewCtrl;
-import com.yedam.hairshop.members.MembersJoinCtrl;
-import com.yedam.hairshop.members.MembersJoinSCtrl;
-import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
-import com.yedam.hairshop.members.MembersLoginCtrl;
-import com.yedam.hairshop.members.MembersLoginSCtrl;
-import com.yedam.hairshop.members.MembersLogoutCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
 import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
+import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
+import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
+import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
+import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
+import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+import com.yedam.hairshop.members.DesignerSelectCtrl;
+import com.yedam.hairshop.members.DesignerSelectResultCtrl;
+import com.yedam.hairshop.members.DetailedReservationCtrl;
+import com.yedam.hairshop.members.HairSelectCtrl;
+import com.yedam.hairshop.members.HairSelectResultCtrl;
+import com.yedam.hairshop.members.HairShopReviewCtrl;
+import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.HairshopSelectResultCtrl;
+import com.yedam.hairshop.members.MemberJoinEmailCtrl;
+import com.yedam.hairshop.members.MembersInfoModifyCtrl;
+import com.yedam.hairshop.members.MembersInfoViewCtrl;
+import com.yedam.hairshop.members.MembersJoinCtrl;
+import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
+import com.yedam.hairshop.members.MembersJoinSCtrl;
+import com.yedam.hairshop.members.MembersLoginCtrl;
+import com.yedam.hairshop.members.MembersLoginSCtrl;
+import com.yedam.hairshop.members.MembersLogoutCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
+import com.yedam.hairshop.members.MembersMainResultCtrl;
+import com.yedam.hairshop.members.MembersMyPageTopCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
+import com.yedam.hairshop.members.MyRegionSettingCtrl;
+import com.yedam.hairshop.members.PaymentCtrl;
+import com.yedam.hairshop.members.PaymentMemberCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
 /*
@@ -66,13 +73,23 @@ public class FrontController extends HttpServlet {
 		list = new HashMap<String, Controller>();
 		
 		//상민
-		list.put("/testDB.do", new TestDBCtrl());
 		list.put("/members/membersMain.do", new MembersMainCtrl());
+		list.put("/members/membersMainResult.do", new MembersMainResultCtrl());
+		
+		
 		list.put("/members/hairshopSelect.do", new HairShopSelectCtrl());
+		list.put("/members/hairshopSelectResult.do", new HairshopSelectResultCtrl());
+		
 		list.put("/members/hairSelect.do", new HairSelectCtrl());
+		list.put("/members/hairSelectResult.do", new HairSelectResultCtrl());
+		
 		list.put("/members/designerSelect.do", new DesignerSelectCtrl());
+		list.put("/members/designerSelectResult.do", new DesignerSelectResultCtrl());
+		
+		
 		list.put("/members/payment.do", new PaymentCtrl());
-		list.put("/members/payment2.do", new Payment2Ctrl());
+		list.put("/members/paymentMember.do", new PaymentMemberCtrl());	//회원결제
+		//
 		
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
@@ -84,11 +101,12 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfoCtrl.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
+		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
 		
 		//린아
 		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 컨트롤러
 		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 컨트롤러
-		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());				// 로그인 넘어가는 컨트롤러
+		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 넘어가는 컨트롤러
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
@@ -97,6 +115,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
+		list.put("/members/memberJoinEmail.do", new MemberJoinEmailCtrl());		// 이메일테스트
 		
 		
 		//강산
@@ -108,7 +127,7 @@ public class FrontController extends HttpServlet {
 		
 		
 		//승연
-		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl());
+		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); //헤어샵메인페이지
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl());
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl());
@@ -117,6 +136,8 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl());
 		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl());
 		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl());
+		list.put("/hairshop/employeeAuth.do", new EmployeeAuthFCtrl());
+		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl());
 	}
 
 

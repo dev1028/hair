@@ -12,7 +12,12 @@ public class HairShopSelectCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("HairShopSelectCtrl");
+		if(request.getAttribute("term") == null) {
+			String term = (String) request.getSession().getAttribute("term");
+			if(term != null)
+				request.setAttribute("term", term);
+		}
 		request.getRequestDispatcher("hairshopSelect.jsp").forward(request, response);
 	}
 

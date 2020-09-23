@@ -107,12 +107,19 @@ left : 2em;
 
 #header {
 	position: relative;
+	height:80px;
 	background: #FFF;
 }
 
 #header .container {
+<<<<<<< HEAD
 /* 	position: static;
 	padding: 3em 0em; */
+=======
+	position: static;
+	height:80px;
+	padding: 3em 0em;
+>>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 }
 
 /*********************************************************************************/
