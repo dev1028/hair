@@ -191,19 +191,10 @@
 
 			<a href="">동성로 </a> |
 			<c:if test="${empty loginid}">
-				<a
-					href="${pageContext.request.contextPath }/members/membersLogin.do">로그인
-				</a>
-				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인
-				</a>
+				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a>
 			</c:if>
 			<c:if test="${not empty loginid }">
-				<%=session.getAttribute("loginid")%>님 로그인 되었습니다 
-				<img
-					src="${pageContext.request.contextPath}/images/members/user-bubble.png"
-					id="user" />  |
-				<a
-					href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
+				<a href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
 				<%=session.getAttribute("loginid")%>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 				<div>
 					<a class="hamburger-shell">
@@ -211,23 +202,11 @@
 						<div class="hamb middle"></div>
 						<div class="menu-name">MYPAGE</div>
 						<ul id="menu">
-							<a
-								href="${pageContext.request.contextPath}/members/membersMypageTop.do">
-								<li>마이페이지</li>
-							</a>
-							<a href="${pageContext.request.contextPath}/members/membersRD.do">
-								<li>예약내역</li>
-							</a>
-							<a href="#">
-								<li>북마크</li>
-							</a>
-							<a href="#">
-								<li>쿠폰</li>
-							</a>
-							<a
-								href="${pageContext.request.contextPath}/members/membersLogout.do">
-								<li>로그아웃</li>
-							</a>
+							<a href="${pageContext.request.contextPath}/members/membersMypageTop.do"> <li>마이페이지</li> </a>
+							<a href="${pageContext.request.contextPath}/members/membersRD.do"> <li>예약내역</li> </a>
+							<a href="#"> <li>북마크</li> </a>
+							<a href="#"> <li>쿠폰</li> </a>
+							<a href="${pageContext.request.contextPath}/members/membersLogout.do"> <li>로그아웃</li> </a>
 						</ul>
 					</a>
 				</div>
@@ -284,11 +263,7 @@
 	</div>
 	<!-- Main -->
 
-
-
-</body>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 	//Click the hamburger menu to see the animation
 	//You can click the X to close or click anywhere outside the menu
@@ -307,4 +282,7 @@
 		})
 	});
 </script>
+
+</body>
+
 </html>

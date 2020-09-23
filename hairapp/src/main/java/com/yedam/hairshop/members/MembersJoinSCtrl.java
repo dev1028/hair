@@ -85,7 +85,7 @@ public class MembersJoinSCtrl implements Controller {
 			se.sand(em);
 			// 목록으로 이동
 			//request.getRequestDispatcher("membersJoinSuccess.jsp").forward(request, response);
-			response.sendRedirect("membersJoinSuccess.jsp");
+			response.sendRedirect("membersJoinEnd.do");
 		}
 		
 		// response.sendRedirect("membersJoinSuccess.jsp");	// 가입완료되면 여기로넘어감
