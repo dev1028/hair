@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.common.SandEmail;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.model.EmailVo;
 
 
 public class EmployeeSimpleJoinFCtrl implements Controller {
@@ -35,6 +37,18 @@ public class EmployeeSimpleJoinFCtrl implements Controller {
 								.append("location.href='employeeList.do';")
 								.append("</script>");
 		} else {
+			
+			SandEmail se = new SandEmail();
+			EmailVo em = new EmailVo();
+			em.setReceiverMail(dVo.getDesigner_email());
+			em.setReceiverName(dVo.getDesigner_name());
+			em.setTitle("우동디자이너 인증요청");
+			em.setContentType("text/html; charset=UTF-8");
+			String contents = "<h3>디자이너 인증요청</h3>"
+					+ "<a href='http://192.168.0.104/hairapp/hairshop/employeeAuth.do?designer_email="+dVo.getDesigner_email()+"'>인증완료</a>";
+				
+			em.setContents(contents);
+			se.sand(em);
 			response.sendRedirect("employeeList.do");
 		}
 	}
