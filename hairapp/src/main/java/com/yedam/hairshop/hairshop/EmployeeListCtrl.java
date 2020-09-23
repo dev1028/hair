@@ -19,9 +19,10 @@ public class EmployeeListCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//직원관리 페이지로 가기전 미용실번호를 가져와야함
-		HairshopVo hVo = (HairshopVo) request.getSession().getAttribute("login");
+		
+		String hs_no = (String) request.getSession().getAttribute("hsno");
 		DesignerVo dVo = new DesignerVo();
-		dVo.setHs_no(hVo.getHs_no());
+		dVo.setHs_no(hs_no);
 		ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShop(dVo);
 		request.setAttribute("emplistjson", JSONArray.fromObject(emplist));
 		request.setAttribute("emplist", emplist);

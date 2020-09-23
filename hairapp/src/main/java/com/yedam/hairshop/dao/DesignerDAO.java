@@ -134,7 +134,8 @@ public class DesignerDAO {
 			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
 					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
 					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" + " FROM DESIGNER"
-					+ " WHERE HS_NO=?";
+					+ " WHERE HS_NO=?"
+					+ " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dVo.getHs_no());
 			rs = pstmt.executeQuery();
@@ -214,5 +215,20 @@ public class DesignerDAO {
 		}
 		return r;
 	}
-
+	
+	//2020.09.23 김승연
+	//디자이너 인증정보반영
+	public int updateForAuth(String designer_email) {
+		int r = 0;
+		String sql = "UPDATE DESIGNER SET DESIGNER_ACCESS_STATUS = 0 WHERE DESIGNER_EMAIL = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designer_email);
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
 }
