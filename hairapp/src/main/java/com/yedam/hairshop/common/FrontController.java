@@ -27,6 +27,7 @@ import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.MemberJoinEmailCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
@@ -88,7 +89,7 @@ public class FrontController extends HttpServlet {
 		//린아
 		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 컨트롤러
 		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 컨트롤러
-		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());				// 로그인 넘어가는 컨트롤러
+		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 넘어가는 컨트롤러
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
@@ -97,6 +98,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
+		list.put("/members/memberJoinEmail.do", new MemberJoinEmailCtrl());		// 이메일테스트
 		
 		
 		//강산

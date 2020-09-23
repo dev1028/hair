@@ -2142,11 +2142,13 @@ transform
 
 #header {
 	position: relative;
+	height:80px;
 	background: #FFF;
 }
 
 #header .container {
 	position: static;
+	height:80px;
 	padding: 3em 0em;
 }
 
