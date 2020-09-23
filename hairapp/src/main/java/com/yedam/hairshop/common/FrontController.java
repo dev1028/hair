@@ -25,13 +25,20 @@ import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
+import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
+import com.yedam.hairshop.members.HairSelectResultCtrl;
+import com.yedam.hairshop.members.HairShopReviewCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
+import com.yedam.hairshop.members.MembersMainResultCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
+import com.yedam.hairshop.members.MyRegionSettingCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
+import com.yedam.hairshop.members.PaymentMemberCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
@@ -66,13 +73,23 @@ public class FrontController extends HttpServlet {
 		list = new HashMap<String, Controller>();
 		
 		//상민
-		list.put("/testDB.do", new TestDBCtrl());
 		list.put("/members/membersMain.do", new MembersMainCtrl());
+		list.put("/members/membersMainResult.do", new MembersMainResultCtrl());
+		
+		
 		list.put("/members/hairshopSelect.do", new HairShopSelectCtrl());
+		list.put("/members/hairshopSelectResult.do", new HairshopSelectResultCtrl());
+		
 		list.put("/members/hairSelect.do", new HairSelectCtrl());
+		list.put("/members/hairSelectResult.do", new HairSelectResultCtrl());
+		
 		list.put("/members/designerSelect.do", new DesignerSelectCtrl());
+		list.put("/members/designerSelectResult.do", new DesignerSelectResultCtrl());
+		
+		
 		list.put("/members/payment.do", new PaymentCtrl());
-		list.put("/members/payment2.do", new Payment2Ctrl());
+		list.put("/members/paymentMember.do", new PaymentMemberCtrl());	//회원결제
+		//
 		
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
