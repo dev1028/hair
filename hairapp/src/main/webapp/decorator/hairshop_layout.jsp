@@ -112,16 +112,20 @@
 				</div>
 			</nav>
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+				<decorator:body></decorator:body>
 				<div>
-					<br>
-					<br>
-					<br>
+					<br> <br> <br>
 				</div>
 				<div>
-					<decorator:body></decorator:body>
+				
 				</div>
 			</main>
 		</div>
+		
+		
+		
+		
+		
 	</div>
 
 
