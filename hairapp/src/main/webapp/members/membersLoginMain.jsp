@@ -8,11 +8,11 @@
 <script>
 
 	function membersModifyView() {
-		location.href = "members/membersInfoView.do";
+		location.href = "membersInfoView.do";
 	}
 	
 	function membersReserv() {
-		location.href = "members/membersRD.do";
+		location.href = "membersRD.do";
 	}
 	
 </script>

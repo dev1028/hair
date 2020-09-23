@@ -5,11 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>membersJoin.jsp</title>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="../common/datepicker.js"></script>
 <link href="../common/datepicker.css" rel="stylesheet" />
+<style>
+#mypage {
+	display: flex;
+	position:absolute;
+	top:100px;
+	left:0px;
+}
+	
+#wrap {
+	top:50px;
+	right:500px;
+    position:absolute;
+    margin:0 auto;
+}
+
+</style>
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
@@ -94,6 +109,7 @@
 		document.form.zipNo.value = zipNo;
 	}
 </script>
+
 </head>
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
@@ -105,7 +121,7 @@
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
 		<!-- 값(파라미터) 전송은 POST 방식, 전송할 페이지는 JoinPro.jsp -->
 		<form method="post"
-			action="membersJoin.do"
+			action="membersJoinS.do"
 			name="form" id="form" onsubmit="return checkValue()">
 			<table>
 				<tr>
@@ -199,6 +215,13 @@
 
 
 		</form>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<div id="mypage">
+	<%@include file="/decorator/membersLoginSIgn.jsp" %>
 	</div>
 </body>
 </html>
