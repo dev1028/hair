@@ -18,6 +18,7 @@ import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.customerJoinCtrl;
+import com.yedam.hairshop.hairshop.EmployeeAuthFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
@@ -26,11 +27,13 @@ import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
+import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.MemberJoinEmailCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
@@ -86,7 +89,7 @@ public class FrontController extends HttpServlet {
 		//린아
 		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 컨트롤러
 		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 컨트롤러
-		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());				// 로그인 넘어가는 컨트롤러
+		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 넘어가는 컨트롤러
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
@@ -95,6 +98,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
+		list.put("/members/memberJoinEmail.do", new MemberJoinEmailCtrl());		// 이메일테스트
 		
 		
 		//강산
@@ -106,7 +110,7 @@ public class FrontController extends HttpServlet {
 		
 		
 		//승연
-		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl());
+		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); //헤어샵메인페이지
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl());
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl());
@@ -115,6 +119,8 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl());
 		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl());
 		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl());
+		list.put("/hairshop/employeeAuth.do", new EmployeeAuthFCtrl());
+		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl());
 	}
 
 
