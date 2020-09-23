@@ -31,7 +31,13 @@ import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
+<<<<<<< HEAD
+import com.yedam.hairshop.members.HairSelectCtrl;
+import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.MembersJoinEmailCtrl;
+=======
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
+>>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
@@ -42,6 +48,8 @@ import com.yedam.hairshop.members.MemberJoinEmailCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
+import com.yedam.hairshop.members.MembersJoinEndCtrl;
+import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -111,12 +119,13 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
+		list.put("/members/membersJoinEmail.do", new MembersJoinEmailCtrl());		// 회원가입 이메일 인증하는 컨트롤러
+		list.put("/members/membersJoinEnd.do", new MembersJoinEndCtrl());		// 회원가입 완료로 이동하는 컨트롤러
 		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());	// 회원수정 컨트롤러
 		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl());		// 회원수정 정보확인 컨트롤러
 		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
-		list.put("/members/memberJoinEmail.do", new MemberJoinEmailCtrl());		// 이메일테스트
 		
 		
 		//강산

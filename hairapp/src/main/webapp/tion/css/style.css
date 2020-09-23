@@ -12,36 +12,12 @@
 	font-weight: normal;
 	font-style: normal;
 }
-/* @font-face {
-	font-family: 'FontAwesome';
-	src: url('font/fontawesome-webfont.eot?v=4.0.1');
-	src: url('font/fontawesome-webfont.eot?#iefix&v=4.0.1')
-		format('embedded-opentype'),
-		url('font/fontawesome-webfont.woff?v=4.0.1') format('woff'),
-		url('font/fontawesome-webfont.ttf?v=4.0.1') format('truetype'),
-		url('font/fontawesome-webfont.svg?v=4.0.1#fontawesomeregular')
-		format('svg');
-	font-weight: normal;
-	font-style: normal
-}
- */
+
 /*********************************************************************************/
 /* Basic                                                                         */
 /*********************************************************************************/
 header {
 	margin-bottom: 2em;
-}
-
-header h2 {
-	font-size: 2.8em;
-}
-
-header .byline {
-	display: block;
-	margin: 0.5em 0 0 0;
-	padding: 0.50em 0 0.5em 0;
-	text-transform: uppercase;
-	font-size: 1.4em;
 }
 
 footer {
@@ -87,39 +63,28 @@ footer {
 /*********************************************************************************/
 #box {
 	float: right;
-	 margin : 1em 1em;
+	margin: 1em 1em;
 	display: block;
+	left: 2em;
+}
 
 
-left : 2em;
-}
-.container{
-	clear: both;
-}
 /*********************************************************************************/
 /* Header                                                                        */
 /*********************************************************************************/
-#header-wrapper {
-	padding: 0em;
-	background: #333 url(images/9.png) no-repeat center;
-	background-size: cover;
-}
 
 #header {
 	position: relative;
-	height:80px;
+	/* height: 80px; */
 	background: #FFF;
 }
 
 #header .container {
-<<<<<<< HEAD
-/* 	position: static;
+	/* 	position: static;
 	padding: 3em 0em; */
-=======
-	position: static;
-	height:80px;
-	padding: 3em 0em;
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
+	
+
+clear: both;
 }
 
 /*********************************************************************************/
@@ -130,7 +95,6 @@ left : 2em;
 	left: 3em;
 	top: 1.7em;
 } */
-
 .mainLogo {
 	font-family: 'Montserrat', sans-serif;
 	text-decoration: none;
@@ -141,7 +105,7 @@ left : 2em;
 }
 
 #logo a, #logo a:link, #logo a:visited {
-	display: block;
+	/* display: block; */
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 50px;
@@ -153,10 +117,10 @@ left : 2em;
 /* Nav                                                                           */
 /*********************************************************************************/
 #nav {
-/* 	position: absolute;
+	/* 	position: absolute;
 	right: 1em;
 	top: 1.7em; */
-	float: right;
+	/* float: right; */
 }
 
 #nav>ul>li {

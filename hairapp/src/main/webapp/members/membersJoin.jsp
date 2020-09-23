@@ -108,11 +108,6 @@
 		document.form.addrDetail.value = addrDetail;
 		document.form.zipNo.value = zipNo;
 	}
-	
-	function emailSand() {
-		location.href="memberJoinEmail.do";
-	}
-	
 </script>
 
 </head>
@@ -134,8 +129,7 @@
 					<td><input type="email" name="joinemail" maxlength="50" onkeydown="inputIdChk()"
 						placeholder="sample@naver.com 형식">
 						<input type="button" value="중복확인" onclick="openIdChk()">
-						<input type="hidden" name="idDuplication" value="idUncheck" >
-						<input type="button" value="인증" onclick="emailSand()"></td>
+						<input type="hidden" name="idDuplication" value="idUncheck" ></td>
 				</tr>
 
 				<tr>

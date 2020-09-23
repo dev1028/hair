@@ -27,7 +27,7 @@ public class HairSelectCtrl implements Controller{
 
 		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
 		request.setAttribute("list", list);
-		System.out.println(list.size() + "개의 헤어스타일 검색");
+		//System.out.println(list.size() + "개의 헤어스타일 검색");
 		
 		request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
 	}

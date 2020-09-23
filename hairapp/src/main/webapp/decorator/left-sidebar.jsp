@@ -5,22 +5,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML>
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 <html>
 <head>
 <title>Imagination by TEMPLATED</title>
 
 <style>
-<<<<<<< HEAD
 #user {
 	width: 30px;
 	height: 30px;
-=======
-body {
-	background-color: #fafafa;
+	body
+	{
+	background-color
+	:
+	#fafafa;
 }
 
 .reveal {
@@ -38,13 +36,13 @@ body {
 	height: 100px;
 	overflow: auto;
 	/* left: calc(100% - 100px); */
-	right:0px;
+	right: 0px;
 	top: 0px;
 	cursor: pointer;
 	z-index: 1000;
 }
 
-.top, .middle{
+.top, .middle {
 	position: absolute;
 	width: 62px;
 	height: 10px;
@@ -73,18 +71,18 @@ body {
 	padding: 24px;
 	width: 200px;
 	text-align: right;
-	z-index:1001;
+	z-index: 1001;
 }
 
 #menu a li {
-	text-decoration: none!important;
+	text-decoration: none !important;
 	padding-bottom: 10px;
 	margin-bottom: 12px;
 	border-bottom: 1px solid black;
 	list-style: none;
 	color: #555;
 	transition: all 150ms ease;
-	z-index:1001;
+	z-index: 1001;
 }
 
 #menu a li:hover {
@@ -93,9 +91,8 @@ body {
 }
 
 #menu a li:hover:after {
+	
 }
-
-
 
 #menu a {
 	text-decoration: none;
@@ -118,11 +115,11 @@ body {
 }
 
 .top {
--webkit-animation-delay: 100ms;
+	-webkit-animation-delay: 100ms;
 }
 
 .middle {
--webkit-animation-delay: 250ms;
+	-webkit-animation-delay: 250ms;
 }
 
 .bottom {
@@ -144,7 +141,6 @@ body {
 .bump {
 	top: 64px;
 	color: red;
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 }
 </style>
 
@@ -163,159 +159,152 @@ body {
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	var burgerMenu = function() {
-
-		$('body').on('click', '.js-fh5co-nav-toggle', function(event) {
-
-			if ($('#navbar').is(':visible')) {
-				$(this).removeClass('active');
-			} else {
-				$(this).addClass('active');
-			}
-
-			event.preventDefault();
-
-		});
-
-	};
-
 	$(function() {
 
-		$(".navi").click(function(event) {
-			/* 		$('.navi').removeClass('active');*/
+		$("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
+			$('.active').removeClass("active"); // sBtn 속에 (active) 클래스를 삭제 한다.
+			$(this).parent().addClass("active"); // 클릭한 a에 (active)클래스를 넣는다.
+
+		})
+	})
+
+	/* 	$('body').on('click', '.navi', function(event) {
+			$('.navi').removeClass('active');
+
 			$('.active').removeClass('active');
+
 			$(this).addClass('active');
-	
+
 			event.preventDefault();
 		});
 	});
+	 */
 </script>
-<decorator:head></decorator:head>
+
 </head>
 <body>
 
-	<div id="header-wrapper">
+	<!-- Header -->
+	<div id="header">
+		<div id="box">
+			<img src="${pageContext.request.contextPath }/tion/images/gps.png" />
 
-		<!-- Header -->
-		<div id="header">
-			<div id="box">
-				<img src="${pageContext.request.contextPath }/tion/images/gps.png" />
-
-				<a href="">동성로 </a> |
-				<c:if test="${empty loginid}">
-<<<<<<< HEAD
-					<a
-						href="${pageContext.request.contextPath }/members/membersLogin.do">로그인
-					</a>
-=======
-					<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인 </a>
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
-				</c:if>
-				<c:if test="${not empty loginid }">
-<<<<<<< HEAD
-					<%=session.getAttribute("loginid")%>님 로그인 되었습니다 
-				<img
-						src="${pageContext.request.contextPath}/images/members/user-bubble.png"
-						id="user" />  |
+			<a href="">동성로 </a> |
+			<c:if test="${empty loginid}">
 				<a
-						href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
-=======
+					href="${pageContext.request.contextPath }/members/membersLogin.do">로그인
+				</a>
+				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인
+				</a>
+			</c:if>
+			<c:if test="${not empty loginid }">
+				<%=session.getAttribute("loginid")%>님 로그인 되었습니다 
+				<img
+					src="${pageContext.request.contextPath}/images/members/user-bubble.png"
+					id="user" />  |
+				<a
+					href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a>
 				<%=session.getAttribute("loginid")%>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 				<div>
 					<a class="hamburger-shell">
 						<div class="hamb top"></div>
-							<div class="hamb middle"></div>
-								<div class="menu-name">MYPAGE</div>
-									<ul id="menu">
-											<a href="${pageContext.request.contextPath}/members/membersMypageTop.do"> <li>마이페이지</li></a>
-											<a href="${pageContext.request.contextPath}/members/membersRD.do"> <li>예약내역</li></a>
-											<a href="#"> <li>북마크</li></a>
-											<a href="#"> <li>쿠폰</li></a>
-											<a href="${pageContext.request.contextPath}/members/membersLogout.do"> <li>로그아웃</li></a>
-									</ul>
-						</a>
-				</div>	
-				
-				<%-- <img src="${pageContext.request.contextPath}/images/members/user-bubble.png" id="user" /> --%>
-				<%-- <a href="${pageContext.request.contextPath }/members/membersLogout.do">로그아웃</a> --%>
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
-				</c:if>
-
-			</div>
-			<div class="container">
-
-				<!-- Logo -->
-				<div id="logo">
-					<h1>
-						<a class="mainLogo"
-							href="${pageContext.request.contextPath}/members/membersMain.do">SALON</a>
-					</h1>
+						<div class="hamb middle"></div>
+						<div class="menu-name">MYPAGE</div>
+						<ul id="menu">
+							<a
+								href="${pageContext.request.contextPath}/members/membersMypageTop.do">
+								<li>마이페이지</li>
+							</a>
+							<a href="${pageContext.request.contextPath}/members/membersRD.do">
+								<li>예약내역</li>
+							</a>
+							<a href="#">
+								<li>북마크</li>
+							</a>
+							<a href="#">
+								<li>쿠폰</li>
+							</a>
+							<a
+								href="${pageContext.request.contextPath}/members/membersLogout.do">
+								<li>로그아웃</li>
+							</a>
+						</ul>
+					</a>
 				</div>
 
-				<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li class="navi">
-							<!--  class= "button" --> <a
-							href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네설정</a>
-						</li>
-						<li class="navi"><a
-							href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
-								미용실 모아보기</a></li>
-						<li class="navi"><a
-							href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
-								미용실 순위</a></li>
-						<li class="navi"><a
-							href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
-								디자이너 순위</a></li>
+			</c:if>
 
-						<li class="navi"><a
-							href="${pageContext.request.contextPath}/members/membersMain.do">인기
-								헤어 순위</a></li>
-
-					</ul>
-				</nav>
-
-			</div>
 		</div>
+		<div class="container">
 
+			<!-- Logo -->
+			<div id="logo">
+				<h1>
+					<a class="mainLogo"
+						href="${pageContext.request.contextPath}/members/membersMain.do">SALON</a>
+				</h1>
+			</div>
 
+			<!-- Nav -->
+			<div id="nav">
+				<ul>
+					<li><a
+						href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네설정</a>
+					</li>
+					<li class="navi"><a
+						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
+							미용실 모아보기</a></li>
+					<li class="navi"><a
+						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
+							미용실 순위</a></li>
+					<li class="navi"><a
+						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
+							디자이너 순위</a></li>
+
+					<li class="navi"><a
+						href="${pageContext.request.contextPath}/members/membersMain.do">인기
+							헤어 순위</a></li>
+
+				</ul>
+			</div>
+
+		</div>
 	</div>
+
+
 
 	<!-- Main -->
 	<div id="main">
-		<div class="container">
-			<div class="row">
 
 
-				<decorator:body></decorator:body>
 
-			</div>
-		</div>
+		<decorator:body></decorator:body>
+
+
 	</div>
 	<!-- Main -->
-	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
 
-//Click the hamburger menu to see the animation
-//You can click the X to close or click anywhere outside the menu
 
-$(document).ready(function(){
-	$('.hamburger-shell').click(function(){
-		$('#menu').slideToggle(300);
-		$('.top').toggleClass('rotate');
-		$('.middle').toggleClass('rotate-back');
-		$('.menu-name').toggleClass('bump');
-	});
-	$('.bg-cover').click(function(){
-		$('#menu').slideToggle(300);
-		$('.top').toggleClass('rotate');
-		$('.middle').toggleClass('rotate-back');
-		$('.menu-name').toggleClass('bump');
-	})
-});
-</script>
 
 </body>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	//Click the hamburger menu to see the animation
+	//You can click the X to close or click anywhere outside the menu
+	$(document).ready(function() {
+		$('.hamburger-shell').click(function() {
+			$('#menu').slideToggle(300);
+			$('.top').toggleClass('rotate');
+			$('.middle').toggleClass('rotate-back');
+			$('.menu-name').toggleClass('bump');
+		});
+		$('.bg-cover').click(function() {
+			$('#menu').slideToggle(300);
+			$('.top').toggleClass('rotate');
+			$('.middle').toggleClass('rotate-back');
+			$('.menu-name').toggleClass('bump');
+		})
+	});
+</script>
 </html>

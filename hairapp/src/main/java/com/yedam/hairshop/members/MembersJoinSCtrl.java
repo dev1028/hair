@@ -1,17 +1,16 @@
 package com.yedam.hairshop.members;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.beanutils.BeanUtils;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.common.SandEmail;
 import com.yedam.hairshop.dao.MembersDAO;
+import com.yedam.hairshop.model.EmailVo;
 import com.yedam.hairshop.model.MembersVo;
 
 public class MembersJoinSCtrl implements Controller {
@@ -55,28 +54,40 @@ public class MembersJoinSCtrl implements Controller {
 		members.setMem_hair_status(joinhairstatus);
 		
 
-		/*
-		 * try { // 위의 파라미터 한꺼번에 담아주는거 BeanUtils.copyProperties(members,
-		 * request.getParameterMap()); } catch (Exception e) { e.printStackTrace(); }
-		 * System.out.println("1"+members);
-		 * 
-		 * System.out.println("============map============"); Map<String, String[]> map
-		 * = request.getParameterMap(); System.out.println(map);
-		 * System.out.println("joinemail=" + map.get("joinemail"));
-		 * 
-		 * System.out.println("============names============"); Enumeration<String>
-		 * pnames = request.getParameterNames(); // 파라미터 이름만 읽어오기 가능 while
-		 * (pnames.hasMoreElements()) { System.out.println(pnames.nextElement()); }
-		 */
-
 		// DB 등록 처리
 		MembersVo resultVO = MembersDAO.getInstance().membersJoin(members);
 		
 		request.getSession().setAttribute("members", resultVO);
 		request.getSession().setAttribute("joinemail", resultVO.getMem_email());
-
-		// 목록으로 이동
-		request.getRequestDispatcher("membersJoinSuccess.jsp").forward(request, response);
+		
+		
+		// 이메일 등록 처리
+		int r = MembersDAO.getInstance().membersJoinEmail(members);
+		System.out.println(r);
+		if (r == 0) {
+			response.getWriter().append("<script>")
+								.append("alert('회원 인증이 완료되지 않았습니다');")
+								.append("location.href='membersJoin.do';")
+								.append("</script>");
+		} else {
+			
+			SandEmail se = new SandEmail();
+			EmailVo em = new EmailVo();
+			System.out.println();
+			em.setReceiverMail(members.getMem_email());
+			em.setReceiverName(members.getMem_name());
+			em.setTitle("우리동네 미용실 우동 회원가입 인증요청 메일");
+			em.setContentType("text/html; charset=UTF-8");
+			String contents = "<h3>우리동네 미용실 우동 회원가입 인증을 해주세요.</h3>"
+					+ "<a href='http://192.168.0.57/hairapp/members/membersJoinEmail.do?mem_email="+members.getMem_email()+"'>누르시면 인증이 완료됩니다</a>";
+				
+			em.setContents(contents);
+			se.sand(em);
+			// 목록으로 이동
+			//request.getRequestDispatcher("membersJoinSuccess.jsp").forward(request, response);
+			response.sendRedirect("membersJoinSuccess.jsp");
+		}
+		
 		// response.sendRedirect("membersJoinSuccess.jsp");	// 가입완료되면 여기로넘어감
 	}
 
