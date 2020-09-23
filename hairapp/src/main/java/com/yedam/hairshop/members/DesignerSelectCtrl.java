@@ -6,25 +6,25 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
+//import com.yedam.hairshop.model.HairshopHairInfoVo;
+import com.yedam.hairshop.model.HairshopVo;
 
 public class DesignerSelectCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//DesignerDAO.getInstance().selectByHairShop()
-//		System.out.println(hsNo);
-		
-		String hsNo = request.getParameter("hsNo");		//헤어샵번호
-		String hhiNo = request.getParameter("hhiNo");	//헤어번호
-		request.getSession().setAttribute("hsNo", hsNo);
-		request.getSession().setAttribute("hhiNo", hhiNo);
+		System.out.println("DesignerSelectCtrl");
 
+		HttpSession session = request.getSession();
+		HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
+		
 		DesignerVo vo = new DesignerVo();
-		vo.setHs_no(hsNo);
+		vo.setHs_no(hairshopVo.getHs_no());
 		List<DesignerVo> list = DesignerDAO.getInstance().selectByHairShop(vo);
 		request.setAttribute("list", list);
 		

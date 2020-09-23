@@ -52,9 +52,11 @@
 $(function(){
 	function createCard(data){
 		var html = "";
-		html += '<form action="../members/hairSelect.do" method="post">'
+		html += '<form action="../members/hairshopSelectResult.do" method="post">'
 		html += '<div class="horizontal-card">';
-		html += 	'<img src="http://via.placeholder.com/200x100" />'
+		//html += 	'<img src="http://via.placeholder.com/200x100" />'
+		//html += 	'<img src="localhost://hairapp/images/hairshop/signin-image.jpg"/>''
+		html +=     '<img src="../images/hairshop/signin-image.jpg" width="200" height="100">'
 		html += 	'<div class="horizontal-card-body">'
 // 		html += 		'<span class="card-text"> 날짜:' + data.date + '</span>'
 		html +=         '<input type="hidden" name="hsNo" value="' + data.value + '">'
