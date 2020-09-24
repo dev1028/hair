@@ -18,7 +18,7 @@ public class MembersIdSearchSCtrl implements Controller {
 		String idname = request.getParameter("idname");
 		String idphone = request.getParameter("idphone");
 		String idbirth = request.getParameter("idbirth");
-		System.out.println(idname+idphone+idbirth);
+		System.out.println("뭐받아오노:"+idname+idphone+idbirth);
 		
 		MembersVo membersVo = new MembersVo();
 		membersVo.setMem_name(idname);
@@ -27,11 +27,11 @@ public class MembersIdSearchSCtrl implements Controller {
 		System.out.println("1:"+membersVo);
 		
         MembersDAO dao = new MembersDAO();
-        dao.findId(membersVo);
+        MembersVo resultVo = dao.findId(membersVo);		// 리턴값이 있는애는 resultVo가 있어야지 리턴이 가능함
         System.out.println("2:"+membersVo);
         
-        request.setAttribute("members", membersVo);
-        System.out.println("3:"+membersVo);
+        request.setAttribute("members", resultVo);
+        System.out.println("3:"+resultVo);
         
         request.getRequestDispatcher("/members/membersIdS.jsp").forward(request, response);
 		

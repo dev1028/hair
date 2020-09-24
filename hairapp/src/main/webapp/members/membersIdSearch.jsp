@@ -21,12 +21,6 @@
 } 
 </style>
 <script>
-function openId(){
-    
-    window.name = "parentForm";
-    window.open("membersIdSearchS.do",
-            "chkForm", "width=500, height=300, resizable = no, scrollbars = no");    
-}
 </script>
 </head>
 <body>
@@ -40,7 +34,7 @@ function openId(){
 			<br>
 			<label for="birth">생일:&nbsp;</label><input type="date" name="idbirth" id="birth" placeholder="생일" required>
 		</div>
-			<input type="submit" value="찾기" onclick="openId()">
+			<input type="submit" value="찾기">
 	</form>
 </div>
 	<div id="mypage">

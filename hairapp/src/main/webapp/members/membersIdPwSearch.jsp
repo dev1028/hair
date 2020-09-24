@@ -28,7 +28,7 @@ function membersIdSearch() {
 }
 
 function membersPwSearch() {
-	//location.href = "membersJoin.do";
+	location.href = "membersPwSearch.do";
 }
 
 </script>
