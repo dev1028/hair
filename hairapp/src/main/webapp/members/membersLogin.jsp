@@ -36,6 +36,11 @@
 	function membersJoin() {
 		location.href = "membersJoin.do";
 	}
+	
+	function membersSearch() {
+		location.href = "membersSearch.do";
+	}
+	
 </script>
 </head>
 <body>
@@ -55,7 +60,8 @@
 		</div>
 		<button>로그인</button>
 	</form>
-		<button>ID/password 찾기</button><br><br><br><br><br>
+		<input type="button" value="ID/PW찾기" onclick="membersSearch()" />
+		<br><br><br><br><br>
 	
 	아직도 회원이 아니신가요?<br>
 	<input type="button" value="회원가입" onclick="membersJoin()" />
