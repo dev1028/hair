@@ -163,6 +163,29 @@ public class HairshopDAO {
 			}
 			return r;
 		}
+		
+		//2020.09.24 김승연
+		//email 사용여부조회
+		public int selectCntEmail(String hs_email) {
+			int count = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT COUNT(HS_EMAIL) FROM HAIRSHOP WHERE HS_EMAIL = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, hs_email);
+				rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					count = rs.getInt(1);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return count;
+		}
 	
 
 }
