@@ -55,10 +55,9 @@ public class MembersJoinSCtrl implements Controller {
 		
 
 		// DB 등록 처리
-		MembersVo resultVO = MembersDAO.getInstance().membersJoin(members);
-		
-		request.getSession().setAttribute("members", resultVO);
-		request.getSession().setAttribute("joinemail", resultVO.getMem_email());
+		//MembersVo resultVO = MembersDAO.getInstance().membersJoin(members);
+		//request.getSession().setAttribute("members", resultVO);
+		//request.getSession().setAttribute("joinemail", resultVO.getMem_email());
 		
 		
 		// 이메일 등록 처리
