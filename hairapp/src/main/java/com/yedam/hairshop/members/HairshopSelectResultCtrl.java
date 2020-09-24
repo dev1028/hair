@@ -19,6 +19,7 @@ public class HairshopSelectResultCtrl implements Controller{
 		//선택된 헤어샵 정보를 session에 담는다.
 		HairshopVo vo = new HairshopVo();
 		String hsNo = request.getParameter("hsNo");
+		System.out.println("hsNo: " + hsNo);
 		vo.setHs_no(hsNo);
 		
 		HairshopVo selHairshopVo = HairshopDAO.getInstance().selectOne(vo);

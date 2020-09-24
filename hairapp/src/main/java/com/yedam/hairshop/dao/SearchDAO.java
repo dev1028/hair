@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.SearchVo;
-
+ 
 public class SearchDAO {
 	// 전역변수
 	Connection conn;
@@ -35,7 +35,7 @@ public class SearchDAO {
 						" WHERE hs_name LIKE '%'|| ? || '%' OR " + 
 						"      hs_profile LIKE '%' || ? || '%' OR " + 
 						"      hs_fulladdr LIKE '%' || ? || '%' ";
-			System.out.println(sql);
+//			System.out.println(sql);
 			
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);

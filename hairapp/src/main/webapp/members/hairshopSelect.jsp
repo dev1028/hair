@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -9,108 +9,119 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <style>
-
-.cardContainer{
-    width: 70%;
+.cardContainer {
+	width: 70%;
 }
 
 .horizontal-card {
-  width: 100%;
-  position: relative;
-  display: flex;
-  border: 1px solid gray;
-  margin-bottom: 1rem;
+	width: 100%;
+	position: relative;
+	display: flex;
+	border: 1px solid gray;
+	margin-bottom: 1rem;
 }
+
 .horizontal-card img {
-  width: 200px;
-  height: 130px;
-  border-bottom: 30px solid orange;
+	width: 200px;
+	height: 130px;
+	border-bottom: 30px solid orange;
 }
+
 .horizontal-card .horizontal-card-body {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1rem;
+	display: flex;
+	flex-direction: column;
+	margin-left: 1rem;
 }
+
 .horizontal-card .horizontal-card-footer {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  height: 30px;
-  display: flex;
-  align-items: center;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	height: 30px;
+	display: flex;
+	align-items: center;
 }
+
 .horizontal-card .horizontal-card-footer span {
-  width: 200px;
-  display: inline-block;
+	width: 200px;
+	display: inline-block;
 }
+
 .horizontal-card .horizontal-card-footer a {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 </style>
 <script>
-$(function(){
-	function createCard(data){
-		var html = "";
-		html += '<form action="../members/hairshopSelectResult.do" method="post">'
-		html += '<div class="horizontal-card">';
-		//html += 	'<img src="http://via.placeholder.com/200x100" />'
-		//html += 	'<img src="localhost://hairapp/images/hairshop/signin-image.jpg"/>''
-		html +=     '<img src="../images/hairshop/signin-image.jpg" width="200" height="100">'
-		html += 	'<div class="horizontal-card-body">'
-// 		html += 		'<span class="card-text"> 날짜:' + data.date + '</span>'
-		html +=         '<input type="hidden" name="hsNo" value="' + data.value + '">'
-		html += 		'<h4 class="card-title">' + data.label + '</h4>'
-		html += 		'<span class="card-text">' + data.desc + '</span>'
-		html += 	'</div>'
-		html += 	'<div class="horizontal-card-footer">'
-		html += 		'<span>Image Title</span> <a class="card-text status">#View</a>'
-		html += 		'<a class="card-text status">#Save</a>'
-		html += 	'<button>예약</button>'
-		html += 	'</div>'
-		html += '</div>'
-		html += '</form>'
-		return html
-	
-	}
-	function test(key){
-		$.ajax( "../ajax/searchRealtime.do", {
-				dataType : "json",
-				data: {term : key},
-				success : function(datas){
-					for(i=0; i<datas.length; i++){
-						$(".cardContainer").append(createCard(datas[i]));
-						
-						//$("<div>SADF<div>").appendTo(".AAA")
-					}
-				}
+	function like_func(hs_no) {
+		alert(hs_no)
+// 		var frm_read = $('#frm_read');
+// 		var boardno = $('#boardno', frm_read).val();
+// 		//var mno = $('#mno', frm_read).val();
+// 		//console.log("boardno, mno : " + boardno +","+ mno);
+		$.ajax({
+			url : "../ajax/hairshopBookmark.do",
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : 'hs_no=' + hs_no,
+			success : function(data) {
+// 				var msg = '';
+// 				var like_img = '';
+// 				msg += data.msg;
+// 				alert(msg);
+
+// 				if (data.like_check == 0) {
+// 					like_img = "./images/dislike.png";
+// 				} else {
+// 					like_img = "./images/like.png";
+// 				}
+// 				$('#like_img', frm_read).attr('src', like_img);
+// 				$('#like_cnt').html(data.like_cnt);
+// 				$('#like_check').html(data.like_check);
+			},
+			error : function(request, status, error) {
+				alert("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
 		});
 	}
-	test("${param.term}");
-})
+
 </script>
 </head>
 <body>
-	
+
 	<h1>키워드: ${param.term }</h1>
-	
+
 	<div class="cardContainer">
+		<c:forEach items="${list}" var="item">
+			<form action="../members/hairshopSelectResult.do" method="post">
+				<div class="horizontal-card">
+					<img src="../images/hairshop/signin-image.jpg" width="200"
+						height="100">
+					<div class="horizontal-card-body">
+						<h4 class="card-title">공지: ${item.hs_notice}</h4>
+						<span class="card-text"> 프로필: ${item.hs_profile } </span> <span
+							class="card-text"> 별점: 미구현 </span>
+					</div>
+					<div class="horizontal-card-footer">
+						<span>${item.hs_name } </span> 
+						<!-- <a class="card-text status">좋아요수: 미구현</a> -->
+						<!-- <a class="card-text status">#Save</a> -->
+						
+						<c:if test="${not empty login }">
+							<a href='javascript: like_func("${item.hs_no}")'>북마크</a>
+						</c:if>	
+						
+						<!-- <button>북마크</button> -->
+						<button>예약</button>
+					</div>
+				</div>
+
+				<input type="hidden" name="hsNo" value="${item.hs_no}">
+			</form>
+		</c:forEach>
 	</div>
-	
-	
-	<!-- 
-	<div class="horizontal-card">
-		<img src="http://via.placeholder.com/200x100" />
-		<div class="horizontal-card-body">
-			<span class="card-text">날짜</span>
-			<h4 class="card-title">Title</h4>
-			<span class="card-text">Subtitle</span>
-		</div>
-		<div class="horizontal-card-footer">
-			<span>Image Title</span> <a class="card-text status">#View</a> <a
-				class="card-text status">#Save</a>
-		</div>
-	</div>
-	 -->
+
 </body>
 </html>
