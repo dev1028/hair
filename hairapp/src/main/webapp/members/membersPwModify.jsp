@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 성공</title>
+<title>비밀번호 찾기</title>
 <style>
 #mypage {
 	display: flex;
@@ -20,19 +20,20 @@
     margin:0 auto;
 } 
 </style>
+
 </head>
-<script>
-		//취소 버튼 클릭시 첫화면으로 이동
-		function goLogin() {
-    		location.href="membersLogin.do";
-		}  
-</script>
 <body>
 <div id="wrap" style="float:right;">
-	<h4>회원가입이 완료되었습니다</h4><br>
-	<h5>이메일에서 인증을 해주시면 가입이 최종 완료 됩니다</h5>
-<button onclick="goLogin()">로그인</button>
+	<form method="POST" name="searchFrm" action="membersPwModify.do">
+	<h3>비밀번호 수정</h3><br>
+		<div class="row1">
+			<label>비밀번호 수정 : </label><input type="text" name="mem_pw">
+			<br>
+			<input type="submit" value="수정">
+		</div>
+	</form>
 </div>
+
 <div id="mypage">
 	<%@include file="/decorator/membersLoginSIgn.jsp" %>
 </div>

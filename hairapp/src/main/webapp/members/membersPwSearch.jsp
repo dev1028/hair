@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+<title>비밀번호 찾기</title>
 <style>
 #mypage {
 	display: flex;
@@ -25,7 +25,7 @@
 </head>
 <body>
 <div id="wrap" style="float:right;">
-	<form method="POST" name="searchFrm" action="">
+	<form method="POST" name="searchFrm" action="membersPwSearchS.do">
 	<h3>비밀번호 찾기</h3><br>
 		<div class="row1">
 			<label for="email">이메일:&nbsp;</label><input type="email" name="pwemail" id="email" placeholder="ID(email) 입력" required autofocus>
@@ -37,7 +37,7 @@
 			<input type="submit" value="해당버튼을 누르면 이메일 인증이 보내집니다">
 	</form>
 </div>
-	<div id="mypage">
+<div id="mypage">
 	<%@include file="/decorator/membersLoginSIgn.jsp" %>
 </div>
 </body>
