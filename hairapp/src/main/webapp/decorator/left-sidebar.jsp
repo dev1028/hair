@@ -18,6 +18,7 @@
 	visibility: visible;
 }
 
+
 .hamburger-shell {
 	margin: 0;
 	position: fixed;
@@ -250,6 +251,7 @@
 		<decorator:body></decorator:body>
 
 	</div>
+
 <script>
 //햄버거
 $(document).ready(function() {
