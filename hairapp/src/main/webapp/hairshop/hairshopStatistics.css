@@ -1,12 +1,9 @@
 @charset "UTF-8";
+
 body {
 	/* text-align: center; */
 	font-family: 'Lato', 'sans-serif';
 	font-weight: 400;
-}
-
-header, form {
-	padding: 4em 10%;
 }
 
 .form-group {
@@ -24,8 +21,8 @@ h2.heading {
 	margin-bottom: 20px;
 }
 
+
 .controls {
-	
 	padding: .5em 1em;
 	display: inline;
 }
@@ -35,7 +32,6 @@ h2.heading {
 	padding: .5em 1em;
 	display: block;
 	height: 2em;
-	
 }
 
 label {
