@@ -150,6 +150,11 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+
+
 <script type="text/javascript">
 
 
@@ -246,6 +251,7 @@
 		<decorator:body></decorator:body>
 
 	</div>
+
 <script>
 //햄버거
 $(document).ready(function() {
