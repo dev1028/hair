@@ -154,7 +154,7 @@
 				<tr>
 					<td id="title">휴대전화</td>
 					<td><input type="text" name="joinphone"
-						placeholder="010-000-0000"></td>
+						placeholder="ex) 010-0000-0000"></td>
 				</tr>
 
 				<tr>

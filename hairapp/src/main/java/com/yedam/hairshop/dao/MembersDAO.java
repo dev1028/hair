@@ -159,6 +159,7 @@ public class MembersDAO {
 		return members; // 값을 리턴해줌
 	} // end getMembersInfo()
 
+	
 	// 전체 조회
 	public List<MembersVo> selectAll() { // 조회가 여러건이면 DeptVO를 list에 담음
 		List<MembersVo> list = new ArrayList<MembersVo>(); // 결과값을 저장할 list 변수 객체 선언
@@ -395,5 +396,35 @@ public class MembersDAO {
 			}
 		}
 	} // end duplicateIdCheck()
+	
+
+	// ID 찾기
+	public MembersVo findId(MembersVo membersVo) {
+		MembersVo members = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT MEM_EMAIL FROM MEMBERS WHERE MEM_NAME = ? AND MEM_PHONE = ? AND MEM_BIRTH = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersVo.getMem_name());
+			pstmt.setString(2, membersVo.getMem_phone());
+			pstmt.setString(3, membersVo.getMem_birth());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				members = new MembersVo();
+				members.setMem_email(rs.getString(1));
+				
+			} else {
+				System.out.println("no data");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return members; // 값을 리턴해줌
+	}	// id찾기 끝
+
+
 
 }
