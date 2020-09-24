@@ -35,8 +35,6 @@ String inputYn = request.getParameter("inputYn");
 	String lnbrMnnm  = request.getParameter("lnbrMnnm");
 	String lnbrSlno  = request.getParameter("lnbrSlno");
 	String emdNo  = request.getParameter("emdNo");
-	String entX  = request.getParameter("entX");
-	String entY  = request.getParameter("entY");
 %>
 </head>
 <script language="javascript">
@@ -55,7 +53,7 @@ function init(){
 		 document.form.confmKey.value = confmKey;
 		 document.form.returnUrl.value = url;
 		 document.form.resultType.value = resultType;
-		 document.form.action="http://www.juso.go.kr/addrlink/addrCoordUrl.do"; //인터넷망(행정망의 경우 별도 문의)
+		 document.form.action="http://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망(행정망의 경우 별도 문의)
 		
 		 //** 2017년 5월 모바일용 팝업 API 기능 추가제공 **/
 		 //document.form.action="http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망

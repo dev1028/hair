@@ -57,6 +57,9 @@ import com.yedam.hairshop.members.MembersLogoutCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMainResultCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
+import com.yedam.hairshop.members.MembersPwEmailCtrl;
+import com.yedam.hairshop.members.MembersPwEndCtrl;
+import com.yedam.hairshop.members.MembersPwModifyCtrl;
 import com.yedam.hairshop.members.MembersPwSearchCtrl;
 import com.yedam.hairshop.members.MembersPwSearchSCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
@@ -126,7 +129,10 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersIdSearch.do", new MembersIdSearchCtrl());		// ID 찾기 페이지 이동 컨트롤러
 		list.put("/members/membersIdSearchS.do", new MembersIdSearchSCtrl());	// ID 찾기 넘어가는 컨트롤러
 		list.put("/members/membersPwSearch.do", new MembersPwSearchCtrl());		// PW 찾기 페이지 이동 컨트롤러
-		list.put("/members/memberPwSearchS.do", new MembersPwSearchSCtrl());	// PW 찾기 넘어가는 컨트롤러
+		list.put("/members/membersPwSearchS.do", new MembersPwSearchSCtrl());	// PW 찾기 넘어가는 컨트롤러
+		list.put("/members/membersPwEnd.do", new MembersPwEndCtrl());			// PW 찾기 완료 페이지 이동하는 컨트롤러
+		list.put("/members/membersPwEmail.do", new MembersPwEmailCtrl());		// PW EMAIL 인증 클릭 컨트롤러
+		list.put("/members/membersPwModify.do", new MembersPwModifyCtrl());		// PW 수정 넘어가는 컨트롤러
 		
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 페이지 이동 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
@@ -134,7 +140,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersJoinEmail.do", new MembersJoinEmailCtrl());	// 회원가입 이메일 인증하는 컨트롤러
 		list.put("/members/membersJoinEnd.do", new MembersJoinEndCtrl());		// 회원가입 완료 페이지 이동하는 컨트롤러
 		
-		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());	// 회원수정 이동 컨트롤러
+		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());	// 회원수정 컨트롤러
 		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl());		// 회원수정 정보확인 컨트롤러
 		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러

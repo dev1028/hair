@@ -424,7 +424,6 @@ public class MembersDAO {
 		return members; // 값을 리턴해줌
 	} // id찾기 끝
 
-	
 	// PW 찾기
 	public MembersVo findPw(MembersVo membersVo) {
 		MembersVo members = null;
@@ -451,5 +450,21 @@ public class MembersDAO {
 		}
 		return members; // 값을 리턴해줌
 	} // PW찾기 끝
+
+	
+	// 이메일로 인증받아서 pw 변경하기
+	public void updateForPw(MembersVo membersVo) {
+		String sql = "UPDATE MEMBERS SET MEM_PW = ? WHERE MEM_EMAIL = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			MembersVo vo = new MembersVo();
+			pstmt.setString(1, vo.getMem_pw());
+			pstmt.setString(2, vo.getMem_email());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
