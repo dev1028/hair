@@ -142,14 +142,17 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/tion/css/style.css" />
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
+
+
 	$(function() {
 
 		$("a").click(function() { // sBtn에 속해 있는  a 찾아 클릭 하면.
@@ -243,7 +246,6 @@
 		<decorator:body></decorator:body>
 
 	</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 //햄버거
 $(document).ready(function() {

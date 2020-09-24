@@ -8,10 +8,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 <!-- 추가한거 -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
+<!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+<!-- <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+
 
 <style>
 body {
@@ -105,14 +107,9 @@ form.example::after {
 </head>
 <body>
 	<div class="myForm">
-<<<<<<< HEAD
-		<form action="../members/hairshopSelect.do" method="post" style="margin:auto;max-width:300px">
-			<img id="project-icon" src="#" class="ui-state-default" alt="">
-=======
 		<form action="../members/membersMainResult.do" method="post" style="margin:auto;max-width:300px">
-			<img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">
+			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->
 			<!-- 여기서도 term을 보낸다. -->
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 			<input id="project" type="text" placeholder="Search.." name="term">
 			<button type="submit" name="detail"><i class="fa fa-search"></i></button>
 			<input type="hidden" id="project-id">
