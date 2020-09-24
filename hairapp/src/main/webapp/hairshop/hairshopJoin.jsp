@@ -40,6 +40,12 @@
 									placeholder="대표자명을 입력하세요." />
 							</div>
 							<div class="form-group">
+								<label for="hs_tel"><i
+									class="zmdi zmdi-account material-icons-name"></i></label> <input
+									type="text" name="hs_tel" id="hs_tel"
+									placeholder="전화번호를 입력하세요." />
+							</div>
+							<div class="form-group">
 								<label for="hs_email"><i class="zmdi zmdi-email"></i></label> <input
 									type="email" name="hs_email" id="hs_email"
 									placeholder="이메일을 입력하세요." />
@@ -58,12 +64,12 @@
                                 <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
                             </div> -->
 							
-							<div class="form-group form-button">
-								<input type="submit" name="signin" id="signin"
-									class="form-submit" value="회원가입" />
+							<div>
+								<button class="btn btn-primary">회원가입</button>
 							</div>
 						</form>
 					</div>
+					<br>
 					<div class="signup-image">
 						<figure>
 							<img src="../images/hairshop/signin-image.jpg"
