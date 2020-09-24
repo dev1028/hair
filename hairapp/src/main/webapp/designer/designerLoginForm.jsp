@@ -37,7 +37,6 @@ request.setCharacterEncoding("euc-kr");
 
 </head>
 <body>
-
 	<div id="wrap">
 		<form name="loginInfo" method="post" action="${pageContext.request.contextPath}/designer/designerLogin.do"
 			onsubmit="return checkValue()">

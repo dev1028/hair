@@ -14,6 +14,7 @@ import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
 import com.yedam.hairshop.admin.salesStatisticsCtrl;
+import com.yedam.hairshop.admin.salesStatisticsFCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
@@ -32,21 +33,19 @@ import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
-import com.yedam.hairshop.members.HairSelectCtrl;
-import com.yedam.hairshop.members.HairShopSelectCtrl;
-import com.yedam.hairshop.members.MembersJoinEmailCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
 import com.yedam.hairshop.members.HairShopReviewCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
+import com.yedam.hairshop.members.MembersJoinEmailCtrl;
 import com.yedam.hairshop.members.MembersJoinEndCtrl;
-import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -59,6 +58,7 @@ import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.PaymentMemberCtrl;
+import com.yedam.hairshop.members.SearchDetailCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
 /*
@@ -94,14 +94,15 @@ public class FrontController extends HttpServlet {
 		
 		
 		list.put("/members/payment.do", new PaymentCtrl());
-		list.put("/members/paymentMember.do", new PaymentMemberCtrl());	//회원결제
-		//
+		list.put("/members/paymentMember.do", new PaymentMemberCtrl());			//회원결제
 		
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
-		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
 		
+		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//북마크
+		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());			//자동완성 검색
+		list.put("/members/searchDetail.do", new SearchDetailCtrl());			//상세검색
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
@@ -132,7 +133,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminMain.do", new adminMainCtrl());
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());
-		
+		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		
 		
 		//승연

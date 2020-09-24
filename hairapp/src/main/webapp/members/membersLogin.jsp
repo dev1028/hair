@@ -39,8 +39,6 @@
 </script>
 </head>
 <body>
-	<%=request.getAttribute("errormsg")%>
-
 	<div id="wrap" style="float:right;">
 	
 	<form method="post" name="loginFrm" id="loginFrm"

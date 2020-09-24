@@ -27,17 +27,36 @@ public class MembersLoginSCtrl implements Controller {
 		// 3. 결과 저장
 		String page = ""; // 이동할 페이지 이름 변수 선언
 		if (resultVO == null) { // id가 없는 경우
-			request.setAttribute("errormsg", "해당 ID가 없습니다.");
-			page = "/members/membersLogin.jsp";
+			response.getWriter().append("<script>")
+								.append("alert('해당 ID가 패스워드가 맞지 않습니다');")
+								.append("</script>");
+			page = "/members/membersLogin.do";
+			System.out.println("아디없음:"+page);
 
 		} else {
-			if (membersVO.getMem_pw().equals(resultVO.getMem_pw())) { // memberVO에 있는 pw와 resultVO의 pw를 비교해서 같으면 로그인성공
+			// memberVO에 있는 pw와 resultVO의 pw를 비교해서 같으면 로그인성공 && 인증컬럼 0이어야지 로그인 성공
+			if (membersVO.getMem_pw().equals(resultVO.getMem_pw()) && resultVO.getMem_access_status().equals("0")) {
 				request.getSession().setAttribute("login", resultVO);
 				request.getSession().setAttribute("loginid", resultVO.getMem_email()); // 세션아이디
-				page = "/members/membersMain.jsp";
-			} else { // 패스워드 불일치
-				request.setAttribute("errormsg", "패스워드 불일치");
-				page = "/members/membersLogin.jsp";
+				page = "/members/membersMain.do";
+				System.out.println("로그인완:"+page);
+				
+				// 로그인 후 인증확인
+				
+				} else if (resultVO.getMem_access_status().equals("-1")) {
+					response.getWriter().append("<script>")
+										.append("alert('인증이 완료되지 않았습니다');")
+										.append("</script>");
+					page = "/members/membersLogin.do";
+					System.out.println("인증불:"+page);
+				//} 
+				
+			} else if (membersVO.getMem_pw() != resultVO.getMem_pw()) { // 패스워드 불일치
+				response.getWriter().append("<script>")
+									.append("alert('패스워드가 맞지 않습니다');")
+									.append("</script>");
+				page = "/members/membersLogin.do";
+				System.out.println("패스워드불:"+page);
 			}
 		}
 

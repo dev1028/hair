@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet"
+ <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
@@ -72,7 +72,7 @@
 				</div>
 			</nav>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-				<a class="navbar-brand" href="#">헤어살롱</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/hairshop/hairshopDesignerLogin.do">헤어살롱</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
 					aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -128,14 +128,14 @@
 		
 	</div>
 
-
+<!-- 
 	<script src="https://unpkg.com/@popperjs/core@2"></script>
 
-	<!-- Icons -->
+	Icons
 	<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 	<script>
 		feather.replace()
-	</script>
+	</script> -->
 
 </body>
 </html>
