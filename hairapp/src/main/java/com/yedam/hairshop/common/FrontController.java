@@ -31,21 +31,19 @@ import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
-import com.yedam.hairshop.members.HairSelectCtrl;
-import com.yedam.hairshop.members.HairShopSelectCtrl;
-import com.yedam.hairshop.members.MembersJoinEmailCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
 import com.yedam.hairshop.members.HairShopReviewCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
+import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
 import com.yedam.hairshop.members.MembersInfoViewCtrl;
 import com.yedam.hairshop.members.MembersJoinCtrl;
+import com.yedam.hairshop.members.MembersJoinEmailCtrl;
 import com.yedam.hairshop.members.MembersJoinEndCtrl;
-import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
 import com.yedam.hairshop.members.MembersJoinSCtrl;
 import com.yedam.hairshop.members.MembersLoginCtrl;
@@ -99,8 +97,10 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
-		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());				//실시간 검색
-		list.put("/members/searchDetail.do", new SearchDetailCtrl());
+		
+		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//북마크
+		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());			//자동완성 검색
+		list.put("/members/searchDetail.do", new SearchDetailCtrl());			//상세검색
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());

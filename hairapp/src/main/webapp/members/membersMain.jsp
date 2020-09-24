@@ -158,8 +158,8 @@ form.example::after {
 		    	</label>
     		</div>
 	    	
-		    <input id="timepicker_start"  type="text" name="timeStart">
-		    <input id="timepicker_end"  type="text" name="timeEnd">
+		    <input id="timepicker_start"  type="text" name="hs_starttime">
+		    <input id="timepicker_end"  type="text" name="hs_endtime">
 	    	
     	
 			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->

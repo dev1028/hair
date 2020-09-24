@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.SearchVo;
-
+ 
 public class SearchDAO {
 	// 전역변수
 	Connection conn;

@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class SearchDetailVo {
-	String timeStart;
-	String timeEnd;
+	String hs_starttime;
+	String hs_endtime;
 	
 	String value;
 	String label;
