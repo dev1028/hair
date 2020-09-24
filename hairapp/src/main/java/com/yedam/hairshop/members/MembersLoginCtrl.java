@@ -13,16 +13,16 @@ import com.yedam.hairshop.model.MembersVo;
 public class MembersLoginCtrl implements Controller {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("멤버로그인");
+		//System.out.println("멤버로그인");
 		
 		// 파라미터 VO에 담기
-		MembersVo membersVO = new MembersVo();
-		membersVO.setMem_email(request.getParameter("loginid"));		// 파라미터는 name값 넘기는거
-		membersVO.setMem_pw(request.getParameter("loginpw"));
+		//MembersVo membersVO = new MembersVo();
+		//membersVO.setMem_email(request.getParameter("loginid"));		// 파라미터는 name값 넘기는거
+		//membersVO.setMem_pw(request.getParameter("loginpw"));
 
 		// 2. 서비스 처리(DB)
-		MembersVo resultVO = MembersDAO.getInstance().loginSelectOne(membersVO); // memberVO 집어넣고 결과를 MemberVO로 받기
-		request.getSession().setAttribute("login", resultVO);
+		//MembersVo resultVO = MembersDAO.getInstance().loginSelectOne(membersVO); // memberVO 집어넣고 결과를 MemberVO로 받기
+		//request.getSession().setAttribute("login", resultVO);
 //		request.getSession().setAttribute("loginid", resultVO.getMem_email()); // 세션아이디
 //		request.getSession().setAttribute("loginpw", resultVO.getMem_pw());
 		

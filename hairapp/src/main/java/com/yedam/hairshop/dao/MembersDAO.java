@@ -57,6 +57,8 @@ public class MembersDAO {
 				members.setMem_city_latitude_longitude(rs.getString(14));
 				members.setMem_hair_length(rs.getString(15));
 				members.setMem_hair_status(rs.getString(16));
+				members.setMem_zip(rs.getString(17));
+				members.setMem_access_status(rs.getString(18));
 			} else {
 				System.out.println("no data");
 			}
@@ -99,6 +101,8 @@ public class MembersDAO {
 				members.setMem_city_latitude_longitude(rs.getString(14));
 				members.setMem_hair_length(rs.getString(15));
 				members.setMem_hair_status(rs.getString(16));
+				members.setMem_zip(rs.getString(17));
+				members.setMem_access_status(rs.getString(18));
 			} else {
 				System.out.println("no data");
 			}
@@ -142,6 +146,7 @@ public class MembersDAO {
 				members.setMem_hair_length(rs.getString(15));
 				members.setMem_hair_status(rs.getString(16));
 				members.setMem_zip(rs.getString(17));
+				members.setMem_access_status(rs.getString(18));
 			} else {
 				System.out.println("no data");
 			}
@@ -182,6 +187,8 @@ public class MembersDAO {
 				members.setMem_city_latitude_longitude(rs.getString(14));
 				members.setMem_hair_length(rs.getString(15));
 				members.setMem_hair_status(rs.getString(16));
+				members.setMem_zip(rs.getString(17));
+				members.setMem_access_status(rs.getString(18));
 				list.add(members); // resultVo를 list에 담음
 			}
 		} catch (Exception e) {
@@ -244,7 +251,7 @@ public class MembersDAO {
 
 	// membersJoinInsert
 	public MembersVo membersJoin(MembersVo membersVo) {
-		int r = 0;
+		int r = 1;
 		try {
 			// 1. DB 연결
 			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
@@ -253,7 +260,7 @@ public class MembersDAO {
 			String sql = "insert into members(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_PHONE, MEM_BIRTH,"
 					+ " MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,"
 					+ " MEM_HAIR_STATUS, MEM_ACCESS_STATUS) "
-					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,0)";
+					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,-1)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setString(1, membersVo.getMem_email());
@@ -285,7 +292,7 @@ public class MembersDAO {
 		return membersVo;
 	}
 
-	// 이메일 할라고 만듬 membersJoinEmail
+	// 이메일 할라고 만듬 membersJoinEmail(회원가입할때 이 DAO로 사용)
 	public int membersJoinEmail(MembersVo membersVo) {
 		int r = 1;
 		try {
