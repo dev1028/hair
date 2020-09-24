@@ -73,8 +73,9 @@
 </head>
 <body>
 	<h2 class="heading">매출결산</h2>
-	<form>
-		<!--  General -->
+	<form method="POST"
+		action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do">
+		<!--  search -->
 		<div class="form-group">
 
 			<div class="control">
@@ -93,25 +94,53 @@
 			</div>
 
 			<div class="control">
-				<label for="name">직원선택 </label> 
-				<select>
-				<option>전체직원</option>
-				<option>kim</option>
+				<label for="name">직원선택 </label> <select>
+					<option>전체직원</option>
+					<option>kim</option>
 				</select>
 				<div class="controls"></div>
 			</div>
 
-
-		</div>
-
-		<!--  Details -->
-		<div class="form-group">
-			<h2 class="heading">지출합계</h2>
-
 			<button type="submit" value="Submit" class="col-1-4">Submit</button>
 		</div>
-		</div>
-		<!-- /.form-group -->
 	</form>
+	<!--  result -->
+	<!-- 매출 -->
+	<div class="form-group">
+		<h2 class="heading">지출합계</h2>
+		<table id="income" border = "1">
+
+			<tr>
+				<th>구분</th>
+				<th>현금</th>
+				<th>카드</th>
+				<th>카카오</th>
+				<th>계좌</th>
+				<th>기타</th>
+				<th>총합</th>
+			</tr>
+			
+			
+
+				<tr>
+				<th>시술매출</th>
+					<td>${vo.cash }</td>
+
+					<td>${vo.card }</td>
+					<td>${vo.kakao }</td>
+					<td>${vo.account }</td>
+					<td>${vo.etc }</td>
+					<td>${vo.sum }</td>
+				</tr>
+		
+		</table>
+
+	</div>
+
+
+
+
+
+
 </body>
 </html>

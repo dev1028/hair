@@ -14,6 +14,7 @@ import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
 import com.yedam.hairshop.admin.salesStatisticsCtrl;
+import com.yedam.hairshop.admin.salesStatisticsFCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
@@ -131,7 +132,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminMain.do", new adminMainCtrl());
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());
-		
+		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		
 		
 		//승연
