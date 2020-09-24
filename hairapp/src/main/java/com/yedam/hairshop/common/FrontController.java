@@ -58,6 +58,7 @@ import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.PaymentMemberCtrl;
+import com.yedam.hairshop.members.SearchDetailCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
 /*
@@ -93,14 +94,13 @@ public class FrontController extends HttpServlet {
 		
 		
 		list.put("/members/payment.do", new PaymentCtrl());
-		list.put("/members/paymentMember.do", new PaymentMemberCtrl());	//회원결제
-		//
+		list.put("/members/paymentMember.do", new PaymentMemberCtrl());			//회원결제
 		
 		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
-		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());
-		
+		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());				//실시간 검색
+		list.put("/members/searchDetail.do", new SearchDetailCtrl());
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());

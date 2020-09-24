@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,13 @@
 </script>
 </head>
 <body>
+	<c:if test="${empty login }">
+		<script>
+			alert("로그인을 해주세요")
+			location.href="membersLogin.do"
+		</script>
+	</c:if>
+	
 	<div id="map" style="width: 1000px; height: 500px;">
 	</div>
 	

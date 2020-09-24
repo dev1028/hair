@@ -35,7 +35,7 @@ public class SearchDAO {
 						" WHERE hs_name LIKE '%'|| ? || '%' OR " + 
 						"      hs_profile LIKE '%' || ? || '%' OR " + 
 						"      hs_fulladdr LIKE '%' || ? || '%' ";
-			System.out.println(sql);
+//			System.out.println(sql);
 			
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
