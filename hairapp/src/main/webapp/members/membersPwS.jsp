@@ -14,11 +14,11 @@
 }
 
 #wrap{
-	top:120px;
-	right:500px;
+	top:80px;
+	left:700px;
     position:absolute;
     margin:0 auto;
-} 
+}  
 </style>
 <script>
 	function goLogin() {
@@ -27,7 +27,7 @@
 </script>
 </head>
 <body>
-<div id="wrap" style="float:right;">
+<div id="wrap">
 	<form method="POST" name="searchFrm" action="">
 	<h3>비밀번호 찾기</h3><br>
 		<div class="row1">

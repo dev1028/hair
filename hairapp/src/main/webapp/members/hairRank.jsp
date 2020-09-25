@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>디자이너 소개</title>
+<title>헤어 순위</title>
 </head>
 <body>
-
+	헤어 순위
 </body>
 </html>

@@ -49,6 +49,10 @@
 </style>
 </head>
 <body>
+	<div>
+		<%@include file="/decorator/membersLeftMenu.jsp" %>
+	</div>
+
 	<c:forEach items="${list}" var="designerInfo" >
 		<form action="../members/designerSelectResult.do" method="post">
 			<div class="horizontal-card">

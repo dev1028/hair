@@ -14,8 +14,11 @@ public class MembersPwEmailCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("MembersPwEmailCtrl");
 		String mem_email = request.getParameter("mem_email");
 		String mem_pw = request.getParameter("mem_pw");
+		request.getSession().setAttribute("mem_email", mem_email);
+		
 		
 		MembersVo membersVo = new MembersVo();
 		membersVo.setMem_email(mem_email);

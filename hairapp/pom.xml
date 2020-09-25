@@ -83,6 +83,12 @@
 			<version>19.3.0.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+		<!-- https://mvnrepository.com/artifact/org.locationtech.geotrellis/geotrellis-proj4 -->
+		<dependency>
+			<groupId>org.locationtech.geotrellis</groupId>
+			<artifactId>geotrellis-proj4_2.12</artifactId>
+			<version>3.5.0</version>
+		</dependency>
 
 	</dependencies>
 	<build>
