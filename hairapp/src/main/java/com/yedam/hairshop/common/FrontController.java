@@ -43,6 +43,7 @@ import com.yedam.hairshop.members.HairShopReviewCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
+import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersIdSearchCtrl;
 import com.yedam.hairshop.members.MembersIdSearchSCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
@@ -151,6 +152,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
+		
+		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl());	// 헤어샵소개로 이동하는 컨트롤러
 		
 		
 		//강산
