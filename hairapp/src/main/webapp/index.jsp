@@ -8,8 +8,5 @@
 <a href="${pageContext.request.contextPath}/hairshop/hairshopReturnToLogin.do">헤어샵로그인</a>
 <a href="${pageContext.request.contextPath}/admin/adminReturnToLogin.do">admin로그인</a>
 
-<div>
-	<%@include file="/decorator/membersLoginSIgn.jsp" %>
-</div>
 </body>
 </html>

@@ -36,6 +36,7 @@ import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
+import com.yedam.hairshop.members.HairRankCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
 import com.yedam.hairshop.members.HairShopReviewCtrl;
@@ -67,6 +68,8 @@ import com.yedam.hairshop.members.MembersSearchCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.PaymentMemberCtrl;
+import com.yedam.hairshop.members.RegionDesignerRankCtrl;
+import com.yedam.hairshop.members.RegionHairshopRankCtrl;
 import com.yedam.hairshop.members.SearchDetailCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
 
@@ -101,6 +104,9 @@ public class FrontController extends HttpServlet {
 		list.put("/members/designerSelect.do", new DesignerSelectCtrl());
 		list.put("/members/designerSelectResult.do", new DesignerSelectResultCtrl());
 		
+		list.put("/members/regionHairshopRank.do", new RegionHairshopRankCtrl()); //우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", new RegionDesignerRankCtrl()); //우리동네 디자이너 순위
+		list.put("/members/hairRank.do", new HairRankCtrl()); 					  //헤어 순위
 		
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/paymentMember.do", new PaymentMemberCtrl());			//회원결제
