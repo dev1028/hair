@@ -15,7 +15,10 @@ public class salesStatisticsFCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<SalesVo> list = SalesDAO.getInstance().period(null);
+		String startDate = request.getParameter("start");
+		String endDate = request.getParameter("end");
+		String ds = request.getParameter("ds");
+		ArrayList<SalesVo> list = SalesDAO.getInstance().period(startDate, endDate);
 		SalesVo resultVo = new SalesVo();
 		System.out.println("fctl");
 		int sum = 0;

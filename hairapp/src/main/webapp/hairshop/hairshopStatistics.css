@@ -4,6 +4,7 @@ body {
 	/* text-align: center; */
 	font-family: 'Lato', 'sans-serif';
 	font-weight: 400;
+	box-sizing: content-box;
 }
 
 .form-group {

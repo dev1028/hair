@@ -94,9 +94,11 @@
 			</div>
 
 			<div class="control">
-				<label for="name">직원선택 </label> <select>
+				<label for="name">직원선택 </label> <select id = "ds">
 					<option>전체직원</option>
-					<option>kim</option>
+					<c:forEach items="${list }" var ="i">
+						<option value="${i.designer_no}">${i.designer_name }</option>
+					</c:forEach>
 				</select>
 				<div class="controls"></div>
 			</div>
