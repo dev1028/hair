@@ -36,6 +36,7 @@ import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
+import com.yedam.hairshop.members.GpsHairshopSearchCtrl;
 import com.yedam.hairshop.members.HairRankCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
@@ -94,7 +95,6 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersMain.do", new MembersMainCtrl());
 		list.put("/members/membersMainResult.do", new MembersMainResultCtrl());
 		
-		
 		list.put("/members/hairshopSelect.do", new HairShopSelectCtrl());
 		list.put("/members/hairshopSelectResult.do", new HairshopSelectResultCtrl());
 		
@@ -118,6 +118,10 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//북마크
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());			//자동완성 검색
 		list.put("/members/searchDetail.do", new SearchDetailCtrl());			//상세검색
+		
+		list.put("/members/gpsHairshopSearch.do", new GpsHairshopSearchCtrl());
+		
+		
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());

@@ -350,6 +350,23 @@ public class MembersDAO {
 		}
 		return r;
 	}
+	
+	public int updateLatlng(MembersVo vo) {
+		int r = 0;
+		// 회원가입 인증 완료 0, 회원가입 인증 중 -1,
+		String sql = "UPDATE MEMBERS SET MEM_LATITUDE_LONGITUDE = ?, MEM_ADDR = ? WHERE MEM_EMAIL = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMem_latitude_longitude());
+			pstmt.setString(2, vo.getMem_addr());
+			pstmt.setString(3, vo.getMem_email());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r; 
+	}
 
 	/**
 	 * 아이디 중복체크를 한다.

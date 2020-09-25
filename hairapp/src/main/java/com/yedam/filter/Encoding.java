@@ -25,7 +25,7 @@ public class Encoding implements Filter {
 		if (request.getCharacterEncoding() == null) {
 			if (encoding != null) {
 				request.setCharacterEncoding(encoding);
-				System.out.println("encoding: " + encoding);
+//				System.out.println("encoding: " + encoding);
 			}
 		}
 		chain.doFilter(request, response);

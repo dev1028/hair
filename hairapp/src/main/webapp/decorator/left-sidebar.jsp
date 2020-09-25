@@ -228,7 +228,7 @@
 						href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네설정</a>
 					</li>
 					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
+						href="${pageContext.request.contextPath}/members/gpsHairshopSearch.do">우리동네
 							미용실 모아보기</a></li>
 					<li class="navi"><a
 						href="${pageContext.request.contextPath}/members/regionHairshopRank.do">우리동네
