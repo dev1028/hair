@@ -34,7 +34,7 @@ public class DesignerLoginCtrl implements Controller {
 
 				// 로그인 후 인증확인
 				if (resultVo.getDesigner_access_status().equals("1")) {
-					page = "/designer/designerLoginOutput.jsp";
+					page = "/designer/designerUpdate.jsp";
 				}else if (resultVo.getDesigner_access_status().equals("0")) {
 					page = "/designer/designerLoginStatus.jsp";
 				} else {
