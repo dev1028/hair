@@ -146,7 +146,7 @@ form.example::after {
 	<div class="myForm">
 		<form action="../members/searchDetail.do" method="post" style="margin:auto;max-width:300px">
 			<div>
-				<input type="text" name="date" id="date" size="12" />
+				<input autocomplete="off" type="text" name="date" id="date" size="12" />
 				<label class="radio-inline">
 		     		<input type="radio" name="radioDate" value="day0">오늘
 		    	</label>
@@ -158,13 +158,13 @@ form.example::after {
 		    	</label>
     		</div>
 	    	
-		    <input id="timepicker_start"  type="text" name="hs_starttime">
-		    <input id="timepicker_end"  type="text" name="hs_endtime">
+		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime">
+		    <input autocomplete="off" id="timepicker_end"  type="text" name="hs_endtime">
 	    	
     	
 			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->
 			<!-- 여기서도 term을 보낸다. -->
-			<input id="project" type="text" name="term">
+			<input autocomplete="off" id="project" type="text" name="term">
 			<button type="submit" name="detail"><i class="fa fa-search"></i></button>
 			<input type="hidden" id="project-id">
 			<p id="project-description"></p>
