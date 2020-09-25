@@ -189,3 +189,71 @@ insert into mem_designer_rsv_info (mdri_detail_info, mdr_no, hhi_no)values(i,i+1
 	END LOOP;
 
 END;
+
+
+
+
+------------------------------------------
+SELECT *
+FROM members_designer_rsv 
+order by 1;
+select * from mem_designer_rsv_info;
+SELECT *
+FROM members_detail_paylist;
+select * from hairshop_hair_info;
+SELECT * FROM members;
+
+SELECT mdp_code,  sum(mdp_price) 
+FROM members_detail_paylist JOIN members_designer_rsv r USING(mdr_no) 
+WHERE r.mdr_date BETWEEN'20-01-01' AND '20-11-01' 
+AND r.mdr_status  = 'i3' GROUP BY mdp_code ORDER BY 1 ;
+
+
+
+
+
+SELECT r.mdr_no,  r.mdr_date,d.designer_name,m.mem_name, h.HHI_NAME,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d1' AND mdr_no=r.mdr_no),0) AS card,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d2' AND mdr_no=r.mdr_no),0) AS cash,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d3' AND mdr_no=r.mdr_no),0) AS kakao,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d6' AND mdr_no=r.mdr_no),0) AS ACCOUNT
+,(
+SELECT  sum(mdp_price) 
+FROM members_detail_paylist
+where mdr_no=r.mdr_no) as ammount
+
+FROM 
+members_designer_rsv r 
+JOIN mem_designer_rsv_info i
+ON(r.mdr_no = i.mdr_no)
+JOIN hairshop_hair_info h
+ON(i.hhi_no=h.hhi_no)
+JOIN designer  d 
+ON (r.designer_no=d.designer_no)  
+JOIN MEMBERs m
+ON(m.mem_no = r.mem_no)
+WHERE r.mdr_date BETWEEN '20-09-01'
+AND  '20-10-10'
+and r.mdr_status  = 'i3' ;
+
+
+commit;
+
+SELECT designer_no, designer_name
+from DESIGNER;

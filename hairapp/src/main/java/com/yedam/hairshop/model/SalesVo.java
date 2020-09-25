@@ -10,15 +10,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SalesVo {
-	int mdrNo;
+	String mdrNo;
+	String mdrDate;
 	String dsName;
 	String memName;
 	String hName;
-	int totalAmountRsv;
-	int totalAmountDay;
-	int cash;
-	int kakao;
-	int account;
-	int card;
-	int etc;
+	String totalAmountRsv;
+	String totalAmountDay;
+	String cash;
+	String kakao;
+	String account;
+	String card;
+	String etc;
 }
