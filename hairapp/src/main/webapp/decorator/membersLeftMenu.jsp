@@ -14,6 +14,7 @@
 
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -195,10 +196,15 @@ a.article:hover {
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>우리동네 미용실</h3>
+            </div>
+
             <ul class="list-unstyled components">
+                <li class="active">
                 <li>
                     <a href="${pageContext.request.contextPath}/members/membersLogin.do">헤어 예약</a>
-                <li>
+                </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">헤어샵 소개와 위치</a>
                 </li>

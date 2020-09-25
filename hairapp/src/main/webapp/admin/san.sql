@@ -29,6 +29,26 @@ INTO members_designer_rsv(
 		&designer_no,
 		'i3'
 	);
+	
+	--------------
+	SELECT * FROM members;
+BEGIN
+    FOR I IN 16..23
+    LOOP
+update members_designer_rsv set mem_no=i-6 where mdr_no=i;
+	END LOOP;
+
+END;
+	------------------
+UPDATE members_designer_rsv SET designer_no = 115 WHERE designer_no = 1;
+UPDATE members_designer_rsv SET mdr_status = 'i3' WHERE mdr_status = '1';
+
+alter table members_designer_rsv drop column mdr_category_code;
+alter table members_designer_rsv drop column mdr_online_price;
+	SELECT *
+FROM members_designer_rsv;
+DESC members_designer_rsv;
+	---------------------헤어살롱직원
 insert into employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, emp_department, emp_phone, emp_position, emp_alias) values (1, 'Giraux', 'rgiraux0@nydailynews.com', 1, '2019/11/18', 'Training', '212-970-8939', 'Associate Professor', 'tgiraux0');
 insert into employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, emp_department, emp_phone, emp_position, emp_alias) values (2, 'McElory', 'lmcelory1@blogs.com', 2, '2020/05/15', 'Support', '494-824-9822', 'Senior Developer', 'emcelory1');
 insert into employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, emp_department, emp_phone, emp_position, emp_alias) values (3, 'Comerford', 'dcomerford2@tumblr.com', 3, '2020/01/12', 'Accounting', '360-729-7591', 'Senior Quality Engineer', 'jcomerford2');
@@ -78,20 +98,13 @@ insert into employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, 
 INSERT INTO employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, emp_department, emp_phone, emp_position, emp_alias) VALUES (47, 'Tapping', 'ltapping1a@zdnet.com', 47, '2019/10/08', 'Services', '889-585-6038', 'Quality Control Specialist', 'ltapping1a');
 INSERT INTO employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, emp_department, emp_phone, emp_position, emp_alias) VALUES (48, 'Boman', 'bboman1b@tripadvisor.com', 48, '2020/02/17', 'Human Resources', '929-931-4970', 'Environmental Tech', 'cboman1b');
 INSERT INTO employees (emp_no, emp_name, emp_email, emp_password, emp_hiredate, emp_department, emp_phone, emp_position, emp_alias) VALUES (0, '김강산', '2@2', 2, '1997/02/17', '', '929-931-4970', 'CEO', '사나');
-
-
-UPDATE members_designer_rsv SET designer_no = 115 WHERE designer_no = 1;
-UPDATE members_designer_rsv SET mdr_status = 'i3' WHERE mdr_status = '1';
-
-	SELECT *
-FROM members_designer_rsv;
-DESC members_designer_rsv;
-SELECT *
-FROM DESIGNER;
 SELECT *
 FROM employees;
-alter table members_designer_rsv drop column mdr_category_code;
-alter table members_designer_rsv drop column mdr_online_price;
+
+
+
+SELECT *
+FROM DESIGNER;
 -----------------members_detail_paylist
 MDP_NO       NOT NULL NUMBER(20)   
 MDR_NO       NOT NULL NUMBER(10)   
@@ -104,7 +117,7 @@ MDR_NO
 MDP_PRICE    
 MDP_RV_SCENE 
 MDP_CODE     
-
+--------------mdp 입력
 INSERT
 INTO members_detail_paylist
 	VALUES
@@ -135,3 +148,112 @@ I,
 	END LOOP;
 
 END;
+------------------hhi 
+INSERT INTO hairshop_hair_info
+(hhi_no, hhi_name, hhi_price,hs_no, tmic_no)
+VALUES(
+1, '커트',12000,10,10);
+
+------------hhi procedure
+BEGIN
+    FOR I IN 10..20
+    LOOP
+INSERT
+INTO hairshop_hair_info(
+hhi_no, hhi_name, hhi_price,hs_no, tmic_no
+)
+	VALUES
+	(
+i, '커트'+i,12000,10,1
+	);
+	END LOOP;
+
+END;
+
+
+--------------mem procedure
+SELECT * FROM members;
+BEGIN
+    FOR I IN 10..20
+    LOOP
+insert into members (mem_no, mem_name)values(i,'김강산'||i);
+	END LOOP;
+
+END;
+-----------mdri procedure
+
+BEGIN
+    FOR I IN 1..10
+    LOOP
+insert into mem_designer_rsv_info (mdri_detail_info, mdr_no, hhi_no)values(i,i+10,i+10);
+	END LOOP;
+
+END;
+
+
+
+
+------------------------------------------
+SELECT *
+FROM members_designer_rsv 
+order by 1;
+select * from mem_designer_rsv_info;
+SELECT *
+FROM members_detail_paylist;
+select * from hairshop_hair_info;
+SELECT * FROM members;
+
+SELECT mdp_code,  sum(mdp_price) 
+FROM members_detail_paylist JOIN members_designer_rsv r USING(mdr_no) 
+WHERE r.mdr_date BETWEEN'20-01-01' AND '20-11-01' 
+AND r.mdr_status  = 'i3' GROUP BY mdp_code ORDER BY 1 ;
+
+
+
+
+
+SELECT r.mdr_no,  r.mdr_date,d.designer_name,m.mem_name, h.HHI_NAME,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d1' AND mdr_no=r.mdr_no),0) AS card,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d2' AND mdr_no=r.mdr_no),0) AS cash,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d3' AND mdr_no=r.mdr_no),0) AS kakao,
+nvl
+((
+SELECT  mdp_price
+FROM members_detail_paylist
+WHERE mdp_code='d6' AND mdr_no=r.mdr_no),0) AS ACCOUNT
+,(
+SELECT  sum(mdp_price) 
+FROM members_detail_paylist
+where mdr_no=r.mdr_no) as ammount
+
+FROM 
+members_designer_rsv r 
+JOIN mem_designer_rsv_info i
+ON(r.mdr_no = i.mdr_no)
+JOIN hairshop_hair_info h
+ON(i.hhi_no=h.hhi_no)
+JOIN designer  d 
+ON (r.designer_no=d.designer_no)  
+JOIN MEMBERs m
+ON(m.mem_no = r.mem_no)
+WHERE r.mdr_date BETWEEN '20-09-01'
+AND  '20-10-10'
+and r.mdr_status  = 'i3' ;
+
+
+commit;
+
+SELECT designer_no, designer_name
+from DESIGNER;
