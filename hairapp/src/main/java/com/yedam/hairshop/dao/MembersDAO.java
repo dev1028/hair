@@ -396,4 +396,74 @@ public class MembersDAO {
 		}
 	} // end duplicateIdCheck()
 
+	// ID 찾기
+	public MembersVo findId(MembersVo membersVo) {
+		MembersVo members = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT MEM_EMAIL FROM MEMBERS WHERE MEM_NAME = ? AND MEM_PHONE = ? AND MEM_BIRTH = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersVo.getMem_name());
+			pstmt.setString(2, membersVo.getMem_phone());
+			pstmt.setString(3, membersVo.getMem_birth());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				members = new MembersVo();
+				members.setMem_email(rs.getString(1));
+
+			} else {
+				System.out.println("no data");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		System.out.println("members는 뭐불로오노:" + members.getMem_email());
+		return members; // 값을 리턴해줌
+	} // id찾기 끝
+
+	// PW 찾기
+	public MembersVo findPw(MembersVo membersVo) {
+		MembersVo members = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT MEM_EMAIL FROM MEMBERS WHERE MEM_EMAIL = ? AND MEM_NAME = ? AND MEM_PHONE = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersVo.getMem_email());
+			pstmt.setString(2, membersVo.getMem_name());
+			pstmt.setString(3, membersVo.getMem_phone());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				members = new MembersVo();
+				members.setMem_email(rs.getString(1));
+
+			} else {
+				System.out.println("no data");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return members; // 값을 리턴해줌
+	} // PW찾기 끝
+
+	
+	// 이메일로 인증받아서 pw 변경하기
+	public void updateForPw(MembersVo membersVo) {
+		String sql = "UPDATE MEMBERS SET MEM_PW = ? WHERE MEM_EMAIL = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersVo.getMem_pw());
+			pstmt.setString(2, membersVo.getMem_email());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

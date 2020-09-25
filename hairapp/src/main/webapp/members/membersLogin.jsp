@@ -14,8 +14,8 @@
 }
 
 #wrap{
-	top:120px;
-	right:500px;
+	top:150px;
+	left:700px;
     position:absolute;
     margin:0 auto;
 } 
@@ -36,10 +36,15 @@
 	function membersJoin() {
 		location.href = "membersJoin.do";
 	}
+	
+	function membersSearch() {
+		location.href = "membersSearch.do";
+	}
+	
 </script>
 </head>
 <body>
-	<div id="wrap" style="float:right;">
+	<div id="wrap">
 	
 	<form method="post" name="loginFrm" id="loginFrm"
 		action="${pageContext.request.contextPath}/members/membersLoginS.do"
@@ -55,7 +60,8 @@
 		</div>
 		<button>로그인</button>
 	</form>
-		<button>ID/password 찾기</button><br><br><br><br><br>
+		<input type="button" value="ID/PW찾기" onclick="membersSearch()" />
+		<br><br><br><br><br>
 	
 	아직도 회원이 아니신가요?<br>
 	<input type="button" value="회원가입" onclick="membersJoin()" />

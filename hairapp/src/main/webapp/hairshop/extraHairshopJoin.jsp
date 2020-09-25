@@ -800,13 +800,13 @@ label.valid:after {
 							</div>
 							<hr>
 							<div  class="form-group" id="hs_dayoffgroup">
-								<span>휴무일이 있으면 알려주세요!</span><br>&nbsp;&nbsp;&nbsp;&nbsp;
-								<input class="form-check-input" type="checkbox" id="hs_dayoff2" value="2">&nbsp;월<br>&nbsp;&nbsp;&nbsp;&nbsp;
-								<input class="form-check-input" type="checkbox" id="hs_dayoff3" value="3">&nbsp;화<br>&nbsp;&nbsp;&nbsp;&nbsp;
-								<input class="form-check-input" type="checkbox" id="hs_dayoff4" value="4">&nbsp;수<br>&nbsp;&nbsp;&nbsp;&nbsp;
-								<input class="form-check-input" type="checkbox" id="hs_dayoff5" value="5">&nbsp;목<br>&nbsp;&nbsp;&nbsp;&nbsp;
-								<input class="form-check-input" type="checkbox" id="hs_dayoff6" value="6">&nbsp;금<br>&nbsp;&nbsp;&nbsp;&nbsp;
-								<input class="form-check-input" type="checkbox" id="hs_dayoff7" value="7">&nbsp;토<br>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span>휴무일이 있으면 알려주세요!</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="form-check-input" type="checkbox" id="hs_dayoff2" value="2">&nbsp;월<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="form-check-input" type="checkbox" id="hs_dayoff3" value="3">&nbsp;화<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="form-check-input" type="checkbox" id="hs_dayoff4" value="4">&nbsp;수<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="form-check-input" type="checkbox" id="hs_dayoff5" value="5">&nbsp;목<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="form-check-input" type="checkbox" id="hs_dayoff6" value="6">&nbsp;금<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input class="form-check-input" type="checkbox" id="hs_dayoff7" value="7">&nbsp;토<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input class="form-check-input" type="checkbox" id="hs_dayoff1" value="1">&nbsp;일
 								<input type="hidden" name="hs_dayoff" id="hs_dayoff" value="">
 							</div>
