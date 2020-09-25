@@ -458,9 +458,8 @@ public class MembersDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
-			MembersVo vo = new MembersVo();
-			pstmt.setString(1, vo.getMem_pw());
-			pstmt.setString(2, vo.getMem_email());
+			pstmt.setString(1, membersVo.getMem_pw());
+			pstmt.setString(2, membersVo.getMem_email());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

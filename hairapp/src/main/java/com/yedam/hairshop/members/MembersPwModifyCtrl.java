@@ -14,8 +14,11 @@ public class MembersPwModifyCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String mem_email = request.getParameter("mem_email");
+		System.out.println("MembersPwModifyCtrl");
+		//String mem_email = request.getParameter("mem_email");
+		String mem_email = (String)request.getSession().getAttribute("mem_email");
 		String mem_pw = request.getParameter("mem_pw");
+		
 		
 		MembersVo membersVo = new MembersVo();
 		membersVo.setMem_email(mem_email);

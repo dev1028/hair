@@ -19,12 +19,12 @@
 	left:0px;
 }
 	
-#wrap {
-	top:50px;
-	right:500px;
+#wrap{
+	top:80px;
+	left:700px;
     position:absolute;
     margin:0 auto;
-}
+} 
 
 </style>
 <script>
@@ -115,7 +115,7 @@
 </head>
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
-	<div id="wrap" style="float:right;">
+	<div id="wrap">
 		<br> <br> <b><font size="6" color="gray">회원가입</font></b> <br>
 		<br> <br>
 
