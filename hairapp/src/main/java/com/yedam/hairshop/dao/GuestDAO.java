@@ -78,5 +78,32 @@ public class GuestDAO {
 		}
 		return resultVO;
 	}
-	
+
+	// 비회원 등록
+	public int insert(HsGusetVo gusetVo) {
+		try {
+			// 1.DB연결
+			conn = ConnectionManager.getConnnect();
+			// 2.SQL 구문 실행
+			String sql = "INSERT INTO HS_GUEST(hg_no , hg_name, hg_phone, hg_sex, hg_birth"
+					+ "VALUES (guest_seq.nextval, ?, ?, ?, ? )";
+			pstmt = conn.prepareStatement(sql); // 예외처리
+			pstmt.setString(1, gusetVo.getHg_no());
+			pstmt.setString(2, gusetVo.getHg_name());
+			pstmt.setString(3, gusetVo.getHg_phone());
+			pstmt.setString(4, gusetVo.getHg_sex());
+			pstmt.setString(5, gusetVo.getHg_birth());
+			int r = pstmt.executeUpdate();
+			// 3.결과 처리
+			System.out.println(r + " 건이 처리됨");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 4. 연결해제(DB에 접속 session수는 제한적 그래서 해제해야됨)
+			ConnectionManager.close(conn);
+		}
+		return 0;
+	}
+
 }
