@@ -31,6 +31,7 @@
 	display: flex;
 	flex-direction: column;
 	margin-left: 1rem;
+	cursor: pointer;
 }
 
 .horizontal-card .horizontal-card-footer {
@@ -86,6 +87,11 @@
 			}
 		});
 	}
+	
+	//린아
+	function hairshopInfo() {
+		location.href = "hairshopInfo.do";
+	}
 
 </script>
 </head>
@@ -99,7 +105,7 @@
 				<div class="horizontal-card">
 					<img src="../images/hairshop/signin-image.jpg" width="200"
 						height="100">
-					<div class="horizontal-card-body">
+					<div class="horizontal-card-body"  onclick="hairshopInfo()">
 						<h4 class="card-title">공지: ${item.hs_notice}</h4>
 						<span class="card-text"> 프로필: ${item.hs_profile } </span> <span
 							class="card-text"> 별점: 미구현 </span>

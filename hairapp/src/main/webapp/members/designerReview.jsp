@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>디자이너 리뷰</title>
 </head>
 <body>
 	<form>

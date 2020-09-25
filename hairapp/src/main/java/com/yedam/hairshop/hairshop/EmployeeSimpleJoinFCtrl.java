@@ -37,20 +37,28 @@ public class EmployeeSimpleJoinFCtrl implements Controller {
 								.append("location.href='employeeList.do';")
 								.append("</script>");
 		} else {
+			Runnable task = new Runnable() {
+				public void run() {
+					SandEmail se = new SandEmail();
+					EmailVo em = new EmailVo();
+					em.setReceiverMail(dVo.getDesigner_email());
+					em.setReceiverName(dVo.getDesigner_name());
+					em.setTitle("우동디자이너 인증요청");
+					em.setContentType("text/html; charset=UTF-8");
+					String contents = "<h3>디자이너 인증요청</h3>"
+							+ "<a href='http://192.168.0.104/hairapp/hairshop/employeeAuth.do?designer_email="+dVo.getDesigner_email()+"'>인증완료</a>";
+						
+					em.setContents(contents);
+					se.sand(em);
+				}
+			};
 			
-			SandEmail se = new SandEmail();
-			EmailVo em = new EmailVo();
-			em.setReceiverMail(dVo.getDesigner_email());
-			em.setReceiverName(dVo.getDesigner_name());
-			em.setTitle("우동디자이너 인증요청");
-			em.setContentType("text/html; charset=UTF-8");
-			String contents = "<h3>디자이너 인증요청</h3>"
-					+ "<a href='http://192.168.0.104/hairapp/hairshop/employeeAuth.do?designer_email="+dVo.getDesigner_email()+"'>인증완료</a>";
-				
-			em.setContents(contents);
-			se.sand(em);
+			task.run();
 			response.sendRedirect("employeeList.do");
 		}
 	}
+	
+	
+	
 
 }

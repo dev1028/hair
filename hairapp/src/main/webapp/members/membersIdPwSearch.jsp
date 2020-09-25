@@ -15,8 +15,8 @@
 }
 
 #wrap{
-	top:120px;
-	right:500px;
+	top:80px;
+	left:700px;
     position:absolute;
     margin:0 auto;
 } 
@@ -33,7 +33,7 @@ function membersPwSearch() {
 
 </script>
 <body>
-	<div id="wrap" style="float:right;">
+	<div id="wrap">
 	<input type="button" name="id" value="ID찾기" onclick="membersIdSearch()" />
 	<input type="button" name="pw" value="비밀번호 찾기" onclick="membersPwSearch()" />
 	</div>

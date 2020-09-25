@@ -14,8 +14,8 @@
 }
 
 #wrap{
-	top:120px;
-	right:500px;
+	top:150px;
+	left:700px;
     position:absolute;
     margin:0 auto;
 } 
@@ -44,7 +44,7 @@
 </script>
 </head>
 <body>
-	<div id="wrap" style="float:right;">
+	<div id="wrap">
 	
 	<form method="post" name="loginFrm" id="loginFrm"
 		action="${pageContext.request.contextPath}/members/membersLoginS.do"
