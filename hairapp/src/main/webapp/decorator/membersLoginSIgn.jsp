@@ -205,7 +205,6 @@ a.article:hover {
                     <a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a>
                 </li>
                 <li>
-                <li>
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">회원가입</a>
                 </li>
             </ul>

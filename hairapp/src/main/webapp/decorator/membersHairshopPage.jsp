@@ -20,6 +20,24 @@
 	background-color: #d8ddee;
 }
 
+/* 왼쪽메뉴 */
+#mypage {
+	display: flex;
+	position:absolute;
+	top:420px;
+	left:0px;
+}
+
+
+/* 메뉴바 */
+#menubar{
+	right:0px;
+	position:absolute;
+	width:80%;
+	height:50px;
+	background-color: #d8ddee;
+}
+
 
 /* 슬라이더 */
 ul{
@@ -125,12 +143,10 @@ p{
 <div id="divSlider">
 
 <section id="contenedor">
-  
 	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
 	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
 	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
 	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
-  
 	<ul id="slider">
 		<li>
 			<div><p>상민미용실</p></div>
@@ -149,7 +165,6 @@ p{
 			<img src="http://placehold.it/600x200" alt="" height="200" width="600">
 		</li>
 	</ul>
-    
 </section>
 
 </div>
@@ -158,6 +173,21 @@ p{
 <br>
 <div id="shopInfo">
 </div>
+
+<!-- 바디안에 메뉴바 -->
+<br>
+<div id="menubar">
+</div>
+
+
+<!-- 왼쪽메뉴 -->
+<div id="mypage">
+	<%@include file="/decorator/membersLeftMenu.jsp" %>
+</div>
+
+
+
+
 
 </body>
 </html>
