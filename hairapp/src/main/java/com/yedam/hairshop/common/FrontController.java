@@ -19,7 +19,8 @@ import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.customerJoinCtrl;
-import com.yedam.hairshop.hairhsop.DailyReservationListCtrl;
+import com.yedam.hairshop.hairhsop.DailyReservationListAjCtrl;
+import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeAuthFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
@@ -176,9 +177,9 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl());
 		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl());
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl());
-		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl());
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl());
-
+		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
+		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
 	}
 
 
