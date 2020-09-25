@@ -14,8 +14,8 @@
 }
 
 #wrap{
-	top:120px;
-	right:500px;
+	top:80px;
+	left:700px;
     position:absolute;
     margin:0 auto;
 } 
@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<div id="wrap" style="float:right;">
+<div id="wrap">
 	<form method="POST" name="searchFrm" action="membersPwModify.do">
 	<h3>비밀번호 수정</h3><br>
 		<div class="row1">
