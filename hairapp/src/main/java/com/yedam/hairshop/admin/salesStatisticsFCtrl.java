@@ -15,27 +15,15 @@ public class salesStatisticsFCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<SalesVo> list = SalesDAO.getInstance().period(null);
-		SalesVo resultVo = new SalesVo();
+		String startDate = request.getParameter("start");
+		String endDate = request.getParameter("end");
+		String ds = request.getParameter("ds");
+		ArrayList<SalesVo> list = SalesDAO.getInstance().dailySalesAll(startDate, endDate);
+
 		System.out.println("fctl");
-		int sum = 0;
-		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getCode().equals("d1")) {
-				resultVo.setCard(list.get(i).getSum());
-			} else if (list.get(i).getCode().equals("d2")) {
-				resultVo.setCash(list.get(i).getSum());
-			} else if (list.get(i).getCode().equals("d3")) {
-				resultVo.setKakao(list.get(i).getSum());
-			} else if (list.get(i).getCode().equals("d6")) {
-				resultVo.setAccount(list.get(i).getSum());
-			} else {
+		
 
-			}
-			sum += list.get(i).getSum();
-		}
-		resultVo.setSum(sum);
-
-		request.setAttribute("vo", resultVo);
+		request.setAttribute("salesResult", list);
 //		response.sendRedirect("");
 		request.getRequestDispatcher("/hairshop/hairshopStatistics.jsp").forward(request, response);
 	}

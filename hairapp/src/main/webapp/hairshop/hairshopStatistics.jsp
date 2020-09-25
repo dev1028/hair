@@ -17,10 +17,10 @@
 		$("#range").html("");
 		$("#range").append($("<input />").attr({
 			'type' : 'date',
-			'id' : 'start'
+			'name' : 'start'
 		}), $("<span />").html(' - '), $("<input />").attr({
 			'type' : 'date',
-			'id' : 'end'
+			'name' : 'end'
 		}), $("<button />").html("당일 "), $("<button />").html("어제 "),
 				$("<button />").html("최근1주 "), $("<button />").html("최근1달 ")
 
@@ -94,9 +94,11 @@
 			</div>
 
 			<div class="control">
-				<label for="name">직원선택 </label> <select>
+				<label for="name">직원선택 </label> <select id="ds">
 					<option>전체직원</option>
-					<option>kim</option>
+					<c:forEach items="${list }" var="i">
+						<option value="${i.designer_no}">${i.designer_name}</option>
+					</c:forEach>
 				</select>
 				<div class="controls"></div>
 			</div>
@@ -108,31 +110,45 @@
 	<!-- 매출 -->
 	<div class="form-group">
 		<h2 class="heading">지출합계</h2>
-		<table id="income" border = "1">
+		<table id="income" border="1">
 
 			<tr>
-				<th>구분</th>
+		<!-- 		<th>구분</th> -->
+				
+					<th>예약날짜</th>
+				<th>예약번호</th>
+				<th>고객명</th>
+			
+				<th>디자이너</th>
+				<th>시술명</th>
+	<th>카드</th>
 				<th>현금</th>
-				<th>카드</th>
+			
 				<th>카카오</th>
 				<th>계좌</th>
-				<th>기타</th>
 				<th>총합</th>
 			</tr>
-			
-			
 
+
+
+			<c:forEach items="${salesResult }" var="vo">
 				<tr>
-				<th>시술매출</th>
+					<td>${vo.mdrDate }</td>
+					<td>${vo.mdrNo }</td>
+					<td>${vo.memName }</td>
+
+					<td>${vo.dsName }</td>
+					<td>${vo.getHName()}</td>
+					<td>${vo.card }</td>
 					<td>${vo.cash }</td>
 
-					<td>${vo.card }</td>
 					<td>${vo.kakao }</td>
 					<td>${vo.account }</td>
-					<td>${vo.etc }</td>
-					<td>${vo.sum }</td>
-				</tr>
 		
+					<td>${vo.totalAmountRsv }</td>
+				</tr>
+			</c:forEach>
+
 		</table>
 
 	</div>
