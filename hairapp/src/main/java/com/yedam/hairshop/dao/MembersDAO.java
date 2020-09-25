@@ -338,8 +338,8 @@ public class MembersDAO {
 	// 회원가입 인증 정보 반영
 	public int updateForAuth(String mem_email) {
 		int r = 0;
-		// 회원가입 인증 완료 0, 회원가입 인증 중 -1,
-		String sql = "UPDATE MEMBERS SET MEM_ACCESS_STATUS = 0 WHERE MEM_EMAIL = ?";
+		// 회원가입 인증 완료 1, 회원가입 인증 중 0, 회원가입 인증 전 -1
+		String sql = "UPDATE MEMBERS SET MEM_ACCESS_STATUS = 1 WHERE MEM_EMAIL = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);

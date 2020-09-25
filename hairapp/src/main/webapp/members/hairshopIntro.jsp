@@ -22,6 +22,31 @@
 	background-color: #d8ddee;
 }
 
+#shopName {
+	position:absolute;
+	left:30%;
+	top:40%;
+}
+
+#shopStar1 {
+	position:absolute;
+	left:60%;
+	top:40%;
+}
+
+#shopStar2 {
+	position:absolute;
+	left:61.5%;
+	top:40%;
+}
+
+#reviewBook {
+	position:absolute;
+	left:66%;
+	top:40%;
+}
+
+
 /* 왼쪽메뉴 */
 #mypage {
 	display: flex;
@@ -38,6 +63,19 @@
 	width:80%;
 	height:50px;
 	background-color: #d8ddee;
+}
+
+#shopdata {
+	position:absolute;
+	left:2%;
+	top:30%;
+}
+
+/* 테이블 div */
+#shopbody {
+	position:absolute;
+	left:21%;
+	top:65%;
 }
 
 
@@ -179,11 +217,73 @@ p{
 <!-- 미용실정보 -->
 <br>
 <div id="shopInfo">
+	<div id="shopName">
+		<h4>미용실이름</h4>
+		<h6>미용실주소</h6>
+	</div>
+	<div id="shopStar1">
+		★★★★★
+	</div>
+	<div id="shopStar2">
+		<br><h4>4.9</h4>
+	</div>
+	<div id="reviewBook">
+		리뷰 1000+<br>
+		북마크 1000+
+	</div>
 </div>
 
 <!-- 바디안에 메뉴바 -->
 <br>
 <div id="menubar">
+	<div id="shopdata">
+		헤어샵 정보
+	</div>
+</div>
+
+<!-- 테이블 -->
+<div id="shopbody">
+
+<form method="post" action="hairshopIntro.do" name="form" id="form" onsubmit="">
+			<table>
+				<tr>
+					<td id="title">전화번호</td>
+					<td>010-1110-1111</td>
+				</tr>
+
+				<tr>
+					<td id="title">주소</td>
+					<td>대구시 중구 동성로어쩌고저쩌고</td>
+				</tr>
+
+				<tr>
+					<td id="title">영업시간</td>
+					<td>10:00~21:00</td>
+				</tr>
+
+				<tr>
+					<td id="title">휴무일</td>
+					<td>1,2,3,4,5일</td>
+				</tr>
+
+				<tr>
+					<td id="title">직원수</td>
+					<td>10명</td>
+				</tr>
+
+				<tr>
+					<td id="title">주차장유무</td>
+					<td>O</td>
+				</tr>
+
+				<tr>
+					<td id="title">비고</td>
+					<td>신천지 출입금지</td>
+				</tr>
+
+			</table>
+		</form>
+
 </div>
 
 

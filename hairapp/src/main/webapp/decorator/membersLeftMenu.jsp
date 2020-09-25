@@ -206,7 +206,7 @@ a.article:hover {
                     <a href="${pageContext.request.contextPath}/members/membersLogin.do">헤어 예약</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersJoin.do">헤어샵 소개와 위치</a>
+                    <a href="${pageContext.request.contextPath}/members/hairshopInfo.do">헤어샵 정보와 소개</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">디자이너 소개</a>

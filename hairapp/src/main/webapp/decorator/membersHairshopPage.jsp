@@ -8,10 +8,11 @@
 
 <style>
 /* 맨위에 선 */
-#header {
+#headerLine {
 	width:100%;
 	height: 5px;
 	background-color: #d8ddee;
+	z-index: -1px;
 }
 /* 미용실 이름 상단 */
 #shopInfo {
@@ -19,6 +20,31 @@
 	height:100px;
 	background-color: #d8ddee;
 }
+
+#shopName {
+	position:absolute;
+	left:30%;
+	top:40%;
+}
+
+#shopStar1 {
+	position:absolute;
+	left:60%;
+	top:40%;
+}
+
+#shopStar2 {
+	position:absolute;
+	left:1110px;
+	top:40%;
+}
+
+#reviewBook {
+	position:absolute;
+	left:66%;
+	top:40%;
+}
+
 
 /* 왼쪽메뉴 */
 #mypage {
@@ -136,7 +162,7 @@ p{
 </head>
 <body>
 <!-- 맨위에 선 -->
-<div id="header">
+<div id="headerLine">
 </div>
 
 <!-- 슬라이더 -->
@@ -172,6 +198,20 @@ p{
 <!-- 미용실정보 -->
 <br>
 <div id="shopInfo">
+	<div id="shopName">
+		<h4>미용실이름</h4>
+		<h6>미용실주소</h6>
+	</div>
+	<div id="shopStar1">
+		★★★★★
+	</div>
+	<div id="shopStar2">
+		<br><h4>4.9</h4>
+	</div>
+	<div id="reviewBook">
+		리뷰 1000+<br>
+		북마크 1000+
+	</div>
 </div>
 
 <!-- 바디안에 메뉴바 -->
