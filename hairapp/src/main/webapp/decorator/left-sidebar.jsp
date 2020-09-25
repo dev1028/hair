@@ -231,14 +231,14 @@
 						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
 							미용실 모아보기</a></li>
 					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
+						href="${pageContext.request.contextPath}/members/regionHairshopRank.do">우리동네
 							미용실 순위</a></li>
 					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/membersMain.do">우리동네
+						href="${pageContext.request.contextPath}/members/regionDesignerRank.do">우리동네
 							디자이너 순위</a></li>
 
 					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/membersMain.do">인기
+						href="${pageContext.request.contextPath}/members/hairRank.do">인기
 							헤어 순위</a></li>
 				</ul>
 			</div>
