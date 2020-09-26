@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
@@ -218,8 +219,10 @@ p{
 <br>
 <div id="shopInfo">
 	<div id="shopName">
-		<h4>미용실이름</h4>
-		<h6>미용실주소</h6>
+		<c:forEach items="${intro}" var="in">
+		<h4>${in.hs_name}</h4>
+		<h6>${in.hs_fulladdr}</h6>
+		</c:forEach>
 	</div>
 	<div id="shopStar1">
 		★★★★★
@@ -231,6 +234,7 @@ p{
 		리뷰 1000+<br>
 		북마크 1000+
 	</div>
+
 </div>
 
 <!-- 바디안에 메뉴바 -->
@@ -244,44 +248,46 @@ p{
 <!-- 테이블 -->
 <div id="shopbody">
 
-<form method="post" action="hairshopIntro.do" name="form" id="form" onsubmit="">
+<form method="post" action="hairshopIntro.do" name="form" id="form">
+			<c:forEach items="${intro}" var="in">
 			<table>
 				<tr>
 					<td id="title">전화번호</td>
-					<td>010-1110-1111</td>
+					<td>${in.hs_tel}</td>
 				</tr>
 
 				<tr>
 					<td id="title">주소</td>
-					<td>대구시 중구 동성로어쩌고저쩌고</td>
+					<td>${in.hs_fulladdr}</td>
 				</tr>
 
 				<tr>
 					<td id="title">영업시간</td>
-					<td>10:00~21:00</td>
+					<td>${in.hs_starttime} ~ ${in.hs_endtime}</td>
 				</tr>
 
 				<tr>
 					<td id="title">휴무일</td>
-					<td>1,2,3,4,5일</td>
+					<td>${in.hs_dayoff}</td>
 				</tr>
 
 				<tr>
 					<td id="title">직원수</td>
-					<td>10명</td>
+					<td>${in.designer_access_status}명</td>
 				</tr>
 
 				<tr>
 					<td id="title">주차장유무</td>
-					<td>O</td>
+					<td>${in.hs_parking}</td>
 				</tr>
 
 				<tr>
 					<td id="title">비고</td>
-					<td>신천지 출입금지</td>
+					<td>${in.hs_etc}</td>
 				</tr>
 
 			</table>
+			</c:forEach>
 		</form>
 
 </div>
@@ -291,9 +297,6 @@ p{
 <div id="mypage">
 	<%@include file="/decorator/membersLeftMenu.jsp" %>
 </div>
-
-
-
 
 
 </body>

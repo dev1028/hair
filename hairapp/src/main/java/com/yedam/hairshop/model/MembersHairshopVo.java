@@ -3,7 +3,7 @@ package com.yedam.hairshop.model;
 import lombok.Data;
 
 @Data
-public class MembersReservationVo {
+public class MembersHairshopVo {
 	
 	// 미용실 테이블 : HairshopVo
 	private String hs_no;
@@ -27,17 +27,7 @@ public class MembersReservationVo {
 	private String hs_parking;
 	private String hs_etc;
 	private String hs_approval;
-	
-	// 회원디자이너예약 테이블 : MembersDesignerRsvVo
-	private String mdr_no;
-	private String mdr_date;
-	private String mem_no;
-	private String designer_no;
-	private String mdr_status;
-	private String mdr_category_code;
-	private String mdr_online_price;
-	private String mdr_request;
-	
+
 	// 멤버 테이블 : MembersVo
 	private String mem_email;
 	private String mem_pw;
@@ -56,30 +46,30 @@ public class MembersReservationVo {
 	private String mem_hair_status;
 	private String mem_zip;
 	private String mem_access_status;
-	
+
 	// 디자이너 테이블 : DesignerVo
 	private String designer_name;
-	private String designer_phone; 
+	private String designer_phone;
 	private String designer_email;
-	private String designer_pw;	  
-	private String designer_dayoff; 
-	private String work_start_time; 
-	private String work_end_time;   
+	private String designer_pw;
+	private String designer_dayoff;
+	private String work_start_time;
+	private String work_end_time;
 	private String designer_access_status;
 	private String position;
 	private String salary;
 	private String incentive;
-	private String hire_date;	
+	private String hire_date;
 	private String designer_profile;
 	private String file_name;
-	
-	// 회원디자이너예약상세정보 테이블 : MemDesignerRsvInfoVo
-	private String mdri_detail_info;
-	private String hhi_no;
-	private String mdri_memo;
-	
+
 	// 미용실사진 테이블 : hs_photo
 	private String hsp_no;
 	private String hsp_file;
+	
+	
+	// 선호 미용실 테이블 : favor_hs
+	private String fh_division;		// 선호구분
+	
 	
 }
