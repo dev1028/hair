@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-sm"></div>
 			<div class="col-sm ">
-				
+				<p>${errormsg }</p>
 				<form id="hairshopLoginFrm" action="${pageContext.request.contextPath}/admin/adminLogin.do">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label> <input

@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
+import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
+import com.yedam.hairshop.admin.salesCtrl;
 import com.yedam.hairshop.admin.salesStatisticsCtrl;
 import com.yedam.hairshop.admin.salesStatisticsFCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
@@ -170,6 +172,8 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
+		list.put("/hairshop/sales.do", new salesCtrl());	
+		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
 		
 		
 		//승연
