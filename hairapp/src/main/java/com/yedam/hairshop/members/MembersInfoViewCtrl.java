@@ -30,7 +30,7 @@ public class MembersInfoViewCtrl implements Controller {
         request.setAttribute("modify", members);
         System.out.println("1-3: " + members);
         
-        request.getRequestDispatcher("membersInfoModify.jsp").forward(request, response);	// 여기까진 OK
+        request.getRequestDispatcher("membersInfoModify.jsp").forward(request, response);
 	}
 
 }
