@@ -82,4 +82,17 @@ public class MembersReservationVo {
 	private String hsp_no;
 	private String hsp_file;
 	
+	// 회원세부결제내역 : MembersReservationVo
+	private String mdp_no;
+	private String mdp_price;
+	private String mdp_rv_scene;
+	private String mdp_code;
+	
+	// 미용실 헤어 정보 : HairshopHairInfoVo
+	private String hhi_name;
+	private String hhi_price;
+	private String hhi_time;
+	private String tmic_no;
+	
+	
 }

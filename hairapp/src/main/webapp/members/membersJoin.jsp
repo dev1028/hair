@@ -8,9 +8,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="../common/datepicker.js"></script>
-<link href="../common/datepicker.css" rel="stylesheet" />
 <style>
 #mypage {
 	display: flex;
@@ -28,6 +25,7 @@
 
 </style>
 <script>
+
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
 		if (!document.form.joinemail.value) {
@@ -159,7 +157,7 @@
 
 				<tr>
 					<td id="title">생일</td>
-					<td><input type="text" id="datepicker" name="joinbirth"></td>
+					<td><input type="date" id="joinbirth" name="joinbirth"></td>
 				</tr>
 
 				<tr>
