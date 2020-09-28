@@ -220,7 +220,7 @@ a.article:hover {
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">북마크</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">헤어샵</a>
+                            <a href="membersBookmarkHairshop.do">헤어샵</a>
                         </li>
                         <li>
                             <a href="#">디자이너</a>
