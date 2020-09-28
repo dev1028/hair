@@ -15,13 +15,13 @@ public class MembersHairShopInfoCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		// 선택된 헤어샵 정보를 session에 담는다.
-//		HairshopVo vo = new HairshopVo();
-//		String hsNo = request.getParameter("hsNo");
+		HairshopVo vo = new HairshopVo();
+		String hsNo = request.getParameter("hsNo");
 //		System.out.println("hsNo: " + hsNo);
-//		vo.setHs_no(hsNo);
+		vo.setHs_no(hsNo);
 //
-//		HairshopVo selHairshopVo = HairshopDAO.getInstance().selectOne(vo);
-//		request.getSession().setAttribute("selHairshopVo", selHairshopVo);
+		HairshopVo selHairshopVo = HairshopDAO.getInstance().selectOne(vo);
+		request.getSession().setAttribute("selHairshopVo", selHairshopVo);
 
 		request.getRequestDispatcher("hairshopIntro.do").forward(request, response);
 	}

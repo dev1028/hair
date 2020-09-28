@@ -31,7 +31,6 @@
 	display: flex;
 	flex-direction: column;
 	margin-left: 1rem;
-	cursor: pointer;
 }
 
 .horizontal-card .horizontal-card-footer {
@@ -87,11 +86,6 @@
 			}
 		});
 	}
-	
-	//린아
-	function hairshopInfo() {
-		location.href = "hairshopInfo.do";
-	}
 
 </script>
 </head>
@@ -105,13 +99,14 @@
 				<div class="horizontal-card">
 					<img src="../images/hairshop/signin-image.jpg" width="200"
 						height="100">
-					<div class="horizontal-card-body"  onclick="hairshopInfo()">
-						<h4 class="card-title">공지: ${item.hs_notice}</h4>
-						<span class="card-text"> 프로필: ${item.hs_profile } </span> <span
-							class="card-text"> 별점: 미구현 </span>
+					<div class="horizontal-card-body">
+						<h4 class="card-title"><a href="hairshopInfo.do?hsNo=${item.hs_no}">${item.hs_name }</a></h4>
+						<span>공지: ${item.hs_notice}</span>
+<%-- 						<span class="card-text"> 프로필: ${item.hs_profile } </span> --%>
+						<span class="card-text"> 주소: ${item.hs_fulladdr } </span>
 					</div>
 					<div class="horizontal-card-footer">
-						<span>${item.hs_name } </span> 
+						<span class="card-text"> 별점: 미구현 </span>
 						<!-- <a class="card-text status">좋아요수: 미구현</a> -->
 						<!-- <a class="card-text status">#Save</a> -->
 						
