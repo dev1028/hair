@@ -151,7 +151,8 @@ public class MembersReservationDAO {
 					+ " m.mem_no, d.designer_name, p.hsp_file " + " from hs_photo p join hairshop h "
 					+ " on(p.hs_no=h.hs_no) join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
 					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_status = 'i2' " + " order by 2 desc";
+					+ " where r.mdr_status = 'i3' or r.mdr_status = 'i2' or r.mdr_status = 'i1' " 
+					+ " order by 2 desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
