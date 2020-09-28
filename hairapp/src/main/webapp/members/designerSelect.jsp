@@ -52,7 +52,6 @@
 <!-- 	<div> -->
 <%-- 		<%@include file="/decorator/membersLeftMenu.jsp" %> --%>
 <!-- 	</div> -->
-
 	<c:forEach items="${list}" var="designerInfo" >
 		<form action="../members/designerSelectResult.do" method="post">
 			<div class="horizontal-card">
@@ -62,7 +61,7 @@
 					<span class="card-text">이름: ${designerInfo.designer_name} </span>
 					<span class="card-text">프로필: ${designerInfo.designer_profile} </span>
 					<span class="card-text">직책: ${designerInfo.position} </span>
-					<span class="card-text">시간: ${designerInfo.work_start_time}-${hairInfo.work_end_time} </span>
+					<span class="card-text">시간: ${designerInfo.work_start_time} - ${hairInfo.work_end_time} </span>
 					<span class="card-text">휴일: ${designerInfo.designer_dayoff} </span>
 					<h4 class="card-title"></h4>
 					<span class="card-text"></span>
