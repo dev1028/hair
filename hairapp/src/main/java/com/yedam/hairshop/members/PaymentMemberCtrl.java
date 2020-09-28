@@ -28,11 +28,12 @@ public class PaymentMemberCtrl implements Controller {
 		MembersVo loginVo = (MembersVo) session.getAttribute("login");
 				
 		PaymentVo payVo = new PaymentVo();
+		payVo.setMem_no(loginVo.getMem_no());
 		payVo.setHs_no(hairshopVo.getHs_no());
 		payVo.setMdr_online_price(hairInfoVo.getHhi_price());
 		payVo.setDesigner_no(designerVo.getDesigner_no());
-		payVo.setMem_no(loginVo.getMem_no());
 		
+		System.out.println(payVo);
 		//나중에 마일리지 쿠폰 등등을 실제 금액 계산해야함.
 		PaymentDAO.getInstance().onlinePay(payVo);
 	}
