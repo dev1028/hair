@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <style>
 .horizontal-card {
 	position: relative;
@@ -49,10 +50,9 @@
 </style>
 </head>
 <body>
-	<div>
-		<%@include file="/decorator/membersLeftMenu.jsp" %>
-	</div>
-
+	<script>
+		
+	</script>
 	<c:forEach items="${list}" var="hairInfo" >
 		<form action="../members/hairSelectResult.do" method="post">
 			<div class="horizontal-card">
@@ -77,5 +77,6 @@
 			</div>
 		</form>
 	</c:forEach>
+	
 </body>
 </html>

@@ -20,6 +20,12 @@
     position: absolute;
     margin:0 auto;
 } 
+#wrap3 {
+	border: 2px dashed #bcbcbc;
+	margin: 10px;
+	float: left;
+}
+
 </style>
 </head>
 <body>
@@ -53,7 +59,7 @@
 			<h3>예약한 적이 있는 헤어샵</h3>	
 			<hr style="border: solid 1px">
 			<c:forEach items="${onevisit}" var="one">
-			<div>
+			<div id="wrap3">
 				<!-- 미용실사진 -->${one.hsp_file}<br>
 				<!-- 미용실이름 -->${one.hs_name}<br>
 			</div>
@@ -64,6 +70,7 @@
 	</form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 	<div id="mypage">
 	<%@include file="/decorator/membersMypage.jsp" %>
 	</div>

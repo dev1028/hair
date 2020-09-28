@@ -275,9 +275,13 @@ form.example::after {
 
 		$("input:radio[name='date']:radio[value='day0']").prop('checked', true); // 선택하기
 		$("#date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			minDate: 0
 		});
-
+		$("input:radio[name='radioDate']:radio[value='day0']").prop('checked', true); 
+		$("#date").datepicker( "setDate", new Date());
+		
+		
 		$('input[type="radio"]').click(function() {
 			if ($(this).is(':checked')) {
 				date = new Date();
@@ -293,8 +297,14 @@ form.example::after {
 			}
 		});
 		
-		$('#timepicker_start').timepicker();
-		$('#timepicker_end').timepicker();
+		$('#timepicker_start').timepicker({
+			timeFormat: 'HH',
+			interval: 60
+		});
+		$('#timepicker_end').timepicker({
+			timeFormat: 'HH',
+			interval: 60
+		});
 	});
 </script>
 </head>
@@ -348,10 +358,6 @@ form.example::after {
 
 	<div class="myForm">
 		<form action="../members/searchDetail.do" method="post" style="margin:auto;max-width:300px">
-		
-		
-		
-		
 			<div>
 				<input autocomplete="off" type="text" name="date" id="date" size="12" />
 				<label class="radio-inline">
@@ -365,8 +371,8 @@ form.example::after {
 		    	</label>
     		</div>
 	    	
-		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime">
-		    <input autocomplete="off" id="timepicker_end"  type="text" name="hs_endtime">
+		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" style="width:80px"> -
+		    <input autocomplete="off" id="timepicker_end"  type="text" name="hs_endtime" style="width:80px" > 영업시간
 	    	
     	
 			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->

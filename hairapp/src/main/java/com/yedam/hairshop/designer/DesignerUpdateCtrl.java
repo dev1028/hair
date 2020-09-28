@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.DesignerVo;
 
 public class DesignerUpdateCtrl implements Controller{
@@ -21,6 +21,7 @@ public class DesignerUpdateCtrl implements Controller{
 		String work_start_time = request.getParameter("work_start_time");
 		String work_end_time = request.getParameter("work_end_time");
 		String hire_date = request.getParameter("hire_date");
+		String designer_profile = request.getParameter("designer_profile");
 		String designer_no = request.getParameter("designer_no");
 		
 		DesignerVo designerVo = new DesignerVo();
@@ -31,15 +32,12 @@ public class DesignerUpdateCtrl implements Controller{
 		designerVo.setWork_start_time(work_start_time);
 		designerVo.setWork_end_time(work_end_time);
 		designerVo.setHire_date(hire_date);
-		designerVo.setDesigner_profile(hire_date);
+		designerVo.setDesigner_profile(designer_profile);
 		designerVo.setDesigner_no(designer_no);
 		
 		int resultVo = DesignerDAO.getInstance().update(designerVo);
-		request.setAttribute("cnt", resultVo);
-		
-		
-
-
+		request.setAttribute("designer", resultVo);
+		request.getRequestDispatcher("/hairshop/hairshopMain.jsp").forward(request, response);
 	}
 
 }

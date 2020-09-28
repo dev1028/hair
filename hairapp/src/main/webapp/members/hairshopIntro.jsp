@@ -6,179 +6,10 @@
 
 <head>
 <meta charset="UTF-8">
-<title>membersHairshopPage</title>
-
-<style>
-/* 맨위에 선 */
-#headerLine {
-	width:100%;
-	height: 5px;
-	background-color: #d8ddee;
-	z-index: -1px;
-}
-/* 미용실 이름 상단 */
-#shopInfo {
-	width:100%;
-	height:100px;
-	background-color: #d8ddee;
-}
-
-#shopName {
-	position:absolute;
-	left:30%;
-	top:40%;
-}
-
-#shopStar1 {
-	position:absolute;
-	left:60%;
-	top:40%;
-}
-
-#shopStar2 {
-	position:absolute;
-	left:61.5%;
-	top:40%;
-}
-
-#reviewBook {
-	position:absolute;
-	left:66%;
-	top:40%;
-}
-
-
-/* 왼쪽메뉴 */
-#mypage {
-	display: flex;
-	position:absolute;
-	top:420px;
-	left:0px;
-}
-
-
-/* 메뉴바 */
-#menubar{
-	right:0px;
-	position:absolute;
-	width:80%;
-	height:50px;
-	background-color: #d8ddee;
-}
-
-#shopdata {
-	position:absolute;
-	left:2%;
-	top:30%;
-}
-
-/* 테이블 div */
-#shopbody {
-	position:absolute;
-	left:21%;
-	top:65%;
-}
-
-
-/* 슬라이더 */
-#divSlider{
-	z-index: -1px;
-}
-
-ul{
-	display: block;
-	margin: 0;
-	padding: 0;
-}
-li{
-	display: inline-block;
-}
-
-p{
-	color: white;
-  font-size:1.2em;
-  font-weight:100;
-  letter-spacing:1px;
-}
-
-#contenedor{
-	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.3);
-	width:600px;
-	height: 250px;
-	margin: 20px auto 0 auto;
-	overflow:hidden;
-	position: relative;
-}
-#slider{
-	width: 2400px; /* *600px la dimension de la imagen */
-	height: 200px;
-	position: relative;
-	transition: all 500ms ease-in-out;
-	-webkit-filter: grayscale(100%); /* funciona correctamente en Chrome solo webKit */
-  -webkit-backface-visibility: hidden;
-}
-#slider div{
-	background: rgba(0,0,0,.5);
-	position: absolute;
-	padding: 7px;
-	bottom: 2px;
-	left: 0px;
-	width: 100%;
-}
-
-#slider li:nth-child(1){
-	position: absolute;
-	top: 0px;
-	left: 0px;
-}
-#slider li:nth-child(2){
-	position: absolute;
-	top: 0px;
-	left: 600px;
-}
-#slider li:nth-child(3){
-	position: absolute;
-	top: 0px;
-	left: 1200px;
-}
-#slider li:nth-child(4){
-	position: absolute;
-	top: 0px;
-	left: 1800px;
-}
-
-.mini{
-	-webkit-filter: grayscale(100%);
-	cursor: ew-resize;
-	float: left;
-	margin-top: 200px;
-	width: 25%;
-	transition: all .5s linear;
-}
-
-.mini:hover{
-	-webkit-filter: grayscale(0%);
-}
-
-#contenedor div:nth-child(1):hover ~ #slider{
-  transform: translateX(0px) translateZ(0px);
-	-webkit-filter: grayscale(0%);
-}
-#contenedor div:nth-child(2):hover ~ #slider{
-  transform: translateX(-600px) translateZ(0px);
-	-webkit-filter: grayscale(0%);
-}
-#contenedor div:nth-child(3):hover ~ #slider{
-  transform: translateX(-1200px) translateZ(0px);
-	-webkit-filter: grayscale(0%);
-}
-#contenedor div:nth-child(4):hover ~ #slider{
-  transform: translateX(-1800px) translateZ(0px);
-	-webkit-filter: grayscale(0%);
-}
-</style>
-
+<title>헤어샵 소개</title>
+<link rel="stylesheet" href="../css/membersHairshop.css">
 </head>
+
 <body>
 
 <!-- 맨위에 선 -->
@@ -263,17 +94,17 @@ p{
 
 				<tr>
 					<td id="title">영업시간</td>
-					<td>${in.hs_starttime} ~ ${in.hs_endtime}</td>
+					<td>${in.hs_starttime} ~ ${in.hs_endtime} 시</td>
 				</tr>
 
 				<tr>
 					<td id="title">휴무일</td>
-					<td>${in.hs_dayoff}</td>
+					<td>${in.hs_dayoff} 일</td>
 				</tr>
 
 				<tr>
 					<td id="title">직원수</td>
-					<td>${in.designer_access_status}명</td>
+					<td>${in.designer_access_status} 명</td>
 				</tr>
 
 				<tr>

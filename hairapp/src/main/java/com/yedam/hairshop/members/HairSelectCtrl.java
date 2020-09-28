@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopHairInfoDAO;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.HairshopVo;
@@ -30,6 +29,7 @@ public class HairSelectCtrl implements Controller{
 		//System.out.println(list.size() + "개의 헤어스타일 검색");
 		
 		request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
+//		request.getRequestDispatcher("/members/payment.jsp").forward(request, response);
 	}
 
 }
