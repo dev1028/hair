@@ -97,12 +97,20 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, d.designer_name, "
-					+ " r.mdr_category_code, r.mdr_online_price, r.mdr_request, m.mem_hair_length, m.mem_hair_status "
-					+ " from hairshop h join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_no = ?";
+			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, " + 
+					" d.designer_name, r.mdr_request, m.mem_hair_length, " + 
+					" m.mem_hair_status, e.mdp_no, e.mdp_price, i.hhi_no, i.hhi_name " + 
+					" from members_detail_paylist e join members_designer_rsv r " + 
+					" on(e.mdr_no=r.mdr_no) join designer d"  + 
+					" on(r.designer_no=d.designer_no) join hairshop_hair_info i " + 
+					" on(d.hs_no=i.hs_no) join hairshop h " + 
+					" on(i.hs_no=h.hs_no) join hair_member_info a " + 
+					" on(h.hs_no=a.hs_no) join members m " + 
+					" on(a.mem_no=m.mem_no) " +
+					" where r.mdr_no = ?";
 			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
+			System.out.println(membersReservationVo.getMdr_no());
 			pstmt.setString(1, membersReservationVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
@@ -115,11 +123,13 @@ public class MembersReservationDAO {
 				membersR.setMdr_status(rs.getString(4));
 				membersR.setMem_no(rs.getString(5));
 				membersR.setDesigner_name(rs.getString(6));
-				membersR.setMdr_category_code(rs.getString(7));
-				membersR.setMdr_online_price(rs.getString(8));
-				membersR.setMdr_request(rs.getString(9));
-				membersR.setMem_hair_length(rs.getString(10));
-				membersR.setMem_hair_status(rs.getString(11));
+				membersR.setMdr_request(rs.getString(7));
+				membersR.setMem_hair_length(rs.getString(8));
+				membersR.setMem_hair_status(rs.getString(9));
+				membersR.setMdp_no(rs.getString(10));
+				membersR.setMdp_price(rs.getString(11));
+				membersR.setHhi_no(rs.getString(12));
+				membersR.setHhi_name(rs.getString(13));
 
 				list.add(membersR); // resultVo를 list에 담음
 			}

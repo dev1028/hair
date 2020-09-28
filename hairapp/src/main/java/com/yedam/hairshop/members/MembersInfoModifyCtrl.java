@@ -38,7 +38,7 @@ public class MembersInfoModifyCtrl implements Controller {
 		System.out.println(modifypw);
 		String modifyname = request.getParameter("modifyname");
 		String modifyphone = request.getParameter("modifyphone");
-		String modifybirth = request.getParameter("modifybirth");
+		String modifybirth = request.getParameter("modifybirth").substring(0,10);
 		String modifygender = request.getParameter("modifygender");
 		String roadFullAddr = request.getParameter("roadFullAddr");
 		String roadAddrPart1 = request.getParameter("roadAddrPart1");
