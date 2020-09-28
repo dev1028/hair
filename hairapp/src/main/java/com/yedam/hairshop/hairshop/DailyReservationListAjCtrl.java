@@ -22,7 +22,8 @@ public class DailyReservationListAjCtrl implements Controller {
 		String HsNo = (String) request.getSession().getAttribute("hsno");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-		List<Map<String,String>> list = MembersReservationDAO.getInstance().selectReservationList(HsNo, startDate, endDate);
+		System.out.println(startDate);
+		List<Map<String,String>> list = MembersReservationDAO.getInstance().selectReservationList(HsNo, startDate);
 		
 		JSONArray st = new JSONArray();
 		for(Map<String,String> des : list) {
@@ -34,12 +35,14 @@ public class DailyReservationListAjCtrl implements Controller {
 			JSONObject dseJson = new JSONObject();
 			dseJson.put("resourceId",des.get("designer_no"));
 			dseJson.put("id",des.get("mdr_no"));
-			dseJson.put("title",des.get("mem_name")+" "+hairName);
-			dseJson.put("start",des.get("mdr_date")+":00");
-			dseJson.put("end",des.get("sum_time")+":00");
+			dseJson.put("title",des.get("mem_name")+": "+hairName);
+			dseJson.put("start",des.get("mdr_date").replace(" ", "T")+":00");
+			dseJson.put("end",des.get("sum_time").replace(" ", "T")+":00");
 			st.add(dseJson);
 		}	
+		
 		String str = JSONArray.fromObject(st).toString();
+		System.out.println(str);
 		response.getWriter().print(str);
 	}
 

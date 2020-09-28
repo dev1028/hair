@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 		
 		initialView : 'resourceTimeGridDay',
-		businessHours: {s
+		businessHours: {
 			  // days of week. an array of zero-based day of week integers (0=Sunday)
 			  daysOfWeek: [ 0, 6, 3, 4 ], // Monday - Thursday
 			  expandRows : true,
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		   resources: [	
 			      { id: 'a', title: '김강산' },	
 			      { id: 'b', title: '김린아'},	
-			      { id: 'c', title: '김승연' },	
+			      { id: 'c', title: '김승연', eventColor : 'green'},	
 			      { id: 'd', title: '이송현' },	
 			      { id: 'e', title: '이상민' }	
 			    ],
@@ -128,9 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			    		resourceId : 'c',
 			    	      start : '2020-09-26 14:30:00',
 			    	      end : '2020-09-26 15:30:00',
-			    	      title : '하하',
-			    	      borderColor: 'red',
-			    	      backgroundColor: 'red'
+			    	      title : '하하'
 			    	} ]
 				
 

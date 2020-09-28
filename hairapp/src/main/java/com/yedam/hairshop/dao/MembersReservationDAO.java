@@ -168,12 +168,12 @@ public class MembersReservationDAO {
 
 	// 2020.09.25 김승연
 	// 미용실용 회원 예약시간 조회
-	public List<Map<String, String>> selectReservationList(String hsNo, String startDate, String endDate) {
+	public List<Map<String, String>> selectReservationList(String hsNo, String startDate) {
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select mdr.mdr_no, to_char(mdr.mdr_date, 'YYYY/MM/DD HH24:MI') as mdr_date, mdr.mem_no, m.mem_name,"
-					+ " mdr.designer_no, d.designer_name, to_char(mdr.mdr_date+c.sum_time/24, 'YYYY/MM/DD HH24:MI') as sum_time" 
+			String sql = "select mdr.mdr_no, to_char(mdr.mdr_date, 'YYYY-MM-DD HH24:MI') as mdr_date, mdr.mdr_status, mdr.mem_no, m.mem_name,"
+					+ " mdr.designer_no, d.designer_name, to_char(mdr.mdr_date+c.sum_time/24, 'YYYY-MM-DD HH24:MI') as sum_time" 
 					+ " from members_designer_rsv mdr join designer d"
 					+ " on (mdr.DESIGNER_NO = d.designer_no)" 
 					+ " join members m" 
@@ -184,21 +184,22 @@ public class MembersReservationDAO {
 					+ " on (mdr.mdr_no = c.mdr_no)" 
 					+ " where mdr.mdr_status != 'i1'"
 					+ " and mdr.hs_no = ?"
-					+ " and mdr.mdr_date between to_date(?,'YYYY/MM/DD') and to_date(?,'YYYY/MM/DD')";
+					+ " and mdr.mdr_date between to_date(?,'YYYY/MM/DD') and to_date(?,'YYYY/MM/DD')+1";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hsNo);
 			pstmt.setString(2, startDate);
-			pstmt.setString(3, endDate);
+			pstmt.setString(3, startDate);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("mdr_no", rs.getString("mdr_no"));
 				map.put("mdr_date", rs.getString("mdr_date"));
-				map.put("mdr_status", rs.getString("mem_no"));
-				map.put("mem_no", rs.getString("mem_name"));
-				map.put("mem_name", rs.getString("designer_no"));
-				map.put("designer_no", rs.getString("designer_name"));
-				map.put("designer_name", rs.getString("sum_time"));
+				map.put("mdr_status", rs.getString("mdr_status"));
+				map.put("mem_no", rs.getString("mem_no"));
+				map.put("mem_name", rs.getString("mem_name"));
+				map.put("designer_no", rs.getString("designer_no"));
+				map.put("designer_name", rs.getString("designer_name"));
+				map.put("sum_time", rs.getString("sum_time"));
 				list.add(map);
 			}
 		} catch (Exception e) {
