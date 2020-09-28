@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.SearchDAO;
 import com.yedam.hairshop.model.SearchVo;
 

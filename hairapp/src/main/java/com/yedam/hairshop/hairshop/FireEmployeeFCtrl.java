@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignersLeaveInfoDAO;
-import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.DesignersLeaveInfoVo;
 
 public class FireEmployeeFCtrl implements Controller {
