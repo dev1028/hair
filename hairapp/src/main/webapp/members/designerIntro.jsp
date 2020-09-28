@@ -75,48 +75,38 @@
 	</div>
 </div>
 
-<!-- 테이블 -->
+<!-- 바디안에 -->
 <div id="shopbody">
 
-<form method="post" action="hairshopIntro.do" name="form" id="form">
+<form method="post" action="hsDesignerIntro.do" name="form" id="form">
 			<c:forEach items="${intro}" var="in">
-			<table>
-				<tr>
-					<td id="title">전화번호</td>
-					<td>${in.hs_tel}</td>
-				</tr>
-
-				<tr>
-					<td id="title">주소</td>
-					<td>${in.hs_fulladdr}</td>
-				</tr>
-
-				<tr>
-					<td id="title">영업시간</td>
-					<td>${in.hs_starttime} ~ ${in.hs_endtime} 시</td>
-				</tr>
-
-				<tr>
-					<td id="title">휴무일</td>
-					<td>${in.hs_dayoff} 일</td>
-				</tr>
-
-				<tr>
-					<td id="title">직원수</td>
-					<td>${in.designer_access_status} 명</td>
-				</tr>
-
-				<tr>
-					<td id="title">주차장유무</td>
-					<td>${in.hs_parking}</td>
-				</tr>
-
-				<tr>
-					<td id="title">비고</td>
-					<td>${in.hs_etc}</td>
-				</tr>
-
-			</table>
+			
+			<div class="container">
+    <h3 class="h3">디자이너 소개</h3>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid4">
+                <div class="product-image4">
+                    <a href="#">
+                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                    </a>
+                </div>
+                <div class="product-content">
+                    <h3 class="title">${in.designer_name}</h3>
+                    <h3 class="title">${in.position}</h3>
+                    <div class="price">
+                        ${in.designer_profile}
+                    </div>
+                    <a class="add-to-cart" href="">예약하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+			
+			
 			</c:forEach>
 		</form>
 
