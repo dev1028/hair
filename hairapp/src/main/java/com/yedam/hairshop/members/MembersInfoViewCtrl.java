@@ -25,6 +25,9 @@ public class MembersInfoViewCtrl implements Controller {
         // 그 아이디 해당하는 회원정보를 가져온다.
         MembersDAO dao = MembersDAO.getInstance();
         MembersVo members = dao.getMembersInfo(mem_email);
+        String mem_birth = (String) dao.getMembersInfo(mem_email).getMem_birth().subSequence(0, 10);
+        members.setMem_birth(mem_birth);
+        System.out.println("멤버벌스"+mem_birth);
         
         // membersInfoModify.jsp에 회원정보를 전달하기 위해 request에 MembersVo를 세팅한다.
         request.setAttribute("modify", members);

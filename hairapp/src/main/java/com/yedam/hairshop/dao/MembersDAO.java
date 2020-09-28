@@ -121,7 +121,11 @@ public class MembersDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select * from members where mem_email=?";
+			String sql = "SELECT MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE, MEM_BIRTH, MEM_SEX," + 
+					" MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_LATITUDE_LONGITUDE," + 
+					" MEM_SAVED_MONEY, MEM_CITY_LATITUDE_LONGITUDE, MEM_HAIR_LENGTH," + 
+					" MEM_HAIR_STATUS, MEM_ZIP, MEM_ACCESS_STATUS" + 
+					" FROM MEMBERS WHERE MEM_EMAIL=?";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem_email);
