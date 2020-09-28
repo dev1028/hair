@@ -180,7 +180,7 @@ public class MembersReservationDAO {
 
 	// 2020.09.25 김승연
 	// 미용실용 회원 예약시간 조회
-	public List<Map<String, String>> selectReservationList(String hsNo, String startDate) {
+	public List<Map<String, String>> selectReservationList(String hsNo, String startDate,String endDate) {
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -196,11 +196,11 @@ public class MembersReservationDAO {
 					+ " on (mdr.mdr_no = c.mdr_no)" 
 					+ " where mdr.mdr_status != 'i1'"
 					+ " and mdr.hs_no = ?"
-					+ " and mdr.mdr_date between to_date(?,'YYYY/MM/DD') and to_date(?,'YYYY/MM/DD')+1";
+					+ " and mdr.mdr_date between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')+1";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hsNo);
 			pstmt.setString(2, startDate);
-			pstmt.setString(3, startDate);
+			pstmt.setString(3, endDate);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Map<String, String> map = new HashMap<String, String>();
@@ -221,6 +221,46 @@ public class MembersReservationDAO {
 		}
 
 		return list;
+	}
+	
+	//예약상세정보 미용실 and 디자이너용 미용실 상세정보
+	public MembersReservationVo selectReservationDetailInfo(String mdrNo) {
+		MembersReservationVo resultVo = new MembersReservationVo();
+
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select  m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status, m.mem_phone, m.mem_sex,"
+					+" mdr.mdr_no, mdr.mdr_date, mdr.designer_no, d.designer_name, mdr.mdr_status, mdr.mdr_request"
+					+" from members m join members_designer_rsv mdr"
+					+" on(mdr.mem_no = m.mem_no)"
+					+" join designer d"
+					+" on(mdr.designer_no = d.designer_no)"
+					+" where mdr.mdr_no = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mdrNo); // ?의 첫번째 자리에 올 값 지정
+			rs = pstmt.executeQuery();
+			System.out.println(sql);
+			if (rs.next()) {
+				resultVo.setMem_no(rs.getString("mem_no"));
+				resultVo.setMem_name(rs.getString("mem_name"));
+				resultVo.setMem_hair_length(rs.getString("mem_hair_length"));
+				resultVo.setMem_hair_status(rs.getString("mem_hair_status"));
+				resultVo.setMem_phone(rs.getString("mem_phone"));
+				resultVo.setMem_sex(rs.getString("mem_sex"));
+				resultVo.setMdr_no(rs.getString("mdr_no"));
+				resultVo.setMdr_date(rs.getString("mdr_date"));
+				resultVo.setDesigner_no(rs.getString("designer_no"));
+				resultVo.setDesigner_name(rs.getString("designer_name"));
+				resultVo.setMdr_status(rs.getString("mdr_status"));
+				resultVo.setMdr_request(rs.getString("mdr_request"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo; // 값을 리턴해줌
 	}
 
 }
