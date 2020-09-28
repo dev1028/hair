@@ -6,7 +6,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>membersHairshopPage</title>
+<title>헤어샵 소개</title>
+
 
 <style>
 /* 맨위에 선 */
@@ -263,17 +264,17 @@ p{
 
 				<tr>
 					<td id="title">영업시간</td>
-					<td>${in.hs_starttime} ~ ${in.hs_endtime}</td>
+					<td>${in.hs_starttime} ~ ${in.hs_endtime} 시</td>
 				</tr>
 
 				<tr>
 					<td id="title">휴무일</td>
-					<td>${in.hs_dayoff}</td>
+					<td>${in.hs_dayoff} 일</td>
 				</tr>
 
 				<tr>
 					<td id="title">직원수</td>
-					<td>${in.designer_access_status}명</td>
+					<td>${in.designer_access_status} 명</td>
 				</tr>
 
 				<tr>

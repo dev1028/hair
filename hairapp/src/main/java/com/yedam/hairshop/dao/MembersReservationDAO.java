@@ -132,6 +132,7 @@ public class MembersReservationDAO {
 				membersR.setHhi_name(rs.getString(13));
 
 				list.add(membersR); // resultVo를 list에 담음
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
