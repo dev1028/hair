@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.members.Controller;
 
 public class EmployeeAuthFCtrl implements Controller {
 
