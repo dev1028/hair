@@ -30,6 +30,7 @@ public class HairSelectCtrl implements Controller{
 		//System.out.println(list.size() + "개의 헤어스타일 검색");
 		
 		request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
+//		request.getRequestDispatcher("/members/payment.jsp").forward(request, response);
 	}
 
 }
