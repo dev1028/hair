@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* 맨위에 선 */
 #headerLine {
 	width:100%;
@@ -26,7 +28,7 @@
 
 #shopStar2 {
 	position:absolute;
-	left:1110px;
+	left:61.5%;
 	top:40%;
 }
 
@@ -53,6 +55,18 @@
 	width:80%;
 	height:50px;
 	background-color: #d8ddee;
+}
+#shopdata {
+	position:absolute;
+	left:2%;
+	top:30%;
+}
+
+/* 테이블 div */
+#shopbody {
+	position:absolute;
+	left:21%;
+	top:65%;
 }
 
 

@@ -64,10 +64,18 @@
 <!-- 바디안에 메뉴바 -->
 <br>
 <div id="menubar">
+<div id="shopdata">
+		여기에 소메뉴 이름 쓰기
+	</div>
 </div>
 
 
-<!-- 여기서부터 본문 -->
+
+
+<!-- 여기서부터 본문. div shopbody 부터 본문시작-->
+<div id="shopbody">
+
+<!-- 본문쓰면됨 여기에 -->
 
 
 
@@ -75,6 +83,10 @@
 
 
 
+
+
+
+</div>
 
 <!-- 왼쪽메뉴 -->
 <div id="mypage">
