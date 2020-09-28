@@ -55,6 +55,7 @@ public class MembersReservationVo {
 	private String mem_hair_length;
 	private String mem_hair_status;
 	private String mem_zip;
+	private String mem_access_status;
 	
 	// 디자이너 테이블 : DesignerVo
 	private String designer_name;

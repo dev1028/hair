@@ -217,7 +217,7 @@
 			<div id="logo">
 				<h1>
 					<a class="mainLogo"
-						href="${pageContext.request.contextPath}/members/membersMain.do">SALON</a>
+						href="${pageContext.request.contextPath}/members/membersMain.do">UDONG</a>
 				</h1>
 			</div>
 
