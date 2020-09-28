@@ -1,18 +1,41 @@
+insert into tt_middle_category
+values(tmc_seq.nextval,'&tmic_name','&tmic_explication',1);
+
+BEGIN
+    FOR I IN 4..100
+    LOOP
+insert into tt_middle_category
+values(tmc_seq.nextval,'&tmic_name','&tmic_explication',1);
+	END LOOP;
+
+END;
+
+
 ----------------회원예약
+insert into hairshop_hair_info(
+HHI_NO,
+HHI_NAME,
+HHI_PRICE,
+HHI_TIME,
+HS_NO,
+TMIC_NO
+)
 INSERT
 INTO members_designer_rsv
 	(
 		mdr_no,
 		mdr_date,
 		mem_no,
+		HS_NO
 		designer_no,
 		mdr_status,
 	)
 	VALUES
 	(
 		&mdr_no,
-		'&mdr_date',
+		sysdate,
 		&mem_no,
+		2,
 		&designer_no,
 		'&mdr_status'
 	);
