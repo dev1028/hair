@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
+import com.yedam.hairshop.admin.adminBoardManageFCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
@@ -185,6 +186,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		list.put("/hairshop/sales.do", new salesCtrl());	
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
+		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
 		
 		
 		//승연
@@ -204,7 +206,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl());
 		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
 		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
-		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
+//		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
 	}
 
 
