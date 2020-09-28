@@ -13,8 +13,8 @@ import org.locationtech.proj4j.CRSFactory;
 import org.locationtech.proj4j.CoordinateReferenceSystem;
 import org.locationtech.proj4j.ProjCoordinate;
 
+import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopDAO;
-import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.HairshopVo;
 
 public class HairshopJoinFinFCtrl implements Controller {

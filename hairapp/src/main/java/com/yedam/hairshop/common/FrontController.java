@@ -39,7 +39,6 @@ import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
-import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;

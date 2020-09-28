@@ -324,17 +324,20 @@ form.example::after {
 
   <div class="slider">
     <div style="background:#5b8;">
-			<h2>PURE <b>CSS</b> SLIDESHOW</h2>
-			<p>Responsive Slideshow Gallery created using CSS only<br>by Roko</p>
+			<h2>우리동네 미용실 <b>우동</b> 에 오신것을 환영합니다</h2>
+			<p>예약을 희망하는 날짜를 선택하여 검색해서 예약하세요!<br>　<br>　</p>
 		</div>
     <div style="background:#85b;">
-			<h2>Slide 2</h2>
+			<h2>헤어샵 예약 사이트 부문고객 만족도 1위!</h2>
+			<p>우동은 언제나 고객과 함께합니다<br>　<br>　</p>
 		</div>
     <div style="background:#e95;">
-			<h2>Slide 3</h2>
+			<h2>우동과 함께라면 언제 어디서는 간편 예약 OK!</h2>
+			<p>내가 원하는 시간과 장소에 맞춰서 모든 헤어샵 예약이 가능합니다<br>　<br>　</p>
 		</div>
     <div style="background:#e59;">
-			<h2>Slide 4</h2>
+			<h2>우리동네는 어떤 헤어가 유행일까?</h2>
+			<p>우리동네 지역별 인기 순위도 한 눈에 확인 하세요<br>　<br>　</p>
 		</div>
   </div>
   

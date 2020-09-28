@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.SandEmail;
 import com.yedam.hairshop.dao.DesignerDAO;
-import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.EmailVo;
 

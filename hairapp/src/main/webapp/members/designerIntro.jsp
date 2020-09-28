@@ -7,7 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>디자이너 소개</title>
+<link rel="stylesheet" href="../css/membersHairshop.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="../decorator/membersDesigner.css">
+<!------ Include the above in your HEAD tag ---------->
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body>
 
@@ -71,7 +78,7 @@
 <br>
 <div id="menubar">
 	<div id="shopdata">
-		헤어샵 정보
+		디자이너 소개
 	</div>
 </div>
 
@@ -79,10 +86,10 @@
 <div id="shopbody">
 
 <form method="post" action="hsDesignerIntro.do" name="form" id="form">
-			<c:forEach items="${intro}" var="in">
+			<%-- <c:forEach items="${intro}" var="in"> --%>
 			
-			<div class="container">
-    <h3 class="h3">디자이너 소개</h3>
+	<div class="container">
+    <h3 class="h3"></h3>
     <div class="row">
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
@@ -93,10 +100,10 @@
                     </a>
                 </div>
                 <div class="product-content">
-                    <h3 class="title">${in.designer_name}</h3>
-                    <h3 class="title">${in.position}</h3>
+                    <h3 class="title"><%-- ${in.designer_name} --%>1</h3>
+                    <h3 class="title"><%-- ${in.position} --%>2</h3>
                     <div class="price">
-                        ${in.designer_profile}
+                        <%-- ${in.designer_profile} --%>3
                     </div>
                     <a class="add-to-cart" href="">예약하기</a>
                 </div>
@@ -107,7 +114,7 @@
 <hr>
 			
 			
-			</c:forEach>
+			<%-- </c:forEach> --%>
 		</form>
 
 </div>
