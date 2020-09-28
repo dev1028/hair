@@ -37,6 +37,7 @@ import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
@@ -131,9 +132,10 @@ public class FrontController extends HttpServlet {
 		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
-		list.put("/designer/designerInfoCtrl.do", new DesignerInfoCtrl());
+		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
+		list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		
 		
 		//린아
