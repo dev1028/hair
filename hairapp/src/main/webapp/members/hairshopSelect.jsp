@@ -23,7 +23,7 @@
 
 .horizontal-card img {
 	width: 200px;
-	height: 130px;
+	height: 150px;
 	border-bottom: 30px solid orange;
 }
 
@@ -66,19 +66,7 @@
 			dataType : "json",
 			data : 'hs_no=' + hs_no,
 			success : function(data) {
-// 				var msg = '';
-// 				var like_img = '';
-// 				msg += data.msg;
-// 				alert(msg);
-
-// 				if (data.like_check == 0) {
-// 					like_img = "./images/dislike.png";
-// 				} else {
-// 					like_img = "./images/like.png";
-// 				}
-// 				$('#like_img', frm_read).attr('src', like_img);
-// 				$('#like_cnt').html(data.like_cnt);
-// 				$('#like_check').html(data.like_check);
+				
 			},
 			error : function(request, status, error) {
 				alert("code:" + request.status + "\n" + "message:"
@@ -97,28 +85,30 @@
 		<c:forEach items="${list}" var="item">
 			<form action="../members/hairshopSelectResult.do" method="post">
 				<div class="horizontal-card">
-					<img src="../images/hairshop/signin-image.jpg" width="200"
-						height="100">
+					<img src="../images/hairshop/signin-image.jpg" width="200" height="130">
 					<div class="horizontal-card-body">
 						<h4 class="card-title"><a href="hairshopInfo.do?hsNo=${item.hs_no}">${item.hs_name }</a></h4>
 						<span>공지: ${item.hs_notice}</span>
 <%-- 						<span class="card-text"> 프로필: ${item.hs_profile } </span> --%>
 						<span class="card-text"> 주소: ${item.hs_fulladdr } </span>
+						<span class="card-text"> 영업시간: ${item.hs_starttime}시 -${item.hs_endtime}시</span>	
 					</div>
 					<div class="horizontal-card-footer">
 						<span class="card-text"> 별점: 미구현 </span>
 						<!-- <a class="card-text status">좋아요수: 미구현</a> -->
 						<!-- <a class="card-text status">#Save</a> -->
-						
-						<c:if test="${not empty login }">
-							<a href='javascript: like_func("${item.hs_no}")'>북마크</a>
-						</c:if>	
-						
 						<!-- <button>북마크</button> -->
+<!-- 						<button style="width:40pt;height:25pt;">예약</button> -->
+						<c:if test="${not empty login }">
+							<a href='javascript: like_func("${item.hs_no}")'>좋아요</a>
+<%-- 							<a href='javascript: like_func("${item.hs_no}")'>싫어요</a> --%>
+						</c:if>
 						<button>예약</button>
 					</div>
 				</div>
 
+				
+						
 				<input type="hidden" name="hsNo" value="${item.hs_no}">
 			</form>
 		</c:forEach>
