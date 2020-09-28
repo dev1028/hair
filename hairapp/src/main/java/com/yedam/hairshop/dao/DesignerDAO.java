@@ -27,7 +27,9 @@ public class DesignerDAO {
 	public int update(DesignerVo designerVo) {
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
-				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? , DESIGNER_PROFILE = ? WHERE DESIGNER_NO = ?";
+				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? ,"
+				+ "DESIGNER_PROFILE = ?,  DESIGNER_ACCESS_STATUS  = 1 " 
+				+ " WHERE DESIGNER_NO = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
@@ -73,12 +75,13 @@ public class DesignerDAO {
 		return resultVo;
 
 	}
+
 	public DesignerVo selectOneEmail(DesignerVo designerVo) {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, Designer_access_status "
-						+" FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
+					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_email());
 			rs = pstmt.executeQuery();
@@ -89,7 +92,7 @@ public class DesignerDAO {
 				resultVo.setDesigner_name(rs.getString(3));
 				resultVo.setDesigner_email(rs.getString(4));
 				resultVo.setDesigner_access_status(rs.getString(5));
-				
+
 			} else {
 				System.out.println("no data");
 			}
@@ -124,7 +127,7 @@ public class DesignerDAO {
 	 * != null) { conn.close(); conn = null; } } catch (Exception e) { throw new
 	 * RuntimeException(e.getMessage()); } } } // end loginCheck()
 	 */
-	
+
 	// 미용실별 디자이너 목록
 	// 2020.09.17 승연
 	public ArrayList<DesignerVo> selectByHairShop(DesignerVo dVo) {
@@ -134,8 +137,7 @@ public class DesignerDAO {
 			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
 					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
 					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" + " FROM DESIGNER"
-					+ " WHERE HS_NO=?"
-					+ " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
+					+ " WHERE HS_NO=?" + " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dVo.getHs_no());
 			rs = pstmt.executeQuery();
@@ -215,9 +217,9 @@ public class DesignerDAO {
 		}
 		return r;
 	}
-	
-	//2020.09.23 김승연
-	//디자이너 인증정보반영
+
+	// 2020.09.23 김승연
+	// 디자이너 인증정보반영
 	public int updateForAuth(String designer_email) {
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_ACCESS_STATUS = 0 WHERE DESIGNER_EMAIL = ?";

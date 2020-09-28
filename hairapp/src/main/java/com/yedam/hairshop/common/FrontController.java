@@ -135,9 +135,11 @@ public class FrontController extends HttpServlet {
 		//==================================================================================
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
-		list.put("/designer/designerInfoCtrl.do", new DesignerInfoCtrl());
+		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
+		
+		//list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		
 		
 		//린아
