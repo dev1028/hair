@@ -8,9 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MemDesigneRsvInfoDAO;
 import com.yedam.hairshop.dao.MembersReservationDAO;
+import com.yedam.hairshop.members.Controller;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

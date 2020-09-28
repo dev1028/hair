@@ -76,7 +76,7 @@
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input id="designer_phone" name="designer_phone" type="text"></td>
+				<td><input id="designer_phone" name="designer_phone" type="text" value="${designer.designer_phone }"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
@@ -92,15 +92,15 @@
 			</tr> -->
 			<tr>
 				<td>휴무일</td>
-				<td><input type="text" id="designer_dayoff" name="designer_dayoff" ></td>
+				<td><input type="text" id="designer_dayoff" name="designer_dayoff" value="${designer.designer_dayoff }"></td>
 			</tr>
 			<tr>
 				<td>근무시작시간</td>
-				<td><input id="work_start_time" name="work_start_time" type="text"></td>
+				<td><input id="work_start_time" name="work_start_time" type="text" value="${designer.work_start_time}"></td>
 			</tr>
 			<tr>
 				<td>근무종료시간</td>
-				<td><input id="work_end_time" name="work_end_time" type="text"></td>
+				<td><input id="work_end_time" name="work_end_time" type="text" value="${designer.work_end_time}"></td>
 			</tr>
 			<tr>
 				<td>입사날짜</td>

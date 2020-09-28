@@ -1,4 +1,4 @@
-package com.yedam.hairshop.common;
+package com.yedam.hairshop.members;
 
 import java.io.IOException;
 

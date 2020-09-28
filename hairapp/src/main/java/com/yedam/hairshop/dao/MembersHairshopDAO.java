@@ -33,9 +33,9 @@ public class MembersHairshopDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select h.hs_tel, h.hs_fulladdr, h.hs_starttime, h.hs_endtime, h.hs_dayoff," + 
 					" count(d.designer_access_status), h.hs_parking, h.hs_etc, h.hs_name" + 
-					" from hairshop h join designer d" + 
+					" from hairshop h left outer join designer d" + 
 					" on (h.hs_no=d.hs_no)" + 
-					" where d.designer_access_status = 1 and h.hs_no = ?" + 
+					" where h.hs_no = ?" + 
 					" group by h.hs_tel, h.hs_fulladdr, h.hs_starttime, h.hs_endtime," + 
 					" h.hs_dayoff, h.hs_parking, h.hs_etc, h.hs_name";
 			pstmt = conn.prepareStatement(sql);

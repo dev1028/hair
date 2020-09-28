@@ -102,18 +102,19 @@
 			<div class="col-md-auto">
 			<h5>디자이너</h5>
 				<form id="hairshopLoginFrm"
-					action="${pageContext.request.contextPath}/designer/designerInfoCtrl.do">
+					action="${pageContext.request.contextPath}/designer/designerLogin.do"
+					method="post">
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label> <input
 							type="text" class="form-control" id="exampleInputEmail1"
-							aria-describedby="emailHelp" name="hs_email"> <small
+							aria-describedby="emailHelp" name="email"> <small
 							id="emailHelp" class="form-text text-muted">We'll never
 							share your email with anyone else.</small>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">Password</label> <input
 							type="password" class="form-control" id="exampleInputPassword1"
-							name="hs_pw">
+							name="pw">
 					</div>
 					<div class="form-group form-check">
 						<input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -121,7 +122,6 @@
 					</div>
 					<div>
 						<button type="submit" class="btn btn-primary">로그인</button>
-	
 					</div>
 				</form>
 				<br> <a href="#">아이디/비밀번호 찾기</a>

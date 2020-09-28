@@ -6,9 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersHairshopVo;

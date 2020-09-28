@@ -8,49 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/card.css">
 <style>
-.cardContainer {
-	width: 70%;
-}
-
-.horizontal-card {
-	width: 100%;
-	position: relative;
-	display: flex;
-	border: 1px solid gray;
-	margin-bottom: 1rem;
-}
-
-.horizontal-card img {
-	width: 200px;
-	height: 150px;
-	border-bottom: 30px solid orange;
-}
-
-.horizontal-card .horizontal-card-body {
-	display: flex;
-	flex-direction: column;
-	margin-left: 1rem;
-}
-
-.horizontal-card .horizontal-card-footer {
-	position: absolute;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	height: 30px;
-	display: flex;
-	align-items: center;
-}
-
-.horizontal-card .horizontal-card-footer span {
-	width: 200px;
-	display: inline-block;
-}
-
-.horizontal-card .horizontal-card-footer a {
-	margin-left: 10px;
-}
 </style>
 <script>
 	function like_func(hs_no) {
@@ -85,7 +44,7 @@
 		<c:forEach items="${list}" var="item">
 			<form action="../members/hairshopSelectResult.do" method="post">
 				<div class="horizontal-card">
-					<img src="../images/hairshop/signin-image.jpg" width="200" height="130">
+					<img class="card_image" src="../images/hairshop/signin-image.jpg" width="200" height="130">
 					<div class="horizontal-card-body">
 						<h4 class="card-title"><a href="hairshopInfo.do?hsNo=${item.hs_no}">${item.hs_name }</a></h4>
 						<span>공지: ${item.hs_notice}</span>
@@ -100,15 +59,19 @@
 						<!-- <button>북마크</button> -->
 <!-- 						<button style="width:40pt;height:25pt;">예약</button> -->
 						<c:if test="${not empty login }">
-							<a href='javascript: like_func("${item.hs_no}")'>좋아요</a>
-<%-- 							<a href='javascript: like_func("${item.hs_no}")'>싫어요</a> --%>
+							<a href='javascript: like_func("${item.hs_no}")'>
+								<c:if test="${item.hs_book == 1 }">
+									<img src="../images/bookmark/heart.png" width="30" height="30">
+								</c:if>
+								<c:if test="${item.hs_book != 1 }">
+									<img src="../images/bookmark/empty_heart.png" width="30" height="30">
+								</c:if>
+							</a>
 						</c:if>
 						<button>예약</button>
-					</div>
-				</div>
-
-				
 						
+					</div>
+				</div>						
 				<input type="hidden" name="hsNo" value="${item.hs_no}">
 			</form>
 		</c:forEach>

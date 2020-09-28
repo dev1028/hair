@@ -27,6 +27,7 @@
 				헤어 상태 : ${detatil.mem_hair_status}<br>
 				결제 금액 : ${detatil.mdp_price}<br>
 			</div>
+			<br>
 			</c:forEach>
 		</div>
 	</form>

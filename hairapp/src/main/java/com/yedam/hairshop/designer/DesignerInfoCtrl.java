@@ -6,8 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.DesignerVo;
 
 public class DesignerInfoCtrl implements Controller{
@@ -15,13 +15,10 @@ public class DesignerInfoCtrl implements Controller{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		DesignerVo vo = new DesignerVo();
-		vo.setDesigner_no("25");
-		//session에서 조회하는걸로 수정해야됨.
+	
+		//session에서 조회하는걸로 수정해야됨.		
+		DesignerVo vo = (DesignerVo)request.getSession().getAttribute("login");
 		
-		//String id = request.getParameter("id");
-		//DesignerVo designer = new DesignerVo();
-		//designer.setDesigner_no("designer_no");
 		DesignerVo designer = DesignerDAO.getInstance().selectOne(vo);
 		request.setAttribute("designer", designer);
 		System.out.println("designer NO: " + designer.getDesigner_no());

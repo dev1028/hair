@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.EmpDAO;
 import com.yedam.hairshop.dao.HairshopDAO;
+import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.EmpVo;
 import com.yedam.hairshop.model.HairshopVo;
 
@@ -40,6 +40,7 @@ public class adminLoginCtrl implements Controller {
 			}
 		}
 		// 4.뷰페이지이동 포워드 리다이렉트 또는 뷰페이지 출력
+		System.out.println(page);
 		request.getRequestDispatcher(page).forward(request, response);
 	}
 

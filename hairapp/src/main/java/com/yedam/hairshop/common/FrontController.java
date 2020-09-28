@@ -38,6 +38,7 @@ import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
@@ -49,6 +50,7 @@ import com.yedam.hairshop.members.HairShopReviewCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
+import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
 import com.yedam.hairshop.members.MembersIdSearchCtrl;
@@ -128,13 +130,17 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/members/gpsHairshopSearch.do", new GpsHairshopSearchCtrl());
 		
+		list.put("/members/membersBookmarkHairshop.do", new MembersBookmarkHairshopCtrl());
 		
-		
+		list.put("/members/designerReview.do", new DesignerReviewCtrl());
+		//==================================================================================
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
-		list.put("/designer/designerInfoCtrl.do", new DesignerInfoCtrl());
+		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
+		
+		//list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		
 		
 		//린아

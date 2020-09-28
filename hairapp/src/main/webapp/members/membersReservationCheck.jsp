@@ -23,7 +23,6 @@
 </style>
 <script>
 function openDR(mdr_no){
-    
     window.name = "parentForm";
     window.open("membersDR.do?mdr_no=" + mdr_no,
             "chkForm", "width=1000, height=700, resizable = no, scrollbars = no");    
@@ -71,7 +70,8 @@ function openDR(mdr_no){
 				디자이너 : ${reservation.designer_name}<br>
 				방문 일자 : ${reservation.mdr_date}<br>
 				예약 번호 : ${reservation.mdr_no}<br>
-				<input type="button" value="예약상세확인" onclick="openDR()">
+				
+				<input type="button" value="예약상세확인" onclick="openDR(${reservation.mdr_no})">
 				<button>후기쓰기</button>
 			</div>
 			</c:forEach>
