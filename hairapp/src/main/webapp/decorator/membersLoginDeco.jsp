@@ -1,29 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>membersLogin.jsp</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
 <style>
-#mypage {
-	display: flex;
-	position:absolute;
-	top:100px;
-	left:0px;
-}
-
-#wrap{
-	top:250px;
-	left:800px;
-    position:absolute;
-    margin:0 auto;
-} 
-
-/* 로그인 css */
 @import 'https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400,700';
 
 /*--------------------
@@ -61,6 +47,7 @@ h2 {
 
 h3 {
 	color: #032942;
+	text-align: right;
 }
 
 /*--------------------
@@ -101,7 +88,7 @@ Icons
   background-repeat: no-repeat;
   background-position: center;
 }
-ㅗ
+
 .i-close {
   background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYxMi40NDUgNjEyLjQ0NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjEyLjQ0NSA2MTIuNDQ1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCI+CjxnPgoJPHBhdGggZD0iTTUyMi42NDIsODkuODA0QzQ2NC45LDMyLjA2MiwzODguMDExLDAsMzA2LjIyMywwUzE0Ny41NDUsMzIuMDYyLDg5LjgwNCw4OS44MDQgICBjLTExOS40MTYsMTE5LjQxNi0xMTkuNDE2LDMxMy40MjIsMCw0MzIuODM4YzU3Ljc0MSw1Ny43NDEsMTM0LjYzMSw4OS44MDQsMjE2LjQxOSw4OS44MDRzMTU4LjY3OC0zMi4wNjIsMjE2LjQxOS04OS44MDQgICBDNjQyLjA1OCw0MDMuMjI1LDY0Mi4wNTgsMjA5LjIyLDUyMi42NDIsODkuODA0eiBNNTAxLjc4Nyw1MDEuNzg3Yy01Mi4xMDEsNTIuMTAxLTEyMS43OTEsODAuOTcyLTE5NS41NjQsODAuOTcyICAgcy0xNDMuNDYzLTI4Ljg3MS0xOTUuNTY0LTgwLjk3MlMyOS42ODcsMzc5Ljk5NSwyOS42ODcsMzA2LjIyM3MyOC44NzEtMTQzLjQ2Myw4MC45NzItMTk1LjU2NHMxMjEuODY2LTgwLjk3MiwxOTUuNTY0LTgwLjk3MiAgIHMxNDMuNDYzLDI4Ljg3MSwxOTUuNTY0LDgwLjk3MnM4MC45NzIsMTIxLjg2Niw4MC45NzIsMTk1LjU2NFM1NTMuODg3LDQ0OS42ODYsNTAxLjc4Nyw1MDEuNzg3eiBNMzk5LjIxOCwyMzQuODk5bC03NC41MTUsNzQuNTE1ICAgbDc0LjUxNSw3NC41MTVjNS42NDEsNS42NDEsNS42NDEsMTUuMjE1LDAsMjAuODU1Yy0zLjE5MSwzLjE5MS02LjM4Myw0LjAwOC0xMC4zOTEsNC4wMDhjLTQuMDA4LDAtNy4xOTktMS42MzMtMTAuMzktNC4wMDggICBsLTc0LjU4OS03NC41MTVsLTc0LjU4OSw3NC41MTVjLTMuMTkxLDMuMTkxLTYuMzgzLDQuMDA4LTEwLjM5LDQuMDA4cy03LjE5OS0xLjYzMy0xMC4zOS00LjAwOCAgIGMtNS42NDEtNS42NDEtNS42NDEtMTUuMjE1LDAtMjAuODU1bDc0LjUxNS03NC41MTVsLTc0LjUxNS03NC41MTVjLTUuNjQxLTUuNjQxLTUuNjQxLTE1LjIxNSwwLTIwLjg1NSAgIGM1LjY0MS01LjY0MSwxNS4yMTUtNS42NDEsMjAuODU1LDBsNzQuNTE1LDc0LjUxNWw3NC41MTUtNzQuNTE1YzUuNjQxLTUuNjQxLDE1LjIxNS01LjY0MSwyMC44NTUsMCAgIEM0MDQuODU4LDIxOS42ODUsNDA0Ljg1OCwyMjguNDQyLDM5OS4yMTgsMjM0Ljg5OXoiIGZpbGw9IiNmNTVhNGUiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
   background-size: 20px 20px;
@@ -397,35 +384,6 @@ input[type=submit], p.field span.i {
 
 </style>
 <script>
-	function checkValue() {
-		if (!document.loginFrm.loginid.value) {
-			alert("아이디를 입력하세요.");
-			return false;
-		}
-
-		if (!document.loginFrm.loginpw.value) {
-			alert("비밀번호를 입력하세요.");
-			return false;
-		}
-	}
-	
-	function membersJoin() {
-		location.href = "membersJoin.do";
-	}
-	
-	function membersSearch() {
-		location.href = "membersSearch.do";
-	}
-	
-	function membersIdSearch() {
-		location.href = "membersIdSearch.do";
-	}
-	
-	function membersPwSearch() {
-		location.href = "membersPwSearch.do";
-	}
-	
-// 로그인 css script
 $(document).ready(function() {
     $("#do_login").click(function() { 
        closeLoginInfo();
@@ -479,18 +437,11 @@ function closeLoginInfo() {
 $(window).on('resize', function(){
       closeLoginInfo();
 });
-	
 </script>
 </head>
 <body>
-	<div id="wrap">
-	
-	<form method="post" name="loginFrm" id="loginFrm"
-		action="${pageContext.request.contextPath}/members/membersLoginS.do"
-		onsubmit="return checkValue()">
-	
-	<!-- 로그인 css -->
-	<div class='box'>
+
+<div class='box'>
   <div class='box-form'>
     <div class='box-login-tab'></div>
     <div class='box-login-title'>
@@ -506,7 +457,7 @@ $(window).on('resize', function(){
         </p>
       	  <p class='field'>
           <label for='pass'>PASSWORD</label>
-          <input type='password' id='loginpw' name='loginpw' title='Password' />
+          <input type='password' id='pass' name='pass' title='Password' />
           <span id='valida' class='i i-close'></span>
         </p>
 
@@ -522,35 +473,12 @@ $(window).on('resize', function(){
 	<p><button onclick="closeLoginInfo();" class='b b-info i i-left' title='Back to Sign In'></button><h3>Need Help?</h3>
 </p>
 	<div class='line-wh'></div>
-    <button onclick="membersIdSearch()" class='b-support' title='Contact Support'> ID(email)를 잊으셨나요?</button>
-    <button onclick="membersPwSearch()" class='b-support' title='Forgot Password?'> Password를 잊으셨나요?</button>
+    <button onclick="" class='b-support' title='Contact Support'> ID(email)을 잊으셨나요?</button>
+    <button onclick="" class='b-support' title='Forgot Password?'> Password를 잊으셨나요?</button>
     <div class='line-wh'></div>
-    <button onclick="membersJoin()" class='b-cta' title='Sign up now!'> MEMBERS JOIN!</button>
+    <button onclick="" class='b-cta' title='Sign up now!'> MEMBERS JOIN!</button>
   	</div>
 </div>
-	<!-- 로그인 css 끝 -->
-	
-	</form>
-	<!-- <div>
-			<label for="id">EMAIL:</label> <input type="email" id="loginid"
-				name="loginid">
-		</div>
-		<div>
-			<label for="pw">PW:</label> <input type="password" id="loginpw"
-				name="loginpw">
-		</div>
-		<button>로그인</button> -->
-		<!-- <input type="button" value="ID/PW찾기" onclick="membersSearch()" />
-		<br><br><br><br><br>
-	
-	아직도 회원이 아니신가요?<br>
-	<input type="button" value="회원가입" onclick="membersJoin()" /> -->
-	
-	
-	</div><!-- wrap 끝 -->
-	
-	<div id="mypage">
-	<%@include file="/decorator/membersLoginSIgn.jsp" %>
-	</div>
+
 </body>
 </html>

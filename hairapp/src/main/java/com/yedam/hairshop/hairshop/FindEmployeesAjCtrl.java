@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
-import com.yedam.hairshop.members.Controller;
 import com.yedam.hairshop.model.DesignerVo;
 
 import net.sf.json.JSONArray;
