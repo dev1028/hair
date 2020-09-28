@@ -33,15 +33,15 @@ public class MemDesigneRsvInfoDAO {
 		return null;
 	}
 
+	// 2020.09.26 김승연
+	// 상세정보에서 머리이름 알아오기
 	public List<Map<String, String>> rsvInfoHairName(String mdrNo) {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select mdri.mdr_no, mdri.mdri_detail_info, mdri.hhi_no, hhi.hhi_name"
-					+ " from mem_designer_rsv_info mdri join hairshop_hair_info hhi" 
-					+ " on(mdri.hhi_no = hhi.hhi_no)"
-					+ " where mdri.mdr_no = ?" 
-					+ " order by mdri.mdri_detail_info";
+					+ " from mem_designer_rsv_info mdri join hairshop_hair_info hhi" + " on(mdri.hhi_no = hhi.hhi_no)"
+					+ " where mdri.mdr_no = ?" + " order by mdri.mdri_detail_info";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mdrNo);
 			rs = pstmt.executeQuery();
@@ -60,4 +60,38 @@ public class MemDesigneRsvInfoDAO {
 		}
 		return list;
 	}
+
+	// 2020.09.28 김승연
+	// 예약번호로 머리상세정보 가져오기
+	public List<Map<String, String>> selectHairInfo(String mdrNo) {
+		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select mdri.mdr_no, mdri.mdri_detail_info, mdri.hhi_no, mdri.mdri_memo, h.hhi_name, h.hhi_price, h.hhi_time"
+					+ " from mem_designer_rsv_info mdri join hairshop_hair_info h" + " on(mdri.hhi_no = h.hhi_no)"
+					+ " where mdri.mdr_no = ?";
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mdrNo);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("mdr_no", rs.getString("mdr_no"));
+				map.put("mdri_detail_info", rs.getString("mdri_detail_info"));
+				map.put("hhi_no", rs.getString("hhi_no"));
+				map.put("mdri_memo", rs.getString("mdri_memo"));
+				map.put("hhi_name", rs.getString("hhi_name"));
+				map.put("hhi_price", rs.getString("hhi_price"));
+				map.put("hhi_time", rs.getString("hhi_time"));
+				list.add(map);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+
+	}
+
 }

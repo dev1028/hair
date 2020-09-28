@@ -199,7 +199,7 @@ $(function() {
 							<td>${emp.designer_name}</td>
 							<td>${emp.designer_phone}</td>
 							<td>${emp.hire_date}</td>
-							<td>${emkp.designer_dayoff}</td>
+							<td>${emp.designer_dayoff}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

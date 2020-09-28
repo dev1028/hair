@@ -60,12 +60,12 @@ public class DailyReservationListCtrl implements Controller {
 		for (DesignerVo des : emplist) {
 			JSONObject dseDayoff = new JSONObject();
 			String[] desArray;
+			String[] desDayonList = { "0", "1", "2", "3", "4", "5", "6" };
+			List<String> desList = new ArrayList<>(Arrays.asList(desDayonList));
 			if (des.getDesigner_dayoff() != null) {
 
 				String desDayoffListString = des.getDesigner_dayoff();
 				String[] desDayoffList = desDayoffListString.split(",");
-				String[] desDayonList = { "0", "1", "2", "3", "4", "5", "6" };
-				List<String> desList = new ArrayList<>(Arrays.asList(desDayonList));
 
 				for (int j = 0; j < desDayoffList.length; j++) {
 
@@ -78,10 +78,13 @@ public class DailyReservationListCtrl implements Controller {
 				}
 				desArray = desList.toArray(new String[desList.size()]);
 				dseDayoff.put("daysOfWeek", desArray);
+			} else {
+				desArray = desList.toArray(new String[desList.size()]);
+				dseDayoff.put("daysOfWeek", desArray);
 			}
 			System.out.println(des.getWork_start_time() + " : " +des.getWork_end_time());
-			dseDayoff.put("start", des.getWork_start_time());
-			dseDayoff.put("end", des.getWork_end_time());
+			dseDayoff.put("start", des.getWork_start_time()+":00");
+			dseDayoff.put("end", des.getWork_end_time()+":00");
 
 			JSONObject dseJson = new JSONObject();
 			dseJson.put("id", des.getDesigner_no());
