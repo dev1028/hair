@@ -7,13 +7,13 @@
 <head>
     <meta charset="utf-8">
     <title>좌표로 주소를 얻어내기</title>
-    <style>
-    .map_wrap {position:relative;width:100%;height:600px;}
-    .title {font-weight:bold;display:block;}
-    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
-    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-</style>
+	<style>
+	    .map_wrap {position:relative;width:100%;height:600px;}
+	    .title {font-weight:bold;display:block;}
+	    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+	    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+	    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+	</style>
 </head>
 <body>
 <c:if test="${empty login }">

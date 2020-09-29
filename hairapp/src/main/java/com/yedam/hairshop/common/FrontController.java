@@ -52,6 +52,7 @@ import com.yedam.hairshop.members.HairRankCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
 import com.yedam.hairshop.members.HairShopReviewCtrl;
+import com.yedam.hairshop.members.HairShopReviewInsertCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
@@ -129,7 +130,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/paymentMember.do", new PaymentMemberCtrl());			//회원결제
 		
-		list.put("/members/hairshopReview.do", new HairShopReviewCtrl());
+		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl());			//리뷰 이동용
+		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
 		
@@ -197,7 +199,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		list.put("/hairshop/sales.do", new salesCtrl());	
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
-		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+//		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
 		
 		
 		//승연

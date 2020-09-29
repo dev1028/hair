@@ -30,8 +30,8 @@ function openDR(mdr_no){
 
 function openWriteDR(mdr_no) {
 	window.name = "parentForm";
-    window.open("hairshopReview.do?mdr_no=" + mdr_no,
-            "chkForm", "width=1000, height=700, resizable = no, scrollbars = no");
+    window.open("../popup/hairshopReview.do?mdr_no=" + mdr_no,
+            "chkForm", "width=400, height=300, resizable = no, scrollbars = no");
 }
 
 </script>
