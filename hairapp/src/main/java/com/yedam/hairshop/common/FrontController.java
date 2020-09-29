@@ -18,8 +18,11 @@ import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
 import com.yedam.hairshop.admin.salesCtrl;
 import com.yedam.hairshop.admin.salesStatisticsCtrl;
 import com.yedam.hairshop.admin.salesStatisticsFCtrl;
+import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
+import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
+import com.yedam.hairshop.designer.DesignerMainCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.customerJoinCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
@@ -51,9 +54,11 @@ import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
+import com.yedam.hairshop.members.MembersDeleteCtrl;
+import com.yedam.hairshop.members.MembersDeleteFCtrl;
+import com.yedam.hairshop.members.MembersDeleteSCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
-import com.yedam.hairshop.members.MembersHsDesignerInfoCtrl;
 import com.yedam.hairshop.members.MembersHsDesignerIntroCtrl;
 import com.yedam.hairshop.members.MembersIdSearchCtrl;
 import com.yedam.hairshop.members.MembersIdSearchSCtrl;
@@ -170,9 +175,12 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
 		
+		list.put("/members/membersDelete.do", new MembersDeleteCtrl());			// 회원 탈퇴로 이동하는 컨트롤러
+		list.put("/members/membersDeleteS.do", new MembersDeleteSCtrl());		// 회원 탈퇴 처리하는 컨트롤러
+		list.put("/members/membersDeleteF.do", new MembersDeleteFCtrl());
+		
 		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl());	// 헤어샵소개로 이동하는 컨트롤러
 		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
-		list.put("/members/hsDesignerInfo.do", new MembersHsDesignerInfoCtrl());	// 헤어샵안의 디자이너 소개 이동하는 컨트롤러
 		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		
 		
@@ -210,6 +218,11 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/weeklyReservationListAj.do", new DailyReservationListAjCtrl());
 		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
 		
+		list.put("/designer/designerMain.do", new DesignerMainCtrl());
+		list.put("/designer/desDailyReservationList.do", new DesDailyReservationListCtrl());
+		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl());
+		list.put("/designer/desWeeklyReservationList.do", new DesDailyReservationListCtrl());
+		list.put("/ajax/desWeeklyReservationListAj.do", new DesDailyReservationListAjCtrl());
 	}
 
 

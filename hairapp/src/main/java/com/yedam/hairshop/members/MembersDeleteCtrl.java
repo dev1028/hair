@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class MembersHsDesignerInfoCtrl implements Controller {
+public class MembersDeleteCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("hsDesignerIntro.do").forward(request, response);
-
+		request.getRequestDispatcher("/members/membersDelete.jsp").forward(request, response);
 	}
 
 }
