@@ -229,13 +229,13 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select  m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status, m.mem_phone, m.mem_sex,"
-					+" mdr.mdr_no, mdr.mdr_date, mdr.designer_no, d.designer_name, mdr.mdr_status, mdr.mdr_request"
-					+" from members m join members_designer_rsv mdr"
-					+" on(mdr.mem_no = m.mem_no)"
-					+" join designer d"
-					+" on(mdr.designer_no = d.designer_no)"
-					+" where mdr.mdr_no = ?";
+			String sql = "SELECT  m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status, m.mem_phone, m.mem_sex,"
+					+" mdr.mdr_no, mdr.mdr_date, mdr.designer_no, d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no"
+					+" FROM members m join members_designer_rsv mdr"
+					+" ON(mdr.mem_no = m.mem_no)"
+					+" JOIN designer d"
+					+" ON(mdr.designer_no = d.designer_no)"
+					+" WHERE mdr.mdr_no = ?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mdrNo); // ?의 첫번째 자리에 올 값 지정
@@ -254,6 +254,7 @@ public class MembersReservationDAO {
 				resultVo.setDesigner_name(rs.getString("designer_name"));
 				resultVo.setMdr_status(rs.getString("mdr_status"));
 				resultVo.setMdr_request(rs.getString("mdr_request"));
+				resultVo.setHs_no(rs.getString("hs_no"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

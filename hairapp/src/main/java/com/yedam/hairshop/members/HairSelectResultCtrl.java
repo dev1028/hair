@@ -24,9 +24,15 @@ public class HairSelectResultCtrl implements Controller{
 		HairshopHairInfoVo hairInfoVo = new HairshopHairInfoVo();
 		hairInfoVo.setHhi_no(hhiNo);
 		HairshopHairInfoVo selHairInfoVo = HairshopHairInfoDAO.getInstance().selectHairInfo(hairInfoVo);
-		request.getSession().setAttribute("selHairInfoVo", selHairInfoVo);
-		
-		request.getRequestDispatcher("designerSelect.do").forward(request, response);
+		if(selHairInfoVo == null)
+		{
+			System.out.println("selHairInfoVo is null");
+		}
+		else
+		{
+			request.getSession().setAttribute("selHairInfoVo", selHairInfoVo);
+			request.getRequestDispatcher("designerSelect.do").forward(request, response);
+		}
 		
 		/*
 		String hsNo = request.getParameter("hsNo");		//헤어샵번호

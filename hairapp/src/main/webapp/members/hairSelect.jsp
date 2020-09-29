@@ -9,74 +9,37 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<style>
-.horizontal-card {
-	position: relative;
-	display: flex;
-	border: 1px solid gray;
-	margin-bottom: 1rem;
-}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="../decorator/membersDesigner.css">
 
-.horizontal-card img {
-	width: 200px;
-	height: 130px;
-	border-bottom: 30px solid orange;
-}
-
-.horizontal-card .horizontal-card-body {
-	display: flex;
-	flex-direction: column;
-	margin-left: 1rem;
-}
-
-.horizontal-card .horizontal-card-footer {
-	position: absolute;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	height: 30px;
-	display: flex;
-	align-items: center;
-}
-
-.horizontal-card .horizontal-card-footer span {
-	width: 200px;
-	display: inline-block;
-}
-
-.horizontal-card .horizontal-card-footer a {
-	margin-left: 10px;
-}
-</style>
 </head>
 <body>
-	<script>
-		
-	</script>
-	<c:forEach items="${list}" var="hairInfo" >
-		<form action="../members/hairSelectResult.do" method="post">
-			<div class="horizontal-card">
-				<img src="http://via.placeholder.com/200x100" />
-				<div class="horizontal-card-body">
-					<span class="card-text">이름: ${hairInfo.hhi_name} </span>
-					<span class="card-text">가격: ${hairInfo.hhi_price} </span>
-					<span class="card-text">시술시간: ${hairInfo.hhi_time}분 </span>
-					<h4 class="card-title"></h4>
-					<span class="card-text"></span>
-				</div>
-				<div class="horizontal-card-footer">
-					<span>Image Title</span> 
-					<a class="card-text status">#View</a>
-					<a class="card-text status">#Save</a>
-					<button>예약</button>
-				</div>
-				
-				<div>
-					<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
-				</div>
-			</div>
-		</form>
-	</c:forEach>
-	
+<div class="container">
+    <h3 class="h3">헤어 정보</h3>
+    <div class="row">
+    	<c:forEach items="${list}" var="hairInfo" >
+    		<form class="col-md-3 col-sm-6" action="../members/hairSelectResult.do" method="post">
+		            <div class="product-grid4">
+		                <div class="product-image4">
+	                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+		                </div>
+		                <div class="product-content">
+		                    <h3 class="title">${hairInfo.hhi_name}</h3>
+		                    <h3 class="title">${hairInfo.hhi_time}시간</h3>
+		                    <div class="price">${hairInfo.hhi_price}원</div>
+		                    <!-- <a class="add-to-cart" href="">예약하기</a>
+		                     -->
+		                     <button class="add-to-cart">예약하기</button>
+		                </div>
+		            </div>
+		            <input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
+	        </form>
+        </c:forEach>
+    </div>
+</div>
+<hr>
 </body>
 </html>
