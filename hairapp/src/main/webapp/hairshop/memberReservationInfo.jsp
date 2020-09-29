@@ -5,25 +5,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예약상세정보</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+	$(function(){
+		$("#btnstatus").on("click", function(){
+			var mdrStatus = $("#btnstatus").attr("data-status");
+			var mdrNo = $("#mdr_noParent").children().attr("id");
+			$.ajax({
+				url:"${pageContext.request.contextPath}/ajax/changeReservationStatus.do", 
+				data : {mdr_status : mdrStatus, mdr_no : mdrNo},
+				dataType : "json",
+				method : "post",
+				success : function(data) {
+					if(data == 0){
+						alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+					} else {
+						location.reload();
+					}
+				}
+			});// end of ajax 
+		
+		})
+		
+	});
 
+</script>
 </head>
 <body>
 
 	<div class="accordion" id="accordionExample">
 		<div class="card">
 			<div class="card-header" id="headingOne">
-				<h2 class="mb-0">
-					<button class="btn btn-link btn-block text-left" type="button"
-						data-toggle="collapse" data-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">기본정보</button>
-				</h2>
+				<div class="row">
+					<div class="col-9">
+						<h2 class="mb-0">
+							<button class="btn btn-link btn-block text-left" type="button"
+								data-toggle="collapse" data-target="#collapseOne"
+								aria-expanded="true" aria-controls="collapseOne">기본정보</button>
+						</h2>
+					</div>
+					<div class="col-3">
+						<c:if test="${mdrResult.mdr_status eq 'i2'}">
+							<button class="btn btn-success btn-block" id="btnstatus" data-status="i3"
+								type="button">시술시작</button>
+						</c:if>
+						<c:if test="${mdrResult.mdr_status eq 'i3'}">
+							<button class="btn btn-info btn-block" type="button" id="btnstatus" data-status="i4">시술완료</button>
+						</c:if>
+					</div>
+				</div>
 			</div>
 
 			<div id="collapseOne" class="collapse show"
@@ -31,17 +67,23 @@
 				<div class="card-body">
 					<hr>
 					<div class="row">
-						<div class="col-4">
-							<span>예약상태정보</span>
+						<div id = "mdr_noParent" class="col-4">
+							<span id="${mdrResult.mdr_no}">예약번호</span>
 						</div>
-						<div class="col-8">${mdrResult.mdr_status}</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-4">
-							<span>예약번호</span>
+						<div class="col-8">${mdrResult.mdr_no}&nbsp;
+							<c:if test="${mdrResult.mdr_status eq 'i1'}">
+								<span class="badge badge-pill badge-danger">예약취소</span>
+							</c:if>
+							<c:if test="${mdrResult.mdr_status eq 'i2'}">
+								<span class="badge badge-pill badge-success">예약중</span>
+							</c:if>
+							<c:if test="${mdrResult.mdr_status eq 'i3'}">
+								<span class="badge badge-pill badge-info">시술중</span>
+							</c:if>
+							<c:if test="${mdrResult.mdr_status eq 'i4'}">
+								<span class="badge badge-pill badge-secondary">시술완료</span>
+							</c:if>
 						</div>
-						<div class="col-8">${mdrResult.mdr_no}</div>
 					</div>
 					<hr>
 					<div class="row">
@@ -87,7 +129,7 @@
 					</div>
 					<hr>
 				</div>
-			</div>	
+			</div>
 		</div>
 		<div class="card">
 			<div class="card-header" id="headingTwo">

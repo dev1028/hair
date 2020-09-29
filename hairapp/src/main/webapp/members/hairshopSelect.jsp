@@ -13,7 +13,6 @@
 </style>
 <script>
 	function like_func(hs_no) {
-		alert(hs_no)
 // 		var frm_read = $('#frm_read');
 // 		var boardno = $('#boardno', frm_read).val();
 // 		//var mno = $('#mno', frm_read).val();
@@ -25,11 +24,22 @@
 			dataType : "json",
 			data : 'hs_no=' + hs_no,
 			success : function(data) {
+				findClass = ".img-" + hs_no;
+				if(data.type == "add"){
+					$(findClass).attr("src", "../images/bookmark/heart.png");
+				}else{
+					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
+				}
+				
+				
+				
+				//alert($(findClass).val());
 				
 			},
 			error : function(request, status, error) {
-				alert("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:" + error);
+				alert("에러 발생!!")
+// 				alert("code:" + request.status + "\n" + "message:"
+// 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
 	}
@@ -61,10 +71,10 @@
 						<c:if test="${not empty login }">
 							<a href='javascript: like_func("${item.hs_no}")'>
 								<c:if test="${item.hs_book == 1 }">
-									<img src="../images/bookmark/heart.png" width="30" height="30">
+									<img class="img-${item.hs_no}" src="../images/bookmark/heart.png" width="30" height="30">
 								</c:if>
 								<c:if test="${item.hs_book != 1 }">
-									<img src="../images/bookmark/empty_heart.png" width="30" height="30">
+									<img class="img-${item.hs_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
 								</c:if>
 							</a>
 						</c:if>
