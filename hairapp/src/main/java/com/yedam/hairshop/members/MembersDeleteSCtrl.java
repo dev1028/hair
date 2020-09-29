@@ -38,9 +38,17 @@ public class MembersDeleteSCtrl implements Controller {
 		dao.membersDelete(members);
 
 		request.setAttribute("delete", members);
-
-
-		request.getRequestDispatcher("membersDeleteF.do").forward(request, response);
+		
+		// 세션에서 제거(로그아웃)
+		request.getSession().invalidate();
+		
+		// 탈퇴 시 alert 뜨는거
+		response.getWriter().append("<script>")
+		.append("alert('회원탈퇴가 완료되었습니다.');")
+		.append("</script>");
+		
+		// 이동
+		request.getRequestDispatcher("membersMain.do").forward(request, response);
 	}
 
 }
