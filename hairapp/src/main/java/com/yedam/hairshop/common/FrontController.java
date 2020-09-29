@@ -1,4 +1,4 @@
-	package com.yedam.hairshop.common;
+package com.yedam.hairshop.common;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,8 +18,11 @@ import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
 import com.yedam.hairshop.admin.salesCtrl;
 import com.yedam.hairshop.admin.salesStatisticsCtrl;
 import com.yedam.hairshop.admin.salesStatisticsFCtrl;
+import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
+import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
+import com.yedam.hairshop.designer.DesignerMainCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.customerJoinCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
@@ -52,9 +55,11 @@ import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
+import com.yedam.hairshop.members.MembersDeleteCtrl;
+import com.yedam.hairshop.members.MembersDeleteFCtrl;
+import com.yedam.hairshop.members.MembersDeleteSCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
-import com.yedam.hairshop.members.MembersHsDesignerInfoCtrl;
 import com.yedam.hairshop.members.MembersHsDesignerIntroCtrl;
 import com.yedam.hairshop.members.MembersIdSearchCtrl;
 import com.yedam.hairshop.members.MembersIdSearchSCtrl;
@@ -135,7 +140,6 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/members/membersBookmarkHairshop.do", new MembersBookmarkHairshopCtrl());
 		
-		list.put("/members/designerReview.do", new DesignerReviewCtrl());
 		//==================================================================================
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
@@ -175,9 +179,12 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
 		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
 		
+		list.put("/members/membersDelete.do", new MembersDeleteCtrl());			// 회원 탈퇴로 이동하는 컨트롤러
+		list.put("/members/membersDeleteS.do", new MembersDeleteSCtrl());		// 회원 탈퇴 처리하는 컨트롤러
+		list.put("/members/membersDeleteF.do", new MembersDeleteFCtrl());
+		
 		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl());	// 헤어샵소개로 이동하는 컨트롤러
 		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
-		list.put("/members/hsDesignerInfo.do", new MembersHsDesignerInfoCtrl());	// 헤어샵안의 디자이너 소개 이동하는 컨트롤러
 		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		
 		
@@ -193,23 +200,31 @@ public class FrontController extends HttpServlet {
 		
 		
 		//승연
-		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); //헤어샵메인페이지
-		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl());
-		list.put("/hairshop/employeeList.do", new EmployeeListCtrl());
-		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl());
-		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl());
-		list.put("/hairshop/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl());
-		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl());
-		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl());
-		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl());
-		list.put("/hairshop/employeeAuth.do", new EmployeeAuthFCtrl());
-		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl());
-		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl());
-		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl());
-		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl());
+		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); //헤어샵 로그인 후 메인페이지
+		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl()); //헤어샵,디자이너 로그인페이지 -> 최종메인페이지 필요
+		list.put("/hairshop/employeeList.do", new EmployeeListCtrl()); //디자이너 직원목록
+		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl()); //디자이너 간편등록
+		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl()); //디자이너 퇴사명단
+		list.put("/hairshop/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl()); //로그인페이지 이동처리
+		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl()); // 직원정보수정
+		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl()); // 직원목록 들고오기
+		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl()); // 직원퇴사처리
+		list.put("/hairshop/employeeAuth.do", new EmployeeAuthFCtrl()); // 직원 인증 처리
+		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl()); //회원가입
+		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl()); //회원가입
+		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); //회원가입
+		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl()); //미용실 이메일 사용여부
 		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
-		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
-//		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
+		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl());
+		list.put("/hairshop/weeklyReservationList.do", new DailyReservationListCtrl());
+		list.put("/ajax/weeklyReservationListAj.do", new DailyReservationListAjCtrl());
+		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
+		
+		list.put("/designer/designerMain.do", new DesignerMainCtrl());
+		list.put("/designer/desDailyReservationList.do", new DesDailyReservationListCtrl());
+		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl());
+		list.put("/designer/desWeeklyReservationList.do", new DesDailyReservationListCtrl());
+		list.put("/ajax/desWeeklyReservationListAj.do", new DesDailyReservationListAjCtrl());
 	}
 
 

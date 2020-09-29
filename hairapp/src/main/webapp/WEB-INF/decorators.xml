@@ -4,6 +4,9 @@
 	<decorator name="hairshop" page="hairshop_layout.jsp">
 		<pattern>/hairshop/*</pattern>
 	</decorator>
+	<decorator name="designer" page="designer_layout.jsp">
+		<pattern>/designer/*</pattern>
+	</decorator>
 		<decorator name="admin" page="ges/dist/index.jsp">
 		<pattern>/admin/*</pattern>
 	</decorator>

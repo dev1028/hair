@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,58 +28,66 @@
 
 			<div id="collapseOne" class="collapse show"
 				aria-labelledby="headingOne" data-parent="#accordionExample">
-				<div class="card-body"></div>
-
-
-				<div class="row">
-					<div class="col-3">
-						<span>예약상태정보</span>
+				<div class="card-body">
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>예약상태정보</span>
+						</div>
+						<div class="col-8">${mdrResult.mdr_status}</div>
 					</div>
-					<div class="col-9">${mdrResult.mdr_status}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>예약번호</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>예약번호</span>
+						</div>
+						<div class="col-8">${mdrResult.mdr_no}</div>
 					</div>
-					<div class="col-9">${mdrResult.mdr_no}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>예약시간</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>예약시간</span>
+						</div>
+						<div class="col-8">${mdrResult.mdr_date}</div>
 					</div>
-					<div class="col-9">${mdrResult.mdr_date}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>이름</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>이름</span>
+						</div>
+						<div class="col-8">${mdrResult.mem_name}</div>
 					</div>
-					<div class="col-9">${mdrResult.mem_name}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>전화번호</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>전화번호</span>
+						</div>
+						<div class="col-8">${mdrResult.mem_phone}</div>
 					</div>
-					<div class="col-9">${mdrResult.mem_phone}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>머리기장</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>머리기장</span>
+						</div>
+						<div class="col-8">${mdrResult.mem_hair_length}</div>
 					</div>
-					<div class="col-9">${mdrResult.mem_hair_length}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>머릿결상태</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>머릿결상태</span>
+						</div>
+						<div class="col-8">${mdrResult.mem_hair_status}</div>
 					</div>
-					<div class="col-9">${mdrResult.mem_hair_status}</div>
-				</div>
-				<div class="row">
-					<div class="col-3">
-						<span>헤어샵요청사항</span>
+					<hr>
+					<div class="row">
+						<div class="col-4">
+							<span>헤어샵요청사항</span>
+						</div>
+						<div class="col-8">${mdrResult.mdr_request}</div>
 					</div>
-					<div class="col-9">${mdrResult.mdr_request}</div>
+					<hr>
 				</div>
-			</div>
+			</div>	
 		</div>
 		<div class="card">
 			<div class="card-header" id="headingTwo">
@@ -91,8 +100,16 @@
 			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 				data-parent="#accordionExample">
 				<div class="card-body">
-					<span>상세정보번호</span> <span>시술명</span> <span>시술시간</span> <span>가격정보</span>
-					<span>메모</span>
+					<c:forEach items="${detailInfo}" var="info">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">${info.hhi_name}</h5>
+								<h6 class="card-subtitle mb-2 text-muted">${info.hhi_time}시간</h6>
+								<p class="card-text">${info.hhi_price}원</p>
+								<a href="#" class="card-link">정보기록</a>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -204,13 +204,13 @@ a.article:hover {
             <ul class="list-unstyled components">
                 <li class="active">
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersLogin.do">헤어 예약</a>
+                    <a href="${pageContext.request.contextPath}/members/hairSelect.do">헤어 예약</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/hairshopInfo.do">헤어샵 정보와 소개</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/hsDesignerInfo.do">디자이너 소개</a>
+                    <a href="${pageContext.request.contextPath}/members/hsDesignerIntro.do">디자이너 소개</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">헤어 모아보기</a>

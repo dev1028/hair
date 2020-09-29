@@ -54,8 +54,13 @@
     
     // 취소 버튼 클릭시 첫화면으로 이동
     function goFirstForm() {
-        location.href="memberMain.jsp";
+        location.href="membersMain.do";
     }    
+    
+    function membersDelete() {
+		location.href = "membersDelete.do";
+	}
+    
     
 	// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다.
 	// (＂팝업 API 호출 소스"도 동일하게 적용시켜야 합니다.)
@@ -83,7 +88,6 @@
 		document.form.zipNo.value = zipNo;
 	}
 	
-	$("#datepicker").datepicker("getDate");
 </script>
 </head>
 <body>
@@ -188,8 +192,9 @@
 				</tr>
 			</table>
 			<br> <input type="submit" value="수정"/>
-		</form>
 			<input type="button" value="취소" onclick="goFirstForm()">
+		</form>
+		<input type="button" value="회원탈퇴" style="float:right;" onclick="membersDelete()">
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<div id="mypage">

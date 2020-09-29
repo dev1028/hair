@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일간예약</title>
+<title>일간예약현황</title>
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {	
@@ -12,45 +12,34 @@ document.addEventListener('DOMContentLoaded', function() {
 	var calendarEl = document.getElementById('calendar');	
 	var calendar = new FullCalendar.Calendar(calendarEl, {	
 		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',	
-		initialView : 'resourceTimeGridDay',
+		initialView : 'timeGridDay',
 		aspectRatio: 2,
 	 	businessHours: {
-			  // days of week. an array of zero-based day of week integers (0=Sunday)
-			  daysOfWeek: JSON.parse('${dayonList}'),//, // Monday - Thursday
-			//  expandRows : true,
-			  startTime: '${start}', // a start time (10am in this example)
-			endTime: '${end}' // an end time (6pm in this example)
-			}, 
-			slotMinTime :  '${start}',
+			  daysOfWeek: '${desDayoff.daysOfWeek}', //이것도 디자이너꺼
+			  startTime: '${desDayoff.startTime}', //이건 자기꺼
+			endTime: '${desDayoff.endTime}' }, 
+			slotMinTime :  '${start}', // 이건 미용실실꺼
 			slotMaxTime :  '${end}',
-			scrollTime :  '${start}', // undo default 6am scrollTime
+			scrollTime :  '${start}', 
 			locale : 'ko',
-		 timeFormat: 'H:mm',
-		   resources: JSON.parse('${emplistjson}'),
-		 /*   eventSources : { url : '${pageContext.request.contextPath}/ajax/dailyReservationListAj.do',
-			    	extraParams: function() { // a function that returns an object
-			    	      return {
-			    	    	startDate : getFormatDate(new Date())
-			    	        };
-			    	        }}, */
-			    	        
-			    	        events: function(info, successCallback, failureCallback) {
-			    	           
-			    	          
-			    	        	$.ajax({
-			    	        	    url: "${pageContext.request.contextPath}/ajax/dailyReservationListAj.do",
-			    	        	    type: "POST",
-			    	        	    data: {
-			    	        	    	startDate : info.startStr,
-			    	        	    	endDate : info.endStr
-			    	        	    },
-			    	        	    dataType: "json",
-			    	        	    success: function (res) {
-			    	        	    	successCallback(res);
-			    	        	    }
-			    	        	  });
-			    	        	
-			    	        }, 	        
+
+   	        events: function(info, successCallback, failureCallback) {
+   	           
+   	          
+   	        	$.ajax({
+   	        	    url: "${pageContext.request.contextPath}/ajax/desDailyReservationListAj.do",
+   	        	    type: "POST",
+   	        	    data: {
+   	        	    	startDate : info.startStr,
+   	        	    	endDate : info.endStr
+   	        	    },
+   	        	    dataType: "json",
+   	        	    success: function (res) {
+   	        	    	successCallback(res);
+   	        	    }
+   	        	  });
+   	        	
+   	        }, 	        
 			    	   
 			   
 			    eventClick: function(info) {

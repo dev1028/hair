@@ -51,29 +51,43 @@ public class DesignerDAO {
 
 	// 단건 조회
 	public DesignerVo selectOne(DesignerVo designerVo) {
-		DesignerVo resultVo = null;
-
+		DesignerVo designer = new DesignerVo();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT * FROM DESIGNER WHERE DESIGNER_NO = ?";
+			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
+					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
+					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" 
+					+ " FROM DESIGNER"
+					+ " WHERE DESIGNER_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_no());
 			rs = pstmt.executeQuery();
-			if (rs.next()) { // 처음 커서 위치는 BOF
-				resultVo = new DesignerVo();
-				resultVo.setDesigner_no(rs.getString(1));
-				resultVo.setDesigner_name(rs.getString(2));
-				resultVo.setDesigner_email(rs.getString(4));
-			} else {
-				System.out.println("no data");
+
+			if (rs.next()) {
+				
+				designer.setDesigner_no(rs.getString("DESIGNER_NO"));
+				designer.setDesigner_name(rs.getString("DESIGNER_NAME"));
+				designer.setDesigner_phone(rs.getString("DESIGNER_PHONE"));
+				designer.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
+				designer.setDesigner_pw(rs.getString("DESIGNER_PW"));
+				designer.setDesigner_dayoff(rs.getString("DESIGNER_DAYOFF"));
+				designer.setWork_start_time(rs.getString("WORK_START_TIME"));
+				designer.setWork_end_time(rs.getString("WORK_END_TIME"));
+				designer.setDesigner_access_status(rs.getString("DESIGNER_ACCESS_STATUS"));
+				designer.setPosition(rs.getString("POSITION"));
+				designer.setSalary(rs.getString("SALARY"));
+				designer.setIncentive(rs.getString("INCENTIVE"));
+				designer.setHire_date(rs.getString("HIRE_DATE"));
+				designer.setHs_no(rs.getString("HS_NO"));
+				designer.setDesigner_profile(rs.getString("DESIGNER_PROFILE"));
+				designer.setFile_name(rs.getString("FILE_NAME"));
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return resultVo;
-
+		return designer;
 	}
 
 	public DesignerVo selectOneEmail(DesignerVo designerVo) {

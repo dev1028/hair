@@ -52,11 +52,11 @@
 					<div>
 						<ul class="nav flex-column">
 							<li class="nav-item"><a class="nav-link active" href="#">
-									<span data-feather="home"></span> Dashboard <span
+									<span data-feather="home"></span> 디자이너 <span
 									class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="file"></span> Orders
+									data-feather="file"></span> 다음 예약정보
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#"> <span
 									data-feather="shopping-cart"></span> Products
@@ -91,18 +91,18 @@
 							<li class="nav-item active"><a class="nav-link" href="#">제품관리
 									<span class="sr-only">(current)</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">회원관리</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">?</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
+								href="${pageContext.request.contextPath}/hairshop/employeeList.do">내정보 수정</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출관리</a></li>							
+								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의 매출정보</a></li>							
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 예약관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/dailyReservationList.do">일간예약</a> <a
-										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do">주간예약</a>
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/designer/desDailyReservationList.do">일간예약</a> <a
+										class="dropdown-item" href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do">주간예약</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#">Something else here</a>
 								</div></li>
