@@ -43,7 +43,7 @@
     
     // 취소 버튼 클릭시 첫화면으로 이동
     function goFirstForm() {
-        location.href="memberMain.jsp";
+        location.href="membersMain.do";
     }    
     
 
@@ -73,8 +73,6 @@
 		document.form.zipNo.value = zipNo;
 	}
 
-	$( "#datepicker" ).datepicker( "getDate" );
-	
 </script>
 </head>
 <body>
@@ -183,8 +181,8 @@
 		</form>
 		<form method="post" action="membersInfoModify.do" name="formmodi" id="formmodi">
 			<br> <input type="submit" value="수정" />
-		</form>
 			<input type="button" value="취소" onclick="goFirstForm()">
+		</form>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </body>

@@ -17,8 +17,6 @@ public class MembersHairShopIntroCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MembersHairShopIntroCtrl");
-
-		
 		
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
 		List<MembersHairshopVo> intro = MembersHairshopDAO.getInstance().hairshopIntroAll(vo);
