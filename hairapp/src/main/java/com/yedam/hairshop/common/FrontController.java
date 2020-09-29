@@ -199,7 +199,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		list.put("/hairshop/sales.do", new salesCtrl());	
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
-		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+//		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
 		
 		
 		//승연
