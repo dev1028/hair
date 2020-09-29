@@ -282,4 +282,11 @@ public class HairshopDAO {
 		}
 		return r;
 	}
+	
+	//
+	public List<HairshopVo> selectRankHairshop(){
+		List<HairshopVo> list = new ArrayList<HairshopVo>();
+		
+		return list;
+	}
 }
