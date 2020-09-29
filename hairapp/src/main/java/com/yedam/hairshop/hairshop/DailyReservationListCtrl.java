@@ -26,7 +26,7 @@ public class DailyReservationListCtrl implements Controller {
 		String hs_no = (String) request.getSession().getAttribute("hsno");
 		// 미용실정보
 		HairshopVo hVo = new HairshopVo();
-		System.out.println(hs_no);
+		//System.out.println(hs_no);
 		hVo.setHs_no(hs_no);
 		hVo = HairshopDAO.getInstance().selectOne(hVo);
 		// 미용실 휴무일 가져오기
@@ -82,9 +82,9 @@ public class DailyReservationListCtrl implements Controller {
 				desArray = desList.toArray(new String[desList.size()]);
 				dseDayoff.put("daysOfWeek", desArray);
 			}
-			System.out.println(des.getWork_start_time() + " : " +des.getWork_end_time());
-			dseDayoff.put("start", des.getWork_start_time()+":00");
-			dseDayoff.put("end", des.getWork_end_time()+":00");
+			//System.out.println(des.getWork_start_time() + " : " +des.getWork_end_time());
+			dseDayoff.put("startTime", des.getWork_start_time()+":00");
+			dseDayoff.put("endTime", des.getWork_end_time()+":00");
 
 			JSONObject dseJson = new JSONObject();
 			dseJson.put("id", des.getDesigner_no());
@@ -102,7 +102,15 @@ public class DailyReservationListCtrl implements Controller {
 		request.setAttribute("hairshopjson", JSONObject.fromObject(hVo));
 		request.setAttribute("emplistjson", JSONArray.fromObject(st));
 		request.setAttribute("emplist", emplist);
-		request.getRequestDispatcher("/hairshop/dailyReservation.jsp").forward(request, response);
+		
+		String uri = request.getRequestURI();					
+		String contextPath = request.getContextPath();			
+		String path = uri.substring(contextPath.length());
+		if(path.equals("/hairshop/dailyReservationList.do")) {
+			request.getRequestDispatcher("/hairshop/dailyReservation.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/hairshop/weeklyReservation.jsp").forward(request, response);
+		}
 	}
 
 }

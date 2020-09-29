@@ -46,7 +46,8 @@ public class DesignerLoginCtrl implements Controller {
 				// 로그인 후 인증확인
 				// .do로 보낼땐 sendRedirect , forward로 보낼때 requestDispatcher
 				if (resultVo.getDesigner_access_status().equals("1")) {
-					page = request.getContextPath()+"/hairshop/hairshopMain.do";
+					request.getSession().setAttribute("designerNo", resultVo.getDesigner_no());
+					page = request.getContextPath()+"/designer/designerMain.do";
 					response.sendRedirect(page);
 					
 				}else if (resultVo.getDesigner_access_status().equals("0")) {

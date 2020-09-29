@@ -7,6 +7,29 @@
 <head>
 <meta charset="UTF-8">
 <title>헤어샵 소개</title>
+<style>
+/* 메뉴바 */
+#menubar2{
+	top:91%;
+	right:0px;
+	position:absolute;
+	width:80%;
+	height:50px;
+	background-color: #d8ddee;
+}
+#shopdata2 {
+	position:absolute;
+	left:2%;
+	top:30%;
+}
+
+/* 바디 div */
+#shopbody2 {
+	position:absolute;
+	left:21%;
+	top:100%;
+}
+</style>
 <link rel="stylesheet" href="../css/membersHairshop.css">
 </head>
 
@@ -76,7 +99,7 @@
 	</div>
 </div>
 
-<!-- 테이블 -->
+<!-- 바디 -->
 <div id="shopbody">
 
 <form method="post" action="hairshopIntro.do" name="form" id="form">
@@ -122,6 +145,36 @@
 		</form>
 
 </div>
+
+<!-- 바디안에 메뉴바 -->
+<div id="menubar2">
+	<div id="shopdata2">
+		헤어샵 위치
+	</div>
+</div>
+
+
+<!-- 이안에 지도하면됨 -->
+<div id="shopbody2">
+
+ㄴㅇㄹㄴㄹㅇ
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
 
 
 <!-- 왼쪽메뉴 -->
