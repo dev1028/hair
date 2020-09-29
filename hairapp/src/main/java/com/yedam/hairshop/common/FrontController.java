@@ -42,6 +42,8 @@ import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
@@ -148,6 +150,9 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
 		
+		list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
+		list.put("/hairshop/hairshopNoticeWriteCtrl.do", new hairshopNoticeWriteCtrl());
+		
 		//list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		
 		
@@ -164,7 +169,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersPwEnd.do", new MembersPwEndCtrl());			// PW 찾기 완료 페이지 이동하는 컨트롤러
 		list.put("/members/membersPwEmail.do", new MembersPwEmailCtrl());		// PW EMAIL 인증 클릭 컨트롤러
 		list.put("/members/membersPwModify.do", new MembersPwModifyCtrl());		// PW 수정 넘어가는 컨트롤러
-		
+							
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 페이지 이동 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
 		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
@@ -213,6 +218,8 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); //회원가입
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl()); //미용실 이메일 사용여부
 		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
+		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
+		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
 		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl());
 		list.put("/hairshop/weeklyReservationList.do", new DailyReservationListCtrl());
 		list.put("/ajax/weeklyReservationListAj.do", new DailyReservationListAjCtrl());
