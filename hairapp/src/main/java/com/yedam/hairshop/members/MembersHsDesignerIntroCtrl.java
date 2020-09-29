@@ -19,11 +19,12 @@ public class MembersHsDesignerIntroCtrl implements Controller {
 		System.out.println("MembersHsDesignerIntroCtrl");
 		
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
-		List<MembersHairshopVo> intro = MembersHairshopDAO.getInstance().designerIntroAll(vo);
-		System.out.println("1: "+intro);
+		
+		List<MembersHairshopVo> in = MembersHairshopDAO.getInstance().designerIntroAll(vo);
+		System.out.println("1: "+in);
 
 		// 결과 저장
-		request.setAttribute("intro", intro);
+		request.setAttribute("intro", in);
 		
 		// 페이지 이동
 		request.getRequestDispatcher("/members/designerIntro.jsp").forward(request, response);
