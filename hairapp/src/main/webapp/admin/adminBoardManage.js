@@ -1,4 +1,5 @@
 $(function() {
+	$("#answerDiv").hide();
 	$(".search").on("click", function() {
 		var start = new Date();
 		var end = new Date()
@@ -7,20 +8,23 @@ $(function() {
 
 	})
 	$("#submit").on("click", function() {
+	
 		var myObject = {
-			startDate : $("#startDate"),
-			endDate : $("#endDate"),
+			startDate : $("#startDate").val(),
+			endDate : $("#endDate").val(),
 			who : "1",
+			boardType: $("#boardType").children("option:selected").val(),
 			category : $("#category").children("option:selected").val(),
 			searchType : $("#searchType").children("option:selected").val(),
 			searchVal : $("#searchVal").val(),
-			answerStatus : $("#answer").prop('checked','true')
+			answerStatus : $("#answer").prop('checked','true').val()
  
-		};
+		};	console.log(myObject);
+		result(myObject);
 	})
 	$(".dateBtn").on("click", function() {
 		if ($(this).is("#today") === true) {
-			year();
+			today();
 		} else if ($(this).is("#three") === true) {
 			three();
 		} else if ($(this).is("#seven") === true) {
@@ -29,105 +33,88 @@ $(function() {
 			mon();
 		}
 	})
-	$("#board")
+	$("#boardType")
 			.change(
 					function() {
 
 						if (($(this).children("option:selected").is("#notice")) === true) {
 							$("#category").children().remove();
 							$("#category").append(
-									$("<option>").text("전체카테고리  "),
-									$("<option>").text("전체공지 "),
-									$("<option>").text("일반회원공지  "),
-									$("<option>").text("미용실 공지  "),
-									$("<option>").text("이벤트공지  "));
+									$("<option>").text("전체카테고리"),
+									$("<option>").text("전체공지"),
+									$("<option>").text("일반회원공지"),
+									$("<option>").text("미용실 공지"),
+									$("<option>").text("이벤트공지"));
 						} else if (($(this).children("option:selected")
-								.is("#q")) === true) {
+								.is("#qna")) === true) {
 							$("#category").children().remove();
 							$("#category").append(
-									$("<option>").text("전체카테고리  "),
-									$("<option>").text("입점문의  "),
-									$("<option>").text("단순문의   "),
-									$("<option>").text("불만문의  "));
+									$("<option>").text("전체카테고리"),
+									$("<option>").text("입점문의"),
+									$("<option>").text("단순문의"),
+									$("<option>").text("불만문의"));
 						} else {
 							$("#category").children().remove();
 							$("#category").append(
-									$("<option>").text("전체카테고리  "),
-									$("<option>").text("전체공지 "),
-									$("<option>").text("일반회원공지  "),
-									$("<option>").text("미용실 공지  "),
-									$("<option>").text("이벤트공지  "),
-									$("<option>").text("전체카테고리  "),
-									$("<option>").text("입점문의  "),
-									$("<option>").text("단순문의   "),
-									$("<option>").text("불만문의  "));
+									$("<option>").text("전체카테고리"),
+									$("<option>").text("전체공지"),
+									$("<option>").text("일반회원공지"),
+									$("<option>").text("미용실 공지"),
+									$("<option>").text("이벤트공지"),
+									$("<option>").text("전체카테고리"),
+									$("<option>").text("입점문의"),
+									$("<option>").text("단순문의"),
+									$("<option>").text("불만문의"));
 
 						}
 					})
-	function result(obj) {
-
+	function result(param) {
+		console.log(param);
 		$("#result").html("");
-		var url = "/hairapp/hairshop/sales.do"
+		var url = "/hairapp/admin/adminBoardManageFind.do"
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test'
 		});
 		var tr = $("<tr />");
-		tr.append($("<th>").text("시술날짜 "));
-		tr.append($("<th>").text("번호  "));
-		tr.append($("<th>").text("분류   "));
-		tr.append($("<th>").text("제목   "));
-		tr.append($("<th>").text("답변상태 "));
+		tr.append(
+				$("<th>").append(
+						$("<input>").attr('type','checkbox')));
+		tr.append($("<th>").text("번호"));
+		tr.append($("<th>").text("분류"));
+		tr.append($("<th>").text("제목"));
+		tr.append($("<th>").text("답변상태"));
 		tr.append($("<th>").text("답변하기 "));
 		tr.append($("<th>").text("작성자   "));
 		tr.append($("<th>").text("작성일   "));
-		tr.append($("<th>").text("조회  "));
-		tr.append($("<th>").text("총합  "));
+		tr.append($("<th>").text("조회수  "));
+	
 
 		table.append(tr);
 
-		$.getJSON(url, {
-			start : moment(start).format('YYYY-MM-DD'),
-			end : moment(end).format('YYYY-MM-DD')
-		}, function(obj) {
-			var card = 0;
-			var cash = 0;
-			var kakao = 0;
-			var account = 0;
-			var ammount = 0;
+		$.getJSON(url, param, function(obj) {
+		
 			console.log(obj);
 			obj.forEach(function(o, i, u) {
 
 				var tr = $("<tr />");
-				card += parseInt(o.cd);
-				cash += parseInt(o.cs);
-				kakao += parseInt(o.ka);
-				account += parseInt(o.ac);
-				ammount += parseInt(o.to);
-				tr.append($("<td>").text(o.mdrDt));
-				tr.append($("<td>").text(o.mdrNo));
-				tr.append($("<td>").text(o.memNm));
-				tr.append($("<td>").text(o.dsNm));
-				tr.append($("<td>").text(o.hNm));
-				tr.append($("<td>").text(o.cd));
-				tr.append($("<td>").text(o.cs));
-				tr.append($("<td>").text(o.ka));
-				tr.append($("<td>").text(o.ac));
-				tr.append($("<td>").text(o.to));
+				
+				tr.append($("<td>").append(
+						$("<input>").attr('type','checkbox')));
+				tr.append($("<td>").text(o.notice_no));
+				tr.append($("<td>").text(o.notice_who));
+				tr.append($("<td>").text(o.notice_title));
+				tr.append($("<td>").text());
+				tr.append($("<td>").append($("<button />").attr('id', 'excel').text("답변하기")));
+				tr.append($("<td>").text(o.emp_no));
+				tr.append($("<td>").text(o.notice_writedate));
+				tr.append($("<td>").text(o.notice_hits));
 				table.append(tr);
 			})
 
-			var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
-					$("<td>").text(obj.length), $("<td>"), $("<td>"),
-					$("<td>").text(card), $("<td>").text(cash),
-					$("<td>").text(kakao), $("<td>").text(account),
-					$("<td>").text(ammount)
-
-			).css('color', 'red');
-
-			table.append(tr);
+		
 		});
-		$("#result").append($(table));
+		$("#result").append(table);
 		$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 
 	}

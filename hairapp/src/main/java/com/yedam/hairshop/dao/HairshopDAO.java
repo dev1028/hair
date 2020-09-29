@@ -233,10 +233,10 @@ public class HairshopDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT NOTICE_NO , NOTICE_TITLE, NOTICE_CONTENTS ,NOTICE_WRITEDATE ,"
-					+ "NOTICE_HITS , NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + "FROM NOTICE ";
+					+ "NOTICE_HITS , NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + " FROM NOTICE ";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 				HairshopNoticeVo resultVo = new HairshopNoticeVo();
 				resultVo.setNotice_no(rs.getString("notice_no"));
@@ -255,9 +255,31 @@ public class HairshopDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return list;
-
 	}
-
+	
 	// 공지사항 작성
-
+	//notice_no_seq 
+	public int insert(HairshopNoticeVo noticeVo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "INSERT INTO NOTICE(NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
+						+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME)"
+						+ " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeVo.getNotice_title());
+			pstmt.setString(2, noticeVo.getNotice_contents());
+			pstmt.setString(3, noticeVo.getNotice_writedate());
+			pstmt.setString(4, noticeVo.getNotice_hits());
+			pstmt.setString(5, noticeVo.getNotice_image());
+			pstmt.setString(6, noticeVo.getEmp_no());
+			pstmt.setString(7, noticeVo.getNotice_categoryname());
+			r = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+	}
 }

@@ -20,8 +20,8 @@
 </head>
 <body>
 	<h2 class="heading">매출결산</h2>
-	<form method="POST"
-		action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do">
+<%-- 	<form method="POST"
+		action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do"> --%>
 		<!--  search -->
 		<div class="form-group">
 
@@ -37,13 +37,19 @@
 				</button>
 				<input type="date" id="start"> -<input type="date" id="end">
 			</div>
-		
+		<div class="control">
+				<label for="name">who </label> 
+				<input type="checkbox" name="who" id="who" value="j1">미용실
+
+				<input type="checkbox" name="who" id="who" value="j2">일반회원
+				<input type="checkbox" name="who" id="who" value="j3">디자이너
+			</div>
 		
 			<div class="control">
-				<label for="name">게시판 선택 </label> <select name="board" id="board">
+				<label for="name">게시판 선택 </label> <select name="boardType" id="boardType">
 					<option>전체목록</option>
-					<option id="notice" value="1">공지</option>
-					<option id="q" value="2">QnA</option>
+					<option id="notice" value="notice">공지</option>
+					<option id="qna" value="qna">QnA</option>
 				</select> <select name="category" id="category">
 					<option>전체카테고리 </option>
 				</select>
@@ -51,7 +57,7 @@
 			</div>
 			<div class="control">
 				<label for="name">게시글 찾기 </label> <select name="searchType" id="searchType">
-					<option value="title">제목</option>
+					<option value="notice_title">제목</option>
 					<option value="contents">내용</option>
 					<option value="writer">작성자</option>
 					<option value="id">ID</option>
@@ -61,7 +67,7 @@
 
 
 
-			<div class="control">
+			<div class="control" id="answerDiv">
 				<label for="name">답변상태 </label> <input type="checkbox" name="answer" id="answer"
 					value="y">답변완료 <input type="checkbox" name="answer" value="n">답변대기
 
@@ -72,7 +78,7 @@
 				<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
 			</div>
 		</div>
-	</form>
+<!-- 	</form> -->
 	<!--  result -->
 	<!-- 매출 -->
 

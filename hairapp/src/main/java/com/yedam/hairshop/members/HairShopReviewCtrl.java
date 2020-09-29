@@ -15,16 +15,17 @@ public class HairShopReviewCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mdr_no = request.getParameter("mdr_no");		//예약 번호
-		String hr_rate = request.getParameter("hr_rate");	//별점
-		String hr_contents = request.getParameter("contents");	//내용
-		
 		HairShopReviewVo vo = new HairShopReviewVo();
 		vo.setMdr_no(mdr_no);
-		vo.setHr_rate(hr_rate);
-		vo.setHr_contents(hr_contents);
+		request.getSession().setAttribute("mdr_no", mdr_no);
 		
-		HairShopReviewDAO.getInstance().insertReview(vo);
-		//HairShopReviewDAO()
+		//이미 등록된 후기가 있다면 내용을 긁어와야 함.
+		HairShopReviewVo reviewVo = HairShopReviewDAO.getInstance().selectReview(vo);
+		if(reviewVo != null) {
+			request.setAttribute("reviewVo", reviewVo);
+		}
+		
+		request.getRequestDispatcher("/members/hairshopReview.jsp").forward(request, response);
 	}
 
 }
