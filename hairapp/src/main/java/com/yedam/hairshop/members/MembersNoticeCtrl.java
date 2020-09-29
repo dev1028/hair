@@ -14,7 +14,6 @@ import javax.servlet.http.Part;
 import org.apache.commons.beanutils.BeanUtils;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.common.FileRenamePolicy;
 import com.yedam.hairshop.dao.NoticeDAO;
 import com.yedam.hairshop.model.HairshopNoticeVo;
 

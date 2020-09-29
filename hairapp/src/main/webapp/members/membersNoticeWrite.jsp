@@ -34,8 +34,6 @@ function inputCheck() {
 		return false;
 	}
 	
-	// 회원가입 폼 제출
-	// frm.submit();
 	return true;
 	
 }
@@ -71,7 +69,7 @@ function inputCheck() {
   	</div>
   	<div>
   		<label for="filename">첨부 파일 추가</label>
-  		<input type="file" name="notice_image" size=30 accept=".gif, .jpg, .png"><br>
+  		<input type="file" name="filename" size=30 accept=".gif, .jpg, .png"><br>
 	</div>
   	<div>
   		<button type="reset">초기화</button>
