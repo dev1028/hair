@@ -63,14 +63,10 @@
         <br> 
         <input type="hidden" name="mememail">
         <input type="button" value="취소" onclick="membersMain()">
-        <input type="submit" name="memdelete" value="탈퇴"/ > 
+        <input type="submit" name="memdelete" value="탈퇴"/> 
 </form>
 
 </div>
-
-
-
-
 
 
 <div id="mypage">

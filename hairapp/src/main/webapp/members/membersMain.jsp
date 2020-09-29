@@ -306,6 +306,12 @@ form.example::after {
 			interval: 60
 		});
 	});
+	
+	
+	//린아
+	function noticeGo() {
+		location.href = "membersNotice.do";
+	}
 </script>
 </head>
 <body>
@@ -385,6 +391,11 @@ form.example::after {
 			<input type="hidden" id="project-id">
 			<p id="project-description"></p>
 		</form>
+		<br><br><br>
+		<div style="text-align: center;">
+		<button onclick="noticeGo()">공지사항</button>
+		<button>Q&A</button>
+		</div>
 	</div>
 </body>
 </html>

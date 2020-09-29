@@ -57,6 +57,13 @@ public class MembersLoginSCtrl implements Controller {
 					page = "/members/membersLogin.do";
 					System.out.println("인증불:"+page);
 				
+				} else if(resultVO.getMem_access_status().equals("9")) {
+					response.getWriter().append("<script>")
+					.append("alert('탈퇴된 회원입니다');")
+					.append("</script>");
+					page = "/members/membersLogin.do";
+					System.out.println("탈퇴회원:"+page);
+				
 				} else if (membersVO.getMem_pw() != resultVO.getMem_pw()) { // 패스워드 불일치
 					response.getWriter().append("<script>")
 										.append("alert('패스워드가 맞지 않습니다');")

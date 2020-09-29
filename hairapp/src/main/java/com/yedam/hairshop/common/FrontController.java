@@ -55,7 +55,6 @@ import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
 import com.yedam.hairshop.members.MembersDeleteCtrl;
-import com.yedam.hairshop.members.MembersDeleteFCtrl;
 import com.yedam.hairshop.members.MembersDeleteSCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
@@ -75,6 +74,9 @@ import com.yedam.hairshop.members.MembersLogoutCtrl;
 import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMainResultCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
+import com.yedam.hairshop.members.MembersNoticeCtrl;
+import com.yedam.hairshop.members.MembersNoticeWCtrl;
+import com.yedam.hairshop.members.MembersNoticeWGCtrl;
 import com.yedam.hairshop.members.MembersPwEmailCtrl;
 import com.yedam.hairshop.members.MembersPwEndCtrl;
 import com.yedam.hairshop.members.MembersPwModifyCtrl;
@@ -177,12 +179,14 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/members/membersDelete.do", new MembersDeleteCtrl());			// 회원 탈퇴로 이동하는 컨트롤러
 		list.put("/members/membersDeleteS.do", new MembersDeleteSCtrl());		// 회원 탈퇴 처리하는 컨트롤러
-		list.put("/members/membersDeleteF.do", new MembersDeleteFCtrl());
 		
 		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl());	// 헤어샵소개로 이동하는 컨트롤러
 		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
 		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		
+		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항으로 이동하는 컨트롤러
+		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
+		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
 		
 		//강산
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());
