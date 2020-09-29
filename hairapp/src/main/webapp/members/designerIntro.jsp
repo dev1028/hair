@@ -56,9 +56,9 @@
 <br>
 <div id="shopInfo">
 	<div id="shopName">
-		<c:forEach items="${intro}" var="in">
-		<h4>${in.hs_name}</h4>
-		<h6>${in.hs_fulladdr}</h6>
+		<c:forEach items="${shop}" var="hs">
+		<h4>${hs.hs_name}</h4>
+		<h6>${hs.hs_fulladdr}</h6>
 		</c:forEach>
 	</div>
 	<div id="shopStar1">
@@ -86,18 +86,15 @@
 <div id="shopbody">
 
 <form method="post" action="hsDesignerIntro.do" name="form" id="form">
-			 <c:forEach items="${intro}" var="in">
 			
 	<div class="container">
     <h3 class="h3"></h3>
-    <div class="row">
+			 <c:forEach items="${intro}" var="in">
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
                 <div class="product-image4">
-                    <a href="#">
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                    </a>
                 </div>
                 <div class="product-content">
                     <h3 class="title">${in.designer_name}</h3>
@@ -105,19 +102,20 @@
                     <div class="price">
                         ${in.designer_profile}
                     </div>
-                    <a class="add-to-cart" href="">예약하기</a>
+                    <a class="add-to-cart" href="">예약하기</a><br><br>
+                    <input type="hidden" name="hsNo" value="${in.hs_no}"><br>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+			</c:forEach>
+    
+</div>	<!-- container 마지막 -->
 <hr>
 			
 			
-			</c:forEach>
-		</form>
+</form>
 
-</div>
+</div>	<!-- shopbody 마지막 -->
 
 
 <!-- 왼쪽메뉴 -->

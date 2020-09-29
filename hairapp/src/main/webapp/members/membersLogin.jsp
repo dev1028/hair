@@ -498,7 +498,7 @@ $(window).on('resize', function(){
     </div>
     <div class='box-login'>
       <div class='fieldset-body' id='login_form'>
-        <button onclick="openLoginInfo();" class='b b-form i i-more' title='Mais Informações'></button>
+        <button type="button" onclick="openLoginInfo();" class='b b-form i i-more'></button>
         	<p class='field'>
           <label for='user'>E-MAIL</label>
           <input type='email' id='loginid' name='loginid' title='Username' />
@@ -519,13 +519,13 @@ $(window).on('resize', function(){
     </div>
   </div>
   <div class='box-info'>
-	<p><button onclick="closeLoginInfo();" class='b b-info i i-left' title='Back to Sign In'></button><h3>Need Help?</h3>
+	<p><button type="button" onclick="closeLoginInfo();" class='b b-info i i-left' title='Back to Sign In'></button><h3>Need Help?</h3>
 </p>
 	<div class='line-wh'></div>
-    <button onclick="membersIdSearch()" class='b-support' title='Contact Support'> ID(email)를 잊으셨나요?</button>
-    <button onclick="membersPwSearch()" class='b-support' title='Forgot Password?'> Password를 잊으셨나요?</button>
+    <button type="button" onclick="membersIdSearch()" class='b-support' title='Contact Support'> ID(email)를 잊으셨나요?</button>
+    <button type="button" onclick="membersPwSearch()" class='b-support' title='Forgot Password?'> Password를 잊으셨나요?</button>
     <div class='line-wh'></div>
-    <button onclick="membersJoin()" class='b-cta' title='Sign up now!'> MEMBERS JOIN!</button>
+    <button type="button" onclick="membersJoin()" class='b-cta' title='Sign up now!'> MEMBERS JOIN!</button>
   	</div>
 </div>
 	<!-- 로그인 css 끝 -->
