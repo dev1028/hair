@@ -86,7 +86,7 @@
 <div id="shopbody">
 
 <form method="post" action="hsDesignerIntro.do" name="form" id="form">
-			<%-- <c:forEach items="${intro}" var="in"> --%>
+			 <c:forEach items="${intro}" var="in">
 			
 	<div class="container">
     <h3 class="h3"></h3>
@@ -100,10 +100,10 @@
                     </a>
                 </div>
                 <div class="product-content">
-                    <h3 class="title"><%-- ${in.designer_name} --%>1</h3>
-                    <h3 class="title"><%-- ${in.position} --%>2</h3>
+                    <h3 class="title">${in.designer_name}</h3>
+                    <h3 class="title">${in.position}</h3>
                     <div class="price">
-                        <%-- ${in.designer_profile} --%>3
+                        ${in.designer_profile}
                     </div>
                     <a class="add-to-cart" href="">예약하기</a>
                 </div>
@@ -114,7 +114,7 @@
 <hr>
 			
 			
-			<%-- </c:forEach> --%>
+			</c:forEach>
 		</form>
 
 </div>

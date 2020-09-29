@@ -1,4 +1,4 @@
-	package com.yedam.hairshop.common;
+package com.yedam.hairshop.common;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,7 +35,6 @@ import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
-import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
@@ -134,7 +133,6 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/members/membersBookmarkHairshop.do", new MembersBookmarkHairshopCtrl());
 		
-		list.put("/members/designerReview.do", new DesignerReviewCtrl());
 		//==================================================================================
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
