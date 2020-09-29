@@ -205,7 +205,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl());
 		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
 		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
-//		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
+		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
 	}
 
 

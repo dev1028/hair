@@ -17,10 +17,11 @@ $(function() {
 			answerStatus : $("#answer").prop('checked','true')
  
 		};
+		result(myObject);
 	})
 	$(".dateBtn").on("click", function() {
 		if ($(this).is("#today") === true) {
-			year();
+			today();
 		} else if ($(this).is("#three") === true) {
 			three();
 		} else if ($(this).is("#seven") === true) {
@@ -64,10 +65,10 @@ $(function() {
 
 						}
 					})
-	function result(obj) {
+	function result(param) {
 
 		$("#result").html("");
-		var url = "/hairapp/hairshop/sales.do"
+		var url = "/hairapp/hairshop/adminBoardManageFind.do"
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test'
@@ -86,10 +87,7 @@ $(function() {
 
 		table.append(tr);
 
-		$.getJSON(url, {
-			start : moment(start).format('YYYY-MM-DD'),
-			end : moment(end).format('YYYY-MM-DD')
-		}, function(obj) {
+		$.getJSON(url, param, function(obj) {
 			var card = 0;
 			var cash = 0;
 			var kakao = 0;
