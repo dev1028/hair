@@ -4,14 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.css" rel='stylesheet'/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/locales-all.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>일간예약</title>
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {	
@@ -117,6 +110,7 @@ function getFormatDate(date){
 </head>
 <body>
 	<div class="container">
+	<div class="row"><br><br><br></div>
 	<div class="row" id='calendar'></div>
 	</div>
 </body>

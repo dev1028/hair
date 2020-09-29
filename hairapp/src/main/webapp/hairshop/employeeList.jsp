@@ -221,7 +221,7 @@ $(function() {
 					<div class="modal-body">
 						<div class="container">
 							<div class="text-center">
-								<img src="../images/hairshop/Koala.jpg" class="img-fluid"
+								<img src="../images/hairshop/san.jpg" class="img-fluid"
 									alt="...">
 							</div>
 							<hr>

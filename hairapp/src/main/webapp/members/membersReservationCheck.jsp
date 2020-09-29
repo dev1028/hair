@@ -28,6 +28,12 @@ function openDR(mdr_no){
             "chkForm", "width=1000, height=700, resizable = no, scrollbars = no");    
 }
 
+function openWriteDR(mdr_no) {
+	window.name = "parentForm";
+    window.open("hairshopReview.do?mdr_no=" + mdr_no,
+            "chkForm", "width=1000, height=700, resizable = no, scrollbars = no");
+}
+
 </script>
 
 </head>
@@ -72,7 +78,7 @@ function openDR(mdr_no){
 				예약 번호 : ${reservation.mdr_no}<br>
 				
 				<input type="button" value="예약상세확인" onclick="openDR(${reservation.mdr_no})">
-				<button>후기쓰기</button>
+				<input type="button" value="후기쓰기" onclick="openWriteDR(${reservation.mdr_no})">
 			</div>
 			</c:forEach>
 		</div>
