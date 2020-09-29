@@ -1,4 +1,4 @@
-package com.yedam.hairshop.hairshop;
+package com.yedam.hairshop.designer;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,17 +15,17 @@ import com.yedam.hairshop.dao.MembersReservationDAO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class DailyReservationListAjCtrl implements Controller {
+public class DesDailyReservationListAjCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String HsNo = (String) request.getSession().getAttribute("hsno");
+		String desNo = (String) request.getSession().getAttribute("designerNo");
 		String startDate = request.getParameter("startDate");
 		
 		String endDate = request.getParameter("endDate");
 		//System.out.println(startDate.substring(0, 10));
 		//System.out.println(endDate.substring(0, 10));
-		List<Map<String,String>> list = MembersReservationDAO.getInstance().selectReservationList(HsNo, startDate.substring(0, 10), endDate.substring(0, 10) );
+		List<Map<String,String>> list = MembersReservationDAO.getInstance().selectReservationListForDes(desNo, startDate.substring(0, 10), endDate.substring(0, 10) );
 		
 		JSONArray st = new JSONArray();
 		for(Map<String,String> des : list) {
@@ -47,5 +47,6 @@ public class DailyReservationListAjCtrl implements Controller {
 		//System.out.println(str);
 		response.getWriter().print(str);
 	}
+	
 
 }
