@@ -256,7 +256,7 @@ public class HairshopDAO {
 		}
 		return list;
 	}
-
+	
 	// 공지사항 작성
 	//notice_no_seq 
 	public int insert(HairshopNoticeVo noticeVo) {

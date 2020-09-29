@@ -21,7 +21,7 @@ public class hairshopNoticeWriteCtrl implements Controller {
 		 String notice_writedate = request.getParameter("notice_writedate");
 		 String notice_hits = request.getParameter("notice_hits");
 		 String notice_image = request.getParameter("notice_image");
-		 String emp_no = request.getParameter("emp_no");
+		 String emp_no = "1";//request.getParameter("emp_no"); session으로 바꿔야됨
 		 String notice_categoryname = request.getParameter("notice_categoryname");
 		 
 		 HairshopNoticeVo vo = new HairshopNoticeVo();
@@ -32,6 +32,7 @@ public class hairshopNoticeWriteCtrl implements Controller {
 		 vo.setNotice_writedate(notice_writedate);
 		 vo.setNotice_hits(notice_hits);
 		 vo.setNotice_image(notice_image);
+		 vo.setEmp_no(emp_no);
 		 vo.setNotice_categoryname(notice_categoryname);
 		 
 		 int resultVo = HairshopDAO.getInstance().insert(vo);
