@@ -223,6 +223,51 @@ public class MembersReservationDAO {
 		return list;
 	}
 	
+	// 2020.09.29 김승연
+		// 디자이너용 회원 예약시간 조회
+		public List<Map<String, String>> selectReservationListForDes(String desNo, String startDate,String endDate) {
+			List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select mdr.mdr_no, to_char(mdr.mdr_date, 'YYYY-MM-DD HH24:MI') as mdr_date, mdr.mdr_status, mdr.mem_no, m.mem_name,"
+						+ " mdr.designer_no, d.designer_name, to_char(mdr.mdr_date+c.sum_time/24, 'YYYY-MM-DD HH24:MI') as sum_time" 
+						+ " from members_designer_rsv mdr join designer d"
+						+ " on (mdr.DESIGNER_NO = d.designer_no)" 
+						+ " join members m" 
+						+ " on(mdr.mem_no = m.mem_no)"
+						+ " join (select mdri.mdr_no as mdr_no, sum(hhi.HHI_TIME) as sum_time"
+							+ " from hairshop_hair_info hhi join mem_designer_rsv_info mdri" + " on(mdri.hhi_no = hhi.hhi_no)"
+							+ " group by mdri.mdr_no) c" 
+						+ " on (mdr.mdr_no = c.mdr_no)" 
+						+ " where mdr.mdr_status != 'i1'"
+						+ " and mdr.designer_no = ?"
+						+ " and mdr.mdr_date between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')+1";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, desNo);
+				pstmt.setString(2, startDate);
+				pstmt.setString(3, endDate);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("mdr_no", rs.getString("mdr_no"));
+					map.put("mdr_date", rs.getString("mdr_date"));
+					map.put("mdr_status", rs.getString("mdr_status"));
+					map.put("mem_no", rs.getString("mem_no"));
+					map.put("mem_name", rs.getString("mem_name"));
+					map.put("designer_no", rs.getString("designer_no"));
+					map.put("designer_name", rs.getString("designer_name"));
+					map.put("sum_time", rs.getString("sum_time"));
+					list.add(map);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+
+			return list;
+		}
+	
 	//예약상세정보 미용실 and 디자이너용 미용실 상세정보
 	public MembersReservationVo selectReservationDetailInfo(String mdrNo) {
 		MembersReservationVo resultVo = new MembersReservationVo();

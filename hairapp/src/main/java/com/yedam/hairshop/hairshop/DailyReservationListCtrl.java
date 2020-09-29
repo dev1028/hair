@@ -83,8 +83,8 @@ public class DailyReservationListCtrl implements Controller {
 				dseDayoff.put("daysOfWeek", desArray);
 			}
 			//System.out.println(des.getWork_start_time() + " : " +des.getWork_end_time());
-			dseDayoff.put("start", des.getWork_start_time()+":00");
-			dseDayoff.put("end", des.getWork_end_time()+":00");
+			dseDayoff.put("startTime", des.getWork_start_time()+":00");
+			dseDayoff.put("endTime", des.getWork_end_time()+":00");
 
 			JSONObject dseJson = new JSONObject();
 			dseJson.put("id", des.getDesigner_no());
