@@ -18,6 +18,7 @@
 	<excludes>
 		<pattern>/ajax/*</pattern>
 		<pattern>/hairshop/Sales*</pattern>
+		
 	</excludes>
 	
 		<excludes>

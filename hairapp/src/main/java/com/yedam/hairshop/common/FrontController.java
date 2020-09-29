@@ -216,6 +216,8 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); //회원가입
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl()); //미용실 이메일 사용여부
 		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
+		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
+		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
 		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl());
 		list.put("/hairshop/weeklyReservationList.do", new DailyReservationListCtrl());
 		list.put("/ajax/weeklyReservationListAj.do", new DailyReservationListAjCtrl());
