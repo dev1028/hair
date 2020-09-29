@@ -19,15 +19,20 @@ public class MembersHairShopIntroCtrl implements Controller {
 		System.out.println("MembersHairShopIntroCtrl");
 		
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
-		List<MembersHairshopVo> intro = MembersHairshopDAO.getInstance().hairshopIntroAll(vo);
-		System.out.println("1: "+intro);
-
-		// 결과 저장
-		request.setAttribute("intro", intro);
-		
-		// 페이지 이동
-		request.getRequestDispatcher("/members/hairshopIntro.jsp").forward(request, response);
-
+		MembersHairshopVo intro = MembersHairshopDAO.getInstance().selectOne(vo);
+		if(intro == null) {
+			System.out.println("intro error");
+		}
+		else {
+			// 결과 저장
+			request.setAttribute("intro", intro);
+			request.setAttribute("lat", intro.getHs_latlong().split(",")[0]); 
+			request.setAttribute("lng", intro.getHs_latlong().split(",")[1]);
+			System.out.println(intro.getHs_latlong());
+			
+			// 페이지 이동
+			request.getRequestDispatcher("/members/hairshopIntro.jsp").forward(request, response);
+		}
 	}
 
 }
