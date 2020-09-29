@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,7 @@ button {
 	background-color: rgb(255, 80, 80);
 	color: white;
 	border: none;
+	text-align: center;
 }
 
 a {
@@ -55,6 +57,20 @@ a:hover {
 				<th width="150px">날짜</th>
 				<th width="40px">조회</th>
 			</tr>
+			<c:forEach items="${list}" var="notice">
+				<tr>
+					<td>${notice.notice_categoryname}</td>
+					<td>${notice.notice_no}</td>
+					<td>${notice.notice_title }</td>
+					<td>${notice.notice_contents }</td>
+					<td>${notice.notice_hits }</td>
+					<td>${notice.notice_writedate }</td>
+					<td></td>
+					<td>${notice.emp_no }</td>
+				</tr>
+			</c:forEach>
+			
+		
 		</table>
 	</div>
 	<p>

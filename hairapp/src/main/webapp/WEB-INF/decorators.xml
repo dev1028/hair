@@ -16,4 +16,10 @@
 		<pattern>/ajax/*</pattern>
 		<pattern>/hairshop/Sales*</pattern>
 	</excludes>
+	
+		<excludes>
+		<pattern>/ajax/*</pattern>
+		<pattern>/hairshop/Sales*</pattern>
+		<pattern>/hairshop/hairshopNotice*</pattern>
+	</excludes>
 </decorators>
