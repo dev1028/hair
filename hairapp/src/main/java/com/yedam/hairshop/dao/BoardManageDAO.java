@@ -27,6 +27,7 @@ public class BoardManageDAO {
 			instance = new BoardManageDAO();
 		return instance;
 	}
+
 	public ArrayList<HairshopNoticeVo> findNoticeCategory(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;
@@ -34,7 +35,7 @@ public class BoardManageDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind+noticeCategory);
+			pstmt = conn.prepareStatement(noticeFind + noticeCategory);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
 			pstmt.setString(3, vo.getCategory());
@@ -64,6 +65,7 @@ public class BoardManageDAO {
 //		}
 		return list;
 	}
+
 	public ArrayList<HairshopNoticeVo> findNoticeSearch(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;
@@ -71,12 +73,12 @@ public class BoardManageDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind+noticeSearch);
+			pstmt = conn.prepareStatement(noticeFind + noticeSearch);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
 			pstmt.setString(3, vo.getSearchType());
 			pstmt.setString(4, vo.getSearchInput());
-			
+
 			rs = pstmt.executeQuery();
 			System.out.println("sql");
 			while (rs.next()) {
@@ -103,6 +105,7 @@ public class BoardManageDAO {
 //		}
 		return list;
 	}
+
 	public ArrayList<HairshopNoticeVo> findNotice(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;
@@ -181,76 +184,6 @@ public class BoardManageDAO {
 //		for(SalesVo vo : list) {
 //			System.out.println(vo.getHName());
 //		}
-		return list;
-	}
-
-	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no) {
-		ArrayList<SalesVo> list = new ArrayList<>();
-		SalesVo resultVo = null;
-
-		try {
-			conn = ConnectionManager.getConnnect();
-
-			pstmt = conn.prepareStatement(totaldaily + addDs);
-			pstmt.setString(1, start);
-			pstmt.setString(2, end);
-			pstmt.setString(3, ds_no);
-
-			rs = pstmt.executeQuery();
-			System.out.println("sql");
-			while (rs.next()) {
-
-				resultVo = new SalesVo();
-				resultVo.setMdrNo(rs.getString("mdr_no"));
-				resultVo.setMdrDate(rs.getString("mdr_date"));
-				resultVo.setDsName(rs.getString("designer_name"));
-				resultVo.setMemName(rs.getString("mem_name"));
-				resultVo.setHName(rs.getString("hhi_name"));
-				resultVo.setCard(rs.getString("card"));
-				resultVo.setCash(rs.getString("cash"));
-				resultVo.setKakao(rs.getString("kakao"));
-				resultVo.setAccount(rs.getString("account"));
-				resultVo.setTotalAmountRsv(rs.getString("ammount"));
-
-				list.add(resultVo);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
-
-		for (SalesVo vo : list) {
-			System.out.println(vo.getHName());
-		}
-		return list;
-	}
-
-	public ArrayList<DesignerVo> getDsName() {
-		ArrayList<DesignerVo> list = new ArrayList<>();
-		DesignerVo resultVo = null;
-		try {
-			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer  ";
-			pstmt = conn.prepareStatement(sql);
-
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				resultVo = new DesignerVo();
-				resultVo.setDesigner_no(rs.getString(1));
-				resultVo.setDesigner_name(rs.getString(2));
-
-				list.add(resultVo);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
 		return list;
 	}
 }
