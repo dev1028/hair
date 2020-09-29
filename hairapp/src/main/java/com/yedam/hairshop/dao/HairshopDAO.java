@@ -236,7 +236,7 @@ public class HairshopDAO {
 					+ "NOTICE_HITS , NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + " FROM NOTICE ";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 				HairshopNoticeVo resultVo = new HairshopNoticeVo();
 				resultVo.setNotice_no(rs.getString("notice_no"));

@@ -3,12 +3,14 @@ package com.yedam.hairshop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.yedam.hairshop.common.ConnectionManager;
+import com.yedam.hairshop.model.MembersDesignerRsvVo;
 import com.yedam.hairshop.model.MembersReservationVo;
 
 public class MembersReservationDAO {
@@ -109,7 +111,7 @@ public class MembersReservationDAO {
 					" on(a.mem_no=m.mem_no) " +
 					" where r.mdr_no = ?";
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
+			//System.out.println(sql);
 			System.out.println(membersReservationVo.getMdr_no());
 			pstmt.setString(1, membersReservationVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
@@ -285,7 +287,7 @@ public class MembersReservationDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mdrNo); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
-			System.out.println(sql);
+			//System.out.println(sql);
 			if (rs.next()) {
 				resultVo.setMem_no(rs.getString("mem_no"));
 				resultVo.setMem_name(rs.getString("mem_name"));
@@ -307,6 +309,23 @@ public class MembersReservationDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return resultVo; // 값을 리턴해줌
+	}
+	
+	//2020.09.29 김승연
+	//예약상태변경
+	public int updateMdrStatus(MembersDesignerRsvVo mDRVo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "update members_designer_rsv set MDR_STATUS = ? where MDR_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mDRVo.getMdr_status());
+			pstmt.setString(2, mDRVo.getMdr_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
 	}
 
 }
