@@ -33,7 +33,7 @@ public class MembersHsDesignerIntroCtrl implements Controller {
 			System.out.println(v);
 		}
 		
-		List<MembersHairshopVo> shop = MembersHairshopDAO.getInstance().hairshopIntroAll(shopVo);
+		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(shopVo);
 		
 		System.out.println();
 		System.out.println("1: "+list);
