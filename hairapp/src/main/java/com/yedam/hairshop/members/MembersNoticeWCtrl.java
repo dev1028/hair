@@ -32,25 +32,22 @@ public class MembersNoticeWCtrl implements Controller {
 			return;
 		}
 		System.out.println("vo" + vo);
-		
+
 		Part part = request.getPart("notice_image");
-		// 여긴 잘됨? 여기서부터에러뜸 밑에 37라인
-		// part널 뜨는이유는 첨부파일 등록안해서.
 		String filename = getFilename(part);
 		if (filename == null) {
 			System.out.println("파일 에러");
 			return;
 		} else {
 			String path = "c:/upload";
-			
+
 			// 파일명 중복체크
 			File renameFile = FileRenamePolicy.rename(new File(path, filename));
 			part.write(path + "/" + renameFile.getName());
 			vo.setNotice_image(renameFile.getName());
-			
+
 			int resultVo = NoticeDAO.getInstance().insert(vo);
-			System.out.println("3" + resultVo);
-			request.setAttribute("write", resultVo);
+			System.out.println("notice resultVo:" + resultVo);
 			response.sendRedirect("membersNotice.do");
 		}
 	}
@@ -70,8 +67,6 @@ public class MembersNoticeWCtrl implements Controller {
 //		System.out.println("3" + resultVo);
 //		request.setAttribute("write", resultVo);
 //		response.sendRedirect("membersNotice.do");
-
-
 
 	private String getFilename(Part part) throws UnsupportedEncodingException {
 		for (String cd : part.getHeader("Content-Disposition").split(";")) {

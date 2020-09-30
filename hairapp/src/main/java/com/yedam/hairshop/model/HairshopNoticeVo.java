@@ -12,4 +12,7 @@ public class HairshopNoticeVo {
 	public String notice_image;
 	public String emp_no;
 	public String notice_categoryname;
+	
+	public int first;
+	public int last;
 }

@@ -198,7 +198,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
 		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		
-		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항으로 이동하는 컨트롤러
+		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
 		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
 		
