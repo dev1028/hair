@@ -112,12 +112,11 @@
 			<artifactId>imgscalr-lib</artifactId>
 			<version>4.2</version>
 		</dependency>
-
-		<!-- KO16MSWIN949 에러 -->
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.nls/orai18n -->
 		<dependency>
-			<groupId>com.oracle.ojdbc</groupId>
+			<groupId>com.oracle.database.nls</groupId>
 			<artifactId>orai18n</artifactId>
-			<version>19.3.0.0</version>
+			<version>19.7.0.0</version>
 		</dependency>
 
 	</dependencies>
