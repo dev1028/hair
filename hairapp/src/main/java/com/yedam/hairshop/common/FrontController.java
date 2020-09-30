@@ -9,9 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
+import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
+import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
+import com.yedam.hairshop.admin.AdminOwnerManageCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
+import com.yedam.hairshop.admin.adminBoardSettingCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
@@ -205,6 +210,10 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/sales.do", new salesCtrl());	
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
 		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());	
+		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());	
+		list.put("/admin/adminCustomerManage.do", new AdminCustomerManageCtrl());	
+		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());	
 		
 		
 		//승연

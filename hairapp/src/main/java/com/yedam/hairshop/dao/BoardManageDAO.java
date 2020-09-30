@@ -21,6 +21,12 @@ public class BoardManageDAO {
 	final static String noticeFind = "select * " + "FROM notice\r\n" + "WHERE  notice_writedate BETWEEN ? AND ?\r\n"
 	+"AND ? = ?\r\n"
 	+"AND NOTICE_who IN(?)";
+	
+	final static String qnaFind ="select * FROM qna\n" + 
+			"WHERE  qna_writedate BETWEEN ? AND ?\n" + 
+			"AND ? = ?\n" + 
+			"AND qna_who like ?\n" + 
+			"and qna_category like ?";
 
 	public static BoardManageDAO getInstance() {
 		if (instance == null)
@@ -193,23 +199,24 @@ public class BoardManageDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind);
+			pstmt = conn.prepareStatement(qnaFind);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
 			pstmt.setString(3, vo.getSearchType());
 			pstmt.setString(4, vo.getSearchInput());
-			pstmt.setString(5, vo.getCategory());
+			pstmt.setString(5, "%"+vo.getWho()+"%");
+			pstmt.setString(6, "%"+vo.getCategory()+"%");
 			rs = pstmt.executeQuery();
 			System.out.println("sql");
 			while (rs.next()) {
 
 				resultVo = new HairshopNoticeVo();
-				resultVo.setNotice_no(rs.getString("notice_no"));
-				resultVo.setNotice_title(rs.getString("notice_title"));
-				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
-				resultVo.setNotice_hits(rs.getString("notice_hits"));
+				resultVo.setNotice_no(rs.getString("qna_no"));
+				resultVo.setNotice_title(rs.getString("qna_title"));
+				resultVo.setNotice_writedate(rs.getString("qna_writedate"));
+				resultVo.setNotice_hits(rs.getString("qna_hits"));
 				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setNotice_categoryname(rs.getString("notice_categoryname"));
+				resultVo.setNotice_categoryname(rs.getString("qna_category"));
 
 				list.add(resultVo);
 
