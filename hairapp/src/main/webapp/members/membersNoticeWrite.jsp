@@ -8,29 +8,24 @@
 <head>
 <meta charset="UTF-8">
 <title>membersNotice.jsp</title>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
 <script>
 function inputCheck() {
 	
-	if(frm.poster.value == "") {
-		alert("작성자 입력");
-		frm.poster.focus();
+	if(frm.notice_category.value == "") {
+		alert("카테고리 입력");
+		frm.notice_category.focus();
 		return false;
 	}
 	
-	if(frm.subject.value == "") {
+	if(frm.notice_title.value == "") {
 		window.alert("제목 입력");
-		frm.subject.focus();
+		frm.notice_title.focus();
 		return false;
 	}
 	
-	if(frm.contents.value == "") {
+	if(frm.notice_contents.value == "") {
 		window.alert("내용 입력");
-		frm.contents.focus();
+		frm.notice_contents.focus();
 		return false;
 	}
 	
@@ -47,8 +42,8 @@ function inputCheck() {
 <h4 class="page_title">공지사항 등록</h4>
 <hr>
 	<div>
-		<label for="maincategory">대분류</label>
-  		<select id="maincategory" name="notice_category" onchange="">
+		<label for="notice_category">대분류</label>
+  		<select id="notice_category" name="notice_category" onchange="">
   		<option value="">선택</option>
     	<option value="b1">전체공지</option>
     	<option value="b2">미용실공지</option>
@@ -58,13 +53,13 @@ function inputCheck() {
   		<br>
   	</div>
 	<div>
-		<label for=subject>제목</label>
-		<input type="text" id="subject" name="notice_title">
+		<label for=notice_title>제목</label>
+		<input type="text" id="notice_title" name="notice_title">
   		<br>
 	</div>
 	<div>
-		<label for="contents">내용</label>
-  		<textarea id="contents" name="notice_contents" rows="3" cols="30">내용</textarea>
+		<label for="notice_contents">내용</label>
+  		<textarea id="notice_contents" name="notice_contents" rows="3" cols="30">내용</textarea>
   		<br>
   	</div>
   	<div>
