@@ -35,7 +35,9 @@ public class MembersLoginSCtrl implements Controller {
 
 		} else {
 			// memberVO에 있는 pw와 resultVO의 pw를 비교해서 같으면 로그인성공 && 인증컬럼 1이어야지 로그인 성공
-			if (membersVO.getMem_pw().equals(resultVO.getMem_pw()) && resultVO.getMem_access_status().equals("1")) {
+			// 2는 관리자
+			if (membersVO.getMem_pw().equals(resultVO.getMem_pw()) || 
+				(resultVO.getMem_access_status().equals("1") && resultVO.getMem_access_status().equals("2"))) {
 				request.getSession().setAttribute("login", resultVO);
 				request.getSession().setAttribute("loginid", resultVO.getMem_email()); // 세션아이디
 				page = "/members/membersMain.do";
