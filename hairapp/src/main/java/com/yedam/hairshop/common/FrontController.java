@@ -45,6 +45,7 @@ import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
+import com.yedam.hairshop.members.DesignerBookmarkCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
@@ -138,7 +139,9 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
 		
-		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//북마크
+		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//헤어샵 북마크
+		list.put("/ajax/designerBookmark.do", new DesignerBookmarkCtrl());		//디자이너 북마크
+		
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());			//자동완성 검색
 		list.put("/members/searchDetail.do", new SearchDetailCtrl());			//상세검색
 		

@@ -20,5 +20,5 @@ public class DesignerVo {
 	private String designer_profile;
 	private String hs_no;
 	private String file_name;
-	
+	private String designer_book;
 }
