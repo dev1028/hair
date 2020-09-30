@@ -23,7 +23,7 @@ public class MembersNoticeWCtrl implements Controller {
 		System.out.println("MembersNoticeWCtrl");
 
 		// 파라미터 VO에 담기
-		HairshopNoticgjreVo vo = new HairshopNoticeVo();
+		HairshopNoticeVo vo = new HairshopNoticeVo();
 		
 		
 		try {
