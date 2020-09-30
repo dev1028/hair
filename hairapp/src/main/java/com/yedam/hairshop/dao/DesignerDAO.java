@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.DesignerVo;
@@ -45,6 +46,8 @@ public class DesignerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -201,6 +204,8 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -228,6 +233,8 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -244,7 +251,45 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
+	}
+	
+	//랭킹 3위만 표시
+	public List<DesignerVo> selectListDesignerRank(DesignerVo designerVo) {
+		List<DesignerVo> list = new ArrayList<DesignerVo>();
+		String sql = "SELECT rn, designer_no, designer_name, work_start_time, work_end_time, designer_profile FROM " + 
+				"  (SELECT rownum rn, k.*  " + 
+				"   FROM " + 
+				"    (SELECT r.cnt, d.* " + 
+				"     FROM (SELECT designer_no, count(*) as cnt " + 
+				"          FROM favor_designer " + 
+				"          GROUP BY designer_no) r " + 
+				"     JOIN designer d " + 
+				"     ON d.designer_no = r.designer_no " + 
+				"     ORDER BY r.cnt DESC) k) " + 
+				"WHERE rn <= 3 ";
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+			while(rs.next()) {
+				DesignerVo vo = new DesignerVo();
+				vo.setRn(rs.getString("rn"));
+				vo.setDesigner_no(rs.getString("designer_name"));
+				vo.setWork_start_time(rs.getString("work_start_time"));
+				vo.setWork_end_time(rs.getString("work_end_time"));
+				vo.setDesigner_profile(rs.getString("designer_profile"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
 	}
 }
