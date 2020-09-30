@@ -24,6 +24,7 @@ public class MembersNoticeWCtrl implements Controller {
 
 		// 파라미터 VO에 담기
 		HairshopNoticeVo vo = new HairshopNoticeVo();
+
 		try {
 			BeanUtils.copyProperties(vo, request.getParameterMap());
 		} catch (Exception e) {
