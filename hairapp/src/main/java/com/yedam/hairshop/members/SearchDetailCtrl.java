@@ -39,10 +39,10 @@ public class SearchDetailCtrl implements Controller {
 		
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
 		for(HairshopVo v : list) {
-			System.out.println(v.getHs_starttime());
-			System.out.println(v.getHs_endtime());
-			System.out.println(hs_starttime);
-			System.out.println(hs_endtime);
+//			System.out.println(v.getHs_starttime());
+//			System.out.println(v.getHs_endtime());
+//			System.out.println(hs_starttime);
+//			System.out.println(hs_endtime);
 			
 			int st = Integer.parseInt(v.getHs_starttime());
 			int ed = Integer.parseInt(v.getHs_endtime());
