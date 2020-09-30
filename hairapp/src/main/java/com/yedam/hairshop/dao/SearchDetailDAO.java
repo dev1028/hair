@@ -97,5 +97,5 @@ public class SearchDetailDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return list;
-	}	
+	}
 }
