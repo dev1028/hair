@@ -24,52 +24,41 @@ public class MembersNoticeWCtrl implements Controller {
 
 		// 파라미터 VO에 담기
 		HairshopNoticeVo vo = new HairshopNoticeVo();
-		
-		
+
 		try {
 			BeanUtils.copyProperties(vo, request.getParameterMap());
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		Part part = request.getPart("filename");
-		//여긴 잘됨? 여기서부터에러뜸 밑에 37라인
-		//part널 뜨는이유는 첨부파일 등록안해서. 
-		System.out.println(part);
-		String filename = getFilename(part);
+		System.out.println("vo" + vo);
+
+		Part part = request.getPart("notice_image");
+		System.out.println("part" + part);
+		String notice_image = getFilename(part);
 		String path = "d:/upload";
 		System.out.println(path);
-		
-		//파일명 중복체크
-		File renameFile = FileRenamePolicy.rename(new File(path, filename));
-		part.write(path +"/" +renameFile.getName());
-		if(renameFile.getName().equals("책표지1")) {
-			vo.setNotice_image(null);
-		}else {
-			vo.setNotice_image(renameFile.getName());
-		}
-		
+
+		// 파일명 중복체크
+		File renameFile = FileRenamePolicy.rename(new File(path, notice_image));
+		part.write(path + "/" + renameFile.getName());
+		vo.setNotice_image(renameFile.getName());
+
 		int resultVo = NoticeDAO.getInstance().insert(vo);
-		System.out.println("3"+resultVo);
+		System.out.println("3" + resultVo);
 		request.setAttribute("write", resultVo);
 		response.sendRedirect("membersNotice.do");
-		
+
 	}
-	
+
 	private String getFilename(Part part) throws UnsupportedEncodingException {
 		for (String cd : part.getHeader("Content-Disposition").split(";")) {
-		if (cd.trim().startsWith("filename")) {
-		return cd.substring(cd.indexOf('=') + 1).trim()
-		.replace("\"", "");
-		}
+			if (cd.trim().startsWith("filename")) {
+				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+			}
 		}
 		return null;
-		}
-		
-		
-		
-		
-		
+	}
+
 //		String notice_no = request.getParameter("notice_no");
 //		String notice_title = request.getParameter("notice_title");
 //		String notice_contents = request.getParameter("notice_contents");
@@ -94,7 +83,5 @@ public class MembersNoticeWCtrl implements Controller {
 //		System.out.println("3"+resultVo);
 //		request.setAttribute("write", resultVo);
 //		response.sendRedirect("membersNotice.do");
-		
-	}
 
-
+}

@@ -11,7 +11,7 @@
 <script>
 function inputCheck() {
 	
-	if(frm.notice_category.value == "") {
+	if(frm.notice_categoryname.value == "") {
 		alert("카테고리 입력");
 		frm.notice_category.focus();
 		return false;
@@ -27,7 +27,6 @@ function inputCheck() {
 		window.alert("내용 입력");
 		frm.notice_contents.focus();
 		return false;
-	}
 	
 	return true;
 	
@@ -42,8 +41,8 @@ function inputCheck() {
 <h4 class="page_title">공지사항 등록</h4>
 <hr>
 	<div>
-		<label for="notice_category">대분류</label>
-  		<select id="notice_category" name="notice_category" onchange="">
+		<label for="notice_categoryname">대분류</label>
+  		<select id="notice_categoryname" name="notice_categoryname" onchange="">
   		<option value="">선택</option>
     	<option value="b1">전체공지</option>
     	<option value="b2">미용실공지</option>
@@ -63,8 +62,8 @@ function inputCheck() {
   		<br>
   	</div>
   	<div>
-  		<label for="filename">첨부 파일 추가</label>
-  		<input type="file" name="filename" size=30 accept=".gif, .jpg, .png"><br>
+  		<label for="notice_image">첨부 파일 추가</label>
+  		<input type="file" name="notice_image" size=30 accept=".gif, .jpg, .png"><br>
 	</div>
   	<div>
   		<button type="reset">초기화</button>
