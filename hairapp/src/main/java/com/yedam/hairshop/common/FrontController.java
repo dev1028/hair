@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -104,6 +105,8 @@ import com.yedam.hairshop.members.SearchRealtimCtrl;
 					@WebInitParam(name = "charset", value="UTF-8")
 			})
 */
+
+@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String charset = null;

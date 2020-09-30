@@ -23,53 +23,49 @@ public class MembersNoticeWCtrl implements Controller {
 		System.out.println("MembersNoticeWCtrl");
 
 		// 파라미터 VO에 담기
-		HairshopNoticgjreVo vo = new HairshopNoticeVo();
-		
-		
+		HairshopNoticeVo vo = new HairshopNoticeVo();
 		try {
 			BeanUtils.copyProperties(vo, request.getParameterMap());
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			return;
 		}
-		
+
 		Part part = request.getPart("filename");
-		//여긴 잘됨? 여기서부터에러뜸 밑에 37라인
-		//part널 뜨는이유는 첨부파일 등록안해서. 
-		System.out.println(part);
+		// 여긴 잘됨? 여기서부터에러뜸 밑에 37라인
+		// part널 뜨는이유는 첨부파일 등록안해서.
 		String filename = getFilename(part);
-		String path = "d:/upload";
-		System.out.println(path);
-		
-		//파일명 중복체크
-		File renameFile = FileRenamePolicy.rename(new File(path, filename));
-		part.write(path +"/" +renameFile.getName());
-		if(renameFile.getName().equals("책표지1")) {
-			vo.setNotice_image(null);
-		}else {
-			vo.setNotice_image(renameFile.getName());
+		if (filename == null) {
+			System.out.println("파일 에러");
+			return;
+		} else {
+			String path = "c:/upload";
+
+			// 파일명 중복체크
+			File renameFile = FileRenamePolicy.rename(new File(path, filename));
+			part.write(path + "/" + renameFile.getName());
+			if (renameFile.getName().equals("책표지1")) {
+				vo.setNotice_image(null);
+			} else {
+				vo.setNotice_image(renameFile.getName());
+			}
+
+			int resultVo = NoticeDAO.getInstance().insert(vo);
+			System.out.println("3" + resultVo);
+			request.setAttribute("write", resultVo);
+			response.sendRedirect("membersNotice.do");
 		}
-		
-		int resultVo = NoticeDAO.getInstance().insert(vo);
-		System.out.println("3"+resultVo);
-		request.setAttribute("write", resultVo);
-		response.sendRedirect("membersNotice.do");
-		
 	}
-	
+
 	private String getFilename(Part part) throws UnsupportedEncodingException {
 		for (String cd : part.getHeader("Content-Disposition").split(";")) {
-		if (cd.trim().startsWith("filename")) {
-		return cd.substring(cd.indexOf('=') + 1).trim()
-		.replace("\"", "");
-		}
+			if (cd.trim().startsWith("filename")) {
+				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+			}
 		}
 		return null;
-		}
-		
-		
-		
-		
-		
+	}
+
 //		String notice_no = request.getParameter("notice_no");
 //		String notice_title = request.getParameter("notice_title");
 //		String notice_contents = request.getParameter("notice_contents");
@@ -94,7 +90,5 @@ public class MembersNoticeWCtrl implements Controller {
 //		System.out.println("3"+resultVo);
 //		request.setAttribute("write", resultVo);
 //		response.sendRedirect("membersNotice.do");
-		
-	}
 
-
+}
