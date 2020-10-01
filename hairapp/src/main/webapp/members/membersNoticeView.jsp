@@ -103,7 +103,7 @@
   	<td>${view.notice_title}</td>
   	<td>관리자</td>
   	<td>${view.notice_writedate}</td>
-  	<td>${hit.notice_hits}</td>
+  	<td>${view.notice_hits}</td>
   	<td>${view.notice_image} <br><br> ${view.notice_contents}</td>
   <tr>
   </tbody>
