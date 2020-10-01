@@ -20,6 +20,8 @@ public class MembersNoticeCtrl implements Controller {
 
 		// 파라미터
 		String p = request.getParameter("p");
+		
+		String admin = request.getSession().getAttribute("admin").toString();
 
 		// 유효성 체크
 		int page = 1;
@@ -27,9 +29,11 @@ public class MembersNoticeCtrl implements Controller {
 			page = Integer.parseInt(p); // p가 널이 아니라면 p를 인트로 변환후 page에 담기
 		}
 		Paging paging = new Paging();
-		paging.setPageUnit(5); // 한페이지에 출력할 레코드 건수 설정
-		paging.setPageSize(3); // 페이지 번호 수 설정
+		paging.setPageUnit(10); // 한페이지에 출력할 레코드 건수 설정
+		paging.setPageSize(10); // 페이지 번호 수 설정
+		
 		paging.setPage(page); // paging 반영되게 해주기
+		
 
 		// 파라미터 VO에 담기
 		HairshopNoticeVo vo = new HairshopNoticeVo();
@@ -47,6 +51,7 @@ public class MembersNoticeCtrl implements Controller {
 		// 결과 저장
 		request.setAttribute("write", list);
 		request.setAttribute("paging", paging);
+		request.getSession().setAttribute("admin", admin);
 		request.getRequestDispatcher("/members/membersNotice.jsp").forward(request, response);
 
 	}

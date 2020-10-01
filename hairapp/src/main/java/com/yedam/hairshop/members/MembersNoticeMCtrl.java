@@ -9,29 +9,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.commons.beanutils.BeanUtils;
-
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.FileRenamePolicy;
 import com.yedam.hairshop.dao.NoticeDAO;
 import com.yedam.hairshop.model.HairshopNoticeVo;
 
-public class MembersNoticeWCtrl implements Controller {
+public class MembersNoticeMCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MembersNoticeWCtrl");
+		System.out.println("공지수정");
 
-		// 파라미터 VO에 담기
+		String noticeNo = request.getSession().getAttribute("viewNo").toString();
+
 		HairshopNoticeVo vo = new HairshopNoticeVo();
+		String notice_no = noticeNo;
+		String notice_categoryname = request.getParameter("notice_categoryname");
+		String notice_title = request.getParameter("notice_title");
+		String notice_contents = request.getParameter("notice_contents");
+		String notice_image = request.getParameter("notice_image");
 
-		try {
-			BeanUtils.copyProperties(vo, request.getParameterMap());
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		System.out.println("vo" + vo);
+		vo.setNotice_no(notice_no);
+		vo.setNotice_categoryname(notice_categoryname);
+		vo.setNotice_title(notice_title);
+		vo.setNotice_contents(notice_contents);
+		vo.setNotice_image(notice_image);
 
 		Part part = request.getPart("notice_image");
 		String filename = getFilename(part);
@@ -46,9 +48,10 @@ public class MembersNoticeWCtrl implements Controller {
 			part.write(path + "/" + renameFile.getName());
 			vo.setNotice_image(renameFile.getName());
 
-			int resultVo = NoticeDAO.getInstance().insert(vo);
-			System.out.println("notice resultVo:" + resultVo);
-			response.sendRedirect("membersNotice.do");
+			NoticeDAO dao = new NoticeDAO();
+			dao.noticeModify(vo);
+			
+			response.sendRedirect("membersNoticeV.do?notice_no="+notice_no);
 		}
 	}
 
@@ -59,7 +62,7 @@ public class MembersNoticeWCtrl implements Controller {
 			}
 		}
 		return null;
-	}
 
+	}
 
 }

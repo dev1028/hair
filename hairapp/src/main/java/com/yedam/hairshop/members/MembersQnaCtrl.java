@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class HairRankCtrl implements Controller {
+public class MembersQnaCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("HairRankCtrl");
-		
-		request.getRequestDispatcher("hairRank.jsp").forward(request, response);
-		
-		
+		System.out.println("MembersQnaCtrl");
+
 	}
 
 }
