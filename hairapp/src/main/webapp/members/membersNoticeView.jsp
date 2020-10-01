@@ -3,12 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>membersNotice.jsp</title>
+<title>membersNoticeView.jsp</title>
 <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <style>
     #container {
@@ -79,7 +78,7 @@
 
 <br><br><br><br>
 <div class="contatiner">
-<form method="post" name="frm2" id="frm2" action="membersNoticeV.do">
+<form method="post" name="frm" id="frm" action="">
 
 <div id="list">
 <h3 class="page_title">공지사항</h3>
@@ -95,48 +94,23 @@
     <th>작성자</th>
     <th>날짜</th>
     <th>조회수</th>
+    <th>내용</th>
   </tr>
 </thead>
   <tbody>
-  <!--여기보면 반복문으로 input 이 반복되니까 values() 하는거. 불편하다 commit해줘 고쳐줄게 넹-->
-  <c:forEach items="${write}" var="board">
-  <input type="hidden" name="noticeNo" value="${board.notice_no}">
-  <input type="hidden" name="noticeHit" value="${board.notice_hits}">
   <tr>
-  	<td>${board.notice_no}</td>
-  	<td><a href="membersNoticeV.do?notice_no=${board.notice_no}">${board.notice_title}</a></td>
+  	<td>${view.notice_no}</td>
+  	<td>${view.notice_title}</td>
   	<td>관리자</td>
-  	<td>${board.notice_writedate}</td>
-  	<td>${board.notice_hits}</td>
+  	<td>${view.notice_writedate}</td>
+  	<td>${hit.notice_hits}</td>
+  	<td>${view.notice_image} <br><br> ${view.notice_contents}</td>
   <tr>
-  </c:forEach>
   </tbody>
 </table>
-
- <hr/>
- <div id="write">
- <a class="btn btn-default pull-right" onclick="noticeWriteGo()">글쓰기</a>
- </div>
  
  </form>
- 
- <!-- 페이징 -->
- <form method="post" name="frm" id="frm">
- <input type="hidden" name="p" value="1">	<!-- value에는 페이지번호 적었음 -->
-  <div id="paging">
- <my:paging paging="${paging}" jsfunc="gopage" />
- </div>
- </form>
- <!-- 페이징끝 -->
- 
  </div>
  
-<script>
-	function gopage(p) {
-		frm.p.value = p;		// 페이지번호 받아와서 submit에 넘김
-		frm.submit();
-		
-	}
-</script>
 </body>
 </html>

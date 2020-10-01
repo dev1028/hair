@@ -29,7 +29,9 @@ public class MembersNoticeCtrl implements Controller {
 		Paging paging = new Paging();
 		paging.setPageUnit(5); // 한페이지에 출력할 레코드 건수 설정
 		paging.setPageSize(3); // 페이지 번호 수 설정
+		
 		paging.setPage(page); // paging 반영되게 해주기
+		
 
 		// 파라미터 VO에 담기
 		HairshopNoticeVo vo = new HairshopNoticeVo();

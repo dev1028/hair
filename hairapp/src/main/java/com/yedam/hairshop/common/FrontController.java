@@ -81,6 +81,7 @@ import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMainResultCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
 import com.yedam.hairshop.members.MembersNoticeCtrl;
+import com.yedam.hairshop.members.MembersNoticeVCtrl;
 import com.yedam.hairshop.members.MembersNoticeWCtrl;
 import com.yedam.hairshop.members.MembersNoticeWGCtrl;
 import com.yedam.hairshop.members.MembersPwEmailCtrl;
@@ -201,6 +202,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
 		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
+		list.put("/members/membersNoticeV.do", new MembersNoticeVCtrl());		// 공지사항 보기 컨트롤러
+		
 		
 		//강산
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());
