@@ -23,4 +23,7 @@ public class HairshopNoticeVo {
 	public String qna_answer;
 	public String qna_answerdate;
 	public String qna_who;
+	
+	public int first;
+	public int last;
 }

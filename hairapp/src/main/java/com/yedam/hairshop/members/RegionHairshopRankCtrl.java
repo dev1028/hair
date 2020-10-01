@@ -15,10 +15,9 @@ public class RegionHairshopRankCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("RegionHairshopRankCtrl");
 		List<HairshopVo> list = HairshopDAO.getInstance().selectListHairshopRank(null);
-//		for(HairshopVo vo : list) {
-//			System.out.println(vo);
-//		}
+
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("regionHairshopRank.jsp").forward(request, response);
 	}

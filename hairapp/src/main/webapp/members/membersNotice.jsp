@@ -8,10 +8,65 @@
 <head>
 <meta charset="UTF-8">
 <title>membersNotice.jsp</title>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    #container {
+      width: 70%;
+      margin: 0 auto;     /* 가로로 중앙에 배치 */
+      padding-top: 10%;   /* 테두리와 내용 사이의 패딩 여백 */
+    }
+     
+    #list {
+      text-align: center;
+    }
+   
+    #write {
+      text-align: right;
+    }
+     
+    /* Bootstrap 수정 */
+    .table > thead {
+      background-color: #b3c6ff;
+    }
+    .table > thead > tr > th {
+      text-align: center;
+    }
+    .table-hover > tbody > tr:hover {
+      background-color: #e6ecff;
+    }
+    .table > tbody > tr > td {
+      text-align: center;
+    }
+    .table > tbody > tr > #title {
+      text-align: left;
+    }
+     
+    #paging {
+      text-align: center;
+    }
+     
+    .hit {
+      animation-name: blink;
+      animation-duration: 1.5s;
+      animation-timing-function: ease;
+      animation-iteration-count: infinite;
+      /* 위 속성들을 한 줄로 표기하기 */
+      /* -webkit-animation: blink 1.5s ease infinite; */
+    }
+     
+    /* 애니메이션 지점 설정하기 */
+    /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
+    @keyframes blink {
+      from {color: white;}
+      30% {color: yellow;}
+      to {color: red; font-weight: bold;}
+      /* 0% {color:white;}
+      30% {color: yellow;}
+      100% {color:red; font-weight: bold;} */
+    }
+  </style>
+
+
 <script>
 	function noticeWriteGo() {
 		location.href = "membersNoticeWG.do";
@@ -19,9 +74,19 @@
 </script>
 </head>
 <body>
+
+
+<br><br><br><br>
 <div class="contatiner">
+<form method="post" name="frm" id="frm" action="">
+
+<div id="list">
 <h3 class="page_title">공지사항</h3>
-<table class="table table-hover">
+</div>
+
+<hr>
+<br><br>
+<table class="table table-striped table-bordered table-hover">
 <thead>
   <tr>
     <th>번호</th>
@@ -32,28 +97,30 @@
   </tr>
 </thead>
   <tbody>
-  <c:forEach items="${list}" var="board">
+  <c:forEach items="${write}" var="board">
   <tr>
-  	<td>${board.no}</td>
-  	<td>${board.poster}</td>
-  	<td><a href="#">${board.subject}</a></td>
-  	<td>${board.lastpost}</td>
-  	<td>${board.views}</td>
+  	<td>${board.notice_no}</td>
+  	<td>${board.notice_title}</td>
+  	<td><a href="#">관리자</a></td>
+  	<td>${board.notice_writedate}</td>
+  	<td>${board.notice_hits}</td>
+  <tr>
   </c:forEach>
   </tbody>
 </table>
 
  <hr/>
+ <div id="write">
  <a class="btn btn-default pull-right" onclick="noticeWriteGo()">글쓰기</a>
- <div class="text-center">
- 	<ul class="pagination">
- 		<li><a href="#">1</a></li>
- 		<li><a href="#">2</a></li>
- 		<li><a href="#">3</a></li>
- 		<li><a href="#">4</a></li>
- 		<li><a href="#">5</a></li>
- 	</ul>
  </div>
+ 
+ 
+ <div id="paging">
+ ${paging}
  </div>
+ 
+ </form>
+ </div>
+ 
 </body>
 </html>
