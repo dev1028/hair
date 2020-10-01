@@ -32,6 +32,9 @@
 			});// end of ajax 
 		
 		})
+		$(function () {
+ 			 $('[data-toggle="popover"]').popover()
+		})
 		
 	});
 
@@ -148,8 +151,10 @@
 								<h5 class="card-title">${info.hhi_name}</h5>
 								<h6 class="card-subtitle mb-2 text-muted">${info.hhi_time}시간</h6>
 								<p class="card-text">${info.hhi_price}원</p>
+								
 								<a href="#" class="card-link">정보기록</a>
 							</div>
+								<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 						</div>
 					</c:forEach>
 				</div>

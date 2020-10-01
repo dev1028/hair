@@ -26,6 +26,7 @@ public class HairshopVo {
 	private String hs_parking;
 	private String hs_etc;
 	private String hs_approval;
+	private String hs_regdate;
 	
 	private String hs_book;
 }

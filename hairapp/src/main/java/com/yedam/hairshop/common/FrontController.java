@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
+import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
+import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
+import com.yedam.hairshop.admin.AdminOwnerManageCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
+import com.yedam.hairshop.admin.adminBoardSettingCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
@@ -82,6 +87,7 @@ import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMainResultCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
 import com.yedam.hairshop.members.MembersNoticeCtrl;
+import com.yedam.hairshop.members.MembersNoticeVCtrl;
 import com.yedam.hairshop.members.MembersNoticeWCtrl;
 import com.yedam.hairshop.members.MembersNoticeWGCtrl;
 import com.yedam.hairshop.members.MembersPwEmailCtrl;
@@ -203,6 +209,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
 		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
+		list.put("/members/membersNoticeV.do", new MembersNoticeVCtrl());		// 공지사항 보기 컨트롤러
+		
 		
 		//강산
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());
@@ -212,7 +220,11 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		list.put("/hairshop/sales.do", new salesCtrl());	
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
-//		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());	
+		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());	
+		list.put("/admin/adminCustomerManage.do", new AdminCustomerManageCtrl());	
+		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());	
 		
 		
 		//승연

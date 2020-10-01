@@ -18,5 +18,5 @@ public class BoardManageVo {
 	String searchType;
 	String searchInput;
 	String answerStatus;
-	
+	String who;
 }
