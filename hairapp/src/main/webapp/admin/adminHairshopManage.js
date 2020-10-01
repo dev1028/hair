@@ -48,21 +48,20 @@ $(function() {
 	});
 	function result(param) {
 		$("#result").html("");
-		var url = "/hairapp/admin/adminBoardManageFind.do"
+		var url = "/hairapp/admin/adminHairshopManageFind.do"
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test'
 		});
 		var tr = $("<tr />");
 		tr.append($("<th>").append($("<input>").attr('type', 'checkbox')));
-		tr.append($("<th>").text("번호"));
-		tr.append($("<th>").text("분류"));
-		tr.append($("<th>").text("제목"));
-		tr.append($("<th>").text("답변상태"));
-		tr.append($("<th>").text("답변하기 "));
-		tr.append($("<th>").text("작성자   "));
-		tr.append($("<th>").text("작성일   "));
-		tr.append($("<th>").text("조회수  "));
+		tr.append($("<th>").text("헤어샵번호"));
+		tr.append($("<th>").text("헤어샵이름"));
+		tr.append($("<th>").text("대표명"));
+		tr.append($("<th>").text("아이디"));
+		tr.append($("<th>").text("등록일 "));
+		tr.append($("<th>").text("전화번호"));
+		tr.append($("<th>").text("지역"));
 
 		table.append(tr);
 
@@ -92,60 +91,7 @@ $(function() {
 		$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 
 	}
-	function startDate(d) {
-		$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
-	}
-	function endDate(d) {
-		$("#end").attr('value', moment(d).format('YYYY-MM-DD'));
-	}
-	function today() {
-		var d = new Date();
 
-		startDate(d);
-		endDate(d);
-		console.log(d);
 
-	}
-	function three() {
-		var d = new Date();
-		endDate(d);
-		d.setDate(d.getDate() - 3);
-		startDate(d);
-		console.log(d);
-
-	}
-	function week() {
-		var d = new Date();
-		endDate(d);
-		startDate(d.setDate(d.getDate() - 7));
-		console.log(d);
-
-	}
-
-	function mon() {
-		var d = new Date();
-		endDate(d);
-
-		startDate(d.setMonth(d.getMonth() - 1));
-		console.log(d);
-
-	}
-	// $("#id").val(obj.id);
-	// $("#pw").val(obj.pw);
-	//
-	// $("#job").val(obj.job);
-	// var str = "input:radio[name='gender']:radio[value='"
-	// + obj.gender + "']";
-	// $(str).prop('checked', true);
-	// //$("input:radio[name='gender']:radio[value='여']").prop('checked',
-	// true);
-	// if (obj.mailyn == 'Y') {
-	//
-	// $("input:checkbox[name='mailyn']").prop('checked',
-	// true);
-	// } else {
-	// $("input:checkbox[name='mailyn']").prop('checked',
-	// false);
-	// }
 
 });
