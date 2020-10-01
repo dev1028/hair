@@ -13,9 +13,31 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
-
 </head>
 <body>
+<script>
+	function like_func(hhi_no) {
+		$.ajax({
+			url : "../ajax/hairBookmark.do",
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : 'hhi_no=' + hhi_no,
+			success : function(data) {
+				findClass = ".img-" + hhi_no;
+				if(data.type == "add"){
+					$(findClass).attr("src", "../images/bookmark/heart.png");
+				}else{
+					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
+				}
+			},
+			error : function(request, status, error) {
+				alert("에러 발생!!")
+			}
+		});
+	}
+</script>
+
 <div class="container">
     <h3 class="h3">헤어 정보</h3>
     <div class="row">
@@ -27,6 +49,16 @@
 	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
 		                </div>
 		                <div class="product-content">
+		                	<c:if test="${not empty sessionScope.login }">
+			                	<a href='javascript: like_func("${hairInfo.hhi_no}")'>
+									<c:if test="${hairInfo.hhi_book == 1 }">
+										<img class="img-${hairInfo.hhi_no}" src="../images/bookmark/heart.png" width="30" height="30">
+									</c:if>
+									<c:if test="${hairInfo.hhi_book != 1 }">
+										<img class="img-${hairInfo.hhi_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+									</c:if>
+								</a>
+							</c:if>
 		                    <h3 class="title">${hairInfo.hhi_name}</h3>
 		                    <h3 class="title">${hairInfo.hhi_time}시간</h3>
 		                    <div class="price">${hairInfo.hhi_price}원</div>

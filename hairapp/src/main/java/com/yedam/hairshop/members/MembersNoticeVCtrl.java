@@ -22,10 +22,11 @@ public class MembersNoticeVCtrl implements Controller {
 		HairshopNoticeVo vo = new HairshopNoticeVo();
 		String noticeNo = request.getParameter("notice_no");
 		String noticeHit = request.getParameter("noticeHit");
+		System.out.println();
 		System.out.println("noticeNo: " + noticeNo);
 		System.out.println("noticeHit: " + noticeHit);
 		vo.setNotice_no(noticeNo);
-		vo.setNotice_no(noticeHit);
+		//vo.setNotice_no(noticeHit);
 
 		// DB 조회
 		HairshopNoticeVo resultVo = NoticeDAO.getInstance().noticeView(vo);

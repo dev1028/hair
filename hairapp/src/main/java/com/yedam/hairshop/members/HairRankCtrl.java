@@ -12,7 +12,11 @@ public class HairRankCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("HairRankCtrl");
+		
 		request.getRequestDispatcher("hairRank.jsp").forward(request, response);
+		
+		
 	}
 
 }
