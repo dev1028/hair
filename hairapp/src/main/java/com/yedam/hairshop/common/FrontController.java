@@ -87,6 +87,9 @@ import com.yedam.hairshop.members.MembersMainCtrl;
 import com.yedam.hairshop.members.MembersMainResultCtrl;
 import com.yedam.hairshop.members.MembersMyPageTopCtrl;
 import com.yedam.hairshop.members.MembersNoticeCtrl;
+import com.yedam.hairshop.members.MembersNoticeDCtrl;
+import com.yedam.hairshop.members.MembersNoticeMCtrl;
+import com.yedam.hairshop.members.MembersNoticeMGCtrl;
 import com.yedam.hairshop.members.MembersNoticeVCtrl;
 import com.yedam.hairshop.members.MembersNoticeWCtrl;
 import com.yedam.hairshop.members.MembersNoticeWGCtrl;
@@ -95,6 +98,7 @@ import com.yedam.hairshop.members.MembersPwEndCtrl;
 import com.yedam.hairshop.members.MembersPwModifyCtrl;
 import com.yedam.hairshop.members.MembersPwSearchCtrl;
 import com.yedam.hairshop.members.MembersPwSearchSCtrl;
+import com.yedam.hairshop.members.MembersQnaCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MembersSearchCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
@@ -210,6 +214,11 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
 		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
 		list.put("/members/membersNoticeV.do", new MembersNoticeVCtrl());		// 공지사항 보기 컨트롤러
+		list.put("/members/membersNoticeMG.do", new MembersNoticeMGCtrl());		// 공지사항 수정으로 이동하는 컨트롤러
+		list.put("/members/membersNoticeM.do", new MembersNoticeMCtrl());		// 공지사항 수정 하는 컨트롤러
+		list.put("/members/membersNoticeD.do", new MembersNoticeDCtrl());		// 공지사항 삭제 컨트롤러
+		
+		list.put("/members/membersQna.do", new MembersQnaCtrl());				// Qna 목록 컨트롤러
 		
 		
 		//강산

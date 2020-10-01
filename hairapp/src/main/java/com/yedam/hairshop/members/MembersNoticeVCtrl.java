@@ -17,6 +17,9 @@ public class MembersNoticeVCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MembersNoticeVCtrl");
+		
+		String admin = request.getSession().getAttribute("admin").toString();
+		
 		// 파라미터
 		HairshopNoticeVo vo = new HairshopNoticeVo();
 		String noticeNo = request.getParameter("notice_no");
@@ -34,7 +37,9 @@ public class MembersNoticeVCtrl implements Controller {
 
 		// 결과 저장
 		request.getSession().setAttribute("view", resultVo);
+		request.getSession().setAttribute("viewNo", resultVo.getNotice_no());
 		request.getSession().setAttribute("hit", hitup);
+		request.getSession().setAttribute("admin", admin);
 		//request.setAttribute("view", resultVo);
 		
 		request.getRequestDispatcher("membersNoticeView.jsp").forward(request, response);

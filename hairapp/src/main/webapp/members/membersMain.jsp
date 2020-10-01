@@ -307,10 +307,12 @@ form.example::after {
 		});
 	});
 	
-	
 	//린아
 	function noticeGo() {
 		location.href = "membersNotice.do";
+	}
+	function qnaGo() {
+		location.href = "membersQna.do";
 	}
 </script>
 </head>
@@ -394,7 +396,7 @@ form.example::after {
 		<br><br><br>
 		<div style="text-align: center;">
 		<button onclick="noticeGo()">공지사항</button>
-		<button>Q&A</button>
+		<button onclick="qnaGo()">Q&A</button>
 		</div>
 	</div>
 </body>

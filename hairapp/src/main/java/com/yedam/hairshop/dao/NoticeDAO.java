@@ -30,8 +30,7 @@ public class NoticeDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
-					+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME"
-					+ " FROM NOTICE "
+					+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + " FROM NOTICE "
 					+ " WHERE NOTICE_WHO = 'j2'" + " AND NOTICE_NO = ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, noticeVo.getNotice_no());
@@ -56,16 +55,14 @@ public class NoticeDAO {
 		return resultVo;
 
 	}
-	
 
 	// 조회수
 	public int upHit(HairshopNoticeVo noticeVo) {
 		int result = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
-			pstmt = conn.prepareStatement("UPDATE NOTICE"
-					+ " SET NOTICE_HITS = NOTICE_HITS + 1"
-					+ " WHERE NOTICE_NO = ?");
+			pstmt = conn
+					.prepareStatement("UPDATE NOTICE" + " SET NOTICE_HITS = NOTICE_HITS + 1" + " WHERE NOTICE_NO = ?");
 			pstmt.setString(1, noticeVo.getNotice_no());
 			result = pstmt.executeUpdate();
 
@@ -78,7 +75,6 @@ public class NoticeDAO {
 		return result;
 	}
 
-	
 	// 공지사항 작성
 	// notice_no_seq
 	public int insert(HairshopNoticeVo noticeVo) {
@@ -159,5 +155,46 @@ public class NoticeDAO {
 		}
 		return cnt;
 	}
+
+	// 공지 수정
+	public void noticeModify(HairshopNoticeVo noticeVo) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE NOTICE"
+					+ " SET NOTICE_TITLE =?, NOTICE_CONTENTS=?, NOTICE_IMAGE=?, NOTICE_CATEGORYNAME=?"
+					+ " WHERE NOTICE_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeVo.getNotice_title());
+			pstmt.setString(2, noticeVo.getNotice_contents());
+			pstmt.setString(3, noticeVo.getNotice_image());
+			pstmt.setString(4, noticeVo.getNotice_categoryname());
+			pstmt.setString(5, noticeVo.getNotice_no());
+
+			pstmt.executeUpdate(); // 실행
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn); // 연결 해제
+		}
+	} // end 공지수정
+
+	
+	// 공지삭제
+	public void noticeDelete(HairshopNoticeVo noticeVo) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "DELETE FROM NOTICE WHERE NOTICE_NO=?"; // 값 들어갈 자리에 ? 로 지정
+			pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
+			pstmt.setString(1, noticeVo.getNotice_no()); // ?의 첫번째 자리에 올 값 지정
+			int r = pstmt.executeUpdate(); // 실행
+			System.out.println(r + " 건이 삭제됨"); // 결과 처리
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn); // 연결 해제
+		}
+	}	// 공지삭제 끝
 
 }

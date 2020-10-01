@@ -8,8 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>membersNoticeView.jsp</title>
-<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
-  <style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<!-- <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+<style>
     #container {
       width: 70%;
       margin: 0 auto;     /* 가로로 중앙에 배치 */
@@ -20,15 +25,15 @@
       text-align: center;
     }
    
-    #write {
+    #upde {
       text-align: right;
     }
      
     /* Bootstrap 수정 */
-    .table > thead {
+    .table > tbody > tr > th {
       background-color: #b3c6ff;
     }
-    .table > thead > tr > th {
+    .table > tbody > tr > th {
       text-align: center;
     }
     .table-hover > tbody > tr:hover {
@@ -64,13 +69,26 @@
       30% {color: yellow;}
       100% {color:red; font-weight: bold;} */
     }
-  </style>
+</style>
 
 
 <script>
-	function noticeWriteGo() {
-		location.href = "membersNoticeWG.do";
+	function noticeModifyGo() {
+		location.href = "membersNoticeMG.do";
 }
+	
+	function noticeDeleteGo() {
+		location.href = "membersNoticeD.do";
+}
+	
+	function noticeGo() {
+		location.href = "membersNotice.do";
+}
+	
+	$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').trigger('focus')
+})
+
 </script>
 </head>
 <body>
@@ -88,29 +106,78 @@
 <br><br>
 <table class="table table-striped table-bordered table-hover">
 <thead>
-  <tr>
-    <th>번호</th>
-    <th>제목</th>
-    <th>작성자</th>
-    <th>날짜</th>
-    <th>조회수</th>
-    <th>내용</th>
-  </tr>
 </thead>
   <tbody>
   <tr>
+  	<th>번호</th>
   	<td>${view.notice_no}</td>
-  	<td>${view.notice_title}</td>
-  	<td>관리자</td>
-  	<td>${view.notice_writedate}</td>
-  	<td>${view.notice_hits}</td>
-  	<td>${view.notice_image} <br><br> ${view.notice_contents}</td>
+  </tr>
+  
   <tr>
+  	<th>제목</th>
+    <td>${view.notice_title}</td>
+  </tr>
+  
+  <tr>
+  	<th>작성자</th>
+    <td>관리자</td>
+  </tr>
+  
+  <tr>
+  	<th>날짜</th>
+    <td>${view.notice_writedate}</td>
+  </tr>
+  
+  <tr>
+  	<th>조회수</th>
+    <td>${view.notice_hits}</td>
+  </tr>
+  
+  <tr>
+  	<th>내용</th>
+    <td><img src="../${view.notice_image}" style="width: 600px; height: 400px; 
+    		padding: 10px"> <br><br> ${view.notice_contents}</td>
+  </tr>
   </tbody>
 </table>
  
- </form>
- </div>
+</form>
+
+<button type="button" class="btn btn-outline-primary" onclick="noticeGo()">목록으로</button>
  
+<c:if test="${admin == '2'}">
+<div id="upde">
+<button type="button" class="btn btn-outline-primary" onclick="noticeModifyGo()">수정</button>
+<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdrop">
+삭제
+</button>
+</div>
+</c:if>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">삭제 여부 확인</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        삭제하시겠습니까?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" onclick="noticeDeleteGo()">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal 끝 -->
+ 
+ 
+ </div>
 </body>
 </html>
