@@ -100,11 +100,11 @@
   <tbody>
   <!--여기보면 반복문으로 input 이 반복되니까 values() 하는거. 불편하다 commit해줘 고쳐줄게 넹-->
   <c:forEach items="${write}" var="board">
-  <input type="hidden" name="noticeNo" value="${board.notice_no}">
-  <input type="hidden" name="noticeHit" value="${board.notice_hits}">
+<%--   <input type="hidden" name="noticeNo" value="${board.notice_no}"> --%>
+<%--   <input type="hidden" name="noticeHit" value="${board.notice_hits}"> --%>
   <tr>
   	<td>${board.notice_no}</td>
-  	<td><a href="membersNoticeV.do?notice_no=${board.notice_no}">${board.notice_title}</a></td>
+  	<td><a href="membersNoticeV.do?notice_no=${board.notice_no}&notice_hit=${board.notice_hits}">${board.notice_title}</a></td>
   	<td>관리자</td>
   	<td>${board.notice_writedate}</td>
   	<td>${board.notice_hits}</td>

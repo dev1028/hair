@@ -18,17 +18,14 @@ public class MembersNoticeVCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MembersNoticeVCtrl");
 		// 파라미터
-		//이거 getParameter가 아니라, getParameters 인가 복수형으로 받아야 할꺼 같은데.
-		//근데 이거 뭐하기위한 ctrl임?
-		//클릭 했을때 한개만 상세보기말하는거가?
 		HairshopNoticeVo vo = new HairshopNoticeVo();
 		String noticeNo = request.getParameter("notice_no");
-		String[] noticeHit = request.getParameterValues("noticeHit");
-		
+		String noticeHit = request.getParameter("notice_hit");
+		System.out.println();
 		System.out.println("noticeNo: " + noticeNo);
 		System.out.println("noticeHit: " + noticeHit);
 		vo.setNotice_no(noticeNo);
-		vo.setNotice_no(noticeHit);
+		//vo.setNotice_no(noticeHit);
 
 		// DB 조회
 		HairshopNoticeVo resultVo = NoticeDAO.getInstance().noticeView(vo);
