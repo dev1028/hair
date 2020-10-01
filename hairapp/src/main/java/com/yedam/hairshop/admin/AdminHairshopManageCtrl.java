@@ -1,4 +1,4 @@
-package com.yedam.hairshop.members;
+package com.yedam.hairshop.admin;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,17 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.DesignerDAO;
-import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.dao.HairshopDAO;
+import com.yedam.hairshop.model.HairshopVo;
 
-public class RegionDesignerRankCtrl implements Controller {
+public class AdminHairshopManageCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("RegionDesignerRankCtrl");
-		List<DesignerVo> list = DesignerDAO.getInstance().selectListDesignerRank(null);
+		// TODO Auto-generated method stub
+		List<HairshopVo> list = HairshopDAO.getInstance().selectAll();
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("regionDesignerRank.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
+
 	}
 
 }

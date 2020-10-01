@@ -9,14 +9,8 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/card.css">
-<style>
-</style>
 <script>
 	function like_func(hs_no) {
-// 		var frm_read = $('#frm_read');
-// 		var boardno = $('#boardno', frm_read).val();
-// 		//var mno = $('#mno', frm_read).val();
-// 		//console.log("boardno, mno : " + boardno +","+ mno);
 		$.ajax({
 			url : "../ajax/hairshopBookmark.do",
 			type : "POST",
@@ -30,20 +24,12 @@
 				}else{
 					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
 				}
-				
-				
-				
-				//alert($(findClass).val());
-				
 			},
 			error : function(request, status, error) {
 				alert("에러 발생!!")
-// 				alert("code:" + request.status + "\n" + "message:"
-// 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
 	}
-
 </script>
 </head>
 <body>

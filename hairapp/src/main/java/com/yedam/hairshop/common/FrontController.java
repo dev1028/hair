@@ -5,13 +5,19 @@ import java.util.HashMap;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
+import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
+import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
+import com.yedam.hairshop.admin.AdminOwnerManageCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
+import com.yedam.hairshop.admin.adminBoardSettingCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
@@ -45,6 +51,7 @@ import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
+import com.yedam.hairshop.members.DesignerBookmarkCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
 import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
@@ -103,6 +110,8 @@ import com.yedam.hairshop.members.SearchRealtimCtrl;
 					@WebInitParam(name = "charset", value="UTF-8")
 			})
 */
+
+@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String charset = null;
@@ -138,7 +147,9 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersInsert.do", new TestController());
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
 		
-		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//북마크
+		list.put("/ajax/hairshopBookmark.do", new HairshopBookmarkCtrl());		//헤어샵 북마크
+		list.put("/ajax/designerBookmark.do", new DesignerBookmarkCtrl());		//디자이너 북마크
+		
 		list.put("/ajax/searchRealtime.do", new SearchRealtimCtrl());			//자동완성 검색
 		list.put("/members/searchDetail.do", new SearchDetailCtrl());			//상세검색
 		
@@ -192,7 +203,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
 		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		
-		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항으로 이동하는 컨트롤러
+		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
 		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
 		
@@ -204,7 +215,11 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());	
 		list.put("/hairshop/sales.do", new salesCtrl());	
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
-//		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
+		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());	
+		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());	
+		list.put("/admin/adminCustomerManage.do", new AdminCustomerManageCtrl());	
+		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());	
 		
 		
 		//승연
