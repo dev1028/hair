@@ -13,31 +13,56 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-	$(function(){
-		$("#btnstatus").on("click", function(){
-			var mdrStatus = $("#btnstatus").attr("data-status");
-			var mdrNo = $("#mdr_noParent").children().attr("id");
-			$.ajax({
-				url:"${pageContext.request.contextPath}/ajax/changeReservationStatus.do", 
-				data : {mdr_status : mdrStatus, mdr_no : mdrNo},
+	$(function() {
+		$("#btnstatus")
+				.on(
+						"click",
+						function() {
+							var mdrStatus = $("#btnstatus").attr("data-status");
+							var mdrNo = $("#mdr_noParent").children()
+									.attr("id");
+							$.ajax({
+										url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
+										data : {
+											mdr_status : mdrStatus,
+											mdr_no : mdrNo
+										},
+										dataType : "json",
+										method : "post",
+										success : function(data) {
+											if (data == 0) {
+												alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+											} else {
+												location.reload();
+											}
+										}
+									});// end of ajax 
+						});
+		$("#savetextArea").on("click", "button", function(){
+			var textInfo = $(this).attr("data-text");
+			var textNo = $(this).attr("data-detailNo");
+			var mdrNo2 = $("#mdr_noParent").children().attr("id");
+			var textAreaVal = $("#"+textInfo).val();
+			 $.ajax({
+				url : "${pageContext.request.contextPath}/ajax/updateMdriMemo.do",
+				data : {
+					mdr_no : mdrNo2,
+					mdri_memo : textAreaVal,
+					mdri_detail_info : textNo
+				},
 				dataType : "json",
 				method : "post",
 				success : function(data) {
-					if(data == 0){
-						alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+					if (data == 0) {
+						alert("시술 메모가 등록되지 않았습니다. 다시 시도해 주세요.");
 					} else {
-						location.reload();
+						alert("메모가 정상적으로 등록되었습니다.")
 					}
 				}
 			});// end of ajax 
-		
-		})
-		$(function () {
- 			 $('[data-toggle="popover"]').popover()
-		})
-		
-	});
+		});
 
+	});
 </script>
 </head>
 <body>
@@ -55,11 +80,12 @@
 					</div>
 					<div class="col-3">
 						<c:if test="${mdrResult.mdr_status eq 'i2'}">
-							<button class="btn btn-success btn-block" id="btnstatus" data-status="i3"
-								type="button">시술시작</button>
+							<button class="btn btn-success btn-block" id="btnstatus"
+								data-status="i3" type="button">시술시작</button>
 						</c:if>
 						<c:if test="${mdrResult.mdr_status eq 'i3'}">
-							<button class="btn btn-info btn-block" type="button" id="btnstatus" data-status="i4">시술완료</button>
+							<button class="btn btn-info btn-block" type="button"
+								id="btnstatus" data-status="i4">시술완료</button>
 						</c:if>
 					</div>
 				</div>
@@ -70,7 +96,7 @@
 				<div class="card-body">
 					<hr>
 					<div class="row">
-						<div id = "mdr_noParent" class="col-4">
+						<div id="mdr_noParent" class="col-4">
 							<span id="${mdrResult.mdr_no}">예약번호</span>
 						</div>
 						<div class="col-8">${mdrResult.mdr_no}&nbsp;
@@ -146,15 +172,12 @@
 				data-parent="#accordionExample">
 				<div class="card-body">
 					<c:forEach items="${detailInfo}" var="info">
-						<div class="card" style="width: 18rem;">
+						<div class="card text-center " style="width: 18rem;">
 							<div class="card-body">
 								<h5 class="card-title">${info.hhi_name}</h5>
 								<h6 class="card-subtitle mb-2 text-muted">${info.hhi_time}시간</h6>
 								<p class="card-text">${info.hhi_price}원</p>
-								
-								<a href="#" class="card-link">정보기록</a>
 							</div>
-								<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 						</div>
 					</c:forEach>
 				</div>
@@ -170,7 +193,49 @@
 			</div>
 			<div id="collapseThree" class="collapse"
 				aria-labelledby="headingThree" data-parent="#accordionExample">
-				<div class="card-body"></div>
+				<div class="card-body" id="savetextArea">
+					<c:forEach items="${detailInfo}" var="info">
+						<div class="row">
+							<div class="card text-center col" style="width: 100rem;">
+								<div class="card-body">
+									<h5 class="card-title">${info.hhi_name}</h5>
+									<h6 class="card-subtitle mb-2 text-muted">예약번호:
+										${info.mdr_no}-${info.mdri_detail_info}</h6>
+									<div class="input-group">
+										<textarea class="form-control"
+											id="textArea${info.mdri_detail_info}"
+											aria-label="With textarea">${info.mdri_memo}</textarea>
+										<div class="input-group-prepend">
+											<c:if test="${mdrResult.mdr_status eq 'i1'}">
+												<button class="btn btn-danger"
+													data-text="textArea${info.mdri_detail_info}" data-detailNo = "${info.mdri_detail_info}">저장</button>
+
+											</c:if>
+											<c:if test="${mdrResult.mdr_status eq 'i2'}">
+												<button class="btn btn-success"
+													data-text="textArea${info.mdri_detail_info}" data-detailNo = "${info.mdri_detail_info}">저장</button>
+
+											</c:if>
+											<c:if test="${mdrResult.mdr_status eq 'i3'}">
+												<button class="btn btn-info"
+													data-text="textArea${info.mdri_detail_info}" data-detailNo = "${info.mdri_detail_info}">저장</button>
+
+											</c:if>
+											<c:if test="${mdrResult.mdr_status eq 'i4'}">
+												<button class="btn btn-secondary"
+													data-text="textArea${info.mdri_detail_info}" data-detailNo = "${info.mdri_detail_info}">저장</button>
+
+											</c:if>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+
+
+				</div>
 			</div>
 		</div>
 	</div>
