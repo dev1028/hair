@@ -21,6 +21,7 @@ public class DesignerUpdateCtrl implements Controller{
 		String work_start_time = request.getParameter("work_start_time");
 		String work_end_time = request.getParameter("work_end_time");
 		String hire_date = request.getParameter("hire_date");
+		String designer_profile = request.getParameter("designer_profile");
 		String designer_no = request.getParameter("designer_no");
 		
 		DesignerVo designerVo = new DesignerVo();
@@ -31,7 +32,7 @@ public class DesignerUpdateCtrl implements Controller{
 		designerVo.setWork_start_time(work_start_time);
 		designerVo.setWork_end_time(work_end_time);
 		designerVo.setHire_date(hire_date);
-		designerVo.setDesigner_profile(hire_date);
+		designerVo.setDesigner_profile(designer_profile);
 		designerVo.setDesigner_no(designer_no);
 		
 		int resultVo = DesignerDAO.getInstance().update(designerVo);

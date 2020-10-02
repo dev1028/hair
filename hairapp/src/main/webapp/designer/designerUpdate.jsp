@@ -84,7 +84,7 @@
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="designer_pw" id="designer_pw" onchange="isSame()" /></td>
+				<td><input type="password" name="designer_pw" id="designer_pw" onchange="isSame()" ></td>
 			</tr>
 <!-- 			<tr>
 				<td>비밀번호 확인</td>

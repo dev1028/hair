@@ -16,7 +16,7 @@ public class DesignerInfoCtrl implements Controller{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		DesignerVo vo = new DesignerVo();
-		vo.setDesigner_no("25");
+		vo.setDesigner_no("5");
 		//session에서 조회하는걸로 수정해야됨.
 		
 		//String id = request.getParameter("id");
