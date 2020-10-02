@@ -23,10 +23,15 @@
 </style>
 <script>
 function openDR(mdr_no){
-    
     window.name = "parentForm";
     window.open("membersDR.do?mdr_no=" + mdr_no,
             "chkForm", "width=1000, height=700, resizable = no, scrollbars = no");    
+}
+
+function openWriteDR(mdr_no) {
+	window.name = "parentForm";
+    window.open("../popup/hairshopReview.do?mdr_no=" + mdr_no,
+            "chkForm", "width=400, height=300, resizable = no, scrollbars = no");
 }
 
 </script>
@@ -71,8 +76,9 @@ function openDR(mdr_no){
 				디자이너 : ${reservation.designer_name}<br>
 				방문 일자 : ${reservation.mdr_date}<br>
 				예약 번호 : ${reservation.mdr_no}<br>
-				<input type="button" value="예약상세확인" onclick="openDR()">
-				<button>후기쓰기</button>
+				
+				<input type="button" value="예약상세확인" onclick="openDR(${reservation.mdr_no})">
+				<input type="button" value="후기쓰기" onclick="openWriteDR(${reservation.mdr_no})">
 			</div>
 			</c:forEach>
 		</div>

@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div>chart</div>
+<div>schedule</div>
+<div>register</div>
 </body>
 </html>

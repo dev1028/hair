@@ -17,15 +17,17 @@
 			<c:forEach items="${list}" var="detatil">
 			<div>
 			<input type="hidden" name="no" value="no" >
+				예약 번호 : ${detatil.mdr_no}<br>
+				방문 일자 : ${detatil.mdr_date}<br>
 				미용실 : ${detatil.hs_name}<br>
 				디자이너 : ${detatil.designer_name}<br>
-				방문 일자 : ${detatil.mdr_date}<br>
-				예약 번호 : ${detatil.mdr_no}<br>
-				결제 금액 : ${detatil.mdr_online_price}<br>
+				시술 헤어 : ${detatil.hhi_name}<br>
 				헤어샵 요청사항 : ${detatil.mdr_request}<br>
 				헤어 기장 : ${detatil.mem_hair_length}<br>
-				헤어 상태 : ${detatil.mem_hair_status}
+				헤어 상태 : ${detatil.mem_hair_status}<br>
+				결제 금액 : ${detatil.mdp_price}<br>
 			</div>
+			<br>
 			</c:forEach>
 		</div>
 	</form>

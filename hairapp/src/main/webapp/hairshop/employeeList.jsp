@@ -6,16 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>직원리스트</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-var emplistjson = JSON.parse('${emplistjson}');
+var emplistjson = ${emplistjson};
 var empOne;
 var clickcnt = 0;
 var thisTr;
@@ -199,7 +193,7 @@ $(function() {
 							<td>${emp.designer_name}</td>
 							<td>${emp.designer_phone}</td>
 							<td>${emp.hire_date}</td>
-							<td>${emkp.designer_dayoff}</td>
+							<td>${emp.designer_dayoff}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -221,7 +215,7 @@ $(function() {
 					<div class="modal-body">
 						<div class="container">
 							<div class="text-center">
-								<img src="../images/hairshop/Koala.jpg" class="img-fluid"
+								<img src="../images/hairshop/san.jpg" class="img-fluid"
 									alt="...">
 							</div>
 							<hr>

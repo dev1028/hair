@@ -15,13 +15,16 @@ public class DesignerInfoCtrl implements Controller{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD
 		DesignerVo vo = new DesignerVo();
 		vo.setDesigner_no("5");
 		//session에서 조회하는걸로 수정해야됨.
+=======
+	
+		//session에서 조회하는걸로 수정해야됨.		
+		DesignerVo vo = (DesignerVo)request.getSession().getAttribute("login");
+>>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 		
-		//String id = request.getParameter("id");
-		//DesignerVo designer = new DesignerVo();
-		//designer.setDesigner_no("designer_no");
 		DesignerVo designer = DesignerDAO.getInstance().selectOne(vo);
 		request.setAttribute("designer", designer);
 		System.out.println("designer NO: " + designer.getDesigner_no());

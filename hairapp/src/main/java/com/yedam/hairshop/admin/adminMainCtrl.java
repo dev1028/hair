@@ -13,6 +13,7 @@ public class adminMainCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/admin/adminMain.jsp").forward(request, response);
+//		response.sendRedirect("/hairapp/admin/adminMain.jsp");
 
 	}
 

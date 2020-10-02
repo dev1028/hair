@@ -8,11 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>membersInfoView.jsp</title>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="../common/datepicker.js"></script>
-<link href="../common/datepicker.css" rel="stylesheet" />
 <script>
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
@@ -48,7 +43,7 @@
     
     // 취소 버튼 클릭시 첫화면으로 이동
     function goFirstForm() {
-        location.href="memberMain.jsp";
+        location.href="membersMain.do";
     }    
     
 
@@ -78,8 +73,6 @@
 		document.form.zipNo.value = zipNo;
 	}
 
-	$( "#datepicker" ).datepicker( "getDate" );
-	
 </script>
 </head>
 <body>
@@ -124,7 +117,7 @@
 
 				<tr>
 					<td id="title">생일</td>
-					<td><input type="text" id="datepicker" name="modifybirth" value="${modify.mem_birth}"></td>
+					<td><input type="date" id="modifybirth" name="modifybirth" value="${modify.mem_birth}"></td>
 				</tr>
 
 				<tr>
@@ -188,8 +181,8 @@
 		</form>
 		<form method="post" action="membersInfoModify.do" name="formmodi" id="formmodi">
 			<br> <input type="submit" value="수정" />
-		</form>
 			<input type="button" value="취소" onclick="goFirstForm()">
+		</form>
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </body>

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.common.ChangeUtil;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
@@ -24,6 +25,9 @@ public class EmployeeListCtrl implements Controller {
 		DesignerVo dVo = new DesignerVo();
 		dVo.setHs_no(hs_no);
 		ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShop(dVo);
+		for(DesignerVo emp : emplist) {
+			emp.setDesigner_dayoff(ChangeUtil.changeDayOffNumToStr(emp.getDesigner_dayoff()));
+		}
 		request.setAttribute("emplistjson", JSONArray.fromObject(emplist));
 		request.setAttribute("emplist", emplist);
 		request.getRequestDispatcher("/hairshop/employeeList.jsp").forward(request, response);

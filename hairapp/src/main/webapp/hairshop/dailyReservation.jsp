@@ -4,48 +4,165 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link
-	href='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.css'
-	rel='stylesheet' />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.js"></script>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
-
-
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<title>일간예약</title>
 <script>
-	$(function(){
-		var calendarEl = $("#calendar");
-		var calendar = new FullCalendar.Calendar(calendarEl,{
-			schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',	
-			themeSystem : 'bootstrap',	
-			initialView : 'resourceTimeGridDay',	
-			   resources: [	
-				      { id: 'a', title: '김강산' },	
-				      { id: 'b', title: '김린아'},	
-				      { id: 'c', title: '김승연' },	
-				      { id: 'd', title: '이송현' },	
-				      { id: 'e', title: '이상민' }	
-				    ]
-		});
-		
-		
-		calendar.render();
-	});
+
+document.addEventListener('DOMContentLoaded', function() {	
+	
+	var calendarEl = document.getElementById('calendar');	
+	var calendar = new FullCalendar.Calendar(calendarEl, {	
+		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',	
+		initialView : 'resourceTimeGridDay',
+		  contentHeight: 700,
+		expandRows : true,
+	 	businessHours: {
+			  // days of week. an array of zero-based day of week integers (0=Sunday)
+			  daysOfWeek: JSON.parse('${dayonList}'),//, // Monday - Thursday
+			//  expandRows : true,
+			  startTime: '${start}', // a start time (10am in this example)
+			endTime: '${end}' // an end time (6pm in this example)
+			}, 
+			slotMinTime :  '${start}',
+			slotMaxTime :  '${end}',
+			scrollTime :  '${start}', // undo default 6am scrollTime
+			locale : 'ko',
+			
+		   resources: JSON.parse('${emplistjson}'),
+		 /*   eventSources : { url : '${pageContext.request.contextPath}/ajax/dailyReservationListAj.do',
+			    	extraParams: function() { // a function that returns an object
+			    	      return {
+			    	    	startDate : getFormatDate(new Date())
+			    	        };
+			    	        }}, */
+			    	        
+			    	        events: function(info, successCallback, failureCallback) {
+			    	           
+			    	          
+			    	        	$.ajax({
+			    	        	    url: "${pageContext.request.contextPath}/ajax/dailyReservationListAj.do",
+			    	        	    type: "POST",
+			    	        	    data: {
+			    	        	    	startDate : info.startStr,
+			    	        	    	endDate : info.endStr
+			    	        	    },
+			    	        	    dataType: "json",
+			    	        	    success: function (res) {
+			    	        	    	successCallback(res);
+										var countDailyEvent = 0;
+										if (res.length == 0) {
+											countDailyEvent = 0;
+											$(
+													"#countDailyEvent")
+													.removeClass();
+											$(
+													"#countDailyEvent")
+													.addClass(
+															"badge badge-light");
+										} else {
+											countDailyEvent = res.length;
+											$(
+													"#countDailyEvent")
+													.removeClass();
+											$(
+													"#countDailyEvent")
+													.addClass(
+															"badge badge-danger");
+										}
+										$("#countDailyEvent")
+												.text(
+														countDailyEvent);
+			    	        	    }
+			    	        	  });
+			    	        	
+			    	        }, 	        
+			    	   
+			   
+			    eventClick: function(info) {
+		    		window.open("${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+info.event.id, "pop",
+					"width=700,height=500, scrollbars=yes, resizable=yes");
+		      },
+			    nowIndicator: true, //현재 시간 바
+			    /* selectable: true, // 화면 선택가능
+			    select: function(info) {
+			    	calendar.addEvent({
+			    		resourceId : info.resource.id,
+		                  title: '이발',
+		                  start: info.startStr,
+		                  end: info.endStr
+		                });
+			        alert('selected ' + info.startStr + ' to ' + info.endStr);
+			      },
+			      headerToolbar: {
+			          center: 'addEventButton'
+			        },
+			        customButtons: {
+			          addEventButton: {
+			            text: 'add event...',
+			            click: function() {
+			              var dateStr = prompt('Enter a date in YYYY-MM-DDT00:00 format');
+			              var date = new Date(dateStr + ':00'); // will be in local time
+			              dateS1tr = prompt('Enter a date in YYYY-MM-DDT00:00 format');
+							var enddate = new Date(dateS1tr + ':00');
+			              if (!isNaN(date.valueOf())) { // valid?
+			                calendar.addEvent({
+			                	resourceId : 'b',
+			                  title: 'dynamic event',
+			                  start: date,
+			                  end: enddate
+			                 // allDay: true 
+			                });
+			                alert('Great. Now, update your database...');
+			              } else {
+			                alert('Invalid date.');
+			              }
+			            }
+			          }
+			        } */
+	});	
+	
+	calendar.render();
+}); 
+
+function getFormatDate(date){
+    var year = date.getFullYear();              //yyyy
+    var month = (1 + date.getMonth());          //M
+    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
+    var day = date.getDate();                   //d
+    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
+    return  year + '/' + month + '/' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+}
 </script>
 </head>
 <body>
-	<div id='calendar'></div>
+	<div class="container-fluid">
+	<div class="row"><br><br><br></div>
+	<div class="row">
+				<div class="col">
+				<h3>
+					일간 스케줄
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						예약인원 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						예약취소 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						시술중 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						시술완료 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+				</h3>
+				<hr>
+			</div>
+		</div>
+	<div class="row">
+	<div class="col" id='calendar'></div>
+	</div>
+	</div>
 </body>
 </html>

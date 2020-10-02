@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.DesignerVo;
@@ -27,7 +28,9 @@ public class DesignerDAO {
 	public int update(DesignerVo designerVo) {
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
-				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? , DESIGNER_PROFILE = ? WHERE DESIGNER_NO = ?";
+				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? ,"
+				+ "DESIGNER_PROFILE = ?,  DESIGNER_ACCESS_STATUS  = 1 " 
+				+ " WHERE DESIGNER_NO = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
@@ -43,42 +46,59 @@ public class DesignerDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
 
 	// 단건 조회
 	public DesignerVo selectOne(DesignerVo designerVo) {
-		DesignerVo resultVo = null;
-
+		DesignerVo designer = new DesignerVo();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT * FROM DESIGNER WHERE DESIGNER_NO = ?";
+			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
+					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
+					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" 
+					+ " FROM DESIGNER"
+					+ " WHERE DESIGNER_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_no());
 			rs = pstmt.executeQuery();
-			if (rs.next()) { // 처음 커서 위치는 BOF
-				resultVo = new DesignerVo();
-				resultVo.setDesigner_no(rs.getString(1));
-				resultVo.setDesigner_name(rs.getString(2));
-				resultVo.setDesigner_email(rs.getString(4));
-			} else {
-				System.out.println("no data");
+
+			if (rs.next()) {
+				
+				designer.setDesigner_no(rs.getString("DESIGNER_NO"));
+				designer.setDesigner_name(rs.getString("DESIGNER_NAME"));
+				designer.setDesigner_phone(rs.getString("DESIGNER_PHONE"));
+				designer.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
+				designer.setDesigner_pw(rs.getString("DESIGNER_PW"));
+				designer.setDesigner_dayoff(rs.getString("DESIGNER_DAYOFF"));
+				designer.setWork_start_time(rs.getString("WORK_START_TIME"));
+				designer.setWork_end_time(rs.getString("WORK_END_TIME"));
+				designer.setDesigner_access_status(rs.getString("DESIGNER_ACCESS_STATUS"));
+				designer.setPosition(rs.getString("POSITION"));
+				designer.setSalary(rs.getString("SALARY"));
+				designer.setIncentive(rs.getString("INCENTIVE"));
+				designer.setHire_date(rs.getString("HIRE_DATE"));
+				designer.setHs_no(rs.getString("HS_NO"));
+				designer.setDesigner_profile(rs.getString("DESIGNER_PROFILE"));
+				designer.setFile_name(rs.getString("FILE_NAME"));
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return resultVo;
-
+		return designer;
 	}
+
 	public DesignerVo selectOneEmail(DesignerVo designerVo) {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, Designer_access_status "
-						+" FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
+					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_email());
 			rs = pstmt.executeQuery();
@@ -89,7 +109,7 @@ public class DesignerDAO {
 				resultVo.setDesigner_name(rs.getString(3));
 				resultVo.setDesigner_email(rs.getString(4));
 				resultVo.setDesigner_access_status(rs.getString(5));
-				
+
 			} else {
 				System.out.println("no data");
 			}
@@ -124,7 +144,7 @@ public class DesignerDAO {
 	 * != null) { conn.close(); conn = null; } } catch (Exception e) { throw new
 	 * RuntimeException(e.getMessage()); } } } // end loginCheck()
 	 */
-	
+
 	// 미용실별 디자이너 목록
 	// 2020.09.17 승연
 	public ArrayList<DesignerVo> selectByHairShop(DesignerVo dVo) {
@@ -134,8 +154,7 @@ public class DesignerDAO {
 			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
 					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
 					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" + " FROM DESIGNER"
-					+ " WHERE HS_NO=?"
-					+ " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
+					+ " WHERE HS_NO=?" + " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dVo.getHs_no());
 			rs = pstmt.executeQuery();
@@ -185,6 +204,8 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -212,12 +233,14 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
-	
-	//2020.09.23 김승연
-	//디자이너 인증정보반영
+
+	// 2020.09.23 김승연
+	// 디자이너 인증정보반영
 	public int updateForAuth(String designer_email) {
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_ACCESS_STATUS = 0 WHERE DESIGNER_EMAIL = ?";
@@ -228,7 +251,45 @@ public class DesignerDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
+	}
+	
+	//랭킹 3위만 표시
+	public List<DesignerVo> selectListDesignerRank(DesignerVo designerVo) {
+		List<DesignerVo> list = new ArrayList<DesignerVo>();
+		String sql = "SELECT rn, designer_no, designer_name, work_start_time, work_end_time, designer_profile FROM " + 
+				"  (SELECT rownum rn, k.*  " + 
+				"   FROM " + 
+				"    (SELECT r.cnt, d.* " + 
+				"     FROM (SELECT designer_no, count(*) as cnt " + 
+				"          FROM favor_designer " + 
+				"          GROUP BY designer_no) r " + 
+				"     JOIN designer d " + 
+				"     ON d.designer_no = r.designer_no " + 
+				"     ORDER BY r.cnt DESC) k) " + 
+				"WHERE rn <= 3 ";
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery(sql);
+			while(rs.next()) {
+				DesignerVo vo = new DesignerVo();
+				vo.setRn(rs.getString("rn"));
+				vo.setDesigner_no(rs.getString("designer_name"));
+				vo.setWork_start_time(rs.getString("work_start_time"));
+				vo.setWork_end_time(rs.getString("work_end_time"));
+				vo.setDesigner_profile(rs.getString("designer_profile"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
 	}
 }

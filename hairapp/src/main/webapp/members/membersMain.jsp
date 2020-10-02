@@ -275,9 +275,13 @@ form.example::after {
 
 		$("input:radio[name='date']:radio[value='day0']").prop('checked', true); // 선택하기
 		$("#date").datepicker({
-			dateFormat : 'yy-mm-dd'
+			dateFormat : 'yy-mm-dd',
+			minDate: 0
 		});
-
+		$("input:radio[name='radioDate']:radio[value='day0']").prop('checked', true); 
+		$("#date").datepicker( "setDate", new Date());
+		
+		
 		$('input[type="radio"]').click(function() {
 			if ($(this).is(':checked')) {
 				date = new Date();
@@ -293,9 +297,23 @@ form.example::after {
 			}
 		});
 		
-		$('#timepicker_start').timepicker();
-		$('#timepicker_end').timepicker();
+		$('#timepicker_start').timepicker({
+			timeFormat: 'HH',
+			interval: 60
+		});
+		$('#timepicker_end').timepicker({
+			timeFormat: 'HH',
+			interval: 60
+		});
 	});
+	
+	//린아
+	function noticeGo() {
+		location.href = "membersNotice.do";
+	}
+	function qnaGo() {
+		location.href = "membersQna.do";
+	}
 </script>
 </head>
 <body>
@@ -314,17 +332,20 @@ form.example::after {
 
   <div class="slider">
     <div style="background:#5b8;">
-			<h2>PURE <b>CSS</b> SLIDESHOW</h2>
-			<p>Responsive Slideshow Gallery created using CSS only<br>by Roko</p>
+			<h2>우리동네 미용실 <b>우동</b> 에 오신것을 환영합니다</h2>
+			<p>예약을 희망하는 날짜를 선택하여 검색해서 예약하세요!<br>　<br>　</p>
 		</div>
     <div style="background:#85b;">
-			<h2>Slide 2</h2>
+			<h2>헤어샵 예약 사이트 부문고객 만족도 1위!</h2>
+			<p>우동은 언제나 고객과 함께합니다<br>　<br>　</p>
 		</div>
     <div style="background:#e95;">
-			<h2>Slide 3</h2>
+			<h2>우동과 함께라면 언제 어디서는 간편 예약 OK!</h2>
+			<p>내가 원하는 시간과 장소에 맞춰서 모든 헤어샵 예약이 가능합니다<br>　<br>　</p>
 		</div>
     <div style="background:#e59;">
-			<h2>Slide 4</h2>
+			<h2>우리동네는 어떤 헤어가 유행일까?</h2>
+			<p>우리동네 지역별 인기 순위도 한 눈에 확인 하세요<br>　<br>　</p>
 		</div>
   </div>
   
@@ -348,10 +369,6 @@ form.example::after {
 
 	<div class="myForm">
 		<form action="../members/searchDetail.do" method="post" style="margin:auto;max-width:300px">
-		
-		
-		
-		
 			<div>
 				<input autocomplete="off" type="text" name="date" id="date" size="12" />
 				<label class="radio-inline">
@@ -365,8 +382,8 @@ form.example::after {
 		    	</label>
     		</div>
 	    	
-		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime">
-		    <input autocomplete="off" id="timepicker_end"  type="text" name="hs_endtime">
+		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" style="width:80px"> -
+		    <input autocomplete="off" id="timepicker_end"  type="text" name="hs_endtime" style="width:80px" > 영업시간
 	    	
     	
 			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->
@@ -376,6 +393,11 @@ form.example::after {
 			<input type="hidden" id="project-id">
 			<p id="project-description"></p>
 		</form>
+		<br><br><br>
+		<div style="text-align: center;">
+		<button onclick="noticeGo()">공지사항</button>
+		<button onclick="qnaGo()">Q&A</button>
+		</div>
 	</div>
 </body>
 </html>

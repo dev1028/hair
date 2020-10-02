@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
@@ -203,13 +204,13 @@ a.article:hover {
             <ul class="list-unstyled components">
                 <li class="active">
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersLogin.do">헤어 예약</a>
+                    <a href="${pageContext.request.contextPath}/members/hairSelect.do">헤어 예약</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/hairshopInfo.do">헤어샵 정보와 소개</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersJoin.do">디자이너 소개</a>
+                    <a href="${pageContext.request.contextPath}/members/hsDesignerIntro.do">디자이너 소개</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">헤어 모아보기</a>
@@ -218,7 +219,7 @@ a.article:hover {
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">쿠폰과 이벤트</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersJoin.do">후기 및 리뷰</a>
+                    <a href="${pageContext.request.contextPath}/members/designerReview.do">후기 및 리뷰</a>
                 </li>
             </ul>
         </nav>

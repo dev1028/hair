@@ -153,6 +153,11 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
+<!-- bookmark heart -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bodymovin.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script> -->
+<!-- <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/gziped3.js" type="text/javascript"></script> -->
+
 
 
 <script type="text/javascript">
@@ -202,7 +207,7 @@
 						<ul id="menu">
 							<a href="${pageContext.request.contextPath}/members/membersMypageTop.do"> <li>마이페이지</li></a>
 							<a href="${pageContext.request.contextPath}/members/membersRD.do"> <li>예약내역</li></a>
-							<a href="#"> <li>북마크</li> </a>
+							<a href="${pageContext.request.contextPath}/members/membersBookmarkHairshop.do"> <li>북마크</li> </a>
 							<a href="#"> <li>쿠폰</li> </a>
 							<a href="${pageContext.request.contextPath}/members/membersLogout.do"> <li>로그아웃</li></a>
 						</ul>

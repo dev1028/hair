@@ -121,7 +121,10 @@ public class MembersDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select * from members where mem_email=?";
+			String sql = "SELECT MEM_NO,MEM_EMAIL,MEM_PW,MEM_NAME,MEM_PHONE, MEM_BIRTH, MEM_SEX,"
+					+ " MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_LATITUDE_LONGITUDE,"
+					+ " MEM_SAVED_MONEY, MEM_CITY_LATITUDE_LONGITUDE, MEM_HAIR_LENGTH,"
+					+ " MEM_HAIR_STATUS, MEM_ZIP, MEM_ACCESS_STATUS" + " FROM MEMBERS WHERE MEM_EMAIL=?";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mem_email);
@@ -350,10 +353,9 @@ public class MembersDAO {
 		}
 		return r;
 	}
-	
+
 	public int updateLatlng(MembersVo vo) {
 		int r = 0;
-		// 회원가입 인증 완료 0, 회원가입 인증 중 -1,
 		String sql = "UPDATE MEMBERS SET MEM_LATITUDE_LONGITUDE = ?, MEM_ADDR = ? WHERE MEM_EMAIL = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -365,7 +367,7 @@ public class MembersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return r; 
+		return r;
 	}
 
 	/**
@@ -468,7 +470,6 @@ public class MembersDAO {
 		return members; // 값을 리턴해줌
 	} // PW찾기 끝
 
-	
 	// 이메일로 인증받아서 pw 변경하기
 	public void updateForPw(MembersVo membersVo) {
 		String sql = "UPDATE MEMBERS SET MEM_PW = ? WHERE MEM_EMAIL = ?";
@@ -482,5 +483,59 @@ public class MembersDAO {
 			e.printStackTrace();
 		}
 	}
+
+	// 회원인증 9로 만들어서 회원탈퇴(10년간 정보 보관)
+	public void membersDelete(MembersVo membersVo) {
+		// 회원가입 인증 완료 1, 회원가입 인증 중 0, 회원가입 인증 전 -1, 회원탈퇴 9
+		String sql = "UPDATE MEMBERS SET MEM_ACCESS_STATUS = 9 WHERE MEM_EMAIL = ? AND MEM_PW = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersVo.getMem_email());
+			pstmt.setString(2, membersVo.getMem_pw());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 회원정보를 삭제한다.
+	 * 
+	 * @param id 회원정보 삭제 시 필요한 아이디
+	 * @param pw 회원정보 삭제 시 필요한 비밀번호
+	 * @return x : deleteMember() 수행 후 결과값
+	 *//*
+		 * public int deleteMember(String id, String pw) { String dbpw = ""; // DB상의
+		 * 비밀번호를 담아둘 변수 int x = -1;
+		 * 
+		 * try { // 비밀번호 조회 StringBuffer query1 = new StringBuffer();
+		 * query1.append("SELECT PASSWORD FROM JSP_MEMBER WHERE ID=?");
+		 * 
+		 * // 회원 삭제 StringBuffer query2 = new StringBuffer();
+		 * query2.append("DELETE FROM JSP_MEMBER WHERE ID=?");
+		 * 
+		 * conn = ConnectionManager.getConnnect();
+		 * 
+		 * // 자동 커밋을 false로 한다. conn.setAutoCommit(false);
+		 * 
+		 * // 1. 아이디에 해당하는 비밀번호를 조회한다. pstmt = conn.prepareStatement(query1.toString());
+		 * pstmt.setString(1, id); rs = pstmt.executeQuery();
+		 * 
+		 * if (rs.next()) { dbpw = rs.getString("password"); if (dbpw.equals(pw)) { //
+		 * 입력된 비밀번호와 DB비번 비교 // 같을경우 회원삭제 진행 pstmt =
+		 * conn.prepareStatement(query2.toString()); pstmt.setString(1, id);
+		 * pstmt.executeUpdate(); conn.commit(); x = 1; // 삭제 성공 } else { x = 0; // 비밀번호
+		 * 비교결과 - 다름 } }
+		 * 
+		 * return x;
+		 * 
+		 * } catch (Exception sqle) { try { conn.rollback(); // 오류시 롤백 } catch
+		 * (SQLException e) { e.printStackTrace(); } throw new
+		 * RuntimeException(sqle.getMessage()); } finally { try{ if ( pstmt != null ){
+		 * pstmt.close(); pstmt=null; } if ( conn != null ){ conn.close(); conn=null; }
+		 * } catch(Exception e){ throw new RuntimeException(e.getMessage()); } } } //
+		 * end deleteMember
+		 */
 
 }

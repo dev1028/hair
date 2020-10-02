@@ -36,11 +36,8 @@ public class DesignerUpdateCtrl implements Controller{
 		designerVo.setDesigner_no(designer_no);
 		
 		int resultVo = DesignerDAO.getInstance().update(designerVo);
-		request.setAttribute("cnt", resultVo);
-		
-		
-
-
+		request.setAttribute("designer", resultVo);
+		request.getRequestDispatcher("/hairshop/hairshopMain.jsp").forward(request, response);
 	}
 
 }

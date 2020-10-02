@@ -30,7 +30,7 @@
 <script type="text/javascript">
 
 function pValue(){
-    document.getElementById("userId").value = opener.document.form.joinemail.value;
+    document.getElementById("userId").value = opener.document.formjoin.joinemail.value;
 }
 
 	// 아이디 중복체크
@@ -63,9 +63,9 @@ function pValue(){
 	// 사용하기 클릭 시 부모창으로 값 전달 
 	function sendCheckValue() {
 		// 중복체크 결과인 idCheck 값을 전달한다.
-		opener.document.form.idDuplication.value = "idCheck";
+		opener.document.formjoin.idDuplication.value = "idCheck";
 		// 회원가입 화면의 ID입력란에 값을 전달
-		opener.document.form.joinemail.value = document
+		opener.document.formjoin.joinemail.value = document
 				.getElementById("userId").value;
 
 		if (opener != null) {
