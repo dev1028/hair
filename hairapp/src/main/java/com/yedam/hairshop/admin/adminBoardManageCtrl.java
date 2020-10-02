@@ -13,8 +13,7 @@ public class adminBoardManageCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		request.getRequestDispatcher("/admin/adminBoardManage.jsp").forward(request, response);
-		response.sendRedirect("/hairapp/admin/adminBoardManage.jsp");
+request.getRequestDispatcher("/admin/adminBoardManage.jsp").forward(request, response);
 	}
 
 }

@@ -20,8 +20,7 @@ public class AdminHairshopManageFCtrl implements Controller {
 		System.out.println(list.get(0).getHs_no());
 		request.setAttribute("list", list);
 
-	//request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
-	response.sendRedirect("adminHairshopManage.jsp");
+	request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
 	}
 
 }

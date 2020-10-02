@@ -40,11 +40,11 @@
 		</div>
 
 	</form>
-	<h2 class="heading">지출합계</h2>
 	<div class="form-group" id="result">
-	${list }
+
 		<table border="1">
 			<tr>
+			<th><input type = "checkbox" name="all" id="all"></th>
 				<th>헤어샵번호</th>
 				<th>헤어샵이름</th>
 				<th>헤어샵아이디</th>
@@ -55,6 +55,8 @@
 			</tr>
 			<c:forEach items="${list }" var="l">
 				<tr>
+				
+			<td><input type = "checkbox" name="all" id="all"></td>
 					<td>${ l.getHs_no()}</td>
 					<td>${ l.hs_name}</td>
 					<td>${ l.hs_email}</td>
