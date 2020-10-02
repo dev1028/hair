@@ -211,12 +211,13 @@ public class BoardManageDAO {
 			while (rs.next()) {
 
 				resultVo = new HairshopNoticeVo();
-				resultVo.setNotice_no(rs.getString("qna_no"));
-				resultVo.setNotice_title(rs.getString("qna_title"));
-				resultVo.setNotice_writedate(rs.getString("qna_writedate"));
-				resultVo.setNotice_hits(rs.getString("qna_hits"));
+				resultVo.setQna_no(rs.getString("qna_no"));
+				resultVo.setQna_title(rs.getString("qna_title"));
+				resultVo.setQna_writedate(rs.getString("qna_writedate"));
+				resultVo.setQna_who(rs.getString("qna_who"));
+				resultVo.setQna_hits(rs.getString("qna_hits"));
 				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setNotice_categoryname(rs.getString("qna_category"));
+				resultVo.setQna_category(rs.getString("qna_category"));
 
 				list.add(resultVo);
 

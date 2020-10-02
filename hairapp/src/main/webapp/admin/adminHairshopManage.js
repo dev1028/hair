@@ -65,7 +65,17 @@ $(function() {
 
 		table.append(tr);
 
-		$.getJSON(url, param, function(obj) {
+		$.getJSON(url, {
+			startDate : moment($("#start").val()).format('YYYY-MM-DD'),
+			endDate : moment($("#end").val()).format('YYYY-MM-DD'),
+			who : $("#who").children("option:selected").val(),
+			boardType : $("#boardType").children("option:selected").val(),
+			category : $("#category").children("option:selected").val(),
+			searchType : $("#searchType").children("option:selected").val(),
+			searchVal : $("#searchVal").val(),
+			answerStatus : $("#answer").prop('checked', 'true').val()
+
+		}, function(obj) {
 			console.log("hi");
 			console.log(obj);
 			obj.forEach(function(o, i, u) {
@@ -74,15 +84,15 @@ $(function() {
 
 				tr.append($("<td>").append(
 						$("<input>").attr('type', 'checkbox')));
-				tr.append($("<td>").text(o.notice_no));
-				tr.append($("<td>").text(o.notice_who));
-				tr.append($("<td>").text(o.notice_title));
+				// tr.append($("<td>").text(o.notice_no));
+				// tr.append($("<td>").text(o.notice_who));
+				// tr.append($("<td>").text(o.notice_title));
 				tr.append($("<td>").text());
 				tr.append($("<td>").append(
 						$("<button />").attr('id', 'excel').text("답변하기")));
 				tr.append($("<td>").text(o.emp_no));
-				tr.append($("<td>").text(o.notice_writedate));
-				tr.append($("<td>").text(o.notice_hits));
+				// tr.append($("<td>").text(o.notice_writedate));
+				// tr.append($("<td>").text(o.notice_hits));
 				table.append(tr);
 			});
 
@@ -91,7 +101,5 @@ $(function() {
 		$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 
 	}
-
-
 
 });
