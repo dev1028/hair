@@ -88,7 +88,7 @@ public class DailyReservationListCtrl implements Controller {
 
 			JSONObject dseJson = new JSONObject();
 			dseJson.put("id", des.getDesigner_no());
-			dseJson.put("title", des.getDesigner_name());
+			dseJson.put("title", ((des.getPosition() == null) ? "" : des.getPosition() +" ")+ des.getDesigner_name());
 			String color = ColorList.Color[cnt++];
 			dseJson.put("eventColor", color);
 			dseJson.put("businessHours", dseDayoff);

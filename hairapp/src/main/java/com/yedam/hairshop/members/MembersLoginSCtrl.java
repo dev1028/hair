@@ -40,6 +40,8 @@ public class MembersLoginSCtrl implements Controller {
 				(resultVO.getMem_access_status().equals("1") && resultVO.getMem_access_status().equals("2"))) {
 				request.getSession().setAttribute("login", resultVO);
 				request.getSession().setAttribute("loginid", resultVO.getMem_email()); // 세션아이디
+				request.getSession().setAttribute("admin", resultVO.getMem_access_status());	// 인증컬럼
+				System.out.println("인증컬럼: " + resultVO.getMem_access_status());
 				page = "/members/membersMain.do";
 				System.out.println("로그인완:"+page);
 				

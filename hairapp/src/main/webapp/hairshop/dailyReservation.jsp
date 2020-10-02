@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	var calendar = new FullCalendar.Calendar(calendarEl, {	
 		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',	
 		initialView : 'resourceTimeGridDay',
-		aspectRatio: 2,
+		  contentHeight: 700,
+		expandRows : true,
 	 	businessHours: {
 			  // days of week. an array of zero-based day of week integers (0=Sunday)
 			  daysOfWeek: JSON.parse('${dayonList}'),//, // Monday - Thursday
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			slotMaxTime :  '${end}',
 			scrollTime :  '${start}', // undo default 6am scrollTime
 			locale : 'ko',
-		 timeFormat: 'H:mm',
+			
 		   resources: JSON.parse('${emplistjson}'),
 		 /*   eventSources : { url : '${pageContext.request.contextPath}/ajax/dailyReservationListAj.do',
 			    	extraParams: function() { // a function that returns an object
@@ -47,6 +48,29 @@ document.addEventListener('DOMContentLoaded', function() {
 			    	        	    dataType: "json",
 			    	        	    success: function (res) {
 			    	        	    	successCallback(res);
+										var countDailyEvent = 0;
+										if (res.length == 0) {
+											countDailyEvent = 0;
+											$(
+													"#countDailyEvent")
+													.removeClass();
+											$(
+													"#countDailyEvent")
+													.addClass(
+															"badge badge-light");
+										} else {
+											countDailyEvent = res.length;
+											$(
+													"#countDailyEvent")
+													.removeClass();
+											$(
+													"#countDailyEvent")
+													.addClass(
+															"badge badge-danger");
+										}
+										$("#countDailyEvent")
+												.text(
+														countDailyEvent);
 			    	        	    }
 			    	        	  });
 			    	        	
@@ -110,9 +134,35 @@ function getFormatDate(date){
 </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 	<div class="row"><br><br><br></div>
-	<div class="row" id='calendar'></div>
+	<div class="row">
+				<div class="col">
+				<h3>
+					일간 스케줄
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						예약인원 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						예약취소 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						시술중 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						시술완료 <span class="badge badge-light" id="countDailyEvent"></span>
+					</button>
+				</h3>
+				<hr>
+			</div>
+		</div>
+	<div class="row">
+	<div class="col" id='calendar'></div>
+	</div>
 	</div>
 </body>
 </html>

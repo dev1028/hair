@@ -62,14 +62,16 @@ $(function(){
 	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg">
 		                </div>
 		                <div class="product-content">
-		                	<a href='javascript: like_func("${designerInfo.designer_no}")'>
-								<c:if test="${designerInfo.designer_book == 1 }">
-									<img class="img-${designerInfo.designer_no}" src="../images/bookmark/heart.png" width="30" height="30">
-								</c:if>
-								<c:if test="${designerInfo.designer_book != 1 }">
-									<img class="img-${designerInfo.designer_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
-								</c:if>
-							</a>
+		                	<c:if test="${not empty sessionScope.login }">
+			                	<a href='javascript: like_func("${designerInfo.designer_no}")'>
+									<c:if test="${designerInfo.designer_book == 1 }">
+										<img class="img-${designerInfo.designer_no}" src="../images/bookmark/heart.png" width="30" height="30">
+									</c:if>
+									<c:if test="${designerInfo.designer_book != 1 }">
+										<img class="img-${designerInfo.designer_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+									</c:if>
+								</a>
+							</c:if>
 							<span class="title">${designerInfo.designer_name} </span><br>
 							<span class="title">프로필: ${designerInfo.designer_profile} </span><br>
 							<span class="title">직책: ${designerInfo.position} </span><br>

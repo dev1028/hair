@@ -10,4 +10,5 @@ public class HairshopHairInfoVo {
 	private String hhi_time;
 	private String hs_no;
 	private String tmic_no;
+	private String hhi_book;
 }

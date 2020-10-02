@@ -22,7 +22,8 @@
 	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/locales-all.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/locales-all.min.js"></script>
 
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
@@ -52,8 +53,7 @@
 					<div>
 						<ul class="nav flex-column">
 							<li class="nav-item"><a class="nav-link active" href="#">
-									<span data-feather="home"></span> 디자이너 <span
-									class="sr-only">(current)</span>
+									<span data-feather="home"></span> 디자이너 <span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#"> <span
 									data-feather="file"></span> 다음 예약정보
@@ -72,12 +72,16 @@
 							</a></li>
 						</ul>
 					</div>
+					<div>
+						<hr>
+						
+					</div>
 				</div>
 			</nav>
 			<div class="block">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 					<a class="navbar-brand"
-						href="${pageContext.request.contextPath}/hairshop/hairshopMain.do">헤어살롱</a>
+						href="${pageContext.request.contextPath}/designer/designerMain.do">헤어살롱</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -87,30 +91,34 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-							
+
 							<li class="nav-item active"><a class="nav-link" href="#">제품관리
 									<span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#">?</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/employeeList.do">내정보 수정</a></li>
+								href="${pageContext.request.contextPath}/hairshop/employeeList.do">내정보
+									수정</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의 매출정보</a></li>							
+								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의
+									매출정보</a></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 예약관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/designer/desDailyReservationList.do">일간예약</a> <a
-										class="dropdown-item" href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do">주간예약</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/desDailyReservationList.do">일간예약</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do">주간예약</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="#">Something else here</a>
 								</div></li>
-							
-							
-							
-							
-							
+
+
+
+
+
 							<li class="nav-item"><a class="nav-link disabled" href="#"
 								tabindex="-1" aria-disabled="true">Disabled</a></li>
 						</ul>
