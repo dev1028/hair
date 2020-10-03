@@ -137,7 +137,16 @@
 	RE :
 	</c:if>
   	<a href="membersQnaV.do?qna_no=${qna.qna_no}&qna_hit=${qna.qna_hits}">${qna.qna_title}</a></td>
-  	<td>${qna.qna_writer}</td>
+  	
+  	<td>
+  	<c:if test="${admin == '1'}">
+  	<c:if test="${admin == '2'}">
+  	관리자
+  	</c:if>
+  	${qna.qna_writer}
+  	</c:if>
+  	</td>
+  	
   	<td>${qna.qna_writedate}</td>
   	<td>${qna.qna_hits}</td>
   <tr>

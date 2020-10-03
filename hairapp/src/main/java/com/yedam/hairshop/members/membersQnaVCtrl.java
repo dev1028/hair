@@ -17,6 +17,7 @@ public class membersQnaVCtrl implements Controller {
 		System.out.println("MembersQnaVCtrl");
 
 		String admin = request.getSession().getAttribute("admin").toString();
+		String loginId = request.getSession().getAttribute("loginid").toString();
 
 		// 파라미터
 		QnaVo vo = new QnaVo();
@@ -39,6 +40,7 @@ public class membersQnaVCtrl implements Controller {
 		request.getSession().setAttribute("viewNo", resultVo.getQna_no());
 		request.getSession().setAttribute("hit", hitup);
 		request.getSession().setAttribute("admin", admin);
+		request.getSession().setAttribute("loginId", loginId);
 		// request.setAttribute("view", resultVo);
 
 		request.getRequestDispatcher("membersQnaView.jsp").forward(request, response);

@@ -171,7 +171,8 @@
 	<button type="button" class="btn btn-outline-primary" onclick="qnaRe()">답변달기</button>
 </c:if>
  
-<c:if test="${admin == '1' || admin == '2'}">
+<c:if test="${sessionScope.loginid !=null}">
+<c:if test="${sessionScope.loginid == view.qna_writer}">
 <div id="upde">
 <button type="button" class="btn btn-outline-primary" onclick="qnaModifyGo()">수정</button>
 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdrop">
@@ -179,7 +180,7 @@
 </button>
 </div>
 </c:if>
-
+</c:if>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
