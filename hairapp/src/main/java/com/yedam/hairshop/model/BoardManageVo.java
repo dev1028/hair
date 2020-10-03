@@ -19,4 +19,12 @@ public class BoardManageVo {
 	String searchInput;
 	String answerStatus;
 	String who;
+	String b_no;
+	String b_category;
+	String b_writer;
+	String b_wd;
+	String b_a;
+	String b_as;
+	String b_hits;
+	String b_title;
 }

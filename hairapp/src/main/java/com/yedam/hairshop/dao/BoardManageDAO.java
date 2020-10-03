@@ -7,9 +7,7 @@ import java.util.ArrayList;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.BoardManageVo;
-import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopNoticeVo;
-import com.yedam.hairshop.model.SalesVo;
 
 public class BoardManageDAO {
 	static Connection conn;
@@ -73,9 +71,8 @@ public class BoardManageDAO {
 	}
 
 	
-	public ArrayList<HairshopNoticeVo> findNoticeDate(BoardManageVo vo) {
-		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
-		HairshopNoticeVo resultVo = null;
+	public ArrayList<BoardManageVo> findNoticeDate(BoardManageVo vo) {
+		ArrayList<BoardManageVo> list = new ArrayList<>();
 
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -87,16 +84,15 @@ public class BoardManageDAO {
 			pstmt.setString(4, vo.getSearchInput());
 			pstmt.setString(5, vo.getCategory());
 			rs = pstmt.executeQuery();
-			System.out.println("sql");
+			System.out.println("nnsql");
 			while (rs.next()) {
-
-				resultVo = new HairshopNoticeVo();
-				resultVo.setNotice_no(rs.getString("notice_no"));
-				resultVo.setNotice_title(rs.getString("notice_title"));
-				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
-				resultVo.setNotice_hits(rs.getString("notice_hits"));
-				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setNotice_categoryname(rs.getString("notice_categoryname"));
+BoardManageVo resultVo = new BoardManageVo();
+				resultVo.setB_no(rs.getString("notice_no"));
+				resultVo.setB_title(rs.getString("notice_title"));
+				resultVo.setB_wd(rs.getString("notice_writedate"));
+				resultVo.setB_hits(rs.getString("notice_hits"));
+				resultVo.setB_writer(rs.getString("emp_no"));
+				resultVo.setB_category(rs.getString("notice_categoryname"));
 				list.add(resultVo);
 
 			}

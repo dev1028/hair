@@ -22,6 +22,7 @@ import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
 import com.yedam.hairshop.admin.adminBoardSettingCtrl;
+import com.yedam.hairshop.admin.adminBoardSettingFCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
@@ -239,6 +240,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());	
 		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
 		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());	
+		list.put("/admin/adminBoardSettingFind.do", new adminBoardSettingFCtrl());	
 		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());	
 		list.put("/admin/adminDesignerManageFind.do", new AdminDesignerManageCFtrl());	
 		list.put("/admin/adminCustomerManage.do", new AdminCustomerManageCtrl());	
