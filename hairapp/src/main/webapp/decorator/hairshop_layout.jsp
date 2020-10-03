@@ -104,7 +104,7 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/dailyReservationList.do">일간예약</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do">주간예약</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Something else here</a>
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
 								</div></li>
 							
 							
