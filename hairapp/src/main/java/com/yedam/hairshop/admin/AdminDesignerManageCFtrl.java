@@ -1,7 +1,7 @@
 package com.yedam.hairshop.admin;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,16 +12,17 @@ import com.yedam.hairshop.dao.AdminMemberManageDAO;
 import com.yedam.hairshop.model.BoardManageVo;
 import com.yedam.hairshop.model.DesignerVo;
 
-public class AdminDesignerManageCtrl implements Controller {
+public class AdminDesignerManageCFtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String searchType = request.getParameter("searchType");
 		String searchVal = request.getParameter("searchVal");
 		BoardManageVo vo = new BoardManageVo();
 		vo.setSearchInput(searchVal);
 		vo.setSearchType(searchType);
-		ArrayList<DesignerVo> list = AdminMemberManageDAO.getInstance().selectDs(null);
+		List<DesignerVo> list = AdminMemberManageDAO.getInstance().findDs(vo);
 		request.setAttribute("list", list);
 		request.setAttribute("searchVal", searchVal);
 		request.getRequestDispatcher("/admin/adminDesignerManage.jsp").forward(request, response);

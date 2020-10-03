@@ -10,9 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminCouponManageCtrl;
+import com.yedam.hairshop.admin.AdminCouponManageFCtrl;
 import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
+import com.yedam.hairshop.admin.AdminCustomerManageFCtrl;
+import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
+import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
@@ -236,8 +241,13 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());	
 		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());	
 		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());	
+		list.put("/admin/adminDesignerManageFind.do", new AdminDesignerManageCFtrl());	
 		list.put("/admin/adminCustomerManage.do", new AdminCustomerManageCtrl());	
+		list.put("/admin/adminCustomerManageFind.do", new AdminCustomerManageFCtrl());	
 		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());	
+		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());	
+		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());	
+		list.put("/admin/adminCouponManageFind.do", new AdminCouponManageFCtrl());	
 		
 		
 		//승연

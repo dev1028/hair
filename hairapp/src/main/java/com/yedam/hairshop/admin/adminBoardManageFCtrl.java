@@ -92,27 +92,27 @@ public class adminBoardManageFCtrl implements Controller {
 
 			noticeList = BoardManageDAO.getInstance().findQna(paramVo);
 		}
-		System.out.println(startDate);
-		System.out.println(endDate);
+//		System.out.println(startDate);
+//		System.out.println(endDate);
 
 		JSONObject jObj = new JSONObject();
-//
-//		for (HairshopNoticeVo vo : noticeList) {
-//			jObj = new JSONObject();
-////			jObj.put("notice_no", vo.getNotice_no());
-////			jObj.put("notice_title", vo.getNotice_title());
-////			jObj.put("n_writedate", vo.getNotice_writedate());
-////			jObj.put("notice_hits", vo.getNotice_hits());
-////			jObj.put("emp_no", vo.getEmp_no());
-////			jObj.put("n_category", vo.getNotice_categoryname());
-//			jObj.put("qna_no", vo.getQna_no());
-////			jObj.put("qna_title", vo.getQna_title());
-////			jObj.put("qna_writedate", vo.getQna_writedate());
-////			jObj.put("qna_hits", vo.getQna_hits());
-////			jObj.put("qna_category", vo.getQna_category());
-////			jObj.put("qna_who", vo.getQna_who());
-//			jArray.add(jObj);
-//		}
+
+		for (HairshopNoticeVo vo : noticeList) {
+			jObj = new JSONObject();
+//			jObj.put("notice_no", vo.getNotice_no());
+//			jObj.put("notice_title", vo.getNotice_title());
+//			jObj.put("n_writedate", vo.getNotice_writedate());
+//			jObj.put("notice_hits", vo.getNotice_hits());
+//			jObj.put("emp_no", vo.getEmp_no());
+//			jObj.put("n_category", vo.getNotice_categoryname());
+			jObj.put("qna_no", vo.getQna_no());
+			jObj.put("qna_title", vo.getQna_title());
+			jObj.put("qna_writedate", vo.getQna_writedate());
+			jObj.put("qna_hits", vo.getQna_hits());
+			jObj.put("qna_category", vo.getQna_category());
+			jObj.put("qna_who", vo.getQna_who());
+			jArray.add(jObj);
+		}
 
 		String str = JSONArray.fromObject(jArray).toString();
 		System.out.println(str);

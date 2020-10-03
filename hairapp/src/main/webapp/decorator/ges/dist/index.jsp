@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,9 +79,10 @@
 							</div> 매출통계
 						</a>
 						<div class="sb-sidenav-menu-heading">회원</div>
-						<a class="nav-link collapsed" href="${pageContext.request.contextPath}/admin/adminCustomerManage.do" data-toggle="collapse"
-							data-target="#collapseLayouts" aria-expanded="false"
-							aria-controls="collapseLayouts">
+						<a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminCustomerManage.do"
+							data-toggle="collapse" data-target="#collapseLayouts"
+							aria-expanded="false" aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
 							</div> 사용자회원관리
@@ -94,16 +98,35 @@
 									Sidenav</a>
 							</nav>
 						</div>
-						<a class="nav-link collapsed" href="${pageContext.request.contextPath}/admin/adminHairshopManage.do" data-toggle="collapse"
-							data-target="#collapsePages" aria-expanded="false"
-							aria-controls="collapsePages">
+						<a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminHairshopManage.do"
+							data-toggle="collapse" data-target="#collapsePages"
+							aria-expanded="false" aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
 							</div> 헤어샵회원관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
+						</a> <a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminDesignerManage.do"
+							data-toggle="collapse" data-target="#collapseLayouts"
+							aria-expanded="false" aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> 디자이너회원관리
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
 						</a>
+						<div class="collapse" id="collapseLayouts"
+							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="layout-static.html">Static
+									Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light
+									Sidenav</a>
+							</nav>
+						</div>
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion"
@@ -115,6 +138,7 @@
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a>
+
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
@@ -143,11 +167,13 @@
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">게시판</div>
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 게시물관리
-						</a> <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminBoardSetting.do">
+						</a> <a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardSetting.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 게시판관리
@@ -160,9 +186,13 @@
 				</div>
 			</nav>
 		</div>
-		<div id="layoutSidenav_content"></div>
-		<decorator:body></decorator:body>
-		<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		<div id="layoutSidenav_content">
+
+			<decorator:body></decorator:body>
+
+		</div>
+	</div>
+	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 			crossorigin="anonymous"></script>
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"

@@ -4,13 +4,13 @@ $(function() {
 	$(".asc").on("click", function() {
 		console.log($(this).parent('th').index())
 		toggleBool = false;
-		gwanshic($("#tbody"), $(this).parent('th').index())
+		gwanshic($("tbody"), $(this).parent('th').index())
 
 	})
 	$(".des").on("click", function() {
 		console.log($(this).parent('th').index())
 		toggleBool = true;
-		gwanshic($("#tbody"), $(this).parent('th').index())
+		gwanshic($("tbody"), $(this).parent('th').index())
 	})
 
 	$("#all").on("click", function() {
