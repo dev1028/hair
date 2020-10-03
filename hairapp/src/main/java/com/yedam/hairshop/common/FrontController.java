@@ -29,6 +29,7 @@ import com.yedam.hairshop.designer.DesWeeklyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerMainCtrl;
+import com.yedam.hairshop.designer.DesignerNextCustomerAjCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.customerJoinCtrl;
 import com.yedam.hairshop.hairshop.ChangeReservationStatusAjCtrl;
@@ -254,11 +255,11 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl()); //회원가입
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); //회원가입
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl()); //미용실 이메일 사용여부
-		
+
 		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl()); //예약상세정보확인
 		list.put("/ajax/updateMdriMemo.do", new UpdateMdriMemoAjCtrl()); //상세예약정보 메모
 		list.put("/ajax/changeReservationStatus.do", new ChangeReservationStatusAjCtrl()); //예약상태변경
-		
+
 		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl()); //미용실 일간 예약자 리스트 (리소스 방식)
 		list.put("/hairshop/weeklyReservationList.do", new DailyReservationListCtrl()); //미용실 주간 예약자 리스트 (리소스 방식)
 		list.put("/hairshop/monthlyReservationList.do", new MonthlyReservationListCtrl()); //미용실 월간 예약자 리스트 (일반 캘린더 방식)
@@ -270,8 +271,11 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerMain.do", new DesignerMainCtrl()); //디자이너 메인페이지
 		list.put("/designer/desDailyReservationList.do", new DesDailyReservationListCtrl()); //디자이너 일간예약자 리스트(일반캘린더방식)
 		list.put("/designer/desWeeklyReservationList.do", new DesDailyReservationListCtrl()); //디자이너 주간예약자 리스트(일반캘린더방식)
+		list.put("/designer/desMonthlyReservationList.do", new DesDailyReservationListCtrl()); //디자이너 월간예약자 리스트(일반캘린더방식)
 		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl());  //일간예약명단 가져오기(일반캘린더방식) -싱글톤
 		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl()); //일간(주간)예약명단 가져오기(일반캘린더방식) - 객체생성 
+		
+		list.put("/ajax/designerNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 디자이너용 다음 고객 찾기
 	}
 
 

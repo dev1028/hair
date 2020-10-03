@@ -28,9 +28,9 @@
 										end : 'title' // will normally be on the right. if RTL, will be on the left
 									}, */
 									businessHours : {
-										daysOfWeek : '${dayonList}', 
-										startTime : '${start}', 
-										endTime : '${end}'
+										daysOfWeek : '${desDayoff.daysOfWeek}', //이것도 디자이너꺼
+										startTime : '${desDayoff.startTime}', //이건 자기꺼
+										endTime : '${desDayoff.endTime}'
 									},
 									slotMinTime : '${start}', // 이건 미용실실꺼
 									slotMaxTime : '${end}',
@@ -42,7 +42,7 @@
 
 										$
 												.ajax({
-													url : "${pageContext.request.contextPath}/ajax/monthlyReservationListAj.do",
+													url : "${pageContext.request.contextPath}/ajax/desDailyReservationListAj.do",
 													type : "POST",
 													data : {
 														startDate : info.startStr,

@@ -87,8 +87,10 @@ public class DesDailyReservationListCtrl implements Controller {
 		
 		if(path.equals("/designer/desDailyReservationList.do")) {
 			request.getRequestDispatcher("/designer/desDailyReservation.jsp").forward(request, response);
-		} else {
+		} else if(path.equals("/designer/desWeeklyReservationList.do")){
 			request.getRequestDispatcher("/designer/desWeeklyReservation.jsp").forward(request, response);
+		} else if(path.equals("/designer/desMonthlyReservationList.do")){
+			request.getRequestDispatcher("/designer/desMonthlyReservation.jsp").forward(request, response);
 		}
 	}
 
