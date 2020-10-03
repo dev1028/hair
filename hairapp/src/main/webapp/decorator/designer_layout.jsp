@@ -34,6 +34,31 @@
 } */
 </style>
 <decorator:head></decorator:head>
+<script>
+	var result = null;
+	findNextCustomer = setInterval(function() {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/ajax/designerNextCustomer.do",
+			data : {
+				startTime : new Date()
+			},
+			dataType : "json",
+			method : "post",
+			success : function(data) {
+				
+			}
+		});// end of ajax 
+	}, 300000);
+	
+	function getFormatDate(date) {
+		var year = date.getFullYear(); //yyyy
+		var month = (1 + date.getMonth()); //M
+		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+		var day = date.getDate(); //d
+		day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+		return year + '/' + month + '/' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+	}
+</script>
 </head>
 <body>
 
@@ -51,12 +76,12 @@
 					</div>
 
 					<div>
+						<h5>디자이너 ${login.designer_name}님</h5>
 						<ul class="nav flex-column">
+
+
 							<li class="nav-item"><a class="nav-link active" href="#">
-									<span data-feather="home"></span> 디자이너 <span class="sr-only">(current)</span>
-							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="file"></span> 다음 예약정보
+									<span data-feather="home"></span> Home <span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="#"> <span
 									data-feather="shopping-cart"></span> Products
@@ -71,17 +96,33 @@
 									data-feather="layers"></span> Integrations
 							</a></li>
 						</ul>
-					</div>
-					<div>
-						<hr>
-						
+						<div>
+							<hr>
+
+						</div>
+						<div class="card" >
+							<!-- <img src="..." class="card-img-top" alt="..."> -->
+							<div class="card-body">
+								<h5 class="card-title">다음 예약정보</h5>
+								<p class="card-text">정보없음</p>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">일반펌</li>
+								<li class="list-group-item">그저그런펌</li>
+								<li class="list-group-item">Vestibulum at eros</li>
+							</ul>
+							<div class="card-body">
+								<a href="#" class="card-link">Card link</a> <a href="#"
+									class="card-link">Another link</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</nav>
 			<div class="block">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 					<a class="navbar-brand"
-						href="${pageContext.request.contextPath}/designer/designerMain.do">헤어살롱</a>
+						href="${pageContext.request.contextPath}/designer/designerMain.do">${hairshopInfo.hs_name}</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -112,7 +153,8 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do">주간예약</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#">Something else here</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/desMonthlyReservationList.do">월간예약현황</a>
 								</div></li>
 
 

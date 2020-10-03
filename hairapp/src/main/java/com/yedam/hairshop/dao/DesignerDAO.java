@@ -97,7 +97,7 @@ public class DesignerDAO {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, Designer_access_status "
+			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, Designer_access_status, hs_no "
 					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_email());
@@ -109,6 +109,7 @@ public class DesignerDAO {
 				resultVo.setDesigner_name(rs.getString(3));
 				resultVo.setDesigner_email(rs.getString(4));
 				resultVo.setDesigner_access_status(rs.getString(5));
+				resultVo.setHs_no(rs.getString(6));
 
 			} else {
 				System.out.println("no data");
