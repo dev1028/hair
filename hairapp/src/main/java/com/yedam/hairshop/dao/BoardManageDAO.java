@@ -72,46 +72,7 @@ public class BoardManageDAO {
 		return list;
 	}
 
-	public ArrayList<HairshopNoticeVo> findNoticeSearch(BoardManageVo vo) {
-		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
-		HairshopNoticeVo resultVo = null;
-
-		try {
-			conn = ConnectionManager.getConnnect();
-
-			pstmt = conn.prepareStatement(noticeFind + noticeSearch);
-			pstmt.setString(1, vo.getStartDate());
-			pstmt.setString(2, vo.getEndDate());
-			pstmt.setString(3, vo.getSearchType());
-			pstmt.setString(4, vo.getSearchInput());
-
-			rs = pstmt.executeQuery();
-			System.out.println("sql");
-			while (rs.next()) {
-
-				resultVo = new HairshopNoticeVo();
-				resultVo.setNotice_no(rs.getString("notice_no"));
-				resultVo.setNotice_title(rs.getString("notice_title"));
-				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
-				resultVo.setNotice_hits(rs.getString("notice_hits"));
-				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setNotice_categoryname(rs.getString("notice_categoryname"));
-				list.add(resultVo);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
-//		
-//		for(SalesVo vo : list) {
-//			System.out.println(vo.getHName());
-//		}
-		return list;
-	}
-
+	
 	public ArrayList<HairshopNoticeVo> findNoticeDate(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;

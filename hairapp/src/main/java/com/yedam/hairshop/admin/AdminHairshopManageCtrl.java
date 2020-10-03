@@ -16,6 +16,7 @@ public class AdminHairshopManageCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+	
 		List<HairshopVo> list = HairshopDAO.getInstance().selectAll();
 		System.out.println(list.get(0).getHs_no());
 		request.setAttribute("list", list);

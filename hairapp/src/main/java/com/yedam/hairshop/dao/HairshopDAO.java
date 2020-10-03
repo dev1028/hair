@@ -159,6 +159,8 @@ public class HairshopDAO {
 				resultVo.setHs_resource_option(rs.getString("HS_RESOURCE_OPTION"));
 				resultVo.setHs_parking(rs.getString("HS_PARKING"));
 				resultVo.setHs_etc(rs.getString("HS_ETC"));
+
+				resultVo.setHs_regdate(rs.getString("HS_REGDATE"));
 				list.add(resultVo);
 			}
 		} catch (Exception e) {

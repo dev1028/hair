@@ -10,22 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.AdminMemberManageDAO;
 import com.yedam.hairshop.model.BoardManageVo;
-import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.model.DesignerVo;
 
-public class AdminHairshopManageFCtrl implements Controller {
+public class AdminDesignerManageCFtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String searchType=	request.getParameter("searchType");
-		String searchVal=request.getParameter("searchVal");
-		BoardManageVo vo  = new BoardManageVo();
+		// TODO Auto-generated method stub
+		String searchType = request.getParameter("searchType");
+		String searchVal = request.getParameter("searchVal");
+		BoardManageVo vo = new BoardManageVo();
 		vo.setSearchInput(searchVal);
 		vo.setSearchType(searchType);
-			List<HairshopVo> list = AdminMemberManageDAO.getInstance().findHs(vo);
-			request.setAttribute("list", list);
-			request.setAttribute("searchVal", searchVal);
-			request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
-}
+		List<DesignerVo> list = AdminMemberManageDAO.getInstance().findDs(vo);
+		request.setAttribute("list", list);
+		request.setAttribute("searchVal", searchVal);
+		request.getRequestDispatcher("/admin/adminDesignerManage.jsp").forward(request, response);
+	}
 
 }
