@@ -12,6 +12,7 @@ public class HairshopNoticeVo {
 	public String notice_image;
 	public String emp_no;
 	public String notice_categoryname;
+	
 	public String qna_no;
 	public String qna_shop_customer_no;
 	public String qna_title;
