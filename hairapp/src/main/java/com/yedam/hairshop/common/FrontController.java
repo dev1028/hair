@@ -286,6 +286,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl()); //일간(주간)예약명단 가져오기(일반캘린더방식) - 객체생성 
 		
 		list.put("/ajax/designerNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 디자이너용 다음 고객 찾기
+		
 	}
 
 

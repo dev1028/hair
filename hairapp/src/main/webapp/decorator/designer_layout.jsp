@@ -40,11 +40,22 @@
 		$.ajax({
 			url : "${pageContext.request.contextPath}/ajax/designerNextCustomer.do",
 			data : {
-				startTime : new Date()
+				startTime : getFormatDate(new Date())
 			},
 			dataType : "json",
 			method : "post",
 			success : function(data) {
+				if(data == null){
+					//최근예약이 존재하지않음을 표시
+					$("#nextCustomer").find(".card-text").text("예약이 존재하지 않습니다.");
+					$("#customerDetailInfoURI").attr("href", "#");
+				} else {
+					if(result.mdr_no != data.mdr_no){
+						result = data;
+						$("#nextCustomer").find(".card-text").text(data.mem_name);
+						$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
+					}
+				}
 				
 			}
 		});// end of ajax 
@@ -55,8 +66,10 @@
 		var month = (1 + date.getMonth()); //M
 		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
 		var day = date.getDate(); //d
+		var hour = date.getHours();
+		var min = date.getMinutes();
 		day = day >= 10 ? day : '0' + day; //day 두자리로 저장
-		return year + '/' + month + '/' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+		return year + '/' + month + '/' + day + ' ' + hour +':'+ min; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
 	}
 </script>
 </head>
@@ -100,20 +113,20 @@
 							<hr>
 
 						</div>
-						<div class="card" >
+						<div class="card" id="nextCustomer">
 							<!-- <img src="..." class="card-img-top" alt="..."> -->
 							<div class="card-body">
 								<h5 class="card-title">다음 예약정보</h5>
-								<p class="card-text">정보없음</p>
+								<p class="card-text"></p>
 							</div>
+							<c:forEach items="" var="hairInfo">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item">일반펌</li>
-								<li class="list-group-item">그저그런펌</li>
-								<li class="list-group-item">Vestibulum at eros</li>
+								<li class="list-group-item">${hairInfo.hhi_name}</li>
 							</ul>
+							</c:forEach>
 							<div class="card-body">
-								<a href="#" class="card-link">Card link</a> <a href="#"
-									class="card-link">Another link</a>
+								<a id="customerDetailInfoURI" href="#" class="btn btn-primary">예약정보확인</a> 
+								<a href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do" class="card-link">주간일정보기</a>
 							</div>
 						</div>
 					</div>
