@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
-import com.yedam.hairshop.admin.AdminOwnerManageCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
@@ -47,6 +46,8 @@ import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
+import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
+import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
@@ -253,22 +254,24 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl()); //회원가입
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); //회원가입
 		list.put("/ajax/hairshopEmailUse.do", new HairshopEmailUseAjCtrl()); //미용실 이메일 사용여부
-		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl());
-		list.put("/hair/dailyReservationList.do", new DailyReservationListCtrl());
-		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
-		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl());
-		list.put("/hairshop/weeklyReservationList.do", new DailyReservationListCtrl());
-		list.put("/ajax/weeklyReservationListAj.do", new DailyReservationListAjCtrl());
-
-		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl());
-		list.put("/ajax/updateMdriMemo.do", new UpdateMdriMemoAjCtrl());
 		
-		list.put("/designer/designerMain.do", new DesignerMainCtrl());
-		list.put("/designer/desDailyReservationList.do", new DesDailyReservationListCtrl());
-		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl());
-		list.put("/designer/desWeeklyReservationList.do", new DesDailyReservationListCtrl());
-		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl());
-		list.put("/ajax/changeReservationStatus.do", new ChangeReservationStatusAjCtrl());
+		list.put("/ajax/memberReservationInfo.do", new MemberReservationInfoCtrl()); //예약상세정보확인
+		list.put("/ajax/updateMdriMemo.do", new UpdateMdriMemoAjCtrl()); //상세예약정보 메모
+		list.put("/ajax/changeReservationStatus.do", new ChangeReservationStatusAjCtrl()); //예약상태변경
+		
+		list.put("/hairshop/dailyReservationList.do", new DailyReservationListCtrl()); //미용실 일간 예약자 리스트 (리소스 방식)
+		list.put("/hairshop/weeklyReservationList.do", new DailyReservationListCtrl()); //미용실 주간 예약자 리스트 (리소스 방식)
+		list.put("/hairshop/monthlyReservationList.do", new MonthlyReservationListCtrl()); //미용실 월간 예약자 리스트 (일반 캘린더 방식)
+
+		list.put("/ajax/dailyReservationListAj.do", new DailyReservationListAjCtrl()); //일간예약명단 가져오기 (리소스방식)
+		list.put("/ajax/weeklyReservationListAj.do", new DailyReservationListAjCtrl()); //주간예약명단 가져오기 (리소스방식)
+		list.put("/ajax/monthlyReservationListAj.do", new MonthlyReservationListAjCtrl()); //월간예약명단 가져오기 (일반캘린더 방식)
+		
+		list.put("/designer/designerMain.do", new DesignerMainCtrl()); //디자이너 메인페이지
+		list.put("/designer/desDailyReservationList.do", new DesDailyReservationListCtrl()); //디자이너 일간예약자 리스트(일반캘린더방식)
+		list.put("/designer/desWeeklyReservationList.do", new DesDailyReservationListCtrl()); //디자이너 주간예약자 리스트(일반캘린더방식)
+		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl());  //일간예약명단 가져오기(일반캘린더방식) -싱글톤
+		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl()); //일간(주간)예약명단 가져오기(일반캘린더방식) - 객체생성 
 	}
 
 

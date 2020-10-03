@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -108,7 +107,7 @@ public class DailyReservationListCtrl implements Controller {
 		String path = uri.substring(contextPath.length());
 		if(path.equals("/hairshop/dailyReservationList.do")) {
 			request.getRequestDispatcher("/hairshop/dailyReservation.jsp").forward(request, response);
-		} else {
+		} else if(path.equals("/hairshop/weeklyReservationList.do")) {
 			request.getRequestDispatcher("/hairshop/weeklyReservation.jsp").forward(request, response);
 		}
 	}
