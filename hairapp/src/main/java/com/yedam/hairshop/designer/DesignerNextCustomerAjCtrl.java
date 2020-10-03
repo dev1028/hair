@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MembersReservationDAO;
 
+import net.sf.json.JSONObject;
+
 public class DesignerNextCustomerAjCtrl implements Controller {
 
 	@Override
@@ -20,7 +22,8 @@ public class DesignerNextCustomerAjCtrl implements Controller {
 		
 		Map<String, String> resultCustomer = new HashMap<String, String>();
 		resultCustomer = MembersReservationDAO.getInstance().selectReservationNext(desNo, startTime);
-		
+
+		response.getWriter().print(JSONObject.fromObject(resultCustomer));
 	}
 
 }
