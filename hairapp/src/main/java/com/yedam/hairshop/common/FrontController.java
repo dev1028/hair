@@ -110,6 +110,9 @@ import com.yedam.hairshop.members.MembersPwModifyCtrl;
 import com.yedam.hairshop.members.MembersPwSearchCtrl;
 import com.yedam.hairshop.members.MembersPwSearchSCtrl;
 import com.yedam.hairshop.members.MembersQnaCtrl;
+import com.yedam.hairshop.members.MembersQnaDCtrl;
+import com.yedam.hairshop.members.MembersQnaMCtrl;
+import com.yedam.hairshop.members.MembersQnaMGCtrl;
 import com.yedam.hairshop.members.MembersQnaReCtrl;
 import com.yedam.hairshop.members.MembersQnaWCtrl;
 import com.yedam.hairshop.members.MembersQnaWGCtrl;
@@ -242,6 +245,9 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersQnaV.do", new membersQnaVCtrl());				// Qna 보기 컨트롤러
 		list.put("/members/membersQnaReG.do", new membersQnaReGCtrl());			// Qna 답변으로 이동 컨트롤러
 		list.put("/members/membersQnaRe.do", new MembersQnaReCtrl());			// Qna 답변 처리하는 컨트롤러
+		list.put("/members/membersQnaMG.do", new MembersQnaMGCtrl());			// Qna 수정으로 이동하는 컨트롤러
+		list.put("/members/membersQnaM.do", new MembersQnaMCtrl());				// Qna 수정하는 컨트롤러
+		list.put("/members/membersQnaD.do", new MembersQnaDCtrl());				// Qna 삭제 컨트롤러
 		
 		
 		//강산

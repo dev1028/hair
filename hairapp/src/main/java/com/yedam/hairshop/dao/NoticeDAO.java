@@ -195,5 +195,34 @@ public class NoticeDAO {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
 	}	// 공지삭제 끝
+	
+	
+	// Qna 메인에 띄울거
+	public ArrayList<HairshopNoticeVo> mainNoticeList() {
+		HairshopNoticeVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		ArrayList<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT NOTICE_TITLE FROM NOTICE" + 
+					" WHERE ROWNUM <=3 AND NOTICE_WHO = 'j2'" + 
+					" ORDER BY NOTICE_NO DESC";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new HairshopNoticeVo();
+				resultVo.setNotice_title(rs.getString("notice_title"));
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+
+	} // end
+	
+	
 
 }
