@@ -28,67 +28,36 @@ public class adminBoardManageFCtrl implements Controller {
 //		System.out.println("boatdtype" + boardType);
 //		System.out.println("startdate" + startDate);
 //		System.out.println("endDate" + endDate);
-//		System.out.println("who" + who);
+		System.out.println("who" + who);
 //		System.out.println("answerstatus" + answerStatus);
 //		System.out.println("category" + category);
 //		System.out.println("searchtype" + searchType);
 //		System.out.println("searchval" + searchVal);
-
+		ArrayList<BoardManageVo> list = null;
 		BoardManageVo paramVo = new BoardManageVo();
-		ArrayList<BoardManageVo> noticeList = null;
-		ArrayList<HairshopNoticeVo> qnaList = null;
+		if (startDate.equals("")) {
+			paramVo.setStartDate("2000-01-01");
+			paramVo.setEndDate(endDate);
+
+		} else {
+
+			paramVo.setStartDate(startDate);
+			paramVo.setEndDate(endDate);
+		}
+
+		paramVo.setWho(who);
+		paramVo.setSearchInput(searchVal);
+		paramVo.setSearchType(searchType);
+		paramVo.setCategory(category);
 		if (boardType.equals("notice")) {
+			list = BoardManageDAO.getInstance().findNotice(paramVo);
 
-			if (startDate.equals("Invalid date")) {
-				paramVo.setStartDate("2000-01-01");
-				paramVo.setEndDate(endDate);
+		} else {
+			list = BoardManageDAO.getInstance().findQna(paramVo);
 
-			} else {
-
-				paramVo.setStartDate(startDate);
-				paramVo.setEndDate(endDate);
-			}
-			if (searchVal.equals("")) {
-				paramVo.setSearchInput("1");
-				paramVo.setSearchType("1");
-			} else {
-				paramVo.setSearchInput(searchVal);
-				paramVo.setSearchType(searchType);
-			}
-			paramVo.setCategory(who);
-
-			noticeList = BoardManageDAO.getInstance().findNoticeDate(paramVo);
 		}
-		if (boardType.equals("qna")) {
 
-			if (startDate.equals("Invalid date")) {
-				paramVo.setStartDate("2000-01-01");
-				paramVo.setEndDate(endDate);
-
-			} else {
-
-				paramVo.setStartDate(startDate);
-				paramVo.setEndDate(endDate);
-			}
-			if (searchVal.equals("")) {
-				paramVo.setSearchInput("1");
-				paramVo.setSearchType("1");
-			} else {
-				paramVo.setSearchInput(searchVal);
-				paramVo.setSearchType(searchType);
-			}
-			if (category.equals("all")) {
-
-			}
-			paramVo.setCategory(category);
-			if (who.equals("all")) {
-
-			}
-			paramVo.setWho(who);
-
-//			noticeList = BoardManageDAO.getInstance().findQna(paramVo);
-		}
-		request.setAttribute("list", noticeList);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("/admin/adminBoardManage.jsp").forward(request, response);
 
 	}

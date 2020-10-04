@@ -16,15 +16,16 @@ public class BoardManageDAO {
 
 	static BoardManageDAO instance = null;
 
-	final static String noticeFind = "select * " + "FROM notice\r\n" + "WHERE  notice_writedate BETWEEN ? AND ?\r\n"
-	+"AND ? = ?\r\n"
-	+"AND NOTICE_who IN(?)";
-	
-	final static String qnaFind ="select * FROM qna\n" + 
-			"WHERE  qna_writedate BETWEEN ? AND ?\n" + 
-			"AND ? = ?\n" + 
-			"AND qna_who like ?\n" + 
-			"and qna_category like ?";
+	final static String noticeFind = "select * " + "FROM notice\r\n" + "WHERE  notice_writedate BETWEEN ? AND ?\r\n";
+
+	final static String notice_who = "AND NOTICE_who like'%'||?||'%' ";
+	final static String notice_title = "and notice_title like '%'||?||'%' ";
+	final static String notice_contents = "and notice_contents like '%'||?||'%' ";
+	final static String qna_title = "and qna_title like '%'||?||'%' ";
+	final static String qna_contents = "and qna_contents like '%'||?||'%' ";
+	final static String emp_no = "and emp_no like '%'||?||'%' ";
+	final static String qnaFind = "select * FROM qna\n" + "WHERE  qna_writedate BETWEEN ? AND ?\n"
+			+ "AND qna_who like '%'||?||'%'\n" + "and qna_category like '%'||?||'%'";
 
 	public static BoardManageDAO getInstance() {
 		if (instance == null)
@@ -32,66 +33,40 @@ public class BoardManageDAO {
 		return instance;
 	}
 
-	public ArrayList<HairshopNoticeVo> findNoticeCategory(BoardManageVo vo) {
-		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
-		HairshopNoticeVo resultVo = null;
-
+	public ArrayList<BoardManageVo> findNotice(BoardManageVo vo) {
+		ArrayList<BoardManageVo> list = new ArrayList<>();
+		String sql = "";
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind);
-			pstmt.setString(1, vo.getStartDate());
-			pstmt.setString(2, vo.getEndDate());
-			pstmt.setString(3, vo.getCategory());
-			rs = pstmt.executeQuery();
-			System.out.println("sql");
-			while (rs.next()) {
+			if (vo.getWho().equals("all")) {
+				vo.setWho("");
+			}
+			if (vo.getSearchType().equals("title")) {
+				sql = noticeFind + notice_who + notice_title;
 
-				resultVo = new HairshopNoticeVo();
-				resultVo.setNotice_no(rs.getString("notice_no"));
-				resultVo.setNotice_title(rs.getString("notice_title"));
-				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
-				resultVo.setNotice_hits(rs.getString("notice_hits"));
-				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setNotice_categoryname(rs.getString("notice_categoryname"));
-				list.add(resultVo);
+			} else if (vo.getSearchType().equals("contents")) {
+				sql = noticeFind + notice_who + notice_contents;
+
+			} else if (vo.getSearchType().equals("id")) {
+				sql = noticeFind + notice_who + emp_no;
 
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
-//		
-//		for(SalesVo vo : list) {
-//			System.out.println(vo.getHName());
-//		}
-		return list;
-	}
-
-	
-	public ArrayList<BoardManageVo> findNoticeDate(BoardManageVo vo) {
-		ArrayList<BoardManageVo> list = new ArrayList<>();
-
-		try {
-			conn = ConnectionManager.getConnnect();
-
-			pstmt = conn.prepareStatement(noticeFind);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
-			pstmt.setString(3, vo.getSearchType());
+			pstmt.setString(3, vo.getWho());
 			pstmt.setString(4, vo.getSearchInput());
-			pstmt.setString(5, vo.getCategory());
 			rs = pstmt.executeQuery();
 			System.out.println("nnsql");
 			while (rs.next()) {
-BoardManageVo resultVo = new BoardManageVo();
+				BoardManageVo resultVo = new BoardManageVo();
 				resultVo.setB_no(rs.getString("notice_no"));
 				resultVo.setB_title(rs.getString("notice_title"));
 				resultVo.setB_wd(rs.getString("notice_writedate"));
 				resultVo.setB_hits(rs.getString("notice_hits"));
 				resultVo.setB_writer(rs.getString("emp_no"));
+				resultVo.setB_who(rs.getString("notice_who"));
 				resultVo.setB_category(rs.getString("notice_categoryname"));
 				list.add(resultVo);
 
@@ -102,10 +77,6 @@ BoardManageVo resultVo = new BoardManageVo();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-//		
-//		for(SalesVo vo : list) {
-//			System.out.println(vo.getHName());
-//		}
 		return list;
 	}
 
@@ -149,32 +120,50 @@ BoardManageVo resultVo = new BoardManageVo();
 		return list;
 	}
 
-	public ArrayList<HairshopNoticeVo> findQna(BoardManageVo vo) {
-		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
-		HairshopNoticeVo resultVo = null;
-
+	public ArrayList<BoardManageVo> findQna(BoardManageVo vo) {
+		ArrayList<BoardManageVo> list = new ArrayList<>();
+		String sql = "";
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(qnaFind);
+			if (vo.getWho().equals("all")) {
+				vo.setWho("");
+			}
+			if (vo.getCategory().equals("all")) {
+				vo.setCategory("");
+			}
+			if (vo.getSearchType().equals("title")) {
+				sql = qnaFind + qna_title;
+
+			} else if (vo.getSearchType().equals("contents")) {
+				sql = qnaFind + qna_contents;
+
+			} else if (vo.getSearchType().equals("id")) {
+				sql = qnaFind + emp_no;
+
+			}else {
+				sql = qnaFind + qna_title;
+			}
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
-			pstmt.setString(3, vo.getSearchType());
-			pstmt.setString(4, vo.getSearchInput());
-			pstmt.setString(5, "%"+vo.getWho()+"%");
-			pstmt.setString(6, "%"+vo.getCategory()+"%");
+			pstmt.setString(3, vo.getWho());
+			pstmt.setString(4, vo.getCategory());
+
+			pstmt.setString(5, vo.getSearchInput());
 			rs = pstmt.executeQuery();
-			System.out.println("sql");
+			System.out.println("nqnasql");
 			while (rs.next()) {
 
-				resultVo = new HairshopNoticeVo();
-				resultVo.setQna_no(rs.getString("qna_no"));
-				resultVo.setQna_title(rs.getString("qna_title"));
-				resultVo.setQna_writedate(rs.getString("qna_writedate"));
-				resultVo.setQna_who(rs.getString("qna_who"));
-				resultVo.setQna_hits(rs.getString("qna_hits"));
-				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setQna_category(rs.getString("qna_category"));
+				BoardManageVo resultVo = new BoardManageVo();
+				resultVo.setB_no(rs.getString("qna_no"));
+				resultVo.setB_title(rs.getString("qna_title"));
+				resultVo.setB_wd(rs.getString("qna_writedate"));
+				resultVo.setB_writer(rs.getString("qna_shop_customer_no"));
+				resultVo.setB_hits(rs.getString("qna_hits"));
+				resultVo.setB_a(rs.getString("qna_answer"));
+				resultVo.setB_who(rs.getString("qna_who"));
+				resultVo.setB_category(rs.getString("qna_category"));
 
 				list.add(resultVo);
 

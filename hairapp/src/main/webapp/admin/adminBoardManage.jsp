@@ -66,7 +66,7 @@
 		<div class="control">
 			<label for="name">게시글 찾기 </label> <select name="searchType"
 				id="searchType">
-				<option value="notice_title">제목</option>
+				<option value="title">제목</option>
 				<option value="contents">내용</option>
 				<option value="writer">작성자</option>
 				<option value="id">ID</option>
@@ -136,6 +136,7 @@
 						<td>${ l.b_writer}</td>
 						<td>${ l.b_wd}</td>
 						<td>${ l.b_hits}</td>
+						<td>${ l.b_who}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

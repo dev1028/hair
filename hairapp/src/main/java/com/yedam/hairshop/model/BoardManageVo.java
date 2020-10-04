@@ -27,4 +27,5 @@ public class BoardManageVo {
 	String b_as;
 	String b_hits;
 	String b_title;
+	String b_who;
 }
