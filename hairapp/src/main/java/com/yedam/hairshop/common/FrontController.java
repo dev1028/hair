@@ -74,7 +74,9 @@ import com.yedam.hairshop.members.HairShopReviewInsertCtrl;
 import com.yedam.hairshop.members.HairShopSelectCtrl;
 import com.yedam.hairshop.members.HairshopBookmarkCtrl;
 import com.yedam.hairshop.members.HairshopSelectResultCtrl;
+import com.yedam.hairshop.members.MembersBookmarkDesignerCtrl;
 import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
+import com.yedam.hairshop.members.MembersBookmarkHairstyleCtrl;
 import com.yedam.hairshop.members.MembersDeleteCtrl;
 import com.yedam.hairshop.members.MembersDeleteSCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
@@ -177,6 +179,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/gpsHairshopSearch.do", new GpsHairshopSearchCtrl());
 		
 		list.put("/members/membersBookmarkHairshop.do", new MembersBookmarkHairshopCtrl());
+		list.put("/members/membersBookmarkDesigner.do", new MembersBookmarkDesignerCtrl());
+		list.put("/members/membersBookmarkHairstyle.do", new MembersBookmarkHairstyleCtrl());
 		
 		//==================================================================================
 		//송현

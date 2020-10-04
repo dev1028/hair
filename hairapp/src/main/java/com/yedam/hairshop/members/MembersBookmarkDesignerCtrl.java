@@ -9,14 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.HairshopBookmarkDAO;
-import com.yedam.hairshop.model.HairshopBookmarkVo;
+import com.yedam.hairshop.dao.DesignerBookmarkDAO;
+import com.yedam.hairshop.model.DesignerBookmarkVo;
+import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.MembersVo;
 
-public class MembersBookmarkHairshopCtrl implements Controller {
+public class MembersBookmarkDesignerCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("MembersBookmarkDesignerCtrl");
+		
 		HttpSession session = request.getSession();
 		MembersVo memVo = (MembersVo) session .getAttribute("login");
 		if(memVo == null) {
@@ -24,12 +27,15 @@ public class MembersBookmarkHairshopCtrl implements Controller {
 			return;
 		}
 		
-		HairshopBookmarkVo vo = new HairshopBookmarkVo();
+		DesignerBookmarkVo vo = new DesignerBookmarkVo();
 		vo.setMem_no(memVo.getMem_no());
-		List<HairshopBookmarkVo> list = HairshopBookmarkDAO.getInstance().getBookmarkList(vo);
+		List<DesignerVo> list = DesignerBookmarkDAO.getInstance().getBookmarkList(vo);
+		for(DesignerVo tmpVo : list) {
+			tmpVo.setDesigner_book("1");;
+		}
+		request.setAttribute("list", list);
 		System.out.println("list size: " + list.size());
-		session.setAttribute("list", list);
-		request.getRequestDispatcher("/members/membersBookmarkHairshop.jsp").forward(request, response);
+		request.getRequestDispatcher("/members/membersBookmarkDesigner.jsp").forward(request, response);
 	}
 
 }
