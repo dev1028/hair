@@ -76,7 +76,6 @@ public class NoticeDAO {
 	}
 
 	// 공지사항 작성
-	// notice_no_seq
 	public int insert(HairshopNoticeVo noticeVo) {
 		int r = 0;
 		try {
@@ -98,7 +97,7 @@ public class NoticeDAO {
 		return r;
 	}
 
-	// 전체 조회(페이징)
+	// 공지사항 전체 조회(페이징)
 	public ArrayList<HairshopNoticeVo> selectPaging(HairshopNoticeVo noticeVo) { // 조회가 여러건이면 DeptVO를 list에 담음
 		HairshopNoticeVo resultVO = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>(); // 결과값을 저장할 list 변수 객체 선언

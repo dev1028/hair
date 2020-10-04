@@ -111,6 +111,9 @@ import com.yedam.hairshop.members.MembersPwModifyCtrl;
 import com.yedam.hairshop.members.MembersPwSearchCtrl;
 import com.yedam.hairshop.members.MembersPwSearchSCtrl;
 import com.yedam.hairshop.members.MembersQnaCtrl;
+import com.yedam.hairshop.members.MembersQnaReCtrl;
+import com.yedam.hairshop.members.MembersQnaWCtrl;
+import com.yedam.hairshop.members.MembersQnaWGCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MembersSearchCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
@@ -120,6 +123,8 @@ import com.yedam.hairshop.members.RegionDesignerRankCtrl;
 import com.yedam.hairshop.members.RegionHairshopRankCtrl;
 import com.yedam.hairshop.members.SearchDetailCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
+import com.yedam.hairshop.members.membersQnaReGCtrl;
+import com.yedam.hairshop.members.membersQnaVCtrl;
 
 /*
 @WebServlet(name = "front", 
@@ -192,7 +197,7 @@ public class FrontController extends HttpServlet {
 		//린아
 		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 페이지 이동 컨트롤러
 		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 페이지 이동 컨트롤러
-		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 넘어가는 컨트롤러
+		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 처리하는 컨트롤러
 		
 		list.put("/members/membersSearch.do", new MembersSearchCtrl());			// ID/PW 찾기 페이지 이동 컨트롤러
 		list.put("/members/membersIdSearch.do", new MembersIdSearchCtrl());		// ID 찾기 페이지 이동 컨트롤러
@@ -201,7 +206,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersPwSearchS.do", new MembersPwSearchSCtrl());	// PW 찾기 넘어가는 컨트롤러
 		list.put("/members/membersPwEnd.do", new MembersPwEndCtrl());			// PW 찾기 완료 페이지 이동하는 컨트롤러
 		list.put("/members/membersPwEmail.do", new MembersPwEmailCtrl());		// PW EMAIL 인증 클릭 컨트롤러
-		list.put("/members/membersPwModify.do", new MembersPwModifyCtrl());		// PW 수정 넘어가는 컨트롤러
+		list.put("/members/membersPwModify.do", new MembersPwModifyCtrl());		// PW 수정 처리하는 컨트롤러
 							
 		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 페이지 이동 컨트롤러
 		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
@@ -231,6 +236,11 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersNoticeD.do", new MembersNoticeDCtrl());		// 공지사항 삭제 컨트롤러
 		
 		list.put("/members/membersQna.do", new MembersQnaCtrl());				// Qna 목록 컨트롤러
+		list.put("/members/membersQnaWG.do", new MembersQnaWGCtrl());			// Qna 글쓰기로 이동하는 컨트롤러
+		list.put("/members/membersQnaW.do", new MembersQnaWCtrl());				// Qna 글쓰기 컨트롤러
+		list.put("/members/membersQnaV.do", new membersQnaVCtrl());				// Qna 보기 컨트롤러
+		list.put("/members/membersQnaReG.do", new membersQnaReGCtrl());			// Qna 답변으로 이동 컨트롤러
+		list.put("/members/membersQnaRe.do", new MembersQnaReCtrl());			// Qna 답변 처리하는 컨트롤러
 		
 		
 		//강산
@@ -292,6 +302,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl()); //일간(주간)예약명단 가져오기(일반캘린더방식) - 객체생성 
 		
 		list.put("/ajax/designerNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 디자이너용 다음 고객 찾기
+		
 	}
 
 

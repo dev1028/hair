@@ -21,7 +21,10 @@ public class MembersNoticeCtrl implements Controller {
 		// 파라미터
 		String p = request.getParameter("p");
 		
+		if(request.getSession().getAttribute("loginid").toString() != null) {
 		String admin = request.getSession().getAttribute("admin").toString();
+		request.getSession().setAttribute("admin", admin);
+		}
 
 		// 유효성 체크
 		int page = 1;
@@ -51,7 +54,6 @@ public class MembersNoticeCtrl implements Controller {
 		// 결과 저장
 		request.setAttribute("write", list);
 		request.setAttribute("paging", paging);
-		request.getSession().setAttribute("admin", admin);
 		request.getRequestDispatcher("/members/membersNotice.jsp").forward(request, response);
 
 	}
