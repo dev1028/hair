@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import com.yedam.hairshop.common.ChangeUtil;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
@@ -25,6 +26,8 @@ public class EmployeeUpdateFCtrl implements Controller {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
+		
+		dVo.setDesigner_dayoff(ChangeUtil.changeDayOffStrToNum(dVo.getDesigner_dayoff()));
 		int r = DesignerDAO.getInstance().updateForHair(dVo);
 		if (r == 0) {
 			response.getWriter().append("<script>")

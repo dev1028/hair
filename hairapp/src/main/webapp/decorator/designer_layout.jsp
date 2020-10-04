@@ -36,6 +36,56 @@
 <decorator:head></decorator:head>
 <script>
 	var result = null;
+	
+	$(function(){
+		$.ajax({
+			url : "${pageContext.request.contextPath}/ajax/designerNextCustomer.do",
+			data : {
+				startTime : getFormatDate(new Date())
+			},
+			dataType : "json",
+			method : "post",
+			success : function(data) {
+				var ttsText = "";
+				if(data == 0){
+					//최근예약이 존재하지않음을 표시
+					$("#customerName").text("예약이 존재하지 않습니다.");
+					$("#customerDetailInfoURI").attr("href", "#");
+					$("#forUl").html("");
+
+				} else {
+					if(getCookie("nextCustomer") == null){
+						setCookie("nextCustomer", data.mdr_no, 1);
+						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						console.log(ttsText);
+						speech(ttsText);
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data.mdr_no){
+						
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data.mdr_no){
+						console.log(getCookie("nextCustomer"));
+						setCookie("nextCustomer", data.mdr_no, 1);
+						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						console.log(ttsText);
+						speech(ttsText);
+					}
+					
+					$("#forUl").html("");
+					result = data;
+					$("#customerName").text(data.mdr_date.split(" ")[1]+" - "+data.mem_name);
+					$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
+					var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
+					var hairs = data.hair_name.split(" ");
+					for(var i = 0; i<hairs.length-1; i++){
+						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
+					}
+					$("#forUl").append(ulTag);
+						
+				}
+				
+			}
+		});// end of ajax 
+	});
+	
 	findNextCustomer = setInterval(function() {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/ajax/designerNextCustomer.do",
@@ -45,18 +95,22 @@
 			dataType : "json",
 			method : "post",
 			success : function(data) {
+				/* var ttsText = "";
 				if(data == 0){
 					//최근예약이 존재하지않음을 표시
 					$("#customerName").text("예약이 존재하지 않습니다.");
 					$("#customerDetailInfoURI").attr("href", "#");
 					$("#forUl").html("");
+					
 				} else {
 					if(result == null || result.mdr_no != data.mdr_no){
 						$("#forUl").html("");
 						result = data;
-						$("#customerName").text(data.mem_name);
+						$("#customerName").text(data.mdr_date.split(" ")[1]+" - "+data.mem_name);
 						$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
-					console.log(data.hair_name.split(" "));
+						
+						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						console.log(ttsText);
 					
 				 	var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
 					var hairs = data.hair_name.split(" ");
@@ -66,7 +120,7 @@
 					$("#forUl").append(ulTag); 
 	
 					
-					
+					speech(ttsText);
 					
 					
 					
@@ -74,9 +128,46 @@
 					
 				}
 				
+			} */
+				var ttsText = "";
+				if(data == 0){
+					//최근예약이 존재하지않음을 표시
+					$("#customerName").text("예약이 존재하지 않습니다.");
+					$("#customerDetailInfoURI").attr("href", "#");
+					$("#forUl").html("");
+
+				} else {
+					console.log(getCookie("nextCustomer"));
+					if(getCookie("nextCustomer") == null){
+						setCookie("nextCustomer", data.mdr_no, 1);
+						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						console.log(ttsText);
+						speech(ttsText);
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data.mdr_no){
+						
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data.mdr_no){
+						setCookie("nextCustomer", data.mdr_no, 1);
+						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						console.log(ttsText);
+						speech(ttsText);
+					}
+					
+					$("#forUl").html("");
+					result = data;
+					$("#customerName").text(data.mdr_date.split(" ")[1]+" - "+data.mem_name);
+					$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
+					var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
+					var hairs = data.hair_name.split(" ");
+					for(var i = 0; i<hairs.length-1; i++){
+						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
+					}
+					$("#forUl").append(ulTag);
+						
+				}
+				
 			}
 		});// end of ajax 
-	}, 3000);
+	}, 300000);
 	
 	
 	
@@ -93,6 +184,70 @@
 		day = day >= 10 ? day : '0' + day; //day 두자리로 저장
 		return year + '/' + month + '/' + day + ' ' + hour +':'+ min; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
 	}
+	
+	//tts
+	var voices = [];
+	function setVoiceList() {
+		voices = window.speechSynthesis.getVoices();
+	}
+	setVoiceList();
+	if (window.speechSynthesis.onvoiceschanged !== undefined) {
+	window.speechSynthesis.onvoiceschanged = setVoiceList;
+	}
+	function speech(txt) {
+		if(!window.speechSynthesis) {
+			alert("음성 재생을 지원하지 않는 브라우저입니다. 크롬, 파이어폭스 등의 최신 브라우저를 이용하세요");
+			return;
+		}
+		var lang = 'ko-KR';
+		var utterThis = new SpeechSynthesisUtterance(txt);
+		utterThis.onend = function (event) {
+			console.log('end');
+		};
+		utterThis.onerror = function(event) {
+			console.log('error', event);
+		};
+		var voiceFound = false;
+		for(var i = 0; i < voices.length ; i++) {
+			if(voices[i].lang.indexOf(lang) >= 0 || voices[i].lang.indexOf(lang.replace('-', '_')) >= 0) {
+				utterThis.voice = voices[i];
+				voiceFound = true;
+			}
+		}
+		if(!voiceFound) {
+			alert('voice not found');
+			return;
+		}
+		utterThis.lang = lang;
+		utterThis.pitch = 1;
+		utterThis.rate = 0.8; //속도
+		window.speechSynthesis.speak(utterThis);
+	}
+	
+	//쿠키설정
+	function setCookie(cookie_name, value, days) {
+		  var exdate = new Date();
+		  exdate.setDate(exdate.getDate() + days);
+		  // 설정 일수만큼 현재시간에 만료값으로 지정
+
+		  var cookie_value = escape(value) + ((days == null) ? '' : ';    expires=' + exdate.toUTCString());
+		  document.cookie = cookie_name + '=' + cookie_value;
+		}
+	
+	function getCookie(cookie_name) {
+		  var x, y;
+		  var val = document.cookie.split(';');
+
+		  for (var i = 0; i < val.length; i++) {
+		    x = val[i].substr(0, val[i].indexOf('='));
+		    y = val[i].substr(val[i].indexOf('=') + 1);
+		    x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+		    if (x == cookie_name) {
+		      return unescape(y); // unescape로 디코딩 후 값 리턴
+		    }
+		  }
+		}
+	
 </script>
 </head>
 <body>
@@ -151,7 +306,6 @@
 								<a id="customerDetailInfoURI" href="#" class="btn btn-primary btn-sm">예약정보확인</a>
 								<hr>
 								<a href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do" class="card-link">주간일정보기</a>
-								
 							</div>
 						</div>
 					</div>
@@ -193,6 +347,8 @@
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/desMonthlyReservationList.do">월간예약현황</a>
+										<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/findMyCustomer.do">예약자찾기</a>
 								</div></li>
 
 
@@ -206,9 +362,10 @@
 						<form>
 							<!-- class="form-control mr-sm-2" -->
 							<!--  class="btn btn-outline-success my-2 my-sm-0" -->
-							<input type="search" placeholder="Search" aria-label="Search">
-							<button type="submit">Search</button>
+							<input type="search" placeholder="예약자찾기" aria-label="Search">
+							<button type="submit" class="btn btn-secondary btn-sm">Search</button>
 						</form>
+						<span>로그아웃</span>
 					</div>
 				</nav>
 			</div>

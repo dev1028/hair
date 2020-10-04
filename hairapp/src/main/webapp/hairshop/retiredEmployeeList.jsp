@@ -182,7 +182,7 @@ $(function(){
 							<label for="firedesigner_name">디자이너 이름</label> 
 							<input
 								type="text" class="form-control" id="firedesigner_name"
-								name="designer_name" placeholder="디자이너 이름을 입력해주세요." autocomplete="off" >
+								name="designer_name" placeholder="디자이너 이름을 입력해주세요." readonly autocomplete="off" >
 						</div>
 						<div class="form-group">
 							<label for="firefin_position">최종 직급</label> <input
