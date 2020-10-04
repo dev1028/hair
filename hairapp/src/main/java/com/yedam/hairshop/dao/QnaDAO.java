@@ -86,7 +86,48 @@ public class QnaDAO {
 		}
 		return resultVo;
 
-	}
+	}	// end
+	
+	
+	// Qna ModifyView
+	public QnaVo qnaModifyView(QnaVo qna_no) {
+		QnaVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT QNA_NO, QNA_TITLE, QNA_CONTENTS, QNA_WRITEDATE, QNA_OPENSTATUS,"
+					+ " QNA_HITS, QNA_CATEGORY, QNA_ANSWER, QNA_ANSWERDATE, EMP_NO,"
+					+ " QNA_REF, QNA_REPOS, QNA_LEVEL, QNA_WRITER" 
+					+ " FROM QNA " + " WHERE QNA_WHO = 'j2'"
+					+ " AND QNA_NO = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_no.getQna_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new QnaVo();
+				resultVo.setQna_no(rs.getInt("qna_no"));
+				resultVo.setQna_title(rs.getString("qna_title"));
+				resultVo.setQna_contents(rs.getString("qna_contents"));
+				resultVo.setQna_writedate(rs.getString("qna_writedate"));
+				resultVo.setQna_openstatus(rs.getString("qna_openstatus"));
+				resultVo.setQna_hits(rs.getString("qna_hits"));
+				resultVo.setQna_category(rs.getString("qna_category"));
+				resultVo.setQna_answer(rs.getString("qna_answer"));
+				resultVo.setQna_answerdate(rs.getString("qna_answerdate"));
+				resultVo.setEmp_no(rs.getString("emp_no"));
+				resultVo.setQna_ref(rs.getInt("qna_ref"));
+				resultVo.setQna_repos(rs.getInt("qna_repos"));
+				resultVo.setQna_level(rs.getInt("qna_level"));
+				resultVo.setQna_writer(rs.getString("qna_writer"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo;
+	}	// end
+	
 
 	// Qna 조회수
 	public int upHit(QnaVo qnaVo) {
@@ -242,28 +283,28 @@ public class QnaDAO {
 	}
 
 
-//	// Qna 수정
-//	public void noticeModify(QnaVo qnaVo) {
-//		try {
-//			conn = ConnectionManager.getConnnect();
-//			String sql = "UPDATE QNA"
-//					+ " SET qna_title =?, qna_contents=?, qna_openstatus=?, qna_category=?"
-//					+ " WHERE NOTICE_NO = ?";
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, qnaVo.getNotice_title());
-//			pstmt.setString(2, qnaVo.getNotice_contents());
-//			pstmt.setString(3, qnaVo.getNotice_image());
-//			pstmt.setString(4, qnaVo.getNotice_categoryname());
-//			pstmt.setString(5, qnaVo.getNotice_no());
-//
-//			pstmt.executeUpdate(); // 실행
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			ConnectionManager.close(null, pstmt, conn); // 연결 해제
-//		}
-//	} // end Qna 수정
+	// Qna 수정
+	public void noticeModify(QnaVo qnaVo) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE QNA"
+					+ " SET QNA_TITLE =?, QNA_CONTENTS=?, QNA_OPENSTATUS=?, QNA_CATEGORY=?"
+					+ " WHERE QNA_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qnaVo.getQna_title());
+			pstmt.setString(2, qnaVo.getQna_contents());
+			pstmt.setString(3, qnaVo.getQna_openstatus());
+			pstmt.setString(4, qnaVo.getQna_category());
+			pstmt.setInt(5, qnaVo.getQna_no());
+
+			pstmt.executeUpdate(); // 실행
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn); // 연결 해제
+		}
+	} // end Qna 수정
 
 	// Qna 삭제
 	public void qnaDelete(QnaVo qnaVo) {
@@ -281,5 +322,35 @@ public class QnaDAO {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
 	} // Qna 삭제 끝
+	
+	
+	
+	
+	// Qna 메인에 띄울거
+	public ArrayList<QnaVo> mainQnaList() {
+		QnaVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		ArrayList<QnaVo> list = new ArrayList<QnaVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT QNA_TITLE FROM QNA" + 
+					" WHERE ROWNUM <=3 AND QNA_WHO = 'j2' AND QNA_WRITER !='관리자'" + 
+					" ORDER BY QNA_NO DESC";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new QnaVo();
+				resultVo.setQna_title(rs.getString("qna_title"));
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+
+	} // end
+	
 
 }

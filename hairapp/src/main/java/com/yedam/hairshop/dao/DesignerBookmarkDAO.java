@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.DesignerBookmarkVo;
+import com.yedam.hairshop.model.DesignerVo;
 
 public class DesignerBookmarkDAO {
 	static Connection conn;
@@ -73,5 +76,35 @@ public class DesignerBookmarkDAO {
 			ConnectionManager.close(conn);
 		}
 		return r;
+	}
+	
+	public List<DesignerVo> getBookmarkList(DesignerBookmarkVo vo){
+		List<DesignerVo> list = new ArrayList<DesignerVo>();
+		String sql = " SELECT d.designer_no, d.designer_name, d.designer_dayoff, " + 
+		             "        d.work_start_time, d.work_end_time, d.designer_profile " + 
+					 " FROM designer d, favor_designer f " + 
+					 " WHERE d.designer_no = f.designer_no " + 
+					 " AND mem_no = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMem_no());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				DesignerVo tmpVo = new DesignerVo();
+				tmpVo.setDesigner_no(rs.getString("designer_no"));
+				tmpVo.setDesigner_name(rs.getString("designer_name"));
+				tmpVo.setDesigner_dayoff(rs.getString("designer_dayoff"));
+				tmpVo.setWork_start_time(rs.getString("work_start_time"));
+				tmpVo.setWork_end_time(rs.getString("work_end_time"));
+				tmpVo.setDesigner_profile(rs.getString("designer_profile"));
+				list.add(tmpVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return list;
 	}
 }

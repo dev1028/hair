@@ -43,7 +43,7 @@ public class MembersQnaReCtrl implements Controller {
 		// 답글 저장
 		vo.setQna_no(dao.getSeq()); // 답글의 글번호는 시퀀스값 가져와 세팅
 		vo.setQna_shop_customer_no(memNo);
-		vo.setQna_writer(loginId);
+		vo.setQna_writer("관리자");
 		vo.setQna_title(subject);
 		vo.setQna_contents(content);
 		vo.setQna_openstatus(openstatus);

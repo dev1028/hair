@@ -79,7 +79,6 @@ public class HairshopBookmarkDAO {
 	
 	public List<HairshopBookmarkVo> getBookmarkList(HairshopBookmarkVo vo){
 		List<HairshopBookmarkVo> list = new ArrayList<HairshopBookmarkVo>();
-		//String sql = " SELECT * FROM favor_hs WHERE mem_no = ?";
 		String sql =  " SELECT h.hs_no, h.hs_name"
 					+ " FROM favor_hs f, hairshop h"
 					+ " WHERE f.hs_no = h.hs_no "

@@ -42,9 +42,21 @@ public class membersQnaVCtrl implements Controller {
 		request.getSession().setAttribute("admin", admin);
 		request.getSession().setAttribute("loginId", loginId);
 		// request.setAttribute("view", resultVo);
-
-		request.getRequestDispatcher("membersQnaView.jsp").forward(request, response);
-
+		
+		
+		// Qna_openstatus가 0일때 비공개 1은 공개. 0일때 접근 못하게 해놈
+		if (resultVo.getQna_openstatus().equals("1") || 
+			(resultVo.getQna_writer().equals(loginId) && resultVo.getQna_openstatus().equals("0"))) {
+			request.getRequestDispatcher("membersQnaView.jsp").forward(request, response);
+		} else if(resultVo.getQna_openstatus().equals("0")) {
+				response.getWriter().append("<script>")
+									.append("alert('비공개 게시물 입니다');")
+									.append("</script>");
+				request.getRequestDispatcher("membersQna.do").forward(request, response);
+		}
+			
+		//request.getRequestDispatcher(page).forward(request, response);
+		//response.sendRedirect(page);
 	}
 
 }

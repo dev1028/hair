@@ -20,7 +20,7 @@ public class MembersQnaCtrl implements Controller {
 
 		// 파라미터
 		String p = request.getParameter("p");
-
+		
 		String admin = request.getSession().getAttribute("admin").toString();
 
 		// 유효성 체크
