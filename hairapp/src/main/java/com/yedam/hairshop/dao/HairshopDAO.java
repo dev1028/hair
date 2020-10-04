@@ -34,7 +34,8 @@ public class HairshopDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,"
 					+ " HS_FULLADDR,HS_CITYADDR, HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME,"
-					+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC,HS_REGDATE" + " FROM HAIRSHOP" + " WHERE HS_NO = ?";
+					+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC,HS_REGDATE" + " FROM HAIRSHOP"
+					+ " WHERE HS_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hsVo.getHs_no());
 			rs = pstmt.executeQuery();
@@ -238,10 +239,11 @@ public class HairshopDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT NOTICE_NO , NOTICE_TITLE, NOTICE_CONTENTS ,NOTICE_WRITEDATE ,"
-					+ "NOTICE_HITS , NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + " FROM NOTICE ";
+					+ "NOTICE_HITS , NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME, NOTICE_WHO " + " FROM NOTICE "
+					+ "ORDER BY NOTICE_NO DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+
 			while (rs.next()) {
 				HairshopNoticeVo resultVo = new HairshopNoticeVo();
 				resultVo.setNotice_no(rs.getString("notice_no"));
@@ -261,16 +263,16 @@ public class HairshopDAO {
 		}
 		return list;
 	}
-	
+
 	// 공지사항 작성
-	//notice_no_seq 
+	// notice_no_seq
 	public int insert(HairshopNoticeVo noticeVo) {
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO NOTICE(NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
-						+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME)"
-						+ " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+					+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME)"
+					+ " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, noticeVo.getNotice_title());
 			pstmt.setString(2, noticeVo.getNotice_contents());
@@ -287,35 +289,75 @@ public class HairshopDAO {
 		}
 		return r;
 	}
-	
+
+	// 조회수
+	public int hitUpdate(HairshopNoticeVo noticeVo) {
+		int result = 0;
+		String sql = "UPDATE NOTICE SET Notice_hits = Notice_hits + 1 WHERE NOTICE_NO = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeVo.getNotice_no());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return result;
+	}
+
+	// 공지사항 보기
+	public HairshopNoticeVo noticeView(HairshopNoticeVo noticeVo) {
+		HairshopNoticeVo resultVo = new HairshopNoticeVo();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT NOTICE_NO , NOTICE_TITLE, NOTICE_CONTENTS ,NOTICE_WRITEDATE ,"
+					+ "NOTICE_HITS , NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME, NOTICE_WHO " + " FROM NOTICE "
+					+ " WHERE NOTICE_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, noticeVo.getNotice_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo.setNotice_no(rs.getString("notice_no"));
+				resultVo.setNotice_title(rs.getString("notice_title"));
+				resultVo.setNotice_contents(rs.getString("notice_contents"));
+				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
+				resultVo.setNotice_hits(rs.getString("notice_hits"));
+				resultVo.setNotice_image(rs.getString("notice_image"));
+				resultVo.setEmp_no(rs.getString("emp_no"));
+				resultVo.setNotice_categoryname(rs.getString("notice_categoryname"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo;
+	}
+
 	//
-	public List<HairshopVo> selectRankHairshop(){
+	public List<HairshopVo> selectRankHairshop() {
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
-		
+
 		return list;
 	}
-	
-	
-	//랭킹 3위만 표시
-	public List<HairshopVo> selectListHairshopRank(SearchDetailVo vo){
+
+	// 랭킹 3위만 표시
+	public List<HairshopVo> selectListHairshopRank(SearchDetailVo vo) {
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
-		String sql =" SELECT RN,HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE " +
-					" HS_FULLADDR,HS_CITYADDR, HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME, " + 
-					" HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC " + 
-				    " FROM (SELECT rownum rn, k.* FROM " + 
-					"  (SELECT r.cnt, h.* " + 
-					"  FROM (SELECT hs_no, COUNT(*) AS cnt " + 
-					"        FROM favor_hs " + 
-					"        GROUP BY HS_NO) r " + 
-					"  JOIN hairshop h " + 
-					"  ON h.hs_no = r.hs_no " + 
-					"  ORDER BY r.cnt DESC) k) " + 
-					"WHERE rn <= 3";
+		String sql = " SELECT RN,HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE "
+				+ " HS_FULLADDR,HS_CITYADDR, HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME, "
+				+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC " + " FROM (SELECT rownum rn, k.* FROM "
+				+ "  (SELECT r.cnt, h.* " + "  FROM (SELECT hs_no, COUNT(*) AS cnt " + "        FROM favor_hs "
+				+ "        GROUP BY HS_NO) r " + "  JOIN hairshop h " + "  ON h.hs_no = r.hs_no "
+				+ "  ORDER BY r.cnt DESC) k) " + "WHERE rn <= 3";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				HairshopVo resultVo = new HairshopVo();
 				resultVo.setHs_rn(rs.getString("RN"));
 				resultVo.setHs_no(rs.getString("HS_NO"));
@@ -326,8 +368,8 @@ public class HairshopDAO {
 				resultVo.setHs_pw(rs.getString("HS_PW"));
 				resultVo.setHs_comp_no(rs.getString("HS_COMP_NO"));
 				resultVo.setHs_profile(rs.getString("HS_PROFILE"));
-				
-				//집에서 에러남 HS_NOTICE. developer 에서 select하면 잘됨.
+
+				// 집에서 에러남 HS_NOTICE. developer 에서 select하면 잘됨.
 //				resultVo.setHs_notice(rs.getString("HS_NOTICE"));
 //				resultVo.setHs_fulladdr(rs.getString("HS_FULLADDR"));
 //				resultVo.setHs_cityaddr(rs.getString("HS_CITYADDR"));
@@ -342,11 +384,11 @@ public class HairshopDAO {
 //				resultVo.setHs_etc(rs.getString("HS_ETC"));
 				list.add(resultVo);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return list;
 	}
 }

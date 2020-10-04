@@ -56,6 +56,7 @@ textarea {
 }
 
 button {
+	
 	padding: 5px 12px;
 	background-color: white;
 	border-color: rgb(180, 180, 180);
@@ -70,9 +71,11 @@ textarea {
 <body>
 	<div class="controller">
 		<div id="wriTitle">
-			<b>게시글 작성</b>
+			<b>공지사항 작성</b>
 		</div>
-		<form action="${pageContext.request.contextPath}/hairshop/hairshopNoticeWriteCtrl.do" method="post">
+		<form
+			action="${pageContext.request.contextPath}/hairshop/hairshopNoticeWriteCtrl.do"
+			method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td width="100px">카테고리</td>
@@ -91,6 +94,8 @@ textarea {
 					<td colspan="2"><textarea rows="12" cols="50"
 							name="notice_contents" required></textarea></td>
 				</tr>
+
+
 				<tr>
 					<td align="center"><input type="submit" value="작성"
 						class="button"></td>
@@ -98,14 +103,16 @@ textarea {
 						class="button"></td>
 				</tr>
 			</table>
+			<div>
+				<label for="image">첨부 파일 </label> <input type="file"
+					class="form-control-file" name="notice_image" size=30
+					accept=".gif, .jpg, .png"><br>
+			</div>
 		</form>
+
 		<div>
-			<a href="">
-				<button>게시판</button>
-			</a>
-		</div>
-		<div>
-			<a href="">
+			<a
+				href="${pageContext.request.contextPath}/hairshop/hairshopMain.jsp">
 				<button>홈으로</button>
 			</a>
 		</div>
