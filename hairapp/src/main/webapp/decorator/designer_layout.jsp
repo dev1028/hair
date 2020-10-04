@@ -45,21 +45,43 @@
 			dataType : "json",
 			method : "post",
 			success : function(data) {
-				if(data == null){
+				if(data == 0){
 					//최근예약이 존재하지않음을 표시
-					$("#nextCustomer").find(".card-text").text("예약이 존재하지 않습니다.");
+					$("#customerName").text("예약이 존재하지 않습니다.");
 					$("#customerDetailInfoURI").attr("href", "#");
+					$("#forUl").html("");
 				} else {
-					if(result.mdr_no != data.mdr_no){
+					if(result == null || result.mdr_no != data.mdr_no){
+						$("#forUl").html("");
 						result = data;
-						$("#nextCustomer").find(".card-text").text(data.mem_name);
+						$("#customerName").text(data.mem_name);
 						$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
+					console.log(data.hair_name.split(" "));
+					
+				 	var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
+					var hairs = data.hair_name.split(" ");
+					for(var i = 0; i<hairs.length-1; i++){
+						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
 					}
+					$("#forUl").append(ulTag); 
+	
+					
+					
+					
+					
+					
+					}
+					
 				}
 				
 			}
 		});// end of ajax 
-	}, 300000);
+	}, 3000);
+	
+	
+	
+	
+	
 	
 	function getFormatDate(date) {
 		var year = date.getFullYear(); //yyyy
@@ -117,16 +139,19 @@
 							<!-- <img src="..." class="card-img-top" alt="..."> -->
 							<div class="card-body">
 								<h5 class="card-title">다음 예약정보</h5>
-								<p class="card-text"></p>
+								<hr>
+								<h6 class="card-text" id="customerName"></h6>
+								
 							</div>
-							<c:forEach items="" var="hairInfo">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">${hairInfo.hhi_name}</li>
-							</ul>
-							</c:forEach>
+							<div class="card-body" id="forUl">
+						
+							</div>
 							<div class="card-body">
-								<a id="customerDetailInfoURI" href="#" class="btn btn-primary">예약정보확인</a> 
+					
+								<a id="customerDetailInfoURI" href="#" class="btn btn-primary btn-sm">예약정보확인</a>
+								<hr>
 								<a href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do" class="card-link">주간일정보기</a>
+								
 							</div>
 						</div>
 					</div>
