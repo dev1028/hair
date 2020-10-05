@@ -43,29 +43,55 @@
 													dataType : "json",
 													success : function(res) {
 														successCallback(res);
-														var countWeeklyEvent = 0;
-														if (res.length == 0) {
-															countWeeklyEvent = 0;
-															$(
-																	"#countWeeklyEvent")
-																	.removeClass();
-															$(
-																	"#countWeeklyEvent")
-																	.addClass(
-																			"badge badge-light");
-														} else {
-															countWeeklyEvent = res.length;
-															$(
-																	"#countWeeklyEvent")
-																	.removeClass();
-															$(
-																	"#countWeeklyEvent")
-																	.addClass(
-																			"badge badge-danger");
+														var i2 = 0;
+														var i3 = 0;
+														var i4 = 0;
+														for(var i=0; i<res.length; i++){
+															if(res[i].backgroundColor =="#5cb85c"){
+																i2++;
+															} else if(res[i].backgroundColor =="#5bc0de"){
+																i3++;
+															} else if(res[i].backgroundColor =="#6c757d"){
+																i4++;
+															}
 														}
-														$("#countWeeklyEvent")
-																.text(
-																		countWeeklyEvent);
+														
+														var countDailyAll = 0;
+														if (res.length == 0) {
+															countDailyAll = 0;
+															$("#countDailyAll").removeClass();
+															$("#countDailyAll").addClass("badge badge-light");
+														} else {
+															countDailyAll = res.length;
+															$("#countDailyAll").removeClass();
+															$("#countDailyAll").addClass("badge badge-danger");
+														}
+														$("#countDailyAll").text(countDailyAll);
+														
+														if (i2 == 0) {
+															$("#countDailyi2").removeClass();
+															$("#countDailyi2").addClass("badge badge-light");
+														} else {
+															$("#countDailyi2").removeClass();
+															$("#countDailyi2").addClass("badge badge-success");
+														}
+														$("#countDailyi2").text(i2);
+														if (i3 == 0) {
+															$("#countDailyi3").removeClass();
+															$("#countDailyi3").addClass("badge badge-light");
+														} else {
+															$("#countDailyi3").removeClass();
+															$("#countDailyi3").addClass("badge badge-info");
+														}
+														$("#countDailyi3").text(i3);
+														if (i4 == 0) {
+															$("#countDailyi4").removeClass();
+															$("#countDailyi4").addClass("badge badge-light");
+														} else {
+															$("#countDailyi4").removeClass();
+															$("#countDailyi4").addClass("badge badge-secondary");
+														}
+														$("#countDailyi4").text(i4);
 													}
 												});
 
@@ -142,7 +168,19 @@
 					주간예약명단
 					<button type="button" class="btn btn-outline-primary btn-sm"
 						disabled>
-						예약인원 <span class="badge badge-light" id="countWeeklyEvent"></span>
+						총 현황 <span class="badge badge-light" id="countDailyAll"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						예약인원 <span class="badge badge-light" id="countDailyi2"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						시술중 <span class="badge badge-light" id="countDailyi3"></span>
+					</button>
+					<button type="button" class="btn btn-outline-primary btn-sm"
+						disabled>
+						시술완료 <span class="badge badge-light" id="countDailyi4"></span>
 					</button>
 				</h3>
 				<hr>

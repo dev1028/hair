@@ -45,7 +45,7 @@ public class MemDesigneRsvInfoDAO {
 					+ " where mdri.mdr_no = ?" + " order by mdri.mdri_detail_info";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mdrNo);
-			rs = pstmt.executeQuery();
+			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("mdr_no", rs.getString("mdr_no"));

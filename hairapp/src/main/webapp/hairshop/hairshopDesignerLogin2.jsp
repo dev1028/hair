@@ -1,20 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>우동 미용실/디자이너</title>
-
-<link rel="canonical"
-	href="https://getbootstrap.com/docs/4.5/examples/cover/">
-
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
 <link
 	href='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.css'
 	rel='stylesheet' />
@@ -22,56 +16,37 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+<script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/locales-all.min.js"></script>
-
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 
-
-<style>
-.bd-placeholder-img {
-	font-size: 1.125rem;
-	text-anchor: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-@media ( min-width : 768px) {
-	.bd-placeholder-img-lg {
-		font-size: 3.5rem;
-	}
-}
-</style>
-<!-- Custom styles for this template -->
-<link href="hairshopDesignerLogin.css" rel="stylesheet">
+<meta charset="UTF-8">
+<title>hairshopDesignerLogin</title>
+<script>
+	$(function() {
+		$("#designerLogin").on("change",function(){
+			if(this.checked){
+				console.log("chked 헤어");
+				$("#loginHairshop").attr("hidden", "hidden");
+				$("#loginDesigner").attr("hidden", false);
+			}
+		});
+		$("#hairshopLogin").on("change",function(){
+			if(this.checked){
+				console.log("chked디자이너")
+			$("#loginDesigner").attr("hidden", "hidden");
+			$("#loginHairshop").attr("hidden", false);
+			}
+		});
+	});
+</script>
 </head>
-<body class="text-center">
-	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-		<header class="masthead mb-auto">
-			<div class="inner">
-				<h3 class="masthead-brand">우동</h3>
-				<nav class="nav nav-masthead justify-content-center">
-					<a class="nav-link active" href="#">Home</a> <a class="nav-link"
-						href="#">공지사항</a> <a class="nav-link" href="#">QnA</a>
-				</nav>
-			</div>
-		</header>
-
-		<main role="main" class="inner cover">
-			<h1 class="cover-heading">Cover your page.</h1>
-			<p class="lead">Cover is a one-page template for building simple
-				and beautiful home pages. Download, edit the text, and add your own
-				fullscreen background photo to make it your own.</p>
-			<p class="lead">
-				<a href="#" class="btn btn-lg btn-secondary">Learn more</a>
-			</p>
-			<div class="container">
+<body>
+	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-auto">
 				<h3>헤어샵/디자이너 로그인</h3>
@@ -153,16 +128,6 @@
 			</div>
 		</div>
 	</div>
-		</main>
 
-		<footer class="mastfoot mt-auto">
-			<div class="inner">
-				<p>
-					Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>,
-					by <a href="https://twitter.com/mdo">@mdo</a>.
-				</p>
-			</div>
-		</footer>
-	</div>
 </body>
 </html>

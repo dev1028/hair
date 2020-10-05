@@ -356,5 +356,54 @@ public class MembersReservationDAO {
 
 		return map;
 	}
+	
+	//2020.10.05 김승연
+	//만드는중 예약했었던 회원 조회
+	public MembersReservationVo selectReservationInfoByName(String mdrNo) {
+		MembersReservationVo resultVo = new MembersReservationVo();
+
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT  m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status, m.mem_phone, m.mem_sex,"
+					+ " mdr.mdr_no, mdr.mdr_date, mdr.designer_no, d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no"
+					+ " FROM members m join members_designer_rsv mdr" + " ON(mdr.mem_no = m.mem_no)"
+					+ " JOIN designer d" + " ON(mdr.designer_no = d.designer_no)" + " WHERE mdr.mdr_no = ?";
+			
+			/*
+			 * SELECT m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status,
+			 * m.mem_phone, m.mem_sex, mdr.mdr_no, mdr.mdr_date, mdr.designer_no,
+			 * d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no FROM members m
+			 * join members_designer_rsv mdr ON(mdr.mem_no = m.mem_no) JOIN designer d
+			 * ON(mdr.designer_no = d.designer_no) WHERE mdr.designer_no = 125 and mdr.hs_no
+			 * = 2 and m.mem_name like '%관리자%';
+			 */
+	           
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mdrNo); // ?의 첫번째 자리에 올 값 지정
+			rs = pstmt.executeQuery();
+			// System.out.println(sql);
+			if (rs.next()) {
+				resultVo.setMem_no(rs.getString("mem_no"));
+				resultVo.setMem_name(rs.getString("mem_name"));
+				resultVo.setMem_hair_length(rs.getString("mem_hair_length"));
+				resultVo.setMem_hair_status(rs.getString("mem_hair_status"));
+				resultVo.setMem_phone(rs.getString("mem_phone"));
+				resultVo.setMem_sex(rs.getString("mem_sex"));
+				resultVo.setMdr_no(rs.getString("mdr_no"));
+				resultVo.setMdr_date(rs.getString("mdr_date"));
+				resultVo.setDesigner_no(rs.getString("designer_no"));
+				resultVo.setDesigner_name(rs.getString("designer_name"));
+				resultVo.setMdr_status(rs.getString("mdr_status"));
+				resultVo.setMdr_request(rs.getString("mdr_request"));
+				resultVo.setHs_no(rs.getString("hs_no"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo; // 값을 리턴해줌
+	}
 
 }

@@ -34,6 +34,7 @@
 												alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
 											} else {
 												location.reload();
+												window.opener.location.reload();
 											}
 										}
 									});// end of ajax 
@@ -64,6 +65,7 @@
 
 	});
 </script>
+
 </head>
 <body>
 
