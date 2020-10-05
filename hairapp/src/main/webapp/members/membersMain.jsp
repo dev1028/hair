@@ -430,8 +430,8 @@ form.example::after {
 		    	</label>
     		</div>
 	    	
-		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" style="width:80px"> -
-		    <input autocomplete="off" id="timepicker_end"  type="text" name="hs_endtime" style="width:80px" > 영업시간
+		    <input autocomplete="off" id="timepicker_start" value="00" type="text" name="hs_starttime" style="width:80px"> -
+		    <input autocomplete="off" id="timepicker_end" value="23" type="text" name="hs_endtime" style="width:80px" > 영업시간
 	    	
     	
 			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->

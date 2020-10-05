@@ -171,8 +171,8 @@
 	<button type="button" class="btn btn-outline-primary" onclick="qnaRe()">답변달기</button>
 </c:if>
  
-<c:if test="${sessionScope.loginid !=null}">
-<c:if test="${sessionScope.loginid == view.qna_writer || admin == '2'}">
+<c:if test="${sessionScope.memName !=null}">
+<c:if test="${sessionScope.memName == view.qna_writer || admin == '2'}">
 <div id="upde">
 <button type="button" class="btn btn-outline-primary" onclick="qnaModifyGo()">수정</button>
 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdrop">

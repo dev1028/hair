@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
-import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.model.MembersEventVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
 
 public class MembersHairshopDAO {
@@ -94,5 +94,40 @@ public class MembersHairshopDAO {
 		}
 		return list; // 값을 리턴해줌
 	}
+	
+	// 쿠폰리스트 뿌리기
+	public ArrayList<MembersEventVo> couponList(MembersEventVo eventVo) {
+		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT HSC_NO, HS_NO, HSC_ISSUEDATE, HSC_EXPIREDATE," 
+					+ " HSC_COUPON_QUANTITY, HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME" 
+					+ " FROM HS_COUPON WHERE HS_NO = ?"
+					+ " ORDER BY HSC_NO DESC";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eventVo.getHs_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new MembersEventVo();
+				resultVo.setHsc_no(rs.getString("hsc_no"));
+				resultVo.setHs_no(rs.getString("hs_no"));
+				resultVo.setHsc_issuedate(rs.getString("hsc_issuedate"));
+				resultVo.setHsc_expiredate(rs.getString("hsc_expiredate"));
+				resultVo.setHsc_coupon_quantity(rs.getString("hsc_coupon_quantity"));
+				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
+				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
+				resultVo.setHsc_name(rs.getString("hsc_name"));
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+
+	} // end
 
 }
