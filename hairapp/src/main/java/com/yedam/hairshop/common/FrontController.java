@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
-import com.yedam.hairshop.admin.adminBoardManageFCtrl;
 import com.yedam.hairshop.admin.adminLoginCtrl;
 import com.yedam.hairshop.admin.adminMainCtrl;
 import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
