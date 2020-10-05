@@ -43,7 +43,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #e0e0e0;
 }
 
 a,
@@ -216,7 +216,7 @@ a.article:hover {
                     <a href="${pageContext.request.contextPath}/members/membersJoin.do">헤어 모아보기</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersJoin.do">쿠폰과 이벤트</a>
+                    <a href="${pageContext.request.contextPath}/members/hsEventIntro.do">쿠폰과 이벤트</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/designerReview.do">후기 및 리뷰</a>

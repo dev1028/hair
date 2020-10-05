@@ -31,7 +31,7 @@ public class DesignerSelectCtrl implements Controller{
 		
 		DesignerVo vo = new DesignerVo();
 		vo.setHs_no(hairshopVo.getHs_no());
-		List<DesignerVo> list = DesignerDAO.getInstance().selectByHairShop(vo);
+		List<DesignerVo> list = DesignerDAO.getInstance().notRetireeByHairShop(vo);
 
 		//북마크 세팅
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");

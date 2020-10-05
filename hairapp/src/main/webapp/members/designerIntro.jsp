@@ -15,6 +15,29 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<script>
+	function like_func(designer_no) {
+		$.ajax({
+			url : "../ajax/designerBookmark.do",
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : 'designer_no=' + designer_no,
+			success : function(data) {
+				findClass = ".img-" + designer_no;
+				if(data.type == "add"){
+					$(findClass).attr("src", "../images/bookmark/heart.png");
+				}else{
+					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
+				}
+			},
+			error : function(request, status, error) {
+				alert("에러 발생!!")
+			}
+		});
+	}
+</script>
 </head>
 <body>
 
@@ -56,10 +79,8 @@
 <br>
 <div id="shopInfo">
 	<div id="shopName">
-		<c:forEach items="${shop}" var="hs">
-		<h4>${hs.hs_name}</h4>
-		<h6>${hs.hs_fulladdr}</h6>
-		</c:forEach>
+		<h4>${shop.hs_name}</h4>
+		<h6>${shop.hs_fulladdr}</h6>
 	</div>
 	<div id="shopStar1">
 		★★★★★
@@ -102,7 +123,18 @@
                     <div class="price">
                         ${in.designer_profile}
                     </div>
-                    <a class="add-to-cart" href="">예약하기</a><br><br>
+                    <c:if test="${not empty sessionScope.login }">
+                    	<a href='javascript: like_func("${in.designer_no}")'>
+                    	<c:if test="${in.designer_book == 1 }">
+                    		<%-- <a class="add-to-cart" href="${in.designer_no}">북마크</a><br><br> --%>
+                    		<img class="img-${in.designer_no}" src="../images/bookmark/heart.png" width="30" height="30">
+                    	</c:if>
+                    	<c:if test="${in.designer_book != 1 }">
+							<img class="img-${in.designer_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+						</c:if>
+                    	</a>
+                    </c:if>
+                    
                     <input type="hidden" name="hsNo" value="${in.hs_no}"><br>
                 </div>
             </div>
