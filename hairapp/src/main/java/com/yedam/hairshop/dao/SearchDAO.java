@@ -28,20 +28,23 @@ public class SearchDAO {
 	//label hairshop 제목
 	//hairshop정보에서 매칭되는 hairshop을 찾아온다.
 	public List<SearchVo> selectListHairshop(SearchVo vo) {
+		if(vo.getLabel() == null)
+			return null;
+		
 		List<SearchVo> list = new ArrayList<SearchVo>();
 		try {
 			String sql = "SELECT hs_no, hs_name, hs_profile " + 
 						" FROM hairshop " + 
-						" WHERE hs_name LIKE '%'|| ? || '%' OR " + 
-						"      hs_profile LIKE '%' || ? || '%' OR " + 
-						"      hs_fulladdr LIKE '%' || ? || '%' ";
+						" WHERE hs_name LIKE '%' || ? || '%'";
+//						" WHERE hs_name LIKE '%'|| ? || '%' OR " + 
+//						"      hs_profile LIKE '%' || ? || '%' OR " + 
+//						"      hs_fulladdr LIKE '%' || ? || '%' ";
 //			System.out.println(sql);
-			
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getLabel());
-			pstmt.setString(2, vo.getLabel());
-			pstmt.setString(3, vo.getLabel());
+//			pstmt.setString(2, vo.getLabel());
+//			pstmt.setString(3, vo.getLabel());
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {

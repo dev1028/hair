@@ -23,18 +23,21 @@ public class HairSelectCtrl implements Controller{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("HairSelectCtrl");
 		
-		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
-		
-		HairBookmarkVo bookVo = new HairBookmarkVo();
-		bookVo.setMem_no(memVo.getMem_no());
-		
 		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
 		request.setAttribute("list", list);
-		for(HairshopHairInfoVo tmpVo : list) {
-			bookVo.setHhi_no(tmpVo.getHhi_no());
-			if(HairBookmarkDAO.getInstance().HasBookmark(bookVo))
-				tmpVo.setHhi_book("1");
+		
+		
+		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+		if(memVo != null) {
+			HairBookmarkVo bookVo = new HairBookmarkVo();
+			bookVo.setMem_no(memVo.getMem_no());
+			
+			for(HairshopHairInfoVo tmpVo : list) {
+				bookVo.setHhi_no(tmpVo.getHhi_no());
+				if(HairBookmarkDAO.getInstance().HasBookmark(bookVo))
+					tmpVo.setHhi_book("1");
+			}
 		}
 		request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
 	}

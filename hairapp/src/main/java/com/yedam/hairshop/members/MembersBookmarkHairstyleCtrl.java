@@ -19,7 +19,7 @@ public class MembersBookmarkHairstyleCtrl implements Controller {
 		
 		
 		//HairBookmarkDAO.getInstance().
-		HairshopHairInfoDAO.getInstance().
+		//HairshopHairInfoDAO.getInstance().
 		request.getRequestDispatcher("/members/membersBookmarkHairstyle.jsp").forward(request, response);
 	}
 
