@@ -23,4 +23,10 @@ public class DesignerVo {
 	private String file_name;
 	private String designer_book;
 	private String hs_name;
+	
+	
+	// 디자이너 퇴사자 테이블 : DesignersLeaveInfoVo
+	private String dli_leave_date;
+	private String dli_reason;
+	private String fin_position;
 }

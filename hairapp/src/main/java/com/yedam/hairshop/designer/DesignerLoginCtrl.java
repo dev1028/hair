@@ -27,9 +27,6 @@ public class DesignerLoginCtrl implements Controller {
 		//test
 		designerVo.setDesigner_phone(request.getParameter("designer_phone"));
 		designerVo.setDesigner_dayoff(request.getParameter("designer_dayoff"));
-		
-		
-		
 
 		DesignerVo resultVo = DesignerDAO.getInstance().selectOneEmail(designerVo);
 

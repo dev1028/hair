@@ -14,4 +14,9 @@ public class PaymentVo {
 	String mdr_online_price;	//온라인예약결제금액
 	String mdr_request;			//헤어샵 요청사항
 	String hs_no;				//미용실 번호
+	
+	//최대 3개까지 선택가능.
+	String hhi_no1;				//헤어 정보1
+	String hhi_no2;				//헤어 정보2
+	String hhi_no3;				//헤어 정보3
 }

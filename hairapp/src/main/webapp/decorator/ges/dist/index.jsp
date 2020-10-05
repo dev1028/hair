@@ -66,14 +66,14 @@
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">이벤트</div>
 						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+							href="${pageContext.request.contextPath}/admin/adminCouponManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 쿠폰관리
 						</a>
 						<div class="sb-sidenav-menu-heading">통계</div>
 						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+							href="${pageContext.request.contextPath}/admin/adminSalesStatistics.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 매출통계
@@ -171,12 +171,18 @@
 							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
-							</div> 게시물관리
+							</div> 공지사항 게시물 관리
+						</a> 
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-chart-area"></i>
+							</div> QnA 게시물 관리
 						</a> <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/adminBoardSetting.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> 게시판관리
+							</div> 게시판 설정
 						</a>
 					</div>
 				</div>

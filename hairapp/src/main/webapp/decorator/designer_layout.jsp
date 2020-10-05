@@ -267,8 +267,7 @@
 									<span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/employeeList.do">내정보
-									수정</a></li>
+								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">MyPage</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의
 									매출정보</a></li>

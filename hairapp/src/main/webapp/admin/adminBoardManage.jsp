@@ -20,9 +20,9 @@
 </head>
 <body>
 	<h2 class="heading">매출결산</h2>
-	<%-- 	<form method="POST"
-		action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do"> --%>
-	<!--  search -->
+	<form 
+		action="${pageContext.request.contextPath}/admin/adminBoardManageFind.do"> 
+	
 	<div class="form-group">
 
 		<div class="control">
@@ -37,12 +37,13 @@
 			</button>
 			<button type="button" value="30" class='dateBtn' id="month">1개월
 			</button>
-			<input type="date" id="start"> -<input type="date" id="end">
+			<input type="date" id="start" name="startDate"> -
+			<input type="date" id="end" name="endDate">
 		</div>
 		<div class="control">
 			<label for="name">게시판 선택 </label> <select name="boardType"
 				id="boardType">
-				<option>전체목록</option>
+				
 				<option id="notice" value="notice">공지</option>
 				<option id="qna" value="qna">QnA</option>
 			</select> <select name="category" id="category">
@@ -65,11 +66,11 @@
 		<div class="control">
 			<label for="name">게시글 찾기 </label> <select name="searchType"
 				id="searchType">
-				<option value="notice_title">제목</option>
+				<option value="title">제목</option>
 				<option value="contents">내용</option>
 				<option value="writer">작성자</option>
 				<option value="id">ID</option>
-			</select> <input type="text" id="searchVal">
+			</select> <input type="text" id="searchVal" name="searchVal">
 
 		</div>
 
@@ -84,22 +85,66 @@
 		<div class="control">
 
 
-			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
+			<button type="submit" value="Submit" id="submit" class="col-1-4">Submit</button>
 		</div>
 	</div>
-	<!-- 	</form> -->
-	<!--  result -->
-	<!-- 매출 -->
+	</form>
 
 
 
-	<h2 class="heading">지출합계</h2>
-	<div class="form-group" id="result"></div>
+	<h2 class="heading">result</h2>
+	<div class="form-group" id="result">
+	<table border="1" id="table">
+			<thead>
+				<tr>
+					<th><input type="checkbox" name="all" id="all" class="chk"></th>
+					<th>번호
+						<button type="button" name="designer_no" class="asc hide">a</button>
+						<button type="button" name="designer_no" class="des hide">d</button>
+					</th>
+					<th>분류
+						<button type="button" name="designer_no" class="asc">a</button>
+						<button type="button" name="designer_no" class="des">d</button>
+					</th>
+					<th>제
+						<button type="button" name="designer_no" class="asc">a</button>
+						<button type="button" name="designer_no" class="des">d</button>
+					</th>
+					<th>답변상태
+						<button type="button" name="designer_no" class="asc">a</button>
+						<button type="button" name="designer_no" class="des">d</button>
+					</th>
+					<th>답변하기</th>
+					<th>작성자</th>
+					<th>작성일</th>
+					<th>조회수
+						<button type="button" name="designer_no" class="asc">a</button>
+						<button type="button" name="designer_no" class="des">d</button>
+					</th>
+				</tr>
+			</thead>
+			<tbody id="tbody">
+				<c:forEach items="${list }" var="l">
+					<tr>
+
+						<td><input type="checkbox" class="chk"></td>
+						<td>${ l.b_no}</td>
+						<td>${ l.b_category}</td>
+						<td>${ l.b_title}</td>
+						<td>${ l.b_as}</td>
+						<td>${ l.b_a}</td>
+						<td>${ l.b_writer}</td>
+						<td>${ l.b_wd}</td>
+						<td>${ l.b_hits}</td>
+						<td>${ l.b_who}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<button id="excel">excel</button>
+		<button id="email">email</button>
+	</div>
 	<!-- <button type="button" id="excel">excel</button> -->
-
-
-
-
 
 </body>
 </html>

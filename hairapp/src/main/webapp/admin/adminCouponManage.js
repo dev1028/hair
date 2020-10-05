@@ -1,77 +1,5 @@
-var toggleBool;
+var toggleBool; // sorting asc, desc
 $(function() {
-	$("#answerDiv").hide();
-	$("#category").hide();
-	$("#start").attr('value', '');
-	var date = new Date();
-	endDate(date);
-
-	$(".dateBtn").on("click", function() {
-		if ($(this).is("#today") === true) {
-			today();
-		} else if ($(this).is("#three") === true) {
-			three();
-		} else if ($(this).is("#seven") === true) {
-			week();
-		} else if ($(this).is("#month") === true) {
-			mon();
-		} else {
-			$("#start").attr('value', '');
-			var date = new Date();
-			endDate(date);
-
-		}
-	})
-	$("#boardType").change(function() {
-
-		if (($(this).children("option:selected").is("#qna")) === true) {
-			$("#category").show();
-			$("#answerDiv").show();
-
-		} else {
-			$("#category").hide();
-			$("#answerDiv").hide();
-		}
-	});
-
-	function startDate(d) {
-		$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
-	}
-	function endDate(d) {
-		$("#end").attr('value', moment(d).format('YYYY-MM-DD'));
-	}
-	function today() {
-		var d = new Date();
-
-		startDate(d);
-		endDate(d);
-		console.log(d);
-
-	}
-	function three() {
-		var d = new Date();
-		endDate(d);
-		d.setDate(d.getDate() - 3);
-		startDate(d);
-		console.log(d);
-
-	}
-	function week() {
-		var d = new Date();
-		endDate(d);
-		startDate(d.setDate(d.getDate() - 7));
-		console.log(d);
-
-	}
-
-	function mon() {
-		var d = new Date();
-		endDate(d);
-
-		startDate(d.setMonth(d.getMonth() - 1));
-		console.log(d);
-
-	}
 
 	$(".asc").on("click", function() {
 		console.log($(this).parent('th').index())
@@ -105,24 +33,23 @@ $(function() {
 				a.click();
 
 			})
-	// $("#id").val(obj.id);
-	// $("#pw").val(obj.pw);
-	//
-	// $("#job").val(obj.job);
-	// var str = "input:radio[name='gender']:radio[value='"
-	// + obj.gender + "']";
-	// $(str).prop('checked', true);
-	// //$("input:radio[name='gender']:radio[value='여']").prop('checked',
-	// true);
-	// if (obj.mailyn == 'Y') {
-	//
-	// $("input:checkbox[name='mailyn']").prop('checked',
-	// true);
-	// } else {
-	// $("input:checkbox[name='mailyn']").prop('checked',
-	// false);
-	// }
-});
+$(document).on(
+			"click",
+			"#reg",
+			function() {
+
+				var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
+				var table_html = encodeURIComponent(document
+						.getElementById('table').outerHTML);
+
+				var a = document.createElement('a');
+				a.href = data_type + ',%EF%BB%BF' + table_html;
+				a.download = 'test' + '_excel' + '.xls';
+				a.click();
+
+			})
+})
+
 var index; // cell index
 
 function gwanshic(tbody, index) {

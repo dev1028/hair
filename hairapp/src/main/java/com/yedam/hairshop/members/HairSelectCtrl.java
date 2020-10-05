@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jdt.internal.compiler.ast.MemberValuePair;
-
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairBookmarkDAO;
 import com.yedam.hairshop.dao.HairshopHairInfoDAO;
