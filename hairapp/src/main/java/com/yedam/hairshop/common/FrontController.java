@@ -187,7 +187,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersBookmarkDesigner.do", new MembersBookmarkDesignerCtrl());
 		list.put("/members/membersBookmarkHairstyle.do", new MembersBookmarkHairstyleCtrl());
 		
-		//==================================================================================
+		
 		//송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
@@ -270,7 +270,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());	
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());	
 		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());	
-		list.put("/admin/adminCouponManageFind.do", new AdminCouponManageFCtrl());	
+		list.put("/admin/adminCouponManageFind.do", new AdminCouponManageFCtrl());
 		
 		
 		//승연

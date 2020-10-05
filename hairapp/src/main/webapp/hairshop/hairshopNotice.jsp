@@ -70,7 +70,11 @@ a:hover {
 		</table>
 	</div>
 	<p>
+
+		<a href="${pageContext.request.contextPath}/hairshop/hairshopNoticeWrite.jsp"><button>글쓰기</button></a><br /> 
+
 		<a href="${pageContext.request.contextPath}/hairshop/hairshopNoticeWrite.do"><button>글쓰기</button></a><br /> 
+
 		<a href=""><button>Main</button></a>
 	</p>
 </body>
