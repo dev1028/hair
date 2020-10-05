@@ -79,4 +79,10 @@ public class HairshopHairInfoDAO {
 		
 		return list;
 	}
+	
+	public List<HairshopHairInfoVo> getBookmarkList(){
+		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
+		
+		return list;
+	}
 }

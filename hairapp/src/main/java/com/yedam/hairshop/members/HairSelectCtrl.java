@@ -7,10 +7,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.ast.MemberValuePair;
+
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.HairBookmarkDAO;
 import com.yedam.hairshop.dao.HairshopHairInfoDAO;
+import com.yedam.hairshop.model.HairBookmarkVo;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.model.MembersVo;
 
 public class HairSelectCtrl implements Controller{
 
@@ -18,19 +23,23 @@ public class HairSelectCtrl implements Controller{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("HairSelectCtrl");
 		
-//		HairshopVo vo = new HairshopVo();
-//		String hsNo = request.getParameter("hsNo");
-//		request.getSession().setAttribute("hsNo", hsNo);
-//		vo.setHs_no(hsNo);
-		
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
-
 		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
 		request.setAttribute("list", list);
-		//System.out.println(list.size() + "개의 헤어스타일 검색");
 		
+		
+		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+		if(memVo != null) {
+			HairBookmarkVo bookVo = new HairBookmarkVo();
+			bookVo.setMem_no(memVo.getMem_no());
+			
+			for(HairshopHairInfoVo tmpVo : list) {
+				bookVo.setHhi_no(tmpVo.getHhi_no());
+				if(HairBookmarkDAO.getInstance().HasBookmark(bookVo))
+					tmpVo.setHhi_book("1");
+			}
+		}
 		request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
-//		request.getRequestDispatcher("/members/payment.jsp").forward(request, response);
 	}
 
 }

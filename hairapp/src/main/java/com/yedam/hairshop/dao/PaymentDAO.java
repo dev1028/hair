@@ -29,12 +29,13 @@ public class PaymentDAO {
 //			CallableStatement pstmt = conn.prepareCall("{call memberPay(?,?,?,?)}");
 			String sql = "INSERT INTO members_designer_rsv(MDR_NO, MDR_DATE, MEM_NO, HS_NO, " + 
 					"                                DESIGNER_NO, MDR_STATUS) " + 
-					"VALUES( member_designer_rsv_seq.nextval, sysdate, ?, ?, ?, 'i1')";
+					"VALUES( member_designer_rsv_seq.nextval, TO_DATE(?, 'YYYY-MM-DD HH24'), ?, ?, ?, 'i1')";
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getMem_no());
-			pstmt.setString(2, vo.getDesigner_no());
+			pstmt.setString(1, vo.getMdr_date());
+			pstmt.setString(2, vo.getMem_no());
 			pstmt.setString(3, vo.getHs_no());
+			pstmt.setString(4, vo.getDesigner_no());
 			//pstmt.registerOutParameter(4, Types.INTEGER);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

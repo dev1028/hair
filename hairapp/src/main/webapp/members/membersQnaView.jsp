@@ -74,11 +74,11 @@
 
 <script>
 	function qnaModifyGo() {
-		location.href = "membersNoticeMG.do";
+		location.href = "membersQnaMG.do";
 }
 	
 	function qnaDeleteGo() {
-		location.href = "membersNoticeD.do";
+		location.href = "membersQnaD.do";
 }
 	
 	function qnaGo() {
@@ -172,7 +172,7 @@
 </c:if>
  
 <c:if test="${sessionScope.loginid !=null}">
-<c:if test="${sessionScope.loginid == view.qna_writer}">
+<c:if test="${sessionScope.loginid == view.qna_writer || admin == '2'}">
 <div id="upde">
 <button type="button" class="btn btn-outline-primary" onclick="qnaModifyGo()">수정</button>
 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#staticBackdrop">
