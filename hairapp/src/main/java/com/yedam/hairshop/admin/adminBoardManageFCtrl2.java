@@ -90,7 +90,7 @@ public class adminBoardManageFCtrl2 implements Controller {
 			}
 			paramVo.setWho(who);
 
-			noticeList = BoardManageDAO.getInstance().findQna(paramVo);
+//			noticeList = BoardManageDAO.getInstance().findQna(paramVo);
 		}
 //		System.out.println(startDate);
 //		System.out.println(endDate);

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
+import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageFCtrl;
 import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
@@ -279,6 +281,8 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());	
 		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());	
 		list.put("/admin/adminCouponManageFind.do", new AdminCouponManageFCtrl());
+		list.put("/admin/adminCouponInsert.do", new AdminCouponInsertCtrl());
+		list.put("/admin/adminCouponInsertSubmit.do", new AdminCouponInsertFCtrl());
 		
 		
 		//승연

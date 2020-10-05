@@ -188,7 +188,7 @@ $(function() {
 	function result(start, end) {
 
 		$("#result").html("");
-		var url = "/hairapp/hairshop/adminSales.do"
+		var url = "/hairapp/admin/adminSales.do"
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test'
