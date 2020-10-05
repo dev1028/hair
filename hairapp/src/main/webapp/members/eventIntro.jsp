@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,8 +129,8 @@
 <br>
 <div id="shopInfo">
 	<div id="shopName">
-		<h4>미용실이름</h4>
-		<h6>미용실주소</h6>
+		<h4>${shop.hs_name}</h4>
+		<h6>${shop.hs_fulladdr}</h6>
 	</div>
 	<div id="shopStar1">
 		★★★★★
@@ -159,16 +160,17 @@
 
 <!-- 본문쓰면됨 여기에 -->
 <div class="container">
+<c:forEach items="${intro}" var="in">
 <div class="col-sm-12">
 <div class="bs-calltoaction bs-calltoaction-primary">
 	<div class="row">
 		<div class="col-md-9 cta-contents">
-			<h1 class="cta-title">쿠폰이름적기</h1>
+			<h1 class="cta-title">${in.hsc_name}</h1>
 				<div class="cta-desc">
-					<p>ㅇㅇ미용실의 쿠폰을 받으세요</p>
-					<br><p>할인률 : ㅇㅇ%</p>
-					<p>최대할인 금액 : ㅇㅇ원</p>
-					<p>현재 ㅇㅇ개 남았습니다</p>
+					<p>${shop.hs_name}의 쿠폰을 받으세요</p>
+					<br><p>할인률 : ${in.hsc_discount_rate}%</p>
+					<p>최대할인 금액 : ${in.hsc_maxdiscount_pay}원</p>
+					<p>현재 ${in.hsc_coupon_quantity}개 남았습니다</p>
 				</div>
 		</div>
 		<div class="col-md-3 cta-button">
@@ -177,8 +179,9 @@
 	</div>
 </div>
 </div>
+</c:forEach>
 </div>
-
+<br><br><br><br><br>
 
 
 
