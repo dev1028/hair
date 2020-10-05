@@ -19,7 +19,8 @@ public class MembersQnaWCtrl implements Controller {
 		System.out.println("MembersQnaWCtrl");
 		
 		String memNo = request.getSession().getAttribute("memNo").toString();
-		String loginId = request.getSession().getAttribute("loginid").toString();
+		//String loginId = request.getSession().getAttribute("loginid").toString();
+		String mem_name = request.getSession().getAttribute("memName").toString();
 
 		// 파라미터 VO에 담기
 		QnaVo vo = new QnaVo();
@@ -35,7 +36,7 @@ public class MembersQnaWCtrl implements Controller {
 		
 		vo.setQna_no(dao.getSeq());
 		vo.setQna_shop_customer_no(memNo);
-		vo.setQna_writer(loginId);
+		vo.setQna_writer(mem_name);
 		System.out.println("글vo : " + vo);
 		
 		int resultVo = dao.qnaInsert(vo);
