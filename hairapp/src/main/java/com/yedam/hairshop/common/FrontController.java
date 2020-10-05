@@ -129,6 +129,7 @@ import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
 import com.yedam.hairshop.members.MembersSearchCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
+import com.yedam.hairshop.members.PaymentImportCtrl;
 import com.yedam.hairshop.members.PaymentMemberCtrl;
 import com.yedam.hairshop.members.RegionDesignerRankCtrl;
 import com.yedam.hairshop.members.RegionHairshopRankCtrl;
@@ -175,7 +176,8 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/paymentMember.do", new PaymentMemberCtrl());			//회원결제
-		
+		list.put("/members/paymentImport.do", new PaymentImportCtrl());
+				
 		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl());			//리뷰 이동용
 		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());
 		list.put("/members/membersInsert.do", new TestController());

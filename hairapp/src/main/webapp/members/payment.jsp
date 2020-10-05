@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +18,8 @@ $(function() {
 		interval: 60
 	});
 });
+
+
 </script>
 </head>
 <body>
@@ -48,12 +49,7 @@ $(function() {
 	쿠판할인 금액: <br>
 	실제결제 금액: <br> 
 	
-	<hr>
-	결제선택 <br>
-	
 	<button>결제하기</button>
-	
-	
 </form>
 </body>
 </html>

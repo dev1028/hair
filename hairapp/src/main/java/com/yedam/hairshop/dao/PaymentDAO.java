@@ -24,10 +24,10 @@ public class PaymentDAO {
 	}
 	
 	
-	public void onlinePay(PaymentVo vo) {
+	//결제가 아닌 예약. 예약후, 입금대기 상태에서 결제해야함.
+	public int onlinePay(PaymentVo vo) {
 		//여기서  프로시저를 호출하는 식으로 결제를 한다.
-		
-		int result;
+		int result = -1;
 		try {
 			conn = ConnectionManager.getConnnect();
 			CallableStatement pstmt = conn.prepareCall("{call memberPay(?,?,?,?,?,?,?,?)}");
@@ -43,41 +43,11 @@ public class PaymentDAO {
 			pstmt.executeUpdate();
 			result = pstmt.getInt(8);
 			System.out.println("RESULT: " + result);
-			
-//			String sql = "INSERT INTO members_designer_rsv(MDR_NO, MDR_DATE, MEM_NO, HS_NO, " + 
-//					"                                DESIGNER_NO, MDR_STATUS) " + 
-//					"VALUES( member_designer_rsv_seq.nextval, TO_DATE(?, 'YYYY-MM-DD HH24'), ?, ?, ?, 'i1')";
-//			conn = ConnectionManager.getConnnect();
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, vo.getMdr_date());
-//			pstmt.setString(2, vo.getMem_no());
-//			pstmt.setString(3, vo.getHs_no());
-//			pstmt.setString(4, vo.getDesigner_no());
-//			//pstmt.registerOutParameter(4, Types.INTEGER);
-//			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		
-//		try {
-//			String sql = "INSERT INTO mem_designer_rsv_info(MDRI_DETAIL_INFO, MDR_NO, HHI_NO, MDRI_MEMO " +
-//						 "VALUES(?, ?, ?, ?) ";
-//			conn = ConnectionManager.getConnnect();
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			pstmt.setString(2, vo.getMdr_no());
-//			
-////			pstmt.setString(1, vo.getMdr_date());
-////			pstmt.setString(2, vo.getMem_no());
-////			pstmt.setString(3, vo.getHs_no());
-////			pstmt.setString(4, vo.getDesigner_no());
-//			pstmt.executeUpdate();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			ConnectionManager.close(rs, pstmt, conn);
-//		}
+		return result;
 	}
 }

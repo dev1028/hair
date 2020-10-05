@@ -77,7 +77,9 @@ public class PaymentMemberCtrl implements Controller {
 //
 //		// 나중에 마일리지 쿠폰 등등을 실제 금액 계산해야함.
 //		PaymentDAO.getInstance().onlinePay(payVo);
-		PaymentDAO.getInstance().onlinePay(payVo);
+		if(PaymentDAO.getInstance().onlinePay(payVo)>0) {
+			request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
+		}
 	}
 
 }
