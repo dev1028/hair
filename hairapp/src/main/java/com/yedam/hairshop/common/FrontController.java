@@ -34,6 +34,8 @@ import com.yedam.hairshop.designer.DesWeeklyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
 import com.yedam.hairshop.designer.DesignerMainCtrl;
+import com.yedam.hairshop.designer.DesignerMyPageCtrl;
+import com.yedam.hairshop.designer.DesignerMyPageUpdateCtrl;
 import com.yedam.hairshop.designer.DesignerNextCustomerAjCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerCtrl;
@@ -198,6 +200,8 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopNoticeWriteCtrl.do", new hairshopNoticeWriteCtrl());
 		list.put("/hairshop/hairshopNoticeViewCtrl.do", new hairshopNoticeViewCtrl());
 		
+		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
+		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
 		//list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		
 		

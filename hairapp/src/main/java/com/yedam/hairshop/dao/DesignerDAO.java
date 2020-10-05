@@ -51,7 +51,35 @@ public class DesignerDAO {
 		}
 		return r;
 	}
-
+	
+	// 디자이너MyPage 정보수정
+	public int mypageUpdate(DesignerVo designerVo) {
+		int r = 0;
+		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
+				+ " WORK_START_TIME = ?, WORK_END_TIME = ? ,"
+				+ " DESIGNER_PROFILE = ?, FILE_NAME = ? " 
+				+ " WHERE DESIGNER_NO = ? ";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designerVo.getDesigner_pw());
+			pstmt.setString(2, designerVo.getDesigner_phone());
+			pstmt.setString(3, designerVo.getDesigner_dayoff());
+			pstmt.setString(4, designerVo.getWork_start_time());
+			pstmt.setString(5, designerVo.getWork_end_time());
+			pstmt.setString(6, designerVo.getDesigner_profile());
+			pstmt.setString(7, designerVo.getFile_name());
+			pstmt.setString(8, designerVo.getDesigner_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+	}
+	
 	// 단건 조회
 	public DesignerVo selectOne(DesignerVo designerVo) {
 		DesignerVo designer = new DesignerVo();
@@ -104,12 +132,12 @@ public class DesignerDAO {
 			rs = pstmt.executeQuery();
 			if (rs.next()) { // 처음 커서 위치는 BOF
 				resultVo = new DesignerVo();
-				resultVo.setDesigner_no(rs.getString(1));
-				resultVo.setDesigner_pw(rs.getString(2));
-				resultVo.setDesigner_name(rs.getString(3));
-				resultVo.setDesigner_email(rs.getString(4));
-				resultVo.setDesigner_access_status(rs.getString(5));
-				resultVo.setHs_no(rs.getString(6));
+				resultVo.setDesigner_no(rs.getString("DESIGNER_NO"));
+				resultVo.setDesigner_pw(rs.getString("DESIGNER_PW"));
+				resultVo.setDesigner_name(rs.getString("DESIGNER_NAME"));
+				resultVo.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
+				resultVo.setDesigner_access_status(rs.getString("Designer_access_status"));
+				resultVo.setHs_no(rs.getString("hs_no"));
 
 			} else {
 				System.out.println("no data");
