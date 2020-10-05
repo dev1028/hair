@@ -53,8 +53,8 @@ public class QnaDAO {
 		QnaVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT QNA_NO, QNA_TITLE, QNA_CONTENTS, QNA_WRITEDATE, QNA_OPENSTATUS,"
-					+ " QNA_HITS, QNA_CATEGORY, QNA_ANSWER, QNA_ANSWERDATE, EMP_NO,"
+			String sql = "SELECT QNA_NO, QNA_SHOP_CUSTOMER_NO, QNA_TITLE, QNA_CONTENTS, QNA_WRITEDATE, QNA_OPENSTATUS,"
+					+ " QNA_HITS, QNA_CATEGORY, EMP_NO,"
 					+ " QNA_REF, QNA_REPOS, QNA_LEVEL, QNA_WRITER" 
 					+ " FROM QNA "
 					+ " WHERE QNA_WHO = 'j2'" + " AND QNA_NO = ? ";
@@ -65,14 +65,13 @@ public class QnaDAO {
 			while (rs.next()) {
 				resultVo = new QnaVo();
 				resultVo.setQna_no(rs.getInt("qna_no"));
+				resultVo.setQna_shop_customer_no(rs.getString("qna_shop_customer_no"));
 				resultVo.setQna_title(rs.getString("qna_title"));
 				resultVo.setQna_contents(rs.getString("qna_contents"));
 				resultVo.setQna_writedate(rs.getString("qna_writedate"));
 				resultVo.setQna_openstatus(rs.getString("qna_openstatus"));
 				resultVo.setQna_hits(rs.getString("qna_hits"));
 				resultVo.setQna_category(rs.getString("qna_category"));
-				resultVo.setQna_answer(rs.getString("qna_answer"));
-				resultVo.setQna_answerdate(rs.getString("qna_answerdate"));
 				resultVo.setEmp_no(rs.getString("emp_no"));
 				resultVo.setQna_ref(rs.getInt("qna_ref"));
 				resultVo.setQna_repos(rs.getInt("qna_repos"));
@@ -95,7 +94,7 @@ public class QnaDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT QNA_NO, QNA_TITLE, QNA_CONTENTS, QNA_WRITEDATE, QNA_OPENSTATUS,"
-					+ " QNA_HITS, QNA_CATEGORY, QNA_ANSWER, QNA_ANSWERDATE, EMP_NO,"
+					+ " QNA_HITS, QNA_CATEGORY, EMP_NO,"
 					+ " QNA_REF, QNA_REPOS, QNA_LEVEL, QNA_WRITER" 
 					+ " FROM QNA " + " WHERE QNA_WHO = 'j2'"
 					+ " AND QNA_NO = ? ";
@@ -112,8 +111,6 @@ public class QnaDAO {
 				resultVo.setQna_openstatus(rs.getString("qna_openstatus"));
 				resultVo.setQna_hits(rs.getString("qna_hits"));
 				resultVo.setQna_category(rs.getString("qna_category"));
-				resultVo.setQna_answer(rs.getString("qna_answer"));
-				resultVo.setQna_answerdate(rs.getString("qna_answerdate"));
 				resultVo.setEmp_no(rs.getString("emp_no"));
 				resultVo.setQna_ref(rs.getInt("qna_ref"));
 				resultVo.setQna_repos(rs.getInt("qna_repos"));
@@ -154,10 +151,10 @@ public class QnaDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO qna(qna_no, qna_shop_customer_no, qna_title, qna_contents,"
-					+ " qna_writedate, qna_openstatus, qna_hits, qna_category, qna_answer,"
-					+ " qna_answerdate, qna_who, emp_no, qna_ref, qna_repos, qna_level, qna_writer)"
-					+ " VALUES(?, ?, ?, ?, sysdate, ?, 0, ?, ?," 
-					+ " sysdate, 'j2', 50, ?, ?, ?, ?)";
+					+ " qna_writedate, qna_openstatus, qna_hits, qna_category,"
+					+ " qna_who, emp_no, qna_ref, qna_repos, qna_level, qna_writer)"
+					+ " VALUES(?, ?, ?, ?, sysdate, ?, 0, ?," 
+					+ " 'j2', 50, ?, ?, ?, ?)";
 
 			// 시퀀스 값을 글번호와 그룹번호로 사용
 			int num = qnaVo.getQna_no();
@@ -169,14 +166,13 @@ public class QnaDAO {
 			pstmt.setString(4, qnaVo.getQna_contents());
 			pstmt.setString(5, qnaVo.getQna_openstatus());
 			pstmt.setString(6, qnaVo.getQna_category());
-			pstmt.setString(7, qnaVo.getQna_answer());
 			if (qnaVo.getQna_repos() == 0) // re_seq==0 은 답변글이 없는경우, 즉 부모글일경우
-				pstmt.setInt(8, num);
+				pstmt.setInt(7, num);
 			else
-				pstmt.setInt(8, qnaVo.getQna_ref());
-			pstmt.setInt(9, qnaVo.getQna_repos());
-			pstmt.setInt(10, qnaVo.getQna_level());
-			pstmt.setString(11, qnaVo.getQna_writer());
+				pstmt.setInt(7, qnaVo.getQna_ref());
+			pstmt.setInt(8, qnaVo.getQna_repos());
+			pstmt.setInt(9, qnaVo.getQna_level());
+			pstmt.setString(10, qnaVo.getQna_writer());
 			
 			r = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -196,8 +192,8 @@ public class QnaDAO {
 
 			String sql = "select a.* from (select rownum rn,b.* from ("
 					+ " SELECT QNA_NO, QNA_SHOP_CUSTOMER_NO, QNA_TITLE, QNA_CONTENTS,"
-					+ " QNA_WRITEDATE, QNA_OPENSTATUS, QNA_HITS, QNA_CATEGORY, QNA_ANSWER," 
-					+ " QNA_ANSWERDATE, EMP_NO, QNA_REF, QNA_REPOS, QNA_LEVEL, QNA_WRITER"
+					+ " QNA_WRITEDATE, QNA_OPENSTATUS, QNA_HITS, QNA_CATEGORY," 
+					+ " EMP_NO, QNA_REF, QNA_REPOS, QNA_LEVEL, QNA_WRITER"
 					+ " FROM QNA"
 					+ " where QNA_WHO = 'j2'"
 					+ " order by QNA_REF desc, QNA_REPOS asc, QNA_WRITEDATE desc"
@@ -219,8 +215,6 @@ public class QnaDAO {
 				resultVO.setQna_openstatus(rs.getString("qna_openstatus"));
 				resultVO.setQna_hits(rs.getString("qna_hits"));
 				resultVO.setQna_category(rs.getString("qna_category"));
-				resultVO.setQna_answer(rs.getString("qna_answer"));
-				resultVO.setQna_answerdate(rs.getString("qna_answerdate"));
 				resultVO.setEmp_no(rs.getString("emp_no"));
 				resultVO.setQna_ref(rs.getInt("qna_ref"));
 				resultVO.setQna_repos(rs.getInt("qna_repos"));
@@ -305,6 +299,7 @@ public class QnaDAO {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
 	} // end Qna 수정
+	
 
 	// Qna 삭제
 	public void qnaDelete(QnaVo qnaVo) {

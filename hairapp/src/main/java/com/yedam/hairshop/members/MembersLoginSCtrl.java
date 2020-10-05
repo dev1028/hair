@@ -42,6 +42,7 @@ public class MembersLoginSCtrl implements Controller {
 				request.getSession().setAttribute("loginid", resultVO.getMem_email()); 	// 세션아이디
 				request.getSession().setAttribute("admin", resultVO.getMem_access_status());	// 인증컬럼
 				request.getSession().setAttribute("memNo", resultVO.getMem_no());		// 세션고객번호
+				request.getSession().setAttribute("memName", resultVO.getMem_name());	// 세션고객이름
 				System.out.println("인증컬럼: " + resultVO.getMem_access_status());
 				page = "/members/membersMain.do";
 				System.out.println("로그인완:"+page);

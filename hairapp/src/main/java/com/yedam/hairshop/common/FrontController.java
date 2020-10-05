@@ -90,6 +90,7 @@ import com.yedam.hairshop.members.MembersDeleteSCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
 import com.yedam.hairshop.members.MembersHsDesignerIntroCtrl;
+import com.yedam.hairshop.members.MembersHsEventIntroCtrl;
 import com.yedam.hairshop.members.MembersIdSearchCtrl;
 import com.yedam.hairshop.members.MembersIdSearchSCtrl;
 import com.yedam.hairshop.members.MembersInfoModifyCtrl;
@@ -239,6 +240,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl());	// 헤어샵소개로 이동하는 컨트롤러
 		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
 		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
+		list.put("/members/hsEventIntro.do", new MembersHsEventIntroCtrl());	// 헤어샵 안의 쿠폰 뿌려주는 컨트롤러
 		
 		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러

@@ -22,7 +22,8 @@ public class MembersQnaReCtrl implements Controller {
 		QnaVo vo = new QnaVo();
 		
 		String memNo = request.getSession().getAttribute("memNo").toString();
-		String loginId = request.getSession().getAttribute("loginid").toString();
+		//String loginId = request.getSession().getAttribute("loginid").toString();
+		String mem_name = request.getSession().getAttribute("memName").toString();
 
 		// 파리미터 값을 가져온다.
 		String subject = request.getParameter("qna_title");
@@ -43,7 +44,7 @@ public class MembersQnaReCtrl implements Controller {
 		// 답글 저장
 		vo.setQna_no(dao.getSeq()); // 답글의 글번호는 시퀀스값 가져와 세팅
 		vo.setQna_shop_customer_no(memNo);
-		vo.setQna_writer("관리자");
+		vo.setQna_writer(mem_name);
 		vo.setQna_title(subject);
 		vo.setQna_contents(content);
 		vo.setQna_openstatus(openstatus);

@@ -48,6 +48,7 @@ public class MembersHairshopVo {
 	private String mem_access_status;
 
 	// 디자이너 테이블 : DesignerVo
+	private String designer_no;
 	private String designer_name;
 	private String designer_phone;
 	private String designer_email;
@@ -63,6 +64,12 @@ public class MembersHairshopVo {
 	private String designer_profile;
 	private String file_name;
 
+	// 디자이너 퇴사자 테이블 : DesignersLeaveInfoVo
+	private String dli_leave_date;
+	private String dli_reason;
+	private String fin_position;
+
+	
 	// 미용실사진 테이블 : hs_photo
 	private String hsp_no;
 	private String hsp_file;
