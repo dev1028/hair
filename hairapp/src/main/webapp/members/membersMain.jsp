@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -208,13 +209,8 @@ form.example::after {
   clear: both;
   display: table;
 }
-</style>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>메인화면</title>
-
-
-<style>
+/*  */
 #project-label {
 	display: block;
 	font-weight: bold;
@@ -232,8 +228,68 @@ form.example::after {
 	padding: 0;
 }
 
+
+/* 공지사항 큐앤에이 */
+#qnaNotice {
+	justify-content: center; /* 가로에서 센터 */
+	align-items: center;	 /* 세로에서 센터 */
+	text-align: center;
+	display: flex;
+}
+#notice {
+	float: left;
+	text-align: left;
+	margin:30px 50px 100px;
+}
+#qna {
+	float: left;
+	text-align: left;
+	margin:30px 50px 100px;
+}
+
+/* 더보기버튼 */
+.share-button { 
+  margin: auto;
+  float: right;
+  top: 0; 
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width:4em;
+  height:2em;
+  line-height:1.8em;
+ }
+
+.social-toggle {
+  display:block;
+  font-weight:bold;
+  font-size:85%;
+  text-align:center;
+  text-transform:uppercase;
+  transition:all 0.25s;
+  color:rgb(144 144 144);
+  background:rgba(200,200,200,.05);
+  border: 2px solid rgb(200,200,200);
+} 
+
+.social-toggle:hover {
+  background:rgb(200,200,200);
+  color:#333;
+}
+
+.no-js .social-toggle, .no-js .social-toggle:hover {
+  cursor: default;
+  border:none;
+  background:transparent;
+  color:rgb(200,200,200);
+  pointer-events:none;
+}/* 더보기버튼끝 */
+
+
 </style>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>메인화면</title>
 
 <script>
 	function formatDate(date) {
@@ -385,6 +441,47 @@ form.example::after {
 			<input type="hidden" id="project-id">
 			<p id="project-description"></p>
 		</form>
+		<br><br><br>
+		
+		<!-- 여기서부터 공지사항과 QnA 뿌려주는거 -->
+		<div id="qnaNotice">
+		<div id="notice">
+		공지사항
+		<c:if test="${not empty loginid}">
+		<div class="share-button" style="">
+			<a href="membersNotice.do" class="social-toggle">더보기</a>
+		</div>
+		</c:if>
+		<hr>
+			<ul>
+				<c:forEach items="${noticeList}" var="notice">
+				<li>
+					${notice.notice_title}	
+				</li>
+				</c:forEach>
+			</ul>
+		</div>
+		&emsp;
+		<div id="qna">
+		Q&A
+		<c:if test="${not empty loginid}">
+		<div class="share-button" style="">
+			<a href="membersQna.do" class="social-toggle">더보기</a>
+		</div>
+		</c:if>
+		<hr>
+			<ul>
+				<c:forEach items="${qnaList}" var="qna">
+				<li>
+					${qna.qna_title}			
+				</li>
+				</c:forEach>
+			</ul>
+		</div>
+		
+		</div>
+		<!-- 여기까지 공지사항과 QnA 뿌려주는거 -->
+		
 	</div>
 </body>
 </html>

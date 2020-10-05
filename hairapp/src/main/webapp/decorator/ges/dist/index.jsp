@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="decorator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Dashboard - SB Admin</title>
+<title>Admin</title>
 <link href="/hairapp/decorator/ges/dist/css/styles.css" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
@@ -17,11 +20,12 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
 	crossorigin="anonymous"></script>
-	<decorator:head></decorator:head>
+<decorator:head></decorator:head>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain.do"">admin</a>
+		<a class="navbar-brand"
+			href="${pageContext.request.contextPath}/admin/adminMain.do"">admin</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
@@ -60,19 +64,28 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">게시물</div>
-						<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+						<div class="sb-sidenav-menu-heading">이벤트</div>
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> 게시물관리
+							</div> 쿠폰관리
 						</a>
-						<div class="sb-sidenav-menu-heading">자재</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapseLayouts" aria-expanded="false"
-							aria-controls="collapseLayouts">
+						<div class="sb-sidenav-menu-heading">통계</div>
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> 매출통계
+						</a>
+						<div class="sb-sidenav-menu-heading">회원</div>
+						<a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminCustomerManage.do"
+							data-toggle="collapse" data-target="#collapseLayouts"
+							aria-expanded="false" aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
-							</div> 자재관리
+							</div> 사용자회원관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -85,16 +98,35 @@
 									Sidenav</a>
 							</nav>
 						</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapsePages" aria-expanded="false"
-							aria-controls="collapsePages">
+						<a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminHairshopManage.do"
+							data-toggle="collapse" data-target="#collapsePages"
+							aria-expanded="false" aria-controls="collapsePages">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
-							</div> Pages
+							</div> 헤어샵회원관리
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a> <a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminDesignerManage.do"
+							data-toggle="collapse" data-target="#collapseLayouts"
+							aria-expanded="false" aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> 디자이너회원관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+						<div class="collapse" id="collapseLayouts"
+							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="layout-static.html">Static
+									Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light
+									Sidenav</a>
+							</nav>
+						</div>
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion"
@@ -106,6 +138,7 @@
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a>
+
 								<div class="collapse" id="pagesCollapseAuth"
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
@@ -133,15 +166,17 @@
 								</div>
 							</nav>
 						</div>
-						<div class="sb-sidenav-menu-heading">통계</div>
-						<a class="nav-link" href="charts.html">
+						<div class="sb-sidenav-menu-heading">게시판</div>
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
-							</div> 매출
-						</a> <a class="nav-link" href="tables.html">
+							</div> 게시물관리
+						</a> <a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardSetting.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> Tables
+							</div> 게시판관리
 						</a>
 					</div>
 				</div>
@@ -151,8 +186,12 @@
 				</div>
 			</nav>
 		</div>
-		<div id="layoutSidenav_content"></div>
-		<decorator:body></decorator:body>
+		<div id="layoutSidenav_content">
+
+			<decorator:body></decorator:body>
+
+		</div>
+	</div>
 	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 			crossorigin="anonymous"></script>
 		<script

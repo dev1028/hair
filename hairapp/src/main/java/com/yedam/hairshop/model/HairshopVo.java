@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class HairshopVo {
-	
+	private String hs_rn;	//랭킹
 	private String hs_no;
 	private String hs_name;
 	private String hs_owner;
@@ -26,6 +26,7 @@ public class HairshopVo {
 	private String hs_parking;
 	private String hs_etc;
 	private String hs_approval;
+	private String hs_regdate;
 	
 	private String hs_book;
 }

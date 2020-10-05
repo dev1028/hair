@@ -18,15 +18,22 @@ public class BoardManageDAO {
 
 	static BoardManageDAO instance = null;
 
-	final static String noticeFind = "select * " + "FROM notice\r\n" + "WHERE  notice_writedate BETWEEN ? AND ?\r\n";
-	final static String noticeSearch = "AND ? = ?\r\n";
-	final static String noticeCategory = "AND NOTICE_CATEGORYNAME IN(?)";
+	final static String noticeFind = "select * " + "FROM notice\r\n" + "WHERE  notice_writedate BETWEEN ? AND ?\r\n"
+	+"AND ? = ?\r\n"
+	+"AND NOTICE_who IN(?)";
+	
+	final static String qnaFind ="select * FROM qna\n" + 
+			"WHERE  qna_writedate BETWEEN ? AND ?\n" + 
+			"AND ? = ?\n" + 
+			"AND qna_who like ?\n" + 
+			"and qna_category like ?";
 
 	public static BoardManageDAO getInstance() {
 		if (instance == null)
 			instance = new BoardManageDAO();
 		return instance;
 	}
+
 	public ArrayList<HairshopNoticeVo> findNoticeCategory(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;
@@ -34,7 +41,7 @@ public class BoardManageDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind+noticeCategory);
+			pstmt = conn.prepareStatement(noticeFind);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
 			pstmt.setString(3, vo.getCategory());
@@ -64,19 +71,21 @@ public class BoardManageDAO {
 //		}
 		return list;
 	}
-	public ArrayList<HairshopNoticeVo> findNoticeSearch(BoardManageVo vo) {
+
+	
+	public ArrayList<HairshopNoticeVo> findNoticeDate(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;
 
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind+noticeSearch);
+			pstmt = conn.prepareStatement(noticeFind);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
 			pstmt.setString(3, vo.getSearchType());
 			pstmt.setString(4, vo.getSearchInput());
-			
+			pstmt.setString(5, vo.getCategory());
 			rs = pstmt.executeQuery();
 			System.out.println("sql");
 			while (rs.next()) {
@@ -103,7 +112,8 @@ public class BoardManageDAO {
 //		}
 		return list;
 	}
-	public ArrayList<HairshopNoticeVo> findNotice(BoardManageVo vo) {
+
+	public ArrayList<HairshopNoticeVo> findNoticeAll(BoardManageVo vo) {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<>();
 		HairshopNoticeVo resultVo = null;
 
@@ -117,7 +127,7 @@ public class BoardManageDAO {
 			pstmt.setString(4, vo.getSearchInput());
 			pstmt.setString(5, vo.getCategory());
 			rs = pstmt.executeQuery();
-			System.out.println("sql");
+			System.out.println(noticeFind);
 			while (rs.next()) {
 
 				resultVo = new HairshopNoticeVo();
@@ -150,23 +160,25 @@ public class BoardManageDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(noticeFind);
+			pstmt = conn.prepareStatement(qnaFind);
 			pstmt.setString(1, vo.getStartDate());
 			pstmt.setString(2, vo.getEndDate());
 			pstmt.setString(3, vo.getSearchType());
 			pstmt.setString(4, vo.getSearchInput());
-			pstmt.setString(5, vo.getCategory());
+			pstmt.setString(5, "%"+vo.getWho()+"%");
+			pstmt.setString(6, "%"+vo.getCategory()+"%");
 			rs = pstmt.executeQuery();
 			System.out.println("sql");
 			while (rs.next()) {
 
 				resultVo = new HairshopNoticeVo();
-				resultVo.setNotice_no(rs.getString("notice_no"));
-				resultVo.setNotice_title(rs.getString("notice_title"));
-				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
-				resultVo.setNotice_hits(rs.getString("notice_hits"));
+				resultVo.setQna_no(rs.getString("qna_no"));
+				resultVo.setQna_title(rs.getString("qna_title"));
+				resultVo.setQna_writedate(rs.getString("qna_writedate"));
+				resultVo.setQna_who(rs.getString("qna_who"));
+				resultVo.setQna_hits(rs.getString("qna_hits"));
 				resultVo.setEmp_no(rs.getString("emp_no"));
-				resultVo.setNotice_categoryname(rs.getString("notice_categoryname"));
+				resultVo.setQna_category(rs.getString("qna_category"));
 
 				list.add(resultVo);
 
@@ -181,76 +193,6 @@ public class BoardManageDAO {
 //		for(SalesVo vo : list) {
 //			System.out.println(vo.getHName());
 //		}
-		return list;
-	}
-
-	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no) {
-		ArrayList<SalesVo> list = new ArrayList<>();
-		SalesVo resultVo = null;
-
-		try {
-			conn = ConnectionManager.getConnnect();
-
-			pstmt = conn.prepareStatement(totaldaily + addDs);
-			pstmt.setString(1, start);
-			pstmt.setString(2, end);
-			pstmt.setString(3, ds_no);
-
-			rs = pstmt.executeQuery();
-			System.out.println("sql");
-			while (rs.next()) {
-
-				resultVo = new SalesVo();
-				resultVo.setMdrNo(rs.getString("mdr_no"));
-				resultVo.setMdrDate(rs.getString("mdr_date"));
-				resultVo.setDsName(rs.getString("designer_name"));
-				resultVo.setMemName(rs.getString("mem_name"));
-				resultVo.setHName(rs.getString("hhi_name"));
-				resultVo.setCard(rs.getString("card"));
-				resultVo.setCash(rs.getString("cash"));
-				resultVo.setKakao(rs.getString("kakao"));
-				resultVo.setAccount(rs.getString("account"));
-				resultVo.setTotalAmountRsv(rs.getString("ammount"));
-
-				list.add(resultVo);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
-
-		for (SalesVo vo : list) {
-			System.out.println(vo.getHName());
-		}
-		return list;
-	}
-
-	public ArrayList<DesignerVo> getDsName() {
-		ArrayList<DesignerVo> list = new ArrayList<>();
-		DesignerVo resultVo = null;
-		try {
-			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer  ";
-			pstmt = conn.prepareStatement(sql);
-
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				resultVo = new DesignerVo();
-				resultVo.setDesigner_no(rs.getString(1));
-				resultVo.setDesigner_name(rs.getString(2));
-
-				list.add(resultVo);
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
-		}
 		return list;
 	}
 }

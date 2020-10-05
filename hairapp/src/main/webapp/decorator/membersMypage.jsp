@@ -223,10 +223,10 @@ a.article:hover {
                             <a href="membersBookmarkHairshop.do">헤어샵</a>
                         </li>
                         <li>
-                            <a href="#">디자이너</a>
+                            <a href="membersBookmarkDesigner.do">디자이너</a>
                         </li>
                         <li>
-                            <a href="#">헤어스타일</a>
+                            <a href="membersBookmarkHairstyle.do">헤어스타일</a>
                         </li>
                     </ul>
                 </li>

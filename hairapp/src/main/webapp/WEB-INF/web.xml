@@ -20,6 +20,25 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<!-- 여기부터 파일업로드 설정 -->
+	<servlet>
+        <servlet-name>MembersNoticeWCtrl</servlet-name>
+        <servlet-class>MembersNoticeWCtrl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MembersNoticeWCtrl</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+  
+  
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+	<!-- 여기까지 파일업로드 설정 -->
+
+
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>

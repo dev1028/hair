@@ -30,6 +30,10 @@ public class MyRegionSettingCtrl implements Controller {
 			}else {
 				latlng = membersVo.getMem_latitude_longitude();
 			}
+			
+			if(latlng == null) {
+				latlng = "35.84960624033248, 128.54231838857297";
+			}
 			String[] tmplatlng = latlng.split(",");
 			request.setAttribute("latlng", latlng);
 			request.setAttribute("lat", tmplatlng[0]);

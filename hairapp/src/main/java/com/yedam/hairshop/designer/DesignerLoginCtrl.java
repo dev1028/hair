@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.model.HairshopVo;
 
 public class DesignerLoginCtrl implements Controller {
 
@@ -46,7 +48,14 @@ public class DesignerLoginCtrl implements Controller {
 				// 로그인 후 인증확인
 				// .do로 보낼땐 sendRedirect , forward로 보낼때 requestDispatcher
 				if (resultVo.getDesigner_access_status().equals("1")) {
-					request.getSession().setAttribute("designerNo", resultVo.getDesigner_no());
+					request.getSession().setAttribute("designerNo", resultVo.getDesigner_no()); //디자이너 번호 세션에 담기
+					
+					//미용실정보 담기
+					HairshopVo hSVo = new HairshopVo();
+					hSVo.setHs_no(resultVo.getHs_no());
+					hSVo = HairshopDAO.getInstance().selectOne(hSVo);
+					request.getSession().setAttribute("hairshopInfo", hSVo);
+					
 					page = request.getContextPath()+"/designer/designerMain.do";
 					response.sendRedirect(page);
 					

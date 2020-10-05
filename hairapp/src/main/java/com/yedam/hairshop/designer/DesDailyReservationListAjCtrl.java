@@ -40,6 +40,15 @@ public class DesDailyReservationListAjCtrl implements Controller {
 			dseJson.put("title",des.get("mem_name")+": "+hairName);
 			dseJson.put("start",des.get("mdr_date").replace(" ", "T")+":00");
 			dseJson.put("end",des.get("sum_time").replace(" ", "T")+":00");
+			if(des.get("mdr_status").equals("i1")) {
+				dseJson.put("backgroundColor","#d9534f");
+			} else if(des.get("mdr_status").equals("i2")) {
+				dseJson.put("backgroundColor","#5cb85c");
+			} else if(des.get("mdr_status").equals("i3")) {
+				dseJson.put("backgroundColor","#5bc0de");
+			} else if(des.get("mdr_status").equals("i4")) {
+				dseJson.put("backgroundColor","#6c757d");
+			}
 			st.add(dseJson);
 		}	
 		

@@ -23,8 +23,8 @@ public class DailyReservationListAjCtrl implements Controller {
 		String startDate = request.getParameter("startDate");
 		
 		String endDate = request.getParameter("endDate");
-		//System.out.println(startDate.substring(0, 10));
-		//System.out.println(endDate.substring(0, 10));
+		System.out.println(startDate.substring(0, 10));
+		System.out.println(endDate.substring(0, 10));
 		List<Map<String,String>> list = MembersReservationDAO.getInstance().selectReservationList(HsNo, startDate.substring(0, 10), endDate.substring(0, 10) );
 		
 		JSONArray st = new JSONArray();

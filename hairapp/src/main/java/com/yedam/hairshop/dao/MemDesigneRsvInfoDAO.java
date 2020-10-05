@@ -3,6 +3,7 @@ package com.yedam.hairshop.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,6 +93,24 @@ public class MemDesigneRsvInfoDAO {
 		}
 		return list;
 
+	}
+	
+	// 2020.10.01
+	//예약상세정보 메모 업로드하기
+	public int updateMdriMemo(MemDesignerRsvInfoVo mDRIVo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE MEM_DESIGNER_RSV_INFO SET MDRI_MEMO = ? WHERE MDR_NO = ? AND MDRI_DETAIL_INFO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, mDRIVo.getMdri_memo());
+			pstmt.setString(2, mDRIVo.getMdr_no());
+			pstmt.setString(3, mDRIVo.getMdri_detail_info());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
 	}
 
 }

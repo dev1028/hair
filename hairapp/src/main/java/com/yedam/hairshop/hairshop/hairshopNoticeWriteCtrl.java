@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopDAO;
@@ -15,6 +16,9 @@ public class hairshopNoticeWriteCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("공지사항 작성");
+		 	
+		//HttpSession session = request.getSession();
+		
 		 String notice_no = request.getParameter("notice_no");
 		 String notice_title = request.getParameter("notice_title"); 
 		 String notice_contents = request.getParameter("notice_contents");
@@ -23,6 +27,7 @@ public class hairshopNoticeWriteCtrl implements Controller {
 		 String notice_image = request.getParameter("notice_image");
 		 String emp_no = "1";//request.getParameter("emp_no"); session으로 바꿔야됨
 		 String notice_categoryname = request.getParameter("notice_categoryname");
+
 		 
 		 HairshopNoticeVo vo = new HairshopNoticeVo();
 		 
@@ -37,6 +42,6 @@ public class hairshopNoticeWriteCtrl implements Controller {
 		 
 		 int resultVo = HairshopDAO.getInstance().insert(vo);
 		 request.setAttribute("write", resultVo);
-		 response.sendRedirect("hairshopNoticeWriteCtrl.do");
+		 response.sendRedirect("hairshopNoticeCtrl.do");
 	}
 }

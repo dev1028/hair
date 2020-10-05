@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class DesignerVo {
+	private String rn;			//디자이너 랭크
 	private String designer_no;
 	private String designer_name;
 	private String designer_phone; 
@@ -20,5 +21,6 @@ public class DesignerVo {
 	private String designer_profile;
 	private String hs_no;
 	private String file_name;
-	
+	private String designer_book;
+	private String hs_name;
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -88,7 +87,7 @@ public class DailyReservationListCtrl implements Controller {
 
 			JSONObject dseJson = new JSONObject();
 			dseJson.put("id", des.getDesigner_no());
-			dseJson.put("title", des.getDesigner_name());
+			dseJson.put("title", ((des.getPosition() == null) ? "" : des.getPosition() +" ")+ des.getDesigner_name());
 			String color = ColorList.Color[cnt++];
 			dseJson.put("eventColor", color);
 			dseJson.put("businessHours", dseDayoff);
@@ -108,7 +107,7 @@ public class DailyReservationListCtrl implements Controller {
 		String path = uri.substring(contextPath.length());
 		if(path.equals("/hairshop/dailyReservationList.do")) {
 			request.getRequestDispatcher("/hairshop/dailyReservation.jsp").forward(request, response);
-		} else {
+		} else if(path.equals("/hairshop/weeklyReservationList.do")) {
 			request.getRequestDispatcher("/hairshop/weeklyReservation.jsp").forward(request, response);
 		}
 	}
