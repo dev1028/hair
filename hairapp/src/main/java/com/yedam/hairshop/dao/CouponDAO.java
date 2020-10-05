@@ -16,7 +16,7 @@ public class CouponDAO {
 	static CouponDAO instance = null;
 	final static String selectAll = "select * from hs_coupon";
 	final static String insert = "insert into hs_coupon(HSC_NO,HS_NO,HSC_ISSUEDATE,HSC_EXPIREDATE,HSC_COUPON_QUANTITY,HSC_DISCOUNT_RATE,HSC_MAXDISCOUNT_PAY,HSC_NAME)"
-			+ "values( 2,?,?,?,?,?,?,?)";
+			+ "values( hsc_seq.nextval(),?,?,?,?,?,?,?)";
 
 	public static CouponDAO getInstance() {
 		if (instance == null)
@@ -67,8 +67,8 @@ public class CouponDAO {
 
 				resultVo.setHsc_name(rs.getString("HSC_NAME"));
 				resultVo.setHsc_issuedate(rs.getString("HSC_ISSUEDATE"));
-				resultVo.setHsc_expiredate(rs.getString("HSC_ISSUEDATE"));
-				resultVo.setHsc_coupon_quantity(rs.getString("HSC_ISSUEDATE"));
+				resultVo.setHsc_expiredate(rs.getString("HSC_expiredate"));
+				resultVo.setHsc_coupon_quantity(rs.getString("HSC_coupon_quantity"));
 				resultVo.setHsc_discount_rate(rs.getString("HSC_DISCOUNT_RATE"));
 				resultVo.setHsc_maxdiscount_pay(rs.getString("HSC_MAXDISCOUNT_PAY"));
 

@@ -29,9 +29,7 @@
 		<c:forEach items="${list }" var = "i">
 			<tr>
 				<td>${ i.type}</td>
-				<c:if >
 				<td>${i.who }</td>
-				</c:if>
 				<td>${i.id }</td>
 				<td>${ i.readable}/${i.writtable}</td>
 				<td>${i.nevv }/${i.total }</td>

@@ -90,7 +90,7 @@
 						<button type="button" name="designer_no" class="asc">a</button>
 						<button type="button" name="designer_no" class="des">d</button>
 					</th>
-					<th>혜택</th>
+					<th>할인율</th>
 					<th>사용기간
 						<button type="button" name="designer_no" class="asc">a</button>
 						<button type="button" name="designer_no" class="des">d</button>
@@ -100,6 +100,7 @@
 						<button type="button" name="designer_no" class="asc">a</button>
 						<button type="button" name="designer_no" class="des">d</button>
 					</th>
+					<th>대상</th>
 					<th>수정</th>
 					<th>발급내역</th>
 				</tr>
@@ -111,12 +112,13 @@
 						<td><input type="checkbox" class="chk"></td>
 						<td></td>
 						<td></td>
-						<td>${ l.hcs_name}</td>
-						<td>${ l.hcs_discount_rate}</td>
-						<td>${ l.hcs_expiredate}</td>
-						<td>${ l.hcs_quantity}</td>
-						<td></td>
-						<td></td>
+						<td>${ l.hsc_name}</td>
+						<td>${ l.hsc_discount_rate}</td>
+						<td>${ l.hsc_expiredate}</td>
+						<td>${ l.hsc_coupon_quantity}</td>
+						<td>${l.hsc_no }</td>
+						
+						<td>${l.hs_no }</td><td></td>
 						<td></td>
 					</tr>
 				</c:forEach>

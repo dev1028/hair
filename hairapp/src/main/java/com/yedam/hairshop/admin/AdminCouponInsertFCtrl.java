@@ -33,7 +33,7 @@ public class AdminCouponInsertFCtrl implements Controller {
 		vo.setHsc_name(hsc_name);
 		CouponDAO.getInstance().insert(vo);
 		
-		request.getRequestDispatcher("/admin/adminCouponFind.do").forward(request, response);
+		request.getRequestDispatcher("/hairapp/admin/adminCouponFind.do").forward(request, response);
 	}
 
 }
