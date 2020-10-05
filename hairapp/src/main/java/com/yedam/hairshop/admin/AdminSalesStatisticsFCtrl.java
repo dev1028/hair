@@ -9,10 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.SalesDAO;
+import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.SalesVo;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 public class AdminSalesStatisticsFCtrl implements Controller {
 		@Override
