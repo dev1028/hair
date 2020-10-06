@@ -13,11 +13,17 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>Admin</title>
-<link href="/hairapp/decorator/ges/dist/css/styles.css" rel="stylesheet" />
-<link
-	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
-	rel="stylesheet" crossorigin="anonymous" />
+	<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="/hairapp/decorator/ges/dist/css/styles.css" rel="stylesheet" />
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
 	crossorigin="anonymous"></script>
 <decorator:head></decorator:head>
@@ -192,6 +198,13 @@
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 게시판 설정
+						</a>
+						<div class="sb-sidenav-menu-heading">코드관리</div>
+						<a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/codeList.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> 공통코드
 						</a>
 					</div>
 				</div>

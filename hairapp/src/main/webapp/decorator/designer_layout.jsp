@@ -77,35 +77,35 @@
 					$("#forUl").html("");
 
 				} else {
-					var eventTimeStr = data.mdr_date.trim().replace(" ","T")+":00";
+					var eventTimeStr = data[0].mdr_date.trim().replace(" ","T")+":00";
 					var eventTime = new Date(eventTimeStr);
 					var currentTime = new Date(); 
 		
 					if(getCookie("nextCustomer") == null){
-						setCookie("nextCustomer", data.mdr_no, 1);
-						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						setCookie("nextCustomer", data[0].mdr_no, 1);
+						ttsText = data[0].mdr_date.split(" ")[1] + " 에 "+data[0].mem_name +" 님이 " + data[0].hair_name +" 시술을 예약했습니다.";
 						console.log(ttsText);
 						speech(ttsText);
-					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data.mdr_no){
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data[0].mdr_no){
 						if(currentTime <= eventTime-285000 && currentTime >= eventTime-315000){
-							ttsText = data.mem_name +" 님의 " + data.hair_name +" 시술이 5분전입니다.";
+							ttsText = data[0].mem_name +" 님의 " + data[0].hair_name +" 시술이 5분전입니다.";
 							console.log(ttsText);
 							speech(ttsText);
 						}
-					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data.mdr_no){
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data[0].mdr_no){
 						console.log(getCookie("nextCustomer"));
-						setCookie("nextCustomer", data.mdr_no, 1);
-						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						setCookie("nextCustomer", data[0].mdr_no, 1);
+						ttsText = data[0].mdr_date.split(" ")[1] + " 에 "+data[0].mem_name +" 님이 " + data[0].hair_name +" 시술을 예약했습니다.";
 						console.log(ttsText);
 						speech(ttsText);
 					}
 					
 					$("#forUl").html("");
-					result = data;
-					$("#customerName").text(data.mdr_date.split(" ")[1]+" - "+data.mem_name);
+					result = data[0];
+					$("#customerName").text(data[0].mdr_date.split(" ")[1]+" - "+data.mem_name);
 					$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
 					var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
-					var hairs = data.hair_name.split(" ");
+					var hairs = data[0].hair_name.split(" ");
 					for(var i = 0; i<hairs.length-1; i++){
 						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
 					}
