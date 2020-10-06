@@ -125,7 +125,9 @@ public class DesignerDAO {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, Designer_access_status, hs_no "
+			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, DESIGNER_ACCESS_STATUS,"
+					+ " DESIGNER_PHONE, DESIGNER_DAYOFF, WORK_START_TIME, WORK_END_TIME, DESIGNER_PROFILE, "
+					+ " FILE_NAME, HS_NO "
 					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_email());
@@ -137,6 +139,13 @@ public class DesignerDAO {
 				resultVo.setDesigner_name(rs.getString("DESIGNER_NAME"));
 				resultVo.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
 				resultVo.setDesigner_access_status(rs.getString("Designer_access_status"));
+				resultVo.setDesigner_phone(rs.getString("Designer_phone"));
+				
+				resultVo.setDesigner_dayoff(rs.getString("DESIGNER_DAYOFF"));
+				resultVo.setWork_start_time(rs.getString("WORK_START_TIME"));
+				resultVo.setWork_end_time(rs.getString("WORK_END_TIME"));
+				resultVo.setDesigner_profile(rs.getString("DESIGNER_PROFILE"));
+				resultVo.setFile_name(rs.getString("FILE_NAME"));
 				resultVo.setHs_no(rs.getString("hs_no"));
 
 			} else {
