@@ -41,20 +41,7 @@
 			<input type="date" id="start" name="startDate"> -
 			<input type="date" id="end" name="endDate">
 		</div>
-		<div class="control">
-			<label for="name">게시판 선택 </label> <select name="boardType"
-				id="boardType">
-				
-				<option id="notice" value="notice">공지</option>
-				<option id="qna" value="qna">QnA</option>
-			</select> <select name="category" id="category">
-				<option value ="all">전체카테고리</option>
-				<option value ="a1">입점문의 </option>
-				<option value ="a2">단순문의 </option>
-				<option value ="a3">불만문의 </option>
-			</select>
-
-		</div>
+	
 		<div class="control">
 		<select name="who" id="who">
 				<option value="j1">미용실</option>
@@ -77,14 +64,7 @@
 
 
 
-		<div class="control" id="answerDiv">
-			<label for="name">답변상태 </label> <input type="checkbox" name="answer"
-				id="answer" value="y">답변완료 <input type="checkbox"
-				name="answer" value="n">답변대기
-
-		</div>
-		<div class="control">
-
+	
 
 			<button type="submit" value="Submit" id="submit" class="col-1-4">Submit</button>
 		</div>
@@ -111,11 +91,8 @@
 						<button type="button" name="designer_no" class="asc">a</button>
 						<button type="button" name="designer_no" class="des">d</button>
 					</th>
-					<th>답변상태
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
-					<th>답변하기</th>
+					
+				
 					<th>작성자</th>
 					<th>작성일</th>
 					<th>조회수
@@ -132,8 +109,7 @@
 						<td>${ l.b_no}</td>
 						<td>${ l.b_category}</td>
 						<td>${ l.b_title}</td>
-						<td>${ l.b_as}</td>
-						<td>${ l.b_a}</td>
+						
 						<td>${ l.b_writer}</td>
 						<td>${ l.b_wd}</td>
 						<td>${ l.b_hits}</td>

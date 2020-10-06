@@ -15,8 +15,8 @@ public class CouponDAO {
 
 	static CouponDAO instance = null;
 	final static String selectAll = "select * from hs_coupon";
-	final static String insert = "insert into hs_coupon(HSC_NO,HS_NO,HSC_ISSUEDATE,HSC_EXPIREDATE,HSC_COUPON_QUANTITY,HSC_DISCOUNT_RATE,HSC_MAXDISCOUNT_PAY,HSC_NAME)"
-			+ "values( hsc_seq.nextval(),?,?,?,?,?,?,?)";
+	final static String insert = "insert into hs_coupon(HSC_NO,HS_NO,HSC_ISSUEDATE,HSC_EXPIREDATE,HSC_COUPON_QUANTITY,HSC_DISCOUNT_RATE,HSC_MAXDISCOUNT_PAY,HSC_NAME) "
+			+ "values( hsc_no_seq.nextval,?,?,?,?,?,?,?)";
 
 	public static CouponDAO getInstance() {
 		if (instance == null)
@@ -31,6 +31,7 @@ public class CouponDAO {
 			conn = ConnectionManager.getConnnect();
 
 			pstmt = conn.prepareStatement(insert); // 예외처리
+			System.out.println(insert);
 			pstmt.setString(1, vo.getHs_no());
 			pstmt.setString(2, vo.getHsc_issuedate());
 			pstmt.setString(3, vo.getHsc_expiredate());

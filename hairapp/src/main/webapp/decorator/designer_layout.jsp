@@ -274,7 +274,7 @@
 									<span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">MyPage</a></li>
+								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">내정보수정</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의
 									매출정보</a></li>
