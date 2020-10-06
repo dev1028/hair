@@ -106,10 +106,12 @@ import com.yedam.hairshop.members.HairshopSelectResultCtrl;
 import com.yedam.hairshop.members.MembersBookmarkDesignerCtrl;
 import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
 import com.yedam.hairshop.members.MembersBookmarkHairstyleCtrl;
+import com.yedam.hairshop.members.MembersCouponCtrl;
 import com.yedam.hairshop.members.MembersDeleteCtrl;
 import com.yedam.hairshop.members.MembersDeleteSCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
+import com.yedam.hairshop.members.MembersHsCouponICtrl;
 import com.yedam.hairshop.members.MembersHsDesignerIntroCtrl;
 import com.yedam.hairshop.members.MembersHsEventIntroCtrl;
 import com.yedam.hairshop.members.MembersIdSearchCtrl;
@@ -234,60 +236,64 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", new HairshopCouponInsertCtrl());
 		
 
-		// 린아
-		list.put("/members/membersLogin.do", new MembersLoginCtrl()); // 로그인 페이지 이동 컨트롤러
-		list.put("/members/membersLogout.do", new MembersLogoutCtrl()); // 로그아웃 페이지 이동 컨트롤러
-		list.put("/members/membersLoginS.do", new MembersLoginSCtrl()); // 로그인 처리하는 컨트롤러
-
-		list.put("/members/membersSearch.do", new MembersSearchCtrl()); // ID/PW 찾기 페이지 이동 컨트롤러
-		list.put("/members/membersIdSearch.do", new MembersIdSearchCtrl()); // ID 찾기 페이지 이동 컨트롤러
-		list.put("/members/membersIdSearchS.do", new MembersIdSearchSCtrl()); // ID 찾기 넘어가는 컨트롤러
-		list.put("/members/membersPwSearch.do", new MembersPwSearchCtrl()); // PW 찾기 페이지 이동 컨트롤러
-		list.put("/members/membersPwSearchS.do", new MembersPwSearchSCtrl()); // PW 찾기 넘어가는 컨트롤러
-		list.put("/members/membersPwEnd.do", new MembersPwEndCtrl()); // PW 찾기 완료 페이지 이동하는 컨트롤러
-		list.put("/members/membersPwEmail.do", new MembersPwEmailCtrl()); // PW EMAIL 인증 클릭 컨트롤러
-		list.put("/members/membersPwModify.do", new MembersPwModifyCtrl()); // PW 수정 처리하는 컨트롤러
-
-		list.put("/members/membersJoin.do", new MembersJoinCtrl()); // 회원가입 페이지 이동 컨트롤러
-		list.put("/members/membersJoinS.do", new MembersJoinSCtrl()); // 회원가입 넘어가는 컨트롤러
-		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl()); // 회원가입 ID 중복확인 컨트롤러
-		list.put("/members/membersJoinEmail.do", new MembersJoinEmailCtrl()); // 회원가입 이메일 인증하는 컨트롤러
-		list.put("/members/membersJoinEnd.do", new MembersJoinEndCtrl()); // 회원가입 완료 페이지 이동하는 컨트롤러
-
-		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl()); // 회원수정 컨트롤러
-		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl()); // 회원수정 정보확인 컨트롤러
-		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl()); // 예약내역 컨트롤러
-		list.put("/members/membersDR.do", new DetailedReservationCtrl()); // 예약 상세 확인 컨트롤러
-		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl()); // 마이페이지 톱 컨트롤러
-
-		list.put("/members/membersDelete.do", new MembersDeleteCtrl()); // 회원 탈퇴로 이동하는 컨트롤러
-		list.put("/members/membersDeleteS.do", new MembersDeleteSCtrl()); // 회원 탈퇴 처리하는 컨트롤러
-
-		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl()); // 헤어샵소개로 이동하는 컨트롤러
-		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl()); // 헤어샵 정보 뿌려주는 컨트롤러
-		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl()); // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
-		list.put("/members/hsEventIntro.do", new MembersHsEventIntroCtrl()); // 헤어샵 안의 쿠폰 뿌려주는 컨트롤러
-
-		list.put("/members/membersNotice.do", new MembersNoticeCtrl()); // 공지사항 목록 컨트롤러
-		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl()); // 공지사항 글쓰기로 이동하는 컨트롤러
-		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl()); // 공지사항 글쓰기 컨트롤러
-		list.put("/members/membersNoticeV.do", new MembersNoticeVCtrl()); // 공지사항 보기 컨트롤러
-		list.put("/members/membersNoticeMG.do", new MembersNoticeMGCtrl()); // 공지사항 수정으로 이동하는 컨트롤러
-		list.put("/members/membersNoticeM.do", new MembersNoticeMCtrl()); // 공지사항 수정 하는 컨트롤러
-		list.put("/members/membersNoticeD.do", new MembersNoticeDCtrl()); // 공지사항 삭제 컨트롤러
-
-		list.put("/members/membersQna.do", new MembersQnaCtrl()); // Qna 목록 컨트롤러
-		list.put("/members/membersQnaWG.do", new MembersQnaWGCtrl()); // Qna 글쓰기로 이동하는 컨트롤러
-		list.put("/members/membersQnaW.do", new MembersQnaWCtrl()); // Qna 글쓰기 컨트롤러
-		list.put("/members/membersQnaV.do", new membersQnaVCtrl()); // Qna 보기 컨트롤러
-		list.put("/members/membersQnaReG.do", new membersQnaReGCtrl()); // Qna 답변으로 이동 컨트롤러
-		list.put("/members/membersQnaRe.do", new MembersQnaReCtrl()); // Qna 답변 처리하는 컨트롤러
-		list.put("/members/membersQnaMG.do", new MembersQnaMGCtrl()); // Qna 수정으로 이동하는 컨트롤러
-		list.put("/members/membersQnaM.do", new MembersQnaMCtrl()); // Qna 수정하는 컨트롤러
-		list.put("/members/membersQnaD.do", new MembersQnaDCtrl()); // Qna 삭제 컨트롤러
-
-		// 강산
 		
+		//린아
+		list.put("/members/membersLogin.do", new MembersLoginCtrl());			// 로그인 페이지 이동 컨트롤러
+		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 페이지 이동 컨트롤러
+		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 처리하는 컨트롤러
+		
+		list.put("/members/membersSearch.do", new MembersSearchCtrl());			// ID/PW 찾기 페이지 이동 컨트롤러
+		list.put("/members/membersIdSearch.do", new MembersIdSearchCtrl());		// ID 찾기 페이지 이동 컨트롤러
+		list.put("/members/membersIdSearchS.do", new MembersIdSearchSCtrl());	// ID 찾기 넘어가는 컨트롤러
+		list.put("/members/membersPwSearch.do", new MembersPwSearchCtrl());		// PW 찾기 페이지 이동 컨트롤러
+		list.put("/members/membersPwSearchS.do", new MembersPwSearchSCtrl());	// PW 찾기 넘어가는 컨트롤러
+		list.put("/members/membersPwEnd.do", new MembersPwEndCtrl());			// PW 찾기 완료 페이지 이동하는 컨트롤러
+		list.put("/members/membersPwEmail.do", new MembersPwEmailCtrl());		// PW EMAIL 인증 클릭 컨트롤러
+		list.put("/members/membersPwModify.do", new MembersPwModifyCtrl());		// PW 수정 처리하는 컨트롤러
+							
+		list.put("/members/membersJoin.do", new MembersJoinCtrl());				// 회원가입 페이지 이동 컨트롤러
+		list.put("/members/membersJoinS.do", new MembersJoinSCtrl());			// 회원가입 넘어가는 컨트롤러
+		list.put("/ajax/membersJoinIdCheck.do", new MembersJoinIdCheckCtrl());	// 회원가입 ID 중복확인 컨트롤러
+		list.put("/members/membersJoinEmail.do", new MembersJoinEmailCtrl());	// 회원가입 이메일 인증하는 컨트롤러
+		list.put("/members/membersJoinEnd.do", new MembersJoinEndCtrl());		// 회원가입 완료 페이지 이동하는 컨트롤러
+		
+		list.put("/members/membersInfoModify.do", new MembersInfoModifyCtrl());	// 회원수정 컨트롤러
+		list.put("/members/membersInfoView.do", new MembersInfoViewCtrl());		// 회원수정 정보확인 컨트롤러
+		list.put("/members/membersRD.do", new MembersReservationDetailsCtrl());	// 예약내역 컨트롤러
+		list.put("/members/membersDR.do", new DetailedReservationCtrl());		// 예약 상세 확인 컨트롤러
+		list.put("/members/membersMypageTop.do", new MembersMyPageTopCtrl());	// 마이페이지 톱 컨트롤러
+		list.put("/members/membersCoupon.do", new MembersCouponCtrl());			// 내 쿠폰 내역 확인 컨트롤러
+		
+		list.put("/members/membersDelete.do", new MembersDeleteCtrl());			// 회원 탈퇴로 이동하는 컨트롤러
+		list.put("/members/membersDeleteS.do", new MembersDeleteSCtrl());		// 회원 탈퇴 처리하는 컨트롤러
+		
+		list.put("/members/hairshopInfo.do", new MembersHairShopInfoCtrl());	// 헤어샵소개로 이동하는 컨트롤러
+		list.put("/members/hairshopIntro.do", new MembersHairShopIntroCtrl());	// 헤어샵 정보 뿌려주는 컨트롤러
+		list.put("/members/hsDesignerIntro.do", new MembersHsDesignerIntroCtrl());  // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
+		list.put("/members/hsEventIntro.do", new MembersHsEventIntroCtrl());	// 헤어샵 안의 쿠폰 보여주는 컨트롤러
+		list.put("/members/hsCouponIssuance.do", new MembersHsCouponICtrl());	// 헤어샵 안의 쿠폰 발급해주는 컨트롤러
+		
+		list.put("/members/membersNotice.do", new MembersNoticeCtrl());			// 공지사항 목록 컨트롤러
+		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl());		// 공지사항 글쓰기로 이동하는 컨트롤러
+		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl());		// 공지사항 글쓰기 컨트롤러
+		list.put("/members/membersNoticeV.do", new MembersNoticeVCtrl());		// 공지사항 보기 컨트롤러
+		list.put("/members/membersNoticeMG.do", new MembersNoticeMGCtrl());		// 공지사항 수정으로 이동하는 컨트롤러
+		list.put("/members/membersNoticeM.do", new MembersNoticeMCtrl());		// 공지사항 수정 하는 컨트롤러
+		list.put("/members/membersNoticeD.do", new MembersNoticeDCtrl());		// 공지사항 삭제 컨트롤러
+		
+		list.put("/members/membersQna.do", new MembersQnaCtrl());				// Qna 목록 컨트롤러
+		list.put("/members/membersQnaWG.do", new MembersQnaWGCtrl());			// Qna 글쓰기로 이동하는 컨트롤러
+		list.put("/members/membersQnaW.do", new MembersQnaWCtrl());				// Qna 글쓰기 컨트롤러
+		list.put("/members/membersQnaV.do", new membersQnaVCtrl());				// Qna 보기 컨트롤러
+		list.put("/members/membersQnaReG.do", new membersQnaReGCtrl());			// Qna 답변으로 이동 컨트롤러
+		list.put("/members/membersQnaRe.do", new MembersQnaReCtrl());			// Qna 답변 처리하는 컨트롤러
+		list.put("/members/membersQnaMG.do", new MembersQnaMGCtrl());			// Qna 수정으로 이동하는 컨트롤러
+		list.put("/members/membersQnaM.do", new MembersQnaMCtrl());				// Qna 수정하는 컨트롤러
+		list.put("/members/membersQnaD.do", new MembersQnaDCtrl());				// Qna 삭제 컨트롤러
+		
+		
+		//강산
+		list.put("/admin/adminLogin.do", new adminLoginCtrl());
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());//로그인
 		list.put("/admin/adminMain.do", new adminMainCtrl());
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());

@@ -208,7 +208,7 @@
 							<a href="${pageContext.request.contextPath}/members/membersMypageTop.do"> <li>마이페이지</li></a>
 							<a href="${pageContext.request.contextPath}/members/membersRD.do"> <li>예약내역</li></a>
 							<a href="${pageContext.request.contextPath}/members/membersBookmarkHairshop.do"> <li>북마크</li> </a>
-							<a href="#"> <li>쿠폰</li> </a>
+							<a href="${pageContext.request.contextPath}/members/membersCoupon.do"> <li>쿠폰</li> </a>
 							<a href="${pageContext.request.contextPath}/members/membersLogout.do"> <li>로그아웃</li></a>
 						</ul>
 					</a>

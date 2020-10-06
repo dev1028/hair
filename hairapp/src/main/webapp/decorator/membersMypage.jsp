@@ -231,7 +231,7 @@ a.article:hover {
                     </ul>
                 </li>
                 <li>
-                    <a href="#">쿠폰</a>
+                    <a href="membersCoupon.do">쿠폰</a>
                 </li>
             </ul>
             <ul class="list-unstyled CTAs">
