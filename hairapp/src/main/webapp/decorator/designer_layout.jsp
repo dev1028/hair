@@ -39,6 +39,13 @@
 	var coeff = 1000 * 60 * 5;
 	
 	$(function(){
+		$("#siteSearchCustomerBtn").on("click", function() {
+			if ($("#siteInputSearch").val() == "") {
+				alert("값을 입력해주세요");
+			} else {
+				$("#siteSearchCustomerFrm").submit();
+			}
+		});
 		findNext();
 		var dated = new Date();  //or use any other date
 		var rounded = new Date(Math.ceil(dated.getTime() / coeff) * coeff)
@@ -295,11 +302,14 @@
 								tabindex="-1" aria-disabled="true">Disabled</a></li>
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
-						<form>
+						<form id="siteSearchCustomerFrm"
+						action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
+							method="post">
 							<!-- class="form-control mr-sm-2" -->
 							<!--  class="btn btn-outline-success my-2 my-sm-0" -->
-							<input type="search" placeholder="예약자찾기" aria-label="Search">
-							<button type="submit" class="btn btn-secondary btn-sm">Search</button>
+							<input type="hidden" name="divisionSearch" value="name">
+							<input type="text" id="siteInputSearch" name="inputSearch" placeholder="예약자찾기" aria-label="Search">
+							<button id="siteSearchCustomerBtn" type="button" class="btn btn-secondary btn-sm">Search</button>
 						</form>
 						<span>로그아웃</span>
 					</div>
