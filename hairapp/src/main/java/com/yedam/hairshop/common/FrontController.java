@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
+import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
+import com.yedam.hairshop.admin.CodeUpdateAjCtrl;
+import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
+import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageCtrl;
@@ -71,6 +76,9 @@ import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
+import com.yedam.hairshop.hairshop.HsFindMyCustomerCtrl;
+import com.yedam.hairshop.hairshop.HsFindMyCustomerDetailCtrl;
+import com.yedam.hairshop.hairshop.HsFindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
@@ -324,8 +332,7 @@ public class FrontController extends HttpServlet {
 
 		// 승연
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); // 헤어샵 로그인 후 메인페이지
-		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl()); // 헤어샵,디자이너 로그인페이지 -> 최종메인페이지
-																							// 필요
+		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl()); // 헤어샵,디자이너 로그인페이지 -> 최종메인페이지 필요
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl()); // 디자이너 직원목록
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl()); // 디자이너 간편등록
 		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl()); // 디자이너 퇴사명단
@@ -354,18 +361,25 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerMain.do", new DesignerMainCtrl()); // 디자이너 메인페이지
 		list.put("/designer/desDailyReservationList.do", new DesDailyReservationListCtrl()); // 디자이너 일간예약자 리스트(일반캘린더방식)
 		list.put("/designer/desWeeklyReservationList.do", new DesDailyReservationListCtrl()); // 디자이너 주간예약자 리스트(일반캘린더방식)
-		list.put("/designer/desMonthlyReservationList.do", new DesDailyReservationListCtrl()); // 디자이너 월간예약자
-																								// 리스트(일반캘린더방식)
-		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl()); // 일간예약명단 가져오기(일반캘린더방식)
-																								// -싱글톤
-		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl()); // 일간(주간)예약명단
-																								// 가져오기(일반캘린더방식) - 객체생성
+		list.put("/designer/desMonthlyReservationList.do", new DesDailyReservationListCtrl()); // 디자이너 월간예약자 리스트(일반캘린더방식)
+		list.put("/ajax/desDailyReservationListAj.do", new DesDailyReservationListAjCtrl()); // 일간예약명단 가져오기(일반캘린더방식)-싱글톤
+		list.put("/ajax/desWeeklyReservationListAj.do", new DesWeeklyReservationListAjCtrl()); // 일간(주간)예약명단 가져오기(일반캘린더방식) - 객체생성
 
 		list.put("/ajax/designerNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 디자이너용 다음 고객 찾기
 		list.put("/designer/findMyCustomer.do", new FindMyCustomerCtrl()); //디자이너용 예약자 검색 및 명단보기
 		list.put("/designer/findMycustomerRe.do", new FindMyCustomerReCtrl()); //검색페이지로 돌아가기
 		list.put("/designer/findMyCustomerDetail.do", new FindMyCustomerDetailCtrl()); //디자이너용 예약자 상세 + 매출 정보 보기
-
+		
+		list.put("/ajax/hairshopNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 미용실용 다음 고객 찾기
+		list.put("/hairshop/hsFindMyCustomer.do", new HsFindMyCustomerCtrl()); //미용실용 예약자 검색 및 명단보기
+		list.put("/hairshop/hsFindMycustomerRe.do", new HsFindMyCustomerReCtrl()); //미용실용 검색페이지로 돌아가기
+		list.put("/hairshop/hsFindMyCustomerDetail.do", new HsFindMyCustomerDetailCtrl()); //미용실용 예약자 상세 + 매출 정보 보기
+		
+		list.put("/admin/codeList.do", new CodeListCtrl()); //코드리스트 페이지 이동
+		list.put("/ajax/primaryCodeInsert.do", new PrimaryCodeInsertAjCtrl()); //주코드 입력
+		list.put("/ajax/secondaryCodeInsert.do", new SecondaryCodeInsertAjCtrl()); //보조코드 추가
+		list.put("/ajax/codeUpdate.do", new SecondaryCodeInsertAjCtrl()); //코드 수정
+		list.put("/ajax/categoryMajorDelete.do", new CategoryMajorDeleteAjCtrl()); //삭제
 	}
 
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
