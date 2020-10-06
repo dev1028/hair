@@ -43,7 +43,9 @@ import com.yedam.hairshop.designer.DesignerMyPageUpdateCtrl;
 import com.yedam.hairshop.designer.DesignerNextCustomerAjCtrl;
 import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerCtrl;
-import com.yedam.hairshop.designer.customerJoinCtrl;
+import com.yedam.hairshop.designer.FindMyCustomerDetailCtrl;
+import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
+import com.yedam.hairshop.designer.CustomerJoinCtrl;
 import com.yedam.hairshop.hairshop.ChangeReservationStatusAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
@@ -201,7 +203,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
-		list.put("/designer/customerJoinCtrl.do", new customerJoinCtrl());
+		//list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
 		
 		list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		list.put("/hairshop/hairshopNoticeWriteCtrl.do", new hairshopNoticeWriteCtrl());
@@ -328,7 +330,8 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/ajax/designerNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 디자이너용 다음 고객 찾기
 		list.put("/designer/findMyCustomer.do", new FindMyCustomerCtrl()); //디자이너용 예약자 검색 및 명단보기
-		//list.put("/designer/findMyCustomerDetail.do", new FindMyCustomerDetailCtrl()); //디자이너용 예약자 상세 + 매출 정보 보기
+		list.put("/designer/findMycustomerRe.do", new FindMyCustomerReCtrl()); //검색페이지로 돌아가기
+		list.put("/designer/findMyCustomerDetail.do", new FindMyCustomerDetailCtrl()); //디자이너용 예약자 상세 + 매출 정보 보기
 		
 	}
 
