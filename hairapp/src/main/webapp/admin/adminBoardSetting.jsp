@@ -8,11 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-$(function ().on("click",$("#goto"),function(){
-	
-}
-	
-}
+
 </script>
 </head>
 <body>
@@ -40,7 +36,7 @@ $(function ().on("click",$("#goto"),function(){
 				<td>${i.id }</td>
 				<td>${ i.readable}/${i.writtable}</td>
 				<td>${i.nevv }/${i.total }</td>
-				<td><button id="goto"onclick="location.href='${pageContext.request.contextPath}/members/membersNotice.do'">글보기</button>
+				<td><button id="goto"onclick="location.href='${pageContext.request.contextPath}/admin/adminInsertNotice.do?notice_who=${i.who }'">글쓰기</button>
 					<button>글삭제</button>
 					<button>고정</button></td>
 			</tr>

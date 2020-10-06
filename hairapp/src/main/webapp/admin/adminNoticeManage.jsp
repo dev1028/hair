@@ -44,6 +44,7 @@
 	
 		<div class="control">
 		<select name="who" id="who">
+				<option value="all">전체페이지</option>
 				<option value="j1">미용실</option>
 				<option value="j2">일반회원  </option>
 				<option value="j3">디자이너  </option>
@@ -106,20 +107,18 @@
 					<tr>
 
 						<td><input type="checkbox" class="chk"></td>
-						<td>${ l.b_no}</td>
-						<td>${ l.b_category}</td>
-						<td>${ l.b_title}</td>
+						<td>${ l.notice_no}</td>
+						<td>${ l.notice_whov}</td>
+						<td><a href="adminNoticeView.do?notice_no=${ l.notice_no}">${ l.notice_title}</a></td>
 						
-						<td>${ l.b_writer}</td>
-						<td>${ l.b_wd}</td>
-						<td>${ l.b_hits}</td>
-						<td>${ l.b_who}</td>
+						<td>${ l.emp_no}</td>
+						<td>${ l.notice_writedate}</td>
+						<td>${ l.notice_hits}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<button id="excel">excel</button>
-		<button id="email">email</button>
 	</div>
 	<!-- <button type="button" id="excel">excel</button> -->
 

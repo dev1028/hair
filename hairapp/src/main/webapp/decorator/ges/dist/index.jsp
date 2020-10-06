@@ -60,16 +60,52 @@
 					<a class="dropdown-item" href="#">Settings</a> <a
 						class="dropdown-item" href="#">Activity Log</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminReturnToLogin.do">Logout</a>
 				</div></li>
 		</ul>
 	</nav>
+<!-- 	상단네비 -->
+
+
+<!-- 사이드바시 -->
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
+					
+					
+					
+					
+					<div class="sb-sidenav-menu-heading">게시</div>
+						<a class="nav-link collapsed"
+							href="${pageContext.request.contextPath}/admin/adminCustomerManage.do"
+							data-toggle="collapse" data-target="#collapseLayouts"
+							aria-expanded="false" aria-controls="collapseLayouts">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> 게시물관리 
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a>
+						
+						<div class="collapse" id="collapseLayouts"
+							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminQnaManage.do">QnA 게시물 관리
+									</a> 
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminNoticeManage.do">공지사항 게시물 관리</a>
+									
+							</nav>
+						</div>
+					
+
+
+
+
+
 						<div class="sb-sidenav-menu-heading">이벤트</div>
 						<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/adminCouponManage.do">
@@ -77,6 +113,10 @@
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 쿠폰관리
 						</a>
+						
+						
+						
+						
 						<div class="sb-sidenav-menu-heading">통계</div>
 						<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/hairshopAnalysis.do">
@@ -94,6 +134,11 @@
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 헤어별통계
 						</a>
+						
+						
+						
+						
+						
 						<div class="sb-sidenav-menu-heading">회원</div>
 						<a class="nav-link collapsed"
 							href="${pageContext.request.contextPath}/admin/adminCustomerManage.do"
@@ -101,48 +146,26 @@
 							aria-expanded="false" aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
-							</div> 사용자회원관리
+							</div> 회원관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
+						
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">Static
-									Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light
-									Sidenav</a>
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminCustomerManage.do">일반 회원 관리
+									</a> 
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminHairshopManage.do">헤어샵 회원 관리</a>
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminDesignerManage.do">디자이 회원 관리
+									</a>
 							</nav>
 						</div>
-						<a class="nav-link collapsed"
-							href="${pageContext.request.contextPath}/admin/adminHairshopManage.do"
-							data-toggle="collapse" data-target="#collapsePages"
-							aria-expanded="false" aria-controls="collapsePages">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-book-open"></i>
-							</div> 헤어샵회원관리
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div>
-						</a> <a class="nav-link collapsed"
-							href="${pageContext.request.contextPath}/admin/adminDesignerManage.do"
-							data-toggle="collapse" data-target="#collapseLayouts"
-							aria-expanded="false" aria-controls="collapseLayouts">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-columns"></i>
-							</div> 디자이너회원관리
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div>
-						</a>
-						<div class="collapse" id="collapseLayouts"
-							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">Static
-									Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light
-									Sidenav</a>
-							</nav>
-						</div>
+						
+						
+						
+					<!-- 
 						<div class="collapse" id="collapsePages"
 							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav accordion"
@@ -171,34 +194,26 @@
 										<i class="fas fa-angle-down"></i>
 									</div>
 								</a>
-								<div class="collapse" id="pagesCollapseError"
-									aria-labelledby="headingOne"
-									data-parent="#sidenavAccordionPages">
-									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="401.html">401 Page</a> <a
-											class="nav-link" href="404.html">404 Page</a> <a
-											class="nav-link" href="500.html">500 Page</a>
-									</nav>
-								</div>
+								
 							</nav>
-						</div>
-						<div class="sb-sidenav-menu-heading">게시판</div>
-						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminNoticeManage.do">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-chart-area"></i>
-							</div> 공지사항 게시물 관리
-						</a> <a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminQnaManage.do">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-chart-area"></i>
-							</div> QnA 게시물 관리
-						</a> <a class="nav-link"
+						</div> -->
+						
+				
+						
+							<%-- <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/adminBoardSetting.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> 게시판 설정
 						</a>
+						 --%>
+						
+						
+						
+						
+						
+						
+						
 						<div class="sb-sidenav-menu-heading">코드관리</div>
 						<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/codeList.do">

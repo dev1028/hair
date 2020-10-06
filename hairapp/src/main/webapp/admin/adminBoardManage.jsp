@@ -100,27 +100,27 @@
 				<tr>
 					<th><input type="checkbox" name="all" id="all" class="chk"></th>
 					<th>번호
-						<button type="button" name="designer_no" class="asc hide">a</button>
-						<button type="button" name="designer_no" class="des hide">d</button>
+						<button type="button" name="designer_no" class="asc hide">↑</button>
+						<button type="button" name="designer_no" class="des hide">↓</button>
 					</th>
 					<th>분류
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
+						<button type="button" name="designer_no" class="asc">↑</button>
+						<button type="button" name="designer_no" class="des">↓</button>
 					</th>
 					<th>제
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
+						<button type="button" name="designer_no" class="asc">↑</button>
+						<button type="button" name="designer_no" class="des">↓</button>
 					</th>
 					<th>답변상태
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
+						<button type="button" name="designer_no" class="asc">↑</button>
+						<button type="button" name="designer_no" class="des">↓</button>
 					</th>
 					<th>답변하기</th>
 					<th>작성자</th>
 					<th>작성일</th>
 					<th>조회수
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
+						<button type="button" name="designer_no" class="asc">↑</button>
+						<button type="button" name="designer_no" class="des">↓</button>
 					</th>
 				</tr>
 			</thead>
@@ -143,7 +143,6 @@
 			</tbody>
 		</table>
 		<button id="excel">excel</button>
-		<button id="email">email</button>
 	</div>
 	<!-- <button type="button" id="excel">excel</button> -->
 

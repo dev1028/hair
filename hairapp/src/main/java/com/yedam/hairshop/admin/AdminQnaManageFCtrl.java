@@ -23,7 +23,7 @@ public class AdminQnaManageFCtrl implements Controller {
 		String category = request.getParameter("category");
 		String searchType = request.getParameter("searchType");
 		String searchVal = request.getParameter("searchVal");
-
+String exclude = request.getParameter("excludeAns");
 		System.out.println(startDate);
 		System.out.println(endDate);
 		System.out.println(who);
@@ -42,7 +42,7 @@ public class AdminQnaManageFCtrl implements Controller {
 			paramVo.setStartDate(startDate);
 			paramVo.setEndDate(endDate);
 		}
-
+paramVo.setExcludeAnswer(exclude);
 		paramVo.setWho(who);
 		paramVo.setSearchInput(searchVal);
 		paramVo.setSearchType(searchType);

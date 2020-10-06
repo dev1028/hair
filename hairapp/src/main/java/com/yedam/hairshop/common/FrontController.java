@@ -24,9 +24,15 @@ import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
+import com.yedam.hairshop.admin.AdminNoticeInsertCtrl;
+import com.yedam.hairshop.admin.AdminNoticeInsertFCtrl;
 import com.yedam.hairshop.admin.AdminNoticeManageCtrl;
 import com.yedam.hairshop.admin.AdminNoticeManageFCtrl;
+import com.yedam.hairshop.admin.AdminNoticeViewCtrl;
+import com.yedam.hairshop.admin.AdminQnaAnswerCtrl;
+import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
+import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsFCtrl;
@@ -314,9 +320,13 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/admin/adminNoticeManage.do", new AdminNoticeManageCtrl());//notice
 		list.put("/admin/adminNoticeManageFind.do", new AdminNoticeManageFCtrl());
-		//list.put("/admin/adminQnaManage.do", new AdminQnaManageCtrl());//qna
+		list.put("/admin/adminNoticeView.do", new AdminNoticeViewCtrl());
+		list.put("/admin/adminInsertNotice.do", new AdminNoticeInsertCtrl());
+		list.put("/admin/adminNoticeInsertSubmit.do", new AdminNoticeInsertFCtrl());
+		list.put("/admin/adminQnaManage.do", new AdminQnaManageCtrl());//qna
 		list.put("/admin/adminQnaManageFind.do", new AdminQnaManageFCtrl());
 		list.put("/admin/adminQnaAnswer.do", new AdminQnaAnswerCtrl());
+		list.put("/admin/adminQnaView.do", new AdminQnaViewCtrl());
 		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());//setting
 		list.put("/admin/adminBoardSettingFind.do", new adminBoardSettingFCtrl());
 

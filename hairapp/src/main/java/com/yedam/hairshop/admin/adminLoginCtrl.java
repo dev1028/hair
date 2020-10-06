@@ -42,6 +42,8 @@ public class adminLoginCtrl implements Controller {
 		// 4.뷰페이지이동 포워드 리다이렉트 또는 뷰페이지 출력
 		System.out.println(page);
 		request.getRequestDispatcher(page).forward(request, response);
+		request.getRequestDispatcher("/admin/adminMain.do").forward(request, response);
+		
 	}
 
 }

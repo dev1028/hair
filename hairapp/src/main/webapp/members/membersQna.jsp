@@ -107,7 +107,8 @@
   </tr>
 </thead>
   <tbody>
-  <!--여기보면 반복문으로 input 이 반복되니까 values() 하는거. 불편하다 commit해줘 고쳐줄게 넹-->
+  <!--여기보면 반복문으로 input 이 반복되니까 values() 하는거. 불편하다 commit해줘 고쳐줄게 넹
+  ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 너무 귀여워욬ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ-->
   <c:forEach items="${write}" var="qna">
 <%--   <input type="hidden" name="noticeNo" value="${board.notice_no}"> --%>
 <%--   <input type="hidden" name="noticeHit" value="${board.notice_hits}"> --%>
