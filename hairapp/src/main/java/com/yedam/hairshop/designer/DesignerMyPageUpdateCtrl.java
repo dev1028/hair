@@ -1,12 +1,16 @@
 package com.yedam.hairshop.designer;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.common.FileRenamePolicy;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
 
@@ -35,9 +39,32 @@ public class DesignerMyPageUpdateCtrl implements Controller {
 		designerVo.setFile_name(file_name);
 		designerVo.setDesigner_no(designer_no);
 
+		Part part = request.getPart("file_name");
+		String filename = getFilename(part);
+		if (filename == null) {
+			System.out.println("파일 에러");
+			return;
+		} else {
+			String path = request.getServletContext().getRealPath("/");
+
+			// 파일명 중복체크
+			File renameFile = FileRenamePolicy.rename(new File(path, filename));
+			part.write(path + "/" + renameFile.getName());
+			designerVo.setFile_name(renameFile.getName());
+
+		}
 		int resultVo = DesignerDAO.getInstance().mypageUpdate(designerVo);
 		request.setAttribute("designer", resultVo);
 		request.getRequestDispatcher("/designer/designerMyPageOutput.jsp").forward(request, response);
 	}
+	
+	private String getFilename(Part part) throws UnsupportedEncodingException {
+		for (String cd : part.getHeader("Content-Disposition").split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+			}
+		}
+		return null;
 
+	}
 }

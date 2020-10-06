@@ -133,6 +133,15 @@
 					<hr>
 					<div class="row">
 						<div class="col-4">
+							<span>성별</span>
+						</div>
+						<div class="col-8"><c:if
+							test="${mdrResult.mem_sex eq 'male'}">남자</c:if> <c:if
+							test="${mdrResult.mem_sex eq 'female'}">여자</c:if></div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-4">
 							<span>전화번호</span>
 						</div>
 						<div class="col-8">${mdrResult.mem_phone}</div>
