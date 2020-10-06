@@ -60,6 +60,8 @@ import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
 import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
+import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
+import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
@@ -216,6 +218,9 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
 		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
 		// list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
+		list.put("/hairshop/HairshopCouponListCtrl.do", new HairshopCouponListCtrl());
+		list.put("/hairshop/HairshopCouponInsertCtrl.do", new HairshopCouponInsertCtrl());
+		
 
 		// 린아
 		list.put("/members/membersLogin.do", new MembersLoginCtrl()); // 로그인 페이지 이동 컨트롤러

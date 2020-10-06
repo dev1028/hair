@@ -6,8 +6,40 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+	function inputPhoneNumber(obj) {
+
+		var number = obj.value.replace(/[^0-9]/g, "");
+		var phone = "";
+
+		if (number.length < 4) {
+			return number;
+		} else if (number.length < 7) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3);
+		} else if (number.length < 11) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 3);
+			phone += "-";
+			phone += number.substr(6);
+		} else {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 4);
+			phone += "-";
+			phone += number.substr(7);
+		}
+		obj.value = phone;
+	}
+
 	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
 	function checkValue() {
+		if (document.frm.designer_phone.value == "") {
+			alert("전화번호 입력하지 않았습니다.")
+			document.frm.designer_phone.focus();
+			return false;
+		}
 		//비밀번호 입력여부 체크
 		if (document.frm.designer_pw.value == "") {
 			alert("비밀번호를 입력하지 않았습니다.")
@@ -29,6 +61,7 @@
 			document.frm.designer_pw2.focus();
 			return false;
 		}
+
 		if (document.frm.designer_dayoff.value == "") {
 			alert("휴무일 입력하지 않았습니다.")
 			document.frm.designer_dayoff.focus();
@@ -44,6 +77,11 @@
 			document.frm.work_end_time.focus();
 			return false;
 		}
+
+		/* 		$(document).on("keyup", ".phoneNumber", function() { 
+		 $(this).val( $(this).val().replace(/[^0-9]/g, "")
+		 .replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
+		 */
 	}
 </script>
 </head>
@@ -76,8 +114,8 @@
 
 					<tr>
 						<td>전화번호</td>
-						<td><input id="designer_phone" name="designer_phone"
-							type="text" value="${designer.designer_phone }"></td>
+						<td><input id="phoneNum" name="designer_phone" maxlength="13"
+							 onKeyup="inputPhoneNumber(this);" type="text" value="${designer.designer_phone }"></td>
 					</tr>
 					<tr>
 						<td>Email</td>
@@ -117,7 +155,8 @@
 
 				</table>
 				<br> <br>
-				<!-- 				<div>
+				<!-- 				
+				<div>
 					<label for="image">첨부 파일 </label> <input type="file"
 						class="form-control-file" name="file_name" size=30
 						accept=".gif, .jpg, .png" onchange="setThumbnail(event);"><br>

@@ -106,7 +106,15 @@
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
 								</div></li>
-							
+								
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 쿠폰관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}">쿠폰등록</a> <a
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
+								</div></li>
 							
 							
 							
