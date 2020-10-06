@@ -17,8 +17,8 @@ public class AdminQnaAnswerCtrl implements Controller {
 		int qna_no = Integer.parseInt(request.getParameter("qna_no"));
 		QnaVo vo = QnaDAO.getInstance().qnaView(qna_no);
 		request.setAttribute("vo", vo);
-		vo.get
-		request.getRequestDispatcher("/admin/adminQnaView.jsp").forward(request, response);
+	//	vo.get
+	//	request.getRequestDispatcher("/admin/adminQnaView.jsp").forward(request, response);
 
 	}
 

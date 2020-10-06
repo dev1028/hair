@@ -21,7 +21,6 @@ import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
 import com.yedam.hairshop.admin.AdminNoticeManageCtrl;
 import com.yedam.hairshop.admin.AdminNoticeManageFCtrl;
-import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminSalesCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
@@ -56,7 +55,6 @@ import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerDetailCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
-import com.yedam.hairshop.designer.CustomerJoinCtrl;
 import com.yedam.hairshop.hairshop.ChangeReservationStatusAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
@@ -215,7 +213,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
-		list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
+		//list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
 
 		list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		list.put("/hairshop/hairshopNoticeWriteCtrl.do", new hairshopNoticeWriteCtrl());
@@ -298,7 +296,7 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/admin/adminNoticeManage.do", new AdminNoticeManageCtrl());//notice
 		list.put("/admin/adminNoticeManageFind.do", new AdminNoticeManageFCtrl());
-		list.put("/admin/adminQnaManage.do", new AdminQnaManageCtrl());//qna
+		//list.put("/admin/adminQnaManage.do", new AdminQnaManageCtrl());//qna
 		list.put("/admin/adminQnaManageFind.do", new AdminQnaManageFCtrl());
 		list.put("/admin/adminQnaAnswer.do", new AdminQnaAnswerCtrl());
 		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());//setting
