@@ -101,8 +101,8 @@ public class MembersHairshopDAO {
 		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT HSC_NO, HS_NO, HSC_ISSUEDATE, HSC_EXPIREDATE," 
-					+ " HSC_COUPON_QUANTITY, HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME" 
+			String sql = "SELECT HSC_NO, HS_NO, HSC_ISSUEDATE, HSC_EXPIREDATE, HSC_COUPON_QUANTITY," 
+					+ " HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME" 
 					+ " FROM HS_COUPON WHERE HS_NO = ?"
 					+ " ORDER BY HSC_NO DESC";
 			pstmt = conn.prepareStatement(sql);
@@ -129,5 +129,58 @@ public class MembersHairshopDAO {
 		return list;
 
 	} // end
+	
+	
+	// 쿠폰 받기
+	public MembersEventVo couponIssuance(MembersEventVo eventVo) {
+		int r = 1;
+		try {
+			// 1. DB 연결
+			Connection conn = ConnectionManager.getConnnect(); // ConnectionManager클래스의 getConnnect실행
+
+			// 2. sql 구문 실행
+			String sql = "INSERT INTO MEMBERS_COUPON(MC_NO, HSC_NO, MEM_NO, MC_ISSUEDATE, MC_EXPIREDATE, MC_USED) "
+					+ " VALUES(mc_no_seq.nextval,?,?,sysdate,sysdate+10,0)";
+
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, eventVo.getHsc_no());
+			psmt.setString(2, eventVo.getMem_no());
+
+			psmt.executeUpdate();
+
+			// 3. 결과 처리
+			System.out.println(r + " 건이 처리됨");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			// 4. 연결 해제
+			ConnectionManager.close(conn);
+		}
+		return eventVo;
+	} // end
+	
+	
+	// numOfCoupenUp
+	public void numOfCoupenUp(MembersEventVo eventVo) {
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE HS_COUPON "
+					+ " SET HSC_COUPON_QUANTITY = HSC_COUPON_QUANTITY-1"
+					+ " WHERE HSC_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eventVo.getHsc_no());
+
+			int r = pstmt.executeUpdate(); // 실행
+			System.out.println(r + " 건이 수정됨"); // 결과 처리
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(null, pstmt, conn); // 연결 해제
+		}
+	} // end numOfCoupenUp()
+	
 
 }
