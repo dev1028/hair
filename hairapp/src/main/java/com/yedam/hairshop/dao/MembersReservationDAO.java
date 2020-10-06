@@ -189,7 +189,7 @@ public class MembersReservationDAO {
 					+ " join members m" + " on(mdr.mem_no = m.mem_no)"
 					+ " join (select mdri.mdr_no as mdr_no, sum(hhi.HHI_TIME) as sum_time"
 					+ " from hairshop_hair_info hhi join mem_designer_rsv_info mdri" + " on(mdri.hhi_no = hhi.hhi_no)"
-					+ " group by mdri.mdr_no) c" + " on (mdr.mdr_no = c.mdr_no)" + " where mdr.mdr_status != 'i1'"
+					+ " group by mdri.mdr_no) c" + " on (mdr.mdr_no = c.mdr_no)" + " where mdr.mdr_status not in ('i0','i1')"
 					+ " and mdr.hs_no = ?"
 					+ " and mdr.mdr_date between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')"
 					+ " order by mdr_date, sum_time";
@@ -231,7 +231,7 @@ public class MembersReservationDAO {
 					+ " join members m" + " on(mdr.mem_no = m.mem_no)"
 					+ " join (select mdri.mdr_no as mdr_no, sum(hhi.HHI_TIME) as sum_time"
 					+ " from hairshop_hair_info hhi join mem_designer_rsv_info mdri" + " on(mdri.hhi_no = hhi.hhi_no)"
-					+ " group by mdri.mdr_no) c" + " on (mdr.mdr_no = c.mdr_no)" + " where mdr.mdr_status != 'i1'"
+					+ " group by mdri.mdr_no) c" + " on (mdr.mdr_no = c.mdr_no)" + " where mdr.mdr_status not in ('i0','i1')"
 					+ " and mdr.designer_no = ?"
 					+ " and mdr.mdr_date between to_date(?,'YYYY-MM-DD') and to_date(?,'YYYY-MM-DD')"
 					+ " order by mdr_date, sum_time";
@@ -318,27 +318,41 @@ public class MembersReservationDAO {
 
 	// 2020.09.29 김승연
 	// 디자이너용 가까운 다음 회원 회원 조회
-	public Map<String, String> selectReservationNext(String desNo, String startTime) {
-		Map<String, String> map = new HashMap<String, String>();
+	public List<Map<String, String>> selectReservationNext(String desNo, String startTime) {
+		List<Map<String, String>> list = new ArrayList<Map<String,String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select a.* from (select rownum rn,b.* from (select mdr.mdr_no, to_char(mdr.mdr_date, 'YYYY-MM-DD HH24:MI') as mdr_date, mdr.mdr_status, mdr.mem_no, m.mem_name,"
-					+ " mdr.designer_no, d.designer_name, to_char(mdr.mdr_date+c.sum_time/24, 'YYYY-MM-DD HH24:MI') as sum_time"
-					+ " from members_designer_rsv mdr join designer d" + " on (mdr.DESIGNER_NO = d.designer_no)"
-					+ " join members m" + " on(mdr.mem_no = m.mem_no)"
-					+ " join (select mdri.mdr_no as mdr_no, sum(hhi.HHI_TIME) as sum_time"
-					+ " from hairshop_hair_info hhi join mem_designer_rsv_info mdri" + " on(mdri.hhi_no = hhi.hhi_no)"
-					+ " group by mdri.mdr_no) c" + " on (mdr.mdr_no = c.mdr_no)" + " where mdr.mdr_status = 'i2'"
-					+ " and mdr.designer_no = ?"
-					+ " and mdr.mdr_date between to_date(?,'YYYY-MM-DD HH24:MI') and to_date(?,'YYYY-MM-DD HH24:MI')+1"
-					+ " order by mdr_date, sum_time) b ) a where rn = 1";
+			String sql = "select mdr.mdr_no, to_char(mdr.mdr_date, 'YYYY-MM-DD HH24:MI') as mdr_date," + 
+					" mdr.mdr_status, mdr.mem_no, m.mem_name, d.hs_no," + 
+					" mdr.designer_no, d.designer_name, to_char(mdr.mdr_date+c.sum_time/24, 'YYYY-MM-DD HH24:MI') as sum_time" + 
+					" from members_designer_rsv mdr join designer d" + 
+					" on (mdr.DESIGNER_NO = d.designer_no)" + 
+					" join members m" + 
+					" on(mdr.mem_no = m.mem_no)" + 
+					" join (select mdri.mdr_no as mdr_no, sum(hhi.HHI_TIME) as sum_time" + 
+					" from hairshop_hair_info hhi join mem_designer_rsv_info mdri" + 
+					" on(mdri.hhi_no = hhi.hhi_no)" + 
+					" group by mdri.mdr_no) c" + 
+					" on (mdr.mdr_no = c.mdr_no)" + 
+					" where mdr.mdr_status ='i2'" + 
+					" and mdr.designer_no = ?" + 
+					" and mdr.mdr_date = (select a.mdr_date from (select rownum rn,b.* from (select mdr_date" + 
+					" from members_designer_rsv" + 
+					" where mdr_date between to_date(?,'YYYY-MM-DD HH24:MI')" + 
+					" and to_date(?,'YYYY-MM-DD HH24:MI')+1" + 
+					" and mdr_status ='i2'" + 
+					" and designer_no = ?" + 
+					" order by mdr_date) b ) a where rn = 1)" + 
+					" order by mdr_date, sum_time";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, desNo);
 			pstmt.setString(2, startTime);
 			pstmt.setString(3, startTime);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
+			pstmt.setString(4, desNo);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Map<String, String> map = new HashMap<String, String>();
 				map.put("mdr_no", rs.getString("mdr_no"));
 				map.put("mdr_date", rs.getString("mdr_date"));
 				map.put("mdr_status", rs.getString("mdr_status"));
@@ -347,6 +361,7 @@ public class MembersReservationDAO {
 				map.put("designer_no", rs.getString("designer_no"));
 				map.put("designer_name", rs.getString("designer_name"));
 				map.put("sum_time", rs.getString("sum_time"));
+				list.add(map);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -354,36 +369,43 @@ public class MembersReservationDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 
-		return map;
+		return list;
 	}
-	
-	//2020.10.05 김승연
-	//만드는중 예약했었던 회원 조회
-	public MembersReservationVo selectReservationInfoByName(String mdrNo) {
-		MembersReservationVo resultVo = new MembersReservationVo();
 
+	// 2020.10.05 김승연
+	// 예약했었던 회원 조회 리스트(디자이너 용)
+	//이름 전화번호로 각각 구분해서 조회가능 매개변수 첫번째가 name이면 이름검색
+	public List<MembersReservationVo> selectReservationInfoByName(String divisionSearch, MembersReservationVo mRVo) {
+		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
+		String andName = " and m.mem_name like '%'||?||'%'";
+		String andTel = " and m.mem_phone = ?";
+		String orderBy = " order by mdr_no desc";
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT  m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status, m.mem_phone, m.mem_sex,"
-					+ " mdr.mdr_no, mdr.mdr_date, mdr.designer_no, d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no"
-					+ " FROM members m join members_designer_rsv mdr" + " ON(mdr.mem_no = m.mem_no)"
-					+ " JOIN designer d" + " ON(mdr.designer_no = d.designer_no)" + " WHERE mdr.mdr_no = ?";
-			
-			/*
-			 * SELECT m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status,
-			 * m.mem_phone, m.mem_sex, mdr.mdr_no, mdr.mdr_date, mdr.designer_no,
-			 * d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no FROM members m
-			 * join members_designer_rsv mdr ON(mdr.mem_no = m.mem_no) JOIN designer d
-			 * ON(mdr.designer_no = d.designer_no) WHERE mdr.designer_no = 125 and mdr.hs_no
-			 * = 2 and m.mem_name like '%관리자%';
-			 */
-	           
-			
+			String sql = "SELECT m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status,"
+					+ " m.mem_phone, m.mem_sex, mdr.mdr_no, mdr.mdr_date, mdr.designer_no,"
+					+ " d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no"
+					+ " FROM members m join members_designer_rsv mdr" + " ON(mdr.mem_no = m.mem_no) "
+					+ " JOIN designer d" + " ON(mdr.designer_no = d.designer_no) " 
+					+ " WHERE mdr.designer_no = ?"
+					+ " and mdr.mdr_status != 'i0'"
+					+ " and mdr.hs_no = ?";
+			if (divisionSearch.equals("name")) {
+				sql += (andName+orderBy);
+			} else {
+				sql += (andTel+orderBy);
+			}
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, mdrNo); // ?의 첫번째 자리에 올 값 지정
+			pstmt.setString(1, mRVo.getDesigner_no());
+			pstmt.setString(2, mRVo.getHs_no());
+			if (divisionSearch.equals("name")) {
+				pstmt.setString(3, mRVo.getMem_name());
+			} else {
+				pstmt.setString(3, mRVo.getMem_phone());
+			}
 			rs = pstmt.executeQuery();
-			// System.out.println(sql);
-			if (rs.next()) {
+			while (rs.next()) {
+				MembersReservationVo resultVo = new MembersReservationVo();
 				resultVo.setMem_no(rs.getString("mem_no"));
 				resultVo.setMem_name(rs.getString("mem_name"));
 				resultVo.setMem_hair_length(rs.getString("mem_hair_length"));
@@ -397,13 +419,68 @@ public class MembersReservationDAO {
 				resultVo.setMdr_status(rs.getString("mdr_status"));
 				resultVo.setMdr_request(rs.getString("mdr_request"));
 				resultVo.setHs_no(rs.getString("hs_no"));
+				list.add(resultVo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return resultVo; // 값을 리턴해줌
+		return list; // 값을 리턴해줌
 	}
-
+	
+	// 2020.10.05 김승연
+		// 예약했었던 회원 조회 리스트(미용실용)
+		//이름 전화번호로 각각 구분해서 조회가능 매개변수 첫번째가 name이면 이름검색
+		public List<MembersReservationVo> selectRIByNameForHS(String divisionSearch, MembersReservationVo mRVo) {
+			List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
+			String andName = " and m.mem_name like '%'||?||'%'";
+			String andTel = " and m.mem_phone = ?";
+			String orderBy = " order by mdr_no desc";
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT m.mem_no, m.mem_name, m.mem_hair_length, m.mem_hair_status,"
+						+ " m.mem_phone, m.mem_sex, mdr.mdr_no, mdr.mdr_date, mdr.designer_no,"
+						+ " d.designer_name, mdr.mdr_status, mdr.mdr_request, mdr.hs_no"
+						+ " FROM members m join members_designer_rsv mdr" + " ON(mdr.mem_no = m.mem_no) "
+						+ " JOIN designer d" + " ON(mdr.designer_no = d.designer_no) " 
+						+ " WHERE mdr.hs_no = ?"
+						+ " and mdr.mdr_status != 'i0'";
+				if (divisionSearch.equals("name")) {
+					sql += (andName+orderBy);
+				} else {
+					sql += (andTel+orderBy);
+				}
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, mRVo.getHs_no());
+				if (divisionSearch.equals("name")) {
+					pstmt.setString(2, mRVo.getMem_name());
+				} else {
+					pstmt.setString(2, mRVo.getMem_phone());
+				}
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					MembersReservationVo resultVo = new MembersReservationVo();
+					resultVo.setMem_no(rs.getString("mem_no"));
+					resultVo.setMem_name(rs.getString("mem_name"));
+					resultVo.setMem_hair_length(rs.getString("mem_hair_length"));
+					resultVo.setMem_hair_status(rs.getString("mem_hair_status"));
+					resultVo.setMem_phone(rs.getString("mem_phone"));
+					resultVo.setMem_sex(rs.getString("mem_sex"));
+					resultVo.setMdr_no(rs.getString("mdr_no"));
+					resultVo.setMdr_date(rs.getString("mdr_date"));
+					resultVo.setDesigner_no(rs.getString("designer_no"));
+					resultVo.setDesigner_name(rs.getString("designer_name"));
+					resultVo.setMdr_status(rs.getString("mdr_status"));
+					resultVo.setMdr_request(rs.getString("mdr_request"));
+					resultVo.setHs_no(rs.getString("hs_no"));
+					list.add(resultVo);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list; // 값을 리턴해줌
+		}
 }

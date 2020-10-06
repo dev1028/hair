@@ -18,7 +18,7 @@ public class DesignerMyPageCtrl implements Controller {
 		request.setCharacterEncoding("utf-8");
 		// HttpSession session = request.getSession();
 		String designer_email = ((DesignerVo)request.getSession().getAttribute("login")).getDesigner_email();
-
+		
 		DesignerVo designerVo = new DesignerVo();
 		designerVo.setDesigner_email(designer_email);
 		

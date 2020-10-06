@@ -1,4 +1,4 @@
-package com.yedam.hairshop.designer;
+package com.yedam.hairshop.admin;
 
 import java.io.IOException;
 
@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class customerJoinCtrl implements Controller {
+public class AdminNoticeManageCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/admin/adminNoticeManage.jsp").forward(request, response);
 
 	}
+
 }

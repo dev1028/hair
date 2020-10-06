@@ -15,74 +15,49 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-<script type="text/javascript" src="adminBoardManage.js">
-	
-</script>
+<script type="text/javascript" src="adminQnaManage.js"></script>
 </head>
 <body>
 	<h2 class="heading">매출결산</h2>
 	<form 
-		action="${pageContext.request.contextPath}/admin/adminBoardManageFind.do"> 
+		action="${pageContext.request.contextPath}/admin/adminQnaManageFind.do"> 
 	
 	<div class="form-group">
 
 		<div class="control">
 			<label for="name">기간 </label>
-			<button type="button" value="0" class='dateBtn' id="all">전체 
-			</button>
-			<button type="button" value="0" class='dateBtn' id="today">오늘
-			</button>
-			<button type="button" value="3" class='dateBtn' id="three">3일
-			</button>
-			<button type="button" value="7" class='dateBtn' id="seven">7일
-			</button>
-			<button type="button" value="30" class='dateBtn' id="month">1개월
-			</button>
-			<input type="date" id="start" name="startDate"> -
-			<input type="date" id="end" name="endDate">
+			
 		</div>
+	
 		<div class="control">
-			<label for="name">게시판 선택 </label> <select name="boardType"
-				id="boardType">
-				
-				<option id="notice" value="notice">공지</option>
-				<option id="qna" value="qna">QnA</option>
-			</select> <select name="category" id="category">
-				<option value ="all">전체카테고리</option>
-				<option value ="a1">입점문의 </option>
-				<option value ="a2">단순문의 </option>
-				<option value ="a3">불만문의 </option>
-			</select>
-
-		</div>
-		<div class="control">
-		<select name="who" id="who">
-				<option value="j1">미용실</option>
-				<option value="j2">일반회원  </option>
-				<option value="j3">디자이너  </option>
+		<select name="who" id="who" disabled="disabled">
+				<option value="${vo.qna_who }">${vo.qna_who }</option>
 			</select>
 		
-		</div>
-
-		<div class="control">
-			<label for="name">게시글 찾기 </label> <select name="searchType"
-				id="searchType">
-				<option value="title">제목</option>
-				<option value="contents">내용</option>
-				<option value="writer">작성자</option>
-				<option value="id">ID</option>
-			</select> <input type="text" id="searchVal" name="searchVal">
+	
+	
+			 <select name="category" id="category" disabled="disabled">
+				<option >${vo.qna_category }</option>
+			</select>
 
 		</div>
 
+	<div class="control">
+			<label for="name">답변상태 </label> <select name="answerStatus"
+				id="answerStatus">
+				<option value="all">전체</option>
+				<option value="1">답변완료</option>
+				<option value="0">미답변</option>
+		
+			</select>
 
-
-		<div class="control" id="answerDiv">
+		</div>
+		<!-- <div class="control" id="answerDiv">
 			<label for="name">답변상태 </label> <input type="checkbox" name="answer"
 				id="answer" value="y">답변완료 <input type="checkbox"
 				name="answer" value="n">답변대기
 
-		</div>
+		</div> -->
 		<div class="control">
 
 
@@ -131,7 +106,7 @@
 						<td><input type="checkbox" class="chk"></td>
 						<td>${ l.b_no}</td>
 						<td>${ l.b_category}</td>
-						<td>${ l.b_title}</td>
+						<td><a href="adminQnaView.do? qna_no=${ l.b_no}"><${ l.b_title}</a></td>
 						<td>${ l.b_as}</td>
 						<td>${ l.b_a}</td>
 						<td>${ l.b_writer}</td>

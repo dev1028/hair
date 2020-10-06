@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function ().on("click",$("#goto"),function(){
+	
+}
+	
+}
+</script>
 </head>
 <body>
 	<h2>board list</h2>
@@ -33,7 +40,7 @@
 				<td>${i.id }</td>
 				<td>${ i.readable}/${i.writtable}</td>
 				<td>${i.nevv }/${i.total }</td>
-				<td><button>글보기</button>
+				<td><button id="goto"onclick="location.href='${pageContext.request.contextPath}/members/membersNotice.do'">글보기</button>
 					<button>글삭제</button>
 					<button>고정</button></td>
 			</tr>
@@ -100,6 +107,7 @@
 				<td><button>글보기</button>
 					<button>글삭제</button>
 					<button>고정</button></td>
+					http://localhost/hairapp/members/membersNotice.do
 			</tr> --%>
 			<tr>
 				<td>이용안내FAQ</td>

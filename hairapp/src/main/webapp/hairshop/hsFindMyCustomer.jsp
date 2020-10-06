@@ -29,7 +29,7 @@
 			</div>
 			<div class="col-5">
 				<form id="searchCustomerFrm"
-					action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
+					action="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do"
 					method="post">
 					<div class="input-group flex-nowrap">
 						<div class="input-group-prepend">
@@ -79,6 +79,7 @@
 						<tr>
 							<th scope="col">예약번호</th>
 							<th scope="col">상태</th>
+							<th scope="col">담당디자이너</th>
 							<th scope="col">예약일자</th>
 							<th scope="col">이름</th>
 							<th scope="col">성별</th>
@@ -99,13 +100,14 @@
 									</c:if> <c:if test="${cus.mdr_status eq 'i4'}">
 										<span class="badge badge-pill badge-secondary">시술완료</span>
 									</c:if></td>
+								<td>${cus.designer_name}</td>
 								<td>${cus.mdr_date}</td>
 								<td>${cus.mem_name}</td>
-								<td><c:if test="${cus.mem_sex eq 'male'}">남자</c:if>
-									<c:if test="${cus.mem_sex eq 'female'}">여자</c:if></td>
+								<td><c:if test="${cus.mem_sex eq 'male'}">남자</c:if> <c:if
+										test="${cus.mem_sex eq 'female'}">여자</c:if></td>
 								<td>${cus.mem_phone}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/designer/findMyCustomerDetail.do?mdr_no=${cus.mdr_no}"
+									href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomerDetail.do?mdr_no=${cus.mdr_no}"
 									class="btn btn-secondary btn-sm">상세보기</a></td>
 							</tr>
 						</c:forEach>
