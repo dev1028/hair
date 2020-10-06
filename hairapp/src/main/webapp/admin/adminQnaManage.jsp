@@ -42,12 +42,7 @@
 			<input type="date" id="end" name="endDate">
 		</div>
 		<div class="control">
-			<label for="name">게시판 선택 </label> <select name="boardType"
-				id="boardType">
-				
-				<option id="notice" value="notice">공지</option>
-				<option id="qna" value="qna">QnA</option>
-			</select> <select name="category" id="category">
+			 <select name="category" id="category">
 				<option value ="all">전체카테고리</option>
 				<option value ="a1">입점문의 </option>
 				<option value ="a2">단순문의 </option>
