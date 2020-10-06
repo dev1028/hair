@@ -73,10 +73,20 @@
 						</a>
 						<div class="sb-sidenav-menu-heading">통계</div>
 						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminSalesStatistics.do">
+							href="${pageContext.request.contextPath}/admin/hairshopAnalysis.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> 매출통계
+							</div> 헤어샵별 통계
+						</a><a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/designerAnalysis.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> 디자이너별 통계
+						</a><a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/hairAnalysis.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> 헤어별통계
 						</a>
 						<div class="sb-sidenav-menu-heading">회원</div>
 						<a class="nav-link collapsed"
@@ -172,8 +182,7 @@
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 공지사항 게시물 관리
-						</a> 
-						<a class="nav-link"
+						</a> <a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
