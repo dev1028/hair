@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.CouponDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersEventVo;
@@ -30,10 +31,14 @@ public class MembersHsEventIntroCtrl implements Controller {
 			System.out.println(v);
 		}
 		
+		
 		// 헤어샵 정보 뿌리는거
 		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hsVo);
 		
 		// 결과 저장
+		MembersEventVo coupon = CouponDAO.getInstance().memCoupon(eventVo);
+		request.getSession().setAttribute("expiredate", coupon.getMc_expiredate());
+		
 		request.setAttribute("intro", couList);
 		request.setAttribute("shop", shop);
 		

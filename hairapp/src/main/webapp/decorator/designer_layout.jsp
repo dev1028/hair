@@ -39,6 +39,13 @@
 	var coeff = 1000 * 60 * 5;
 	
 	$(function(){
+		$("#siteSearchCustomerBtn").on("click", function() {
+			if ($("#siteInputSearch").val() == "") {
+				alert("값을 입력해주세요");
+			} else {
+				$("#siteSearchCustomerFrm").submit();
+			}
+		});
 		findNext();
 		var dated = new Date();  //or use any other date
 		var rounded = new Date(Math.ceil(dated.getTime() / coeff) * coeff)
@@ -70,35 +77,35 @@
 					$("#forUl").html("");
 
 				} else {
-					var eventTimeStr = data.mdr_date.trim().replace(" ","T")+":00";
+					var eventTimeStr = data[0].mdr_date.trim().replace(" ","T")+":00";
 					var eventTime = new Date(eventTimeStr);
 					var currentTime = new Date(); 
 		
 					if(getCookie("nextCustomer") == null){
-						setCookie("nextCustomer", data.mdr_no, 1);
-						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						setCookie("nextCustomer", data[0].mdr_no, 1);
+						ttsText = data[0].mdr_date.split(" ")[1] + " 에 "+data[0].mem_name +" 님이 " + data[0].hair_name +" 시술을 예약했습니다.";
 						console.log(ttsText);
 						speech(ttsText);
-					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data.mdr_no){
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data[0].mdr_no){
 						if(currentTime <= eventTime-285000 && currentTime >= eventTime-315000){
-							ttsText = data.mem_name +" 님의 " + data.hair_name +" 시술이 5분전입니다.";
+							ttsText = data[0].mem_name +" 님의 " + data[0].hair_name +" 시술이 5분전입니다.";
 							console.log(ttsText);
 							speech(ttsText);
 						}
-					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data.mdr_no){
+					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data[0].mdr_no){
 						console.log(getCookie("nextCustomer"));
-						setCookie("nextCustomer", data.mdr_no, 1);
-						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+						setCookie("nextCustomer", data[0].mdr_no, 1);
+						ttsText = data[0].mdr_date.split(" ")[1] + " 에 "+data[0].mem_name +" 님이 " + data[0].hair_name +" 시술을 예약했습니다.";
 						console.log(ttsText);
 						speech(ttsText);
 					}
 					
 					$("#forUl").html("");
-					result = data;
-					$("#customerName").text(data.mdr_date.split(" ")[1]+" - "+data.mem_name);
+					result = data[0];
+					$("#customerName").text(data[0].mdr_date.split(" ")[1]+" - "+data.mem_name);
 					$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
 					var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
-					var hairs = data.hair_name.split(" ");
+					var hairs = data[0].hair_name.split(" ");
 					for(var i = 0; i<hairs.length-1; i++){
 						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
 					}
@@ -267,7 +274,7 @@
 									<span class="sr-only">(current)</span>
 							</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">MyPage</a></li>
+								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">내정보수정</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의
 									매출정보</a></li>
@@ -295,11 +302,14 @@
 								tabindex="-1" aria-disabled="true">Disabled</a></li>
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
-						<form>
+						<form id="siteSearchCustomerFrm"
+						action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
+							method="post">
 							<!-- class="form-control mr-sm-2" -->
 							<!--  class="btn btn-outline-success my-2 my-sm-0" -->
-							<input type="search" placeholder="예약자찾기" aria-label="Search">
-							<button type="submit" class="btn btn-secondary btn-sm">Search</button>
+							<input type="hidden" name="divisionSearch" value="name">
+							<input type="text" id="siteInputSearch" name="inputSearch" placeholder="예약자찾기" aria-label="Search">
+							<button id="siteSearchCustomerBtn" type="button" class="btn btn-secondary btn-sm">Search</button>
 						</form>
 						<span>로그아웃</span>
 					</div>
