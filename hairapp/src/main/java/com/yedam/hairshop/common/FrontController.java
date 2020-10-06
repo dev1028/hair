@@ -24,6 +24,10 @@ import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
+import com.yedam.hairshop.admin.AdminNoticeManageCtrl;
+import com.yedam.hairshop.admin.AdminNoticeManageFCtrl;
+import com.yedam.hairshop.admin.AdminQnaManageCtrl;
+import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminSalesCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsFCtrl;
@@ -281,23 +285,29 @@ public class FrontController extends HttpServlet {
 
 		// 강산
 		
-		list.put("/admin/adminLogin.do", new adminLoginCtrl());
+		list.put("/admin/adminLogin.do", new adminLoginCtrl());//로그인
 		list.put("/admin/adminMain.do", new adminMainCtrl());
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		
-		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());
+		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
 		list.put("/hairshop/sales.do", new salesCtrl());
 		list.put("/admin/adminSalesStatistics.do", new AdminSalesStatisticsCtrl());
 		list.put("/admin/adminSalesStatisticsFind.do", new AdminSalesStatisticsFCtrl());
 		list.put("/admin/adminSales.do", new AdminSalesCtrl());
 
-		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());
+		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());//보드
 		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());
-		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());
+		
+		list.put("/admin/adminNoticeManage.do", new AdminNoticeManageCtrl());//notice
+		list.put("/admin/adminNoticeManageFind.do", new AdminNoticeManageFCtrl());
+		list.put("/admin/adminQnaManage.do", new AdminQnaManageCtrl());//qna
+		list.put("/admin/adminQnaManageFind.do", new AdminQnaManageFCtrl());
+		list.put("/admin/adminQnaAnswer.do", new AdminQnaAnswerCtrl());
+		list.put("/admin/adminBoardSetting.do", new adminBoardSettingCtrl());//setting
 		list.put("/admin/adminBoardSettingFind.do", new adminBoardSettingFCtrl());
 
-		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());
+		list.put("/admin/adminDesignerManage.do", new AdminDesignerManageCtrl());//회원관리
 		list.put("/admin/adminDesignerManageFind.do", new AdminDesignerManageCFtrl());
 		list.put("/admin/adminCustomerManage.do", new AdminCustomerManageCtrl());
 		list.put("/admin/adminCustomerManageFind.do", new AdminCustomerManageFCtrl());
@@ -305,14 +315,14 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());
 
 
-		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());
+		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());//분석
 		list.put("/admin/designerAnalysisFind.do", new designerAnalysisFCtrl());
 		list.put("/admin/hairshopAnalysis.do", new hairshopAnalysisCtrl());
 		list.put("/admin/hairAnalysisFind.do", new hairAnalysisFCtrl());
 		list.put("/admin/hairAnalysis.do", new hairAnalysisCtrl());
 		list.put("/admin/designerAnalysis.do", new designerAnalysisCtrl());
 
-		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());
+		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());//쿠폰
 		list.put("/admin/adminCouponInsert.do", new AdminCouponInsertCtrl());
 		list.put("/admin/adminCouponInsertSubmit.do", new AdminCouponInsertFCtrl());
 		

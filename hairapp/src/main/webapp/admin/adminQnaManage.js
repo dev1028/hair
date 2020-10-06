@@ -21,6 +21,32 @@ $(function() {
 
 		}
 	})
+	$("#who").change(function() {
+
+		if ($(this).children("option:selected").val() == "j1") {
+
+			$("#category").html("");
+//			category = $("<select/>").attr('id', 'category');
+			$("#category").append($("<option />").text("전체카테고리").val("all"));
+			$("#category").append($("<option />").text("입점문의").val("a1"));
+			$("#category").append($("<option />").text("단순문의").val("a2"));
+			$("#category").append($("<option />").text("불만문의").val("a3"));
+//			$("#categoryDiv").append(category);
+
+		} else if ($(this).children("option:selected").val() == "j2") {
+
+			$("#category").html("");
+			$("#category").append($("<option />").text("전체카테고리").val("all"));
+			$("#category").append($("<option />").text("예약관련문의").val("m1"));
+			$("#category").append($("<option />").text("사이트 관련문의").val("m2"));
+			$("#category").append($("<option />").text("이벤트관련문의").val("m3"));
+			$("#category").append($("<option />").text("고객의소리").val("m4"));
+			$("#category").append($("<option />").text("답변").val("m5"));
+
+		} else {
+			$("#category").html("");
+		}
+	});
 
 	function startDate(d) {
 		$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
