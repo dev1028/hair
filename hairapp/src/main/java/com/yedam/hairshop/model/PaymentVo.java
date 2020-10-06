@@ -19,4 +19,7 @@ public class PaymentVo {
 	String hhi_no1;				//헤어 정보1
 	String hhi_no2;				//헤어 정보2
 	String hhi_no3;				//헤어 정보3
+	
+	String mc_no;				//회원별 쿠폰 고유 번호
+	String use_saved_money;		//마일리지 사용금액
 }
