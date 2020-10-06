@@ -178,12 +178,12 @@
 						</div>
 						<div class="sb-sidenav-menu-heading">게시판</div>
 						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+							href="${pageContext.request.contextPath}/admin/adminNoticeManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 공지사항 게시물 관리
 						</a> <a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/adminBoardManage.do">
+							href="${pageContext.request.contextPath}/admin/adminQnaManage.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> QnA 게시물 관리

@@ -24,8 +24,11 @@ public class BoardManageDAO {
 	final static String qna_title = "and qna_title like '%'||?||'%' ";
 	final static String qna_contents = "and qna_contents like '%'||?||'%' ";
 	final static String emp_no = "and emp_no like '%'||?||'%' ";
-	final static String qnaFind = "select * FROM qna\n" + "WHERE  qna_writedate BETWEEN ? AND ?\n"
-			+ "AND qna_who like '%'||?||'%'\n" + "and qna_category like '%'||?||'%'";
+	final static String qnaFind = "select QNA_NO	,QNA_SHOP_CUSTOMER_NO	,QNA_TITLE	,QNA_CONTENTS	,QNA_WRITEDATE	,QNA_OPENSTATUS	,QNA_HITS,QNA_CATEGORY ,EMP_NO ,QNA_WHO ,QNA_REF,QNA_REPOS,QNA_LEVEL,QNA_WRITER FROM qna\n"
+			+ "WHERE qna_writedate BETWEEN?AND?\n" + "AND qna_who like'%'||?||'%'\n"
+			+ "and qna_category like'%'||?||'%'";
+	final static String ans_com = " and qna_no <> qna_ref ";
+	final static String ans_unc = " and qna_no = qna_ref ";
 
 	public static BoardManageDAO getInstance() {
 		if (instance == null)
@@ -122,7 +125,7 @@ public class BoardManageDAO {
 
 	public ArrayList<BoardManageVo> findQna(BoardManageVo vo) {
 		ArrayList<BoardManageVo> list = new ArrayList<>();
-		String sql = "";
+		String sql = qnaFind;
 		try {
 			conn = ConnectionManager.getConnnect();
 
@@ -132,17 +135,22 @@ public class BoardManageDAO {
 			if (vo.getCategory().equals("all")) {
 				vo.setCategory("");
 			}
+			if (vo.getAnswerStatus().equals("0")) {
+				sql += ans_unc;
+			} else if (vo.getAnswerStatus().equals("1")) {
+				sql += ans_com;
+			}
 			if (vo.getSearchType().equals("title")) {
-				sql = qnaFind + qna_title;
+				sql += qna_title;
 
 			} else if (vo.getSearchType().equals("contents")) {
-				sql = qnaFind + qna_contents;
+				sql += qna_contents;
 
 			} else if (vo.getSearchType().equals("id")) {
-				sql = qnaFind + emp_no;
+				sql += emp_no;
 
-			}else {
-				sql = qnaFind + qna_title;
+			} else {
+				sql += qna_title;
 			}
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getStartDate());
@@ -152,16 +160,18 @@ public class BoardManageDAO {
 
 			pstmt.setString(5, vo.getSearchInput());
 			rs = pstmt.executeQuery();
-			System.out.println("nqnasql");
+			System.out.println("nqnasql" + sql);
+
 			while (rs.next()) {
 
 				BoardManageVo resultVo = new BoardManageVo();
+//				System.out.println(rs.getString("qna_no"));
 				resultVo.setB_no(rs.getString("qna_no"));
 				resultVo.setB_title(rs.getString("qna_title"));
 				resultVo.setB_wd(rs.getString("qna_writedate"));
 				resultVo.setB_writer(rs.getString("qna_shop_customer_no"));
 				resultVo.setB_hits(rs.getString("qna_hits"));
-				resultVo.setB_a(rs.getString("qna_answer"));
+				resultVo.setB_a(rs.getString("qna_ref"));
 				resultVo.setB_who(rs.getString("qna_who"));
 				resultVo.setB_category(rs.getString("qna_category"));
 
@@ -174,10 +184,7 @@ public class BoardManageDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-//		
-//		for(SalesVo vo : list) {
-//			System.out.println(vo.getHName());
-//		}
+
 		return list;
 	}
 }
