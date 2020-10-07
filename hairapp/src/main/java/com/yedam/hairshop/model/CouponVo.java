@@ -13,4 +13,7 @@ public class CouponVo {
 	String hsc_discount_rate;
 	String hsc_maxdiscount_pay;
 	String hsc_name;
+	
+	public int first;
+	public int last;
 }

@@ -172,7 +172,7 @@ public class BoardManageDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO notice(notice_no, notice_title, notice_contents,"
-					+ " notice_writedate, qna_hits, notice_who, "
+					+ " notice_writedate, notice_hits, notice_who, "
 					+ " emp_no)"
 					+ " VALUES(notice_no_seq.NEXTVAL, ?, ?, sysdate, 0, ?, ?)";
 

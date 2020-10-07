@@ -51,12 +51,6 @@
 					type="date" id="end" name="endDate">
 			</div>
 
-
-
-
-
-
-
 			<div class="control">
 
 
