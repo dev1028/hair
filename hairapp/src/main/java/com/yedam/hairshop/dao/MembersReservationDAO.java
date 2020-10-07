@@ -67,10 +67,13 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, d.designer_name "
-					+ " from hairshop h join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_status = 'i2' " + " order by 2 desc";
+			String sql = "SELECT H.HS_NAME, R.MDR_DATE, R.MDR_NO, R.MDR_STATUS, M.MEM_NO, D.DESIGNER_NAME "
+					+ " FROM HAIRSHOP H JOIN DESIGNER D " 
+					+ " ON(H.HS_NO=D.HS_NO) JOIN MEMBERS_DESIGNER_RSV R "
+					+ " ON(D.DESIGNER_NO=R.DESIGNER_NO) JOIN MEMBERS M " 
+					+ " ON(R.MEM_NO=M.MEM_NO) "
+					+ " WHERE R.MDR_STATUS = 'i2' AND R.MDR_DATE > SYSDATE" 
+					+ " ORDER BY 2 DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -93,10 +96,9 @@ public class MembersReservationDAO {
 		return list; // 값을 리턴해줌
 	}
 
-	// 예약 상세 보기
-	public List<MembersReservationVo> drHairshop(MembersReservationVo membersReservationVo) {
-		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
-
+	// 예약 상세 보기 단건조회
+	public MembersReservationVo drHairshop(MembersReservationVo membersReservationVo) {
+		MembersReservationVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, "
@@ -105,8 +107,11 @@ public class MembersReservationDAO {
 					+ " from members_detail_paylist e join members_designer_rsv r "
 					+ " on(e.mdr_no=r.mdr_no) join designer d"
 					+ " on(r.designer_no=d.designer_no) join hairshop_hair_info i "
-					+ " on(d.hs_no=i.hs_no) join hairshop h " + " on(i.hs_no=h.hs_no) join hair_member_info a "
-					+ " on(h.hs_no=a.hs_no) join members m " + " on(a.mem_no=m.mem_no) " + " where r.mdr_no = ?";
+					+ " on(d.hs_no=i.hs_no) join hairshop h " 
+					+ " on(i.hs_no=h.hs_no) join hair_member_info a "
+					+ " on(h.hs_no=a.hs_no) join members m " 
+					+ " on(a.mem_no=m.mem_no) " 
+					+ " where r.mdr_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			// System.out.println(sql);
 			System.out.println(membersReservationVo.getMdr_no());
@@ -114,31 +119,28 @@ public class MembersReservationDAO {
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
 			while (rs.next()) {
-				MembersReservationVo membersR = new MembersReservationVo();
+				resultVo = new MembersReservationVo();
 				String hsName = rs.getString(1);
-				membersR.setHs_name(hsName);
-				membersR.setMdr_date(rs.getString(2));
-				membersR.setMdr_no(rs.getString(3));
-				membersR.setMdr_status(rs.getString(4));
-				membersR.setMem_no(rs.getString(5));
-				membersR.setDesigner_name(rs.getString(6));
-				membersR.setMdr_request(rs.getString(7));
-				membersR.setMem_hair_length(rs.getString(8));
-				membersR.setMem_hair_status(rs.getString(9));
-				membersR.setMdp_no(rs.getString(10));
-				membersR.setMdp_price(rs.getString(11));
-				membersR.setHhi_no(rs.getString(12));
-				membersR.setHhi_name(rs.getString(13));
-
-				list.add(membersR); // resultVo를 list에 담음
-				break;
+				resultVo.setHs_name(hsName);
+				resultVo.setMdr_date(rs.getString(2));
+				resultVo.setMdr_no(rs.getString(3));
+				resultVo.setMdr_status(rs.getString(4));
+				resultVo.setMem_no(rs.getString(5));
+				resultVo.setDesigner_name(rs.getString(6));
+				resultVo.setMdr_request(rs.getString(7));
+				resultVo.setMem_hair_length(rs.getString(8));
+				resultVo.setMem_hair_status(rs.getString(9));
+				resultVo.setMdp_no(rs.getString(10));
+				resultVo.setMdp_price(rs.getString(11));
+				resultVo.setHhi_no(rs.getString(12));
+				resultVo.setHhi_name(rs.getString(13));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return list; // 값을 리턴해줌
+		return resultVo; // 값을 리턴해줌
 
 	}
 
@@ -148,11 +150,16 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status,"
-					+ " m.mem_no, d.designer_name, p.hsp_file " + " from hs_photo p join hairshop h "
-					+ " on(p.hs_no=h.hs_no) join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_status = 'i3' or r.mdr_status = 'i2' or r.mdr_status = 'i1' " + " order by 2 desc";
+			String sql = "select h.hs_name, max(r.mdr_date), max(r.mdr_no), max(r.mdr_status)," 
+					+ " max(m.mem_no), max(d.designer_name), max(p.hsp_file)" 
+					+ " from hs_photo p join hairshop h "
+					+ " on(p.hs_no=h.hs_no) join designer d " 
+					+ " on(h.hs_no=d.hs_no) join members_designer_rsv r "
+					+ " on(d.designer_no=r.designer_no) join members m " 
+					+ " on(r.mem_no=m.mem_no) "
+					+ " where r.mdr_status = 'i3' or r.mdr_status = 'i2' or r.mdr_status = 'i1' "
+					+ " group by h.hs_name" 
+					+ " order by 2 desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
