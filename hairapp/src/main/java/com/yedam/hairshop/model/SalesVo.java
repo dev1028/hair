@@ -13,6 +13,7 @@ public class SalesVo {
 	String mdrNo;
 	String mdrDate;
 	String dsName;
+	String dsNo;
 	String memName;
 	String hName;
 	String totalAmountRsv;

@@ -7,7 +7,7 @@
 <title>헤어살롱 메인페이지</title>
 
 
-<script src="hairshopMainChart.js"></script>
+<script src="${pageContext.request.contextPath}/hairshop/hairshopMainChart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {	
 	

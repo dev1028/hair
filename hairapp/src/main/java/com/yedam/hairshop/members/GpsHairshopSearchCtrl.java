@@ -16,6 +16,14 @@ public class GpsHairshopSearchCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<HairshopVo> list = HairshopDAO.getInstance().selectAll();
+		
+		String lat = (String) request.getParameter("lat");
+		String lng = (String) request.getParameter("lng");
+		if(lat != null || lng != null) {
+			request.getSession().setAttribute("lat", lat);
+			request.getSession().setAttribute("lng", lng);
+		}
+		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("gpsHairshopSearch.jsp").forward(request, response);
 	}

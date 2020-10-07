@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.CouponVo;
+import com.yedam.hairshop.model.MembersEventVo;
 
 public class CouponDAO {
 	static Connection conn;
@@ -88,4 +90,132 @@ public class CouponDAO {
 //		}
 		return list;
 	}
+	
+	
+	//린아 타임~
+	
+	// 보유중인 쿠폰리스트 뿌리기
+	public ArrayList<MembersEventVo> memCouponList(MembersEventVo eventVo) {
+		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT M.MC_NO, M.HSC_NO, M.MEM_NO, M.MC_ISSUEDATE, M.MC_EXPIREDATE, M.MC_USED,"
+					+ " S.HSC_DISCOUNT_RATE, S.HSC_MAXDISCOUNT_PAY, S.HSC_NAME, H.HS_NAME" 
+					+ " FROM MEMBERS_COUPON M JOIN HS_COUPON S"
+					+ " ON(M.HSC_NO = S.HSC_NO) JOIN HAIRSHOP H" 
+					+ " ON(S.HS_NO = H.HS_NO)"
+					+ " WHERE M.MEM_NO = ? AND M.MC_USED = 0 AND M.MC_EXPIREDATE >= sysdate"
+					+ " ORDER BY M.MC_NO";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eventVo.getMem_no());
+//			pstmt.setString(2, eventVo.getMc_expiredate());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new MembersEventVo();
+				resultVo.setMc_no(rs.getString("mc_no"));
+				resultVo.setHsc_no(rs.getString("hsc_no"));
+				resultVo.setMem_no(rs.getString("mem_no"));
+				resultVo.setMc_issuedate(rs.getString("mc_issuedate"));
+				resultVo.setMc_expiredate(rs.getString("mc_expiredate"));
+				resultVo.setMc_used(rs.getString("mc_used"));
+				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
+				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
+				resultVo.setHsc_name(rs.getString("hsc_name"));
+				resultVo.setHs_name(rs.getString("hs_name"));
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+
+	} // end
+	
+	
+	// 사용한 쿠폰리스트 뿌리기
+	public ArrayList<MembersEventVo> memUsedCouponList(MembersEventVo eventVo) {
+		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT M.MC_NO, M.HSC_NO, M.MEM_NO, M.MC_ISSUEDATE, M.MC_EXPIREDATE, M.MC_USED,"
+					+ " S.HSC_DISCOUNT_RATE, S.HSC_MAXDISCOUNT_PAY, S.HSC_NAME, H.HS_NAME"
+					+ " FROM MEMBERS_COUPON M JOIN HS_COUPON S" 
+					+ " ON(M.HSC_NO = S.HSC_NO) JOIN HAIRSHOP H"
+					+ " ON(S.HS_NO = H.HS_NO)" 
+					+ " WHERE M.MEM_NO = ? AND m.MC_USED = 1" 
+					+ " ORDER BY M.MC_NO";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eventVo.getMem_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new MembersEventVo();
+				resultVo.setMc_no(rs.getString("mc_no"));
+				resultVo.setHsc_no(rs.getString("hsc_no"));
+				resultVo.setMem_no(rs.getString("mem_no"));
+				resultVo.setMc_issuedate(rs.getString("mc_issuedate"));
+				resultVo.setMc_expiredate(rs.getString("mc_expiredate"));
+				resultVo.setMc_used(rs.getString("mc_used"));
+				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
+				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
+				resultVo.setHsc_name(rs.getString("hsc_name"));
+				resultVo.setHs_name(rs.getString("hs_name"));
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+
+	} // end
+	
+	
+	// 보유중인 쿠폰리스트 뿌리기
+	public MembersEventVo memCoupon(MembersEventVo eventVo) {
+		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT M.MC_NO, M.HSC_NO, M.MEM_NO, M.MC_ISSUEDATE, M.MC_EXPIREDATE, M.MC_USED,"
+					+ " S.HSC_DISCOUNT_RATE, S.HSC_MAXDISCOUNT_PAY, S.HSC_NAME, H.HS_NAME"
+					+ " FROM MEMBERS_COUPON M JOIN HS_COUPON S" + " ON(M.HSC_NO = S.HSC_NO) JOIN HAIRSHOP H"
+					+ " ON(S.HS_NO = H.HS_NO)" + " WHERE M.MEM_NO = ? AND M.MC_USED = 0 AND M.MC_EXPIREDATE >= ?"
+					+ " ORDER BY M.MC_NO";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, eventVo.getMem_no());
+			pstmt.setString(2, eventVo.getMc_expiredate());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new MembersEventVo();
+				resultVo.setMc_no(rs.getString("mc_no"));
+				resultVo.setHsc_no(rs.getString("hsc_no"));
+				resultVo.setMem_no(rs.getString("mem_no"));
+				resultVo.setMc_issuedate(rs.getString("mc_issuedate"));
+				resultVo.setMc_expiredate(rs.getString("mc_expiredate"));
+				resultVo.setMc_used(rs.getString("mc_used"));
+				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
+				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
+				resultVo.setHsc_name(rs.getString("hsc_name"));
+				resultVo.setHs_name(rs.getString("hs_name"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo;
+
+	} // end
+	
+	
+	
+	//린아 타임끝
+	
 }

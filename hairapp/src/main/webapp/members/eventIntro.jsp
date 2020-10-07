@@ -89,6 +89,7 @@
 }
 
 </style>
+
 </head>
 <body>
 <!-- 맨위에 선 -->
@@ -161,6 +162,7 @@
 <!-- 본문쓰면됨 여기에 -->
 <div class="container">
 <c:forEach items="${intro}" var="in">
+<form action="hsCouponIssuance.do">
 <div class="col-sm-12">
 <div class="bs-calltoaction bs-calltoaction-primary">
 	<div class="row">
@@ -169,20 +171,22 @@
 				<div class="cta-desc">
 					<p>${shop.hs_name}의 쿠폰을 받으세요</p>
 					<br><p>할인률 : ${in.hsc_discount_rate}%</p>
-					<p>최대할인 금액 : ${in.hsc_maxdiscount_pay}원</p>
+					<p>최대 할인 금액 : ${in.hsc_maxdiscount_pay}원</p>
+					<p>최대 사용 일자 : 10일</p>
 					<p>현재 ${in.hsc_coupon_quantity}개 남았습니다</p>
 				</div>
 		</div>
 		<div class="col-md-3 cta-button">
-			<a href="#" class="btn btn-lg btn-block btn-primary">쿠폰받기</a>
+			<a href="hsCouponIssuance.do?hsc_no=${in.hsc_no}" class="btn btn-lg btn-block btn-primary">쿠폰받기</a>
 		</div>
 	</div>
 </div>
 </div>
+<%-- <input type="hidden" value="${in.hsc_no}" name="hsc_no"> --%>
+</form>
 </c:forEach>
 </div>
 <br><br><br><br><br>
-
 
 
 

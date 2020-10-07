@@ -21,30 +21,42 @@ public class PaymentMemberCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//같은 시간대 3개이상 이면 결제가 불가능함.
+		String mc_no = request.getParameter("radio_coupon");
+		if(mc_no == null || mc_no.equals(""))
+			mc_no = "-1";
+		
+		String use_saved_money = request.getParameter("use_saved_money");
+		if(use_saved_money == null || use_saved_money.equals(""))
+			use_saved_money = "0";
+		
+		System.out.println("coupon: " + mc_no);
 		
 		System.out.println("PaymentMemberCtrl");
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
 		if(memVo == null)
 			return;
-			
+		
 		HttpSession session = request.getSession();
 		List<HairshopHairInfoVo> listHairInfoVo = (List<HairshopHairInfoVo>) session.getAttribute("selListHairInfoVo");
 		if(listHairInfoVo == null)
 			return;
 		
-		String date = request.getParameter("date");
-		String time = request.getParameter("hs_starttime");
-		if(time == null)
+		
+		String date = (String) session.getAttribute("date");
+		String hour = (String) session.getAttribute("hour");
+		if(hour == null)
 			return;
 
 		HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
 		DesignerVo designerVo = (DesignerVo) session.getAttribute("selDesignerVo");
 		
 		PaymentVo payVo = new PaymentVo();
+		payVo.setMc_no(mc_no);
 		payVo.setMem_no(memVo.getMem_no());
 		payVo.setHs_no(hairshopVo.getHs_no());
 		payVo.setDesigner_no(designerVo.getDesigner_no());
-		payVo.setMdr_date(date + " " + time);
+		payVo.setMdr_date(date + " " + hour);
+		payVo.setUse_saved_money(use_saved_money);
 		System.out.println(payVo.getMdr_date());
 		payVo.setHhi_no1("-1");
 		payVo.setHhi_no2("-1");
@@ -57,28 +69,15 @@ public class PaymentMemberCtrl implements Controller {
 			payVo.setHhi_no3(listHairInfoVo.get(2).getHhi_no());
 		
 		
-//		HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
-//		HairshopHairInfoVo hairInfoVo = (HairshopHairInfoVo) session.getAttribute("selHairInfoVo");
-//		DesignerVo designerVo = (DesignerVo) session.getAttribute("selDesignerVo");
-//		MembersVo loginVo = (MembersVo) session.getAttribute("login");
-//		HairshopHairInfoVo selHairInfoVo = (HairshopHairInfoVo) session.getAttribute("selHairInfoVo");
-//
-//		String date = request.getParameter("date");
-//		String time = request.getParameter("hs_starttime");
-//
-//		// System.out.println(date + " " + time);
-//		PaymentVo payVo = new PaymentVo();
-//		payVo.setHhi_no(selHairInfoVo.getHhi_no());
-//		payVo.setMem_no(loginVo.getMem_no());
-//		payVo.setMdr_date(date + " " + time);
-//		payVo.setHs_no(hairshopVo.getHs_no());
-//		payVo.setMdr_online_price(hairInfoVo.getHhi_price());
-//		payVo.setDesigner_no(designerVo.getDesigner_no());
-//
 //		// 나중에 마일리지 쿠폰 등등을 실제 금액 계산해야함.
-//		PaymentDAO.getInstance().onlinePay(payVo);
-		if(PaymentDAO.getInstance().onlinePay(payVo)>0) {
+		int mdrNo = PaymentDAO.getInstance().onlinePay(payVo);
+		System.out.println("mdrNo: " + mdrNo);
+		if(mdrNo > 0) {
+			session.setAttribute("mdrNo", String.valueOf(mdrNo));
 			request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
+			System.out.println("예약 불가능한 시간.");
 		}
 	}
 

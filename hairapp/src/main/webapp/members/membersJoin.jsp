@@ -373,7 +373,7 @@ label.light {
         <input type="text" id="zipNo" name="zipNo" />
         
         </fieldset>
-        
+        <br>
         <fieldset>
           <legend><span class="number">2</span>Your hair status</legend><br>
           

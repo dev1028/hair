@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="hairshopStatistics.css">
-
+ <link rel="stylesheet" href="hairshopStatistics.css">
 
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -18,6 +17,7 @@
 <script type="text/javascript" src="hairshopStatistics.js">
 	
 </script>
+
 </head>
 <body>
 	<h2 class="heading">매출결산</h2>

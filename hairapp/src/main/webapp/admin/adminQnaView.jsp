@@ -14,113 +14,111 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<style>
+.hide {
+	visibility: hidden;
+}
+</style>
+<script>
+	$(function() {
+		var str = document.getElementById('qna_category').value;
+		console.log(str);
+		if (str !== "답변") {
+			$('.parent *').prop('readonly', true);
+		} else {
+			$(".modi").append.("<button/>").attr("click",
+				
+			})
 
-<script type="text/javascript" src="adminQnaManage.js"></script>
+		}
+	})
+</script>
+<!-- <script type="text/javascript" 
+
+src="adminQnaView.js"></script> -->
 </head>
 <body>
-	<h2 class="heading">매출결산</h2>
-	<form 
-		action="${pageContext.request.contextPath}/admin/adminQnaManageFind.do"> 
-	
-	<div class="form-group">
+	<c:if test="${vo.qna_category=='m5' }"></c:if>
+	<h2 class="heading">qna</h2>
+	<form
+		action="${pageContext.request.contextPath}/admin/adminQnaAnswer.do">
+		<div class="form-control">
+			<div class="parent">
 
-		<div class="control">
-			<label for="name">기간 </label>
-			
+				<div class="control">
+					<label for="name">글번호: </label> <input type="text" name="qna_no"
+						value="${vo.qna_no }">
+
+				</div>
+
+				<div class="control">
+
+					<select name="qna_who" id="qna_who">
+						<option value="${vo.qna_who }">${vo.qna_whov }</option>
+					</select> <input id="qna_category" value="${vo.qna_categoryv }">
+
+
+
+				</div>
+				<div class="control">
+					<label for="name">제목 : </label> <input type="text" name="qna_title"
+						value="${vo.qna_title }">
+
+				</div>
+
+				<div>
+					<textarea name="qna_contents">
+					${vo.qna_contents }</textarea>
+				</div>
+				<div class="control">
+					<label for="name">답변상태 </label> <input value="${vo.answerStatus }">
+
+
+
+				</div>
+
+				<div class="control">
+					<label for="name">작성자</label><input type="text"
+						name="qna_shop_customer_no" value="${vo.qna_shop_customer_no }">
+
+				</div>
+				<div class="control">
+					<label for="name">작성일</label><input type="text"
+						name="qna_writedate" value="${vo.qna_writedate }">
+
+				</div>
+				<div class="control">
+					<label for="name">조회수</label><input type="text" name="qna_hits"
+						value=" ${vo.qna_hits }">
+
+				</div>
+
+
+
+			</div>
+
+			<h2 class="heading">답변</h2>
+
+			<div <c:if test="${vo.qna_category=='m5' }">class="hide"</c:if>
+				id="result">
+				<div>
+					<label>title</label> <input type="text" value="title"
+						name="answer_title">
+				</div>
+				<div>
+					<label>contents</label>
+					<textarea name="answer_contents">contents</textarea>
+				</div>
+
+
+				<div class="control modi">
+
+
+					<button type="submit" value="Submit" id="submit" class="col-1-4">Submit</button>
+				</div>
+			</div>
 		</div>
-	
-		<div class="control">
-		<select name="who" id="who" disabled="disabled">
-				<option value="${vo.qna_who }">${vo.qna_who }</option>
-			</select>
-		
-	
-	
-			 <select name="category" id="category" disabled="disabled">
-				<option >${vo.qna_category }</option>
-			</select>
-
-		</div>
-
-	<div class="control">
-			<label for="name">답변상태 </label> <select name="answerStatus"
-				id="answerStatus">
-				<option value="all">전체</option>
-				<option value="1">답변완료</option>
-				<option value="0">미답변</option>
-		
-			</select>
-
-		</div>
-		<!-- <div class="control" id="answerDiv">
-			<label for="name">답변상태 </label> <input type="checkbox" name="answer"
-				id="answer" value="y">답변완료 <input type="checkbox"
-				name="answer" value="n">답변대기
-
-		</div> -->
-		<div class="control">
-
-
-			<button type="submit" value="Submit" id="submit" class="col-1-4">Submit</button>
-		</div>
-	</div>
 	</form>
-
-
-
-	<h2 class="heading">result</h2>
-	<div class="form-group" id="result">
-	<table border="1" id="table">
-			<thead>
-				<tr>
-					<th><input type="checkbox" name="all" id="all" class="chk"></th>
-					<th>번호
-						<button type="button" name="designer_no" class="asc hide">a</button>
-						<button type="button" name="designer_no" class="des hide">d</button>
-					</th>
-					<th>분류
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
-					<th>제
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
-					<th>답변상태
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
-					<th>답변하기</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
-				</tr>
-			</thead>
-			<tbody id="tbody">
-				<c:forEach items="${list }" var="l">
-					<tr>
-
-						<td><input type="checkbox" class="chk"></td>
-						<td>${ l.b_no}</td>
-						<td>${ l.b_category}</td>
-						<td><a href="adminQnaView.do? qna_no=${ l.b_no}"><${ l.b_title}</a></td>
-						<td>${ l.b_as}</td>
-						<td>${ l.b_a}</td>
-						<td>${ l.b_writer}</td>
-						<td>${ l.b_wd}</td>
-						<td>${ l.b_hits}</td>
-						<td>${ l.b_who}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button id="excel">excel</button>
-		<button id="email">email</button>
-	</div>
-	<!-- <button type="button" id="excel">excel</button> -->
 
 </body>
 </html>

@@ -24,13 +24,13 @@ public class PaymentDAO {
 	}
 	
 	
-	//결제가 아닌 예약. 예약후, 입금대기 상태에서 결제해야함.
+	//입금 대기 상태
 	public int onlinePay(PaymentVo vo) {
 		//여기서  프로시저를 호출하는 식으로 결제를 한다.
 		int result = -1;
 		try {
 			conn = ConnectionManager.getConnnect();
-			CallableStatement pstmt = conn.prepareCall("{call memberPay(?,?,?,?,?,?,?,?)}");
+			CallableStatement pstmt = conn.prepareCall("{call memberPay(?,?,?,?,?,?,?,?,?,?)}");
 			System.out.println(vo.toString());
 			pstmt.setString(1, vo.getMem_no());
 			pstmt.setString(2, vo.getHs_no());
@@ -39,9 +39,11 @@ public class PaymentDAO {
 			pstmt.setString(5, vo.getHhi_no2());
 			pstmt.setString(6, vo.getHhi_no3());
 			pstmt.setString(7, vo.getMdr_date());
-			pstmt.registerOutParameter(8, Types.INTEGER);
+			pstmt.setString(8, vo.getMc_no());
+			pstmt.setString(9, vo.getUse_saved_money());
+			pstmt.registerOutParameter(10, Types.INTEGER);
 			pstmt.executeUpdate();
-			result = pstmt.getInt(8);
+			result = pstmt.getInt(10);
 			System.out.println("RESULT: " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,5 +51,42 @@ public class PaymentDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return result;
+	}
+	
+	//입금 완료상태
+	public int onlinePaySuc(PaymentVo vo) {
+		int r = -1;
+		try {
+			String sql = " UPDATE members_designer_rsv SET mdr_status='i2' "
+					   + " WHERE mdr_no = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMdr_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+	}
+	
+	//입금실패.
+	public int onlinePayFailed(PaymentVo vo) {
+		int r = -1;
+		try {
+			String sql = " DELETE members_designer_rsv "
+					   + " WHERE mdr_status='i0' "
+					   + " AND mdr_no = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMdr_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
 	}
 }

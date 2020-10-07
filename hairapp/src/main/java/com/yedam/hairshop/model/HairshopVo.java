@@ -29,4 +29,5 @@ public class HairshopVo {
 	private String hs_regdate;
 	
 	private String hs_book;
+	private String distance;
 }

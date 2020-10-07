@@ -8,12 +8,50 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/designerCard.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
+<style>
+.ui-timepicker-container{ 
+     z-index:1151 !important; 
+}
+</style>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<script>
+$(function() {
+	$("#date").datepicker({
+		dateFormat : 'yy-mm-dd',
+		minDate: 0,
+		onSelect: changeDesigner
+	});
+	$("#date").datepicker( "setDate", new Date());
+	$('#timepicker_start').timepicker({
+		timeFormat: 'HH',
+		interval: 60,
+		change: changeDesigner
+	});
+	
+	changeDesigner();
+});
+
+function changeDesigner(){
+	hour = $("#timepicker_start").val();
+	date = $("#date").val();
+		
+	$.ajax({
+		url: "../ajax/changeDesigner.do",
+		type: "POST",
+		dataType : "json",
+		data : {
+			date : date,
+			hour : hour
+		}
+	})
+}
+
+</script>
 <script>
 	function like_func(designer_no) {
 		$.ajax({
@@ -36,23 +74,15 @@
 		});
 	}
 </script>
-<script>
-$(function(){
-	$('#timepicker_start').timepicker({
-		timeFormat: 'HH',
-		interval: 60
-	});
-	$('#timepicker_end').timepicker({
-		timeFormat: 'HH',
-		interval: 60
-	});
-})
-</script>
+
 </head>
 <body>
 
 <div class="container">
     <h3 class="h3">디자이너 정보</h3>
+    <input autocomplete="off" type="text" name="date" id="date" size="12" />
+	<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px"> 예약시간 <br>
+	
     <div class="row">
     	<c:forEach items="${list}" var="designerInfo" >
     		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post">

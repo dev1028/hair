@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="hairshopStatistics.css">
+<!-- <link rel="stylesheet" href="hairshopStatistics.css"> -->
 
 
 <script
@@ -15,7 +15,7 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-<script type="text/javascript" src="hairshopStatistics.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/hairshop/hairshopStatistics.js">
 	
 </script>
 </head>
@@ -42,15 +42,7 @@
 				<div class="controls" id="range"></div>
 			</div>
 
-			<div class="control">
-				<label for="name">직원선택 </label> <select name="ds">
-					<option>전체직원</option>
-					<c:forEach items="${list }" var="i">
-						<option value="${i.designer_no}">${i.designer_name}</option>
-					</c:forEach>
-				</select>
-				<div class="controls"></div>
-			</div>
+			
 
 			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
 		</div>

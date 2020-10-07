@@ -26,14 +26,15 @@ public class MembersEventVo {
 	private String mem_access_status;
 	
 	// 회원별 쿠폰 테이블 : members_coupon
+	private String mc_no;				// 회원별쿠폰고유번호
 	private String hsc_no;				// 쿠폰번호
 	private String mc_issuedate;		// 발급일
 	private String mc_expiredate;		// 소멸일
 	private String mc_used;				// 사용유무
 	
 	// 미용실별 쿠폰 테이블 : hs_coupon
-	private String hsc_issuedate;		// 생성일
-	private String hsc_expiredate;		// 만료일
+	private String hsc_issuedate;		// 쿠폰발급 생성일
+	private String hsc_expiredate;		// 쿠폰발급 만료일
 	private String hsc_coupon_quantity;	// 쿠폰개수
 	private String hsc_discount_rate;	// 할인율
 	private String hsc_maxdiscount_pay;	// 최대할인금액
