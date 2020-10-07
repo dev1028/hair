@@ -371,6 +371,62 @@ public class MembersReservationDAO {
 
 		return list;
 	}
+	
+	// 2020.10.07 김승연
+		// 미용실용 가까운 다음 회원 회원 조회
+		public List<Map<String, String>> selectResNextForHS(String hsNo, String startTime) {
+			List<Map<String, String>> list = new ArrayList<Map<String,String>>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "select mdr.mdr_no, to_char(mdr.mdr_date, 'YYYY-MM-DD HH24:MI') as mdr_date," + 
+						" mdr.mdr_status, mdr.mem_no, m.mem_name, d.hs_no," + 
+						" mdr.designer_no, d.designer_name, to_char(mdr.mdr_date+c.sum_time/24, 'YYYY-MM-DD HH24:MI') as sum_time" + 
+						" from members_designer_rsv mdr join designer d" + 
+						" on (mdr.DESIGNER_NO = d.designer_no)" + 
+						" join members m" + 
+						" on(mdr.mem_no = m.mem_no)" + 
+						" join (select mdri.mdr_no as mdr_no, sum(hhi.HHI_TIME) as sum_time" + 
+						" from hairshop_hair_info hhi join mem_designer_rsv_info mdri" + 
+						" on(mdri.hhi_no = hhi.hhi_no)" + 
+						" group by mdri.mdr_no) c" + 
+						" on (mdr.mdr_no = c.mdr_no)" + 
+						" where mdr.mdr_status ='i2'" + 
+						" and mdr.hs_no = ?" + 
+						" and mdr.mdr_date = (select a.mdr_date from (select rownum rn,b.* from (select mdr_date" + 
+											" from members_designer_rsv" + 
+											" where mdr_date between to_date(?,'YYYY-MM-DD HH24:MI')" + 
+											" and to_date(?,'YYYY-MM-DD HH24:MI')+1" + 
+											" and mdr_status ='i2'" + 
+											" and hs_no = ?" + 
+											" order by mdr_date) b ) a where rn = 1)" + 
+						" order by mdr_date, sum_time";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, hsNo);
+				pstmt.setString(2, startTime);
+				pstmt.setString(3, startTime);
+				pstmt.setString(4, hsNo);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("mdr_no", rs.getString("mdr_no"));
+					map.put("mdr_date", rs.getString("mdr_date"));
+					map.put("mdr_status", rs.getString("mdr_status"));
+					map.put("mem_no", rs.getString("mem_no"));
+					map.put("mem_name", rs.getString("mem_name"));
+					map.put("designer_no", rs.getString("designer_no"));
+					map.put("designer_name", rs.getString("designer_name"));
+					map.put("sum_time", rs.getString("sum_time"));
+					list.add(map);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+
+			return list;
+		}
 
 	// 2020.10.05 김승연
 	// 예약했었던 회원 조회 리스트(디자이너 용)

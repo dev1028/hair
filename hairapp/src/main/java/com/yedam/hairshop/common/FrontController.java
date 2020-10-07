@@ -75,6 +75,7 @@ import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
 import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
+import com.yedam.hairshop.hairshop.HairshopNextCustomerAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.HsFindMyCustomerCtrl;
 import com.yedam.hairshop.hairshop.HsFindMyCustomerDetailCtrl;
@@ -333,7 +334,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl()); // 디자이너 직원목록
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl()); // 디자이너 간편등록
 		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl()); // 디자이너 퇴사명단
-		list.put("/hairshop/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl()); // 로그인페이지 이동처리
+		list.put("/ajax/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl()); // 로그인페이지 이동처리
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl()); // 직원정보수정
 		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl()); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl()); // 직원퇴사처리
@@ -367,7 +368,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/findMycustomerRe.do", new FindMyCustomerReCtrl()); //검색페이지로 돌아가기
 		list.put("/designer/findMyCustomerDetail.do", new FindMyCustomerDetailCtrl()); //디자이너용 예약자 상세 + 매출 정보 보기
 		
-		list.put("/ajax/hairshopNextCustomer.do", new DesignerNextCustomerAjCtrl()); // 미용실용 다음 고객 찾기
+		list.put("/ajax/hairshopNextCustomer.do", new HairshopNextCustomerAjCtrl()); // 미용실용 다음 고객 찾기
 		list.put("/hairshop/hsFindMyCustomer.do", new HsFindMyCustomerCtrl()); //미용실용 예약자 검색 및 명단보기
 		list.put("/hairshop/hsFindMycustomerRe.do", new HsFindMyCustomerReCtrl()); //미용실용 검색페이지로 돌아가기
 		list.put("/hairshop/hsFindMyCustomerDetail.do", new HsFindMyCustomerDetailCtrl()); //미용실용 예약자 상세 + 매출 정보 보기

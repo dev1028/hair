@@ -16,7 +16,7 @@ public class MemDesigneRsvInfoDAO {
 	// 전역변수
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
+	
 
 	// 싱글톤
 	static MemDesigneRsvInfoDAO instance;
@@ -38,6 +38,7 @@ public class MemDesigneRsvInfoDAO {
 	// 상세정보에서 머리이름 알아오기
 	public List<Map<String, String>> rsvInfoHairName(String mdrNo) {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select mdri.mdr_no, mdri.mdri_detail_info, mdri.hhi_no, hhi.hhi_name"
@@ -45,7 +46,7 @@ public class MemDesigneRsvInfoDAO {
 					+ " where mdri.mdr_no = ?" + " order by mdri.mdri_detail_info";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mdrNo);
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("mdr_no", rs.getString("mdr_no"));
@@ -66,6 +67,7 @@ public class MemDesigneRsvInfoDAO {
 	// 예약번호로 머리상세정보 가져오기
 	public List<Map<String, String>> selectHairInfo(String mdrNo) {
 		ArrayList<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select mdri.mdr_no, mdri.mdri_detail_info, mdri.hhi_no, mdri.mdri_memo, h.hhi_name, h.hhi_price, h.hhi_time"

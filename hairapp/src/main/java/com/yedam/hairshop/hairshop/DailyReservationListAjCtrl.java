@@ -21,30 +21,48 @@ public class DailyReservationListAjCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String HsNo = (String) request.getSession().getAttribute("hsno");
 		String startDate = request.getParameter("startDate");
-		
+
 		String endDate = request.getParameter("endDate");
 		System.out.println(startDate.substring(0, 10));
 		System.out.println(endDate.substring(0, 10));
-		List<Map<String,String>> list = MembersReservationDAO.getInstance().selectReservationList(HsNo, startDate.substring(0, 10), endDate.substring(0, 10) );
-		
+		List<Map<String, String>> list = MembersReservationDAO.getInstance().selectReservationList(HsNo,
+				startDate.substring(0, 10), endDate.substring(0, 10));
+
 		JSONArray st = new JSONArray();
-		for(Map<String,String> des : list) {
-			List<Map<String,String>> listMDRI = MemDesigneRsvInfoDAO.getInstance().rsvInfoHairName(des.get("mdr_no"));
+		for (Map<String, String> des : list) {
+			List<Map<String, String>> listMDRI = MemDesigneRsvInfoDAO.getInstance().rsvInfoHairName(des.get("mdr_no"));
 			String hairName = "";
-			for(Map<String,String> mdri : listMDRI) {
+			for (Map<String, String> mdri : listMDRI) {
 				hairName += mdri.get("hhi_name") + " ";
 			}
 			JSONObject dseJson = new JSONObject();
-			dseJson.put("resourceId",des.get("designer_no"));
-			dseJson.put("id",des.get("mdr_no"));
-			dseJson.put("title",des.get("mem_name")+": "+hairName);
-			dseJson.put("start",des.get("mdr_date").replace(" ", "T")+":00");
-			dseJson.put("end",des.get("sum_time").replace(" ", "T")+":00");
+			dseJson.put("resourceId", des.get("designer_no"));
+			dseJson.put("id", des.get("mdr_no"));
+			dseJson.put("title", des.get("mem_name") + ": " + hairName);
+			dseJson.put("start", des.get("mdr_date").replace(" ", "T") + ":00");
+			dseJson.put("end", des.get("sum_time").replace(" ", "T") + ":00");
+			String borderColor = "";
+			switch (des.get("mdr_status")) {
+			case "i1":
+				borderColor = "#d9534f";
+				break;
+			case "i2":
+				borderColor = "#5cb85c";
+				break;
+			case "i3":
+				borderColor = "#5bc0de";
+				break;
+			case "i4":
+				borderColor = "#6c757d";
+				break;
+			}
+			dseJson.put("borderColor", borderColor);
+			dseJson.put("textColor",borderColor);
 			st.add(dseJson);
-		}	
-		
+		}
+
 		String str = JSONArray.fromObject(st).toString();
-		//System.out.println(str);
+		// System.out.println(str);
 		response.getWriter().print(str);
 	}
 

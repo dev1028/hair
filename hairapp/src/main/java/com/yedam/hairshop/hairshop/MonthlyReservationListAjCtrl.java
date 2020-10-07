@@ -43,7 +43,23 @@ public class MonthlyReservationListAjCtrl implements Controller {
 			dseJson.put("title",des.get("designer_name")+": "+des.get("mem_name")+"- "+hairName);
 			dseJson.put("start",des.get("mdr_date").replace(" ", "T")+":00");
 			dseJson.put("end",des.get("sum_time").replace(" ", "T")+":00");
-			
+			String borderColor = "";
+			switch (des.get("mdr_status")) {
+			case "i1":
+				borderColor = "#d9534f";
+				break;
+			case "i2":
+				borderColor = "#5cb85c";
+				break;
+			case "i3":
+				borderColor = "#5bc0de";
+				break;
+			case "i4":
+				borderColor = "#6c757d";
+				break;
+			}
+			dseJson.put("borderColor", borderColor);
+			dseJson.put("textColor",borderColor);
 			
 			//디자이너별 이벤트 색상추가
 			Integer checkDesNo = Integer.parseInt(des.get("designer_no"));

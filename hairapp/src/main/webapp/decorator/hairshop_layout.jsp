@@ -35,6 +35,8 @@
 </style>
 <decorator:head></decorator:head>
 <script>
+	var result = null;
+	var coeff = 1000 * 60 * 5;
 	$(function(){
 		$("#siteSearchCustomerBtn").on("click", function() {
 			if ($("#siteInputSearch").val() == "") {
@@ -49,10 +51,17 @@
 		setTimeout(IntervalOn, rounded-dated);
 	});
 	
+	function IntervalOn(){
+		findNext();
+		setInterval(function() {
+			console.log("interval 반복중")
+			findNext();
+		}, 300000);
+	}
 	
 	function findNext(){
 		$.ajax({
-			url : "${pageContext.request.contextPath}/ajax/designerNextCustomer.do",
+			url : "${pageContext.request.contextPath}/ajax/hairshopNextCustomer.do",
 			data : {
 				startTime : getFormatDate(new Date())
 			},
@@ -62,45 +71,56 @@
 				var ttsText = "";
 				if(data == 0){
 					//최근예약이 존재하지않음을 표시
-					$("#customerName").text("예약이 존재하지 않습니다.");
-					$("#customerDetailInfoURI").attr("href", "#");
 					$("#forUl").html("");
+					$("#forUl").append($("<h6>").html("오늘은 더 이상 예약이<br>존재하지 않습니다."));
 
 				} else {
-					var eventTimeStr = data.mdr_date.trim().replace(" ","T")+":00";
+					var eventTimeStr = data[0].mdr_date.trim().replace(" ","T")+":00";
 					var eventTime = new Date(eventTimeStr);
 					var currentTime = new Date(); 
 		
-					if(getCookie("nextCustomer") == null){
-						setCookie("nextCustomer", data.mdr_no, 1);
-						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+					if(getCookie("hsnextCustomer") == null){
+						setCookie("hsnextCustomer", data[0].mdr_no, 1);
+						for(var i = 0; i<data.length; i++){
+							ttsText += (data[i].mdr_date.split(" ")[1] + " 에 "+data[i].mem_name +" 님이 " + data[i].hair_name +" 시술을 디자이너 "+data[i].designer_name + "에게 예약했습니다. ");					
+						}
 						console.log(ttsText);
 						speech(ttsText);
-					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data.mdr_no){
+					} else if(getCookie("hsnextCustomer") != null && getCookie("hsnextCustomer") == data[0].mdr_no){
 						if(currentTime <= eventTime-285000 && currentTime >= eventTime-315000){
-							ttsText = data.mem_name +" 님의 " + data.hair_name +" 시술이 5분전입니다.";
+							for(var i = 0; i<data.length; i++){
+								ttsText += (data[i].mem_name +" 님이  디자이너 "+data[i].designer_name+"에게 받는 "+data[i].hair_name +" 시술이 5분전입니다. ");
+							}
 							console.log(ttsText);
 							speech(ttsText);
 						}
-					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data.mdr_no){
-						console.log(getCookie("nextCustomer"));
-						setCookie("nextCustomer", data.mdr_no, 1);
-						ttsText = data.mdr_date.split(" ")[1] + " 에 "+data.mem_name +" 님이 " + data.hair_name +" 시술을 예약했습니다.";
+					} else if(getCookie("hsnextCustomer") != null && getCookie("hsnextCustomer") != data[0].mdr_no){
+						console.log(getCookie("hsnextCustomer"));
+						setCookie("hsnextCustomer", data[0].mdr_no, 1);
+						for(var i = 0; i<data.length; i++){
+							ttsText += (data[i].mdr_date.split(" ")[1] + " 에 "+data[i].mem_name +" 님이 " + data[i].hair_name +" 시술을 디자이너 "+data[i].designer_name + "에게 예약했습니다. ");					
+						}
 						console.log(ttsText);
 						speech(ttsText);
 					}
 					
 					$("#forUl").html("");
 					result = data;
-					$("#customerName").text(data.mdr_date.split(" ")[1]+" - "+data.mem_name);
-					$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
-					var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
-					var hairs = data.hair_name.split(" ");
-					for(var i = 0; i<hairs.length-1; i++){
-						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
+					$("#forUl").append($("<h4>").text(data[0].mdr_date.split(" ")[1]));
+					
+					for(var i = 0; i<data.length; i++){
+						var hairs = data[i].hair_name.split(" ");
+						var hairName = '';
+						for(var j = 0; j<hairs.length-1; j++){
+							hairName += (hairs[j]+" ");
+						}
+						$("#forUl").append($("<hr>"));
+						$("#forUl").append($("<h5>").text("디자이너 "+data[i].designer_name));
+						$("#forUl").append(
+						$("<span>").append(
+						$("<a>").attr("href", "${pageContext.request.contextPath}/hairshop/hsFindMyCustomerDetail.do?mdr_no="+data[i].mdr_no)
+								 .html('<strong>'+data[i].mem_name+'</strong>'+" - "+hairName)));
 					}
-					$("#forUl").append(ulTag);
-						
 				}
 				
 			}
@@ -219,6 +239,24 @@
 									data-feather="layers"></span> Integrations
 							</a></li>
 						</ul>
+						<div>
+							<hr>
+
+						</div>
+						<div class="card" id="nextCustomer">
+							<!-- <img src="..." class="card-img-top" alt="..."> -->
+							<div class="card-body">
+								<h5 class="card-title">다음 예약정보</h5>
+								<hr>
+							</div>
+							<div class="card-body" id="forUl"></div>
+							<div class="card-body">
+								<hr>
+								<a
+									href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do"
+									class="card-link">주간일정보기</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</nav>

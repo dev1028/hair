@@ -72,9 +72,8 @@
 				var ttsText = "";
 				if(data == 0){
 					//최근예약이 존재하지않음을 표시
-					$("#customerName").text("예약이 존재하지 않습니다.");
-					$("#customerDetailInfoURI").attr("href", "#");
 					$("#forUl").html("");
+					$("#forUl").append($("<h6>").html("오늘은 더 이상 예약이<br>존재하지 않습니다."));
 
 				} else {
 					var eventTimeStr = data[0].mdr_date.trim().replace(" ","T")+":00";
@@ -83,34 +82,45 @@
 		
 					if(getCookie("nextCustomer") == null){
 						setCookie("nextCustomer", data[0].mdr_no, 1);
-						ttsText = data[0].mdr_date.split(" ")[1] + " 에 "+data[0].mem_name +" 님이 " + data[0].hair_name +" 시술을 예약했습니다.";
+						for(var i = 0; i<data.length; i++){
+							ttsText += (data[i].mdr_date.split(" ")[1] + " 에 "+data[i].mem_name +" 님이 " + data[i].hair_name +" 시술을 예약했습니다. ");					
+						}
 						console.log(ttsText);
 						speech(ttsText);
 					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") == data[0].mdr_no){
 						if(currentTime <= eventTime-285000 && currentTime >= eventTime-315000){
-							ttsText = data[0].mem_name +" 님의 " + data[0].hair_name +" 시술이 5분전입니다.";
+							for(var i = 0; i<data.length; i++){
+								ttsText += (data[i].mem_name +" 님의 " + data[i].hair_name +" 시술이 5분전입니다. ");
+							}
 							console.log(ttsText);
 							speech(ttsText);
 						}
 					} else if(getCookie("nextCustomer") != null && getCookie("nextCustomer") != data[0].mdr_no){
 						console.log(getCookie("nextCustomer"));
 						setCookie("nextCustomer", data[0].mdr_no, 1);
-						ttsText = data[0].mdr_date.split(" ")[1] + " 에 "+data[0].mem_name +" 님이 " + data[0].hair_name +" 시술을 예약했습니다.";
+						for(var i = 0; i<data.length; i++){
+							ttsText += (data[i].mdr_date.split(" ")[1] + " 에 "+data[i].mem_name +" 님이 " + data[i].hair_name +" 시술을 예약했습니다. ");					
+						}
 						console.log(ttsText);
 						speech(ttsText);
 					}
 					
 					$("#forUl").html("");
-					result = data[0];
-					$("#customerName").text(data[0].mdr_date.split(" ")[1]+" - "+data.mem_name);
-					$("#customerDetailInfoURI").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data.mdr_no);
-					var ulTag =  $("<ul>").attr("class", "list-group list-group-flush");
-					var hairs = data[0].hair_name.split(" ");
-					for(var i = 0; i<hairs.length-1; i++){
-						ulTag.append($("<li>").attr("class", "list-group-item").text(hairs[i]));
+					result = data;
+					$("#forUl").append($("<h4>").text(data[0].mdr_date.split(" ")[1]));
+					
+					for(var i = 0; i<data.length; i++){
+						var hairs = data[i].hair_name.split(" ");
+						var hairName = '';
+						for(var j = 0; j<hairs.length-1; j++){
+							hairName += (hairs[j]+" ");
+						}
+						$("#forUl").append($("<hr>"));
+						$("#forUl").append(
+						$("<span>").append(
+						$("<a>").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data[i].mdr_no)
+								 .html('<strong>'+data[i].mem_name+'</strong>'+" - "+hairName)));
 					}
-					$("#forUl").append(ulTag);
-						
 				}
 				
 			}
@@ -240,17 +250,13 @@
 							<div class="card-body">
 								<h5 class="card-title">다음 예약정보</h5>
 								<hr>
-								<h6 class="card-text" id="customerName"></h6>
-								
 							</div>
-							<div class="card-body" id="forUl">
-						
-							</div>
+							<div class="card-body" id="forUl"></div>
 							<div class="card-body">
-					
-								<a id="customerDetailInfoURI" href="#" class="btn btn-primary btn-sm">예약정보확인</a>
 								<hr>
-								<a href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do" class="card-link">주간일정보기</a>
+								<a
+									href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do"
+									class="card-link">주간일정보기</a>
 							</div>
 						</div>
 					</div>
@@ -290,7 +296,7 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/desMonthlyReservationList.do">월간예약</a>
 									<div class="dropdown-divider"></div>
-										<a class="dropdown-item"
+									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/findMyCustomer.do">예약자찾기</a>
 								</div></li>
 
@@ -303,13 +309,15 @@
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
 						<form id="siteSearchCustomerFrm"
-						action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
+							action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
 							method="post">
 							<!-- class="form-control mr-sm-2" -->
 							<!--  class="btn btn-outline-success my-2 my-sm-0" -->
 							<input type="hidden" name="divisionSearch" value="name">
-							<input type="text" id="siteInputSearch" name="inputSearch" placeholder="예약자찾기" aria-label="Search">
-							<button id="siteSearchCustomerBtn" type="button" class="btn btn-secondary btn-sm">Search</button>
+							<input type="text" id="siteInputSearch" name="inputSearch"
+								placeholder="예약자찾기" aria-label="Search">
+							<button id="siteSearchCustomerBtn" type="button"
+								class="btn btn-secondary btn-sm">Search</button>
 						</form>
 						<span>로그아웃</span>
 					</div>

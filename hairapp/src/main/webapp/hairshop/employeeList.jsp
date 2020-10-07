@@ -47,6 +47,8 @@ $(function() {
 			$("#empprofile").val(empOne.designer_profile);
 			$("#myModal").modal('toggle');
 			
+			$("#option1").attr("checked",true);
+			$("#infoFrm").show();
 			clickcnt = 0;
 		} else if(clickcnt == 1 && $(this).attr("id") != thisTr.attr("id")){
 			clickcnt = 0;
@@ -61,10 +63,12 @@ $(function() {
 		$("#profileFrm").hide();
 		$("#jobFrm").hide();
 		$("#moneyFrm").hide();
+		$("input:radio[name='options']").removeAttr("checked");
 		
 		$("#empUpdatefrm").find("input").each(function(index){
 			$(this).val(arrayBeforeUpdate[index]);
 		});
+		$("#empprofile").attr("readonly", true);
 		$("#empUpdatefrm").find("input").attr("readonly", true);
 		$("#empUpdatefrm").find("label").css('color', 'black');
 		$("#radioForFrms").find("label").attr("class","btn btn-secondary")
@@ -141,6 +145,7 @@ $(function() {
 		$("#empUpdatefrm").find("input").each(function(index){
 			arrayBeforeUpdate.push($(this).val())
 		});
+		$("#empprofile").attr("readonly", false);
 		$("#empUpdatefrm").find("input").attr("readonly", false);
 		$("#empUpdatefrm").find("#empname,#empno,#empemail,#emphiredate").attr("readonly",true);
 		$("#empUpdatefrm").find("label").css('color', 'blue');
@@ -151,7 +156,7 @@ $(function() {
 });	
 </script>
 </head>
-<body>
+<body>	
 	<div class="container">
 		<h3 class="font-weight-bold">직원목록</h3>
 		<div class="row">
@@ -188,7 +193,7 @@ $(function() {
 				<tbody id="emp_list_tbody" class="table table-striped">
 					<c:forEach items="${emplist}" var="emp">
 						<tr id="${emp.designer_no}">
-							<td>${emp.designer_no}</td>
+							<td><c:if test="${emp.designer_access_status == '-1'}"><span class="badge badge-pill badge-warning">미인증</span></c:if><strong>${emp.designer_no}</strong></td>
 							<td>${emp.position}</td>
 							<td>${emp.designer_name}</td>
 							<td>${emp.designer_phone}</td>
@@ -282,8 +287,10 @@ $(function() {
 										</div>
 									</div>
 								</div>
-								<div id="profileFrm">
-									<textarea id= "empprofile" name="designer_profile"></textarea>
+							
+								<div id="profileFrm" class="input-group">
+								  
+								  <textarea id= "empprofile" name="designer_profile" readonly rows="10" class="form-control" aria-label="With textarea"></textarea>
 								</div>
 								<div id="jobFrm">
 									<div class="form-group row">
@@ -313,7 +320,7 @@ $(function() {
 								</div>
 								<div id="moneyFrm">
 									<div class="form-group row">
-										<label for="empsalary" class="col-sm-4 col-form-label">월급</label>
+										<label for="empsalary" class="col-sm-4 col-form-label">기본급여</label>
 										<div class="col-sm-6">
 											<input type="text" readonly class="form-control-plaintext"
 												id="empsalary" name="salary" value="">

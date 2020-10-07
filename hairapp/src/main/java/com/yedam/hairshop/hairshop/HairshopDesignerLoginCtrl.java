@@ -30,15 +30,16 @@ public class HairshopDesignerLoginCtrl implements Controller {
 		String page = "";
 		if (resultVo == null) { // 아이디없음
 			request.setAttribute("errormsg", "noid");
-			page = "/hairshop/hairshopDesignerLogin.jsp";
+			page = "/ajax/hairshopReturnToLogin.do";
 		} else {
 			if (hsVo.getHs_pw().equals(resultVo.getHs_pw())) {
 				request.getSession().setAttribute("login", resultVo);
+				request.getSession().setAttribute("udong", "hairshop");
 				request.getSession().setAttribute("hsno", resultVo.getHs_no());
 				page = "/hairshop/hairshopMain.do";
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "nopw");
-				page = "/hairshop/hairshopDesignerLogin.jsp";
+				page = "/ajax/hairshopReturnToLogin.do";
 			}
 		}
 		// 4.뷰페이지이동 포워드 리다이렉트 또는 뷰페이지 출력

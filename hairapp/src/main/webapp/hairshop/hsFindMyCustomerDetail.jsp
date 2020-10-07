@@ -15,7 +15,31 @@
 				$("#searchCustomerFrm").submit();
 			}
 		});
-
+		$("#btnstatus")
+		.on(
+				"click",
+				function() {
+					var mdrStatus = $("#btnstatus").attr("data-status");
+					var mdrNo = $("#mdr_noParent").children()
+							.attr("id");
+					$.ajax({
+								url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
+								data : {
+									mdr_status : mdrStatus,
+									mdr_no : mdrNo
+								},
+								dataType : "json",
+								method : "post",
+								success : function(data) {
+									if (data == 0) {
+										alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+									} else {
+										location.reload();
+										window.opener.location.reload();
+									}
+								}
+							});// end of ajax 
+				});
 		$("#savetextArea")
 				.on(
 						"click",
@@ -111,6 +135,14 @@
 					<li class="list-group-item">머리상태: <strong>${customerInfo.mem_hair_status}</strong></li>
 					<li class="list-group-item">헤어샵 요청사항: <strong>${customerInfo.mdr_request}</strong></li>
 				</ul>
+				<c:if test="${customerInfo.mdr_status eq 'i2'}">
+							<button class="btn btn-success btn-block" id="btnstatus"
+								data-status="i3" type="button">시술시작</button>
+						</c:if>
+						<c:if test="${customerInfo.mdr_status eq 'i3'}">
+							<button class="btn btn-info btn-block" type="button"
+								id="btnstatus" data-status="i4">시술완료</button>
+					</c:if>
 			</div>
 		</div>
 		<hr>

@@ -109,7 +109,8 @@ $(function() {
 					<div class="col-md-auto">
 						<h5>헤어샵</h5>
 						<form id="hairshopLoginFrm"
-							action="${pageContext.request.contextPath}/hairshop/hairshopDesignerLogin.do">
+							action="${pageContext.request.contextPath}/hairshop/hairshopDesignerLogin.do"
+							method="post">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Email address</label> <input
 									type="text" class="form-control" id="exampleInputEmail1"
