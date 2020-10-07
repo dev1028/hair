@@ -14,71 +14,93 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<style>.hide{
-visibility: hidden;}</style>
+<style>
+.hide {
+	visibility: hidden;
+}
+</style>
+<script>
+	$(function() {
+		var str = document.getElementById('qna_category').value;
+		console.log(str);
+		if (str !== "답변") {
+			$('.parent *').prop('readonly', true);
+		} else {
+			$(".modi").append.("<button/>").attr("click",
+				
+			})
+
+		}
+	})
+</script>
 <!-- <script type="text/javascript" 
 
 src="adminQnaView.js"></script> -->
 </head>
 <body>
+	<c:if test="${vo.qna_category=='m5' }"></c:if>
 	<h2 class="heading">qna</h2>
 	<form
 		action="${pageContext.request.contextPath}/admin/adminQnaAnswer.do">
+		<div class="form-control">
+			<div class="parent">
 
-		<div class="form-group">
+				<div class="control">
+					<label for="name">글번호: </label> <input type="text" name="qna_no"
+						value="${vo.qna_no }">
 
-			<div class="control">
-				<label for="name">글번호: </label> <input type="text" name="qna_no"
-					value="${vo.qna_no }">
+				</div>
+
+				<div class="control">
+
+					<select name="qna_who" id="qna_who">
+						<option value="${vo.qna_who }">${vo.qna_whov }</option>
+					</select> <input id="qna_category" value="${vo.qna_categoryv }">
+
+
+
+				</div>
+				<div class="control">
+					<label for="name">제목 : </label> <input type="text" name="qna_title"
+						value="${vo.qna_title }">
+
+				</div>
+
+				<div>
+					<textarea name="qna_contents">
+					${vo.qna_contents }</textarea>
+				</div>
+				<div class="control">
+					<label for="name">답변상태 </label> <input value="${vo.answerStatus }">
+
+
+
+				</div>
+
+				<div class="control">
+					<label for="name">작성자</label><input type="text"
+						name="qna_shop_customer_no" value="${vo.qna_shop_customer_no }">
+
+				</div>
+				<div class="control">
+					<label for="name">작성일</label><input type="text"
+						name="qna_writedate" value="${vo.qna_writedate }">
+
+				</div>
+				<div class="control">
+					<label for="name">조회수</label><input type="text" name="qna_hits"
+						value=" ${vo.qna_hits }">
+
+				</div>
+
+
 
 			</div>
-
-			<div class="control">
-
-				<select name="qna_who">
-					<option value="${vo.qna_who }">${vo.qna_whov }</option>
-				</select> <input value="${vo.qna_categoryv }">
-
-
-
-			</div>
-			<div class="control">
-				<label for="name">제목 : </label> <input type="text" name="qna_title"
-					value="${vo.qna_title }">
-
-			</div>
-			내용 
-			<div>
-
-				<p>${vo.qna_contents }</p>
-			</div>
-			<div class="control">
-				<label for="name">답변상태 </label> <input value="${vo.answerStatus }">
-
-
-
-			</div>
-
-			<div class="control">
-				<label for="name">작성자:${vo.qna_shop_customer_no }</label>
-
-			</div>
-			<div class="control">
-				<label for="name">작성일:${vo.qna_writedate }</label>
-
-			</div>
-			<div class="control">
-				<label for="name">조회수: ${vo.qna_hits }</label>
-
-			</div>
-
-
-
-
 
 			<h2 class="heading">답변</h2>
 
-			<div <c:if test="${vo.qna_category=='m5' }">class="hide"</c:if> id="result">
+			<div <c:if test="${vo.qna_category=='m5' }">class="hide"</c:if>
+				id="result">
 				<div>
 					<label>title</label> <input type="text" value="title"
 						name="answer_title">
@@ -89,7 +111,7 @@ src="adminQnaView.js"></script> -->
 				</div>
 
 
-				<div class="control">
+				<div class="control modi">
 
 
 					<button type="submit" value="Submit" id="submit" class="col-1-4">Submit</button>
