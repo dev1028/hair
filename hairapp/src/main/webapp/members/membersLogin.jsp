@@ -413,9 +413,6 @@ input[type=submit], p.field span.i {
 		location.href = "membersJoin.do";
 	}
 	
-	function membersSearch() {
-		location.href = "membersSearch.do";
-	}
 	
 	function membersIdSearch() {
 		location.href = "membersIdSearch.do";
