@@ -25,6 +25,13 @@
     position: absolute;
     margin:0 auto;
 } 
+
+#wrap2{
+	top:100%;
+    position: absolute;
+    margin:0 auto;
+} 
+
 #wrap3 {
 	border: 2px dashed #bcbcbc;
 	margin: 10px;
@@ -84,10 +91,9 @@
 
 			</div>
 			
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<br><br><br><br><br><br><br><br>
 		
 		<div id="wrap2">
+		<br><br><br><br><br><br>
 			<h3>사용한 쿠폰 내역</h3>	
 			<hr style="border: solid 1px">
 

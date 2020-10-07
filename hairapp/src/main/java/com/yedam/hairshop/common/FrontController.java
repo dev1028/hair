@@ -154,7 +154,6 @@ import com.yedam.hairshop.members.MembersQnaReCtrl;
 import com.yedam.hairshop.members.MembersQnaWCtrl;
 import com.yedam.hairshop.members.MembersQnaWGCtrl;
 import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
-import com.yedam.hairshop.members.MembersSearchCtrl;
 import com.yedam.hairshop.members.MyRegionSettingCtrl;
 import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.PaymentImportCtrl;
@@ -250,7 +249,6 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersLogout.do", new MembersLogoutCtrl());			// 로그아웃 페이지 이동 컨트롤러
 		list.put("/members/membersLoginS.do", new MembersLoginSCtrl());			// 로그인 처리하는 컨트롤러
 		
-		list.put("/members/membersSearch.do", new MembersSearchCtrl());			// ID/PW 찾기 페이지 이동 컨트롤러
 		list.put("/members/membersIdSearch.do", new MembersIdSearchCtrl());		// ID 찾기 페이지 이동 컨트롤러
 		list.put("/members/membersIdSearchS.do", new MembersIdSearchSCtrl());	// ID 찾기 넘어가는 컨트롤러
 		list.put("/members/membersPwSearch.do", new MembersPwSearchCtrl());		// PW 찾기 페이지 이동 컨트롤러
