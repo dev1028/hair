@@ -12,7 +12,6 @@ import com.yedam.hairshop.dao.HairshopBookmarkDAO;
 import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.MembersVo;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class HairshopBookmarkCtrl implements Controller {

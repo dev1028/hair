@@ -9,12 +9,15 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/card.css">
+<link rel="stylesheet" type="text/css" href="../css/hairshopCard.css">
+<style>
+div.course{
+	padding: 10px;
+	margin:0 auto;
+}
+</style>
 <script>
 	function like_func(hs_no) {
-// 		var frm_read = $('#frm_read');
-// 		var boardno = $('#boardno', frm_read).val();
-// 		//var mno = $('#mno', frm_read).val();
-// 		//console.log("boardno, mno : " + boardno +","+ mno);
 		$.ajax({
 			url : "../ajax/hairshopBookmark.do",
 			type : "POST",
@@ -28,16 +31,9 @@
 				}else{
 					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
 				}
-				
-				
-				
-				//alert($(findClass).val());
-				
 			},
 			error : function(request, status, error) {
 				alert("에러 발생!!")
-// 				alert("code:" + request.status + "\n" + "message:"
-// 						+ request.responseText + "\n" + "error:" + error);
 			}
 		});
 	}
@@ -45,7 +41,44 @@
 </head>
 <body>
 	지역별 헤어샵 순위
-	
+
+<c:forEach items="${list}" var="item">
+	<form action="../members/hairshopSelectResult.do" method="post">
+		<div class="course">
+			<div class="course-preview">
+				<h6>미용실이름</h6>
+				<h4>${item.hs_name }</h4>
+			</div>
+			<div class="course-info">
+				<div class="progress-container">
+					<div class="progress"></div>
+				</div>
+				<h6>거리</h6>
+				<h2>${item.distance } km </h2>
+				<h6>영업시간</h6>
+				<h2>${item.hs_starttime}시 -${item.hs_endtime}시</h2>
+				<h6>주소</h6>
+				<h2>${item.hs_fulladdr }</h2>
+				
+				<button class="btn">예약</button>
+				<c:if test="${not empty login }">
+					<a href='javascript: like_func("${item.hs_no}")'>
+						<c:if test="${item.hs_book == 1 }">
+							<img class="img-${item.hs_no}" src="../images/bookmark/heart.png" width="30" height="30">
+						</c:if>
+						<c:if test="${item.hs_book != 1 }">
+							<img class="img-${item.hs_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+						</c:if>
+					</a>
+				</c:if>
+			</div>
+		</div>
+		<input type="hidden" name="hsNo" value="${item.hs_no}">
+	</form>
+	<hr>
+</c:forEach>
+
+<%--
 	<div class="cardContainer">
 		<c:forEach items="${list}" var="item">
 			<form action="../members/hairshopSelectResult.do" method="post">
@@ -54,7 +87,6 @@
 					<div class="horizontal-card-body">
 						<h4 class="card-title"><a href="hairshopInfo.do?hsNo=${item.hs_no}">${item.hs_name }</a></h4>
 						<span>공지: ${item.hs_notice}</span>
-<%-- 						<span class="card-text"> 프로필: ${item.hs_profile } </span> --%>
 						<span class="card-text"> 거리: ${item.distance } km </span>
 						<span class="card-text"> 주소: ${item.hs_fulladdr } </span>
 						<span class="card-text"> 영업시간: ${item.hs_starttime}시 -${item.hs_endtime}시</span>	
@@ -84,6 +116,6 @@
 			</form>
 		</c:forEach>
 	</div>
-	
+--%>
 </body>
 </html>
