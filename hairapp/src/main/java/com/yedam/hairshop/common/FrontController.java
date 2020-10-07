@@ -10,11 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
-import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
-import com.yedam.hairshop.admin.CodeUpdateAjCtrl;
-import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
-import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageCtrl;
@@ -33,9 +28,12 @@ import com.yedam.hairshop.admin.AdminQnaAnswerCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
-import com.yedam.hairshop.admin.AdminSalesCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
-import com.yedam.hairshop.admin.AdminSalesStatisticsFCtrl;
+import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
+import com.yedam.hairshop.admin.ChartCtrl;
+import com.yedam.hairshop.admin.CodeListCtrl;
+import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
+import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
@@ -308,12 +306,14 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminMain.do", new adminMainCtrl());
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		
-		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
+		list.put("/ajax/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
 		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
-		list.put("/hairshop/sales.do", new salesCtrl());
+		list.put("/ajax/hairshop/sales.do", new salesCtrl());
+
+		list.put("/ajax/hairshop/chart.do", new ChartCtrl());
 		list.put("/admin/adminSalesStatistics.do", new AdminSalesStatisticsCtrl());
-		list.put("/admin/adminSalesStatisticsFind.do", new AdminSalesStatisticsFCtrl());
-		list.put("/admin/adminSales.do", new AdminSalesCtrl());
+//		list.put("/admin/adminSalesStatisticsFind.do", new AdminSalesStatisticsFCtrl());
+//		list.put("/admin/adminSales.do", new AdminSalesCtrl());
 
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());//보드
 		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());

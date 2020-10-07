@@ -188,7 +188,8 @@ $(function() {
 	function result(start, end) {
 
 		$("#result").html("");
-		var url = "/hairapp/hairshop/sales.do"
+		var url = "/hairapp/ajax/hairshop/sales.do"
+//			var url = "/hairapp/admin/adminSales.do"
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test'
@@ -207,36 +208,42 @@ $(function() {
 
 		table.append(tr);
 
-		$.getJSON(url, {
-			start : moment(start).format('YYYY-MM-DD'),
-			end : moment(end).format('YYYY-MM-DD')
-		}, function(obj) {
-			var card = 0;
-			var cash = 0;
-			var kakao = 0;
-			var account = 0;
-			var ammount = 0;
-			console.log(obj);
-			obj.forEach(function(o, i, u) {
+		
+		
+		$.ajax({
+			  url: url,
+			  dataType: 'json',
+			  data: {
+					start : moment(start).format('YYYY-MM-DD'),
+					end : moment(end).format('YYYY-MM-DD')
+				},
+			  success:  function(obj) {
+					var card = 0;
+					var cash = 0;
+					var kakao = 0;
+					var account = 0;
+					var ammount = 0;
+					console.log(obj);
+					obj.forEach(function(o, i, u) {
 
-				var tr = $("<tr />");
-				card += parseInt(o.cd);
-				cash += parseInt(o.cs);
-				kakao += parseInt(o.ka);
-				account += parseInt(o.ac);
-				ammount += parseInt(o.to);
-				tr.append($("<td>").text(o.mdrDt));
-				tr.append($("<td>").text(o.mdrNo));
-				tr.append($("<td>").text(o.memNm));
-				tr.append($("<td>").text(o.dsNm));
-				tr.append($("<td>").text(o.hNm));
-				tr.append($("<td>").text(o.cd));
-				tr.append($("<td>").text(o.cs));
-				tr.append($("<td>").text(o.ka));
-				tr.append($("<td>").text(o.ac));
-				tr.append($("<td>").text(o.to));
-				table.append(tr);
-			})
+						var tr = $("<tr />");
+						card += parseInt(o.cd);
+						cash += parseInt(o.cs);
+						kakao += parseInt(o.ka);
+						account += parseInt(o.ac);
+						ammount += parseInt(o.to);
+						tr.append($("<td>").text(o.mdrDt));
+						tr.append($("<td>").text(o.mdrNo));
+						tr.append($("<td>").text(o.memNm));
+						tr.append($("<td>").text(o.dsNm));
+						tr.append($("<td>").text(o.hNm));
+						tr.append($("<td>").text(o.cd));
+						tr.append($("<td>").text(o.cs));
+						tr.append($("<td>").text(o.ka));
+						tr.append($("<td>").text(o.ac));
+						tr.append($("<td>").text(o.to));
+						table.append(tr);
+					})
 
 			var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
 					$("<td>").text(obj.length), $("<td>"), $("<td>"),
@@ -247,7 +254,7 @@ $(function() {
 			).css('color', 'red');
 
 			table.append(tr);
-		});
+		}});
 		$("#result").append($(table));
 		$("#result").append($("<button />").attr('id','excel').text("엑셀로 저장"));
 
