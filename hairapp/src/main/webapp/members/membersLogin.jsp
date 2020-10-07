@@ -18,7 +18,7 @@
 
 #wrap{
 	top:250px;
-	left:800px;
+	left:55%;
     position:absolute;
     margin:0 auto;
 } 
@@ -413,9 +413,6 @@ input[type=submit], p.field span.i {
 		location.href = "membersJoin.do";
 	}
 	
-	function membersSearch() {
-		location.href = "membersSearch.do";
-	}
 	
 	function membersIdSearch() {
 		location.href = "membersIdSearch.do";

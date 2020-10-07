@@ -55,8 +55,10 @@
 						<h4 class="card-title"><a href="hairshopInfo.do?hsNo=${item.hs_no}">${item.hs_name }</a></h4>
 						<span>공지: ${item.hs_notice}</span>
 <%-- 						<span class="card-text"> 프로필: ${item.hs_profile } </span> --%>
+						<span class="card-text"> 거리: ${item.distance } km </span>
 						<span class="card-text"> 주소: ${item.hs_fulladdr } </span>
 						<span class="card-text"> 영업시간: ${item.hs_starttime}시 -${item.hs_endtime}시</span>	
+						
 					</div>
 					<div class="horizontal-card-footer">
 						<span class="card-text"> 별점: 미구현 </span>

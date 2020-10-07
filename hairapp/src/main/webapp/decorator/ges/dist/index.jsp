@@ -78,7 +78,7 @@
 					
 					
 					
-					<div class="sb-sidenav-menu-heading">게시</div>
+					<div class="sb-sidenav-menu-heading">게시판</div>
 						<a class="nav-link collapsed"
 							href="${pageContext.request.contextPath}/admin/adminCustomerManage.do"
 							data-toggle="collapse" data-target="#collapseLayouts"
@@ -91,6 +91,10 @@
 							</div>
 						</a>
 						
+						
+						
+					
+						
 						<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
@@ -101,7 +105,12 @@
 							</nav>
 						</div>
 					
-
+ <a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminBoardSetting.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-table"></i>
+							</div> 게시판 설정
+						</a>
 
 
 

@@ -42,7 +42,15 @@
 				<div class="controls" id="range"></div>
 			</div>
 
-			
+			<div class="control">
+				<label for="name">직원선택 </label> <select name="ds">
+					<option>전체직원</option>
+					<c:forEach items="${list }" var="i">
+						<option value="${i.designer_no}">${i.designer_name}</option>
+					</c:forEach>
+				</select>
+				<div class="controls"></div>
+			</div>
 
 			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
 		</div>

@@ -4,23 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 성공</title>
+<title>Insert title here</title>
 <style>
-#mypage {
-	display: flex;
-	position:absolute;
-	top:100px;
-	left:0px;
-}
-
-#wrap{
-	top:100px;
-	left:42%;
-    position:absolute;
-    margin:0 auto;
-} 
-
-/* css */
 * {
 box-sizing: border-box;
 }
@@ -41,9 +26,6 @@ border-radius: 5px
 .app-title {
 text-align: center;
 color: #fff;
-}
-.app-title2 {
-text-align: center;
 }
 
 .login-form {
@@ -92,32 +74,42 @@ box-shadow: none;
 
 </style>
 </head>
-<script>
-		//취소 버튼 클릭시 첫화면으로 이동
-		function goLogin() {
-    		location.href="membersLogin.do";
-		}  
-</script>
 <body>
-<div id="wrap">
+<body>
 
-	<div class="login">
+<div class="login">
 		<div class="login-screen">
 			<div class="app-title">
-				<h3>회원가입 완료</h3><br>
+				<h3>ID(EMAIL) 찾기</h3><br>
 				<hr><br><br>
 			</div>
-			<div class="app-title2">
-				<h5>회원가입이 완료되었습니다</h5><br>
-				<h5>이메일에서 인증을 해주시면<br>가입이 최종 완료 됩니다</h5><br><br>
+
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" placeholder="이름" id="name" name="idname" required autofocus>
+				<label class="login-field-icon fui-user" for="idname"></label>
+				</div>
+				
+				<div class="control-group">
+				<input type="text" class="login-field" placeholder="전화번호 ex) 010-0000-0000" id="idphone" name="idphone" required>
+				<label class="login-field-icon fui-user" for="idphone"></label>
+				</div>
+				
+				<div class="control-group">
+				<input type="date" class="login-field" id="idbirth" name="idbirth" required>
+				<label class="login-field-icon fui-user" for="idbirth"></label>
+				</div><br>
+
+				<!-- <div class="control-group">
+				<input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+				<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</div> -->
+
+				<input type="submit" class="btn btn-primary btn-large btn-block" value="찾기">
 			</div>
-			<button class="btn btn-primary btn-large btn-block" onclick="goLogin()">로그인</button>
 		</div>
 	</div>
-
-</div>
-<div id="mypage">
-	<%@include file="/decorator/membersLoginSIgn.jsp" %>
-</div>
+	
+</body>
 </body>
 </html>
