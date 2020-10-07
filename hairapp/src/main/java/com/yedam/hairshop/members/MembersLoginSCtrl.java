@@ -39,6 +39,7 @@ public class MembersLoginSCtrl implements Controller {
 			if (membersVO.getMem_pw().equals(resultVO.getMem_pw()) || 
 				(resultVO.getMem_access_status().equals("1") && resultVO.getMem_access_status().equals("2"))) {
 				request.getSession().setAttribute("login", resultVO);
+				request.getSession().setAttribute("udong","member");
 				request.getSession().setAttribute("loginid", resultVO.getMem_email()); 	// 세션아이디
 				request.getSession().setAttribute("admin", resultVO.getMem_access_status());	// 인증컬럼
 				request.getSession().setAttribute("memNo", resultVO.getMem_no());		// 세션고객번호

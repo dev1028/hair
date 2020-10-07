@@ -66,9 +66,13 @@ public class MembersInfoModifyCtrl implements Controller {
 		dao.membersModify(members);
 
 		request.setAttribute("modify", members);
+		
+		// 수정 시 alert 뜨는거
+		response.getWriter().append("<script>")
+							.append("alert('회원수정이 완료되었습니다.');")
+							.append("</script>");
 
-
-		request.getRequestDispatcher("membersInfoOutPut.jsp").forward(request, response);
+		request.getRequestDispatcher("membersInfoModify.jsp").forward(request, response);
 	}
 
 }
