@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MembersDAO;
@@ -38,11 +39,22 @@ public class MembersLoginSCtrl implements Controller {
 			// 2는 관리자
 			if (membersVO.getMem_pw().equals(resultVO.getMem_pw()) || 
 				(resultVO.getMem_access_status().equals("1") && resultVO.getMem_access_status().equals("2"))) {
-				request.getSession().setAttribute("login", resultVO);
-				request.getSession().setAttribute("loginid", resultVO.getMem_email()); 	// 세션아이디
-				request.getSession().setAttribute("admin", resultVO.getMem_access_status());	// 인증컬럼
-				request.getSession().setAttribute("memNo", resultVO.getMem_no());		// 세션고객번호
-				request.getSession().setAttribute("memName", resultVO.getMem_name());	// 세션고객이름
+				HttpSession sess = request.getSession();
+				String latlng = resultVO.getMem_latitude_longitude();
+				if(latlng != null) {
+					String lat = latlng.split(",")[0].trim();
+					String lng = latlng.split(",")[1].trim();
+					sess.setAttribute("lat", lat);
+					sess.setAttribute("lng", lng);
+				}
+				
+				sess.setAttribute("login", resultVO);
+				sess.setAttribute("loginid", resultVO.getMem_email()); 	// 세션아이디
+				sess.setAttribute("admin", resultVO.getMem_access_status());	// 인증컬럼
+				sess.setAttribute("memNo", resultVO.getMem_no());		// 세션고객번호
+				sess.setAttribute("memName", resultVO.getMem_name());	// 세션고객이름
+				
+				
 				System.out.println("인증컬럼: " + resultVO.getMem_access_status());
 				page = "/members/membersMain.do";
 				System.out.println("로그인완:"+page);
