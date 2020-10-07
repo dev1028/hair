@@ -29,7 +29,7 @@ public class Login implements Filter {
 		
 		
 		String requestURI = req.getRequestURI();
-		String contextPath = req.getContextPath(); // frontWeb
+		String contextPath = req.getContextPath(); // frontWeb//
 		String path = requestURI.substring(contextPath.length()); // memberInsert.do
 		System.out.println(path);
 		//String isIn = list.get(path);
