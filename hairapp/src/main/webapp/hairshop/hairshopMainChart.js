@@ -13,29 +13,41 @@ function drawChart() {
 
 	// Create the data table.
 	var data = new google.visualization.DataTable();
-	data.addColumn('string', '부서');
-	data.addColumn('number', '사원수');
+	data.addColumn('string', '디자이너');
+	data.addColumn('number', '오늘예약금액합계');/* 
+	        data.addColumn('number', '임원수'); */
+	var datatable = [];
+	//ajax
+	$.ajax({
+		async : false,
+		url : "/hairapp/ajax/hairshop/chart.do",
+		dataType : "json",
+		success : function(datas) {
+			console.log(datas);
+			for (i = 0; i < datas.length; i++) {
+				datatable.push([ datas[i].name, parseInt(datas[i].ammount) ]);
+			}
+			//
+		}
+	});
+	data.addRows(datatable
+	/* 	[
+	['인사', 10,3],
+	['개발새발',5, 1],
+	['기획', 2,1],
+	] */
 
-	var datatable = [
-        ['Mushrooms', 3],
-        ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
-      ];
-	
-
-	data.addRows(datatable);
+	);
 
 	// Set chart options
 	var options = {
-		'title' : '매장 현황',
-		'width' : 500,
-		'height' : 500
+		'title' : '일별 총 예약금액 ',
+		'width' : 1000,
+		'height' : 700
 	};
 
 	// Instantiate and draw our chart, passing in some options.
-	var chart = new google.visualization.BarChart(document
+	var chart = new google.visualization.ColumnChart(document
 			.getElementById('chart_div'));
 	chart.draw(data, options);
 }

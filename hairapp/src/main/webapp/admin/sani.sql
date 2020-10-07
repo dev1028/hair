@@ -100,3 +100,39 @@ qna_who, emp_no, qna_ref, qna_repos, qna_level, qna_writer)
 VALUES(qna_no_seq.NEXTVAL, 'title', 'contents', sysdate, 1, 0, 'm5', 'j2', '50', '13', '1', '1', '관리자');
 
 commit;
+
+
+
+
+SELECT   d.designer_name,sum(
+			 (   SELECT  nvl(sum(mdp_price),0)  
+				 FROM members_detail_paylist   
+				
+				 ))as ammount     	 
+FROM  
+	members_designer_rsv r   
+JOIN designer  d  
+ ON (r.designer_no=d.designer_no)
+ 
+ GROUP BY designer_name
+ ;
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SELECT   d.designer_name,sum(
+			 (   SELECT  nvl(sum(mdp_price),0)  
+				 FROM members_detail_paylist   
+				 WHERE mdr_no=r.mdr_no
+			 and mdr_date between '20-09-27' and '20-09-29'
+				 ))as ammount     	 
+FROM  
+	members_designer_rsv r   
+JOIN designer  d  
+ ON (r.designer_no=d.designer_no)
+ where d.hs_no = 2 
+ GROUP BY designer_name;

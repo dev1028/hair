@@ -18,7 +18,7 @@
 
 #wrap{
 	top:250px;
-	left:800px;
+	left:55%;
     position:absolute;
     margin:0 auto;
 } 

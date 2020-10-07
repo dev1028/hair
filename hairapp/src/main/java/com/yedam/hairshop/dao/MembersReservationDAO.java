@@ -67,10 +67,13 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, d.designer_name "
-					+ " from hairshop h join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_status = 'i2' " + " order by 2 desc";
+			String sql = "SELECT H.HS_NAME, R.MDR_DATE, R.MDR_NO, R.MDR_STATUS, M.MEM_NO, D.DESIGNER_NAME "
+					+ " FROM HAIRSHOP H JOIN DESIGNER D " 
+					+ " ON(H.HS_NO=D.HS_NO) JOIN MEMBERS_DESIGNER_RSV R "
+					+ " ON(D.DESIGNER_NO=R.DESIGNER_NO) JOIN MEMBERS M " 
+					+ " ON(R.MEM_NO=M.MEM_NO) "
+					+ " WHERE R.MDR_STATUS = 'i2' AND R.MDR_DATE > SYSDATE" 
+					+ " ORDER BY 2 DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -148,11 +151,16 @@ public class MembersReservationDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status,"
-					+ " m.mem_no, d.designer_name, p.hsp_file " + " from hs_photo p join hairshop h "
-					+ " on(p.hs_no=h.hs_no) join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_status = 'i3' or r.mdr_status = 'i2' or r.mdr_status = 'i1' " + " order by 2 desc";
+			String sql = "select h.hs_name, max(r.mdr_date), max(r.mdr_no), max(r.mdr_status)," 
+					+ " max(m.mem_no), max(d.designer_name), max(p.hsp_file)" 
+					+ " from hs_photo p join hairshop h "
+					+ " on(p.hs_no=h.hs_no) join designer d " 
+					+ " on(h.hs_no=d.hs_no) join members_designer_rsv r "
+					+ " on(d.designer_no=r.designer_no) join members m " 
+					+ " on(r.mem_no=m.mem_no) "
+					+ " where r.mdr_status = 'i3' or r.mdr_status = 'i2' or r.mdr_status = 'i1' "
+					+ " group by h.hs_name" 
+					+ " order by 2 desc";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			System.out.println(sql);

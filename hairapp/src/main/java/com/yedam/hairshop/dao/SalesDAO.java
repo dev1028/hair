@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.DesignerVo;
@@ -25,13 +29,20 @@ public class SalesDAO {
 			+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
 			+ "WHERE mdp_code='d3' AND mdr_no=r.mdr_no),0) AS kakao,\r\n" + "nvl\r\n" + "((\r\n"
 			+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
-			+ "WHERE mdp_code='d6' AND mdr_no=r.mdr_no),0) AS ACCOUNT\r\n" + ",(\r\n" + "SELECT  sum(mdp_price) \r\n"
-			+ "FROM members_detail_paylist\r\n" + "where mdr_no=r.mdr_no) as ammount\r\n" + "\r\n" + "FROM \r\n"
-			+ "members_designer_rsv r \r\n" + "JOIN mem_designer_rsv_info i\r\n" + "ON(r.mdr_no = i.mdr_no)\r\n"
-			+ "JOIN hairshop_hair_info h\r\n" + "ON(i.hhi_no=h.hhi_no)\r\n" + "JOIN designer  d \r\n"
-			+ "ON (r.designer_no=d.designer_no)  \r\n" + "JOIN MEMBERs m\r\n" + "ON(m.mem_no = r.mem_no)\r\n"
-			+ "WHERE r.mdr_date BETWEEN ?\r\n" + "AND  ?\r\n" + "and r.mdr_status  = 'i3' ";
+			+ "WHERE mdp_code='d6' AND mdr_no=r.mdr_no),0) AS ACCOUNT\r\n" + ",(\r\n"
+			+ "SELECT  nvl(sum(mdp_price),0) \r\n" + "FROM members_detail_paylist\r\n"
+			+ "where mdr_no=r.mdr_no) as ammount\r\n" + "\r\n" + "FROM \r\n" + "members_designer_rsv r \r\n"
+			+ "JOIN mem_designer_rsv_info i\r\n" + "ON(r.mdr_no = i.mdr_no)\r\n" + "JOIN hairshop_hair_info h\r\n"
+			+ "ON(i.hhi_no=h.hhi_no)\r\n" + "JOIN designer  d \r\n" + "ON (r.designer_no=d.designer_no)  \r\n"
+			+ "JOIN MEMBERs m\r\n" + "ON(m.mem_no = r.mem_no)\r\n" + "WHERE r.mdr_date BETWEEN ?\r\n" + "AND  ?\r\n"
+			+ "and r.mdr_status  = 'i4' and hs_no=? ";
 	final static String addDs = " and r.designer_no=? order by mdr_no ";
+	final static String chart = "\r\n" + "SELECT   d.designer_no,sum(\r\n"
+			+ "			 (   SELECT  nvl(sum(mdp_price),0)  \r\n" + "				 FROM members_detail_paylist   \r\n"
+			+ "				 WHERE mdr_no=r.mdr_no\r\n" + "			 and mdr_date between sysdate-1 and sysdate+1 \r\n"
+			+ "				 ))as ammount     	 \r\n" + "FROM  \r\n" + "	members_designer_rsv r   \r\n"
+			+ "JOIN designer  d  \r\n" + " ON (r.designer_no=d.designer_no)\r\n" + " where d.hs_no = ? \r\n"
+			+ " GROUP BY d.designer_no";
 
 	public static SalesDAO getInstance() {
 		if (instance == null)
@@ -39,7 +50,60 @@ public class SalesDAO {
 		return instance;
 	}
 
-	public ArrayList<SalesVo> dailySalesAll(String start, String end) {
+	public List<Map<String, String>> chart(String hs_no) {
+		ArrayList<SalesVo> list = dsList();
+		ArrayList<SalesVo> list1 = new ArrayList<>();
+	
+		SalesVo resultVo = null;
+		Date date = new Date();
+
+		System.out.println(date);
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(chart);
+			pstmt.setString(1, hs_no);
+//			pstmt.setString(2, date.toString());
+
+			rs = pstmt.executeQuery();
+			System.out.println("sql");
+			while (rs.next()) {
+
+				resultVo = new SalesVo();
+
+				resultVo.setDsNo(rs.getString("designer_no"));
+				resultVo.setTotalAmountRsv(rs.getString("ammount"));
+
+				list1.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+for (SalesVo va : list1) {
+	for(int i = 0;i<list.size();i++) {
+		if(va.getDsNo().equals(list.get(i).getDsNo())) {
+			list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
+			break;
+		}
+	}
+	
+}
+		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
+		for (SalesVo vovo : list) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("ammount", vovo.getTotalAmountRsv());
+			map.put("name", vovo.getDsName());
+			mapList.add(map);
+		}
+
+		return mapList;
+	}
+
+	public ArrayList<SalesVo> dailySalesAll(String start, String end, String hs_no) {
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 
@@ -49,7 +113,7 @@ public class SalesDAO {
 			pstmt = conn.prepareStatement(totaldaily);
 			pstmt.setString(1, start);
 			pstmt.setString(2, end);
-
+			pstmt.setString(3, hs_no);
 			rs = pstmt.executeQuery();
 			System.out.println("sql");
 			while (rs.next()) {
@@ -131,7 +195,7 @@ public class SalesDAO {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer  ";
+			String sql = "SELECT designer_no, designer_name	FROM designer order by designer_no  ";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -152,6 +216,33 @@ public class SalesDAO {
 		return list;
 	}
 
+	public ArrayList<SalesVo> dsList() {
+		ArrayList<SalesVo> list = new ArrayList<>();
+		SalesVo resultVo = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT designer_no, designer_name	FROM designer order by designer_no  ";
+			pstmt = conn.prepareStatement(sql);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				resultVo = new SalesVo();
+				resultVo.setDsNo(rs.getString(1));
+				resultVo.setDsName(rs.getString(2));
+				resultVo.setTotalAmountRsv("0");
+
+				list.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+
 	// 2020.10.06 김승연
 	// 예약번호를 이용한 매출 다건 조회
 	public ArrayList<MembersDetailPaylistVo> selectListByMdrNo(MembersDetailPaylistVo mDPVo) {
@@ -159,8 +250,7 @@ public class SalesDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT MDP_NO,MDR_NO,MDP_PRICE,MDP_RV_SCENE,MDP_CODE" 
-					+ " FROM MEMBERS_DETAIL_PAYLIST"
+			String sql = "SELECT MDP_NO,MDR_NO,MDP_PRICE,MDP_RV_SCENE,MDP_CODE" + " FROM MEMBERS_DETAIL_PAYLIST"
 					+ " WHERE MDR_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, mDPVo.getMdr_no());

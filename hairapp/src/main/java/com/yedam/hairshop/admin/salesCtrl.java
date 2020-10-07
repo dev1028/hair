@@ -20,16 +20,16 @@ public class salesCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		JSONArray jArray = new JSONArray();
-
+		String hs_no = request.getSession().getAttribute("hsno").toString();
 		String startDate = request.getParameter("start");
 		String endDate = request.getParameter("end");
 		String ds = request.getParameter("ds");
 		ds = "10";
 		System.out.println(startDate);
 		System.out.println(endDate);
-		System.out.println(ds);
+		System.out.println(hs_no);
 //		ArrayList<SalesVo> salesList = SalesDAO.getInstance().dailySalesAllAddDs(startDate, endDate,ds);
-		ArrayList<SalesVo> salesList = SalesDAO.getInstance().dailySalesAll(startDate, endDate);
+		ArrayList<SalesVo> salesList = SalesDAO.getInstance().dailySalesAll(startDate, endDate,hs_no);
 
 		JSONObject jObj = new JSONObject();
 
