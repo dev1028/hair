@@ -37,7 +37,6 @@ public class MembersHsEventIntroCtrl implements Controller {
 		
 		// 결과 저장
 		MembersEventVo coupon = CouponDAO.getInstance().memCoupon(eventVo);
-		request.getSession().setAttribute("expiredate", coupon.getMc_expiredate());
 		
 		request.setAttribute("intro", couList);
 		request.setAttribute("shop", shop);

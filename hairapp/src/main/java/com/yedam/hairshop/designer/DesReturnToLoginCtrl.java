@@ -1,4 +1,4 @@
-package com.yedam.hairshop.members;
+package com.yedam.hairshop.designer;
 
 import java.io.IOException;
 
@@ -8,17 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class MembersJoinCtrl implements Controller {
+public class DesReturnToLoginCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 인코딩
-		request.setCharacterEncoding("utf-8");
+		response.sendRedirect(request.getContextPath()+"/hairshop/hairshopDesignerLogin.jsp");
 
-		// 목록으로 이동
-		request.getRequestDispatcher("membersJoin.jsp").forward(request, response);
-	
 	}
 
 }

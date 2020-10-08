@@ -13,6 +13,28 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
 <title>지역별 디자이너 순위</title>
+<script>
+	function like_func(designer_no) {
+		$.ajax({
+			url : "../ajax/designerBookmark.do",
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : 'designer_no=' + designer_no,
+			success : function(data) {
+				findClass = ".img-" + designer_no;
+				if(data.type == "add"){
+					$(findClass).attr("src", "../images/bookmark/heart.png");
+				}else{
+					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
+				}
+			},
+			error : function(request, status, error) {
+				alert("에러 발생!!")
+			}
+		});
+	}
+</script>
 </head>
 <body>
 	지역별 디자이너 순위
@@ -28,14 +50,16 @@
 	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg">
 		                </div>
 		                <div class="product-content">
-		                	<a href='javascript: like_func("${designerInfo.designer_no}")'>
-								<c:if test="${designerInfo.designer_book == 1 }">
-									<img class="img-${designerInfo.designer_no}" src="../images/bookmark/heart.png" width="30" height="30">
-								</c:if>
-								<c:if test="${designerInfo.designer_book != 1 }">
-									<img class="img-${designerInfo.designer_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
-								</c:if>
-							</a>
+		                	<c:if test="${not empty sessionScope.login }">
+			                	<a href='javascript: like_func("${designerInfo.designer_no}")'>
+									<c:if test="${designerInfo.designer_book == 1 }">
+										<img class="img-${designerInfo.designer_no}" src="../images/bookmark/heart.png" width="30" height="30">
+									</c:if>
+									<c:if test="${designerInfo.designer_book != 1 }">
+										<img class="img-${designerInfo.designer_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+									</c:if>
+								</a>
+							</c:if>
 							<span class="title">${designerInfo.designer_name} </span><br>
 							<span class="title">프로필: ${designerInfo.designer_profile} </span><br>
 							<span class="title">직책: ${designerInfo.position} </span><br>
@@ -59,5 +83,6 @@
     </div>
 </div>
 <hr>
+
 </body>
 </html>
