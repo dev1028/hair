@@ -21,7 +21,5 @@ public class AdminCouponInsertCtrl implements Controller {
 		System.out.println(list.get(0).getHs_name());
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/admin/couponInsert.jsp").forward(request, response);
-
 	}
-
 }
