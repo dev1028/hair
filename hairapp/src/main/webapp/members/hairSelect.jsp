@@ -7,11 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/designerCard.css">
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
 </head>
 <body>
@@ -51,8 +47,8 @@ $(document).ready(function() {
 
 	<div class="container">
 		<h3 class="h3">헤어 정보</h3>
-		<form action="../members/hairSelectResult.do" method="post">
-		<button class="add-to-cart">예약하기</button>
+			<form action="../members/hairSelectResult.do" method="post">
+			<button class="add-to-cart">예약하기</button>
 			<div class="row">
 				<c:forEach items="${list}" var="hairInfo">
 					<div class="col-md-3 col-sm-6">
@@ -82,7 +78,7 @@ $(document).ready(function() {
 					</div>
 				</c:forEach>
 			</div>
-		</form>
+			</form>
 	</div>
 
 	<!-- <div class="container"> -->

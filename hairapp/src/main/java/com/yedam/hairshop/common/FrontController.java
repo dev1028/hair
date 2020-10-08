@@ -77,6 +77,7 @@ import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoDetailCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
+import com.yedam.hairshop.hairshop.HairshopCouponCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
@@ -105,7 +106,7 @@ import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.GpsHairshopSearchCtrl;
 import com.yedam.hairshop.members.HairBookmarkCtrl;
-import com.yedam.hairshop.members.HairRankCtrl;
+import com.yedam.hairshop.members.RegionHairRankCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
 import com.yedam.hairshop.members.HairShopReviewCtrl;
@@ -204,7 +205,7 @@ public class FrontController extends HttpServlet {
 
 		list.put("/members/regionHairshopRank.do", new RegionHairshopRankCtrl()); // 우리동네 미용실 순위
 		list.put("/members/regionDesignerRank.do", new RegionDesignerRankCtrl()); // 우리동네 디자이너 순위
-		list.put("/members/hairRank.do", new HairRankCtrl()); // 헤어 순위
+		list.put("/members/regionHairRank.do", new RegionHairRankCtrl()); // 헤어 순위
 
 		list.put("/members/payment.do", new PaymentCtrl());
 		list.put("/members/paymentMember.do", new PaymentMemberCtrl()); // 회원결제
@@ -244,6 +245,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
 		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
 		// list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
+		list.put("/hairshop/HairshopCouponCtrl.do", new HairshopCouponCtrl());
 		list.put("/hairshop/HairshopCouponListCtrl.do", new HairshopCouponListCtrl());
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", new HairshopCouponInsertCtrl());
 		

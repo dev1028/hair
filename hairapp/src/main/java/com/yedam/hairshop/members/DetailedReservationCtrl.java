@@ -25,10 +25,13 @@ public class DetailedReservationCtrl implements Controller {
 		// DB 조회
 		MembersReservationDAO dao = MembersReservationDAO.getInstance();
 		MembersReservationVo resultVo = dao.drHairshop(memVo);
+		MembersReservationVo resultVo2 = dao.drHairshop2(memVo);
 		System.out.println("resultVo: " + resultVo);
+		System.out.println("resultVo2: " + resultVo2);
 		
 		// 결과 저장
 		request.setAttribute("list", resultVo);
+		request.setAttribute("list2", resultVo2);
 
 		// 페이지 이동
 		request.getRequestDispatcher("DetailedReservation.jsp").forward(request, response);

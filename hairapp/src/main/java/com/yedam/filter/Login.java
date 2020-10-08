@@ -79,20 +79,20 @@ public class Login implements Filter {
 
 		// 상민
 		list.put("/members/membersMain.do", null);
-		list.put("/members/membersMainResult.do", memberLoginPage);
+		list.put("/members/membersMainResult.do", null);
 
-		list.put("/members/hairshopSelect.do", memberLoginPage);
-		list.put("/members/hairshopSelectResult.do", memberLoginPage);
+		list.put("/members/hairshopSelect.do", null);
+		list.put("/members/hairshopSelectResult.do", null);
 
-		list.put("/members/hairSelect.do", memberLoginPage);
-		list.put("/members/hairSelectResult.do", memberLoginPage);
+		list.put("/members/hairSelect.do", null);
+		list.put("/members/hairSelectResult.do", null);
 
-		list.put("/members/designerSelect.do", memberLoginPage);
-		list.put("/members/designerSelectResult.do", memberLoginPage);
+		list.put("/members/designerSelect.do", null);
+		list.put("/members/designerSelectResult.do", null);
 
-		list.put("/members/regionHairshopRank.do", memberLoginPage); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", memberLoginPage); // 우리동네 디자이너 순위
-		list.put("/members/hairRank.do", memberLoginPage); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", null); // 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", null); // 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", null); // 헤어 순위
 
 		list.put("/members/payment.do", memberLoginPage);
 		list.put("/members/paymentMember.do", memberLoginPage); // 회원결제
@@ -112,7 +112,7 @@ public class Login implements Filter {
 		list.put("/ajax/searchRealtime.do", memberLoginPage); // 자동완성 검색
 		list.put("/members/searchDetail.do", memberLoginPage); // 상세검색
 
-		list.put("/members/gpsHairshopSearch.do", memberLoginPage);
+		list.put("/members/gpsHairshopSearch.do", null);
 
 		list.put("/members/membersBookmarkHairshop.do", memberLoginPage);
 		list.put("/members/membersBookmarkDesigner.do", memberLoginPage);
@@ -139,19 +139,19 @@ public class Login implements Filter {
 		list.put("/members/membersLogout.do", memberLoginPage); // 로그아웃 페이지 이동 컨트롤러
 		list.put("/members/membersLoginS.do", null); // 로그인 처리하는 컨트롤러
 
-		list.put("/members/membersIdSearch.do", memberLoginPage); // ID 찾기 페이지 이동 컨트롤러
-		list.put("/members/membersIdSearchS.do", memberLoginPage); // ID 찾기 넘어가는 컨트롤러
-		list.put("/members/membersPwSearch.do", memberLoginPage); // PW 찾기 페이지 이동 컨트롤러
-		list.put("/members/membersPwSearchS.do", memberLoginPage); // PW 찾기 넘어가는 컨트롤러
-		list.put("/members/membersPwEnd.do", memberLoginPage); // PW 찾기 완료 페이지 이동하는 컨트롤러
+		list.put("/members/membersIdSearch.do", null); // ID 찾기 페이지 이동 컨트롤러
+		list.put("/members/membersIdSearchS.do", null); // ID 찾기 넘어가는 컨트롤러
+		list.put("/members/membersPwSearch.do", null); // PW 찾기 페이지 이동 컨트롤러
+		list.put("/members/membersPwSearchS.do", null); // PW 찾기 넘어가는 컨트롤러
+		list.put("/members/membersPwEnd.do", null); // PW 찾기 완료 페이지 이동하는 컨트롤러
 		list.put("/members/membersPwEmail.do", memberLoginPage); // PW EMAIL 인증 클릭 컨트롤러
 		list.put("/members/membersPwModify.do", memberLoginPage); // PW 수정 처리하는 컨트롤러
 
-		list.put("/members/membersJoin.do", memberLoginPage); // 회원가입 페이지 이동 컨트롤러
-		list.put("/members/membersJoinS.do", memberLoginPage); // 회원가입 넘어가는 컨트롤러
-		list.put("/ajax/membersJoinIdCheck.do", memberLoginPage); // 회원가입 ID 중복확인 컨트롤러
-		list.put("/members/membersJoinEmail.do", memberLoginPage); // 회원가입 이메일 인증하는 컨트롤러
-		list.put("/members/membersJoinEnd.do", memberLoginPage); // 회원가입 완료 페이지 이동하는 컨트롤러
+		list.put("/members/membersJoin.do", null); // 회원가입 페이지 이동 컨트롤러
+		list.put("/members/membersJoinS.do", null); // 회원가입 넘어가는 컨트롤러
+		list.put("/ajax/membersJoinIdCheck.do", null); // 회원가입 ID 중복확인 컨트롤러
+		list.put("/members/membersJoinEmail.do", null); // 회원가입 이메일 인증하는 컨트롤러
+		list.put("/members/membersJoinEnd.do", null); // 회원가입 완료 페이지 이동하는 컨트롤러
 
 		list.put("/members/membersInfoModify.do", memberLoginPage); // 회원수정 컨트롤러
 		list.put("/members/membersInfoView.do", memberLoginPage); // 회원수정 정보확인 컨트롤러
@@ -163,10 +163,10 @@ public class Login implements Filter {
 		list.put("/members/membersDelete.do", memberLoginPage); // 회원 탈퇴로 이동하는 컨트롤러
 		list.put("/members/membersDeleteS.do", memberLoginPage); // 회원 탈퇴 처리하는 컨트롤러
 
-		list.put("/members/hairshopInfo.do", memberLoginPage); // 헤어샵소개로 이동하는 컨트롤러
-		list.put("/members/hairshopIntro.do", memberLoginPage); // 헤어샵 정보 뿌려주는 컨트롤러
-		list.put("/members/hsDesignerIntro.do", memberLoginPage); // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
-		list.put("/members/hsEventIntro.do", memberLoginPage); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
+		list.put("/members/hairshopInfo.do", null); // 헤어샵소개로 이동하는 컨트롤러
+		list.put("/members/hairshopIntro.do", null); // 헤어샵 정보 뿌려주는 컨트롤러
+		list.put("/members/hsDesignerIntro.do", null); // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
+		list.put("/members/hsEventIntro.do", null); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
 		list.put("/members/hsCouponIssuance.do", memberLoginPage); // 헤어샵 안의 쿠폰 발급해주는 컨트롤러
 
 		list.put("/members/membersNotice.do", memberLoginPage); // 공지사항 목록 컨트롤러

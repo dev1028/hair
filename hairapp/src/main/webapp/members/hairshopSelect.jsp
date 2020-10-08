@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/card.css">
 <link rel="stylesheet" type="text/css" href="../css/hairshopCard.css">
 <style>
@@ -44,7 +43,7 @@ div.course{
 <h1>키워드: ${param.term }</h1>
 <c:forEach items="${list}" var="item">
 	<form action="../members/hairshopSelectResult.do" method="post">
-		<div class="course">
+		<div class="course" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">
 			<div class="course-preview">
 				<h6>미용실이름</h6>
 				<h4>${item.hs_name }</h4>
