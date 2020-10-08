@@ -146,14 +146,54 @@
 		<h6>${shop.hs_fulladdr}</h6>
 	</div>
 	<div id="shopStar1">
-		★★★★★
+		<c:choose>
+			<c:when test="${shop2.hr_rate > 4.5}">
+	        	★★★★★
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 3.5}">
+	        	★★★★☆
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 2.5}">
+	        	★★★☆☆
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 1.5}">
+	        	★★☆☆☆
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 0.5}">
+	        	★☆☆☆☆
+	        </c:when>
+	        <c:when test="${empty shop2.hr_rate}">
+	        	☆☆☆☆☆
+	        </c:when>
+        </c:choose>
 	</div>
 	<div id="shopStar2">
-		<br><h4>4.9</h4>
+		<c:choose>
+			<c:when test="${empty shop2.hr_rate}">
+	        	<br><h4>0.0</h4>
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 0.0}">
+	        	<br><h4>${shop2.hr_rate}</h4>
+	        </c:when>
+	    </c:choose>
 	</div>
 	<div id="reviewBook">
-		리뷰 1000+<br>
-		북마크 1000+
+		<c:choose>
+			<c:when test="${shop2.hs_no > 0}">
+	        	리뷰수 : ${shop2.hs_no} +<br>
+	        </c:when>
+	        <c:when test="${empty shop2.hs_no}">
+	        	리뷰수 : 리뷰가 없습니다<br>
+	        </c:when>
+	    </c:choose>
+		<c:choose>
+			<c:when test="${shop3.hs_no > 0}">
+				북마크 : ${shop3.hs_no} +
+			</c:when>
+			<c:when test="${empty shop3.hs_no}">
+				북마크 : 북마크가 없습니다
+			</c:when>
+		</c:choose>
 	</div>
 </div>
 

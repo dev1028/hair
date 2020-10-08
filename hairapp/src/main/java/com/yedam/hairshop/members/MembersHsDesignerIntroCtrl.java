@@ -13,6 +13,8 @@ import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.DesignerBookmarkVo;
 import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
 import com.yedam.hairshop.model.MembersVo;
@@ -50,6 +52,8 @@ public class MembersHsDesignerIntroCtrl implements Controller {
 		
 		// 헤어샵 정보 뿌리는거
 		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(shopVo);
+		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(shopVo);
+		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(shopVo);
 		
 		System.out.println();
 		System.out.println("1: "+list);
@@ -57,6 +61,8 @@ public class MembersHsDesignerIntroCtrl implements Controller {
 		// 결과 저장
 		request.setAttribute("intro", list);
 		request.setAttribute("shop", shop);
+		request.setAttribute("shop2", shop2);
+		request.setAttribute("shop3", shop3);
 		
 		// 페이지 이동
 		request.getRequestDispatcher("/members/designerIntro.jsp").forward(request, response);

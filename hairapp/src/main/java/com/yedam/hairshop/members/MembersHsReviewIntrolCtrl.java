@@ -11,6 +11,7 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairShopReviewDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersEventVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
@@ -28,7 +29,11 @@ public class MembersHsReviewIntrolCtrl implements Controller {
 		reviewVo.setHs_no(hsVo.getHs_no());
 
 		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hsVo);
+		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hsVo);
+		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hsVo);
 		request.setAttribute("shop", shop);
+		request.setAttribute("shop2", shop2);
+		request.setAttribute("shop3", shop3);
 		// 헤어샵 정보 뿌리는거 끝
 		
 		

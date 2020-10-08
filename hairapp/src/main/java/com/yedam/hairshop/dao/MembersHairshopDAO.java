@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersEventVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
@@ -215,5 +216,28 @@ public class MembersHairshopDAO {
 		return resultVO; // 값을 리턴해줌
 	}
 	
+	// 세션에 평균별이랑 리뷰수 보내는거
+	public HairshopBookmarkVo bookmarkCount(HairshopVo hairshopVo) {
+		ResultSet rs = null;
+		HairshopBookmarkVo resultVO = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			String sql = "select count(hs_no) as hs_no from favor_hs where hs_no=? group by hs_no";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hairshopVo.getHs_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVO = new HairshopBookmarkVo();
+				resultVO.setHs_no(rs.getString("hs_no"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVO; // 값을 리턴해줌
+	}
 
 }
