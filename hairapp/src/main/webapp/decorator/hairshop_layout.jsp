@@ -285,13 +285,7 @@
 							
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
-								
-								
-								
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출관리</a></li>
-								
-								
+			
 								<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"

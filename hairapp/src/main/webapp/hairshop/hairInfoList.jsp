@@ -29,13 +29,13 @@
 			</div>
 			<div class="col-6">
 				<form id="searchCustomerFrm"
-					action="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do"
+					action="${pageContext.request.contextPath}/hairshop/hairInfoList.do"
 					method="post">
 					<div class="input-group flex-nowrap">
 						<div class="input-group-prepend">
 							<select name="divisionSearch">
-								<option value="name">시술분류</option>
-								<option value="tel">시술명</option>
+								<option value="hhi_name">시술분류</option>
+								<option value="tmac_name">시술명</option>
 							</select>
 						</div>
 						<input type="text" class="form-control"
@@ -52,7 +52,7 @@
 
 		</div>
 		<hr>
-		<c:if test="${empty customerList && empty customerNotFound}">
+		<c:if test="${empty hairList && empty hairNotFound}">
 			<div class="alert alert-warning alert-dismissible fade show"
 				role="alert">
 				<strong>시술명을 검색하세요.</strong> 시술명이나 시술분류를 통해  시술정보를 조회 할 수 있습니다.
@@ -62,7 +62,7 @@
 				</button>
 			</div>
 		</c:if>
-		<c:if test="${empty customerList && customerNotFound == 0}">
+		<c:if test="${empty hairList && hairNotFound == 0}">
 			<div class="alert alert-danger alert-dismissible fade show"
 				role="alert">
 				<strong>존재하지 않는 시술입니다.</strong> 시술명이나 시술분류를 정확하게 입력하세요.
@@ -86,7 +86,7 @@
 						</tr>
 					</thead>
 					<tbody>
-				<c:if test="${!empty hairList}">
+				<c:if test="${!empty hairList && hairNotFound != 0}">
 						<c:forEach items="${hairList}" var="hair">
 							<tr>
 								<th scope="row">#${hair.hhi_no}</th>
@@ -103,8 +103,11 @@
 							</tr>
 						</c:forEach>
 				</c:if>
-				<c:if test="${empty hairList}">
-					<tr><td>시술정보가 아직 없습니다.</td></tr>
+				<c:if test="${empty hairList && hairNotFound == 0}">
+					<tr><td>시술정보가 없습니다.</td></tr>
+				</c:if>
+				<c:if test="${empty hairList && hairNotFound == 1}">
+					<tr><td>시술정보가 아직 없습니다. 등록이 필요합니다.</td></tr>
 				</c:if>
 					</tbody>
 				</table>

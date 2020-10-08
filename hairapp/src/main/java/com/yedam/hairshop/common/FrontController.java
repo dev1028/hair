@@ -75,7 +75,9 @@ import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
 import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoDetailCtrl;
+import com.yedam.hairshop.hairshop.HairInfoFullListCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
+import com.yedam.hairshop.hairshop.HairInfoListCtrlRe;
 import com.yedam.hairshop.hairshop.HairshopCouponCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
@@ -418,6 +420,8 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/categoryMajorDelete.do", new CategoryMajorDeleteAjCtrl()); //삭제
 		
 		list.put("/hairshop/hairInfoList.do", new HairInfoListCtrl()); //헤어시술목록 페이지이동
+		list.put("/hairshop/hairInfoFullList.do", new HairInfoFullListCtrl()); //헤어시술 전체목록
+		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); //헤어시술목록 검색페이지로 이동
 		list.put("/hairshop/hairInfoDetail.do", new HairInfoDetailCtrl()); //헤어시술목록 상세페이지
 	}
 

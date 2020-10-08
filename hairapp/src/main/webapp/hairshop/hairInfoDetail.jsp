@@ -15,6 +15,9 @@
 			pager : true,
 			slideWidth : 600
 		});
+		$("#imgList").on("click", "img", function() {
+			alert("달리");
+		});
 		$("#searchCustomerBtn").on("click", function() {
 			if ($("#inputSearch").val() == "") {
 				alert("값을 입력해주세요");
@@ -48,34 +51,7 @@
 										}
 									});// end of ajax 
 						});
-		$("#savetextArea")
-				.on(
-						"click",
-						"button",
-						function() {
-							var textInfo = $(this).attr("data-text");
-							var textNo = $(this).attr("data-detailNo");
-							var mdrNo = $("#savetextArea").attr("data-id");
-							var textAreaVal = $("#" + textInfo).val();
-							$
-									.ajax({
-										url : "${pageContext.request.contextPath}/ajax/updateMdriMemo.do",
-										data : {
-											mdr_no : mdrNo,
-											mdri_memo : textAreaVal,
-											mdri_detail_info : textNo
-										},
-										dataType : "json",
-										method : "post",
-										success : function(data) {
-											if (data == 0) {
-												alert("시술 메모가 등록되지 않았습니다. 다시 시도해 주세요.");
-											} else {
-												alert("메모가 정상적으로 등록되었습니다.")
-											}
-										}
-									});// end of ajax 
-						});
+
 	});
 </script>
 </head>
@@ -86,21 +62,21 @@
 		</div>
 		<div class="row justify-content-between">
 			<div class="col-4">
-				<h3>헤어상세정보</h3>
+				<h3>헤어목록 리스트</h3>
 			</div>
 			<div class="col-6">
 				<form id="searchCustomerFrm"
-					action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
+					action="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do"
 					method="post">
 					<div class="input-group flex-nowrap">
 						<div class="input-group-prepend">
 							<select name="divisionSearch">
-								<option value="name">이름</option>
-								<option value="tel">전화번호</option>
+								<option value="name">시술분류</option>
+								<option value="tel">시술명</option>
 							</select>
 						</div>
 						<input type="text" class="form-control"
-							placeholder="이름 또는 전화번호를 입력하세요" id="inputSearch"
+							placeholder="시술분류나 시술명을 입력하세요." id="inputSearch"
 							name="inputSearch" aria-label="Username"
 							aria-describedby="addon-wrapping">
 						<div class="input-group-append">
@@ -144,7 +120,7 @@
 		</div>
 		<hr>
 		<div class="row justify-content-md-center">
-			<div class="bxslider">
+			<div class="bxslider" id="imgList">
 				<div>
 					<img src="../images/hairshop/san.jpg">
 				</div>
@@ -152,28 +128,24 @@
 		</div>
 		<hr>
 		<div class="row justify-content-md-center">
-			<form>
-				<input type="file" id="image" name="file_name"
-					accept=".gif, .jpg, .png" onchange="setThumbnail(event);" />
-				<div id="image_container"></div>
-				<script>
-					function setThumbnail(event) {
-						var reader = new FileReader();
-						reader.onload = function(event) {
-							var img = document.createElement("img");
-							img.setAttribute("src", event.target.result);
-							document.querySelector("div#image_container")
-									.appendChild(img);
-						};
-						reader.readAsDataURL(event.target.files[0]);
-					}
-				</script>
-				<div>
-					<button>수정하기</button>
-					<button type="reset">초기화</button>
-					<!-- onclick="location.href='/designer/designerMyPageOutput.jsp'" -->
-				</div>
-			</form>
+			<div class="col-2"><h5>헤어사진 업로드</h5>	</div>
+			<div class="col-sm">
+				<form>
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input"
+								id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+							<label class="custom-file-label" for="inputGroupFile04">Choose
+								file</label>
+						</div>
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"
+								id="inputGroupFileAddon04">업로드</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
+	</div>
 </body>
 </html>
