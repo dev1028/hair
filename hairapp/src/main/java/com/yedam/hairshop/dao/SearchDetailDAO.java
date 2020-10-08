@@ -46,21 +46,23 @@ public class SearchDetailDAO {
 	public List<HairshopVo> selectListHairshop(SearchDetailVo vo) {
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
 		try {
-			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE," + 
+			String sql = 
+					" SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE," + 
 					" HS_FULLADDR,HS_CITYADDR, HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME," + 
-					" HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC" + 
-					" FROM HAIRSHOP" + 
+					" HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING, HS_ETC, NVL2((SELECT mem_no " + 
+															"   FROM favor_hs " + 
+															"   WHERE hs.hs_no = hs_no AND mem_no = ?), 1, 0) as HS_BOOK" + 
+					" FROM HAIRSHOP hs" + 
 					" WHERE HS_NAME LIKE '%'|| ? || '%' OR " + 
 					"      HS_PROFILE LIKE '%' || ? || '%' OR " + 
 					"      HS_FULLADDR LIKE '%' || ? || '%' ";
 			
-//			System.out.println(sql);
-			
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getLabel());
+			pstmt.setString(1, vo.getMem_no());
 			pstmt.setString(2, vo.getLabel());
 			pstmt.setString(3, vo.getLabel());
+			pstmt.setString(4, vo.getLabel());
 
 			//vo.getTimeStart();
 			//vo.getTimeEnd();
@@ -89,6 +91,7 @@ public class SearchDetailDAO {
 				resultVo.setHs_resource_option(rs.getString("HS_RESOURCE_OPTION"));
 				resultVo.setHs_parking(rs.getString("HS_PARKING"));
 				resultVo.setHs_etc(rs.getString("HS_ETC"));
+				resultVo.setHs_book(rs.getString("HS_BOOK"));
 				list.add(resultVo);
 			}
 		} catch (SQLException e) {

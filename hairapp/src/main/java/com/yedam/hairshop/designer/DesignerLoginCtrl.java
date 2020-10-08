@@ -44,6 +44,7 @@ public class DesignerLoginCtrl implements Controller {
 		} else {
 			if (designerVo.getDesigner_pw().equals(resultVo.getDesigner_pw())) { // 로그인 성공
 				request.getSession().setAttribute("login", resultVo);
+				request.getSession().setAttribute("udong", "designer");
 				request.getSession().setAttribute("email", resultVo.getDesigner_email());
 				
 				System.out.println("인증 :" + resultVo.getDesigner_access_status());

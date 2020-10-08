@@ -53,6 +53,7 @@ import com.yedam.hairshop.admin.salesStatisticsCtrl;
 import com.yedam.hairshop.admin.salesStatisticsFCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
+import com.yedam.hairshop.designer.DesReturnToLoginCtrl;
 import com.yedam.hairshop.designer.DesWeeklyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesignerInfoCtrl;
 import com.yedam.hairshop.designer.DesignerLoginCtrl;
@@ -358,6 +359,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl()); // 디자이너 간편등록
 		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl()); // 디자이너 퇴사명단
 		list.put("/ajax/hairshopReturnToLogin.do", new HairshopReturnToLoginCtrl()); // 로그인페이지 이동처리
+		list.put("/ajax/designerReturnToLogin.do", new DesReturnToLoginCtrl());
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl()); // 직원정보수정
 		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl()); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl()); // 직원퇴사처리
