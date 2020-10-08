@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedam.hairshop.members.MembersHsReviewIntrolCtrl;
+
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
@@ -166,6 +168,7 @@ public class Login implements Filter {
 		list.put("/members/hsDesignerIntro.do", null); // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		list.put("/members/hsEventIntro.do", null); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
 		list.put("/members/hsCouponIssuance.do", memberLoginPage); // 헤어샵 안의 쿠폰 발급해주는 컨트롤러
+		list.put("/members/hsReviewIntro.do", null);	// 헤어샵 안의 리뷰보기 컨트롤러
 
 		list.put("/members/membersNotice.do", memberLoginPage); // 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", memberLoginPage); // 공지사항 글쓰기로 이동하는 컨트롤러
