@@ -101,16 +101,13 @@ public class MembersReservationDAO {
 		MembersReservationVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, "
-					+ " d.designer_name, r.mdr_request, m.mem_hair_length, "
-					+ " m.mem_hair_status, e.mdp_no, e.mdp_price, i.hhi_no, i.hhi_name "
+			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, d.designer_name,"
+					+ " r.mdr_request, e.mdp_no, e.mdp_price, i.hhi_no, i.hhi_name "
 					+ " from members_detail_paylist e join members_designer_rsv r "
 					+ " on(e.mdr_no=r.mdr_no) join designer d"
 					+ " on(r.designer_no=d.designer_no) join hairshop_hair_info i "
 					+ " on(d.hs_no=i.hs_no) join hairshop h " 
-					+ " on(i.hs_no=h.hs_no) join hair_member_info a "
-					+ " on(h.hs_no=a.hs_no) join members m " 
-					+ " on(a.mem_no=m.mem_no) " 
+					+ " on(i.hs_no=h.hs_no)" 
 					+ " where r.mdr_no = ?";
 			pstmt = conn.prepareStatement(sql);
 			// System.out.println(sql);
@@ -125,15 +122,12 @@ public class MembersReservationDAO {
 				resultVo.setMdr_date(rs.getString(2));
 				resultVo.setMdr_no(rs.getString(3));
 				resultVo.setMdr_status(rs.getString(4));
-				resultVo.setMem_no(rs.getString(5));
-				resultVo.setDesigner_name(rs.getString(6));
-				resultVo.setMdr_request(rs.getString(7));
-				resultVo.setMem_hair_length(rs.getString(8));
-				resultVo.setMem_hair_status(rs.getString(9));
-				resultVo.setMdp_no(rs.getString(10));
-				resultVo.setMdp_price(rs.getString(11));
-				resultVo.setHhi_no(rs.getString(12));
-				resultVo.setHhi_name(rs.getString(13));
+				resultVo.setDesigner_name(rs.getString(5));
+				resultVo.setMdr_request(rs.getString(6));
+				resultVo.setMdp_no(rs.getString(7));
+				resultVo.setMdp_price(rs.getString(8));
+				resultVo.setHhi_no(rs.getString(9));
+				resultVo.setHhi_name(rs.getString(10));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -143,6 +137,39 @@ public class MembersReservationDAO {
 		return resultVo; // 값을 리턴해줌
 
 	}
+	
+	
+	// 예약 상세 보기 단건조회2(예약 시 헤어상태 조회)
+	public MembersReservationVo drHairshop2(MembersReservationVo membersReservationVo) {
+		MembersReservationVo resultVo = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select m.mem_no,m.mem_hair_length,m.mem_hair_status,r.mdr_no"
+					+ " from members m join members_designer_rsv r" 
+					+ " on(m.mem_no=r.mem_no) "
+					+ " where r.mdr_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			// System.out.println(sql);
+			System.out.println(membersReservationVo.getMdr_no());
+			pstmt.setString(1, membersReservationVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
+			rs = pstmt.executeQuery();
+			System.out.println(sql);
+			while (rs.next()) {
+				resultVo = new MembersReservationVo();
+				resultVo.setMem_no(rs.getString(1));
+				resultVo.setMem_hair_length(rs.getString(2));
+				resultVo.setMem_hair_status(rs.getString(3));
+				resultVo.setMdr_no(rs.getString(4));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo; // 값을 리턴해줌
+
+	}
+	
 
 	// 예약한 적 있는 미용실 조회
 	public List<MembersReservationVo> OnceVisitedHS() {
