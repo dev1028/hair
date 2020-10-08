@@ -178,19 +178,19 @@ $(function(){
 	</div>
 	<div id="shopStar1">
 		<c:choose>
-			<c:when test="${intro2.hr_rate < 4.5}">
+			<c:when test="${intro2.hr_rate > 4.5}">
 	        	★★★★★
 	        </c:when>
-	        <c:when test="${intro2.hr_rate < 4.0}">
+	        <c:when test="${intro2.hr_rate > 3.5}">
 	        	★★★★☆
 	        </c:when>
-	        <c:when test="${intro2.hr_rate < 2.5}">
+	        <c:when test="${intro2.hr_rate > 2.5}">
 	        	★★★☆☆
 	        </c:when>
-	        <c:when test="${intro2.hr_rate < 1.5}">
+	        <c:when test="${intro2.hr_rate > 1.5}">
 	        	★★☆☆☆
 	        </c:when>
-	        <c:when test="${intro2.hr_rate < 0.5}">
+	        <c:when test="${intro2.hr_rate > 0.5}">
 	        	★☆☆☆☆
 	        </c:when>
         </c:choose>
