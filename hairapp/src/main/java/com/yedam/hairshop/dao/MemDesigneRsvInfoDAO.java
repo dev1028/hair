@@ -111,6 +111,8 @@ public class MemDesigneRsvInfoDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
 		}
 		return r;
 	}

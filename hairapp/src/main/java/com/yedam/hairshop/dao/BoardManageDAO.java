@@ -198,7 +198,7 @@ public class BoardManageDAO {
 		BoardManageVo resultVo = new BoardManageVo();
 		try {
 			conn = ConnectionManager.getConnnect();
-System.out.println(vo.getNotice_no());
+			System.out.println(vo.getNotice_no());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getNotice_no());
 
@@ -225,7 +225,7 @@ System.out.println(vo.getNotice_no());
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-System.out.println(resultVo.getNotice_title());
+		System.out.println(resultVo.getNotice_title());
 		return resultVo;
 	}
 

@@ -9,42 +9,36 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.HairshopDAO;
-import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.dao.HairshopHairInfoDAO;
+import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.MembersVo;
 import com.yedam.hairshop.model.SearchRankVo;
 
-public class RegionHairshopRankCtrl implements Controller {
+public class RegionHairRankCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("RegionHairshopRankCtrl");
-		
+		System.out.println("RegionHairRankCtrl");
 		HttpSession sess = request.getSession();
 		String lat = (String) sess.getAttribute("lat");
 		String lng = (String) sess.getAttribute("lng");
-		
+
 		if(lat != null && lng != null) {
 			SearchRankVo vo = new SearchRankVo();
 			vo.setLat(lat);
 			vo.setLng(lng);
 			
 			MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
-			if(memVo != null) {
+			if(memVo != null){
 				vo.setMem_no(memVo.getMem_no());
 			}
 			
-			List<HairshopVo> list = HairshopDAO.getInstance().selectListHairshopRank(vo);
-			if(list.size() == 0) {
-				System.out.println("검색된 랭크 리스트가 없습니다.");
-				System.out.println(lat + "," + lng);
+			List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListRank(vo);
+			for(HairshopHairInfoVo v : list) {
+				System.out.println(v.toString());
 			}
-
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("regionHairshopRank.jsp").forward(request, response);
-			
-		}else {
-			
+			request.getRequestDispatcher("regionHairRank.jsp").forward(request, response);
 		}
 	}
 

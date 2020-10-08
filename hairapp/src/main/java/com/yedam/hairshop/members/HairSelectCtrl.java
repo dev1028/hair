@@ -22,22 +22,27 @@ public class HairSelectCtrl implements Controller{
 		System.out.println("HairSelectCtrl");
 		
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
-		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
-		request.setAttribute("list", list);
-		
-		
-		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
-		if(memVo != null) {
-			HairBookmarkVo bookVo = new HairBookmarkVo();
-			bookVo.setMem_no(memVo.getMem_no());
+		if(vo != null)
+		{
+			List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
+			request.setAttribute("list", list);
 			
-			for(HairshopHairInfoVo tmpVo : list) {
-				bookVo.setHhi_no(tmpVo.getHhi_no());
-				if(HairBookmarkDAO.getInstance().HasBookmark(bookVo))
-					tmpVo.setHhi_book("1");
+			
+			MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+			if(memVo != null) {
+				HairBookmarkVo bookVo = new HairBookmarkVo();
+				bookVo.setMem_no(memVo.getMem_no());
+				
+				for(HairshopHairInfoVo tmpVo : list) {
+					bookVo.setHhi_no(tmpVo.getHhi_no());
+					if(HairBookmarkDAO.getInstance().HasBookmark(bookVo))
+						tmpVo.setHhi_book("1");
+				}
 			}
+			request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
+		}else {
+			System.out.println("헤어샵 헤어를 나열하려면 헤어샵을 먼저 선택해 주세요.");
 		}
-		request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
 	}
 
 }

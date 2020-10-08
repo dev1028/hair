@@ -346,6 +346,8 @@ public class MembersReservationDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}

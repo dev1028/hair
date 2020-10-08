@@ -83,15 +83,15 @@ public class SalesDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-for (SalesVo va : list1) {
-	for(int i = 0;i<list.size();i++) {
-		if(va.getDsNo().equals(list.get(i).getDsNo())) {
-			list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
-			break;
+		for (SalesVo va : list1) {
+			for(int i = 0;i<list.size();i++) {
+				if(va.getDsNo().equals(list.get(i).getDsNo())) {
+					list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
+					break;
+				}
+			}
+			
 		}
-	}
-	
-}
 		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		for (SalesVo vovo : list) {
 			Map<String, String> map = new HashMap<String, String>();

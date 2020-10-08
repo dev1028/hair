@@ -77,20 +77,20 @@ public class Login implements Filter {
 
 		// 상민
 		list.put("/members/membersMain.do", null);
-		list.put("/members/membersMainResult.do", memberLoginPage);
+		list.put("/members/membersMainResult.do", null);
 
-		list.put("/members/hairshopSelect.do", memberLoginPage);
-		list.put("/members/hairshopSelectResult.do", memberLoginPage);
+		list.put("/members/hairshopSelect.do", null);
+		list.put("/members/hairshopSelectResult.do", null);
 
-		list.put("/members/hairSelect.do", memberLoginPage);
-		list.put("/members/hairSelectResult.do", memberLoginPage);
+		list.put("/members/hairSelect.do", null);
+		list.put("/members/hairSelectResult.do", null);
 
-		list.put("/members/designerSelect.do", memberLoginPage);
-		list.put("/members/designerSelectResult.do", memberLoginPage);
+		list.put("/members/designerSelect.do", null);
+		list.put("/members/designerSelectResult.do", null);
 
-		list.put("/members/regionHairshopRank.do", memberLoginPage); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", memberLoginPage); // 우리동네 디자이너 순위
-		list.put("/members/hairRank.do", memberLoginPage); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", null); // 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", null); // 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", null); // 헤어 순위
 
 		list.put("/members/payment.do", memberLoginPage);
 		list.put("/members/paymentMember.do", memberLoginPage); // 회원결제
@@ -110,7 +110,7 @@ public class Login implements Filter {
 		list.put("/ajax/searchRealtime.do", memberLoginPage); // 자동완성 검색
 		list.put("/members/searchDetail.do", memberLoginPage); // 상세검색
 
-		list.put("/members/gpsHairshopSearch.do", memberLoginPage);
+		list.put("/members/gpsHairshopSearch.do", null);
 
 		list.put("/members/membersBookmarkHairshop.do", memberLoginPage);
 		list.put("/members/membersBookmarkDesigner.do", memberLoginPage);
