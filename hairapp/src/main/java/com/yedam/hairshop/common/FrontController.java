@@ -74,6 +74,7 @@ import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
 import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
+import com.yedam.hairshop.hairshop.HairshopCouponCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
@@ -241,6 +242,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
 		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
 		// list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
+		list.put("/hairshop/HairshopCouponCtrl.do", new HairshopCouponCtrl());
 		list.put("/hairshop/HairshopCouponListCtrl.do", new HairshopCouponListCtrl());
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", new HairshopCouponInsertCtrl());
 		
