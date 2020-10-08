@@ -13,167 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
-import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
-import com.yedam.hairshop.admin.AdminCouponManageCtrl;
-import com.yedam.hairshop.admin.AdminCustomerManageCtrl;
-import com.yedam.hairshop.admin.AdminCustomerManageFCtrl;
-import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
-import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
-import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
-import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
-import com.yedam.hairshop.admin.AdminNoticeInsertCtrl;
-import com.yedam.hairshop.admin.AdminNoticeInsertFCtrl;
-import com.yedam.hairshop.admin.AdminNoticeManageCtrl;
-import com.yedam.hairshop.admin.AdminNoticeManageFCtrl;
-import com.yedam.hairshop.admin.AdminNoticeViewCtrl;
-import com.yedam.hairshop.admin.AdminQnaAnswerCtrl;
-import com.yedam.hairshop.admin.AdminQnaManageCtrl;
-import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
-import com.yedam.hairshop.admin.AdminQnaViewCtrl;
-import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
-import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
-import com.yedam.hairshop.admin.ChartCtrl;
-import com.yedam.hairshop.admin.CodeListCtrl;
-import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
-import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
-import com.yedam.hairshop.admin.TestController;
-import com.yedam.hairshop.admin.adminBoardManageCtrl;
-import com.yedam.hairshop.admin.adminBoardManageFCtrl;
-import com.yedam.hairshop.admin.adminBoardSettingCtrl;
-import com.yedam.hairshop.admin.adminBoardSettingFCtrl;
-import com.yedam.hairshop.admin.adminLoginCtrl;
-import com.yedam.hairshop.admin.adminMainCtrl;
-import com.yedam.hairshop.admin.adminReturnToLoginCtrl;
-import com.yedam.hairshop.admin.designerAnalysisCtrl;
-import com.yedam.hairshop.admin.designerAnalysisFCtrl;
-import com.yedam.hairshop.admin.hairAnalysisCtrl;
-import com.yedam.hairshop.admin.hairAnalysisFCtrl;
-import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
-import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
-import com.yedam.hairshop.admin.salesCtrl;
-import com.yedam.hairshop.admin.salesStatisticsCtrl;
-import com.yedam.hairshop.admin.salesStatisticsFCtrl;
-import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
-import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
-import com.yedam.hairshop.designer.DesWeeklyReservationListAjCtrl;
-import com.yedam.hairshop.designer.DesignerInfoCtrl;
-import com.yedam.hairshop.designer.DesignerLoginCtrl;
-import com.yedam.hairshop.designer.DesignerMainCtrl;
-import com.yedam.hairshop.designer.DesignerMyPageCtrl;
-import com.yedam.hairshop.designer.DesignerMyPageUpdateCtrl;
-import com.yedam.hairshop.designer.DesignerNextCustomerAjCtrl;
-import com.yedam.hairshop.designer.DesignerUpdateCtrl;
-import com.yedam.hairshop.designer.FindMyCustomerCtrl;
-import com.yedam.hairshop.designer.FindMyCustomerDetailCtrl;
-import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
-import com.yedam.hairshop.hairshop.ChangeReservationStatusAjCtrl;
-import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
-import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
-import com.yedam.hairshop.hairshop.EmployeeAuthFCtrl;
-import com.yedam.hairshop.hairshop.EmployeeListCtrl;
-import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
-import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
-import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
-import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
-import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
-import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
-import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
-import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
-import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
-import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
-import com.yedam.hairshop.hairshop.HairshopNextCustomerAjCtrl;
-import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
-import com.yedam.hairshop.hairshop.HsFindMyCustomerCtrl;
-import com.yedam.hairshop.hairshop.HsFindMyCustomerDetailCtrl;
-import com.yedam.hairshop.hairshop.HsFindMyCustomerReCtrl;
-import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
-import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
-import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
-import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
-import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
-import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
-import com.yedam.hairshop.hairshop.hairshopMainCtrl;
-import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
-import com.yedam.hairshop.hairshop.hairshopNoticeViewCtrl;
-import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
-import com.yedam.hairshop.members.ChangeDesignerCtrl;
-import com.yedam.hairshop.members.DesignerBookmarkCtrl;
-import com.yedam.hairshop.members.DesignerSelectCtrl;
-import com.yedam.hairshop.members.DesignerSelectResultCtrl;
-import com.yedam.hairshop.members.DetailedReservationCtrl;
-import com.yedam.hairshop.members.GpsHairshopSearchCtrl;
-import com.yedam.hairshop.members.HairBookmarkCtrl;
-import com.yedam.hairshop.members.HairRankCtrl;
-import com.yedam.hairshop.members.HairSelectCtrl;
-import com.yedam.hairshop.members.HairSelectResultCtrl;
-import com.yedam.hairshop.members.HairShopReviewCtrl;
-import com.yedam.hairshop.members.HairShopReviewInsertCtrl;
-import com.yedam.hairshop.members.HairShopSelectCtrl;
-import com.yedam.hairshop.members.HairshopBookmarkCtrl;
-import com.yedam.hairshop.members.HairshopSelectResultCtrl;
-import com.yedam.hairshop.members.MembersBookmarkDesignerCtrl;
-import com.yedam.hairshop.members.MembersBookmarkHairshopCtrl;
-import com.yedam.hairshop.members.MembersBookmarkHairstyleCtrl;
-import com.yedam.hairshop.members.MembersCouponCtrl;
-import com.yedam.hairshop.members.MembersDeleteCtrl;
-import com.yedam.hairshop.members.MembersDeleteSCtrl;
-import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
-import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
-import com.yedam.hairshop.members.MembersHsCouponICtrl;
-import com.yedam.hairshop.members.MembersHsDesignerIntroCtrl;
-import com.yedam.hairshop.members.MembersHsEventIntroCtrl;
-import com.yedam.hairshop.members.MembersIdSearchCtrl;
-import com.yedam.hairshop.members.MembersIdSearchSCtrl;
-import com.yedam.hairshop.members.MembersInfoModifyCtrl;
-import com.yedam.hairshop.members.MembersInfoViewCtrl;
-import com.yedam.hairshop.members.MembersJoinCtrl;
-import com.yedam.hairshop.members.MembersJoinEmailCtrl;
-import com.yedam.hairshop.members.MembersJoinEndCtrl;
-import com.yedam.hairshop.members.MembersJoinIdCheckCtrl;
-import com.yedam.hairshop.members.MembersJoinSCtrl;
-import com.yedam.hairshop.members.MembersLoginCtrl;
-import com.yedam.hairshop.members.MembersLoginSCtrl;
-import com.yedam.hairshop.members.MembersLogoutCtrl;
-import com.yedam.hairshop.members.MembersMainCtrl;
-import com.yedam.hairshop.members.MembersMainResultCtrl;
-import com.yedam.hairshop.members.MembersMyPageTopCtrl;
-import com.yedam.hairshop.members.MembersNoticeCtrl;
-import com.yedam.hairshop.members.MembersNoticeDCtrl;
-import com.yedam.hairshop.members.MembersNoticeMCtrl;
-import com.yedam.hairshop.members.MembersNoticeMGCtrl;
-import com.yedam.hairshop.members.MembersNoticeVCtrl;
-import com.yedam.hairshop.members.MembersNoticeWCtrl;
-import com.yedam.hairshop.members.MembersNoticeWGCtrl;
-import com.yedam.hairshop.members.MembersPwEmailCtrl;
-import com.yedam.hairshop.members.MembersPwEndCtrl;
-import com.yedam.hairshop.members.MembersPwModifyCtrl;
-import com.yedam.hairshop.members.MembersPwSearchCtrl;
-import com.yedam.hairshop.members.MembersPwSearchSCtrl;
-import com.yedam.hairshop.members.MembersQnaCtrl;
-import com.yedam.hairshop.members.MembersQnaDCtrl;
-import com.yedam.hairshop.members.MembersQnaMCtrl;
-import com.yedam.hairshop.members.MembersQnaMGCtrl;
-import com.yedam.hairshop.members.MembersQnaReCtrl;
-import com.yedam.hairshop.members.MembersQnaWCtrl;
-import com.yedam.hairshop.members.MembersQnaWGCtrl;
-import com.yedam.hairshop.members.MembersReservationDetailsCtrl;
-import com.yedam.hairshop.members.MyRegionSettingCtrl;
-import com.yedam.hairshop.members.PaymentCtrl;
-import com.yedam.hairshop.members.PaymentImportCtrl;
-import com.yedam.hairshop.members.PaymentMemberCtrl;
-import com.yedam.hairshop.members.RegionDesignerRankCtrl;
-import com.yedam.hairshop.members.RegionHairshopRankCtrl;
-import com.yedam.hairshop.members.SearchDetailCtrl;
-import com.yedam.hairshop.members.SearchRealtimCtrl;
-import com.yedam.hairshop.members.membersQnaReGCtrl;
-import com.yedam.hairshop.members.membersQnaVCtrl;
-
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
 	final String hairLoginPage = "/ajax/hairshopReturnToLogin.do";
-	final String designerLoginPage = "/ajax/hairshopReturnToLogin.do";
+	final String designerLoginPage = "/ajax/designerReturnToLogin.do";
 	final String adminLoginPage = "/admin/adminReturnToLogin.do";
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -182,38 +26,40 @@ public class Login implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		HttpSession sess = req.getSession();
-		Object login = sess.getAttribute("login");
+		//Object login = sess.getAttribute("login");
 		String udong = (String) sess.getAttribute("udong");
+		//System.out.println(udong);
 
 		String requestURI = req.getRequestURI();
 		String contextPath = req.getContextPath(); // frontWeb//
 		String path = requestURI.substring(contextPath.length()); // memberInsert.do
-		System.out.println(path);
+		//System.out.println(path);
 		// String isIn = list.get(path);
 
 		if (list.get(path) != null) {
-			System.out.println("로그인필요");
+			
 			if (udong == null || udong.trim().length() <= 0) {
 				res.sendRedirect(req.getContextPath() + list.get(path));
 				return;
 			} else {
-				System.out.println("있기는함");
-				if (path.equals(memberLoginPage)) {
+				
+				if (list.get(path).equals(memberLoginPage)) {
+					
 					if (!udong.equals("member")) {
 						res.sendRedirect(req.getContextPath() + list.get(path));
 						return;
 					}
-				} else if (path.equals(hairLoginPage)) {
+				} else if (list.get(path).equals(hairLoginPage)) {
 					if (!udong.equals("hairshop")) {
 						res.sendRedirect(req.getContextPath() + list.get(path));
 						return;
 					}
-				} else if (path.equals(designerLoginPage)) {
+				} else if (list.get(path).equals(designerLoginPage)) {
 					if (!udong.equals("designer")) {
 						res.sendRedirect(req.getContextPath() + list.get(path));
 						return;
 					}
-				} else if (path.equals(adminLoginPage)) {
+				} else if (list.get(path).equals(adminLoginPage)) {
 					if (!udong.equals("admin")) {
 						res.sendRedirect(req.getContextPath() + list.get(path));
 						return;
@@ -221,7 +67,7 @@ public class Login implements Filter {
 				}
 			}
 		} else {
-			System.out.println("로그인 불필요");
+			//System.out.println("로그인 불필요");
 		}
 		chain.doFilter(req, res);
 	}
@@ -230,7 +76,7 @@ public class Login implements Filter {
 		list = new HashMap<String, String>();
 
 		// 상민
-		list.put("/members/membersMain.do", memberLoginPage);
+		list.put("/members/membersMain.do", null);
 		list.put("/members/membersMainResult.do", memberLoginPage);
 
 		list.put("/members/hairshopSelect.do", memberLoginPage);
@@ -393,6 +239,7 @@ public class Login implements Filter {
 		list.put("/hairshop/employeeSimpleJoin.do", hairLoginPage); // 디자이너 간편등록
 		list.put("/hairshop/retiredEmployeeList.do", hairLoginPage); // 디자이너 퇴사명단
 		list.put("/ajax/hairshopReturnToLogin.do", null); // 로그인페이지 이동처리
+		list.put("/ajax/designerReturnToLogin.do", null);
 		list.put("/hairshop/employeeUpdate.do", hairLoginPage); // 직원정보수정
 		list.put("/ajax/findEmployees.do", hairLoginPage); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", hairLoginPage); // 직원퇴사처리

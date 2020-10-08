@@ -27,10 +27,7 @@ public class MembersMainCtrl implements Controller {
 		request.setAttribute("qnaList", qnaList);
 		request.setAttribute("noticeList", noticeList);
 
-		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
-		if(memVo != null) {
-			System.out.println(memVo.getMem_saved_money());
-		}
+
 		request.getRequestDispatcher("/members/membersMain.jsp").forward(request, response);
 	}
 
