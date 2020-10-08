@@ -13,7 +13,6 @@ import com.yedam.hairshop.model.PaymentVo;
 public class PaymentDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 	
 	static PaymentDAO instance = null;
 	
@@ -26,6 +25,7 @@ public class PaymentDAO {
 	
 	//입금 대기 상태
 	public int onlinePay(PaymentVo vo) {
+		ResultSet rs = null;
 		//여기서  프로시저를 호출하는 식으로 결제를 한다.
 		int result = -1;
 		try {
@@ -55,6 +55,7 @@ public class PaymentDAO {
 	
 	//입금 완료상태
 	public int onlinePaySuc(PaymentVo vo) {
+		ResultSet rs = null;
 		int r = -1;
 		try {
 			String sql = " UPDATE members_designer_rsv SET mdr_status='i2' "
@@ -73,6 +74,7 @@ public class PaymentDAO {
 	
 	//입금실패.
 	public int onlinePayFailed(PaymentVo vo) {
+		ResultSet rs = null;
 		int r = -1;
 		try {
 			String sql = " DELETE members_designer_rsv "

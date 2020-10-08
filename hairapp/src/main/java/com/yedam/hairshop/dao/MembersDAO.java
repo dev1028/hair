@@ -15,7 +15,6 @@ public class MembersDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static MembersDAO instance;
@@ -28,6 +27,7 @@ public class MembersDAO {
 
 	// 로그인 단건 조회
 	public MembersVo loginSelectOne(MembersVo membersVO) {
+		ResultSet rs = null;
 		MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
 		try {
@@ -73,6 +73,7 @@ public class MembersDAO {
 
 	// 단건 조회
 	public MembersVo selectOne(MembersVo membersVO) {
+		ResultSet rs = null;
 		MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
 		try {
@@ -117,6 +118,7 @@ public class MembersDAO {
 
 	// 회원정보 불러오기
 	public MembersVo getMembersInfo(String mem_email) {
+		ResultSet rs = null;
 		MembersVo members = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
 		try {
@@ -164,6 +166,7 @@ public class MembersDAO {
 
 	// 전체 조회
 	public List<MembersVo> selectAll() { // 조회가 여러건이면 DeptVO를 list에 담음
+		ResultSet rs = null;
 		List<MembersVo> list = new ArrayList<MembersVo>(); // 결과값을 저장할 list 변수 객체 선언
 
 		try {
@@ -417,6 +420,7 @@ public class MembersDAO {
 
 	// ID 찾기
 	public MembersVo findId(MembersVo membersVo) {
+		ResultSet rs = null;
 		MembersVo members = null;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -445,6 +449,7 @@ public class MembersDAO {
 
 	// PW 찾기
 	public MembersVo findPw(MembersVo membersVo) {
+		ResultSet rs = null;
 		MembersVo members = null;
 		try {
 			conn = ConnectionManager.getConnnect();

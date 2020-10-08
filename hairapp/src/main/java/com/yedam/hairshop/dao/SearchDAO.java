@@ -14,8 +14,7 @@ public class SearchDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
-
+	
 	static SearchDAO instance = null;
 	public static SearchDAO getInstance(){
 		if(instance == null)
@@ -28,6 +27,7 @@ public class SearchDAO {
 	//label hairshop 제목
 	//hairshop정보에서 매칭되는 hairshop을 찾아온다.
 	public List<SearchVo> selectListHairshop(SearchVo vo) {
+		ResultSet rs = null;
 		if(vo.getLabel() == null)
 			return null;
 		
@@ -63,6 +63,7 @@ public class SearchDAO {
 	}	
 	
 	public List<SearchVo> selectListHairshopFromDesigner(SearchVo vo) {
+		ResultSet rs = null;
 		List<SearchVo> list = new ArrayList<SearchVo>();
 		try {
 			//나중에 design name, design profile이 select되도록 변경해야 함.

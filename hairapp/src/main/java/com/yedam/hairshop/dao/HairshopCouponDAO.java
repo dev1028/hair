@@ -11,7 +11,6 @@ import com.yedam.hairshop.model.CouponVo;
 public class HairshopCouponDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static HairshopCouponDAO instance;
@@ -25,6 +24,7 @@ public class HairshopCouponDAO {
 	// 미용실 쿠폰 리스트(+페이징처리)
 	public ArrayList<CouponVo> selectAll(CouponVo couponVo) {
 		System.out.println("쿠폰리스트1");
+		ResultSet rs = null; // 초기화
 		ArrayList<CouponVo> list = new ArrayList<CouponVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -62,6 +62,7 @@ public class HairshopCouponDAO {
 
 	// 전체 건수
 	public int count(CouponVo couponVo) {
+		ResultSet rs = null; // 초기화
 		int cnt = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -81,6 +82,7 @@ public class HairshopCouponDAO {
 
 	//쿠폰등록
 	public void insert(CouponVo couponVo) {
+		ResultSet rs = null; // 초기화
 		int r =0;
 		try {
 			System.out.println("쿠폰등록");
