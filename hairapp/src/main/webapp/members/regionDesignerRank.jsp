@@ -37,13 +37,13 @@
 </script>
 </head>
 <body>
-	지역별 디자이너 순위
-
+	
 <div class="container">
-    <h3 class="h3">디자이너 정보</h3>
+    <h3 class="h3">지역별 디자이너 순위</h3>
     <div class="row">
     	<c:forEach items="${list}" var="designerInfo" >
-    		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post">
+<!--     		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post"> -->
+				<form class="col-md-3 col-sm-6" action="../members/hairshopInfo.do" method="post"> 
 		            <div class="product-grid4">
 		                <div class="product-image4">
 	                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-3.jpg">
@@ -61,11 +61,12 @@
 								</a>
 							</c:if>
 							<span class="title">${designerInfo.designer_name} </span><br>
-							<span class="title">프로필: ${designerInfo.designer_profile} </span><br>
-							<span class="title">직책: ${designerInfo.position} </span><br>
+<%-- 							<span class="title">프로필: ${designerInfo.designer_profile} </span><br> --%>
+							<span class="title">거리: ${designerInfo.distance} km </span><br>
+<%-- 							<span class="title">직책: ${designerInfo.position} </span><br> --%>
 							<span class="title">시간: ${designerInfo.work_start_time}시 - ${designerInfo.work_end_time}시 </span><br>
-							<span class="title">휴일: ${designerInfo.designer_dayoff} </span><br>
-							<button class="add-to-cart">예약하기</button>
+<%-- 							<span class="title">휴일: ${designerInfo.designer_dayoff} </span><br> --%>
+							<button class="add-to-cart">이동하기</button>
 <%-- 		                    <h3 class="title"><a href="#">${hairInfo.hhi_name}</a></h3> --%>
 <%-- 		                    <h3 class="title"><a href="#">${hairInfo.hhi_time}시간</a></h3> --%>
 <%-- 		                    <div class="price">${hairInfo.hhi_price}원</div> --%>
@@ -75,8 +76,8 @@
 		            </div>
 		            <div>
 						<input type="hidden" name="designerNo" value="${designerInfo.designer_no}">
-						<input type="hidden" name="hsNo" value="${hairInfo.hs_no}">
-						<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
+						<input type="hidden" name="hsNo" value="${designerInfo.hs_no}">
+<%-- 						<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}"> --%>
 					</div>
 	        </form>
         </c:forEach>

@@ -202,10 +202,12 @@ public class HairshopDAO {
 			pstmt.setString(17, hVo.getHs_resource_option());
 			pstmt.setString(18, hVo.getHs_parking());
 			pstmt.setString(19, hVo.getHs_etc());
-			pstmt.setString(20, hVo.getHs_approval());
+			pstmt.setInt(20, Integer.parseInt(hVo.getHs_approval()));
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -232,7 +234,7 @@ public class HairshopDAO {
 		}
 		return count;
 	}
-
+	public 
 	// 공지사항 list
 	public List<HairshopNoticeVo> selectList() {
 		List<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();
@@ -359,7 +361,7 @@ public class HairshopDAO {
 				"            JOIN hairshop h " + 
 				"            ON h.hs_no = r.hs_no " + 
 				"            ORDER BY r.cnt DESC) k) hs " + 
-				"       WHERE rn <= 10";
+				"       WHERE rn <= 10 AND distance < 1000";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
@@ -399,6 +401,8 @@ public class HairshopDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 
 		return list;

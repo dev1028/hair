@@ -81,7 +81,7 @@ public class DesignerBookmarkDAO {
 	public List<DesignerVo> getBookmarkList(DesignerBookmarkVo vo){
 		List<DesignerVo> list = new ArrayList<DesignerVo>();
 		String sql = " SELECT d.designer_no, d.designer_name, d.designer_dayoff, " + 
-		             "        d.work_start_time, d.work_end_time, d.designer_profile " + 
+		             "        d.work_start_time, d.work_end_time, d.designer_profile, d.hs_no " + 
 					 " FROM designer d, favor_designer f " + 
 					 " WHERE d.designer_no = f.designer_no " + 
 					 " AND mem_no = ?";
@@ -98,6 +98,7 @@ public class DesignerBookmarkDAO {
 				tmpVo.setWork_start_time(rs.getString("work_start_time"));
 				tmpVo.setWork_end_time(rs.getString("work_end_time"));
 				tmpVo.setDesigner_profile(rs.getString("designer_profile"));
+				tmpVo.setHs_no(rs.getString("hs_no"));
 				list.add(tmpVo);
 			}
 		} catch (SQLException e) {

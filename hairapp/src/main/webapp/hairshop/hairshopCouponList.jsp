@@ -30,7 +30,7 @@
 					<th scope="col">쿠폰발급생성일</th>
 					<th scope="col">쿠폰발급만료일</th>
 					<th scope="col">쿠폰개수</th>
-					<th scope="col">할인율</th>
+					<th scope="col">할인율(%)</th>
 					<th scope="col">최대할인금액</th>
 					<th scope="col">쿠폰명</th>
 				</tr>
@@ -53,6 +53,7 @@
 		</div>
 		
 		<!-- 페이징 -->
+		<br><br>
 		<form method="post" name="frm" id="frm">
 			<input type="hidden" name="p" value="1">
 			<!-- value에는 페이지번호 적었음 -->
