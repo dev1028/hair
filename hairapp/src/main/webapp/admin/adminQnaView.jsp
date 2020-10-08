@@ -28,8 +28,7 @@
 		} else {
 			$(".form-control").append
 					
-							
-									($("<input />").attr({type:"submit",text:"수정"}))
+		($("<input />").attr({type:"submit",text:"수정"}))
 									
 					;
 				
