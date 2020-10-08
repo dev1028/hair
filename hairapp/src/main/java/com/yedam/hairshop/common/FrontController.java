@@ -93,6 +93,7 @@ import com.yedam.hairshop.hairshop.HsFindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
+import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
@@ -423,6 +424,8 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairInfoFullList.do", new HairInfoFullListCtrl()); //헤어시술 전체목록
 		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); //헤어시술목록 검색페이지로 이동
 		list.put("/hairshop/hairInfoDetail.do", new HairInfoDetailCtrl()); //헤어시술목록 상세페이지
+		
+		list.put("/hairshop/myHairshopInfo", new MyHairshopInfoCtrl()); //미용실마이페이지
 	}
 
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

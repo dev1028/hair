@@ -275,6 +275,8 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link disabled" href="#"
+								tabindex="-1" aria-disabled="true">미용실정보</a></li>
 							<li class="nav-item"><a class="nav-link disabled" href="#"
 								tabindex="-1" aria-disabled="true">제품관리</a></li>
 								<li class="nav-item"><a class="nav-link disabled" href="#"

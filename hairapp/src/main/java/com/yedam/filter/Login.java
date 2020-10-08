@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.yedam.hairshop.members.MembersHsReviewIntrolCtrl;
 
 public class Login implements Filter {
 	HashMap<String, String> list = null;
@@ -297,9 +296,11 @@ public class Login implements Filter {
 		list.put("/ajax/codeUpdate.do", adminLoginPage); // 코드 수정
 		list.put("/ajax/categoryMajorDelete.do", adminLoginPage); // 삭제
 		
-
 		list.put("/hairshop/hairInfoList.do", hairLoginPage); //헤어시술목록 페이지이동
 		list.put("/hairshop/hairInfoDetail.do", hairLoginPage); //헤어시술상세페이지 이동
+		list.put("/hairshop/hairInfoListRe.do", hairLoginPage); //헤어시술목록 검색페이지로 이동
+		list.put("/hairshop/hairInfoFullList.do", hairLoginPage); //헤어시술 전체목록
+		list.put("/hairshop/myHairshopInfo", hairLoginPage); //마이페이
 	}
 	
 	@Override
