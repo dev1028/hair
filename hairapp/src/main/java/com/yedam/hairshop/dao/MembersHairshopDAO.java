@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
+import com.yedam.hairshop.model.HairShopReviewVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersEventVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
@@ -16,7 +17,6 @@ public class MembersHairshopDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static MembersHairshopDAO instance;
@@ -29,6 +29,7 @@ public class MembersHairshopDAO {
 
 	// 헤어샵 정보 보여주기
 	public MembersHairshopVo selectOne(HairshopVo hairshopVo) {
+		ResultSet rs = null;
 		MembersHairshopVo members = null;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -66,6 +67,7 @@ public class MembersHairshopDAO {
 
 	// 디자이너 정보 보여주기
 	public List<MembersHairshopVo> designerIntroAll(HairshopVo hairshopVo) {
+		ResultSet rs = null;
 		List<MembersHairshopVo> list = new ArrayList<MembersHairshopVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -97,13 +99,14 @@ public class MembersHairshopDAO {
 	
 	// 쿠폰리스트 뿌리기
 	public ArrayList<MembersEventVo> couponList(MembersEventVo eventVo) {
+		ResultSet rs = null;
 		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HSC_NO, HS_NO, HSC_ISSUEDATE, HSC_EXPIREDATE, HSC_COUPON_QUANTITY," 
 					+ " HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME" 
-					+ " FROM HS_COUPON WHERE HS_NO = ?"
+					+ " FROM HS_COUPON WHERE HS_NO = ? AND HSC_COUPON_QUANTITY >= 0"
 					+ " ORDER BY HSC_NO DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, eventVo.getHs_no());
@@ -163,7 +166,7 @@ public class MembersHairshopDAO {
 	
 	
 	// numOfCoupenUp
-	public void numOfCoupenUp(MembersEventVo eventVo) {
+	public MembersEventVo numOfCoupenUp(MembersEventVo eventVo) {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "UPDATE HS_COUPON "
@@ -180,7 +183,37 @@ public class MembersHairshopDAO {
 		} finally {
 			ConnectionManager.close(null, pstmt, conn); // 연결 해제
 		}
+		return eventVo;
 	} // end numOfCoupenUp()
+	
+	
+	// 세션에 평균별이랑 리뷰수 보내는거
+	public HairShopReviewVo reviewCount(HairshopVo hairshopVo) {
+		ResultSet rs = null;
+		HairShopReviewVo resultVO = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			String sql = "select count(hs_no) as hs_no, avg(hr_rate) as hr_rate" 
+					+ " from hairshop_reviews" 
+					+ " where hs_no=?"
+					+ " group by hs_no";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hairshopVo.getHs_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVO = new HairShopReviewVo();
+				resultVO.setHs_no(rs.getString("hs_no"));
+				resultVO.setHr_rate(rs.getString("hr_rate"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVO; // 값을 리턴해줌
+	}
 	
 
 }

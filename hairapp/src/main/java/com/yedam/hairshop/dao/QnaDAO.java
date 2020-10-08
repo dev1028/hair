@@ -12,7 +12,6 @@ public class QnaDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static QnaDAO instance;
@@ -25,6 +24,7 @@ public class QnaDAO {
 
 	// 시퀀스를 가져온다.
 	public int getSeq() {
+		ResultSet rs = null;
 		int result = 1;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -50,6 +50,7 @@ public class QnaDAO {
 	
 	// Qna view
 	public QnaVo qnaView(int qna_no) {
+		ResultSet rs = null;
 		QnaVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -90,6 +91,7 @@ public class QnaDAO {
 	
 	// Qna ModifyView
 	public QnaVo qnaModifyView(QnaVo qna_no) {
+		ResultSet rs = null;
 		QnaVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -128,6 +130,7 @@ public class QnaDAO {
 
 	// Qna 조회수
 	public int upHit(QnaVo qnaVo) {
+		ResultSet rs = null;
 		int result = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -147,6 +150,7 @@ public class QnaDAO {
 
 	// Qna 작성
 	public int qnaInsert(QnaVo qnaVo) {
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -185,6 +189,7 @@ public class QnaDAO {
 
 	// Qna 전체 조회(페이징)
 	public ArrayList<QnaVo> selectPaging(QnaVo qnaVo) { // 조회가 여러건이면 DeptVO를 list에 담음
+		ResultSet rs = null;
 		QnaVo resultVO = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<QnaVo> list = new ArrayList<QnaVo>(); // 결과값을 저장할 list 변수 객체 선언
 		try {
@@ -232,6 +237,7 @@ public class QnaDAO {
 
 	// Qna 전체 건수
 	public int count(QnaVo qnaVo) {
+		ResultSet rs = null;
 		int cnt = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -323,6 +329,7 @@ public class QnaDAO {
 	
 	// Qna 메인에 띄울거
 	public ArrayList<QnaVo> mainQnaList() {
+		ResultSet rs = null;
 		QnaVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<QnaVo> list = new ArrayList<QnaVo>();
 		try {

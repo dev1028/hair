@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>membersHairshopPage</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="../decorator/membersDesigner.css">
-<!------ Include the above in your HEAD tag ---------->
-
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="../css/membersHairshop.css">
 </head>

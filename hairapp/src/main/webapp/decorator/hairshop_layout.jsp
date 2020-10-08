@@ -285,8 +285,34 @@
 							
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
+								
+								
+								
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출관리</a></li>
+								
+								
+								<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 매출관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출분석</a> 
+									<a
+										class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
+								</div></li>
+								
+								<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 분석통계 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreatCtrl.do">시술별통계</a> 
+									<a
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByReservationCtrl.do">예약분석</a>
+								</div></li>
+								
+								
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -313,6 +339,9 @@
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
 							
+							
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술관리</a></li>
 							
 							
 							

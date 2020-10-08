@@ -13,7 +13,6 @@ import com.yedam.hairshop.model.MembersEventVo;
 public class CouponDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static CouponDAO instance = null;
 	final static String selectAll = "select * from hs_coupon";
@@ -55,6 +54,7 @@ public class CouponDAO {
 
 	public ArrayList<CouponVo> selectAll(CouponVo vo) {
 		ArrayList<CouponVo> list = new ArrayList<>();
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 
@@ -96,6 +96,7 @@ public class CouponDAO {
 	
 	// 보유중인 쿠폰리스트 뿌리기
 	public ArrayList<MembersEventVo> memCouponList(MembersEventVo eventVo) {
+		ResultSet rs = null;
 		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
 		try {
@@ -138,6 +139,7 @@ public class CouponDAO {
 	
 	// 사용한 쿠폰리스트 뿌리기
 	public ArrayList<MembersEventVo> memUsedCouponList(MembersEventVo eventVo) {
+		ResultSet rs = null;
 		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
 		try {
@@ -179,6 +181,7 @@ public class CouponDAO {
 	
 	// 보유중인 쿠폰리스트 뿌리기
 	public MembersEventVo memCoupon(MembersEventVo eventVo) {
+		ResultSet rs = null;
 		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		try {
 			conn = ConnectionManager.getConnnect();

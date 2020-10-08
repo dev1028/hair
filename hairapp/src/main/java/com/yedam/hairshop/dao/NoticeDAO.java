@@ -13,7 +13,6 @@ public class NoticeDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static NoticeDAO instance;
@@ -27,6 +26,8 @@ public class NoticeDAO {
 	// 공지사항 view
 	public HairshopNoticeVo noticeView(HairshopNoticeVo noticeVo) {
 		HairshopNoticeVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
+		ResultSet rs = null;
+		
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
@@ -59,6 +60,8 @@ public class NoticeDAO {
 	// 조회수
 	public int upHit(HairshopNoticeVo noticeVo) {
 		int result = 0;
+		ResultSet rs = null;
+		
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn
@@ -77,6 +80,7 @@ public class NoticeDAO {
 
 	// 공지사항 작성
 	public int insert(HairshopNoticeVo noticeVo) {
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -99,6 +103,7 @@ public class NoticeDAO {
 
 	// 공지사항 전체 조회(페이징)
 	public ArrayList<HairshopNoticeVo> selectPaging(HairshopNoticeVo noticeVo) { // 조회가 여러건이면 DeptVO를 list에 담음
+		ResultSet rs = null;
 		HairshopNoticeVo resultVO = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>(); // 결과값을 저장할 list 변수 객체 선언
 		try {
@@ -138,6 +143,7 @@ public class NoticeDAO {
 
 	// 전체 건수
 	public int count(HairshopNoticeVo noticeVo) {
+		ResultSet rs = null;
 		int cnt = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -199,6 +205,7 @@ public class NoticeDAO {
 	
 	// Qna 메인에 띄울거
 	public ArrayList<HairshopNoticeVo> mainNoticeList() {
+		ResultSet rs = null;
 		HairshopNoticeVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();
 		try {

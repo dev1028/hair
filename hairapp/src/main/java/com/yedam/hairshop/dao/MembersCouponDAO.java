@@ -12,7 +12,6 @@ import com.yedam.hairshop.model.MembersCouponVo;
 public class MembersCouponDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 	
 	static MembersCouponDAO instance = null;
 	public static MembersCouponDAO getInstance() {
@@ -22,6 +21,7 @@ public class MembersCouponDAO {
 	}
 	
 	public List<MembersCouponVo> selectListUnusedCoupon(MembersCouponVo vo){
+		ResultSet rs = null;
 		List<MembersCouponVo> list = new ArrayList<MembersCouponVo>();
 		try {
 			String sql =" SELECT mc.*, hc.hs_no, hc.hsc_name, hc.hsc_discount_rate, hc.hsc_maxdiscount_pay" + 

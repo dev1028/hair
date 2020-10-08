@@ -43,12 +43,15 @@
 			</div>
 
 			<div class="control">
-				<label for="name">직원선택 </label> <select name="ds">
-					<option>전체직원</option>
-					<c:forEach items="${list }" var="i">
-						<option value="${i.designer_no}">${i.designer_name}</option>
-					</c:forEach>
-				</select>
+			
+				<label for="name">직원선택 </label>
+				<input type="checkbox" name="designer_name" value="all">전체직원|
+				<c:forEach items="${list }" var="i">
+				
+			<input type="checkbox" name="designer_name" value="${i.designer_no}">
+			</c:forEach>
+				
+					
 				<div class="controls"></div>
 			</div>
 
