@@ -10,7 +10,6 @@ import java.util.List;
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HairshopNoticeVo;
 import com.yedam.hairshop.model.HairshopVo;
-import com.yedam.hairshop.model.SearchDetailVo;
 import com.yedam.hairshop.model.SearchRankVo;
 
 public class HairshopDAO {
@@ -338,14 +337,8 @@ public class HairshopDAO {
 		return resultVo;
 	}
 
-	//
-	public List<HairshopVo> selectRankHairshop() {
-		List<HairshopVo> list = new ArrayList<HairshopVo>();
 
-		return list;
-	}
-
-	// 랭킹 3위만 표시
+	// 랭킹 10위 까지만 표시
 	public List<HairshopVo> selectListHairshopRank(SearchRankVo vo) {
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
 		String sql = 
@@ -353,7 +346,9 @@ public class HairshopDAO {
 				"       HS_TEL, HS_EMAIL, HS_PW, HS_COMP_NO,  " + 
 				"       HS_PROFILE, HS_NOTICE, HS_FULLADDR, HS_CITYADDR, " + 
 				"       HS_TOWNADDR, HS_STREETADDR, HS_LATLONG, HS_DAYOFF, HS_STARTTIME,  " + 
-				"       HS_ENDTIME, HS_RESOURCE_OPTION, HS_PARKING, HS_ETC " + 
+				"       HS_ENDTIME, HS_RESOURCE_OPTION, HS_PARKING, HS_ETC, NVL2((SELECT mem_no " + 
+				"															      FROM favor_hs " + 
+				"															      WHERE hs.hs_no = hs_no AND mem_no = ?), 1, 0) as HS_BOOK " + 
 				"FROM (SELECT rownum rn, k.* " + 
 				"      FROM (SELECT r.cnt,  " + 
 				"                   h.*,  " + 
@@ -363,13 +358,14 @@ public class HairshopDAO {
 				"                  GROUP BY HS_NO) r " + 
 				"            JOIN hairshop h " + 
 				"            ON h.hs_no = r.hs_no " + 
-				"            ORDER BY r.cnt DESC) k) " + 
+				"            ORDER BY r.cnt DESC) k) hs " + 
 				"       WHERE rn <= 10";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getLat());
-			pstmt.setString(2, vo.getLng());
+			pstmt.setString(1, vo.getMem_no());
+			pstmt.setString(2, vo.getLat());
+			pstmt.setString(3, vo.getLng());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				HairshopVo resultVo = new HairshopVo();
@@ -397,6 +393,7 @@ public class HairshopDAO {
 				resultVo.setHs_resource_option(rs.getString("HS_RESOURCE_OPTION"));
 				resultVo.setHs_parking(rs.getString("HS_PARKING"));
 				resultVo.setHs_etc(rs.getString("HS_ETC"));
+				resultVo.setHs_book(rs.getString("HS_BOOK"));
 				list.add(resultVo);
 			}
 
