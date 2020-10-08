@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.CouponDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
+import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersEventVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
@@ -34,12 +36,16 @@ public class MembersHsEventIntroCtrl implements Controller {
 		
 		// 헤어샵 정보 뿌리는거
 		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hsVo);
+		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hsVo);
+		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hsVo);
 		
 		// 결과 저장
 		MembersEventVo coupon = CouponDAO.getInstance().memCoupon(eventVo);
 		
 		request.setAttribute("intro", couList);
 		request.setAttribute("shop", shop);
+		request.setAttribute("shop2", shop2);
+		request.setAttribute("shop3", shop3);
 		
 		
 		// 페이지 이동

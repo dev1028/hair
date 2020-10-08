@@ -319,7 +319,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminMain.do", new adminMainCtrl());
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		
-		list.put("/ajax/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
+		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
 		//list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
 		list.put("/ajax/hairshop/sales.do", new salesCtrl());
 

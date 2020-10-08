@@ -44,9 +44,9 @@ public class HairshopCouponDAO {
 				CouponVo resultVo = new CouponVo();
 				resultVo.setHsc_no(rs.getString("hsc_no"));
 				resultVo.setHs_no(rs.getString("hs_no"));
-				resultVo.setHsc_issuedate(rs.getString("hsc_issuedate"));
-				resultVo.setHsc_expiredate(rs.getString("hsc_expiredate"));
-				resultVo.setHsc_coupon_quantity(rs.getString(5));
+				resultVo.setHsc_issuedate((rs.getString("hsc_issuedate")).substring(0,10));
+				resultVo.setHsc_expiredate((rs.getString("hsc_expiredate")).substring(0,10));
+				resultVo.setHsc_coupon_quantity(rs.getString("HSC_COUPON_QUANTITY"));
 				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
 				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
 				resultVo.setHsc_name(rs.getString("hsc_name"));
