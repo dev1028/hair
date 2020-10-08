@@ -11,7 +11,6 @@ import com.yedam.hairshop.model.HairBookmarkVo;
 public class HairBookmarkDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static HairBookmarkDAO instance;
@@ -24,6 +23,7 @@ public class HairBookmarkDAO {
 
 	// 북마크 되어있는지 확인
 	public boolean HasBookmark(HairBookmarkVo vo) {
+		ResultSet rs = null; // 초기화
 		String sql = " SELECT * FROM favor_hair " 
 				   + " WHERE hhi_no = ? AND mem_no = ?";
 		try {

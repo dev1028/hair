@@ -17,7 +17,6 @@ public class MembersHairshopDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static MembersHairshopDAO instance;
@@ -30,6 +29,7 @@ public class MembersHairshopDAO {
 
 	// 헤어샵 정보 보여주기
 	public MembersHairshopVo selectOne(HairshopVo hairshopVo) {
+		ResultSet rs = null;
 		MembersHairshopVo members = null;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -67,6 +67,7 @@ public class MembersHairshopDAO {
 
 	// 디자이너 정보 보여주기
 	public List<MembersHairshopVo> designerIntroAll(HairshopVo hairshopVo) {
+		ResultSet rs = null;
 		List<MembersHairshopVo> list = new ArrayList<MembersHairshopVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -98,6 +99,7 @@ public class MembersHairshopDAO {
 	
 	// 쿠폰리스트 뿌리기
 	public ArrayList<MembersEventVo> couponList(MembersEventVo eventVo) {
+		ResultSet rs = null;
 		MembersEventVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 		ArrayList<MembersEventVo> list = new ArrayList<MembersEventVo>();
 		try {
@@ -187,6 +189,7 @@ public class MembersHairshopDAO {
 	
 	// 세션에 평균별이랑 리뷰수 보내는거
 	public HairShopReviewVo reviewCount(HairshopVo hairshopVo) {
+		ResultSet rs = null;
 		HairShopReviewVo resultVO = null;
 		try {
 			conn = ConnectionManager.getConnnect();

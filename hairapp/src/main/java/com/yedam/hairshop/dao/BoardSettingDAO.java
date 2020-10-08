@@ -10,7 +10,6 @@ import com.yedam.hairshop.model.BoardSettingVo;
 public class BoardSettingDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static BoardSettingDAO instance = null;
 
@@ -28,6 +27,7 @@ public class BoardSettingDAO {
 	}
 
 	public Integer countNew(BoardSettingVo vo) {
+		ResultSet rs = null;
 		int n = 0;
 		String sql = "";
 		try {
@@ -56,6 +56,7 @@ public class BoardSettingDAO {
 	}
 
 	public Integer countTotal(BoardSettingVo vo) {
+		ResultSet rs = null;
 		int n = 0;
 		String sql = "";
 		try {

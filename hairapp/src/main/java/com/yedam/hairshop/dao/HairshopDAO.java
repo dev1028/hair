@@ -13,7 +13,6 @@ import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.SearchRankVo;
 
 public class HairshopDAO {
-
 	// 전역변수
 	static Connection conn;
 	PreparedStatement pstmt;
@@ -240,7 +239,7 @@ public class HairshopDAO {
 		}
 		return count;
 	}
-	public 
+
 	// 공지사항 list
 	public List<HairshopNoticeVo> selectList() {
 		List<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();

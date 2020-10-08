@@ -14,7 +14,6 @@ public class HairShopReviewDAO {
 	static HairShopReviewDAO instance;
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 	
 	static public HairShopReviewDAO getInstance() {
 		if(instance == null)
@@ -23,6 +22,7 @@ public class HairShopReviewDAO {
 	}
 	
 	public int updateReview(HairShopReviewVo vo) {
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			String sql = "UPDATE hairshop_reviews SET hr_rate = ?, hr_contents = ? WHERE mdr_no = ?";
@@ -41,6 +41,7 @@ public class HairShopReviewDAO {
 	}
 	
 	public int insertReview(HairShopReviewVo vo) {
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -73,6 +74,7 @@ public class HairShopReviewDAO {
 	}
 	
 	public HairShopReviewVo selectReview(HairShopReviewVo vo) {
+		ResultSet rs = null;
 		HairShopReviewVo resultVo = null;
 		try {
 			String sql = "SELECT hr_rate, hr_contents "
@@ -102,6 +104,7 @@ public class HairShopReviewDAO {
 	
 	// 미용실에 후기 뿌리기
 	public ArrayList<HairShopReviewVo> selectHsReivew(HairShopReviewVo hairShopReviewVo) {
+		ResultSet rs = null;
 		HairShopReviewVo resultVO = null;
 		ArrayList<HairShopReviewVo> list = new ArrayList<HairShopReviewVo>();
 		try {

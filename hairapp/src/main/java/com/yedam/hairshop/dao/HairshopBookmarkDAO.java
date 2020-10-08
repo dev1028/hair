@@ -14,7 +14,6 @@ import com.yedam.hairshop.model.HairshopVo;
 public class HairshopBookmarkDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static HairshopBookmarkDAO instance;
@@ -27,6 +26,7 @@ public class HairshopBookmarkDAO {
 	
 	//북마크 되어있는지 확인
 	public boolean HasBookmark(HairshopBookmarkVo vo) {
+		ResultSet rs = null; // 초기화
 		String sql = " SELECT * FROM favor_hs "
 				+ " WHERE hs_no = ? AND mem_no = ?";
 		try {
@@ -79,6 +79,7 @@ public class HairshopBookmarkDAO {
 	}
 	
 	public List<HairshopVo> getBookmarkList(HairshopBookmarkVo vo){
+		ResultSet rs = null; // 초기화
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
 		String sql =
 				"SELECT h.hs_no, h.hs_name, h.hs_owner,  " + 
