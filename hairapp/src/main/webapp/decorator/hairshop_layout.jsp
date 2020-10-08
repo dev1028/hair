@@ -287,7 +287,7 @@
 								
 								
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출관리</a></li>
+								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출관리</a></li>
 								
 								
 								<li class="nav-item dropdown"><a
@@ -295,7 +295,7 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 매출관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출분석</a> 
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출분석</a> 
 									<a
 										class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
 								</div></li>
