@@ -239,10 +239,8 @@
 			</nav>
 		</div>
 		<div id="layoutSidenav_content">
-
 			<decorator:body></decorator:body>
-
-		</div>
+	 	</div> 
 	</div>
 	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 			crossorigin="anonymous"></script>
