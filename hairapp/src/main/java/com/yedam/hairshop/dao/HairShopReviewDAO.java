@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.QnaVo;
 
 public class HairShopReviewDAO {
 	static HairShopReviewDAO instance;
@@ -51,14 +53,15 @@ public class HairShopReviewDAO {
 //			cstmt.execute();
 			
 			/////////////////////////////////////////////////////////////////////////
-			String sql = "INSERT INTO hairshop_reviews(hr_no, hr_rate, hr_contents, hr_writedate, hs_no, mdr_no, designer_no) "
-					+ "VALUES(hairshop_reviews_seq.NEXTVAL, ?, ?, sysdate, ?, ?, ?)";
+			String sql = "INSERT INTO hairshop_reviews(hr_no, hr_rate, hr_contents, hr_writedate, hs_no, mdr_no, designer_no, hr_writer) "
+					+ "VALUES(hairshop_reviews_seq.NEXTVAL, ?, ?, sysdate, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getHr_rate());
 			pstmt.setString(2, vo.getHr_contents());
 			pstmt.setString(3, vo.getHs_no());
 			pstmt.setString(4, vo.getMdr_no());
 			pstmt.setString(5,  vo.getDesigner_no());
+			pstmt.setString(6,  vo.getHr_writer());
 			r = pstmt.executeUpdate();
 			System.out.println(r + "값 처리 됨");
 		} catch (Exception e) {
@@ -92,4 +95,47 @@ public class HairShopReviewDAO {
 		}
 		return resultVo;
 	}
+	
+	
+	
+	// 린아타임
+	
+	// 미용실에 후기 뿌리기
+	public ArrayList<HairShopReviewVo> selectHsReivew(HairShopReviewVo hairShopReviewVo) {
+		HairShopReviewVo resultVO = null;
+		ArrayList<HairShopReviewVo> list = new ArrayList<HairShopReviewVo>();
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			String sql = "select hr_no, hr_rate, hr_contents, hr_writedate,"
+					+ "	replace(hr_writer,substr(hr_writer,2,1),'*') as hr_writer, mdr_no" 
+					+ "	from hairshop_reviews"
+					+ "	where hs_no= ?"
+					+ "	order by hr_writedate desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hairShopReviewVo.getHs_no());
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVO = new HairShopReviewVo();
+				resultVO.setHr_no(rs.getString("hr_no"));
+				resultVO.setHr_rate(rs.getString("hr_rate"));
+				resultVO.setHr_contents(rs.getString("hr_contents"));
+				resultVO.setHr_writedate(rs.getString("hr_writedate"));
+				resultVO.setHr_writer(rs.getString("hr_writer"));
+				resultVO.setMdr_no(rs.getString("mdr_no"));
+				list.add(resultVO); // resultVo를 list에 담음
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list; // 값을 리턴해줌
+	}
+	
+	
+	// 린아타임끝
+	
+	
 }

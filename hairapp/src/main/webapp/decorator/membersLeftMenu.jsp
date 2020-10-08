@@ -219,7 +219,7 @@ a.article:hover {
                     <a href="${pageContext.request.contextPath}/members/hsEventIntro.do">쿠폰과 이벤트</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/designerReview.do">후기 및 리뷰</a>
+                    <a href="${pageContext.request.contextPath}/members/hsReviewIntro.do">후기 및 리뷰</a>
                 </li>
             </ul>
         </nav>

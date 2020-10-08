@@ -89,6 +89,11 @@
 }
 
 </style>
+<script>
+function qqq() {
+	alert('로그인이 필요합니다');
+}
+</script>
 
 </head>
 <body>
@@ -177,7 +182,12 @@
 				</div>
 		</div>
 		<div class="col-md-3 cta-button">
-			<a href="hsCouponIssuance.do?hsc_no=${in.hsc_no}" class="btn btn-lg btn-block btn-primary">쿠폰받기</a>
+			<c:if test="${empty sessionScope.memNo}">
+				<a href="hsEventIntro.do" class="btn btn-lg btn-block btn-primary" onclick="qqq()">쿠폰받기</a>
+			</c:if>
+			<c:if test="${not empty sessionScope.memNo}">
+				<a href="hsCouponIssuance.do?hsc_no=${in.hsc_no}&hsc_coupon_quantity=${in.hsc_coupon_quantity}" class="btn btn-lg btn-block btn-primary">쿠폰받기</a>
+			</c:if>
 		</div>
 	</div>
 </div>

@@ -206,7 +206,7 @@ public class HairshopDAO {
 			pstmt.setString(17, hVo.getHs_resource_option());
 			pstmt.setString(18, hVo.getHs_parking());
 			pstmt.setString(19, hVo.getHs_etc());
-			pstmt.setString(20, hVo.getHs_approval());
+			pstmt.setInt(20, Integer.parseInt(hVo.getHs_approval()));
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -240,7 +240,7 @@ public class HairshopDAO {
 		}
 		return count;
 	}
-
+	public 
 	// 공지사항 list
 	public List<HairshopNoticeVo> selectList() {
 		List<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();

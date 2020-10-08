@@ -177,14 +177,30 @@ $(function(){
 		<h6>${intro.hs_fulladdr}</h6>
 	</div>
 	<div id="shopStar1">
-		★★★★★
+		<c:choose>
+			<c:when test="${intro2.hr_rate < 4.5}">
+	        	★★★★★
+	        </c:when>
+	        <c:when test="${intro2.hr_rate < 4.0}">
+	        	★★★★☆
+	        </c:when>
+	        <c:when test="${intro2.hr_rate < 2.5}">
+	        	★★★☆☆
+	        </c:when>
+	        <c:when test="${intro2.hr_rate < 1.5}">
+	        	★★☆☆☆
+	        </c:when>
+	        <c:when test="${intro2.hr_rate < 0.5}">
+	        	★☆☆☆☆
+	        </c:when>
+        </c:choose>
 	</div>
 	<div id="shopStar2">
-		<br><h4>4.9</h4>
+		<br><h4>${intro2.hr_rate}</h4>
 	</div>
 	<div id="reviewBook">
-		리뷰 1000+<br>
-		북마크 1000+
+		리뷰수 : ${intro2.hs_no} +<br>
+		북마크 : 1000 +
 	</div>
 
 </div>

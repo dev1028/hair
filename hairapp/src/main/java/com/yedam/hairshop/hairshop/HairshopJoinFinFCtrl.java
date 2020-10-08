@@ -50,6 +50,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 		
 		hVo.setHs_latlong(dstCoord.y + "," + dstCoord.x );
 		
+		hVo.setHs_approval("-1");
 		HairshopDAO.getInstance().insert(hVo);
 		
 		response.sendRedirect("/hairapp/hairshop/hairshopDesignerLogin.jsp");
