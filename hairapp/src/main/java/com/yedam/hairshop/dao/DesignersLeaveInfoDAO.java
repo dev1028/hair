@@ -17,7 +17,6 @@ public class DesignersLeaveInfoDAO {
 	
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static DesignersLeaveInfoDAO instance;
 
@@ -29,6 +28,7 @@ public class DesignersLeaveInfoDAO {
 	
 	//미용실별 퇴사자리스트 no join
 	public ArrayList<DesignersLeaveInfoVo> selectHSAll(DesignersLeaveInfoVo dVo) {
+		ResultSet rs = null; // 초기화
 		ArrayList<DesignersLeaveInfoVo> list = new ArrayList<DesignersLeaveInfoVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -59,6 +59,7 @@ public class DesignersLeaveInfoDAO {
 	
 	//미용실별 퇴사자리스트 use join
 	public ArrayList<DLeaveInfoJoinDesignerVo> selectHSAll(DLeaveInfoJoinDesignerVo dVo) {
+		ResultSet rs = null; // 초기화
 		ArrayList<DLeaveInfoJoinDesignerVo> list = new ArrayList<DLeaveInfoJoinDesignerVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -97,6 +98,7 @@ public class DesignersLeaveInfoDAO {
 	//2020-09-22 김승연
 	//직원퇴사 처리 프로시저  // 7번이 해당처리가 정상적으로 되었는지 리턴함
 	public int fireDesigner(DesignersLeaveInfoVo dVo) {
+		ResultSet rs = null; // 초기화
 		int isInsert = 0;
 		try {
 			conn = ConnectionManager.getConnnect();

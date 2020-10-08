@@ -15,6 +15,7 @@
 <link
 	href='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.css'
 	rel='stylesheet' />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,6 +25,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/locales-all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
@@ -322,6 +324,8 @@
 										href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do">주간예약</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술완료고객</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do">예약자찾기</a>
@@ -337,9 +341,6 @@
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
 							
-							
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술관리</a></li>
 							
 							
 							

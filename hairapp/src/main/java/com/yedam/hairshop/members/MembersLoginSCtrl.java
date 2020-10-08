@@ -93,6 +93,8 @@ public class MembersLoginSCtrl implements Controller {
 		}
 
 		System.out.println("이동: " + page);
+		
+		request.getSession().setAttribute("loginFalse", resultVO==null);
 
 		// 4. 뷰페이지 이동(redirect, forward) 또는 뷰페이지 출력
 		request.getRequestDispatcher(page).forward(request, response);

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
+import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
 
@@ -32,6 +34,8 @@ public class MembersHairShopIntroCtrl implements Controller {
 		}
 		
 		MembersHairshopVo intro = MembersHairshopDAO.getInstance().selectOne(vo);
+		HairShopReviewVo intro2 = MembersHairshopDAO.getInstance().reviewCount(vo);
+		HairshopBookmarkVo intro3 = MembersHairshopDAO.getInstance().bookmarkCount(vo);
 		
 		if(intro == null) {
 			System.out.println("intro error");
@@ -39,6 +43,8 @@ public class MembersHairShopIntroCtrl implements Controller {
 		else {
 			// 결과 저장
 			request.setAttribute("intro", intro);
+			request.setAttribute("intro2", intro2);
+			request.setAttribute("intro3", intro3);
 			request.setAttribute("lat", intro.getHs_latlong().split(",")[0]); 
 			request.setAttribute("lng", intro.getHs_latlong().split(",")[1]);
 			System.out.println(intro.getHs_latlong());

@@ -15,7 +15,6 @@ import com.yedam.hairshop.model.SearchRankVo;
 public class HairshopHairInfoDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static HairshopHairInfoDAO instance;
 
@@ -26,6 +25,7 @@ public class HairshopHairInfoDAO {
 	}
 
 	public HairshopHairInfoVo selectHairInfo(HairshopHairInfoVo vo) {
+		ResultSet rs = null;
 		try {
 			String sql = " SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no"
 					+ " FROM hairshop_hair_info hi, hairshop hs " + " WHERE hi.hs_no = hs.hs_no AND hi.hhi_no = ?";
@@ -53,7 +53,7 @@ public class HairshopHairInfoDAO {
 	// 헤어샵에 포함된 헤어정보 리스트
 	public List<HairshopHairInfoVo> selectListHairshopHairInfo_InHairshop(HairshopVo hairshopVo) {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
-
+		ResultSet rs = null;
 		try {
 			String sql = " SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no"
 					+ " FROM hairshop_hair_info hi, hairshop hs " + " WHERE hi.hs_no = hs.hs_no AND hs.hs_no = ?";
@@ -90,7 +90,7 @@ public class HairshopHairInfoDAO {
 	// 헤어샵에 포함된 헤어정보 리스트(중분류,대분류 포함)
 	public List<HairshopHairInfoVo> selectHairInfoList(HairshopHairInfoVo hsHIVo) {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
-
+		ResultSet rs = null;
 		try {
 			String sql = "select t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION, tmi.TMIC_NO, tmi.TMIC_NAME,"
 					+ " tmi.TMIC_EXPLICATION, h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS"
@@ -130,6 +130,7 @@ public class HairshopHairInfoDAO {
 	// 헤어정보단건조회
 	public HairshopHairInfoVo selectOneHairInfo(HairshopHairInfoVo hsHIVo) {
 		HairshopHairInfoVo hVo = new HairshopHairInfoVo();
+		ResultSet rs = null;
 		try {
 			String sql = "select t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION, tmi.TMIC_NO, tmi.TMIC_NAME,"
 					+ " tmi.TMIC_EXPLICATION, h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS"
@@ -164,6 +165,7 @@ public class HairshopHairInfoDAO {
 
 	public List<HairshopHairInfoVo> selectListRank(SearchRankVo vo) {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
+		ResultSet rs = null;
 		try {
 			String sql = "SELECT d.*, d.rn, d.cnt, d.hhi_no, d.hhi_name, d.hhi_price, d.hhi_time, d.hs_no, d.tmic_no, d.distance, "
 					+ "                  NVL2((SELECT mem_no  " + "                  FROM favor_hair "

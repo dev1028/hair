@@ -17,8 +17,7 @@ import com.yedam.hairshop.model.SalesVo;
 public class SalesDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
-
+	
 	static SalesDAO instance = null;
 
 	final static String totaldaily = "SELECT r.mdr_no,  r.mdr_date,d.designer_name,m.mem_name, h.HHI_NAME,\r\n"
@@ -51,6 +50,7 @@ public class SalesDAO {
 	}
 
 	public List<Map<String, String>> chart(String hs_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = dsList(hs_no);
 		ArrayList<SalesVo> list1 = new ArrayList<>();
 	
@@ -104,6 +104,7 @@ public class SalesDAO {
 	}
 
 	public ArrayList<SalesVo> dailySalesAll(String start, String end, String hs_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 
@@ -147,6 +148,7 @@ public class SalesDAO {
 	}
 
 	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 
@@ -191,6 +193,7 @@ public class SalesDAO {
 	}
 
 	public ArrayList<DesignerVo> getDsName() {
+		ResultSet rs = null;
 		ArrayList<DesignerVo> list = new ArrayList<>();
 		DesignerVo resultVo = null;
 		try {
@@ -217,13 +220,14 @@ public class SalesDAO {
 	}
 
 	public ArrayList<SalesVo> dsList(String hs_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT designer_no, designer_name	FROM designer  where hs_no = ? order by designer_no  ";
 			pstmt = conn.prepareStatement(sql);
-pstmt.setString(1, hs_no);
+			pstmt.setString(1, hs_no);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				resultVo = new SalesVo();
@@ -246,6 +250,7 @@ pstmt.setString(1, hs_no);
 	// 2020.10.06 김승연
 	// 예약번호를 이용한 매출 다건 조회
 	public ArrayList<MembersDetailPaylistVo> selectListByMdrNo(MembersDetailPaylistVo mDPVo) {
+		ResultSet rs = null;
 		ArrayList<MembersDetailPaylistVo> list = new ArrayList<MembersDetailPaylistVo>();
 
 		try {

@@ -15,7 +15,6 @@ import com.yedam.hairshop.model.MembersVo;
 public class AdminMemberManageDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static AdminMemberManageDAO instance = null;
 	static String hs = "select * FROM hairshop\n";
@@ -45,6 +44,7 @@ public class AdminMemberManageDAO {
 
 	public ArrayList<DesignerVo> selectDs(DesignerVo designerVo) {
 		ArrayList<DesignerVo> list = new ArrayList<>();
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 
@@ -83,7 +83,7 @@ public class AdminMemberManageDAO {
 
 	public ArrayList<HairshopVo> findHs(BoardManageVo vo) {
 		ArrayList<HairshopVo> list = new ArrayList<>();
-
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			if (vo.getSearchInput().equals("")) {
@@ -145,7 +145,7 @@ public class AdminMemberManageDAO {
 
 	public List<MembersVo> findMem(BoardManageVo vo) {
 		ArrayList<MembersVo> list = new ArrayList<>();
-
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			if (vo.getSearchInput().equals("")) {
@@ -204,7 +204,7 @@ public class AdminMemberManageDAO {
 
 	public List<DesignerVo> findDs(BoardManageVo vo) {
 		ArrayList<DesignerVo> list = new ArrayList<>();
-
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			if (vo.getSearchInput().equals("")) {
