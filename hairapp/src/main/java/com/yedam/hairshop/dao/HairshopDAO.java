@@ -232,7 +232,7 @@ public class HairshopDAO {
 		}
 		return count;
 	}
-
+	public 
 	// 공지사항 list
 	public List<HairshopNoticeVo> selectList() {
 		List<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();

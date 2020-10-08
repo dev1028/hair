@@ -309,6 +309,9 @@
 								</div></li>
 							
 							
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술관리</a></li>
+							
 							
 							
 

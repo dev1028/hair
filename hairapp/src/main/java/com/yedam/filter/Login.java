@@ -121,7 +121,6 @@ public class Login implements Filter {
 		list.put("/designer/designerInfo.do", designerLoginPage);
 		list.put("/designer/designerLogin.do", null);
 		// list.put("/designer/customerJoinCtrl.do", designerLoginPage);
-
 		list.put("/hairshop/hairshopNoticeCtrl.do", designerLoginPage);
 		list.put("/hairshop/hairshopNoticeWriteCtrl.do", designerLoginPage);
 		list.put("/hairshop/hairshopNoticeViewCtrl.do", designerLoginPage);
@@ -131,7 +130,11 @@ public class Login implements Filter {
 		// list.put("/hairshop/hairshopNoticeCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponListCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", hairLoginPage);
-
+		list.put("/hairshop/HairshopCouponCtrl.do",  hairLoginPage);
+		
+		list.put("/hairshop/hairshopProcedureFinish.do",  hairLoginPage);
+		list.put("/hairshop/hairshopProcedureFinishList.do",  hairLoginPage);
+		
 		// 린아
 		list.put("/members/membersLogin.do", null); // 로그인 페이지 이동 컨트롤러
 		list.put("/members/membersLogout.do", memberLoginPage); // 로그아웃 페이지 이동 컨트롤러
@@ -285,6 +288,9 @@ public class Login implements Filter {
 		list.put("/ajax/secondaryCodeInsert.do", adminLoginPage); // 보조코드 추가
 		list.put("/ajax/codeUpdate.do", adminLoginPage); // 코드 수정
 		list.put("/ajax/categoryMajorDelete.do", adminLoginPage); // 삭제
+		
+		
+		
 	}
 
 	public void destroy() {

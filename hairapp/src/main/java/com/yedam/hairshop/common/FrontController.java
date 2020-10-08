@@ -50,7 +50,6 @@ import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
 import com.yedam.hairshop.admin.salesCtrl;
 import com.yedam.hairshop.admin.salesStatisticsCtrl;
-import com.yedam.hairshop.admin.salesStatisticsFCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
 import com.yedam.hairshop.designer.DesReturnToLoginCtrl;
@@ -96,6 +95,8 @@ import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeViewCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
+import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
+import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
 import com.yedam.hairshop.members.ChangeDesignerCtrl;
 import com.yedam.hairshop.members.DesignerBookmarkCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
@@ -246,6 +247,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/HairshopCouponListCtrl.do", new HairshopCouponListCtrl());
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", new HairshopCouponInsertCtrl());
 		
+		list.put("/hairshop/hairshopProcedureFinish.do", new hairshopProcedureFinishCtrl());
+		list.put("/hairshop/hairshopProcedureFinishList.do", new hairshopProcedureFinishListCtrl());
+		
 
 		
 		//린아
@@ -309,7 +313,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 		
 		list.put("/ajax/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
-		list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
+		//list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
 		list.put("/ajax/hairshop/sales.do", new salesCtrl());
 
 		list.put("/ajax/hairshop/chart.do", new ChartCtrl());
