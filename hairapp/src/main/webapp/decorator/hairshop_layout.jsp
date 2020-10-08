@@ -324,6 +324,8 @@
 										href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do">주간예약</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술완료고객</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do">예약자찾기</a>
@@ -339,9 +341,6 @@
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
 							
-							
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술관리</a></li>
 							
 							
 							
