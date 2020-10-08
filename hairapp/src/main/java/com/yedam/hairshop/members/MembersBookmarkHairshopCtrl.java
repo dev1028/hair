@@ -10,7 +10,9 @@ import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopBookmarkDAO;
+import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.HairshopBookmarkVo;
+import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersVo;
 
 public class MembersBookmarkHairshopCtrl implements Controller {
@@ -26,7 +28,7 @@ public class MembersBookmarkHairshopCtrl implements Controller {
 		
 		HairshopBookmarkVo vo = new HairshopBookmarkVo();
 		vo.setMem_no(memVo.getMem_no());
-		List<HairshopBookmarkVo> list = HairshopBookmarkDAO.getInstance().getBookmarkList(vo);
+		List<HairshopVo> list = HairshopBookmarkDAO.getInstance().getBookmarkList(vo);
 		System.out.println("list size: " + list.size());
 		session.setAttribute("list", list);
 		request.getRequestDispatcher("/members/membersBookmarkHairshop.jsp").forward(request, response);

@@ -263,7 +263,7 @@
 			<div class="block">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 					<a class="navbar-brand"
-						href="${pageContext.request.contextPath}/hairshop/hairshopMain.do">헤어살롱</a>
+						href="${pageContext.request.contextPath}/hairshop/hairshopMain.do">${login.hs_name}</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -273,17 +273,46 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-
-							<li class="nav-item active"><a class="nav-link" href="#">제품관리
+							<li class="nav-item"><a class="nav-link disabled" href="#"
+								tabindex="-1" aria-disabled="true">제품관리</a></li>
+								<li class="nav-item"><a class="nav-link disabled" href="#"
+								tabindex="-1" aria-disabled="true">회원관리</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairInfoList.do">시술관리
 									<span class="sr-only">(current)</span>
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#">회원관리</a></li>
+							
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
+								
+								
+								
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출관리</a></li>
-							<li class="nav-item dropdown"><a
+								
+								
+								<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 매출관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatistics.do">매출분석</a> 
+									<a
+										class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
+								</div></li>
+								
+								<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 분석통계 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreatCtrl.do">시술별통계</a> 
+									<a
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByReservationCtrl.do">예약분석</a>
+								</div></li>
+								
+								
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 예약관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -304,13 +333,16 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 쿠폰관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponInsertCtrl.do">쿠폰등록</a> <a
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do">쿠폰등록</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
 							
 							
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술관리</a></li>
 							
 							
+							
 
 
 
@@ -318,8 +350,7 @@
 
 
 
-							<li class="nav-item"><a class="nav-link disabled" href="#"
-								tabindex="-1" aria-disabled="true">Disabled</a></li>
+							
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
 						<form id="siteSearchCustomerFrm"

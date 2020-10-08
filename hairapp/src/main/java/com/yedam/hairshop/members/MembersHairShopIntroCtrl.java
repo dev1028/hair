@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairShopReviewVo;
 import com.yedam.hairshop.model.HairshopVo;
@@ -19,9 +20,21 @@ public class MembersHairShopIntroCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MembersHairShopIntroCtrl");
 		
+		//hsNo을 받았을 때도 예약 기능 사용 가능하도록 변경.
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
+		if(vo == null) {
+			String hsNo = request.getParameter("hsNo");
+			if(hsNo != null) {
+				vo = new HairshopVo();
+				vo.setHs_no(hsNo);
+				vo = HairshopDAO.getInstance().selectOne(vo);
+				request.getSession().setAttribute("selHairshopVo", vo);
+			}
+		}
+		
 		MembersHairshopVo intro = MembersHairshopDAO.getInstance().selectOne(vo);
 		HairShopReviewVo intro2 = MembersHairshopDAO.getInstance().reviewCount(vo);
+		
 		if(intro == null) {
 			System.out.println("intro error");
 		}

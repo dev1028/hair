@@ -39,7 +39,7 @@ public class SalesDAO {
 	final static String addDs = " and r.designer_no=? order by mdr_no ";
 	final static String chart = "\r\n" + "SELECT   d.designer_no,sum(\r\n"
 			+ "			 (   SELECT  nvl(sum(mdp_price),0)  \r\n" + "				 FROM members_detail_paylist   \r\n"
-			+ "				 WHERE mdr_no=r.mdr_no\r\n" + "			 and mdr_date between sysdate-1 and sysdate+1 \r\n"
+			+ "				 WHERE mdr_no=r.mdr_no\r\n" + "			 and mdr_date between sysdate and sysdate+1 \r\n"
 			+ "				 ))as ammount     	 \r\n" + "FROM  \r\n" + "	members_designer_rsv r   \r\n"
 			+ "JOIN designer  d  \r\n" + " ON (r.designer_no=d.designer_no)\r\n" + " where d.hs_no = ? \r\n"
 			+ " GROUP BY d.designer_no";
@@ -51,7 +51,7 @@ public class SalesDAO {
 	}
 
 	public List<Map<String, String>> chart(String hs_no) {
-		ArrayList<SalesVo> list = dsList();
+		ArrayList<SalesVo> list = dsList(hs_no);
 		ArrayList<SalesVo> list1 = new ArrayList<>();
 	
 		SalesVo resultVo = null;
@@ -83,15 +83,15 @@ public class SalesDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-for (SalesVo va : list1) {
-	for(int i = 0;i<list.size();i++) {
-		if(va.getDsNo().equals(list.get(i).getDsNo())) {
-			list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
-			break;
+		for (SalesVo va : list1) {
+			for(int i = 0;i<list.size();i++) {
+				if(va.getDsNo().equals(list.get(i).getDsNo())) {
+					list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
+					break;
+				}
+			}
+			
 		}
-	}
-	
-}
 		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		for (SalesVo vovo : list) {
 			Map<String, String> map = new HashMap<String, String>();
@@ -216,14 +216,14 @@ for (SalesVo va : list1) {
 		return list;
 	}
 
-	public ArrayList<SalesVo> dsList() {
+	public ArrayList<SalesVo> dsList(String hs_no) {
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer order by designer_no  ";
+			String sql = "SELECT designer_no, designer_name	FROM designer  where hs_no = ? order by designer_no  ";
 			pstmt = conn.prepareStatement(sql);
-
+pstmt.setString(1, hs_no);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				resultVo = new SalesVo();

@@ -21,7 +21,8 @@ public class Login implements Filter {
 	final String hairLoginPage = "/ajax/hairshopReturnToLogin.do";
 	final String designerLoginPage = "/ajax/designerReturnToLogin.do";
 	final String adminLoginPage = "/admin/adminReturnToLogin.do";
-
+	
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -73,26 +74,27 @@ public class Login implements Filter {
 		}
 		chain.doFilter(req, res);
 	}
-
+	
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 		list = new HashMap<String, String>();
 
 		// 상민
 		list.put("/members/membersMain.do", null);
-		list.put("/members/membersMainResult.do", memberLoginPage);
+		list.put("/members/membersMainResult.do", null);
 
-		list.put("/members/hairshopSelect.do", memberLoginPage);
-		list.put("/members/hairshopSelectResult.do", memberLoginPage);
+		list.put("/members/hairshopSelect.do", null);
+		list.put("/members/hairshopSelectResult.do", null);
 
-		list.put("/members/hairSelect.do", memberLoginPage);
-		list.put("/members/hairSelectResult.do", memberLoginPage);
+		list.put("/members/hairSelect.do", null);
+		list.put("/members/hairSelectResult.do", null);
 
-		list.put("/members/designerSelect.do", memberLoginPage);
-		list.put("/members/designerSelectResult.do", memberLoginPage);
+		list.put("/members/designerSelect.do", null);
+		list.put("/members/designerSelectResult.do", null);
 
-		list.put("/members/regionHairshopRank.do", memberLoginPage); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", memberLoginPage); // 우리동네 디자이너 순위
-		list.put("/members/hairRank.do", memberLoginPage); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", null); // 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", null); // 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", null); // 헤어 순위
 
 		list.put("/members/payment.do", memberLoginPage);
 		list.put("/members/paymentMember.do", memberLoginPage); // 회원결제
@@ -112,7 +114,7 @@ public class Login implements Filter {
 		list.put("/ajax/searchRealtime.do", memberLoginPage); // 자동완성 검색
 		list.put("/members/searchDetail.do", memberLoginPage); // 상세검색
 
-		list.put("/members/gpsHairshopSearch.do", memberLoginPage);
+		list.put("/members/gpsHairshopSearch.do", null);
 
 		list.put("/members/membersBookmarkHairshop.do", memberLoginPage);
 		list.put("/members/membersBookmarkDesigner.do", memberLoginPage);
@@ -123,7 +125,6 @@ public class Login implements Filter {
 		list.put("/designer/designerInfo.do", designerLoginPage);
 		list.put("/designer/designerLogin.do", null);
 		// list.put("/designer/customerJoinCtrl.do", designerLoginPage);
-
 		list.put("/hairshop/hairshopNoticeCtrl.do", designerLoginPage);
 		list.put("/hairshop/hairshopNoticeWriteCtrl.do", designerLoginPage);
 		list.put("/hairshop/hairshopNoticeViewCtrl.do", designerLoginPage);
@@ -133,7 +134,11 @@ public class Login implements Filter {
 		// list.put("/hairshop/hairshopNoticeCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponListCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", hairLoginPage);
-
+		list.put("/hairshop/HairshopCouponCtrl.do",  hairLoginPage);
+		
+		list.put("/hairshop/hairshopProcedureFinish.do",  hairLoginPage);
+		list.put("/hairshop/hairshopProcedureFinishList.do",  hairLoginPage);
+		
 		// 린아
 		list.put("/members/membersLogin.do", null); // 로그인 페이지 이동 컨트롤러
 		list.put("/members/membersLogout.do", memberLoginPage); // 로그아웃 페이지 이동 컨트롤러
@@ -255,6 +260,9 @@ public class Login implements Filter {
 		list.put("/ajax/memberReservationInfo.do", hairLoginPage); // 예약상세정보확인
 		list.put("/ajax/updateMdriMemo.do", hairLoginPage); // 상세예약정보 메모
 		list.put("/ajax/changeReservationStatus.do", hairLoginPage); // 예약상태변경
+		list.put("/ajax/desMemberReservationInfo.do", designerLoginPage); // 예약상세정보확인
+		list.put("/ajax/desUpdateMdriMemo.do", designerLoginPage); // 상세예약정보 메모
+		list.put("/ajax/desChangeReservationStatus.do", designerLoginPage); // 예약상태변경
 
 		list.put("/hairshop/dailyReservationList.do", hairLoginPage); // 미용실 일간 예약자 리스트 (리소스 방식)
 		list.put("/hairshop/weeklyReservationList.do", hairLoginPage); // 미용실 주간 예약자 리스트 (리소스 방식)
@@ -288,8 +296,13 @@ public class Login implements Filter {
 		list.put("/ajax/secondaryCodeInsert.do", adminLoginPage); // 보조코드 추가
 		list.put("/ajax/codeUpdate.do", adminLoginPage); // 코드 수정
 		list.put("/ajax/categoryMajorDelete.do", adminLoginPage); // 삭제
-	}
+		
 
+		list.put("/hairshop/hairInfoList.do", hairLoginPage); //헤어시술목록 페이지이동
+		list.put("/hairshop/hairInfoDetail.do", hairLoginPage); //헤어시술상세페이지 이동
+	}
+	
+	@Override
 	public void destroy() {
 	}
 

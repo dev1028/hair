@@ -57,7 +57,31 @@ public class BoardManageDAO {
 			instance = new BoardManageDAO();
 		return instance;
 	}
+	public int qnaUpdate(BoardManageVo vo) {
+	
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "update qna set qna_title= ? , qna_contents= ? where qna_no = ? ";
 
+			// 시퀀스 값을 글번호와 그룹번호로 사용
+			System.out.println(sql);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getQna_title());
+			pstmt.setString(2, vo.getQna_contents());
+			pstmt.setString(3, vo.getQna_no());
+
+
+			r = pstmt.executeUpdate();
+			
+			System.out.println(r+"updated");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+	}
 	public int insertAnswer(BoardManageVo vo) {
 		System.out.println(vo.emp_no);
 		System.out.println(vo.getQna_ref());
@@ -198,7 +222,7 @@ public class BoardManageDAO {
 		BoardManageVo resultVo = new BoardManageVo();
 		try {
 			conn = ConnectionManager.getConnnect();
-System.out.println(vo.getNotice_no());
+			System.out.println(vo.getNotice_no());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getNotice_no());
 
@@ -225,7 +249,7 @@ System.out.println(vo.getNotice_no());
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-System.out.println(resultVo.getNotice_title());
+		System.out.println(resultVo.getNotice_title());
 		return resultVo;
 	}
 

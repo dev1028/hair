@@ -26,12 +26,16 @@
 		if (str !== "답변") {
 			$('.parent *').prop('readonly', true);
 		} else {
-			$(".modi").append.("<button/>").attr("click",
+			$(".form-control").append
+					
+		($("<input />").attr({type:"submit",text:"수정"}))
+									
+					;
 				
-			})
+			}
 
 		}
-	})
+	)
 </script>
 <!-- <script type="text/javascript" 
 
@@ -55,7 +59,7 @@ src="adminQnaView.js"></script> -->
 
 					<select name="qna_who" id="qna_who">
 						<option value="${vo.qna_who }">${vo.qna_whov }</option>
-					</select> <input id="qna_category" value="${vo.qna_categoryv }">
+					</select> <input id="qna_category" name ="qna_category"value="${vo.qna_categoryv }">
 
 
 

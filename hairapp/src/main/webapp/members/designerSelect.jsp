@@ -14,11 +14,6 @@
      z-index:1151 !important; 
 }
 </style>
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
-<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 <script>
 $(function() {
 	$("#date").datepicker({
@@ -77,7 +72,9 @@ function changeDesigner(){
 
 </head>
 <body>
+<script>
 
+</script>
 <div class="container">
     <h3 class="h3">디자이너 정보</h3>
     <input autocomplete="off" type="text" name="date" id="date" size="12" />
@@ -107,7 +104,9 @@ function changeDesigner(){
 							<span class="title">직책: ${designerInfo.position} </span><br>
 							<span class="title">시간: ${designerInfo.work_start_time}시 - ${designerInfo.work_end_time}시 </span><br>
 							<span class="title">휴일: ${designerInfo.designer_dayoff} </span><br>
+							
 							<button class="add-to-cart">예약하기</button>
+							
 <%-- 		                    <h3 class="title"><a href="#">${hairInfo.hhi_name}</a></h3> --%>
 <%-- 		                    <h3 class="title"><a href="#">${hairInfo.hhi_time}시간</a></h3> --%>
 <%-- 		                    <div class="price">${hairInfo.hhi_price}원</div> --%>
