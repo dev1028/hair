@@ -118,7 +118,7 @@
 						$("#forUl").append($("<hr>"));
 						$("#forUl").append(
 						$("<span>").append(
-						$("<a>").attr("href", "${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="+data[i].mdr_no)
+						$("<a>").attr("href", "${pageContext.request.contextPath}/designer/findMyCustomerDetail.do?mdr_no="+data[i].mdr_no)
 								 .html('<strong>'+data[i].mem_name+'</strong>'+" - "+hairName)));
 					}
 				}

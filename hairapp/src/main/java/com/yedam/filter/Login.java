@@ -19,7 +19,8 @@ public class Login implements Filter {
 	final String hairLoginPage = "/ajax/hairshopReturnToLogin.do";
 	final String designerLoginPage = "/ajax/designerReturnToLogin.do";
 	final String adminLoginPage = "/admin/adminReturnToLogin.do";
-
+	
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -71,7 +72,8 @@ public class Login implements Filter {
 		}
 		chain.doFilter(req, res);
 	}
-
+	
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 		list = new HashMap<String, String>();
 
@@ -252,6 +254,9 @@ public class Login implements Filter {
 		list.put("/ajax/memberReservationInfo.do", hairLoginPage); // 예약상세정보확인
 		list.put("/ajax/updateMdriMemo.do", hairLoginPage); // 상세예약정보 메모
 		list.put("/ajax/changeReservationStatus.do", hairLoginPage); // 예약상태변경
+		list.put("/ajax/desMemberReservationInfo.do", designerLoginPage); // 예약상세정보확인
+		list.put("/ajax/desUpdateMdriMemo.do", designerLoginPage); // 상세예약정보 메모
+		list.put("/ajax/desChangeReservationStatus.do", designerLoginPage); // 예약상태변경
 
 		list.put("/hairshop/dailyReservationList.do", hairLoginPage); // 미용실 일간 예약자 리스트 (리소스 방식)
 		list.put("/hairshop/weeklyReservationList.do", hairLoginPage); // 미용실 주간 예약자 리스트 (리소스 방식)
@@ -285,8 +290,12 @@ public class Login implements Filter {
 		list.put("/ajax/secondaryCodeInsert.do", adminLoginPage); // 보조코드 추가
 		list.put("/ajax/codeUpdate.do", adminLoginPage); // 코드 수정
 		list.put("/ajax/categoryMajorDelete.do", adminLoginPage); // 삭제
+		
+		list.put("/hairshop/hairInfoList.do", hairLoginPage); //헤어시술목록 페이지이동
+		list.put("/hairshop/hairInfoDetail.do", hairLoginPage); //헤어시술상세페이지 이동
 	}
-
+	
+	@Override
 	public void destroy() {
 	}
 

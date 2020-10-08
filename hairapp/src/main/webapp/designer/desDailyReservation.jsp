@@ -106,10 +106,10 @@
 									eventClick : function(info) {
 										window
 												.open(
-														"${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="
+														"${pageContext.request.contextPath}/ajax/desMemberReservationInfo.do?mdrNo="
 																+ info.event.id,
 														"pop",
-														"width=700,height=500, scrollbars=yes, resizable=yes");
+														"width=700,height=750, scrollbars=yes, resizable=yes");
 									},
 									nowIndicator : true, //현재 시간 바
 								/* selectable: true, // 화면 선택가능
@@ -220,7 +220,7 @@
 									eventClick : function(info) {
 										window
 												.open(
-														"${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="
+														"${pageContext.request.contextPath}/ajax/desMemberReservationInfo.do?mdrNo="
 																+ info.event.id,
 														"pop",
 														"width=700,height=750, scrollbars=yes, resizable=yes");

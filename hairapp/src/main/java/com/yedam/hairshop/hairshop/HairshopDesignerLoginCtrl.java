@@ -43,7 +43,7 @@ public class HairshopDesignerLoginCtrl implements Controller {
 			}
 		}
 		// 4.뷰페이지이동 포워드 리다이렉트 또는 뷰페이지 출력
-		request.getRequestDispatcher(page).forward(request, response);
+		response.sendRedirect(request.getContextPath()+page);
 	}
 
 }
