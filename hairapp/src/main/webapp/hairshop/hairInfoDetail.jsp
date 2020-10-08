@@ -8,6 +8,13 @@
 <title>Insert title here</title>
 <script>
 	$(function() {
+		$('.bxslider').bxSlider({
+			auto : true,
+			autoControls : true,
+			stopAutoOnClick : true,
+			pager : true,
+			slideWidth : 600
+		});
 		$("#searchCustomerBtn").on("click", function() {
 			if ($("#inputSearch").val() == "") {
 				alert("값을 입력해주세요");
@@ -16,30 +23,31 @@
 			}
 		});
 		$("#btnstatus")
-		.on(
-				"click",
-				function() {
-					var mdrStatus = $("#btnstatus").attr("data-status");
-					var mdrNo = $("#mdr_noParent").children()
-							.attr("id");
-					$.ajax({
-								url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
-								data : {
-									mdr_status : mdrStatus,
-									mdr_no : mdrNo
-								},
-								dataType : "json",
-								method : "post",
-								success : function(data) {
-									if (data == 0) {
-										alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
-									} else {
-										location.reload();
-										window.opener.location.reload();
-									}
-								}
-							});// end of ajax 
-				});
+				.on(
+						"click",
+						function() {
+							var mdrStatus = $("#btnstatus").attr("data-status");
+							var mdrNo = $("#mdr_noParent").children()
+									.attr("id");
+							$
+									.ajax({
+										url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
+										data : {
+											mdr_status : mdrStatus,
+											mdr_no : mdrNo
+										},
+										dataType : "json",
+										method : "post",
+										success : function(data) {
+											if (data == 0) {
+												alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+											} else {
+												location.reload();
+												window.opener.location.reload();
+											}
+										}
+									});// end of ajax 
+						});
 		$("#savetextArea")
 				.on(
 						"click",
@@ -125,95 +133,47 @@
 					<li class="list-group-item">기본시술시간: <strong>${hair.hhi_time}시간</strong></li>
 				</ul>
 				<c:if test="${hair.hhi_status == '0'}">
-							<button class="btn btn-success btn-block" id="btnstatus"
-								data-status="1" type="button">사용하기</button>
-						</c:if>
-						<c:if test="${hair.hhi_status == '1'}">
-							<button class="btn btn-danger btn-block" type="button"
-								id="btnstatus" data-status="0">사용중단</button>
-					</c:if>
+					<button class="btn btn-success btn-block" id="btnstatus"
+						data-status="1" type="button">사용하기</button>
+				</c:if>
+				<c:if test="${hair.hhi_status == '1'}">
+					<button class="btn btn-danger btn-block" type="button"
+						id="btnstatus" data-status="0">사용중단</button>
+				</c:if>
 			</div>
 		</div>
 		<hr>
 		<div class="row justify-content-md-center">
-			<c:forEach items="${hairList}" var="hair">
-				<div class="card" style="width: 18rem;">
-					<img src="../images/hairshop/san.jpg" class="card-img-top"
-						alt="...">
-					<div class="card-body">
-						<h5 class="card-title">${hair.hhi_name}</h5>
-						<h6 class="card-subtitle mb-2 text-muted">${hair.hhi_time}시간</h6>
-						<p class="card-text">${hair.hhi_price}원</p>
-						<a href="${hair.hhi_no}" class="btn btn-sm btn-primary">헤어정보
-							보기</a>
-					</div>
+			<div class="bxslider">
+				<div>
+					<img src="../images/hairshop/san.jpg">
 				</div>
-			</c:forEach>
-		</div>
-		<hr>
-		<div id="savetextArea" data-id="${customerInfo.mdr_no}">
-			<c:forEach items="${hairList}" var="hair">
-				<div class="row">
-					<div class="card text-center col" style="width: 80rem;">
-						<div class="card-body">
-							<h5 class="card-title">${hair.hhi_name}</h5>
-							<h6 class="card-subtitle mb-2 text-muted">예약번호:
-								${hair.mdr_no}-${hair.mdri_detail_info} 메모</h6>
-							<div class="input-group">
-								<textarea class="form-control"
-									id="textArea${hair.mdri_detail_info}"
-									aria-label="With textarea">${hair.mdri_memo}</textarea>
-								<div class="input-group-prepend">
-									<c:if test="${customerInfo.mdr_status eq 'i1'}">
-										<button class="btn btn-danger"
-											data-text="textArea${hair.mdri_detail_info}"
-											data-detailNo="${hair.mdri_detail_info}">저장</button>
-
-									</c:if>
-									<c:if test="${customerInfo.mdr_status eq 'i2'}">
-										<button class="btn btn-success"
-											data-text="textArea${hair.mdri_detail_info}"
-											data-detailNo="${hair.mdri_detail_info}">저장</button>
-
-									</c:if>
-									<c:if test="${customerInfo.mdr_status eq 'i3'}">
-										<button class="btn btn-info"
-											data-text="textArea${hair.mdri_detail_info}"
-											data-detailNo="${hair.mdri_detail_info}">저장</button>
-
-									</c:if>
-									<c:if test="${customerInfo.mdr_status eq 'i4'}">
-										<button class="btn btn-secondary"
-											data-text="textArea${hair.mdri_detail_info}"
-											data-detailNo="${hair.mdri_detail_info}">저장</button>
-									</c:if>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
+			</div>
 		</div>
 		<hr>
 		<div class="row justify-content-md-center">
-			<c:forEach items="${payList}" var="pay">
-				<div class="col-4">
-					<h4>매출정보: #${pay.mdr_no}-${pay.mdp_no}</h4>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><c:if
-								test="${pay.mdp_rv_scene eq '1'}">예약결제</c:if> <c:if
-								test="${pay.mdp_rv_scene eq '0'}">현장결제</c:if></li>
-						<li class="list-group-item"><c:if
-								test="${pay.mdp_code eq 'd1'}">카드</c:if> <c:if
-								test="${pay.mdp_code eq 'd2'}">현금</c:if> <c:if
-								test="${pay.mdp_code eq 'd3'}">카카오페이</c:if> <c:if
-								test="${pay.mdp_code eq 'd4'}">적립금</c:if> <c:if
-								test="${pay.mdp_code eq 'd5'}">쿠폰</c:if></li>
-						<li class="list-group-item">${pay.mdp_price}원</li>
-					</ul>
+			<form>
+				<input type="file" id="image" name="file_name"
+					accept=".gif, .jpg, .png" onchange="setThumbnail(event);" />
+				<div id="image_container"></div>
+				<script>
+					function setThumbnail(event) {
+						var reader = new FileReader();
+						reader.onload = function(event) {
+							var img = document.createElement("img");
+							img.setAttribute("src", event.target.result);
+							document.querySelector("div#image_container")
+									.appendChild(img);
+						};
+						reader.readAsDataURL(event.target.files[0]);
+					}
+				</script>
+				<div>
+					<button>수정하기</button>
+					<button type="reset">초기화</button>
+					<!-- onclick="location.href='/designer/designerMyPageOutput.jsp'" -->
 				</div>
-			</c:forEach>
+			</form>
 		</div>
-	</div>
 </body>
 </html>
