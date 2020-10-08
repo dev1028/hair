@@ -300,34 +300,42 @@ public class DesignerDAO {
 	public List<DesignerVo> selectListDesignerRank(SearchRankVo vo) {
 		List<DesignerVo> list = new ArrayList<DesignerVo>();
 		String sql = 
-				" SELECT rn, designer_no, designer_name, work_start_time, " +
+				" SELECT rn, distance, designer_no, designer_name, work_start_time, hs_no, " +
 				"       work_end_time, designer_profile, NVL2((SELECT mem_no " + 
 				"										       FROM favor_designer " + 
 				"										       WHERE designer_no = d.designer_no AND mem_no = ?), 1, 0) as book " +
 				" FROM (SELECT rownum rn, k.*  " + 
-				"       FROM (SELECT r.cnt, d.* " + 
+				"       FROM (SELECT r.cnt, " + 
+				"                    d.*, " +
+				"                    TRUNC(getDistance(?, ?, substr(HS_LATLONG, 0, instr(HS_LATLONG, ',')-1), substr(HS_LATLONG, instr(HS_LATLONG, ',')+1)), 2) as distance " +
 				"             FROM (SELECT designer_no, count(*) as cnt " + 
 				"                   FROM favor_designer " + 
 				"                   GROUP BY designer_no) r " + 
 				"             JOIN designer d " + 
-				"             ON d.designer_no = r.designer_no " + 
+				"             ON d.designer_no = r.designer_no " +
+				"             JOIN hairshop h " +
+				"             ON d.hs_no = h.hs_no " +
 				"             ORDER BY r.cnt DESC) k) d " + 
-				" WHERE rn <= 10 ";
+				" WHERE rn <= 10 AND distance < 1000";
 		
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMem_no());
+			pstmt.setString(2, vo.getLat());
+			pstmt.setString(3, vo.getLng());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				DesignerVo tmpVo = new DesignerVo();
 				tmpVo.setRn(rs.getString("rn"));
+				tmpVo.setDistance(rs.getString("distance"));
 				tmpVo.setDesigner_no(rs.getString("designer_no"));
 				tmpVo.setDesigner_name(rs.getString("designer_name"));
 				tmpVo.setWork_start_time(rs.getString("work_start_time"));
 				tmpVo.setWork_end_time(rs.getString("work_end_time"));
 				tmpVo.setDesigner_profile(rs.getString("designer_profile"));
 				tmpVo.setDesigner_book(rs.getString("book"));
+				tmpVo.setHs_no(rs.getString("hs_no"));
 				list.add(tmpVo);
 			}
 		} catch (SQLException e) {

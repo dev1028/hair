@@ -26,7 +26,7 @@
 				
 			}
 		})
-		alert('asdfa');
+		alert('결제가 완료되었습니다.');
 	});
 	
 // 		var IMP = window.IMP; // 생략가능

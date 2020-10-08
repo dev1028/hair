@@ -23,7 +23,7 @@
 					var mdrNo = $("#mdr_noParent").children()
 							.attr("id");
 					$.ajax({
-								url : "${pageContext.request.contextPath}/ajax/desChangeReservationStatus.do",
+								url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
 								data : {
 									mdr_status : mdrStatus,
 									mdr_no : mdrNo
@@ -51,7 +51,7 @@
 							var textAreaVal = $("#" + textInfo).val();
 							$
 									.ajax({
-										url : "${pageContext.request.contextPath}/ajax/desUpdateMdriMemo.do",
+										url : "${pageContext.request.contextPath}/ajax/updateMdriMemo.do",
 										data : {
 											mdr_no : mdrNo,
 											mdri_memo : textAreaVal,
@@ -77,10 +77,10 @@
 			<br> <br> <br>
 		</div>
 		<div class="row justify-content-between">
-			<div class="col-2">
-				<h3>예약자 찾기</h3>
+			<div class="col-4">
+				<h3>헤어상세정보</h3>
 			</div>
-			<div class="col-5">
+			<div class="col-6">
 				<form id="searchCustomerFrm"
 					action="${pageContext.request.contextPath}/designer/findMyCustomer.do"
 					method="post">
@@ -109,38 +109,28 @@
 		<div class="row justify-content-md-center">
 			<div class="col-6">
 				<h4>
-					예약정보: #${customerInfo.mdr_no}
-					<c:if test="${customerInfo.mdr_status eq 'i1'}">
-						<span class="badge badge-pill badge-danger">예약취소</span>
+					헤어번호: #${hair.hhi_no}
+					<c:if test="${hair.hhi_status == '0'}">
+						<span class="badge badge-pill badge-danger">미사용</span>
 					</c:if>
-					<c:if test="${customerInfo.mdr_status eq 'i2'}">
-						<span class="badge badge-pill badge-success">예약중</span>
-					</c:if>
-					<c:if test="${customerInfo.mdr_status eq 'i3'}">
-						<span class="badge badge-pill badge-info">시술중</span>
-					</c:if>
-					<c:if test="${customerInfo.mdr_status eq 'i4'}">
-						<span class="badge badge-pill badge-secondary">시술완료</span>
+					<c:if test="${hair.hhi_status == '1'}">
+						<span class="badge badge-pill badge-success">사용</span>
 					</c:if>
 				</h4>
 				<ul class="list-group list-group-flush">
-					<li class="list-group-item">이름: <strong>${customerInfo.mem_name}</strong></li>
-					<li class="list-group-item">예약일자: <strong>${customerInfo.mdr_date}</strong></li>
-					<li class="list-group-item">성별: <strong><c:if
-								test="${customerInfo.mem_sex eq 'male'}">남자</c:if> <c:if
-								test="${customerInfo.mem_sex eq 'female'}">여자</c:if></strong></li>
-					<li class="list-group-item">전화번호: <strong>${customerInfo.mem_phone}</strong></li>
-					<li class="list-group-item">기장상태: <strong>${customerInfo.mem_hair_length}</strong></li>
-					<li class="list-group-item">머리상태: <strong>${customerInfo.mem_hair_status}</strong></li>
-					<li class="list-group-item">헤어샵 요청사항: <strong>${customerInfo.mdr_request}</strong></li>
+					<li class="list-group-item">시술분류명: <strong>${hair.tmac_name}</strong></li>
+					<li class="list-group-item">시술선택명: <strong>${hair.tmic_name}</strong></li>
+					<li class="list-group-item">시술표기명: <strong>${hair.hhi_name}</strong></li>
+					<li class="list-group-item">가격: <strong>${hair.hhi_price}원</strong></li>
+					<li class="list-group-item">기본시술시간: <strong>${hair.hhi_time}시간</strong></li>
 				</ul>
-				<c:if test="${customerInfo.mdr_status eq 'i2'}">
+				<c:if test="${hair.hhi_status == '0'}">
 							<button class="btn btn-success btn-block" id="btnstatus"
-								data-status="i3" type="button">시술시작</button>
+								data-status="1" type="button">사용하기</button>
 						</c:if>
-						<c:if test="${customerInfo.mdr_status eq 'i3'}">
-							<button class="btn btn-info btn-block" type="button"
-								id="btnstatus" data-status="i4">시술완료</button>
+						<c:if test="${hair.hhi_status == '1'}">
+							<button class="btn btn-danger btn-block" type="button"
+								id="btnstatus" data-status="0">사용중단</button>
 					</c:if>
 			</div>
 		</div>
