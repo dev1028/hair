@@ -124,6 +124,7 @@ import com.yedam.hairshop.members.MembersBookmarkHairstyleCtrl;
 import com.yedam.hairshop.members.MembersCouponCtrl;
 import com.yedam.hairshop.members.MembersDeleteCtrl;
 import com.yedam.hairshop.members.MembersDeleteSCtrl;
+import com.yedam.hairshop.members.MembersHairIntroCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
 import com.yedam.hairshop.members.MembersHsCouponICtrl;
@@ -237,6 +238,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersBookmarkDesigner.do", new MembersBookmarkDesignerCtrl());
 		list.put("/members/membersBookmarkHairstyle.do", new MembersBookmarkHairstyleCtrl());
 
+		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());

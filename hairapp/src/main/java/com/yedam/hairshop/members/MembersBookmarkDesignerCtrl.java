@@ -34,7 +34,6 @@ public class MembersBookmarkDesignerCtrl implements Controller {
 			tmpVo.setDesigner_book("1");;
 		}
 		request.setAttribute("list", list);
-		System.out.println("list size: " + list.size());
 		request.getRequestDispatcher("/members/membersBookmarkDesigner.jsp").forward(request, response);
 	}
 

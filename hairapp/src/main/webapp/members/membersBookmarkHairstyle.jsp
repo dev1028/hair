@@ -6,7 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../css/card.css">
+<link rel="stylesheet" type="text/css" href="../css/designerCard.css">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="../decorator/membersDesigner.css">
 <style>
 #mypage {
    display: flex;
@@ -21,6 +27,28 @@
     margin:0 auto;
 } 
 </style>
+<script>
+	function like_func(hhi_no) {
+		$.ajax({
+			url : "../ajax/hairBookmark.do",
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : 'hhi_no=' + hhi_no,
+			success : function(data) {
+				findClass = ".img-" + hhi_no;
+				if(data.type == "add"){
+					$(findClass).attr("src", "../images/bookmark/heart.png");
+				}else{
+					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
+				}
+			},
+			error : function(request, status, error) {
+				alert("에러 발생!!")
+			}
+		});
+	}
+</script>
 </head>
 <body>
 <div id="wrap">
@@ -32,7 +60,7 @@
 	
 	<div class="row">
     	<c:forEach items="${list}" var="hairInfo" >
-    		<form class="col-md-3 col-sm-6" action="../members/hairSelectResult.do" method="post">
+    		<form class="col-md-3 col-sm-6" action="../members/hairshopInfo.do" method="post">
 		            <div class="product-grid4">
 		                <div class="product-image4">
 	                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
@@ -54,10 +82,11 @@
 		                    <div class="price">${hairInfo.hhi_price}원</div>
 		                    <!-- <a class="add-to-cart" href="">예약하기</a>
 		                     -->
-		                     <button class="add-to-cart">예약하기</button>
+		                     <button class="add-to-cart">이동하기</button>
 		                </div>
 		            </div>
 		            <input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
+		            <input type="hidden" name="hhiNo" value="${hairInfo.hs_no}">
 	        </form>
         </c:forEach>
     </div>
