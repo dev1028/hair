@@ -243,7 +243,7 @@
 							디자이너 순위</a></li>
 
 					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/hairRank.do">인기
+						href="${pageContext.request.contextPath}/members/regionHairRank.do">인기
 							헤어 순위</a></li>
 				</ul>
 			</div>

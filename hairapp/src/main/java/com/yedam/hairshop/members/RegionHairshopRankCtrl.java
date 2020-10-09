@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.HairshopBookmarkDAO;
 import com.yedam.hairshop.dao.HairshopDAO;
-import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersVo;
 import com.yedam.hairshop.model.SearchRankVo;

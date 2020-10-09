@@ -27,8 +27,8 @@ public class HairshopCouponListCtrl implements Controller {
 		
 		//Paging
 		Paging paging = new Paging();
-		paging.setPageUnit(5); //default 10 
-		paging.setPageSize(3); //페이지 번호수
+		paging.setPageUnit(10); //default 10 
+		paging.setPageSize(10); //페이지 번호수
 		paging.setPage(page);
 		
 		CouponVo vo = new CouponVo();
@@ -38,6 +38,11 @@ public class HairshopCouponListCtrl implements Controller {
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
 		
+		//미용실 세션
+		String s = (String)request.getSession().getAttribute("hsno");
+		System.out.println("헤어샵번호" + s);
+		
+		vo.setHs_no((String)request.getSession().getAttribute("hsno"));
 		ArrayList<CouponVo> list = HairshopCouponDAO.getInstance().selectAll(vo);
 		System.out.println("쿠폰조회 페이징되나");
 		request.setAttribute("list",list);

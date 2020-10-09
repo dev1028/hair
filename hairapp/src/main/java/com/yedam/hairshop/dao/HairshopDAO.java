@@ -13,11 +13,10 @@ import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.SearchRankVo;
 
 public class HairshopDAO {
-
 	// 전역변수
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
+	
 
 	// 싱글톤
 	static HairshopDAO instance;
@@ -30,6 +29,7 @@ public class HairshopDAO {
 
 	public HairshopVo selectOne(HairshopVo hsVo) {
 		HairshopVo resultVo = null;
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,"
@@ -79,7 +79,7 @@ public class HairshopDAO {
 	// 단건 조회
 	public HairshopVo loginSelectOne(HairshopVo hsVo) {
 		HairshopVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
-
+		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,"
@@ -129,7 +129,8 @@ public class HairshopDAO {
 
 	public List<HairshopVo> selectAll() {
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
-
+		ResultSet rs = null;
+		
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,"
@@ -174,6 +175,8 @@ public class HairshopDAO {
 
 	// 2020.09.24 헤어샵 회원가입 insert
 	public int insert(HairshopVo hVo) {
+		ResultSet rs = null;
+		
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -202,10 +205,12 @@ public class HairshopDAO {
 			pstmt.setString(17, hVo.getHs_resource_option());
 			pstmt.setString(18, hVo.getHs_parking());
 			pstmt.setString(19, hVo.getHs_etc());
-			pstmt.setString(20, hVo.getHs_approval());
+			pstmt.setInt(20, Integer.parseInt(hVo.getHs_approval()));
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -213,6 +218,8 @@ public class HairshopDAO {
 	// 2020.09.24 김승연
 	// email 사용여부조회
 	public int selectCntEmail(String hs_email) {
+		ResultSet rs = null;
+		
 		int count = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -236,6 +243,8 @@ public class HairshopDAO {
 	// 공지사항 list
 	public List<HairshopNoticeVo> selectList() {
 		List<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();
+		ResultSet rs = null;
+		
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT NOTICE_NO , NOTICE_TITLE, NOTICE_CONTENTS ,NOTICE_WRITEDATE ,"
@@ -267,6 +276,7 @@ public class HairshopDAO {
 	// 공지사항 작성
 	// notice_no_seq
 	public int insert(HairshopNoticeVo noticeVo) {
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -292,6 +302,7 @@ public class HairshopDAO {
 
 	// 조회수
 	public int hitUpdate(HairshopNoticeVo noticeVo) {
+		ResultSet rs = null;
 		int result = 0;
 		String sql = "UPDATE NOTICE SET Notice_hits = Notice_hits + 1 WHERE NOTICE_NO = ?";
 
@@ -309,6 +320,7 @@ public class HairshopDAO {
 
 	// 공지사항 보기
 	public HairshopNoticeVo noticeView(HairshopNoticeVo noticeVo) {
+		ResultSet rs = null;
 		HairshopNoticeVo resultVo = new HairshopNoticeVo();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -340,6 +352,7 @@ public class HairshopDAO {
 
 	// 랭킹 10위 까지만 표시
 	public List<HairshopVo> selectListHairshopRank(SearchRankVo vo) {
+		ResultSet rs = null;
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
 		String sql = 
 				"SELECT RN, DISTANCE, HS_NO, HS_NAME, HS_OWNER,  " + 
@@ -359,7 +372,7 @@ public class HairshopDAO {
 				"            JOIN hairshop h " + 
 				"            ON h.hs_no = r.hs_no " + 
 				"            ORDER BY r.cnt DESC) k) hs " + 
-				"       WHERE rn <= 10";
+				"       WHERE rn <= 10 AND distance < 1000";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
@@ -399,6 +412,8 @@ public class HairshopDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 
 		return list;

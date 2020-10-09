@@ -12,10 +12,9 @@ import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.SearchRankVo;
 
 public class DesignerDAO {
-
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null; // 초기화
+	
 
 	static DesignerDAO instance;
 
@@ -27,6 +26,7 @@ public class DesignerDAO {
 
 	// 디자이너 정보 추가
 	public int update(DesignerVo designerVo) {
+		ResultSet rs = null; // 초기화
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
 				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, HIRE_DATE = ? ,"
@@ -55,6 +55,7 @@ public class DesignerDAO {
 	
 	// 디자이너MyPage 정보수정
 	public int mypageUpdate(DesignerVo designerVo) {
+		ResultSet rs = null; // 초기화
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_PW = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ? ,"
 				+ " WORK_START_TIME = ?, WORK_END_TIME = ? ,"
@@ -83,6 +84,7 @@ public class DesignerDAO {
 	
 	// 단건 조회
 	public DesignerVo selectOne(DesignerVo designerVo) {
+		ResultSet rs = null; // 초기화
 		DesignerVo designer = new DesignerVo();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -123,6 +125,7 @@ public class DesignerDAO {
 	}
 
 	public DesignerVo selectOneEmail(DesignerVo designerVo) {
+		ResultSet rs = null; // 초기화
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -187,6 +190,7 @@ public class DesignerDAO {
 	// 미용실별 디자이너 목록
 	// 2020.09.17 승연
 	public ArrayList<DesignerVo> selectByHairShop(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
 		ArrayList<DesignerVo> list = new ArrayList<DesignerVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -229,6 +233,7 @@ public class DesignerDAO {
 	// 디자이너 간편등록
 	// 2020.09.18
 	public int simpleInsert(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -252,6 +257,7 @@ public class DesignerDAO {
 	// 2020.09.20 김승연
 	// 미용실에서 디자이너 정보 수정
 	public int updateForHair(DesignerVo designerVo) {
+		ResultSet rs = null; // 초기화
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET POSITION = ?, SALARY = ?, INCENTIVE = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ?,"
 				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, DESIGNER_PROFILE = ?, FILE_NAME = ?"
@@ -281,6 +287,7 @@ public class DesignerDAO {
 	// 2020.09.23 김승연
 	// 디자이너 인증정보반영
 	public int updateForAuth(String designer_email) {
+		ResultSet rs = null; // 초기화
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET DESIGNER_ACCESS_STATUS = 0 WHERE DESIGNER_EMAIL = ?";
 		try {
@@ -298,36 +305,45 @@ public class DesignerDAO {
 	
 	//랭킹 10위만 표시
 	public List<DesignerVo> selectListDesignerRank(SearchRankVo vo) {
+		ResultSet rs = null; // 초기화
 		List<DesignerVo> list = new ArrayList<DesignerVo>();
 		String sql = 
-				" SELECT rn, designer_no, designer_name, work_start_time, " +
+				" SELECT rn, distance, designer_no, designer_name, work_start_time, hs_no, " +
 				"       work_end_time, designer_profile, NVL2((SELECT mem_no " + 
 				"										       FROM favor_designer " + 
 				"										       WHERE designer_no = d.designer_no AND mem_no = ?), 1, 0) as book " +
 				" FROM (SELECT rownum rn, k.*  " + 
-				"       FROM (SELECT r.cnt, d.* " + 
+				"       FROM (SELECT r.cnt, " + 
+				"                    d.*, " +
+				"                    TRUNC(getDistance(?, ?, substr(HS_LATLONG, 0, instr(HS_LATLONG, ',')-1), substr(HS_LATLONG, instr(HS_LATLONG, ',')+1)), 2) as distance " +
 				"             FROM (SELECT designer_no, count(*) as cnt " + 
 				"                   FROM favor_designer " + 
 				"                   GROUP BY designer_no) r " + 
 				"             JOIN designer d " + 
-				"             ON d.designer_no = r.designer_no " + 
+				"             ON d.designer_no = r.designer_no " +
+				"             JOIN hairshop h " +
+				"             ON d.hs_no = h.hs_no " +
 				"             ORDER BY r.cnt DESC) k) d " + 
-				" WHERE rn <= 10 ";
+				" WHERE rn <= 10 AND distance < 1000";
 		
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMem_no());
+			pstmt.setString(2, vo.getLat());
+			pstmt.setString(3, vo.getLng());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				DesignerVo tmpVo = new DesignerVo();
 				tmpVo.setRn(rs.getString("rn"));
+				tmpVo.setDistance(rs.getString("distance"));
 				tmpVo.setDesigner_no(rs.getString("designer_no"));
 				tmpVo.setDesigner_name(rs.getString("designer_name"));
 				tmpVo.setWork_start_time(rs.getString("work_start_time"));
 				tmpVo.setWork_end_time(rs.getString("work_end_time"));
 				tmpVo.setDesigner_profile(rs.getString("designer_profile"));
 				tmpVo.setDesigner_book(rs.getString("book"));
+				tmpVo.setHs_no(rs.getString("hs_no"));
 				list.add(tmpVo);
 			}
 		} catch (SQLException e) {
@@ -343,6 +359,7 @@ public class DesignerDAO {
 	// 퇴사자를 제외한 미용실별 디자이너 목록
 	// 김린아
 	public ArrayList<DesignerVo> notRetireeByHairShop(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
 		ArrayList<DesignerVo> list = new ArrayList<DesignerVo>();
 		try {
 			conn = ConnectionManager.getConnnect();

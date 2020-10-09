@@ -7,19 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.JsonArray;
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HairMainCategoryVo;
 import com.yedam.hairshop.model.HairMiddleCategoryVo;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 
 public class HairCategoryDAO {
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null; // 초기화
 
 	static HairCategoryDAO instance;
 
@@ -31,6 +26,7 @@ public class HairCategoryDAO {
 	
 	
 	public List<HairMainCategoryVo> getListMainCategory(){
+		ResultSet rs = null; // 초기화
 		List<HairMainCategoryVo> list = new ArrayList<HairMainCategoryVo>();
 		try {
 			String sql = "SELECT TMAC_NO, TMAC_NAME FROM tt_main_category";
@@ -52,6 +48,7 @@ public class HairCategoryDAO {
 	} 
 	
 	public List<HairMiddleCategoryVo> getListMiddleCategory(String tmac_no){
+		ResultSet rs = null; // 초기화
 		List<HairMiddleCategoryVo> list = new ArrayList<HairMiddleCategoryVo>();
 		try {
 			String sql = "SELECT TMIC_NO, TMIC_NAME FROM tt_middle_category WHERE TMAC_NO = ?";

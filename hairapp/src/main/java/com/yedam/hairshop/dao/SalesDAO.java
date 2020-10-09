@@ -17,8 +17,7 @@ import com.yedam.hairshop.model.SalesVo;
 public class SalesDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
-
+	
 	static SalesDAO instance = null;
 
 	final static String totaldaily = "SELECT r.mdr_no,  r.mdr_date,d.designer_name,m.mem_name, h.HHI_NAME,\r\n"
@@ -39,7 +38,7 @@ public class SalesDAO {
 	final static String addDs = " and r.designer_no=? order by mdr_no ";
 	final static String chart = "\r\n" + "SELECT   d.designer_no,sum(\r\n"
 			+ "			 (   SELECT  nvl(sum(mdp_price),0)  \r\n" + "				 FROM members_detail_paylist   \r\n"
-			+ "				 WHERE mdr_no=r.mdr_no\r\n" + "			 and mdr_date between sysdate-1 and sysdate+1 \r\n"
+			+ "				 WHERE mdr_no=r.mdr_no\r\n" + "			 and mdr_date between sysdate and sysdate+1 \r\n"
 			+ "				 ))as ammount     	 \r\n" + "FROM  \r\n" + "	members_designer_rsv r   \r\n"
 			+ "JOIN designer  d  \r\n" + " ON (r.designer_no=d.designer_no)\r\n" + " where d.hs_no = ? \r\n"
 			+ " GROUP BY d.designer_no";
@@ -51,7 +50,8 @@ public class SalesDAO {
 	}
 
 	public List<Map<String, String>> chart(String hs_no) {
-		ArrayList<SalesVo> list = dsList();
+		ResultSet rs = null;
+		ArrayList<SalesVo> list = dsList(hs_no);
 		ArrayList<SalesVo> list1 = new ArrayList<>();
 	
 		SalesVo resultVo = null;
@@ -83,15 +83,15 @@ public class SalesDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-for (SalesVo va : list1) {
-	for(int i = 0;i<list.size();i++) {
-		if(va.getDsNo().equals(list.get(i).getDsNo())) {
-			list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
-			break;
+		for (SalesVo va : list1) {
+			for(int i = 0;i<list.size();i++) {
+				if(va.getDsNo().equals(list.get(i).getDsNo())) {
+					list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
+					break;
+				}
+			}
+			
 		}
-	}
-	
-}
 		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		for (SalesVo vovo : list) {
 			Map<String, String> map = new HashMap<String, String>();
@@ -104,6 +104,7 @@ for (SalesVo va : list1) {
 	}
 
 	public ArrayList<SalesVo> dailySalesAll(String start, String end, String hs_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 
@@ -147,6 +148,7 @@ for (SalesVo va : list1) {
 	}
 
 	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 
@@ -191,6 +193,7 @@ for (SalesVo va : list1) {
 	}
 
 	public ArrayList<DesignerVo> getDsName() {
+		ResultSet rs = null;
 		ArrayList<DesignerVo> list = new ArrayList<>();
 		DesignerVo resultVo = null;
 		try {
@@ -216,14 +219,15 @@ for (SalesVo va : list1) {
 		return list;
 	}
 
-	public ArrayList<SalesVo> dsList() {
+	public ArrayList<SalesVo> dsList(String hs_no) {
+		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer order by designer_no  ";
+			String sql = "SELECT designer_no, designer_name	FROM designer  where hs_no = ? order by designer_no  ";
 			pstmt = conn.prepareStatement(sql);
-
+			pstmt.setString(1, hs_no);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				resultVo = new SalesVo();
@@ -246,6 +250,7 @@ for (SalesVo va : list1) {
 	// 2020.10.06 김승연
 	// 예약번호를 이용한 매출 다건 조회
 	public ArrayList<MembersDetailPaylistVo> selectListByMdrNo(MembersDetailPaylistVo mDPVo) {
+		ResultSet rs = null;
 		ArrayList<MembersDetailPaylistVo> list = new ArrayList<MembersDetailPaylistVo>();
 
 		try {

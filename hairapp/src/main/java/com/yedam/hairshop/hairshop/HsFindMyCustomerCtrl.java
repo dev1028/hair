@@ -22,7 +22,7 @@ public class HsFindMyCustomerCtrl implements Controller {
 					mRVo.setHs_no(hsNo);
 					String divisionSearch = request.getParameter("divisionSearch");
 					String inputSearch = request.getParameter("inputSearch");
-					if(divisionSearch.equals("name")) {
+					if(divisionSearch.equals("name")) {	
 						mRVo.setMem_name(inputSearch);
 					} else if(divisionSearch.equals("tel")) {
 						mRVo.setMem_phone(inputSearch);

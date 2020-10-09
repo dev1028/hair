@@ -100,7 +100,7 @@
 									eventClick : function(info) {
 										window
 												.open(
-														"${pageContext.request.contextPath}/ajax/memberReservationInfo.do?mdrNo="
+														"${pageContext.request.contextPath}/ajax/desMemberReservationInfo.do?mdrNo="
 																+ info.event.id,
 														"pop",
 														"width=700,height=750, scrollbars=yes, resizable=yes");

@@ -18,7 +18,6 @@ public class MembersReservationDAO {
 	// 전역변수
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static MembersReservationDAO instance;
@@ -31,6 +30,7 @@ public class MembersReservationDAO {
 
 	// 전체 예약 내역 조회
 	public List<MembersReservationVo> reservationAll() {
+		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
 		try {
@@ -63,6 +63,7 @@ public class MembersReservationDAO {
 
 	// 예약중인 헤어샵 조회
 	public List<MembersReservationVo> bookingAll() {
+		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
 		try {
@@ -98,6 +99,7 @@ public class MembersReservationDAO {
 
 	// 예약 상세 보기 단건조회
 	public MembersReservationVo drHairshop(MembersReservationVo membersReservationVo) {
+		ResultSet rs = null;
 		MembersReservationVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -141,6 +143,7 @@ public class MembersReservationDAO {
 	
 	// 예약 상세 보기 단건조회2(예약 시 헤어상태 조회)
 	public MembersReservationVo drHairshop2(MembersReservationVo membersReservationVo) {
+		ResultSet rs = null;
 		MembersReservationVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -173,6 +176,7 @@ public class MembersReservationDAO {
 
 	// 예약한 적 있는 미용실 조회
 	public List<MembersReservationVo> OnceVisitedHS() {
+		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
 		try {
@@ -214,6 +218,7 @@ public class MembersReservationDAO {
 	// 2020.09.25 김승연
 	// 미용실용 회원 예약시간 조회
 	public List<Map<String, String>> selectReservationList(String hsNo, String startDate, String endDate) {
+		ResultSet rs = null;
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -256,6 +261,7 @@ public class MembersReservationDAO {
 	// 2020.09.29 김승연
 	// 디자이너용 회원 예약시간 조회
 	public List<Map<String, String>> selectReservationListForDes(String desNo, String startDate, String endDate) {
+		ResultSet rs = null;
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -297,6 +303,7 @@ public class MembersReservationDAO {
 
 	// 예약상세정보 미용실 and 디자이너용 미용실 상세정보
 	public MembersReservationVo selectReservationDetailInfo(String mdrNo) {
+		ResultSet rs = null;
 		MembersReservationVo resultVo = new MembersReservationVo();
 
 		try {
@@ -336,6 +343,7 @@ public class MembersReservationDAO {
 	// 2020.09.29 김승연
 	// 예약상태변경
 	public int updateMdrStatus(MembersDesignerRsvVo mDRVo) {
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -346,6 +354,8 @@ public class MembersReservationDAO {
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return r;
 	}
@@ -353,6 +363,7 @@ public class MembersReservationDAO {
 	// 2020.09.29 김승연
 	// 디자이너용 가까운 다음 회원 회원 조회
 	public List<Map<String, String>> selectReservationNext(String desNo, String startTime) {
+		ResultSet rs = null;
 		List<Map<String, String>> list = new ArrayList<Map<String,String>>();
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -384,7 +395,7 @@ public class MembersReservationDAO {
 			pstmt.setString(2, startTime);
 			pstmt.setString(3, startTime);
 			pstmt.setString(4, desNo);
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("mdr_no", rs.getString("mdr_no"));
@@ -409,6 +420,7 @@ public class MembersReservationDAO {
 	// 2020.10.07 김승연
 		// 미용실용 가까운 다음 회원 회원 조회
 		public List<Map<String, String>> selectResNextForHS(String hsNo, String startTime) {
+			ResultSet rs = null;
 			List<Map<String, String>> list = new ArrayList<Map<String,String>>();
 			try {
 				conn = ConnectionManager.getConnnect();
@@ -440,7 +452,7 @@ public class MembersReservationDAO {
 				pstmt.setString(2, startTime);
 				pstmt.setString(3, startTime);
 				pstmt.setString(4, hsNo);
-				ResultSet rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();
 				while (rs.next()) {
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("mdr_no", rs.getString("mdr_no"));
@@ -466,6 +478,7 @@ public class MembersReservationDAO {
 	// 예약했었던 회원 조회 리스트(디자이너 용)
 	//이름 전화번호로 각각 구분해서 조회가능 매개변수 첫번째가 name이면 이름검색
 	public List<MembersReservationVo> selectReservationInfoByName(String divisionSearch, MembersReservationVo mRVo) {
+		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 		String andName = " and m.mem_name like '%'||?||'%'";
 		String andTel = " and m.mem_phone = ?";
@@ -523,6 +536,7 @@ public class MembersReservationDAO {
 		// 예약했었던 회원 조회 리스트(미용실용)
 		//이름 전화번호로 각각 구분해서 조회가능 매개변수 첫번째가 name이면 이름검색
 		public List<MembersReservationVo> selectRIByNameForHS(String divisionSearch, MembersReservationVo mRVo) {
+			ResultSet rs = null;
 			List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 			String andName = " and m.mem_name like '%'||?||'%'";
 			String andTel = " and m.mem_phone = ?";

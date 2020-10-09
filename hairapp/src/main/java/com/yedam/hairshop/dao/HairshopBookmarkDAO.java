@@ -9,11 +9,11 @@ import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HairshopBookmarkVo;
+import com.yedam.hairshop.model.HairshopVo;
 
 public class HairshopBookmarkDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	// 싱글톤
 	static HairshopBookmarkDAO instance;
@@ -26,6 +26,7 @@ public class HairshopBookmarkDAO {
 	
 	//북마크 되어있는지 확인
 	public boolean HasBookmark(HairshopBookmarkVo vo) {
+		ResultSet rs = null; // 초기화
 		String sql = " SELECT * FROM favor_hs "
 				+ " WHERE hs_no = ? AND mem_no = ?";
 		try {
@@ -77,23 +78,35 @@ public class HairshopBookmarkDAO {
 		return r;
 	}
 	
-	public List<HairshopBookmarkVo> getBookmarkList(HairshopBookmarkVo vo){
-		List<HairshopBookmarkVo> list = new ArrayList<HairshopBookmarkVo>();
-		String sql =  " SELECT h.hs_no, h.hs_name"
-					+ " FROM favor_hs f, hairshop h"
-					+ " WHERE f.hs_no = h.hs_no "
-					+ " AND f.mem_no = ?";
+	public List<HairshopVo> getBookmarkList(HairshopBookmarkVo vo){
+		ResultSet rs = null; // 초기화
+		List<HairshopVo> list = new ArrayList<HairshopVo>();
+		String sql =
+				"SELECT h.hs_no, h.hs_name, h.hs_owner,  " + 
+				"      h.hs_tel, h.hs_email, h.hs_profile,  " + 
+				"      h.hs_notice, h.hs_fulladdr,  " + 
+				"      h.hs_starttime, h.hs_endtime " + 
+				"FROM favor_hs f, hairshop h " + 
+				"WHERE f.hs_no = h.hs_no  " + 
+				"AND f.mem_no = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMem_no());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				String hs_no = rs.getString("hs_no");
-				String hs_name = rs.getString("hs_name");
-				HairshopBookmarkVo tmpVo = new HairshopBookmarkVo();
-				tmpVo.setHs_no(hs_no);
-				tmpVo.setHs_name(hs_name);
+				HairshopVo tmpVo = new HairshopVo();
+				tmpVo.setHs_no(rs.getString("hs_no"));
+				tmpVo.setHs_name(rs.getString("hs_name"));
+				tmpVo.setHs_owner(rs.getString("hs_owner"));
+				tmpVo.setHs_tel(rs.getString("hs_tel"));
+				tmpVo.setHs_email(rs.getString("hs_email"));
+				tmpVo.setHs_profile(rs.getString("hs_profile"));
+				tmpVo.setHs_notice(rs.getString("hs_notice"));
+				tmpVo.setHs_fulladdr(rs.getString("hs_fulladdr"));
+				tmpVo.setHs_starttime(rs.getString("hs_starttime"));
+				tmpVo.setHs_endtime(rs.getString("hs_endtime"));
+				tmpVo.setHs_book("1");
 				list.add(tmpVo);
 			}
 		} catch (SQLException e) {

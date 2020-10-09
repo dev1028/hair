@@ -15,7 +15,6 @@ import com.yedam.hairshop.model.SearchVo;
 public class SearchDetailDAO {
 	Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static SearchDetailDAO instance = null;
 	public static SearchDetailDAO getInstance(){
@@ -44,6 +43,7 @@ public class SearchDetailDAO {
 	 * */
 	
 	public List<HairshopVo> selectListHairshop(SearchDetailVo vo) {
+		ResultSet rs = null;
 		List<HairshopVo> list = new ArrayList<HairshopVo>();
 		try {
 			String sql = 

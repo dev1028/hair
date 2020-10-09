@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopDAO;
+import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairshopVo;
 
 public class MembersHairShopInfoCtrl implements Controller {
@@ -17,7 +18,9 @@ public class MembersHairShopInfoCtrl implements Controller {
 //		// 선택된 헤어샵 정보를 session에 담는다.
 		HairshopVo vo = new HairshopVo();
 		String hsNo = request.getParameter("hsNo");
-		if(hsNo != null) {
+		System.out.println("hsNo: " + hsNo);
+		System.out.println("hhiNo: " + request.getParameter("hhiNo"));
+		if(hsNo != null && !hsNo.equals("")) {
 			vo.setHs_no(hsNo);
 			HairshopVo selHairshopVo = HairshopDAO.getInstance().selectOne(vo);
 			request.getSession().setAttribute("selHairshopVo", selHairshopVo);

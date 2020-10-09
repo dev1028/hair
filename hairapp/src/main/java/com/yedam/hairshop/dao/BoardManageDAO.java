@@ -11,7 +11,6 @@ import com.yedam.hairshop.model.BoardManageVo;
 public class BoardManageDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	ResultSet rs = null;
 
 	static BoardManageDAO instance = null;
 	final static String end =
@@ -58,7 +57,7 @@ public class BoardManageDAO {
 		return instance;
 	}
 	public int qnaUpdate(BoardManageVo vo) {
-	
+		ResultSet rs = null;
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -82,7 +81,9 @@ public class BoardManageDAO {
 		}
 		return r;
 	}
+	
 	public int insertAnswer(BoardManageVo vo) {
+		ResultSet rs = null;
 		System.out.println(vo.emp_no);
 		System.out.println(vo.getQna_ref());
 		System.out.println(vo.getQna_repos());
@@ -142,6 +143,7 @@ public class BoardManageDAO {
 	}
 
 	public BoardManageVo qnaSelectOne(BoardManageVo vo) {
+		ResultSet rs = null;
 		String sql = qnaSelectOne;
 		BoardManageVo resultVo = new BoardManageVo();
 		try {
@@ -191,6 +193,7 @@ public class BoardManageDAO {
 	}
 	public int insertNotice(BoardManageVo vo) {
 		System.out.println(vo.emp_no);
+		ResultSet rs = null;
 		
 		int r = 0;
 		try {
@@ -218,11 +221,12 @@ public class BoardManageDAO {
 	}
 
 	public BoardManageVo noticeSelectOne(BoardManageVo vo) {
+		ResultSet rs = null;
 		String sql = noticeSelectOne;
 		BoardManageVo resultVo = new BoardManageVo();
 		try {
 			conn = ConnectionManager.getConnnect();
-System.out.println(vo.getNotice_no());
+			System.out.println(vo.getNotice_no());
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getNotice_no());
 
@@ -249,11 +253,12 @@ System.out.println(vo.getNotice_no());
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-System.out.println(resultVo.getNotice_title());
+		System.out.println(resultVo.getNotice_title());
 		return resultVo;
 	}
 
 	public ArrayList<BoardManageVo> findQna(BoardManageVo vo) {
+		ResultSet rs = null;
 		ArrayList<BoardManageVo> list = new ArrayList<>();
 		String sql = qnaFind;
 		try {
@@ -336,6 +341,7 @@ System.out.println(resultVo.getNotice_title());
 	}
 
 	public ArrayList<BoardManageVo> findNotice(BoardManageVo vo) {
+		ResultSet rs = null;
 		ArrayList<BoardManageVo> list = new ArrayList<>();
 		String sql = noticeFind;
 		try {

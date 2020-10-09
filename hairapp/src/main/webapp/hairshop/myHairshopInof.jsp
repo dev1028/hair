@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>헤어 순위</title>
+<title>Insert title here</title>
 </head>
 <body>
-	헤어 순위
+
 </body>
 </html>

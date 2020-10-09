@@ -23,7 +23,7 @@
 					var mdrNo = $("#mdr_noParent").children()
 							.attr("id");
 					$.ajax({
-								url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
+								url : "${pageContext.request.contextPath}/ajax/desChangeReservationStatus.do",
 								data : {
 									mdr_status : mdrStatus,
 									mdr_no : mdrNo
@@ -51,7 +51,7 @@
 							var textAreaVal = $("#" + textInfo).val();
 							$
 									.ajax({
-										url : "${pageContext.request.contextPath}/ajax/updateMdriMemo.do",
+										url : "${pageContext.request.contextPath}/ajax/desUpdateMdriMemo.do",
 										data : {
 											mdr_no : mdrNo,
 											mdri_memo : textAreaVal,

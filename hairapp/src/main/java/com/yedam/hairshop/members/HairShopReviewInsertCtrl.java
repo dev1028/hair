@@ -18,7 +18,9 @@ public class HairShopReviewInsertCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("HairShopReviewInsertCtrl");
 		String mdr_no = (String)request.getSession().getAttribute("mdr_no");
+		String memName = (String)request.getSession().getAttribute("memName");
 		System.out.println("mdr_no: " + mdr_no);
+		
 		if (mdr_no != null) {
 			String hr_rate = request.getParameter("hr_rate");
 			String hr_contents = request.getParameter("hr_contents");
@@ -35,6 +37,7 @@ public class HairShopReviewInsertCtrl implements Controller {
 				vo.setHs_no(hs_no);
 				vo.setMdr_no(mdr_no);
 				vo.setDesigner_no(designer_no);
+				vo.setHr_writer(memName);
 				
 				if(HairShopReviewDAO.getInstance().selectReview(vo) == null)
 					HairShopReviewDAO.getInstance().insertReview(vo);

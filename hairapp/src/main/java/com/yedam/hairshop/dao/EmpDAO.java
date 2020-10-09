@@ -12,7 +12,6 @@ public class EmpDAO {
 	// 전역변수
 		static Connection conn;
 		PreparedStatement pstmt;
-		ResultSet rs = null;
 
 		// 싱글톤
 		static EmpDAO instance;
@@ -25,6 +24,7 @@ public class EmpDAO {
 		
 		// 단건 조회
 		public EmpVo loginSelectOne(EmpVo empVo) {
+			ResultSet rs = null; // 초기화
 			EmpVo resultVo = null; // select할때는 리턴값이 필요해서 리턴값을 저장할 변수 선언
 
 			try {
