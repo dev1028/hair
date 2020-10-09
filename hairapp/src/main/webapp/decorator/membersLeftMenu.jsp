@@ -213,7 +213,7 @@ a.article:hover {
                     <a href="${pageContext.request.contextPath}/members/hsDesignerIntro.do">디자이너 소개</a>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersJoin.do">헤어 모아보기</a>
+                    <a href="${pageContext.request.contextPath}/members/hsHairIntro.do">헤어 모아보기</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/members/hsEventIntro.do">쿠폰과 이벤트</a>
