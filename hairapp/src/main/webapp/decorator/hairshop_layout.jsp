@@ -281,7 +281,7 @@
 								tabindex="-1" aria-disabled="true">제품관리</a></li>
 								<li class="nav-item"><a class="nav-link disabled" href="#"
 								tabindex="-1" aria-disabled="true">회원관리</a></li>
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairInfoList.do">시술관리
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshopProcedureFinishList.do">시술관리
 									<span class="sr-only">(current)</span>
 							</a></li>
 							
@@ -321,7 +321,7 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술완료고객</a>
+										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishList.do">시술완료고객</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do">예약자찾기</a>

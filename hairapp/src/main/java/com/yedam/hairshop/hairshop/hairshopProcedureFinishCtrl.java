@@ -13,6 +13,7 @@ public class hairshopProcedureFinishCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.getRequestDispatcher("/hairshop/hairshopProcedureFinishList.do").forward(request, response);
 	}
 
 }
