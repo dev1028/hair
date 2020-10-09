@@ -69,7 +69,8 @@
 				</form>
 				</c:forEach>
 			</div>
-	</div>	
+	</div>
+	<hr>
 
 </body>
 </html>
