@@ -54,7 +54,7 @@
 		if($("hhi_price").val() == ""){
 			alert("가격을 입력하세요.");
 			return false;
-		} else if(!is_number($("hhi_price").val())){
+		} else if(is_number($("hhi_price").val())){
 			alert("숫자만 입력하세요.");
 			return false;
 		}
@@ -119,7 +119,7 @@ function is_number(v) {
 				enctype="multipart/form-data">
 					<div class="mb-3">
 						<label for="hhi_name">시술명 <span class="badge badge-pill badge-danger">필수</span></label> <input type="text"
-							class="form-control" id="hhi_name" value="" placeholder="예약시 표시될 시술명입니다."
+							class="form-control" id="hhi_name" name="hhi_name" value="" placeholder="예약시 표시될 시술명입니다."
 							required>
 						<div class="invalid-feedback">이미 사용중인 시술명입니다. 해당 시술을 미사용 처리후
 							등록해주세요.</div>
@@ -131,7 +131,7 @@ function is_number(v) {
 							<div class="input-group-prepend">
 								<span class="input-group-text">원</span>
 							</div>
-							<input type="text" class="form-control" id="hhi_price"
+							<input type="text" class="form-control" id="hhi_price" name="hhi_price"
 								placeholder="가격을 입력해주세요." required>
 							<div class="invalid-feedback" style="width: 100%;">정확한 범위의
 								가격을 입력해주세요.</div>
@@ -139,14 +139,14 @@ function is_number(v) {
 					</div>
 					<div class="mb-3">
 							<label for="hhi_time">기본소요시간 <span class="badge badge-pill badge-danger">필수</span></label> <select
-								class="custom-select d-block w-100" id="hhi_time" required>
+								class="custom-select d-block w-100" id="hhi_time" name="hhi_time" required>
 								<option value="">소요시간을 선택하세요.</option>
-								<option>1시간</option>
-								<option>2시간</option>
-								<option>3시간</option>
-								<option>4시간</option>
-								<option>5시간</option>
-								<option>6시간</option>
+								<option value="1">1시간</option>
+								<option value="2">2시간</option>
+								<option value="3">3시간</option>
+								<option value="4">4시간</option>
+								<option value="5">5시간</option>
+								<option value="6">6시간</option>
 							</select>
 							<div class="invalid-feedback">기본소요시간은 예약시간을 산출하는데 사용합니다.</div>
 					</div>
@@ -154,7 +154,7 @@ function is_number(v) {
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="tmac_no">시술분류명 <span class="badge badge-pill badge-danger">필수</span></label> <select
-								class="custom-select d-block w-100" id="tmac_no" required>
+								class="custom-select d-block w-100" id="tmac_no" name="tmac_no" required>
 								<option value="">선택하세요.</option>
 								<c:forEach items="${tmacList}" var="tmac">
 									<option value="${tmac.tmac_no}">${tmac.tmac_name}</option>
@@ -165,7 +165,7 @@ function is_number(v) {
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="tmic_no">시술선택명 <span class="badge badge-pill badge-danger">필수</span></label> <select
-								class="custom-select d-block w-100" id="tmic_no" required>
+								class="custom-select d-block w-100" id="tmic_no" name="tmic_no" required>
 								<option value="">시술분류명을 먼저 선택하세요.</option>
 							</select>
 							<div class="invalid-feedback">시술선택명은 보편적으로 사용하는 시술명입니다. 원하는 선택명이 없을시 관리자에게 신청하세요.

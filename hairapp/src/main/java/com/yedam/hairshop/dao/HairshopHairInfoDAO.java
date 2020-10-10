@@ -1,9 +1,11 @@
 package com.yedam.hairshop.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,17 +85,14 @@ public class HairshopHairInfoDAO {
 	public List<HairshopHairInfoVo> getBookmarkList(String memNo) {
 		ResultSet rs = null;
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
-		String sql =
-				" SELECT h.hhi_no, h.hhi_name, h.hhi_price, h.hhi_time, h.hs_no, h.hhi_status " + 
-				" FROM hairshop_hair_info h, favor_hair f " + 
-				" WHERE h.hhi_no = f.hhi_no " + 
-				" AND f.mem_no = ? ";
+		String sql = " SELECT h.hhi_no, h.hhi_name, h.hhi_price, h.hhi_time, h.hs_no, h.hhi_status "
+				+ " FROM hairshop_hair_info h, favor_hair f " + " WHERE h.hhi_no = f.hhi_no " + " AND f.mem_no = ? ";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memNo);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				HairshopHairInfoVo tmpVo = new HairshopHairInfoVo();
 				tmpVo.setHhi_no(rs.getString("hhi_no"));
 				tmpVo.setHhi_name(rs.getString("hhi_name"));
@@ -150,57 +149,58 @@ public class HairshopHairInfoDAO {
 
 		return list;
 	}
-	// 2020.10.08 김승연
-		// 헤어샵에 포함된 헤어정보 리스트(중분류,대분류 포함) 검색조건포함
-		public List<HairshopHairInfoVo> selectHairInfoListForSer(String divisionSearch, HairshopHairInfoVo hsHIVo) {
-			List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
-			ResultSet rs = null;
-			String andhHhiName = " and h.HHI_NAME like '%'||?||'%'";
-			String andTmiName = " and t.TMAC_NAME like '%'||?||'%'";
-			String orderBy = " order by h.hhi_no";
-			try {
-				String sql = "select t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION, tmi.TMIC_NO, tmi.TMIC_NAME,"
-						+ " tmi.TMIC_EXPLICATION, h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS"
-						+ " from hairshop_hair_info h join tt_middle_category tmi" + " on (h.tmic_no = tmi.tmic_no)"
-						+ " join tt_main_category t" + " on (tmi.TMAC_NO = t.TMAC_NO)" + " where h.hs_no = ?";
-				if (divisionSearch.equals("hhi_name")) {
-					sql += (andhHhiName+orderBy);
-				} else {
-					sql += (andTmiName+orderBy);
-				}
-				conn = ConnectionManager.getConnnect();
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, hsHIVo.getHs_no());
-				if (divisionSearch.equals("hhi_name")) {
-					pstmt.setString(2, hsHIVo.getHhi_name());
-				} else {
-					pstmt.setString(2, hsHIVo.getTmac_name());
-				}
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					HairshopHairInfoVo hVo = new HairshopHairInfoVo();
-					hVo.setTmac_no(rs.getString("TMAC_NO"));
-					hVo.setTmac_name(rs.getString("TMAC_NAME"));
-					hVo.setTmac_explication(rs.getString("TMAC_EXPLICATION"));
-					hVo.setTmic_no(rs.getString("TMIC_NO"));
-					hVo.setTmic_name(rs.getString("TMIC_NAME"));
-					hVo.setTmic_explication(rs.getString("TMIC_EXPLICATION"));
-					hVo.setHhi_no(rs.getString("HHI_NO"));
-					hVo.setHhi_name(rs.getString("HHI_NAME"));
-					hVo.setHhi_price(rs.getString("HHI_PRICE"));
-					hVo.setHhi_time(rs.getString("HHI_TIME"));
-					hVo.setHs_no(rs.getString("HS_NO"));
-					hVo.setHhi_status(rs.getString("HHI_STATUS"));
-					list.add(hVo);
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionManager.close(rs, pstmt, conn);
-			}
 
-			return list;
+	// 2020.10.08 김승연
+	// 헤어샵에 포함된 헤어정보 리스트(중분류,대분류 포함) 검색조건포함
+	public List<HairshopHairInfoVo> selectHairInfoListForSer(String divisionSearch, HairshopHairInfoVo hsHIVo) {
+		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
+		ResultSet rs = null;
+		String andhHhiName = " and h.HHI_NAME like '%'||?||'%'";
+		String andTmiName = " and t.TMAC_NAME like '%'||?||'%'";
+		String orderBy = " order by h.hhi_no";
+		try {
+			String sql = "select t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION, tmi.TMIC_NO, tmi.TMIC_NAME,"
+					+ " tmi.TMIC_EXPLICATION, h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS"
+					+ " from hairshop_hair_info h join tt_middle_category tmi" + " on (h.tmic_no = tmi.tmic_no)"
+					+ " join tt_main_category t" + " on (tmi.TMAC_NO = t.TMAC_NO)" + " where h.hs_no = ?";
+			if (divisionSearch.equals("hhi_name")) {
+				sql += (andhHhiName + orderBy);
+			} else {
+				sql += (andTmiName + orderBy);
+			}
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hsHIVo.getHs_no());
+			if (divisionSearch.equals("hhi_name")) {
+				pstmt.setString(2, hsHIVo.getHhi_name());
+			} else {
+				pstmt.setString(2, hsHIVo.getTmac_name());
+			}
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				HairshopHairInfoVo hVo = new HairshopHairInfoVo();
+				hVo.setTmac_no(rs.getString("TMAC_NO"));
+				hVo.setTmac_name(rs.getString("TMAC_NAME"));
+				hVo.setTmac_explication(rs.getString("TMAC_EXPLICATION"));
+				hVo.setTmic_no(rs.getString("TMIC_NO"));
+				hVo.setTmic_name(rs.getString("TMIC_NAME"));
+				hVo.setTmic_explication(rs.getString("TMIC_EXPLICATION"));
+				hVo.setHhi_no(rs.getString("HHI_NO"));
+				hVo.setHhi_name(rs.getString("HHI_NAME"));
+				hVo.setHhi_price(rs.getString("HHI_PRICE"));
+				hVo.setHhi_time(rs.getString("HHI_TIME"));
+				hVo.setHs_no(rs.getString("HS_NO"));
+				hVo.setHhi_status(rs.getString("HHI_STATUS"));
+				list.add(hVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
 		}
+
+		return list;
+	}
 
 	// 2020.10.08 김승연
 	// 헤어정보단건조회
@@ -280,9 +280,9 @@ public class HairshopHairInfoDAO {
 		}
 		return list;
 	}
-	
-	//2020.10.10 김승연
-	//미용실 헤어 상태변경
+
+	// 2020.10.10 김승연
+	// 미용실 헤어 상태변경
 	public int updateHhiStatus(HairshopHairInfoVo hHIVo) {
 		int r = 0;
 		try {
@@ -299,30 +299,45 @@ public class HairshopHairInfoDAO {
 		}
 		return r;
 	}
-	
-	//2020.10.10 김승연
-	//미용실 헤어 입력
-	public int insertHhi(HairshopHairInfoVo hHIVo) {
-		int r = 0;
+
+	// 2020.10.10 김승연
+	// 미용실 헤어 입력
+	public HairshopHairInfoVo insertHhi(HairshopHairInfoVo hHIVo) {
+		HairshopHairInfoVo hVo = new HairshopHairInfoVo();
+		ResultSet rs = null; // 초기화
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "INSERT INTO HAIRSHOP_HAIR_INFO (HHI_NO, HHI_NAME, HHI_PRICE, HHI_TIME, HS_NO, TMIC_NO, HHI_STATUS)" + 
-					" VALUES (HHI_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, hHIVo.getHhi_name());
-			pstmt.setString(2, hHIVo.getHhi_price());
-			pstmt.setString(3, hHIVo.getHhi_time());
-			pstmt.setString(4, hHIVo.getHs_no());
-			pstmt.setString(5, hHIVo.getTmic_no());
-			pstmt.setString(6, hHIVo.getHhi_status());
-			
-			r = pstmt.executeUpdate();
+			CallableStatement pstmt = conn.prepareCall("{call hhi_insert(?,?,?,?,?,?,?,?)}");
+			pstmt.registerOutParameter(1, Types.VARCHAR);
+			pstmt.registerOutParameter(2, Types.VARCHAR);
+			pstmt.setString(2, hHIVo.getHhi_name());
+			pstmt.registerOutParameter(3, Types.VARCHAR);
+			pstmt.setString(3, hHIVo.getHhi_price());
+			pstmt.registerOutParameter(4, Types.VARCHAR);
+			pstmt.setString(4, hHIVo.getHhi_time());
+			pstmt.registerOutParameter(5, Types.VARCHAR);
+			pstmt.setString(5, hHIVo.getHs_no());
+			pstmt.registerOutParameter(6, Types.VARCHAR);
+			pstmt.setString(6, hHIVo.getTmic_no());
+			pstmt.registerOutParameter(7, Types.VARCHAR);
+			pstmt.setString(7, hHIVo.getHhi_status());
+			pstmt.registerOutParameter(8, Types.VARCHAR);
+			pstmt.setString(8, hHIVo.getHhmi_file());
+			pstmt.executeUpdate();
+			hVo.setHhi_no(pstmt.getString(1));
+			hVo.setHhi_name(pstmt.getString(2));
+			hVo.setHhi_price(pstmt.getString(3));
+			hVo.setHhi_time(pstmt.getString(4));
+			hVo.setHs_no(pstmt.getString(5));
+			hVo.setTmic_name(pstmt.getString(6));
+			hVo.setHhi_status(pstmt.getString(7));
+			hVo.setHhmi_file(pstmt.getString(8));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionManager.close(conn);
+			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return r;
+		return hVo;
 	}
-	
+
 }
