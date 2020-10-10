@@ -319,7 +319,7 @@
 							<button id="siteSearchCustomerBtn" type="button"
 								class="btn btn-secondary btn-sm">Search</button>
 						</form>
-						<span>로그아웃</span>
+						<a href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
 					</div>
 				</nav>
 			</div>

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
-import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.SearchRankVo;
@@ -281,4 +280,25 @@ public class HairshopHairInfoDAO {
 		}
 		return list;
 	}
+	
+	//2020.10.10 김승연
+	//미용실 헤어 상태변경
+	public int updateHhiStatus(HairshopHairInfoVo hHIVo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE HAIRSHOP_HAIR_INFO SET HHI_STATUS = ? WHERE HHI_NO = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(hHIVo.getHhi_status()));
+			pstmt.setInt(2, Integer.parseInt(hHIVo.getHhi_no()));
+			r = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return r;
+	}
+
+	
 }
