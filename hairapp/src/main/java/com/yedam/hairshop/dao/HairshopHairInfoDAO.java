@@ -301,10 +301,9 @@ public class HairshopHairInfoDAO {
 	}
 
 	// 2020.10.10 김승연
-	// 미용실 헤어 입력
+	// 미용실 헤어 입력 프로시저(사진있거나 없거나 둘다 가능)
 	public HairshopHairInfoVo insertHhi(HairshopHairInfoVo hHIVo) {
 		HairshopHairInfoVo hVo = new HairshopHairInfoVo();
-		ResultSet rs = null; // 초기화
 		try {
 			conn = ConnectionManager.getConnnect();
 			CallableStatement pstmt = conn.prepareCall("{call hhi_insert(?,?,?,?,?,?,?,?)}");
@@ -335,7 +334,7 @@ public class HairshopHairInfoDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionManager.close(rs, pstmt, conn);
+			ConnectionManager.close(null, pstmt, conn);
 		}
 		return hVo;
 	}
