@@ -299,6 +299,30 @@ public class HairshopHairInfoDAO {
 		}
 		return r;
 	}
-
+	
+	//2020.10.10 김승연
+	//미용실 헤어 입력
+	public int insertHhi(HairshopHairInfoVo hHIVo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "INSERT INTO HAIRSHOP_HAIR_INFO (HHI_NO, HHI_NAME, HHI_PRICE, HHI_TIME, HS_NO, TMIC_NO, HHI_STATUS)" + 
+					" VALUES (HHI_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hHIVo.getHhi_name());
+			pstmt.setString(2, hHIVo.getHhi_price());
+			pstmt.setString(3, hHIVo.getHhi_time());
+			pstmt.setString(4, hHIVo.getHs_no());
+			pstmt.setString(5, hHIVo.getTmic_no());
+			pstmt.setString(6, hHIVo.getHhi_status());
+			
+			r = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return r;
+	}
 	
 }
