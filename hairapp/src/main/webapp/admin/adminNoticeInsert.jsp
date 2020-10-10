@@ -34,7 +34,7 @@ src="adminQnaView.js"></script> -->
 			<div class="control">
 
 				<select name="notice_who">
-					<option value="${notice_who }">${notice_who }</option>
+					<option value="${notice_who }">${notice_whov}</option>
 
 				</select>
 			</div>

@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedam.hairshop.admin.SalesBydesignerCtrl;
+import com.yedam.hairshop.admin.SalesStatisticsByDesignerCtrl;
+
 
 public class Login implements Filter {
 	HashMap<String, String> list = null;
@@ -197,10 +200,17 @@ public class Login implements Filter {
 		list.put("/admin/adminMain.do", adminLoginPage);
 		list.put("/admin/adminReturnToLogin.do", null);
 
-		list.put("/ajax/hairshop/salesStatistics.do", adminLoginPage);// 헤어샵통계
+		list.put("/hairshop/salesStatistics.do", adminLoginPage);// 헤어샵통계
 		list.put("/hairshop/salesStatisticsResult.do", adminLoginPage);
 		list.put("/ajax/hairshop/sales.do", adminLoginPage);
 
+		
+
+		list.put("/hairshop/salesStatisticsByDesigner.do", adminLoginPage);
+		list.put("/ajax/hairshop/salesByDesigner.do", adminLoginPage);
+		
+		
+		
 		list.put("/ajax/hairshop/chart.do", adminLoginPage);
 		list.put("/admin/adminSalesStatistics.do", adminLoginPage);
 //		list.put("/admin/adminSalesStatisticsFind.do", adminLoginPage);

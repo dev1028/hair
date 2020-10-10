@@ -25,6 +25,10 @@
 	<div class="form-group">
 
 		<div class="control">
+		
+		<input type="month">
+		
+		
 			<label for="name">기간 </label>
 			<button type="button" value="0" class='dateBtn' id="all">전체 
 			</button>

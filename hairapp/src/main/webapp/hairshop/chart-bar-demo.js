@@ -146,7 +146,7 @@ $(function() {
 						}
 					});
 				}
-				function age() {
+				function treatRankMale() {
 
 					amale = [];
 					afemale = [];

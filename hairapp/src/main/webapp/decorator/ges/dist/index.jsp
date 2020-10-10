@@ -242,7 +242,7 @@
 			<decorator:body></decorator:body>
 	 	</div> 
 	</div>
-	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 			crossorigin="anonymous"></script>
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
@@ -259,6 +259,6 @@
 		<script
 			src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 			crossorigin="anonymous"></script>
-		<script src="/hairapp/decorator/ges/dist/assets/demo/datatables-demo.js"></script> -->
+		<script src="/hairapp/decorator/ges/dist/assets/demo/datatables-demo.js"></script>
 </body>
 </html>

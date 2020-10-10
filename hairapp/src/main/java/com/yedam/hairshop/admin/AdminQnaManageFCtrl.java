@@ -25,7 +25,7 @@ public class AdminQnaManageFCtrl implements Controller {
 		String searchVal = request.getParameter("searchVal");
 String exclude = request.getParameter("excludeAns");
 		System.out.println(startDate);
-		System.out.println(endDate);
+		System.out.println("dfs"+endDate);
 		System.out.println(who);
 		System.out.println(answerStatus);
 		System.out.println(category);

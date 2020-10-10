@@ -18,7 +18,7 @@ public class BoardManageDAO {
 			" order by QNA_REF desc, QNA_REPOS asc, QNA_WRITEDATE desc" + " ) b) a where rn between 0 and 100";
 	final static String noticeFind = "select n.* ," + "            (select c.code_info \n" + "            from code c\n"
 			+ "            where c.secondary_code=n.notice_who)\"notice_whov\"\n" + " FROM notice n \r\n"
-			+ "WHERE  notice_writedate BETWEEN ? AND ?\r\n" + " AND notice_who like'%'||?||'%'\n";
+			+ "WHERE  notice_writedate BETWEEN ? AND TO_DATE(?,'YY-MM-DD HH24:MI:SS')\r\n" + " AND notice_who like'%'||?||'%'\n";
 
 	final static String notice_who = "AND NOTICE_who like'%'||?||'%' ";
 	final static String notice_title = "and notice_title like '%'||?||'%' ";
@@ -32,7 +32,7 @@ public class BoardManageDAO {
 			+ "            where c.secondary_code=q.qna_who)\"qna_whov\",\n"
 			+ "            (select z.code_info from code z where z.secondary_code=q.qna_category)\"qna_categoryv\",\n"
 			+ "(select count(qna_no) from qna r where qna_ref=q.qna_no) as answerComplete " + "from qna q "
-			+ "WHERE qna_writedate BETWEEN?AND?\n" + "AND qna_who like'%'||?||'%'\n"
+			+ "WHERE qna_writedate BETWEEN?AND TO_DATE(?,'YY-MM-DD HH24:MI:SS')\n" + "AND qna_who like'%'||?||'%'\n"
 			+ "and qna_category like'%'||?||'%'";
 
 	final static String exclude_ans = " and qna_no = qna_ref ";
@@ -56,6 +56,7 @@ public class BoardManageDAO {
 			instance = new BoardManageDAO();
 		return instance;
 	}
+
 	public int qnaUpdate(BoardManageVo vo) {
 		ResultSet rs = null;
 		int r = 0;
@@ -70,10 +71,9 @@ public class BoardManageDAO {
 			pstmt.setString(2, vo.getQna_contents());
 			pstmt.setString(3, vo.getQna_no());
 
-
 			r = pstmt.executeUpdate();
-			
-			System.out.println(r+"updated");
+
+			System.out.println(r + "updated");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -81,7 +81,7 @@ public class BoardManageDAO {
 		}
 		return r;
 	}
-	
+
 	public int insertAnswer(BoardManageVo vo) {
 		ResultSet rs = null;
 		System.out.println(vo.emp_no);
@@ -191,16 +191,16 @@ public class BoardManageDAO {
 
 		return resultVo;
 	}
+
 	public int insertNotice(BoardManageVo vo) {
 		System.out.println(vo.emp_no);
 		ResultSet rs = null;
-		
+
 		int r = 0;
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO notice(notice_no, notice_title, notice_contents,"
-					+ " notice_writedate, notice_hits, notice_who, "
-					+ " emp_no)"
+					+ " notice_writedate, notice_hits, notice_who, " + " emp_no)"
 					+ " VALUES(notice_no_seq.NEXTVAL, ?, ?, sysdate, 0, ?, ?)";
 
 			System.out.println(sql);
@@ -209,7 +209,6 @@ public class BoardManageDAO {
 			pstmt.setString(2, vo.getNotice_contents());
 			pstmt.setString(3, vo.getNotice_who());
 			pstmt.setString(4, vo.getEmp_no());
-
 
 			r = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -230,7 +229,7 @@ public class BoardManageDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getNotice_no());
 
-			System.out.println("ndfqnasql"+sql);
+			System.out.println("ndfqnasql" + sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -294,7 +293,7 @@ public class BoardManageDAO {
 			sql += end;
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getStartDate());
-			pstmt.setString(2, vo.getEndDate());
+			pstmt.setString(2, vo.getEndDate() +" 23:59:59");
 			pstmt.setString(3, vo.getWho());
 			pstmt.setString(4, vo.getCategory());
 
@@ -366,7 +365,7 @@ public class BoardManageDAO {
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getStartDate());
-			pstmt.setString(2, vo.getEndDate());
+			pstmt.setString(2, vo.getEndDate() +" 23:59+59");
 			pstmt.setString(3, vo.getWho());
 
 			pstmt.setString(4, vo.getSearchInput());

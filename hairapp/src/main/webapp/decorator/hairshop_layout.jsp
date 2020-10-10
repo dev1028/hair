@@ -295,7 +295,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출분석</a> 
 									<a
-										class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
 								</div></li>
 								
 								<li class="nav-item dropdown"><a
@@ -303,9 +303,9 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 분석통계 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreatCtrl.do">시술별통계</a> 
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do">시술별통계</a> 
 									<a
-										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByReservationCtrl.do">예약분석</a>
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByReservation.do">예약분석</a>
 								</div></li>
 								
 								

@@ -29,10 +29,16 @@ import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
+import com.yedam.hairshop.admin.AnalysisAgeCtrl;
+import com.yedam.hairshop.admin.AnalysisByTreatCtrl;
+import com.yedam.hairshop.admin.AnalysisGenderCtrl;
+import com.yedam.hairshop.admin.AnalysisTotalCtrl;
 import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.ChartCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
+import com.yedam.hairshop.admin.SalesBydesignerCtrl;
+import com.yedam.hairshop.admin.SalesStatisticsByDesignerCtrl;
 import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
@@ -323,11 +329,16 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());//헤어샵통계
 		//list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
 		list.put("/ajax/hairshop/sales.do", new salesCtrl());
+		
+		list.put("/hairshop/salesStatisticsByDesigner.do", new SalesStatisticsByDesignerCtrl());
+		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());//
+		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());//
+		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());//
+		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());//
+		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
 
 		list.put("/ajax/hairshop/chart.do", new ChartCtrl());
 		list.put("/admin/adminSalesStatistics.do", new AdminSalesStatisticsCtrl());
-//		list.put("/admin/adminSalesStatisticsFind.do", new AdminSalesStatisticsFCtrl());
-//		list.put("/admin/adminSales.do", new AdminSalesCtrl());
 
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());//보드
 		list.put("/admin/adminBoardManageFind.do", new adminBoardManageFCtrl());
