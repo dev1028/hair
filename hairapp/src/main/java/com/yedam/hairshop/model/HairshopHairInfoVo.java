@@ -21,4 +21,7 @@ public class HairshopHairInfoVo {
 	private String tmic_name;
 	private String tmic_explication;
 	private String tmac_no;
+	
+	private String hhmi_file;
+	
 }

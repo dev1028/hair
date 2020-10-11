@@ -83,10 +83,15 @@ import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeUpdateFCtrl;
 import com.yedam.hairshop.hairshop.FindEmployeesAjCtrl;
 import com.yedam.hairshop.hairshop.FireEmployeeFCtrl;
+import com.yedam.hairshop.hairshop.GetTmicListAjCtrl;
+import com.yedam.hairshop.hairshop.HairDesLogoutCtrl;
 import com.yedam.hairshop.hairshop.HairInfoDetailCtrl;
 import com.yedam.hairshop.hairshop.HairInfoFullListCtrl;
+import com.yedam.hairshop.hairshop.HairInfoInsertCtrl;
+import com.yedam.hairshop.hairshop.HairInfoInsertFormFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrlRe;
+import com.yedam.hairshop.hairshop.HairStatusChangeAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
@@ -444,8 +449,14 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairInfoFullList.do", new HairInfoFullListCtrl()); //헤어시술 전체목록
 		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); //헤어시술목록 검색페이지로 이동
 		list.put("/hairshop/hairInfoDetail.do", new HairInfoDetailCtrl()); //헤어시술목록 상세페이지
+		list.put("/ajax/hairStatusChange.do", new HairStatusChangeAjCtrl()); //헤어 사용미사용 상태 바꾸기
+		list.put("/hairshop/hairInfoInsert.do", new HairInfoInsertCtrl()); // 헤어시술등록이동
+		list.put("/hairshop/hairInfoInsertForm.do", new HairInfoInsertFormFCtrl()); // 헤어시술등록처리
+		list.put("/ajax/getTmicList.do", new GetTmicListAjCtrl());//시술중분류리스트 가져오기
 		
 		list.put("/hairshop/myHairshopInfo", new MyHairshopInfoCtrl()); //미용실마이페이지
+		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
+		
 	}
 
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

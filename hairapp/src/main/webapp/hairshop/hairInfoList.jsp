@@ -34,8 +34,8 @@
 					<div class="input-group flex-nowrap">
 						<div class="input-group-prepend">
 							<select name="divisionSearch">
-								<option value="hhi_name">시술분류</option>
-								<option value="tmac_name">시술명</option>
+								<option value="hhi_name">시술명</option>
+								<option value="tmac_name">시술분류</option>
 							</select>
 						</div>
 						<input type="text" class="form-control"
@@ -104,10 +104,10 @@
 						</c:forEach>
 				</c:if>
 				<c:if test="${empty hairList && hairNotFound == 0}">
-					<tr><td>시술정보가 없습니다.</td></tr>
+					<tr><td colspan="7" class="text-center">시술정보가 없습니다.</td></tr>
 				</c:if>
 				<c:if test="${empty hairList && hairNotFound == 1}">
-					<tr><td>시술정보가 아직 없습니다. 등록이 필요합니다.</td></tr>
+					<tr><td colspan="7" class="text-center">시술정보가 아직 없습니다. 등록이 필요합니다.</td></tr>
 				</c:if>
 					</tbody>
 				</table>
