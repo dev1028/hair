@@ -7,56 +7,61 @@
 	src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'corechart' ]
-	});
-
-	//google.charts.setOnLoadCallback(drawChart);
 	result('2020-09');
-	function drawChart() {
+	function chart() {
 
-		// Create the data table.
-		var data = new google.visualization.DataTable();
-		data.addColumn('string', '순위');
-		data.addColumn('number', '남자');
-		data.addColumn({
-			type : 'string',
-			role : 'annotation'
+		google.charts.load('current', {
+			'packages' : [ 'corechart' ]
 		});
-		data.addColumn('number', '여자');
-		data.addColumn({
-			type : 'string',
-			role : 'annotation'
-		});
-		var datatable = [];
-		//ajax
-		$.ajax({
-			async : false,
-			url : "/hairapp/ajax/hairshop/analysisTreatGender.do",
-			dataType : "json",
-			success : function(datas) {
-				console.log(datas);
-				for (i = 0; i < datas.length; i++) {
-					datatable.push([ datas[i].rank + "위",
-							parseInt(datas[i].cntMale), datas[i].hhi_nameMale,
-							parseInt(datas[i].cnt), datas[i].hhi_nameFemale ]);
+
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', '순위');
+			data.addColumn('number', '남자');
+			data.addColumn({
+				type : 'string',
+				role : 'annotation'
+			});
+			data.addColumn('number', '여자');
+			data.addColumn({
+				type : 'string',
+				role : 'annotation'
+			});
+			var datatable = [];
+			//ajax
+			$.ajax({
+				async : false,
+				url : "/hairapp/ajax/hairshop/analysisTreatGender.do",
+				dataType : "json",
+				success : function(datas) {
+					console.log(datas);
+					for (i = 0; i < datas.length; i++) {
+						datatable.push([ datas[i].rank + "위",
+								parseInt(datas[i].cntMale),
+								datas[i].hhi_nameMale, parseInt(datas[i].cnt),
+								datas[i].hhi_nameFemale ]);
+					}
+					//
 				}
-				//
-			}
-		});
-		data.addRows(datatable);
+			});
+			data.addRows(datatable);
 
-		// Set chart options
-		var options = {
-			'title' : '인기헤어순위 ',
-			'width' : 1500,
-			'height' : 700
-		};
+			// Set chart options
+			var options = {
+				'title' : '인기헤어순위 ',
+				'width' : 1500,
+				'height' : 700
+			};
 
-		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.ColumnChart(document
-				.getElementById('chart_div'));
-		chart.draw(data, options);
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
 	}
 	function result(start) {
 

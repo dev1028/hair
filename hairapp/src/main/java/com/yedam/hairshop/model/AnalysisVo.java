@@ -6,6 +6,8 @@ import lombok.Data;
 public class AnalysisVo {
 String date;
 String hs_no;
+String hs_name;
+String sales;
 String gender;
 String gender_cnt;
 String age;

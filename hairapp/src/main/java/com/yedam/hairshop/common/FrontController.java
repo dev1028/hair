@@ -19,6 +19,8 @@ import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
+import com.yedam.hairshop.admin.AdminNewHairshopApprovalCtrl;
+import com.yedam.hairshop.admin.AdminNewHairshopCtrl;
 import com.yedam.hairshop.admin.AdminNoticeInsertCtrl;
 import com.yedam.hairshop.admin.AdminNoticeInsertFCtrl;
 import com.yedam.hairshop.admin.AdminNoticeManageCtrl;
@@ -30,6 +32,7 @@ import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
 import com.yedam.hairshop.admin.AnalysisAgeCtrl;
+import com.yedam.hairshop.admin.AnalysisByHairshopCount;
 import com.yedam.hairshop.admin.AnalysisByTreatCtrl;
 import com.yedam.hairshop.admin.AnalysisGenderCtrl;
 import com.yedam.hairshop.admin.AnalysisTotalCtrl;
@@ -375,11 +378,14 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminCustomerManageFind.do", new AdminCustomerManageFCtrl());
 		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());
+		list.put("/admin/adminNewHairshop.do", new AdminNewHairshopCtrl());//
+		list.put("/admin/adminNewHairshopApproval.do", new AdminNewHairshopApprovalCtrl());//
 
 
 		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());//분석
 		list.put("/admin/designerAnalysisFind.do", new designerAnalysisFCtrl());
 		list.put("/admin/hairshopAnalysis.do", new hairshopAnalysisCtrl());
+		list.put("/ajax/admin/analysisByHairshopCount.do", new AnalysisByHairshopCount());//
 		
 		list.put("/admin/hairAnalysisFind.do", new hairAnalysisFCtrl());
 		list.put("/admin/hairAnalysis.do", new hairAnalysisCtrl());

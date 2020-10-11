@@ -167,7 +167,9 @@
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminCustomerManage.do">일반 회원 관리
 									</a> 
 									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminHairshopManage.do">헤어샵 회원 관리</a>
-									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminDesignerManage.do">디자이 회원 관리
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminDesignerManage.do">디자이너 회원 관리
+									</a>
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminNewHairshop.do">헤어샵 입점 요
 									</a>
 							</nav>
 						</div>

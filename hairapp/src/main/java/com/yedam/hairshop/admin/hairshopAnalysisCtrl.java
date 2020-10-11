@@ -15,11 +15,9 @@ public class hairshopAnalysisCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 ArrayList<DesignerVo> list = SalesDAO.getInstance().getDsName();
-	request.setAttribute("list", list);
 		
-		
-		request.getRequestDispatcher("/admin/hairshopAnalysis.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/adminQnaManage.jsp").forward(request, response);
+		request.getRequestDispatcher("/admin/adminAnalysisByHairshop.jsp").forward(request, response);
 
 	}
 
