@@ -13,31 +13,15 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
 <title>지역별 디자이너 순위</title>
-<script>
-	function like_func(designer_no) {
-		$.ajax({
-			url : "../ajax/designerBookmark.do",
-			type : "POST",
-			cache : false,
-			dataType : "json",
-			data : 'designer_no=' + designer_no,
-			success : function(data) {
-				findClass = ".img-" + designer_no;
-				if(data.type == "add"){
-					$(findClass).attr("src", "../images/bookmark/heart.png");
-				}else{
-					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
-				}
-			},
-			error : function(request, status, error) {
-				alert("에러 발생!!")
-			}
-		});
-	}
-</script>
+<script src="../js/designerBookmark.js"></script>
+<script src="../js/locationFromIP.js"></script>
 </head>
 <body>
-	
+<c:if test="${empty lat }">
+<script>
+	setLocationFromIP();
+</script>
+</c:if>
 <div class="container">
     <h3 class="h3">지역별 디자이너 순위</h3>
     <div class="row">

@@ -36,8 +36,8 @@ public class RegionDesignerRankCtrl implements Controller {
 			
 			List<DesignerVo> list = DesignerDAO.getInstance().selectListDesignerRank(vo);
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("regionDesignerRank.jsp").forward(request, response);
 		}
+		request.getRequestDispatcher("regionDesignerRank.jsp").forward(request, response);
 	}
 
 }

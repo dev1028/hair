@@ -16,13 +16,15 @@
 	</style>
 </head>
 <body>
+<%--
 <c:if test="${empty login }">
 	<script>
 		alert("로그인을 해주세요")
 		location.href="membersLogin.do"
 	</script>
 </c:if>
-	
+--%>
+
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <div class="hAddr">
@@ -80,8 +82,12 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             infowindow.setContent(content);
             infowindow.open(map, marker);
             
+            //alert(marker.getPosition());
+            
+            var latlng = marker.getPosition();
             $("input[type=hidden][name=roadAddress]").val(result[0].road_address.address_name)
-            $("input[type=hidden][name=latlng]").val(marker.getPosition());
+            $("input[type=hidden][name=lat]").val(latlng.getLat());
+            $("input[type=hidden][name=lng]").val(latlng.getLng());
 			$("input[type=hidden][name=addr]").val(addr);
         }   
     });
@@ -122,7 +128,8 @@ marker.setMap(map);
 
 
 <form class="frmRegion" action="myRegionSetting.do">
-			<input type="hidden" name="latlng" value = "0,0">
+			<input type="hidden" name="lat" value = "0">
+			<input type="hidden" name="lng" value = "0">
 			<input type="hidden" name="roadAddress" value = "">
 			<input type="hidden" name="addr" value = "">
 			<input type="button" value="버튼">

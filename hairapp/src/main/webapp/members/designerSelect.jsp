@@ -14,72 +14,54 @@
      z-index:1151 !important; 
 }
 </style>
+<script src="../js/designerBookmark.js"></script>
+
 <script>
 $(function() {
 	$("#date").datepicker({
 		dateFormat : 'yy-mm-dd',
 		minDate: 0,
-		onSelect: changeDesigner
+	//	onSelect: changeDesigner
 	});
 	$("#date").datepicker( "setDate", new Date());
 	$('#timepicker_start').timepicker({
 		timeFormat: 'HH',
 		interval: 60,
-		change: changeDesigner
+	//	change: changeDesigner
 	});
 	
-	changeDesigner();
+	//changeDesigner();
 });
 
-function changeDesigner(){
-	hour = $("#timepicker_start").val();
-	date = $("#date").val();
-		
-	$.ajax({
-		url: "../ajax/changeDesigner.do",
-		type: "POST",
-		dataType : "json",
-		data : {
-			date : date,
-			hour : hour
-		}
-	})
-}
-
-</script>
-<script>
-	function like_func(designer_no) {
-		$.ajax({
-			url : "../ajax/designerBookmark.do",
-			type : "POST",
-			cache : false,
-			dataType : "json",
-			data : 'designer_no=' + designer_no,
-			success : function(data) {
-				findClass = ".img-" + designer_no;
-				if(data.type == "add"){
-					$(findClass).attr("src", "../images/bookmark/heart.png");
-				}else{
-					$(findClass).attr("src", "../images/bookmark/empty_heart.png");
-				}
-			},
-			error : function(request, status, error) {
-				alert("에러 발생!!")
-			}
-		});
-	}
+// function changeDesigner(){
+// 	hour = $("#timepicker_start").val();
+// 	date = $("#date").val();
+	
+// 	$.ajax({
+// 		url: "../ajax/changeDesigner.do",
+// 		type: "POST",
+// 		dataType : "json",
+// 		data : {
+// 			date : date,
+// 			hour : hour
+// 		},
+// 		method : "post",
+// 		success : function(data){
+// 			alert(data[0].rn);
+// 		}
+// 	})
+// }
 </script>
 
 </head>
 <body>
-<script>
-
-</script>
 <div class="container">
     <h3 class="h3">디자이너 정보</h3>
-    <input autocomplete="off" type="text" name="date" id="date" size="12" />
-	<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px"> 예약시간 <br>
-	
+    <form action="designerSelect.do" method="post">
+	    <input autocomplete="off" type="text" name="date" id="date" size="12" />
+		<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px">시
+		<button>검색</button>
+	</form>
     <div class="row">
     	<c:forEach items="${list}" var="designerInfo" >
     		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post">

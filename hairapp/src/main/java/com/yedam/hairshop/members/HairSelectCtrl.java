@@ -37,6 +37,7 @@ public class HairSelectCtrl implements Controller{
 					bookVo.setHhi_no(tmpVo.getHhi_no());
 					if(HairBookmarkDAO.getInstance().HasBookmark(bookVo))
 						tmpVo.setHhi_book("1");
+					
 				}
 			}
 			request.getRequestDispatcher("/members/hairSelect.jsp").forward(request, response);
