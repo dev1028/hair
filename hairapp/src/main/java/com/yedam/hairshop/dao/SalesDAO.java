@@ -147,6 +147,63 @@ public class SalesDAO {
 		return list;
 	}
 
+	public ArrayList<SalesVo> dailySalesByDesigner(String start, String end, String ds_no) {
+		ResultSet rs = null;
+		ArrayList<SalesVo> list = new ArrayList<>();
+		SalesVo resultVo = null;
+		String sql = "SELECT r.mdr_no,  r.mdr_date,d.designer_name,m.mem_name, h.HHI_NAME,\r\n" + "nvl\r\n" + "((\r\n"
+				+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
+				+ "WHERE mdp_code='d1' AND mdr_no=r.mdr_no),0) AS card,\r\n" + "nvl\r\n" + "((\r\n"
+				+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
+				+ "WHERE mdp_code='d2' AND mdr_no=r.mdr_no),0) AS cash,\r\n" + "nvl\r\n" + "((\r\n"
+				+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
+				+ "WHERE mdp_code='d3' AND mdr_no=r.mdr_no),0) AS kakao,\r\n" + "nvl\r\n" + "((\r\n"
+				+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
+				+ "WHERE mdp_code='d6' AND mdr_no=r.mdr_no),0) AS ACCOUNT\r\n" + ",(\r\n"
+				+ "SELECT  nvl(sum(mdp_price),0) \r\n" + "FROM members_detail_paylist\r\n"
+				+ "where mdr_no=r.mdr_no) as ammount\r\n" + "\r\n" + "FROM \r\n" + "members_designer_rsv r \r\n"
+				+ "JOIN mem_designer_rsv_info i\r\n" + "ON(r.mdr_no = i.mdr_no)\r\n" + "JOIN hairshop_hair_info h\r\n"
+				+ "ON(i.hhi_no=h.hhi_no)\r\n" + "JOIN designer  d \r\n" + "ON (r.designer_no=d.designer_no)  \r\n"
+				+ "JOIN MEMBERs m\r\n" + "ON(m.mem_no = r.mem_no)\r\n" + "WHERE r.mdr_date BETWEEN ?\r\n" + "AND  ?\r\n"
+				+ "and r.mdr_status  = 'i4' and r.designer_no=? order by mdr_no ";
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, start);
+			pstmt.setString(2, end);
+			pstmt.setString(3, ds_no);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				resultVo = new SalesVo();
+				resultVo.setDsNo(ds_no);
+
+				resultVo.setMdrNo(rs.getString("mdr_no"));
+				resultVo.setMdrDate(rs.getString("mdr_date"));
+				resultVo.setDsName(rs.getString("designer_name"));
+				resultVo.setMemName(rs.getString("mem_name"));
+				resultVo.setHName(rs.getString("hhi_name"));
+				resultVo.setCard(rs.getString("card"));
+				resultVo.setCash(rs.getString("cash"));
+				resultVo.setKakao(rs.getString("kakao"));
+				resultVo.setAccount(rs.getString("account"));
+				resultVo.setTotalAmountRsv(rs.getString("ammount"));
+
+				list.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+
+		return list;
+	}
+
 	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no, String hs_no) {
 		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
@@ -193,6 +250,7 @@ public class SalesDAO {
 		}
 		return list;
 	}
+
 	public ArrayList<DesignerVo> getDsName(String hs_no) {
 		ResultSet rs = null;
 		ArrayList<DesignerVo> list = new ArrayList<>();
@@ -219,11 +277,12 @@ public class SalesDAO {
 		}
 		return list;
 	}
+
 	public String getdsList(String ds_no) {
-String name = "";
+		String name = "";
 		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
-		
+
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT  designer_name	FROM designer  where designer_no = ? ";
@@ -231,7 +290,7 @@ String name = "";
 			pstmt.setString(1, ds_no);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				name=rs.getString(1);
+				name = rs.getString(1);
 
 			}
 
@@ -242,6 +301,7 @@ String name = "";
 		}
 		return name;
 	}
+
 	public ArrayList<SalesVo> dsList(String hs_no) {
 
 		ResultSet rs = null;

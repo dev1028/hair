@@ -310,6 +310,7 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 분석통계 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisMonthly.do">월별결산</a> 
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do">시술별통계</a> 
 									<a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisTreatTableGo.do">예약분석</a>

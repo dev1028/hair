@@ -8,22 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.AdminMemberManageDAO;
-import com.yedam.hairshop.dao.HairshopDAO;
-import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.dao.TtCategoryDAO;
+import com.yedam.hairshop.model.TtCategoryVo;
 
-public class AdminHairshopManageCtrl implements Controller {
+public class AdminTmicApprovalCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		List<HairshopVo> list = AdminMemberManageDAO.getInstance().findHs(null);
+
+		
+		List<TtCategoryVo> list = TtCategoryDAO.getInstance().selectTmicAll();
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
-
+		request.getRequestDispatcher("/admin/ttCategoryManage.jsp").forward(request, response);
 	}
 
 }

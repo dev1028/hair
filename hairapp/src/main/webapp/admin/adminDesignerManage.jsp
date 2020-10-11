@@ -8,9 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
@@ -43,33 +40,23 @@
 		</div>
 
 	</form>
-	<div class="form-group" id="result">
-
-		<table border="1" id="table">
+<div class="table-responsive" id="result">
+<table class="table table-bordered" id="dataTable" width="100%"
+cellspacing="0">
 			<thead>
 				<tr>
 					<th><input type="checkbox" name="all" id="all" class="chk"></th>
 					<th>회원번호
-						<button type="button" name="designer_no" class="asc hide">a</button>
-						<button type="button" name="designer_no" class="des hide">d</button>
 					</th>
 					<th>이름
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
 					</th>
 					<th>이메일
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
 					</th>
 					<th>헤어샵이름
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
 					</th>
 					<th>전화번호</th>
 					<th>지역</th>
 					<th>등록일
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
 					</th>
 				</tr>
 			</thead>

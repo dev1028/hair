@@ -73,4 +73,41 @@ public class AdminAnalysisDAO {
 	}
 
 
+	public ArrayList<AnalysisVo> newHairshop() {
+		ResultSet rs = null;
+		String sql="    select to_char(hs_regdate,'yy-mm') as d ,COUNT(hs_regdate) AS cnt\n" + 
+				"FROM\n" + 
+				"    hairshop\n" + 
+				"WHERE\n" + 
+				"    hs_regdate BETWEEN add_months(sysdate\n" + 
+				"    , - 6) AND last_day(sysdate)\n" + 
+				"GROUP BY\n" + 
+				"    to_char(hs_regdate, 'yy-mm')";
+		System.out.println(sql);
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println("nnsql");
+
+			while (rs.next()) {
+
+				AnalysisVo resultVo = new AnalysisVo();
+				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setDate(rs.getString("d"));
+				list.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+
+
 }

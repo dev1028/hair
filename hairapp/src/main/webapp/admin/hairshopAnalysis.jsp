@@ -8,13 +8,36 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<link
+	href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
+	rel="stylesheet" crossorigin="anonymous" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/decorator/ges/dist/js/scripts.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="${pageContext.request.contextPath}/decorator/ges/dist/assets/demo/datatables-demo.js"></script>
+
 
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
- <script type="text/javascript" src="hairshopAnalysis.js"></script>
+<script type="text/javascript" src="hairshopAnalysis.js"></script>
 <!--
 			§ 미용실 지역별 매출순위
 			§ 미용실 지역별 예약순위
@@ -32,7 +55,7 @@
 		action="${pageContext.request.contextPath}/admin/hairshopAnalysisFind.do">
 
 
-	<div class="form-group">
+		<div class="form-group">
 
 			<div class="control">
 				<label for="name">검색구분 </label>
@@ -50,15 +73,7 @@
 				<div class="controls" id="range"></div>
 			</div>
 
-		<%-- 	<div class="control">
-				<label for="name">직원선택 </label> <select name="ds">
-					<option>전체직원</option>
-					<c:forEach items="${list }" var="i">
-						<option value="${i.designer_no}">${i.designer_name}</option>
-					</c:forEach>
-				</select>
-				<div class="controls"></div>
-			</div> --%>
+
 
 			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
 		</div>
@@ -67,29 +82,19 @@
 
 
 	<h2 class="heading">미용실 전체매출순위</h2>
-	<div class="form-group" id="result">
-
-
-		<table border="1" id="table">
+	<div class="table-responsive" id="result">
+		<table class="table table-bordered" id="dataTable" width="100%"
+			cellspacing="0">
 			<thead>
 				<tr>
-			
+
 					<th>미용실번호</th>
 					<th>미용실이름</th>
-					<th>지역
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
-					
-					<th>고객이름
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
+					<th>지역</th>
+
+					<th>고객이름</th>
 					<th>예약번호</th>
-					<th>시술날짜
-						<button type="button" name="designer_no" class="asc">a</button>
-						<button type="button" name="designer_no" class="des">d</button>
-					</th>
+					<th>시술날짜</th>
 					<th>시술대분류</th>
 					<th>시술중분류</th>
 					<th>금액</th>
@@ -97,22 +102,7 @@
 				</tr>
 			</thead>
 			<tbody id="tbody">
-				<%-- <c:forEach items="${list }" var="l">
-					<tr>
 
-						<td><input type="checkbox" class="chk"></td>
-						<td></td>
-						<td></td>
-						<td>${ l.hsc_name}</td>
-						<td>${ l.hsc_discount_rate}</td>
-						<td>${ l.hsc_expiredate}</td>
-						<td>${ l.hsc_coupon_quantity}</td>
-						<td>${l.hsc_no }</td>
-						
-						<td>${l.hs_no }</td><td></td>
-						<td></td>
-					</tr> 
-				</c:forEach>--%>
 			</tbody>
 		</table>
 		<button id="excel">excel</button>

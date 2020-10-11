@@ -32,6 +32,8 @@ public class adminLoginCtrl implements Controller {
 			if (empVo.getEmp_password().equals(resultVo.getEmp_password())) {
 				request.getSession().setAttribute("login", resultVo);
 				request.getSession().setAttribute("empno", resultVo.getEmp_no());
+				request.getSession().setAttribute("empname", resultVo.getEmp_name());
+				request.getSession().setAttribute("empemail", resultVo.getEmp_email());
 				page = "/admin/adminMain.do";
 				System.out.println("correct");
 			} else { // 패스워드 불일치

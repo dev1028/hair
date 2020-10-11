@@ -1,5 +1,13 @@
 $(function() {
+	$("button").attr('class','btn btn-secondary btn-sm');
+	$("input").attr('class','btn btn-secondary btn-sm');
+	
 	period();
+	$("#all").on("click", function() {
+
+		var check = $("#all").prop("checked");
+		$("input[type=checkbox]").prop("checked", check);
+	})
 	$(document).on(
 			"click",
 			"#excel",
@@ -17,20 +25,29 @@ $(function() {
 			})
 	$(document).on("click", '#submit', function() {
 
-		if ($("#range").is(".yearResult") === true) {
-			yearResult();
-		} else if ($("#range").is(".quarter") === true) {
-			quarterResult();
-		} else if ($("#range").is(".month") === true) {
-			monthResult();
+		
+		$("#result").html("");
+		
+					if ($("#range").is(".yearResult") === true) {
 
-		} else if ($("#range").is(".period") === true) {
-			periodResult();
+						yearResult();
 
-		}
+					} else if ($("#range").is(".quarter") === true) {
+						quarterResult();
+					} else if ($("#range").is(".month") === true) {
+						monthResult();
+
+					} else if ($("#range").is(".period") === true) {
+						periodResult();
+
+					}
+
+				
+		
 
 	});
 	$(document).on("click", '.search', function() {
+
 		console.log($(this).attr('id'));
 
 		if ($(this).is("#year") === true) {
@@ -43,7 +60,6 @@ $(function() {
 			month();
 		}
 	});
-
 
 	function yearResult() {
 		var start = new Date($("#selectYear option:selected").val(), 0);
@@ -186,12 +202,13 @@ $(function() {
 	}
 
 	function result(start, end) {
+		dsNm = "";
 
-		$("#result").html("");
-		var url = "/hairapp/admin/adminSales.do"
+		var url = "/hairapp/ajax/designer/analysisSales.do"
 		var table = $("<table />").attr({
 			'border' : '1',
-			'id' : 'test'
+			'id' : 'test',
+			'class' : 'table table-bordered table-hover table-sm text-center'
 		});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));
@@ -206,53 +223,65 @@ $(function() {
 		tr.append($("<th>").text("총합  "));
 
 		table.append(tr);
+		// console.log(ds);
+		$.ajax({
+			url : url,
+			dataType : 'json',
+			data : {
+				start : moment(start).format('YYYY-MM-DD'),
+				end : moment(end).format('YYYY-MM-DD'),
+				
+			},
+			traditional : true,
+			success : function(obj) {
+				console.log(obj);
+				var card = 0;
+				var cash = 0;
+				var kakao = 0;
+				var account = 0;
+				var ammount = 0;
+				console.log(obj);
+				obj.forEach(function(o, i, u) {
 
-		$.getJSON(url, {
-			start : moment(start).format('YYYY-MM-DD'),
-			end : moment(end).format('YYYY-MM-DD')
-		}, function(obj) {
-			var card = 0;
-			var cash = 0;
-			var kakao = 0;
-			var account = 0;
-			var ammount = 0;
-			console.log(obj);
-			obj.forEach(function(o, i, u) {
+					var tr = $("<tr />");
+					card += parseInt(o.card);
+					cash += parseInt(o.cash);
+					kakao += parseInt(o.kakao);
+					account += parseInt(o.account);
+					ammount += parseInt(o.totalAmountRsv);
+					dsNm = o.dsName;
+				//	console.log(o.dsNo);
 
-				var tr = $("<tr />");
-				card += parseInt(o.cd);
-				cash += parseInt(o.cs);
-				kakao += parseInt(o.ka);
-				account += parseInt(o.ac);
-				ammount += parseInt(o.to);
-				tr.append($("<td>").text(o.mdrDt));
-				tr.append($("<td>").text(o.mdrNo));
-				tr.append($("<td>").text(o.memNm));
-				tr.append($("<td>").text(o.dsNm));
-				tr.append($("<td>").text(o.hNm));
-				tr.append($("<td>").text(o.cd));
-				tr.append($("<td>").text(o.cs));
-				tr.append($("<td>").text(o.ka));
-				tr.append($("<td>").text(o.ac));
-				tr.append($("<td>").text(o.to));
+					tr.append($("<td>").text(o.mdrDate));
+					tr.append($("<td>").text(o.mdrNo));
+					tr.append($("<td>").text(o.memName));
+					tr.append($("<td>").text(o.dsName));
+					tr.append($("<td>").text(o.hName));
+					tr.append($("<td>").text(o.card));
+					tr.append($("<td>").text(o.cash));
+					tr.append($("<td>").text(o.kakao));
+					tr.append($("<td>").text(o.account));
+					tr.append($("<td>").text(o.totalAmountDay));
+					table.append(tr);
+				})
+
+				var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
+						$("<td>").text(obj.length), $("<td>"), $("<td>"),
+						$("<td>").text(card), $("<td>").text(cash),
+						$("<td>").text(kakao), $("<td>").text(account),
+						$("<td>").text(ammount)
+
+				).css('color', 'red');
+
 				table.append(tr);
-			})
-
-			var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
-					$("<td>").text(obj.length), $("<td>"), $("<td>"),
-					$("<td>").text(card), $("<td>").text(cash),
-					$("<td>").text(kakao), $("<td>").text(account),
-					$("<td>").text(ammount)
-
-			).css('color', 'red');
-
-			table.append(tr);
+			}
 		});
+		console.log(dsNm);
+		$("#result").append($("<p />").text(dsNm));
+
 		$("#result").append($(table));
-		$("#result").append($("<button />").attr('id','excel').text("엑셀로 저장"));
+		$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 
 	}
-
-	
 
 });

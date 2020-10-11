@@ -19,6 +19,7 @@ import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
+import com.yedam.hairshop.admin.AdminMypageCtrl;
 import com.yedam.hairshop.admin.AdminNewHairshopApprovalCtrl;
 import com.yedam.hairshop.admin.AdminNewHairshopCtrl;
 import com.yedam.hairshop.admin.AdminNoticeInsertCtrl;
@@ -31,11 +32,18 @@ import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
+import com.yedam.hairshop.admin.AdminTmicApprovalCtrl;
+import com.yedam.hairshop.admin.AdminTtCategoryRequestCtrl;
+import com.yedam.hairshop.admin.AnalysisByNewCtrl;
 import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
 import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
 import com.yedam.hairshop.admin.TestController;
+import com.yedam.hairshop.admin.TmicDelete;
+import com.yedam.hairshop.admin.TmicInsert;
+import com.yedam.hairshop.admin.TmicUpdate;
+import com.yedam.hairshop.admin.TtCategoryManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageCtrl;
 import com.yedam.hairshop.admin.adminBoardManageFCtrl;
 import com.yedam.hairshop.admin.adminBoardSettingCtrl;
@@ -49,6 +57,8 @@ import com.yedam.hairshop.admin.hairAnalysisCtrl;
 import com.yedam.hairshop.admin.hairAnalysisFCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
+import com.yedam.hairshop.designer.AnalysisSalesByDsCtrl;
+import com.yedam.hairshop.designer.AnalysisSalesByDsGoCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
 import com.yedam.hairshop.designer.DesMemberReservationInfoCtrl;
@@ -68,6 +78,7 @@ import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
 import com.yedam.hairshop.hairshop.AnalysisByTreatCtrl;
 import com.yedam.hairshop.hairshop.AnalysisGenderCtrl;
+import com.yedam.hairshop.hairshop.AnalysisMonthlyCtrl;
 import com.yedam.hairshop.hairshop.AnalysisTotalCtrl;
 import com.yedam.hairshop.hairshop.AnalysisTreatGenderCtrl;
 import com.yedam.hairshop.hairshop.AnalysisTreatTableCtrl;
@@ -339,6 +350,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());// 로그인
 		list.put("/admin/adminMain.do", new adminMainCtrl());//
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
+		list.put("/admin/adminMypage.do", new AdminMypageCtrl());//
 
 		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());// 헤어샵통계
 		// list.put("/hairshop/salesStatisticsResult.do", new salesStatisticsFCtrl());
@@ -346,6 +358,7 @@ public class FrontController extends HttpServlet {
 
 		list.put("/hairshop/salesStatisticsByDesigner.do", new SalesStatisticsByDesignerCtrl());
 		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());
+		list.put("/hairshop/analysisMonthly.do", new AnalysisMonthlyCtrl());//
 		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());
 		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());
 		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());
@@ -353,8 +366,11 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());
 		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());
 		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
-
+		list.put("/ajax/designer/analysisSales.do", new AnalysisSalesByDsCtrl());//
+		list.put("/designer/analysisSalesGo.do", new AnalysisSalesByDsGoCtrl());//
 		list.put("/ajax/hairshop/chart.do", new ChartCtrl());
+		
+		
 		list.put("/admin/adminSalesStatistics.do", new AdminSalesStatisticsCtrl());
 
 		list.put("/admin/adminBoardManage.do", new adminBoardManageCtrl());// 보드
@@ -385,6 +401,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/designerAnalysisFind.do", new designerAnalysisFCtrl());
 		list.put("/admin/hairshopAnalysis.do", new hairshopAnalysisCtrl());
 		list.put("/ajax/admin/analysisByHairshopCount.do", new AnalysisByHairshopCount());
+		list.put("/ajax/admin/analysisByNew.do", new AnalysisByNewCtrl());//
 
 		list.put("/admin/hairAnalysisFind.do", new hairAnalysisFCtrl());
 		list.put("/admin/hairAnalysis.do", new hairAnalysisCtrl());
@@ -393,6 +410,12 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());// 쿠폰
 		list.put("/admin/adminCouponInsert.do", new AdminCouponInsertCtrl());
 		list.put("/admin/adminCouponInsertSubmit.do", new AdminCouponInsertFCtrl());
+		list.put("/admin/ttCategoryRequest.do", new AdminTtCategoryRequestCtrl());//시술중분류 승인요청 조//
+		list.put("/admin/tmicApproval.do", new AdminTmicApprovalCtrl());//시술중분류 승인요청 조//
+		list.put("/admin/ttCategoryManage.do", new TtCategoryManageCtrl());//시술중분류 승인요청 조//
+		list.put("/ajax/admin/tmicUpdate.do", new TmicUpdate());//시술중분류 승인요청 조//
+		list.put("/ajax/admin/tmicDelete.do", new TmicDelete());//시술중분류 승인요청 조//
+		list.put("/ajax/admin/tmicInsert.do", new TmicInsert());//시술중분류 승인요청 조//
 
 		// 승연
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); // 헤어샵 로그인 후 메인페이지

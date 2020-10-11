@@ -1,6 +1,7 @@
 package com.yedam.hairshop.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +23,7 @@ public class AdminCouponInsertFCtrl implements Controller {
 		String hsc_discount_rate = request.getParameter("hsc_discount_rate");
 		String hsc_maxdiscount_pay = request.getParameter("hsc_maxdiscount_pay");
 		String hsc_name = request.getParameter("hsc_name");
-		
+
 		CouponVo vo = new CouponVo();
 		vo.setHs_no(hs_no);
 		vo.setHsc_coupon_quantity(hsc_coupon_quantity);
@@ -32,8 +33,12 @@ public class AdminCouponInsertFCtrl implements Controller {
 		vo.setHsc_maxdiscount_pay(hsc_maxdiscount_pay);
 		vo.setHsc_name(hsc_name);
 		CouponDAO.getInstance().insert(vo);
-		
-		request.getRequestDispatcher("/hairapp/admin/adminCouponFind.do").forward(request, response);
+		ArrayList<CouponVo> list = new ArrayList<>();
+		list = CouponDAO.getInstance().selectAll(null);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/admin/adminCouponManage.jsp").forward(request, response);
+		// request.getRequestDispatcher("/hairapp/admin/adminCouponFind.do").forward(request,
+		// response);
 	}
 
 }

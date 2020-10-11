@@ -92,14 +92,13 @@
 
 
 	<h2 class="heading">result</h2>
-	<div class="form-group" id="result">
-	<table border="1" id="table">
+<div class="table-responsive" id="result">
+<table class="table table-bordered" id="dataTable" width="100%"
+cellspacing="0">
 			<thead>
 				<tr>
 					<th><input type="checkbox" name="all" id="all" class="chk"></th>
 					<th>번호
-						<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button>
 					</th>
 					<th>분류
 						<button type="button" name="designer_no" class="asc">↑</button>

@@ -282,7 +282,7 @@
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">내정보수정</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">나의
+								href="${pageContext.request.contextPath}/designer/analysisSalesGo.do">나의
 									매출정보</a></li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"

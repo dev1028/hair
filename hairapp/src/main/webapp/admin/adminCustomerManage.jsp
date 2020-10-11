@@ -9,11 +9,31 @@
 <title>Insert title here</title>
 
 
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script type="text/javascript" src="adminCustomerManage.js"></script>
+<script>
+
+$("#all").on("click", function() {
+
+	var check = $("#all").prop("checked");
+	$("input[class=chk]").prop("checked", check);
+})
+$(document).on(
+		"click",
+		"#excel",
+		function() {
+
+			var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
+			var table_html = encodeURIComponent(document
+					.getElementById('table').outerHTML);
+
+			var a = document.createElement('a');
+			a.href = data_type + ',%EF%BB%BF' + table_html;
+			a.download = 'test' + '_excel' + '.xls';
+			a.click();
+
+		})
+</script>
 </head>
 <body>
 	<h2 class="heading">일반회원관리</h2>
@@ -37,30 +57,22 @@
 		</div>
 
 	</form>
-	<div class="form-group" id="result">
-
-		<table border="1" id="table">
+	<div class="table-responsive" id="result">
+<table class="table table-bordered" id="dataTable" width="100%"
+cellspacing="0">
 			<thead>
 				<tr>
-					<th><input type="checkbox" name="all" id="all"></th>
+				<th><input type="checkbox" name="all" id="all" class="chk"></th>
 					<th>회원번호
-						<button type="button" name="mem_no" class="asc hide">a</button>
-						<button type="button" name="mem_no" class="des hide">d</button>
 					</th>
 					<th>회원이름
-						<button type="button" name="mem_name" class="asc hide">a</button>
-						<button type="button" name="mem_name" class="des hide">d</button>
 					</th>
 					<th>이메일</th>
 					<th>나이
-						<button type="button" name="mem_birth" class="asc hide">a</button>
-						<button type="button" name="mem_birth" class="des hide">d</button>
 					</th>
 					<th>전화번호</th>
 					<th>지역</th>
 					<th>등록일
-						<button type="button" name="mem__access_status" class="asc hide">a</button>
-						<button type="button" name="mem_access_status" class="des hide">d</button>
 					</th>
 				</tr>
 			</thead>
@@ -68,7 +80,7 @@
 				<c:forEach items="${list }" var="l">
 					<tr>
 
-						<td><input type="checkbox" name="all" id="all" class="chk"></td>
+						<td><input type="checkbox" class="chk"></td>
 						<td>${ l.mem_no}</td>
 						<td>${ l.mem_name}</td>
 						<td>${ l.mem_email}</td>
