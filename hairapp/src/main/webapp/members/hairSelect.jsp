@@ -43,12 +43,19 @@ $(document).ready(function() {
 			}
 	});
 });
+
 </script>
 
 	<div class="container">
 		<h3 class="h3">헤어 정보</h3>
 			<form action="../members/hairSelectResult.do" method="post">
-			<button class="add-to-cart">예약하기</button>
+			<c:if test="${empty sessionScope.login }">
+				<button class="add-to-cart" onclick="alert('로그인을 해주세요.'); return false">예약하기</button>
+			</c:if>
+			<c:if test="${sessionScope.login }">
+				<button class="add-to-cart">예약하기</button>
+			</c:if>
+			
 			<div class="row">
 				<c:forEach items="${list}" var="hairInfo">
 					<div class="col-md-3 col-sm-6">

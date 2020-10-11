@@ -23,6 +23,9 @@ a:hover {
 /*
  * Base structure
  */
+button {
+	text-aline : center;
+}
 
 html,
 body {

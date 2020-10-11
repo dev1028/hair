@@ -19,6 +19,7 @@
     
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463"></script>
 <script type="text/javascript" src="http://jsgetip.appspot.com"></script>
+<script src="../js/locationFromIP.js"></script>
 <script>
 	
 	var markers = [];
@@ -96,48 +97,7 @@
 
 <c:if test="${empty lat }">
 <script>
-
-
-
-function success(position) {
-	position.coords.latitude, position.coords.longitude
-	doSomething();
-}
-
-function error() {
-	alert('죄송합니다. 위치추적 차단을 풀어주세요.');
-}
-
-$(function(){
-	alert("로그인을 하지 않아서 IP주소를 기준으로 찾습니다. 위치추적을 동의해 주세요.")
-	const options = {
-	  enableHighAccuracy: true, 
-	  maximumAge: 30000, 
-	  timeout: 27000
-	};
-	const watchID = navigator.geolocation.watchPosition(success, error, options);
-
-})
-
-function getLocation() {
-	// GPS를 지원하면 새로요청시도.
-	  if (navigator.geolocation) { 
-	    	navigator.geolocation.getCurrentPosition(function(position) {
-	    	location.href= "gpsHairshopSearch.do?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude;  
-
-	      	alert(position.coords.latitude + ' aaa ' + position.coords.longitude);
-		}, function(error) {
-			console.error(error);
-		}, {
-	      enableHighAccuracy: false,
-	      maximumAge: 0,
-	      timeout: Infinity
-	    });
-	  } else {
-	    alert('GPS를 지원하지 않습니다');
-	  }
-	}
-	getLocation();
+	setLocationFromIP();
 </script>
 </c:if>
 
