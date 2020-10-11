@@ -142,6 +142,10 @@ public class Login implements Filter {
 		list.put("/hairshop/hairshopProcedureFinishList.do",  hairLoginPage);
 		list.put("/hairshop/hairshopProcedureFinishSD.do",  hairLoginPage);  //시술완료고객 디자이너로검색해서 보기
 		
+		list.put("/hairshop/HairshopCloseDayManage.do",  hairLoginPage); //미용실 휴무일 설정
+		list.put("/hairshop/employeeCloseDayManage.do",  hairLoginPage); //디자이너목록 휴무일수정
+		
+		
 		// 린아
 		list.put("/members/membersLogin.do", null); // 로그인 페이지 이동 컨트롤러
 		list.put("/members/membersLogout.do", memberLoginPage); // 로그아웃 페이지 이동 컨트롤러

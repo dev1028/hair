@@ -344,6 +344,10 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do">쿠폰등록</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">휴무일관리</a></li>
+								
+								
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
 						<form id="siteSearchCustomerFrm"

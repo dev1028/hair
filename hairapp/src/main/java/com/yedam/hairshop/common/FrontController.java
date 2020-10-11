@@ -83,6 +83,7 @@ import com.yedam.hairshop.hairshop.HairInfoInsertFormFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrlRe;
 import com.yedam.hairshop.hairshop.HairStatusChangeAjCtrl;
+import com.yedam.hairshop.hairshop.HairshopCloseDayManageCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
@@ -101,6 +102,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
+import com.yedam.hairshop.hairshop.employeeCloseDayManageCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
@@ -116,7 +118,6 @@ import com.yedam.hairshop.members.DesignerSelectResultCtrl;
 import com.yedam.hairshop.members.DetailedReservationCtrl;
 import com.yedam.hairshop.members.GpsHairshopSearchCtrl;
 import com.yedam.hairshop.members.HairBookmarkCtrl;
-import com.yedam.hairshop.members.RegionHairRankCtrl;
 import com.yedam.hairshop.members.HairSelectCtrl;
 import com.yedam.hairshop.members.HairSelectResultCtrl;
 import com.yedam.hairshop.members.HairShopReviewCtrl;
@@ -177,6 +178,7 @@ import com.yedam.hairshop.members.PaymentCtrl;
 import com.yedam.hairshop.members.PaymentImportCtrl;
 import com.yedam.hairshop.members.PaymentMemberCtrl;
 import com.yedam.hairshop.members.RegionDesignerRankCtrl;
+import com.yedam.hairshop.members.RegionHairRankCtrl;
 import com.yedam.hairshop.members.RegionHairshopRankCtrl;
 import com.yedam.hairshop.members.SearchDetailCtrl;
 import com.yedam.hairshop.members.SearchRealtimCtrl;
@@ -266,6 +268,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopProcedureFinish.do", new hairshopProcedureFinishCtrl());
 		list.put("/hairshop/hairshopProcedureFinishList.do", new hairshopProcedureFinishListCtrl());
 		list.put("/hairshop/hairshopProcedureFinishSD.do", new hairshopProcedureFinishSDCtrl()); //시술완료고객 디자이너로검색해서 보기
+		
+		list.put("/hairshop/HairshopCloseDayManage.do", new HairshopCloseDayManageCtrl()); //미용실 휴무일 설정
+		list.put("/hairshop/employeeCloseDayManage.do", new employeeCloseDayManageCtrl()); //디자이너 리스트 휴무일 설정
 		
 
 		
