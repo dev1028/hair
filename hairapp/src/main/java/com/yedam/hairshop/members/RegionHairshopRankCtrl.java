@@ -41,11 +41,10 @@ public class RegionHairshopRankCtrl implements Controller {
 			}
 
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("regionHairshopRank.jsp").forward(request, response);
-			
 		}else {
 			
 		}
+		request.getRequestDispatcher("regionHairshopRank.jsp").forward(request, response);
 	}
 
 }

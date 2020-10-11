@@ -85,7 +85,7 @@ public class HairshopDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,"
 					+ " HS_FULLADDR,HS_CITYADDR, HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME,"
-					+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC, HS_REGDATE" + " FROM HAIRSHOP" + " WHERE HS_EMAIL = ?"
+					+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC, HS_REGDATE, HS_APPROVAL" + " FROM HAIRSHOP" + " WHERE HS_EMAIL = ?"
 					+ " AND HS_PW =?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hsVo.getHs_email());
@@ -115,7 +115,7 @@ public class HairshopDAO {
 				resultVo.setHs_parking(rs.getString("HS_PARKING"));
 				resultVo.setHs_etc(rs.getString("HS_ETC"));
 				resultVo.setHs_regdate(rs.getString("HS_REGDATE"));
-
+				resultVo.setHs_approval(rs.getString("HS_APPROVAL"));
 			} else {
 				System.out.println("no data");
 			}
@@ -420,4 +420,28 @@ public class HairshopDAO {
 
 		return list;
 	}
+	
+	//2020.10.11 김승연
+	//공지사항 프로필 업데이트
+	public int updateNoticeAndProfile(HairshopVo hVo) {
+		ResultSet rs = null;
+		
+		int result = 0;
+		String sql = "UPDATE HAIRSHOP SET HS_NOTICE = ?, HS_PROFILE = ? WHERE HS_NO = ?";
+
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hVo.getHs_notice());
+			pstmt.setString(2, hVo.getHs_profile());
+			pstmt.setString(3, hVo.getHs_no());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return result;
+	}
+	
 }

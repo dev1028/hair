@@ -51,6 +51,36 @@ public class HairshopHairInfoDAO {
 		}
 		return null;
 	}
+	
+	//2020.10.11 김승연
+	//시술명 중복체크
+	public List<HairshopHairInfoVo> selectHairInfoByName(HairshopHairInfoVo vo) {
+		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
+		ResultSet rs = null;
+		try {
+			String sql = " SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no"
+					+ " FROM hairshop_hair_info hi, hairshop hs " + " WHERE hi.hs_no = ? AND hi.HHI_STATUS = 1 AND hi.hhi_name = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getHs_no());
+			pstmt.setString(2, vo.getHhi_name());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				HairshopHairInfoVo resultVo = new HairshopHairInfoVo();
+				resultVo.setHhi_no(rs.getString(1));
+				resultVo.setHhi_name(rs.getString(2));
+				resultVo.setHhi_price(rs.getString(3));
+				resultVo.setHhi_time(rs.getString(4));
+				resultVo.setHs_no(rs.getString(5));
+				list.add(resultVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
 
 	// 헤어샵에 포함된 헤어정보 리스트
 	public List<HairshopHairInfoVo> selectListHairshopHairInfo_InHairshop(HairshopVo hairshopVo) {
