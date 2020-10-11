@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
+import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.SearchRankVo;
@@ -80,9 +81,34 @@ public class HairshopHairInfoDAO {
 		return list;
 	}
 
-	public List<HairshopHairInfoVo> getBookmarkList() {
+	public List<HairshopHairInfoVo> getBookmarkList(String memNo) {
+		ResultSet rs = null;
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
-
+		String sql =
+				" SELECT h.hhi_no, h.hhi_name, h.hhi_price, h.hhi_time, h.hs_no, h.hhi_status " + 
+				" FROM hairshop_hair_info h, favor_hair f " + 
+				" WHERE h.hhi_no = f.hhi_no " + 
+				" AND f.mem_no = ? ";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memNo);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				HairshopHairInfoVo tmpVo = new HairshopHairInfoVo();
+				tmpVo.setHhi_no(rs.getString("hhi_no"));
+				tmpVo.setHhi_name(rs.getString("hhi_name"));
+				tmpVo.setHhi_price(rs.getString("hhi_price"));
+				tmpVo.setHhi_time(rs.getString("hhi_time"));
+				tmpVo.setHs_no(rs.getString("hs_no"));
+				tmpVo.setHhi_status(rs.getString("hhi_status"));
+				list.add(tmpVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
 		return list;
 	}
 

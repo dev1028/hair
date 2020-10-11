@@ -1,5 +1,8 @@
 $(function() {
+	
 	period();
+	$("button").attr('class','btn btn-secondary btn-sm');
+	$("input").attr('class','btn btn-secondary btn-sm');
 	$(document).on(
 			"click",
 			"#excel",
@@ -192,7 +195,8 @@ $(function() {
 //			var url = "/hairapp/admin/adminSales.do"
 		var table = $("<table />").attr({
 			'border' : '1',
-			'id' : 'test'
+			'id' : 'test',
+			'class' : 'table table-bordered table-hover table-sm text-center'
 		});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));
@@ -256,71 +260,10 @@ $(function() {
 			table.append(tr);
 		}});
 		$("#result").append($(table));
+		console.log($("#result"));
 		$("#result").append($("<button />").attr('id','excel').text("엑셀로 저장"));
 
 	}
 
-	function result2(start, end) {
-
-		$("#result").html("");
-		var url = "/hairapp/hairshop/sales.do"
-		var table = $("<table />").css('border', '1');
-		var tr = $("<tr />");
-		tr.append($("<th>").text("시술날짜 "));
-		tr.append($("<th>").text("예약번호 "));
-		tr.append($("<th>").text("고객명  "));
-		tr.append($("<th>").text("디자이너  "));
-		tr.append($("<th>").text("시술명 "));
-		tr.append($("<th>").text("카드  "));
-		tr.append($("<th>").text("현금  "));
-		tr.append($("<th>").text("카카오  "));
-		tr.append($("<th>").text("계좌  "));
-		tr.append($("<th>").text("총합  "));
-
-		table.append(tr);
-
-		// console.log($("#start").val());
-		$.getJSON(url, {
-			start : $("#start").val(),
-			end : $("#end").val()
-		}, function(obj) {
-
-			console.log(obj);
-			obj.forEach(function(o, i, u) {
-				var tr = $("<tr />");
-
-				tr.append($("<td>").text(o.mdrDt));
-				tr.append($("<td>").text(o.mdrNo));
-				tr.append($("<td>").text(o.memNm));
-				tr.append($("<td>").text(o.dsNm));
-				tr.append($("<td>").text(o.hNm));
-				tr.append($("<td>").text(o.cd));
-				tr.append($("<td>").text(o.cs));
-				tr.append($("<td>").text(o.ka));
-				tr.append($("<td>").text(o.ac));
-				tr.append($("<td>").text(o.to));
-				table.append(tr);
-			})
-
-			// $("#id").val(obj.id);
-			// $("#pw").val(obj.pw);
-			//
-			// $("#job").val(obj.job);
-			// var str = "input:radio[name='gender']:radio[value='"
-			// + obj.gender + "']";
-			// $(str).prop('checked', true);
-			// //$("input:radio[name='gender']:radio[value='여']").prop('checked',
-			// true);
-			// if (obj.mailyn == 'Y') {
-			//
-			// $("input:checkbox[name='mailyn']").prop('checked',
-			// true);
-			// } else {
-			// $("input:checkbox[name='mailyn']").prop('checked',
-			// false);
-			// }
-
-			$("#result").append($(table));
-		});
-	}
+	
 });

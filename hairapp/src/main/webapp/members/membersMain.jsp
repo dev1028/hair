@@ -15,6 +15,43 @@
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 <style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+</style>
+<style>
 /* 슬라이더 */
 *{box-sizing: border-box; -webkit-box-sizing: border-box; }
 html, body { height: 100%; }
@@ -436,10 +473,12 @@ form.example::after {
     	
 			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->
 			<!-- 여기서도 term을 보낸다. -->
-			<input autocomplete="off" id="project" type="text" name="term">
-			<button type="submit" name="detail"><i class="fa fa-search"></i></button>
-			<input type="hidden" id="project-id">
-			<p id="project-description"></p>
+			<div class="search">
+				<input autocomplete="off" id="project" type="text" class="searchTerm"  name="term" placeholder="미용실 이름을 적으세요.">
+				<button type="submit" class="searchButton" name="detail"><i class="fa fa-search"></i></button>
+				<input type="hidden" id="project-id">
+				<p id="project-description"></p>
+			</div>
 		</form>
 		<br><br><br>
 		

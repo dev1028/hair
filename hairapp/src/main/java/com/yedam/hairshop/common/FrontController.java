@@ -33,6 +33,9 @@ import com.yedam.hairshop.admin.AnalysisAgeCtrl;
 import com.yedam.hairshop.admin.AnalysisByTreatCtrl;
 import com.yedam.hairshop.admin.AnalysisGenderCtrl;
 import com.yedam.hairshop.admin.AnalysisTotalCtrl;
+import com.yedam.hairshop.admin.AnalysisTreatGenderCtrl;
+import com.yedam.hairshop.admin.AnalysisTreatTableCtrl;
+import com.yedam.hairshop.admin.AnalysisTreatTableGoCtrl;
 import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.ChartCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
@@ -130,6 +133,7 @@ import com.yedam.hairshop.members.MembersBookmarkHairstyleCtrl;
 import com.yedam.hairshop.members.MembersCouponCtrl;
 import com.yedam.hairshop.members.MembersDeleteCtrl;
 import com.yedam.hairshop.members.MembersDeleteSCtrl;
+import com.yedam.hairshop.members.MembersHairIntroCtrl;
 import com.yedam.hairshop.members.MembersHairShopInfoCtrl;
 import com.yedam.hairshop.members.MembersHairShopIntroCtrl;
 import com.yedam.hairshop.members.MembersHsCouponICtrl;
@@ -243,6 +247,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersBookmarkDesigner.do", new MembersBookmarkDesignerCtrl());
 		list.put("/members/membersBookmarkHairstyle.do", new MembersBookmarkHairstyleCtrl());
 
+		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
@@ -335,6 +341,9 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());//
 		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());//
 		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());//
+		list.put("/ajax/hairshop/analysisTreatGender.do", new AnalysisTreatGenderCtrl());//
+		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());//
+		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());//
 		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
 
 		list.put("/ajax/hairshop/chart.do", new ChartCtrl());

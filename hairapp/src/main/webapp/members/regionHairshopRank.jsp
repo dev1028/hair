@@ -10,6 +10,12 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/card.css">
 <link rel="stylesheet" type="text/css" href="../css/hairshopCard.css">
+<link rel="stylesheet" type="text/css" href="../css/designerCard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" href="../decorator/membersDesigner.css">
 <style>
 div.course{
 	padding: 10px;
@@ -40,43 +46,48 @@ div.course{
 </script>
 </head>
 <body>
-	지역별 헤어샵 순위
-
-<c:forEach items="${list}" var="item">
-	<form action="../members/hairshopSelectResult.do" method="post">
-		<div class="course" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">
-			<div class="course-preview">
-				<h6>미용실이름</h6>
-				<h4>${item.hs_name }</h4>
-			</div>
-			<div class="course-info">
-				<div class="progress-container">
-					<div class="progress"></div>
+	
+<div class="container">
+    <h3 class="h3">지역별 헤어샵 순위</h3>
+    <div class="row">
+	<c:forEach items="${list}" var="item">
+		<form action="../members/hairshopSelectResult.do" method="post">
+			<div class="course" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">
+				<div class="course-preview">
+					<h6>미용실이름</h6>
+					<h4>${item.hs_name }</h4>
 				</div>
-				<h6>거리</h6>
-				<h2>${item.distance } km </h2>
-				<h6>영업시간</h6>
-				<h2>${item.hs_starttime}시 -${item.hs_endtime}시</h2>
-				<h6>주소</h6>
-				<h2>${item.hs_fulladdr }</h2>
-				
-				<button class="btn">예약</button>
-				<c:if test="${not empty login }">
-					<a href='javascript: like_func("${item.hs_no}")'>
-						<c:if test="${item.hs_book == 1 }">
-							<img class="img-${item.hs_no}" src="../images/bookmark/heart.png" width="30" height="30">
-						</c:if>
-						<c:if test="${item.hs_book != 1 }">
-							<img class="img-${item.hs_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
-						</c:if>
-					</a>
-				</c:if>
+				<div class="course-info">
+					<div class="progress-container">
+						<div class="progress"></div>
+					</div>
+					<h6>거리</h6>
+					<h2>${item.distance } km </h2>
+					<h6>영업시간</h6>
+					<h2>${item.hs_starttime}시 -${item.hs_endtime}시</h2>
+					<h6>주소</h6>
+					<h2>${item.hs_fulladdr }</h2>
+					
+					<button class="btn">예약</button>
+					<c:if test="${not empty login }">
+						<a href='javascript: like_func("${item.hs_no}")'>
+							<c:if test="${item.hs_book == 1 }">
+								<img class="img-${item.hs_no}" src="../images/bookmark/heart.png" width="30" height="30">
+							</c:if>
+							<c:if test="${item.hs_book != 1 }">
+								<img class="img-${item.hs_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+							</c:if>
+						</a>
+					</c:if>
+				</div>
 			</div>
-		</div>
-		<input type="hidden" name="hsNo" value="${item.hs_no}">
-	</form>
-	<hr>
-</c:forEach>
+			<input type="hidden" name="hsNo" value="${item.hs_no}">
+		</form>
+		<hr>
+	</c:forEach>
+	</div>
+</div>
+<hr>
 
 <%--
 	<div class="cardContainer">

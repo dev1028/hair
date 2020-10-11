@@ -1,4 +1,4 @@
-package com.yedam.hairshop.hairshop;
+package com.yedam.hairshop.admin;
 
 import java.io.IOException;
 
@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class hairshopProcedureFinishCtrl implements Controller {
+public class AnalysisTreatTableGoCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("/hairshop/hairshopProcedureFinishList.do").forward(request, response);
+		// TODO Auto-generated method stub
+
+		request.getRequestDispatcher("/hairshop/analysisByTreat.jsp").forward(request, response);
 	}
 
 }

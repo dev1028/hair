@@ -23,11 +23,12 @@ $(function() {
 						setTimeout(function() {
 
 							if (x == 0) {
-								gender();
+								//gender();
 							} else if (x == 1) {
-								age();
+								//age();
 							} else {
-								total();
+								//total();
+								treatRankMale();
 							}
 
 						}, 300 * x);
@@ -147,7 +148,8 @@ $(function() {
 					});
 				}
 				function treatRankMale() {
-
+					var male = new Map();
+					var female = new Map();
 					amale = [];
 					afemale = [];
 					for (var i = 0; i < 100; i++) {
@@ -158,7 +160,7 @@ $(function() {
 
 					// Bar Chart Example
 					var adata = $.ajax({
-						url : "/hairapp/ajax/hairshop/analysisAge.do",
+						url : "/hairapp/ajax/hairshop/analysisTreatGender.do",
 						dataType : "json",
 						async : false,
 						data : {
@@ -167,67 +169,44 @@ $(function() {
 						success : function(obj) {
 							// console.log(obj);
 							obj.forEach(function(o, i, u) {
+
 								if (o.gender === "male") {
-									amale[o.age] = o.age_cnt;
+									
+									male.set( o.rank,o.cnt);
+//									male.set("cnt", o.cnt);
+//									male.set("hhi_name", o.hhi_name);
 								} else {
-									afemale[o.age] = o.age_cnt;
+									female.set(o.rank,o.cnt+o.hhi_name);
+//									female.set("cnt", o.cnt);
+//									female.set("hhi_name", o.hhi_name);
+//									afemale[o.age] = o.age_cnt;
 								}
 							});
 						}
 					});
 					// console.log(amale);
-					var actx = document.getElementById("age");
+					var actx = document.getElementById("rank");
 					var amyLineChart = new Chart(actx, {
 						type : 'bar',
 						data : {
-							labels : [ "여자", "남자" ],
+							labels : [ "1","2","3","4","5" ],
 
 							datasets : [ {
-								label : "0~9",
+								label : "남자",
 								backgroundColor : "#f1bdda",
 								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[0], afemale[0] ],
+								data : [ male.get("1"),male.get("2"),male.get("3"),male.get("4"),male.get("5"),],
 							}, {
-								label : "10~19",
-								backgroundColor : "#ddf2f2",
-								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[10], afemale[10] ],
-							}, {
-								label : "20~29",
-								backgroundColor : "#ffe1e6",
-								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[20], afemale[20] ],
-							}, {
-								label : "30~39",
+								label : "2",
 								backgroundColor : "#daecfb",
 								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[30], afemale[30] ],
-							}, {
-								label : "40~49",
-								backgroundColor : "#fff5de",
-								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[40], afemale[40] ],
-							}, {
-								label : "50~59",
-								backgroundColor : "#ebe1ff",
-								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[50], afemale[50] ],
-							}, {
-								label : "60~69",
-								backgroundColor : "#ffecdb",
-								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[60], afemale[60] ],
-							}, {
-								label : "70~79",
-								backgroundColor : "#f4f5f5",
-								borderColor : "rgba(2,117,216,1)",
-								data : [ amale[70], afemale[70] ],
+								data : [ 1,2 ,9,8,7],
 							} ],
 						},
 						options : {
 							scales : {
 								xAxes : [ {
-									stacked : true,
+//									stacked : true,
 
 									time : {
 										unit : 'month'
@@ -245,7 +224,7 @@ $(function() {
 										max : 100,
 										maxTicksLimit : 5
 									},
-									stacked : true,
+//									stacked : true,
 
 									gridLines : {
 										display : true

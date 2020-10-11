@@ -2,29 +2,31 @@ package com.yedam.hairshop.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.SalesDAO;
+import com.yedam.hairshop.dao.AnalysisDAO;
+import com.yedam.hairshop.model.AnalysisVo;
 
 import net.sf.json.JSONArray;
 
-public class ChartCtrl implements Controller {
+public class AnalysisTreatTableCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//String hs_no= request.getSession().getAttribute("hsno").toString();
-		List<Map<String, String>> list = SalesDAO.getInstance().chart("2");
+		String date = request.getParameter("date");
+		AnalysisVo vo = new AnalysisVo();
+		vo.setDate("2020-09");
+		vo.setHs_no("2");
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		list = AnalysisDAO.getInstance().treatRank(vo);
 		
 		String str = JSONArray.fromObject(list).toString();
-		response.getWriter().print(str);
 
+		response.getWriter().print(str);
 	}
 
 }

@@ -89,6 +89,170 @@ System.out.println("vo"+resultVo.getCnt());
 		}
 		return list;
 	}
+	public ArrayList<AnalysisVo> treatRank(AnalysisVo vo) {
+		ResultSet rs = null;
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		String sql = "SELECT\n" + 
+				"    h.hhi_name,\n" + 
+				"    tmac.tmac_name,\n" + 
+				"    tmic.tmic_explication,\n" + 
+				"    m.mem_sex,\n" + 
+				"    d.designer_name,\n" + 
+				"    AVG(rv.hr_rate) as hr_rate,\n" + 
+				"    COUNT(*) as cnt,\n" + 
+				"    ROW_NUMBER() OVER(\n" + 
+				"        PARTITION BY mem_sex\n" + 
+				"        ORDER BY\n" + 
+				"            COUNT(*) DESC\n" + 
+				"    ) rank\n" + 
+				"FROM\n" + 
+				"    hairshop_hair_info      h\n" + 
+				"    JOIN mem_designer_rsv_info   i ON ( h.hhi_no = i.hhi_no )\n" + 
+				"    JOIN members_designer_rsv    r ON ( r.mdr_no = i.mdr_no )\n" + 
+				"    JOIN members                 m ON ( r.mem_no = m.mem_no )\n" + 
+				"    JOIN tt_middle_category      tmic ON ( tmic.tmic_no = h.tmic_no )\n" + 
+				"    JOIN tt_main_category        tmac ON ( tmac.tmac_no = tmic.tmac_no )\n" + 
+				"    JOIN (\n" + 
+				"        SELECT\n" + 
+				"            a.hhi_name,\n" + 
+				"            a.designer_name\n" + 
+				"        FROM\n" + 
+				"            (\n" + 
+				"                SELECT\n" + 
+				"                    d.designer_name,\n" + 
+				"                    h.hhi_name,\n" + 
+				"                    COUNT(*) ,\n" + 
+				"                    ROW_NUMBER() OVER(\n" + 
+				"                        PARTITION BY h.hhi_name\n" + 
+				"                        ORDER BY\n" + 
+				"                            COUNT(*) DESC\n" + 
+				"                    ) ranking\n" + 
+				"                FROM\n" + 
+				"                    hairshop_hair_info      h\n" + 
+				"                    JOIN mem_designer_rsv_info   i ON ( h.hhi_no = i.hhi_no )\n" + 
+				"                    JOIN members_designer_rsv    r ON ( r.mdr_no = i.mdr_no )\n" + 
+				"                    JOIN designer                d ON ( d.designer_no = r.designer_no )\n" + 
+				"                GROUP BY\n" + 
+				"                    h.hhi_name,\n" + 
+				"                    d.designer_name\n" + 
+				"            ) a\n" + 
+				"        WHERE\n" + 
+				"            a.ranking < 2\n" + 
+				"    ) d ON ( d.hhi_name = h.hhi_name )\n" + 
+				"    LEFT OUTER JOIN hairshop_reviews        rv ON ( rv.mdr_no = r.mdr_no )\n" + 
+				"WHERE\n" + 
+				"    r.hs_no = ?\n AND r.mdr_date BETWEEN ? AND last_day(TO_DATE(?, 'yyyy-mm-dd'))" + 
+				"GROUP BY\n" + 
+				"    h.hhi_name,\n" + 
+				"    tmac.tmac_name,\n" + 
+				"    tmic.tmic_explication,\n" + 
+				"    m.mem_sex,\n" + 
+				"    d.designer_name,\n" + 
+				"    rv.hr_rate";
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, vo.getHs_no());
+		pstmt.setString(2, vo.getDate() + "-01");
+		pstmt.setString(3, vo.getDate() + "-01");
+		
+			rs = pstmt.executeQuery();
+			System.out.println("nnsql");
+			while (rs.next()) {
+				AnalysisVo resultVo = new AnalysisVo();
+				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setHhi_name(rs.getString("hhi_name"));
+				resultVo.setRank(rs.getString("rank"));
+				resultVo.setGender(rs.getString("mem_sex"));
+				resultVo.setTmac_name(rs.getString("tmac_name"));
+				resultVo.setTmic_name(rs.getString("tmic_explication"));
+				resultVo.setDesigner_name(rs.getString("designer_name"));
+				resultVo.setHr_rate(rs.getString("hr_rate"));
+				
+				
+				list.add(resultVo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	public ArrayList<AnalysisVo> treatRankMale(ArrayList<AnalysisVo>  list) {
+		ResultSet rs = null;
+		String sql = "select h.hhi_name ,count(*) as cnt ,row_number() over (order by count(*) desc) rank\n" + 
+				"    from hairshop_hair_info h \n" + 
+				"    join mem_designer_rsv_info i on(h.hhi_no = i.hhi_no) \n" + 
+				"    join members_designer_rsv r  on(r.mdr_no=i.mdr_no)\n"
+				+ "  join members m on(r.mem_no=m.mem_no)\n" + 
+				"    where m.mem_sex= 'male'"+ 
+				"    group by h.hhi_name";
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, vo.getDate() + "-01");
+		
+			rs = pstmt.executeQuery();
+			System.out.println("nnsql");
+			while (rs.next()) {
+				for(AnalysisVo vo : list) {
+				if(vo.getRank().equals(rs.getString("rank"))) {
+					
+					vo.setCntMale(rs.getString("cnt"));
+					vo.setHhi_nameMale(rs.getString("hhi_name"));
+				}
+				}
+//				AnalysisVo resultVo = new AnalysisVo();
+//				resultVo.setRank(rs.getString("rank"));
+				//resultvo.setGender("male");
+				//list.add(resultVo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	public ArrayList<AnalysisVo> treatRankFemale(AnalysisVo vo) {
+		ResultSet rs = null;
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		String sql = "select a.* from ( select h.hhi_name ,count(*) as cnt ,row_number() over (order by count(*) desc) rank\n" + 
+				"    from hairshop_hair_info h \n" + 
+				"    join mem_designer_rsv_info i on(h.hhi_no = i.hhi_no) \n" + 
+				"    join members_designer_rsv r  on(r.mdr_no=i.mdr_no)\n"
+				+ "  join members m on(r.mem_no=m.mem_no)\n" + 
+				"    where m.mem_sex= 'female'"+ 
+				"    group by h.hhi_name ) a  where a.rank<6";
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, vo.getDate() + "-01");
+		
+			rs = pstmt.executeQuery();
+			System.out.println("nnsql");
+			while (rs.next()) {
+				AnalysisVo resultVo = new AnalysisVo();
+				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setHhi_nameFemale(rs.getString("hhi_name"));
+				resultVo.setRank(rs.getString("rank"));
+				vo.setGender("female");
+				list.add(resultVo);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
 
 	public ArrayList<AnalysisVo> countAgeByFemale(AnalysisVo vo) {
 		ResultSet rs = null;

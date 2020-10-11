@@ -46,7 +46,7 @@
 							<i class="fas fa-chart-bar mr-1"></i> 예약수 추이
 						</div>
 						<div class="card-body">
-							<canvas id="total" width="100%" height="50"></canvas>
+							<canvas id="rank" width="100%" height="50"></canvas>
 						</div>
 
 					</div>
