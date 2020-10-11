@@ -16,7 +16,7 @@ public class hairshopAnalysisCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/admin/adminQnaManage.jsp").forward(request, response);
+		
 		request.getRequestDispatcher("/admin/adminAnalysisByHairshop.jsp").forward(request, response);
 
 	}

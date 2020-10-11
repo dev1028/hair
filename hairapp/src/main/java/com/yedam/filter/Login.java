@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.yedam.hairshop.admin.SalesBydesignerCtrl;
-import com.yedam.hairshop.admin.SalesStatisticsByDesignerCtrl;
+import com.yedam.hairshop.hairshop.SalesBydesignerCtrl;
+import com.yedam.hairshop.hairshop.SalesStatisticsByDesignerCtrl;
 
 
 
@@ -217,7 +217,7 @@ public class Login implements Filter {
 		list.put("/ajax/hairshop/chart.do", adminLoginPage);
 		list.put("/admin/adminSalesStatistics.do", adminLoginPage);
 //		list.put("/admin/adminSalesStatisticsFind.do", adminLoginPage);
-//		list.put("/admin/adminSales.do", adminLoginPage);
+	//	list.put("/admin/adminSales.do", adminLoginPage);
 
 		list.put("/admin/adminBoardManage.do", adminLoginPage);// 보드
 		list.put("/admin/adminBoardManageFind.do", adminLoginPage);

@@ -1,4 +1,4 @@
-package com.yedam.hairshop.admin;
+package com.yedam.hairshop.hairshop;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,34 +12,21 @@ import com.yedam.hairshop.dao.AnalysisDAO;
 import com.yedam.hairshop.model.AnalysisVo;
 
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
-public class AnalysisGenderCtrl implements Controller {
+public class AnalysisTreatTableCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-		ArrayList<AnalysisVo> list = new ArrayList<>();
 		String date = request.getParameter("date");
 		AnalysisVo vo = new AnalysisVo();
-		vo.setDate(date);
-		System.out.println(date);
-		list = AnalysisDAO.getInstance().countGender(vo);
-		JSONArray jarr = new JSONArray();
-		JSONObject jobj = new JSONObject(); 
-		for(AnalysisVo rvo : list) {
-			
-		jobj.put(rvo.getGender(), rvo.getGender_cnt());
+		vo.setDate("2020-09");
+		vo.setHs_no("2");
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		list = AnalysisDAO.getInstance().treatRank(vo);
 		
-		jarr.add(jobj);
-		}
-		String str = JSONArray.fromObject(jarr).toString();
+		String str = JSONArray.fromObject(list).toString();
 
 		response.getWriter().print(str);
-
-		
-		
 	}
 
 }
