@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.common.ChangeUtil;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.model.HairshopVo;
+
 
 public class employeeCloseDayManageCtrl implements Controller {
 
@@ -18,6 +21,21 @@ public class employeeCloseDayManageCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String hs_no = (String) request.getSession().getAttribute("hsno");
 		DesignerVo dVo = new DesignerVo();
+		//HairshopVo hvo = new HairshopVo();
+		//hvo.setHs_no(hs_no);
+
+		//HairshopVo loginVo = (HairshopVo) request.getSession().getAttribute("login");
+		
+		HairshopVo tmpVo = new HairshopVo();
+		tmpVo.setHs_no(hs_no);
+		HairshopVo loginVo = HairshopDAO.getInstance().selectOne(tmpVo);
+		
+		loginVo.setHs_dayoff(ChangeUtil.changeDayOffNumToStr(loginVo.getHs_dayoff()));
+		loginVo.setHs_regdate(loginVo.getHs_regdate().split(" ")[0]);
+		
+		
+		
+		
 		dVo.setHs_no(hs_no);
 		ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShop(dVo);
 		for (DesignerVo emp : emplist) {
@@ -34,7 +52,8 @@ public class employeeCloseDayManageCtrl implements Controller {
 				emp.setHire_date(dateList[0]);
 			}
 		}
-		
+			System.out.println(emplist);
+			request.setAttribute("hairshop", loginVo);
 			request.setAttribute("emplist", emplist);
 			request.getRequestDispatcher("/hairshop/employeeCloseDayManage.jsp").forward(request, response);
 		

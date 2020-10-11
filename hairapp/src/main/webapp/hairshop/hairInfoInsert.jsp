@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
+var checkSame = 0;
  $(function(){
 	$("#tmac_no").on("change", function(){
 		if($("#tmac_no").val() != ""){
@@ -70,6 +71,10 @@
 			alert("시술선택명을 선택하세요.");
 			return false;
 		}
+		if(checkSame == 0){
+			alert("이미 사용중인 시술명이 있습니다. 해당시술을 미사용처리 후 다시 등록해주세요.");
+			return false;
+		}
 	});
 	
 	$("#hhmi_file").on("change", function(event) {
@@ -86,7 +91,36 @@
 		};
 		reader.readAsDataURL(event.target.files[0]); */
 	});
-	
+	$("#btnCheckSame").on("click", function(){
+		
+		if($("#hhi_name").val() != ""){
+			var hhiName = $("#hhi_name").val();
+			$.ajax({
+						url : "${pageContext.request.contextPath}/ajax/checkSameHhiName.do",
+						data : {
+							hhi_name : hhiName
+						},
+						dataType : "json",
+						method : "post",
+						success : function(data) {
+							if (data == 1) {
+								checkSame = 0;
+								alert("이미 사용중인 시술명이 있습니다. 해당시술을 미사용처리 후 다시 등록해주세요.");
+							} else {
+								checkSame = 1;
+								alert("사용가능한 시술명입니다.");
+								$("#hhi_name").attr("disabled",true);
+							}
+						
+							}
+						
+					});// end of ajax 
+			
+		} else {
+			checkSame = 0;
+			alert("값을 입력해주세요.");
+		}
+	});
 	
 	
  });
@@ -118,13 +152,17 @@ function is_number(v) {
 				action="${pageContext.request.contextPath}/hairshop/hairInfoInsertForm.do" method="post"
 				enctype="multipart/form-data">
 					<div class="mb-3">
-						<label for="hhi_name">시술명 <span class="badge badge-pill badge-danger">필수</span></label> <input type="text"
+						<label for="hhi_name">시술명 <span class="badge badge-pill badge-danger">필수</span></label>
+					<div class="input-group">
+						
+						 <input type="text"
 							class="form-control" id="hhi_name" name="hhi_name" value="" placeholder="예약시 표시될 시술명입니다."
 							required>
+							<div class="input-group-append"><button id="btnCheckSame" class="btn btn-primary" type="button">중복확인</button></div>
+					</div>
 						<div class="invalid-feedback">이미 사용중인 시술명입니다. 해당 시술을 미사용 처리후
 							등록해주세요.</div>
-					</div>
-
+					</div>					
 					<div class="mb-3">
 						<label for="hhi_price">가격 <span class="badge badge-pill badge-danger">필수</span></label>
 						<div class="input-group">

@@ -167,7 +167,9 @@
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminCustomerManage.do">일반 회원 관리
 									</a> 
 									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminHairshopManage.do">헤어샵 회원 관리</a>
-									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminDesignerManage.do">디자이 회원 관리
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminDesignerManage.do">디자이너 회원 관리
+									</a>
+									<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminNewHairshop.do">헤어샵 입점 요
 									</a>
 							</nav>
 						</div>
@@ -242,7 +244,7 @@
 			<decorator:body></decorator:body>
 	 	</div> 
 	</div>
-	<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"
 			crossorigin="anonymous"></script>
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
@@ -251,7 +253,7 @@
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 			crossorigin="anonymous"></script>
-		<script src="/hairapp/decorator/ges/dist/assets/demo/chart-area-demo.js"></script>
+		<!-- <script src="/hairapp/decorator/ges/dist/assets/demo/chart-area-demo.js"></script> -->
 		<script src="/hairapp/decorator/ges/dist/assets/demo/chart-bar-demo.js"></script>
 		<script
 			src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
@@ -259,6 +261,6 @@
 		<script
 			src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
 			crossorigin="anonymous"></script>
-		<script src="/hairapp/decorator/ges/dist/assets/demo/datatables-demo.js"></script> -->
+		<script src="/hairapp/decorator/ges/dist/assets/demo/datatables-demo.js"></script>
 </body>
 </html>

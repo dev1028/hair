@@ -265,7 +265,7 @@
 			<div class="block">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 					<a class="navbar-brand"
-						href="${pageContext.request.contextPath}/hairshop/hairshopMain.do">${login.hs_name}</a>
+						href="${pageContext.request.contextPath}/hairshop/hairshopMain.do">${sessionScope.login.hs_name}</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
 						data-target="#navbarSupportedContent"
 						aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -275,8 +275,7 @@
 
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-						<li class="nav-item"><a class="nav-link disabled" href="#"
-								tabindex="-1" aria-disabled="true">미용실정보</a></li>
+				
 							<li class="nav-item"><a class="nav-link disabled" href="#"
 								tabindex="-1" aria-disabled="true">제품관리</a></li>
 								<li class="nav-item"><a class="nav-link disabled" href="#"
@@ -303,7 +302,7 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/salesStatistics.do">매출분석</a> 
 									<a
-										class="dropdown-item" href="${pageContext.request.contextPath}/ajax/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/salesStatisticsByDesigner.do">직원별매출</a>
 								</div></li>
 								
 								<li class="nav-item dropdown"><a
@@ -311,9 +310,9 @@
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 분석통계 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreatCtrl.do">시술별통계</a> 
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do">시술별통계</a> 
 									<a
-										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByReservationCtrl.do">예약분석</a>
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisTreatTableGo.do">예약분석</a>
 								</div></li>
 								
 								
@@ -344,9 +343,22 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do">쿠폰등록</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
+
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">휴무일관리</a></li>
 								
+
+									<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 미용실정보관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/myHairshopInfo.do">마이페이지</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/myHairshopProfile.do">프로필</a>
+								</div></li>
+
 								
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->

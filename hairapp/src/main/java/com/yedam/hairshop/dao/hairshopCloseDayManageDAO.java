@@ -20,14 +20,22 @@ public class hairshopCloseDayManageDAO {
 		return instance;
 	}
 
-	public int update(HairshopVo hairshopVo) {
+	/*
+	 * public HairshopVo selectOne(HairshopVo hairshopVo) { ResultSet rs = null;
+	 * HairshopVo resultVo = null; try { conn = ConnectionManager.getConnnect();
+	 * String sql = "SELECT hs_no, hs_name, hs_owner, hs_tel, hs_" } }
+	 */
+	//휴무일 업데이트
+	public int dayOffUpdate(HairshopVo hairshopVo) {
 		ResultSet rs = null;
 		int r = 0;
-		String sql = "update hairshop set hs_dayoff = ?" + " WHERE hs_no = ?";
+		String sql = "UPDATE hairshop SET hs_dayoff = ? WHERE hs_no = ? ";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hairshopVo.getHs_dayoff());
+			pstmt.setString(2, hairshopVo.getHs_no());
+			r = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

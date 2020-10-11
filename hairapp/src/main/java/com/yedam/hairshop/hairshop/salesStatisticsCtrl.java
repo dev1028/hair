@@ -1,4 +1,4 @@
-package com.yedam.hairshop.admin;
+package com.yedam.hairshop.hairshop;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +15,6 @@ public class salesStatisticsCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 ArrayList<DesignerVo> list = SalesDAO.getInstance().getDsName();
-	request.setAttribute("list", list);
 		
 		
 		request.getRequestDispatcher("/hairshop/hairshopStatistics.jsp").forward(request, response);

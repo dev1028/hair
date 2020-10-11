@@ -19,6 +19,12 @@ div.course{
 <script src="../js/hairshopBookmark.js"></script>
 <script src="../js/locationFromIP.js"></script>
 </head>
+<style>
+.container_horrizon {
+  text-align: center;
+}
+</style>
+
 <body>
 <c:if test="${empty lat }">
 <script>
@@ -27,7 +33,10 @@ div.course{
 </c:if>
 
 <div class="container">
-    <h3 class="h3">지역별 헤어샵 순위</h3>
+	<div class="container_horrizon">
+    	<h3 class="h3">지역별 헤어샵 순위</h3>
+    </div>
+    
     <div class="row">
 	<c:forEach items="${list}" var="item">
 		<form action="../members/hairshopSelectResult.do" method="post">

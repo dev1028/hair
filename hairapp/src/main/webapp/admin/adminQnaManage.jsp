@@ -18,6 +18,10 @@
 <script type="text/javascript" src="adminQnaManage.js">
 	
 </script>
+
+        <link href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
 	<h2 class="heading">매출결산</h2>
@@ -96,34 +100,26 @@
 
 
 	<h2 class="heading">result</h2>
-	<div class="form-group" id="result">
-		<table border="1" id="table">
+	<!-- <div class="form-group" id="result"> -->
+	 <div class="table-responsive" id="result">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		
 			<thead>
 				<tr>
 					<th><input type="checkbox" name="all" id="all" class="chk"></th>
 					<th>page
-						<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button></th>
 					<th>번호
-						<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button>
 					</th>
 					<th>분류
-						<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button>
 					</th>
 					<th>제목 
-						<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button>
 					</th>
-					<th>답변상태<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button>
+					<th>답변상태
 					</th>
 					<th>답변하기</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>조회수<button type="button" name="designer_no" class="asc hide">↑</button>
-						<button type="button" name="designer_no" class="des hide">↓</button>
+					<th>조회수
 					</th>
 				</tr>
 			</thead>
@@ -159,6 +155,11 @@
 		<button id="email">email</button>
 	</div>
 	<!-- <button type="button" id="excel">excel</button> -->
-
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="${pageContext.request.contextPath}/decorator/ges/dist/js/scripts.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/datatables-demo.js"></script>
+   
 </body>
 </html>

@@ -4,11 +4,12 @@ import lombok.Data;
 
 @Data
 public class BoardSettingVo {
-	String type;
-	String who;
-	String id;
-	String writtable;
-	String readable;
+	String board_id;
+	String board_type;
+	String board_who;
+	String board_whov;
+	String board_readable;
+	String board_writtable;
 
 	Integer nevv;
 	Integer total;

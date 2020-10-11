@@ -31,80 +31,17 @@
 		<tbody>
 		<c:forEach items="${list }" var = "i">
 			<tr>
-				<td>${ i.type}</td>
-				<td>${i.who }</td>
-				<td>${i.id }</td>
-				<td>${ i.readable}/${i.writtable}</td>
+				<td>${ i. board_type}</td>
+				<td>${i.board_whov }</td>
+				<td>${i.board_id }</td>
+				<td>${ i.board_readable}/${i.board_writtable}</td>
 				<td>${i.nevv }/${i.total }</td>
-				<td><button id="goto"onclick="location.href='${pageContext.request.contextPath}/admin/adminInsertNotice.do?notice_who=${i.who }'">글쓰기</button>
+				<td><button id="goto"onclick="location.href='${pageContext.request.contextPath}/admin/adminInsertNotice.do?notice_who=${i.board_who }&notice_whov=${i.board_whov }'">글쓰기</button>
 					<button>글삭제</button>
 					<button>고정</button></td>
 			</tr>
 		</c:forEach>
-			<%-- <tr>
-				<td>공지사항</td>
-				<td>hairshop</td>
-				<td>admin/hairshop</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-			</tr>
-			<tr>
-				<td>공지사항</td>
-				<td>designer</td>
-				<td>admin/designer</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-			</tr>
-			<tr>
-				<td>공지사항</td>
-				<td>admin</td>
-				<td>root/admin</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-			</tr>
-			<tr>
-				<td>qna</td>
-				<td>customer</td>
-				<td>member/member</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-			</tr>
-			<tr>
-				<td>qna</td>
-				<td>hairshop</td>
-				<td>hairshop/hairshop</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-			</tr>
-			<tr>
-				<td>qna</td>
-				<td>designer</td>
-				<td>designer/designer</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-			</tr>
-			<tr>
-				<td>qna</td>
-				<td>admin</td>
-				<td>비회원/비회원</td>
-				<td>${new }/${total }</td>
-				<td><button>글보기</button>
-					<button>글삭제</button>
-					<button>고정</button></td>
-					http://localhost/hairapp/members/membersNotice.do
-			</tr> --%>
+		
 			<tr>
 				<td>이용안내FAQ</td>
 				<td>hairshop</td>

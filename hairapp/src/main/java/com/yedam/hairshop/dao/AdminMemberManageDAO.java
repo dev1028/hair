@@ -9,6 +9,7 @@ import java.util.List;
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.BoardManageVo;
 import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.model.HairshopNoticeVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersVo;
 
@@ -17,10 +18,10 @@ public class AdminMemberManageDAO {
 	PreparedStatement pstmt;
 
 	static AdminMemberManageDAO instance = null;
-	static String hs = "select * FROM hairshop\n";
-	static String hs_no = "WHERE  hs_no like '%'||?||'%' ";
-	static String hs_name = "WHERE  hs_name like '%'||?||'%' ";
-	static String hs_owner = "WHERE  hs_owner like '%'||?||'%' ";
+	static String hs = "select * FROM hairshop where hs_approval = 1\n";
+	static String hs_no = "and  hs_no like '%'||?||'%' ";
+	static String hs_name = "and  hs_name like '%'||?||'%' ";
+	static String hs_owner = "and  hs_owner like '%'||?||'%' ";
 	static String mem = "select * FROM members\n";
 	static String mem_no = "WHERE  mem_no like '%'||?||'%' ";
 	static String mem_name = "WHERE  mem_name like '%'||?||'%' ";
@@ -40,6 +41,65 @@ public class AdminMemberManageDAO {
 		if (instance == null)
 			instance = new AdminMemberManageDAO();
 		return instance;
+	}
+	public int hairshopApproval(String hs_no) {
+		ResultSet rs = null;
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "update hairshop set hs_approval = 1, hs_regdate=sysdate where hs_no=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hs_no);
+		
+			r = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+	}
+
+	public ArrayList<HairshopVo> newHairshopList() {
+		ArrayList<HairshopVo> list = new ArrayList<>();
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement("select * from hairshop where hs_approval !=1");
+			rs = pstmt.executeQuery();
+			System.out.println("hssql");
+			while (rs.next()) {
+				HairshopVo resultVo = new HairshopVo();
+				resultVo.setHs_no(rs.getString("HS_NO"));
+				resultVo.setHs_name(rs.getString("HS_NAME"));
+				resultVo.setHs_owner(rs.getString("HS_OWNER"));
+				resultVo.setHs_tel(rs.getString("HS_TEL"));
+				resultVo.setHs_email(rs.getString("HS_EMAIL"));
+				resultVo.setHs_pw(rs.getString("HS_PW"));
+				resultVo.setHs_comp_no(rs.getString("HS_COMP_NO"));
+				resultVo.setHs_profile(rs.getString("HS_PROFILE"));
+				resultVo.setHs_notice(rs.getString("HS_NOTICE"));
+				resultVo.setHs_fulladdr(rs.getString("HS_FULLADDR"));
+				resultVo.setHs_cityaddr(rs.getString("HS_CITYADDR"));
+				resultVo.setHs_townaddr(rs.getString("HS_TOWNADDR"));
+				resultVo.setHs_streetaddr(rs.getString("HS_STREETADDR"));
+				resultVo.setHs_latlong(rs.getString("HS_LATLONG"));
+				resultVo.setHs_dayoff(rs.getString("HS_DAYOFF"));
+				resultVo.setHs_starttime(rs.getString("HS_STARTTIME"));
+				resultVo.setHs_endtime(rs.getString("HS_ENDTIME"));
+				resultVo.setHs_resource_option(rs.getString("HS_RESOURCE_OPTION"));
+				resultVo.setHs_parking(rs.getString("HS_PARKING"));
+				resultVo.setHs_etc(rs.getString("HS_ETC"));
+				resultVo.setHs_regdate(rs.getString("HS_REGDATE"));
+				resultVo.setHs_approval(rs.getString("HS_approval"));
+				list.add(resultVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
 	}
 
 	public ArrayList<DesignerVo> selectDs(DesignerVo designerVo) {
@@ -86,7 +146,7 @@ public class AdminMemberManageDAO {
 		ResultSet rs = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			if (vo.getSearchInput().equals("")) {
+			if (vo == null||vo.getSearchInput().equals("") ) {
 				pstmt = conn.prepareStatement(hs);
 				System.out.println("else");
 			} else if (vo.getSearchType().equals("hs_no")) {
@@ -105,8 +165,6 @@ public class AdminMemberManageDAO {
 				System.out.println("owner");
 			}
 
-			System.out.println(vo.getSearchInput());
-			System.out.println(vo.getSearchType());
 			rs = pstmt.executeQuery();
 			System.out.println("hssql");
 			while (rs.next()) {

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.AdminMemberManageDAO;
 import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.HairshopVo;
 
@@ -17,7 +18,7 @@ public class AdminHairshopManageCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		List<HairshopVo> list = HairshopDAO.getInstance().selectAll();
+		List<HairshopVo> list = AdminMemberManageDAO.getInstance().findHs(null);
 		System.out.println(list.get(0).getHs_no());
 		request.setAttribute("list", list);
 		
