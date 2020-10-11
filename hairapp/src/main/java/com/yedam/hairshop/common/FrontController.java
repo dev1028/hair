@@ -34,6 +34,7 @@ import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
 import com.yedam.hairshop.admin.AnalysisAgeCtrl;
 import com.yedam.hairshop.admin.AnalysisByHairshopCount;
 import com.yedam.hairshop.admin.AnalysisByTreatCtrl;
+import com.yedam.hairshop.admin.AnalysisCtrl;
 import com.yedam.hairshop.admin.AnalysisGenderCtrl;
 import com.yedam.hairshop.admin.AnalysisTotalCtrl;
 import com.yedam.hairshop.admin.AnalysisTreatGenderCtrl;
@@ -352,6 +353,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/salesStatisticsByDesigner.do", new SalesStatisticsByDesignerCtrl());
 		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());//
 		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());//
+		list.put("/ajax/hairshop/analysis.do", new AnalysisCtrl());//
 		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());//
 		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());//
 		list.put("/ajax/hairshop/analysisTreatGender.do", new AnalysisTreatGenderCtrl());//

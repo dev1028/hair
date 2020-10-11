@@ -2,9 +2,67 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+<script>
+function reqStatistics(term){
+	alert('a');
+	$.ajax({
+		async : false,
+		url : "/hairapp/ajax/hairshop/analysis.do",
+		dataType : "json",
+		data : {
+			term : term
+		},
+		success : function(datas) {
+			console.log(datas);
+			
+			var dataPoints = [];
+			for (i = 0; i < datas.length && i < 10; i++) {
+// 				console.log(datas[i].sales + " "+ datas[i].date)
+// 				console.log('cc');
+// 				console.log(new Date(datas[i].date));
+				//kk = {x : Date(), y : datas[i].sales};
+				dataPoints.push({x: new Date(datas[i].date), y:datas[i].sales });
+			}
+			
+// 			console.log(dataPoints);
+			
+			var options =  {
+				animationEnabled: true,
+				theme: "light2",
+				title: {
+					text: "Daily Sales Data"
+				},
+				axisX: {
+					valueFormatString: "YYYY MM DD",
+				},
+				axisY: {
+					title: "USD",
+					titleFontSize: 24
+				},
+				data: [{
+					type: "spline", 
+					yValueFormatString: "$#,###.##",
+					dataPoints: dataPoints
+				}]
+			};
+			
+			$("#chartContainer").CanvasJSChart(options);
+		}
+	});
+	alert('b');
+}
+
+$(function(){
+	reqStatistics("day");
+})
+</script>
+
+
+<%--
 <!--Load the AJAX API-->
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
 	result('2020-09');
@@ -130,17 +188,16 @@
 
 	}
 </script>
+--%>
 </head>
-
+ 
 <body>
 	<br>
 	<br>
 	<br>
 	<div id="chart_div"></div>
 	<div>
-		<button>남자</button>
-		<button>여자</button>
-		<button>남자</button>
+		<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 	</div>
 	<div id="result"></div>
 
