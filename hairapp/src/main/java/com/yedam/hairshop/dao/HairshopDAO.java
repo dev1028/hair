@@ -423,10 +423,12 @@ public class HairshopDAO {
 	//공지사항 프로필 업데이트
 	public int updateNoticeAndProfile(HairshopVo hVo) {
 		ResultSet rs = null;
+		
 		int result = 0;
 		String sql = "UPDATE HAIRSHOP SET HS_NOTICE = ?, HS_PROFILE = ? WHERE HS_NO = ?";
 
 		try {
+			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hVo.getHs_notice());
 			pstmt.setString(2, hVo.getHs_profile());

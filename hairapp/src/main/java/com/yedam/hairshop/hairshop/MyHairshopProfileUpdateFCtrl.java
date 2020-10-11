@@ -51,6 +51,7 @@ public class MyHairshopProfileUpdateFCtrl implements Controller {
 			File renameFile = FileRenamePolicy.rename(new File(path, filename));
 			part.write(path + "/" + renameFile.getName());
 			hPVo.setHsp_file(renameFile.getName());
+			hPVo.setHs_no(hsNo);
 			photoResult = HsPhotoDAO.getInstance().insert(hPVo);
 		}
 
