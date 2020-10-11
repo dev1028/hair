@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../css/card.css">
 <link rel="stylesheet" type="text/css" href="../css/hairshopCard.css">
+<script src="../js/hairshopBookmark.js"></script>
 <style>
 #mypage {
    display: flex;
@@ -26,11 +27,6 @@
 <body>
 <div id="wrap">
 	<h3>헤어샵 북마크 리스트</h3>
-<%-- 	<c:forEach items="${list }" var="item"> --%>
-<%-- 		헤어샵번호: ${item.hs_no } <br> --%>
-<%-- 		헤어샵이름: ${item.hs_name} <br> --%>
-<%-- 	</c:forEach> --%>
-	
 	<c:forEach items="${list}" var="item">
 		<form action="../members/hairshopSelectResult.do" method="post">
 			<div class="course" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">

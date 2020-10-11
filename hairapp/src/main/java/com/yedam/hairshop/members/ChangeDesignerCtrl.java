@@ -1,7 +1,6 @@
 package com.yedam.hairshop.members;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerBookmarkDAO;
 import com.yedam.hairshop.dao.DesignerDAO;
@@ -23,7 +23,9 @@ public class ChangeDesignerCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String date = request.getParameter("date");
 		String hour = request.getParameter("hour");
-	
+		System.out.println(date);
+		System.out.println(hour);
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("date", date);
 		session.setAttribute("hour", hour);
@@ -33,15 +35,10 @@ public class ChangeDesignerCtrl implements Controller {
 		DesignerVo vo = new DesignerVo();
 		vo.setHs_no(hairshopVo.getHs_no());
 		List<DesignerVo> list = DesignerDAO.getInstance().notRetireeByHairShop(vo);
-		List<DesignerVo> listDesignerVo = new ArrayList<DesignerVo>(); 
-				
-		for(DesignerVo v : list) {
-			listDesignerVo.add(v);
-		}
 		
 		//북마크 세팅
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
-		for(DesignerVo v : listDesignerVo) {
+		for(DesignerVo v : list) {
 			if(memVo != null) {
 				DesignerBookmarkVo bookVo = new DesignerBookmarkVo();
 				bookVo.setDesigner_no(v.getDesigner_no());
@@ -53,8 +50,10 @@ public class ChangeDesignerCtrl implements Controller {
 			}
 		}
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/members/designerSelect.jsp").forward(request, response);
+		String str = new Gson().toJsonTree(list).toString();
+		response.getWriter().print(str);
+		//request.setAttribute("list", list);
+		//request.getRequestDispatcher("/members/designerSelect.jsp").forward(request, response);
 	}
 
 }

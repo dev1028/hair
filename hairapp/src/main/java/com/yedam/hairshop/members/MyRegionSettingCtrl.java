@@ -15,29 +15,24 @@ public class MyRegionSettingCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String latlng = request.getParameter("latlng");
-		String roadAddress = request.getParameter("roadAddress");
+		String lat = (String) request.getParameter("lat");
+		String lng = (String) request.getParameter("lng");
+		if(lat != null || lng != null) {
+			request.getSession().setAttribute("lat", lat);
+			request.getSession().setAttribute("lng", lng);
+		}
 		
 		HttpSession session = request.getSession();
 		MembersVo membersVo = (MembersVo) session.getAttribute("login");
 		if(membersVo != null) {
-			if(latlng != null) {
-				latlng = latlng.replace("(", "").replace(")", "");
-				System.out.println(roadAddress);
-				membersVo.setMem_addr(roadAddress);
-				membersVo.setMem_latitude_longitude(latlng);
+			if(lat != null) {
+				String roadAddress = request.getParameter("roadAddress");
+				if(roadAddress != null) {
+					membersVo.setMem_addr(roadAddress);
+				}
+				membersVo.setMem_latitude_longitude(lat + "," + lng);
 				MembersDAO.getInstance().updateLatlng(membersVo);
-			}else {
-				latlng = membersVo.getMem_latitude_longitude();
 			}
-			
-			if(latlng == null) {
-				latlng = "35.84960624033248, 128.54231838857297";
-			}
-			String[] tmplatlng = latlng.split(",");
-			request.setAttribute("latlng", latlng);
-			request.setAttribute("lat", tmplatlng[0]);
-			request.setAttribute("lng", tmplatlng[1]);
 		}
 		request.getRequestDispatcher("myRegionSetting.jsp").forward(request, response);
 	}
