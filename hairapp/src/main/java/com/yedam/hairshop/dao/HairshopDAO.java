@@ -442,4 +442,25 @@ public class HairshopDAO {
 		return result;
 	}
 	
+	//2020.10.11 김승연
+		//주차장 여부 업데이트
+		public int updateHsParking(HairshopVo hVo) {
+			ResultSet rs = null;
+			
+			int result = 0;
+			String sql = "UPDATE HAIRSHOP SET HS_PARKING = ? WHERE HS_NO = ?";
+
+			try {
+				conn = ConnectionManager.getConnnect();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, hVo.getHs_parking());
+				pstmt.setString(2, hVo.getHs_no());
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return result;
+		}
 }

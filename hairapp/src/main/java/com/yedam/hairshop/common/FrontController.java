@@ -102,6 +102,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
+import com.yedam.hairshop.hairshop.MyParkingChangeCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
@@ -112,6 +113,7 @@ import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishSDCtrl;
+import com.yedam.hairshop.harishop.MyHairshopInfoUpdate;
 import com.yedam.hairshop.members.ChangeDesignerCtrl;
 import com.yedam.hairshop.members.DesignerBookmarkCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
@@ -446,6 +448,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myHairshopProfile.do", new MyHairShopProfileCtrl()); //미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); //미용실마이페이지
+		list.put("/hairshop/myParkingChange.do", new MyParkingChangeCtrl()); //주차장 사용여부 변경
+		list.put("/ajax/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+		
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
 		
 	}

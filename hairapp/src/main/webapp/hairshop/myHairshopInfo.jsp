@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,12 +95,26 @@ body {
 
 .lh-150 {
 	line-height: 1.5;
+	
 }
+
 </style>
 <script type="text/javascript">
 	$(function() {
-		$('[data-toggle="offcanvas"]').on('click', function() {
+		/* $('[data-toggle="offcanvas"]').on('click', function() {
 			$('.offcanvas-collapse').toggleClass('open')
+		}); */
+
+		$("#updateInfo").on("click",function() {
+			window.open("${pageContext.request.contextPath}//ajax/myHairshopInfoUpdate.do",
+						"pop",
+						"width=700,height=750, scrollbars=yes, resizable=yes");
+		});
+		$('.bxslider').bxSlider({
+			auto : true,
+			autoControls : true,
+			stopAutoOnClick : true,
+			pager : true
 		});
 	});
 </script>
@@ -110,11 +124,11 @@ body {
 	<main role="main" class="container">
 		<div class="row">
 			<div class="col">
-			<br>
+				<br>
 				<h3>마이페이지</h3>
 			</div>
 		</div>
-			<hr>
+		<hr>
 		<div
 			class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
 			<img class="mr-3"
@@ -125,7 +139,15 @@ body {
 				<small>가입일: ${hairshop.hs_regdate}</small>
 			</div>
 		</div>
-
+		<div class="row justify-content-md-center">
+			<div class="col">
+				<div class="bxslider" id="imgList">
+					<div>
+						<img src="../images/hairshop/san.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<h6 class="border-bottom border-gray pb-2 mb-0">기본정보</h6>
 			<div class="media text-muted pt-3">
@@ -137,31 +159,36 @@ body {
 			<div class="media text-muted pt-3">
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="d-block text-gray-dark">사업자번호</strong> ${hairshop.hs_comp_no}
+					<strong class="d-block text-gray-dark">사업자번호</strong>
+					${hairshop.hs_comp_no}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="d-block text-gray-dark">전화번호</strong> ${hairshop.hs_tel}
+					<strong class="d-block text-gray-dark">전화번호</strong>
+					${hairshop.hs_tel}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="d-block text-gray-dark">이메일</strong> ${hairshop.hs_email}
+					<strong class="d-block text-gray-dark">이메일</strong>
+					${hairshop.hs_email}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="d-block text-gray-dark">주소</strong> ${hairshop.hs_fulladdr}
+					<strong class="d-block text-gray-dark">주소</strong>
+					${hairshop.hs_fulladdr}
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
 				<p
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-					<strong class="d-block text-gray-dark">영업시간</strong> ${hairshop.hs_starttime}시 - ${hairshop.hs_endtime}시
+					<strong class="d-block text-gray-dark">영업시간</strong>
+					${hairshop.hs_starttime}시 - ${hairshop.hs_endtime}시
 				</p>
 			</div>
 			<div class="media text-muted pt-3">
@@ -174,7 +201,8 @@ body {
 					<span class="d-block">${hairshop.hs_dayoff}</span>
 				</div>
 			</div>
-			<small class="d-block text-right mt-3"> <a href="#">수정</a>
+			<small class="d-block text-right mt-3"> <a id="updateInfo"
+				href="#">수정</a>
 			</small>
 		</div>
 
@@ -186,9 +214,21 @@ body {
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
 						<strong class="text-gray-dark">자재관리사용여부</strong>
+						<c:if test="${hairshop.hs_resource_option eq '1'}">
+							<a class="btn btn-sm btn-outline-danger disabled" role="button"
+								aria-disabled="true" href="#">자재관리 사용여부 변경</a>
+						</c:if>
+						<c:if test="${hairshop.hs_resource_option eq '0'}">
+							<a class="btn btn-sm btn-outline-success disabled" role="button"
+								aria-disabled="true" href="#">자재관리 사용여부 변경</a>
+						</c:if>
 					</div>
-					<span class="d-block"><c:if test="${hairshop.hs_resource_option eq '1'}"><span class="badge badge-pill badge-success">사용</span></c:if>
-					<c:if test="${hairshop.hs_resource_option eq '0'}"><span class="badge badge-pill badge-danger">미사용</span></c:if></span>
+					<span class="d-block"><c:if
+							test="${hairshop.hs_resource_option eq '1'}">
+							<span class="badge badge-pill badge-success">사용</span>
+						</c:if> <c:if test="${hairshop.hs_resource_option eq '0'}">
+							<span class="badge badge-pill badge-danger">미사용</span>
+						</c:if></span>
 				</div>
 			</div>
 			<div class="media text-muted pt-3">
@@ -196,10 +236,24 @@ body {
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark">주차장여부</strong> 
+						<strong class="text-gray-dark">주차장여부</strong>
+						<c:if test="${hairshop.hs_parking eq '1'}">
+							<a class="btn btn-sm btn-outline-danger"
+								href="${pageContext.request.contextPath}/hairshop/myParkingChange.do?hs_parking=0">주차장
+								여부 변경</a>
+						</c:if>
+						<c:if test="${hairshop.hs_parking eq '0'}">
+							<a class="btn btn-sm btn-outline-success"
+								href="${pageContext.request.contextPath}/hairshop/myParkingChange.do?hs_parking=1">주차장
+								여부 변경</a>
+						</c:if>
 					</div>
-					<span class="d-block"><c:if test="${hairshop.hs_parking eq '1'}"><span class="badge badge-pill badge-success">보유</span></c:if>
-					<c:if test="${hairshop.hs_parking eq '0'}"><span class="badge badge-pill badge-danger">미보유</span></c:if></span>
+					<span class="d-block"><c:if
+							test="${hairshop.hs_parking eq '1'}">
+							<span class="badge badge-pill badge-success">보유</span>
+						</c:if> <c:if test="${hairshop.hs_parking eq '0'}">
+							<span class="badge badge-pill badge-danger">미보유</span>
+						</c:if></span>
 				</div>
 			</div>
 			<div class="media text-muted pt-3">
@@ -207,14 +261,18 @@ body {
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark">승인여부</strong> 
+						<strong class="text-gray-dark">승인여부</strong>
 					</div>
-					<span class="d-block"><c:if test="${hairshop.hs_approval eq '1'}"><span class="badge badge-pill badge-success">승인</span></c:if>
-					<c:if test="${hairshop.hs_approval eq '0'}"><span class="badge badge-pill badge-waring">미승인</span></c:if></span>
+					<span class="d-block"><c:if
+							test="${hairshop.hs_approval eq '1'}">
+							<span class="badge badge-pill badge-success">승인</span>
+						</c:if> <c:if test="${hairshop.hs_approval eq '0'}">
+							<span class="badge badge-pill badge-waring">미승인</span>
+						</c:if></span>
 				</div>
 			</div>
-			<small class="d-block text-right mt-3"> <a href="#">추가정보 수정</a>
-			</small>
+			<!-- <small class="d-block text-right mt-3"> <a href="#">추가정보 수정</a> 
+			</small>-->
 		</div>
 	</main>
 </body>
