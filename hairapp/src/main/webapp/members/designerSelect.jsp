@@ -27,11 +27,26 @@ $(function() {
 	$('#timepicker_start').timepicker({
 		timeFormat: 'HH',
 		interval: 60,
-	//	change: changeDesigner
+		change: changeHour
 	});
 	
 	//changeDesigner();
 });
+function numFormat(variable) { 
+	variable = Number(variable).toString(); 
+	if(Number(variable) < 10 && variable.length == 1)
+		variable = "0" + variable;
+	return variable;
+}
+
+function changeHour(){
+	var endTime = parseInt($("input[name='hs_starttime']").val()) + parseInt("${total_hour }");
+	$("input[name='hs_endtime']").val(numFormat(endTime));
+}
+
+$(function(){
+	changeHour();
+})
 
 // function changeDesigner(){
 // 	hour = $("#timepicker_start").val();
@@ -59,7 +74,8 @@ $(function() {
     <h3 class="h3">디자이너 정보</h3>
     <form action="designerSelect.do" method="post">
 	    <input autocomplete="off" type="text" name="date" id="date" size="12" />
-		<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px">시
+		<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px">-
+		<input disabled type="text" name="hs_endtime" value="${total_hour }" style="width:80px">
 		<button>검색</button>
 	</form>
     <div class="row">

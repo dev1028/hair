@@ -4,8 +4,8 @@
 		type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
 
 
-		url="jdbc:oracle:thin:@39.116.34.40:1521:orcl" username="hair2"
-		password="hair2" maxTotal="20" maxIdle="10" maxWaitMillis="-1" /> <!-- -1 무한대기 -->
+		url="jdbc:oracle:thin:@127.0.0.1:1521:xe" username="hair3"
+		password="hair3" maxTotal="20" maxIdle="10" maxWaitMillis="-1" /> <!-- -1 무한대기 -->
 
 </Context>
 <!-- localhost -> url="jdbc:oracle:thin:@127.0.0.1:1521:xe" -->

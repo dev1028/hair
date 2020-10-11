@@ -85,7 +85,7 @@ function layer_popup(el){
 					</table>
 				</div>
                 <div class="btn-r">
-                    <a href="#" class="btn-layerClose">닫기</a>
+                    <a href="#" class="btn-layerClose">적용</a>
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@ function layer_popup(el){
 	<b>미용실 이름:  </b> ${sessionScope.selHairshopVo.hs_name } <br>
 	<b>헤어 이름   :  </b> ${sessionScope.selHairInfoVo.hhi_name } <br>
 	<b>디자이너 이름: </b> ${sessionScope.selDesignerVo.designer_name } <br>
-	
+	<b>총 시술시간: </b> ${total_hour} 시간<br>
 	<hr>
 	고객에게 확인 사항(알림말) <br>
 	

@@ -19,6 +19,10 @@ public class HairSelectResultCtrl implements Controller{
 		System.out.println("HairSelectResultCtrl");
 		
 		String[] hhiNos = request.getParameterValues("cart");
+		String hour = request.getParameter("total_hour");
+		request.getSession().setAttribute("total_hour", hour);
+		System.out.println(hour + "시간");
+		
 		if(hhiNos == null) {
 			return;
 		}

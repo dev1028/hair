@@ -29,9 +29,13 @@ public class DesignerSelectCtrl implements Controller{
 		System.out.println("DesignerSelectCtrl");
 
 		String strDate = request.getParameter("date");
-		String strHour = request.getParameter("hs_starttime");
+		String strStartHour = request.getParameter("hs_starttime");
+		String strTotalHour = (String)request.getSession().getAttribute("total_hour");
 		
-		if(strDate != null && strHour != null) {
+		if(strDate != null && strStartHour != null && strTotalHour != null) {
+			request.getSession().setAttribute("date", strDate);
+			request.getSession().setAttribute("hour", strStartHour);
+			
 			Date date = null;
 			String dayOfWeek = null;
 			try {
@@ -48,6 +52,9 @@ public class DesignerSelectCtrl implements Controller{
 				List<DesignerVo> list = DesignerDAO.getInstance().notRetireeByHairShop(vo);
 
 				list = filterDayOff(list, dayOfWeek);
+				list = filterHour(list, Integer.parseInt(strStartHour), 
+										Integer.parseInt(strStartHour) + Integer.parseInt(strTotalHour));
+				
 				//월화수목금 휴일 필터링
 				
 				//북마크 세팅
@@ -57,6 +64,7 @@ public class DesignerSelectCtrl implements Controller{
 						DesignerBookmarkVo bookVo = new DesignerBookmarkVo();
 						bookVo.setDesigner_no(v.getDesigner_no());
 						bookVo.setMem_no(memVo.getMem_no());
+						
 						//북마크 되어 있는 것이라면
 						if(DesignerBookmarkDAO.getInstance().HasBookmark(bookVo)) {
 							v.setDesigner_book("1");
@@ -75,11 +83,25 @@ public class DesignerSelectCtrl implements Controller{
 		request.getRequestDispatcher("/members/designerSelect.jsp").forward(request, response);
 	}
 	
+	
 	List<DesignerVo> filterDayOff(List<DesignerVo> srcList, String dayOfWeek){
 		List<DesignerVo> filterList = new ArrayList<DesignerVo>();
 		for(DesignerVo vo : srcList) {
 			String listDayOfWeek = ChangeUtil.changeDayOffNumToStr(vo.getDesigner_dayoff());
 			if(!listDayOfWeek.contains(dayOfWeek)) {
+				filterList.add(vo);
+			}
+		}
+		return filterList;
+	}
+	
+	List<DesignerVo> filterHour(List<DesignerVo> srcList, int startHour, int endHour){
+		List<DesignerVo> filterList = new ArrayList<DesignerVo>();
+		for(DesignerVo vo : srcList) {
+			int work_start_time = Integer.parseInt(vo.getWork_start_time());
+			int work_end_time = Integer.parseInt(vo.getWork_end_time());
+			if(startHour >= work_start_time && startHour < work_end_time &&
+			   endHour > work_start_time && endHour <= work_end_time) {
 				filterList.add(vo);
 			}
 		}
