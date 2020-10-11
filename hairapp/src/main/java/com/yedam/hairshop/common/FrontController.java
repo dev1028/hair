@@ -336,9 +336,8 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersQnaD.do", new MembersQnaDCtrl()); // Qna 삭제 컨트롤러
 
 		// 강산
-		list.put("/admin/adminLogin.do", new adminLoginCtrl());
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());// 로그인
-		list.put("/admin/adminMain.do", new adminMainCtrl());
+		list.put("/admin/adminMain.do", new adminMainCtrl());//
 		list.put("/admin/adminReturnToLogin.do", new adminReturnToLoginCtrl());
 
 		list.put("/hairshop/salesStatistics.do", new salesStatisticsCtrl());// 헤어샵통계
@@ -346,13 +345,13 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshop/sales.do", new salesCtrl());
 
 		list.put("/hairshop/salesStatisticsByDesigner.do", new SalesStatisticsByDesignerCtrl());
-		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());//
-		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());//
-		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());//
-		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());//
-		list.put("/ajax/hairshop/analysisTreatGender.do", new AnalysisTreatGenderCtrl());//
-		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());//
-		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());//
+		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());
+		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());
+		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());
+		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());
+		list.put("/ajax/hairshop/analysisTreatGender.do", new AnalysisTreatGenderCtrl());
+		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());
+		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());
 		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
 
 		list.put("/ajax/hairshop/chart.do", new ChartCtrl());
@@ -379,13 +378,13 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminCustomerManageFind.do", new AdminCustomerManageFCtrl());
 		list.put("/admin/adminHairshopManage.do", new AdminHairshopManageCtrl());
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());
-		list.put("/admin/adminNewHairshop.do", new AdminNewHairshopCtrl());//
-		list.put("/admin/adminNewHairshopApproval.do", new AdminNewHairshopApprovalCtrl());//
+		list.put("/admin/adminNewHairshop.do", new AdminNewHairshopCtrl());
+		list.put("/admin/adminNewHairshopApproval.do", new AdminNewHairshopApprovalCtrl());
 
 		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());// 분석
 		list.put("/admin/designerAnalysisFind.do", new designerAnalysisFCtrl());
 		list.put("/admin/hairshopAnalysis.do", new hairshopAnalysisCtrl());
-		list.put("/ajax/admin/analysisByHairshopCount.do", new AnalysisByHairshopCount());//
+		list.put("/ajax/admin/analysisByHairshopCount.do", new AnalysisByHairshopCount());
 
 		list.put("/admin/hairAnalysisFind.do", new hairAnalysisFCtrl());
 		list.put("/admin/hairAnalysis.do", new hairAnalysisCtrl());
