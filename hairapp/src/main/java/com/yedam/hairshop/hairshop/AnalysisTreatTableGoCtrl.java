@@ -1,4 +1,4 @@
-package com.yedam.hairshop.admin;
+package com.yedam.hairshop.hairshop;
 
 import java.io.IOException;
 

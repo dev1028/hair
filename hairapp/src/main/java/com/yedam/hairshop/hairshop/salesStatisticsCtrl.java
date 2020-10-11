@@ -1,4 +1,4 @@
-package com.yedam.hairshop.admin;
+package com.yedam.hairshop.hairshop;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,17 +11,13 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.SalesDAO;
 import com.yedam.hairshop.model.DesignerVo;
 
-public class SalesStatisticsByDesignerCtrl implements Controller {
+public class salesStatisticsCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		
-		String hs_no = request.getSession().getAttribute("hsno").toString();
 		
-		ArrayList<DesignerVo> list = SalesDAO.getInstance().getDsName(hs_no);
-		request.setAttribute("list", list);
-
-		request.getRequestDispatcher("/hairshop/hairshopStatisticsByDs.jsp").forward(request, response);
+		request.getRequestDispatcher("/hairshop/hairshopStatistics.jsp").forward(request, response);
 	}
+
 }
