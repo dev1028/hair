@@ -30,7 +30,6 @@ function layer_popup(el){
     	$elHeight = ~~($el.outerHeight()),
         docWidth = $(document).width(),
         docHeight = $(document).height();
-
         // 화면의 중앙에 레이어를 띄운다.
 	if ($elHeight < docHeight || $elWidth < docWidth) {
 		$el.css({
@@ -55,14 +54,14 @@ function layer_popup(el){
    
 </script>
 
-
+<%--
 <c:if test="${empty login }">
 <script>
 	alert("로그인을 해주세요")
 	location.href="membersLogin.do"
 </script>
 </c:if>
-
+ --%>
 	
 <form action="paymentMember.do" method="post">
 <div class="dim-layer">
@@ -91,7 +90,8 @@ function layer_popup(el){
         </div>
     </div>
 </div>
-	<input type="button" id="button1" onclick="layer_popup('#notice_layer');" value="쿠폰 선택" />
+
+<input type="button" id="button1" onclick="layer_popup('#notice_layer');" value="쿠폰 선택" />
 	
 	<hr>
 	고객정보를 입력해 주세요 <br>

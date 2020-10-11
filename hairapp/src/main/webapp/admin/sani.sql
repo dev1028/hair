@@ -136,3 +136,92 @@ JOIN designer  d
  ON (r.designer_no=d.designer_no)
  where d.hs_no = 2 
  GROUP BY designer_name;
+
+ 
+ 
+ 
+        
+       
+       
+    select h.hhi_name,tmac.tmac_name, tmic.tmic_explication ,m.mem_sex,
+        count(*),row_number() 
+    over ( partition by mem_sex order by count(*)desc) ranking
+    from hairshop_hair_info h 
+    join mem_designer_rsv_info i on(h.hhi_no = i.hhi_no) 
+    join members_designer_rsv r  on(r.mdr_no=i.mdr_no)
+    join members m on(r.mem_no=m.mem_no)
+    join tt_middle_category tmic on(tmic.tmic_no = h.tmic_no)
+     join tt_main_category tmac on(tmac.tmac_no =tmic.tmac_no)
+  join (SELECT
+    a.*
+FROM
+    (
+        SELECT
+            d.designer_name,
+            h.hhi_name,
+            COUNT(*),
+            ROW_NUMBER() OVER(
+                PARTITION BY h.hhi_name
+                ORDER BY
+                    COUNT(*) DESC
+            ) ranking
+        FROM
+            hairshop_hair_info      h
+            JOIN mem_designer_rsv_info   i ON ( h.hhi_no = i.hhi_no )
+            JOIN members_designer_rsv    r ON ( r.mdr_no = i.mdr_no )
+            JOIN designer                d ON ( d.designer_no = r.designer_no )
+        GROUP BY
+            h.hhi_name,
+            d.designer_name
+    ) a
+WHERE
+    a.ranking < 2;
+    )  d on(d.hhi_name=h.hhi_name)
+     
+
+   left outer join hairshop_reviews rv on(rv.mdr_no=r.mdr_no)
+
+   -- where m.mem_sex= 'female'  
+    group by h.hhi_name,tmac.tmac_name, tmic.tmic_explication, m.mem_sex
+    --, d.designer_name
+    
+    ;
+    
+  
+ 
+ 
+ 
+ 
+ 
+ 
+SELECT
+       
+
+
+
+SELECT
+    a.*
+FROM
+    (
+        SELECT
+            d.designer_name,
+            h.hhi_name,
+            COUNT(*),
+            ROW_NUMBER() OVER(
+                PARTITION BY h.hhi_name
+                ORDER BY
+                    COUNT(*) DESC
+            ) ranking
+        FROM
+            hairshop_hair_info      h
+            JOIN mem_designer_rsv_info   i ON ( h.hhi_no = i.hhi_no )
+            JOIN members_designer_rsv    r ON ( r.mdr_no = i.mdr_no )
+            JOIN designer                d ON ( d.designer_no = r.designer_no )
+        GROUP BY
+            h.hhi_name,
+            d.designer_name
+    ) a
+WHERE
+    a.ranking < 2;
+    
+       

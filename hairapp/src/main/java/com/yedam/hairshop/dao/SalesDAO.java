@@ -17,7 +17,7 @@ import com.yedam.hairshop.model.SalesVo;
 public class SalesDAO {
 	static Connection conn;
 	PreparedStatement pstmt;
-	
+
 	static SalesDAO instance = null;
 
 	final static String totaldaily = "SELECT r.mdr_no,  r.mdr_date,d.designer_name,m.mem_name, h.HHI_NAME,\r\n"
@@ -53,7 +53,7 @@ public class SalesDAO {
 		ResultSet rs = null;
 		ArrayList<SalesVo> list = dsList(hs_no);
 		ArrayList<SalesVo> list1 = new ArrayList<>();
-	
+
 		SalesVo resultVo = null;
 		Date date = new Date();
 
@@ -84,13 +84,13 @@ public class SalesDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		for (SalesVo va : list1) {
-			for(int i = 0;i<list.size();i++) {
-				if(va.getDsNo().equals(list.get(i).getDsNo())) {
+			for (int i = 0; i < list.size(); i++) {
+				if (va.getDsNo().equals(list.get(i).getDsNo())) {
 					list.get(i).setTotalAmountRsv(va.getTotalAmountRsv());
 					break;
 				}
 			}
-			
+
 		}
 		List<Map<String, String>> mapList = new ArrayList<Map<String, String>>();
 		for (SalesVo vovo : list) {
@@ -147,7 +147,7 @@ public class SalesDAO {
 		return list;
 	}
 
-	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no) {
+	public ArrayList<SalesVo> dailySalesAllAddDs(String start, String end, String ds_no, String hs_no) {
 		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;
@@ -158,13 +158,15 @@ public class SalesDAO {
 			pstmt = conn.prepareStatement(totaldaily + addDs);
 			pstmt.setString(1, start);
 			pstmt.setString(2, end);
-			pstmt.setString(3, ds_no);
+			pstmt.setString(3, hs_no);
+			pstmt.setString(4, ds_no);
 
 			rs = pstmt.executeQuery();
-			System.out.println("sql");
-			while (rs.next()) {
 
+			while (rs.next()) {
 				resultVo = new SalesVo();
+				resultVo.setDsNo(ds_no);
+
 				resultVo.setMdrNo(rs.getString("mdr_no"));
 				resultVo.setMdrDate(rs.getString("mdr_date"));
 				resultVo.setDsName(rs.getString("designer_name"));
@@ -191,16 +193,15 @@ public class SalesDAO {
 		}
 		return list;
 	}
-
-	public ArrayList<DesignerVo> getDsName() {
+	public ArrayList<DesignerVo> getDsName(String hs_no) {
 		ResultSet rs = null;
 		ArrayList<DesignerVo> list = new ArrayList<>();
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer order by designer_no  ";
+			String sql = "SELECT designer_no, designer_name	FROM designer  where hs_no = ? order by designer_no  ";
 			pstmt = conn.prepareStatement(sql);
-
+			pstmt.setString(1, hs_no);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				resultVo = new DesignerVo();
@@ -218,8 +219,31 @@ public class SalesDAO {
 		}
 		return list;
 	}
+	public String getdsList(String ds_no) {
+String name = "";
+		ResultSet rs = null;
+		ArrayList<SalesVo> list = new ArrayList<>();
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT  designer_name	FROM designer  where designer_no = ? ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ds_no);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				name=rs.getString(1);
 
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return name;
+	}
 	public ArrayList<SalesVo> dsList(String hs_no) {
+
 		ResultSet rs = null;
 		ArrayList<SalesVo> list = new ArrayList<>();
 		SalesVo resultVo = null;

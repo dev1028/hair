@@ -15,11 +15,12 @@
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/hairshop/hairshopStatistics.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/hairshop/hairshopStatisticsByDs.js">
 	
 </script>
 </head>
 <body>
+<br><br><br>
 	<h2 class="heading">매출결산</h2>
 	<form method="POST"
 		action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do">
@@ -45,10 +46,10 @@
 			<div class="control">
 			
 				<label for="name">직원선택 </label>
-				<input type="checkbox" name="designer_name" value="all">전체직원|
+				<input type="checkbox" name="designer_name" value="all" id="all">전체직원|
 				<c:forEach items="${list }" var="i">
 				
-			<input type="checkbox" name="designer_name" value="${i.designer_no}">
+			<input type="checkbox" name="designer_name" id="${i.designer_name }" value="${i.designer_no}" >${i.designer_name } |
 			</c:forEach>
 				
 					

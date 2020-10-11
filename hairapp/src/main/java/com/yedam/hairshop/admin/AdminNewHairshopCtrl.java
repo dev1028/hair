@@ -1,7 +1,7 @@
 package com.yedam.hairshop.admin;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,21 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.AdminMemberManageDAO;
-import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.HairshopVo;
 
-public class AdminHairshopManageCtrl implements Controller {
+import net.sf.json.JSONArray;
+
+public class AdminNewHairshopCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		List<HairshopVo> list = AdminMemberManageDAO.getInstance().findHs(null);
-		System.out.println(list.get(0).getHs_no());
+		ArrayList<HairshopVo> list = new ArrayList<>();
+		list = AdminMemberManageDAO.getInstance().newHairshopList();
 		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
-
+		request.setAttribute("hairshoplist", JSONArray.fromObject(list));
+		request.getRequestDispatcher("/admin/adminNewHairshopList.jsp").forward(request, response);
 	}
 
 }

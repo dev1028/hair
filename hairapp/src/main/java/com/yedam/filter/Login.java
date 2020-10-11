@@ -14,17 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-
-
-
-
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
 	final String hairLoginPage = "/ajax/hairshopReturnToLogin.do";
 	final String designerLoginPage = "/ajax/designerReturnToLogin.do";
 	final String adminLoginPage = "/admin/adminReturnToLogin.do";
-	
+
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -32,25 +28,25 @@ public class Login implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		HttpSession sess = req.getSession();
-		//Object login = sess.getAttribute("login");
+		// Object login = sess.getAttribute("login");
 		String udong = (String) sess.getAttribute("udong");
-		//System.out.println(udong);
+		// System.out.println(udong);
 
 		String requestURI = req.getRequestURI();
 		String contextPath = req.getContextPath(); // frontWeb//
 		String path = requestURI.substring(contextPath.length()); // memberInsert.do
-		//System.out.println(path);
+		// System.out.println(path);
 		// String isIn = list.get(path);
 
 		if (list.get(path) != null) {
-			
+
 			if (udong == null || udong.trim().length() <= 0) {
 				res.sendRedirect(req.getContextPath() + list.get(path));
 				return;
 			} else {
-				
+
 				if (list.get(path).equals(memberLoginPage)) {
-					
+
 					if (!udong.equals("member")) {
 						res.sendRedirect(req.getContextPath() + list.get(path));
 						return;
@@ -73,11 +69,11 @@ public class Login implements Filter {
 				}
 			}
 		} else {
-			//System.out.println("로그인 불필요");
+			// System.out.println("로그인 불필요");
 		}
 		chain.doFilter(req, res);
 	}
-	
+
 	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 		list = new HashMap<String, String>();
@@ -137,12 +133,12 @@ public class Login implements Filter {
 		// list.put("/hairshop/hairshopNoticeCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponListCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", hairLoginPage);
-		list.put("/hairshop/HairshopCouponCtrl.do",  hairLoginPage);
-		
-		list.put("/hairshop/hairshopProcedureFinish.do",  hairLoginPage);
-		list.put("/hairshop/hairshopProcedureFinishList.do",  hairLoginPage);
-		list.put("/hairshop/hairshopProcedureFinishSD.do",  hairLoginPage);  //시술완료고객 디자이너로검색해서 보기
-		
+		list.put("/hairshop/HairshopCouponCtrl.do", hairLoginPage);
+
+		list.put("/hairshop/hairshopProcedureFinish.do", hairLoginPage);
+		list.put("/hairshop/hairshopProcedureFinishList.do", hairLoginPage);
+		list.put("/hairshop/hairshopProcedureFinishSD.do", hairLoginPage); // 시술완료고객 디자이너로검색해서 보기
+
 		// 린아
 		list.put("/members/membersLogin.do", null); // 로그인 페이지 이동 컨트롤러
 		list.put("/members/membersLogout.do", memberLoginPage); // 로그아웃 페이지 이동 컨트롤러
@@ -177,7 +173,7 @@ public class Login implements Filter {
 		list.put("/members/hsDesignerIntro.do", null); // 헤어샵안의 디자이너 소개 정보 뿌려주는 컨트롤러
 		list.put("/members/hsEventIntro.do", null); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
 		list.put("/members/hsCouponIssuance.do", memberLoginPage); // 헤어샵 안의 쿠폰 발급해주는 컨트롤러
-		list.put("/members/hsReviewIntro.do", null);	// 헤어샵 안의 리뷰보기 컨트롤러
+		list.put("/members/hsReviewIntro.do", null); // 헤어샵 안의 리뷰보기 컨트롤러
 
 		list.put("/members/membersNotice.do", memberLoginPage); // 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", memberLoginPage); // 공지사항 글쓰기로 이동하는 컨트롤러
@@ -202,14 +198,25 @@ public class Login implements Filter {
 		list.put("/admin/adminMain.do", adminLoginPage);
 		list.put("/admin/adminReturnToLogin.do", null);
 
-		list.put("/ajax/hairshop/salesStatistics.do", adminLoginPage);// 헤어샵통계
-		list.put("/hairshop/salesStatisticsResult.do", adminLoginPage);
-		list.put("/ajax/hairshop/sales.do", adminLoginPage);
+		list.put("/hairshop/salesStatistics.do", hairLoginPage);// 헤어샵통계
+		list.put("/hairshop/salesStatisticsResult.do", hairLoginPage);
+		list.put("/ajax/hairshop/sales.do", hairLoginPage);
 
-		list.put("/ajax/hairshop/chart.do", adminLoginPage);
+		list.put("/hairshop/analysisByTreat.do", hairLoginPage);//
+		list.put("/ajax/hairshop/analysisGender.do", hairLoginPage);//
+		list.put("/ajax/hairshop/analysisAge.do", hairLoginPage);//
+		list.put("/ajax/hairshop/analysisTotal.do", hairLoginPage);//
+		list.put("/ajax/hairshop/analysisTreatGender.do", hairLoginPage);//
+		list.put("/ajax/hairshop/analysisTreatTable.do", hairLoginPage);//
+		list.put("/hairshop/analysisTreatTableGo.do", hairLoginPage);//
+
+		list.put("/hairshop/salesStatisticsByDesigner.do", hairLoginPage);
+		list.put("/ajax/hairshop/salesByDesigner.do", hairLoginPage);
+
+		list.put("/ajax/hairshop/chart.do", hairLoginPage);
 		list.put("/admin/adminSalesStatistics.do", adminLoginPage);
 //		list.put("/admin/adminSalesStatisticsFind.do", adminLoginPage);
-//		list.put("/admin/adminSales.do", adminLoginPage);
+		// list.put("/admin/adminSales.do", adminLoginPage);
 
 		list.put("/admin/adminBoardManage.do", adminLoginPage);// 보드
 		list.put("/admin/adminBoardManageFind.do", adminLoginPage);
@@ -232,6 +239,8 @@ public class Login implements Filter {
 		list.put("/admin/adminCustomerManageFind.do", adminLoginPage);
 		list.put("/admin/adminHairshopManage.do", adminLoginPage);
 		list.put("/admin/adminHairshopManageFind.do", adminLoginPage);
+		list.put("/admin/adminNewHairshop.do", adminLoginPage);//
+		list.put("/admin/adminNewHairshopApproval.do", adminLoginPage);//
 
 		list.put("/admin/hairshopAnalysisFind.do", adminLoginPage);// 분석
 		list.put("/admin/designerAnalysisFind.do", adminLoginPage);
@@ -239,7 +248,7 @@ public class Login implements Filter {
 		list.put("/admin/hairAnalysisFind.do", adminLoginPage);
 		list.put("/admin/hairAnalysis.do", adminLoginPage);
 		list.put("/admin/designerAnalysis.do", adminLoginPage);
-
+		list.put("/ajax/admin/analysisByHairshopCount.do", adminLoginPage);//
 		list.put("/admin/adminCouponManage.do", adminLoginPage);// 쿠폰
 		list.put("/admin/adminCouponInsert.do", adminLoginPage);
 		list.put("/admin/adminCouponInsertSubmit.do", adminLoginPage);
@@ -300,24 +309,24 @@ public class Login implements Filter {
 		list.put("/ajax/secondaryCodeInsert.do", adminLoginPage); // 보조코드 추가
 		list.put("/ajax/codeUpdate.do", adminLoginPage); // 코드 수정
 		list.put("/ajax/categoryMajorDelete.do", adminLoginPage); // 삭제
-		
-		list.put("/hairshop/hairInfoList.do", hairLoginPage); //헤어시술목록 페이지이동
-		list.put("/hairshop/hairInfoDetail.do", hairLoginPage); //헤어시술상세페이지 이동
-		list.put("/hairshop/hairInfoListRe.do", hairLoginPage); //헤어시술목록 검색페이지로 이동
-		list.put("/hairshop/hairInfoFullList.do", hairLoginPage); //헤어시술 전체목록
-		list.put("/hairshop/myHairshopInfo", hairLoginPage); //마이페이지
+
+		list.put("/hairshop/hairInfoList.do", hairLoginPage); // 헤어시술목록 페이지이동
+		list.put("/hairshop/hairInfoDetail.do", hairLoginPage); // 헤어시술상세페이지 이동
+		list.put("/hairshop/hairInfoListRe.do", hairLoginPage); // 헤어시술목록 검색페이지로 이동
+		list.put("/hairshop/hairInfoFullList.do", hairLoginPage); // 헤어시술 전체목록
+		list.put("/hairshop/myHairshopInfo", hairLoginPage); // 마이페이지
 		list.put("/ajax/hairDeslogout.do", hairLoginPage); // 미용실,헤어샵 로그아웃 처리
 		list.put("/ajax/hairStatusChange.do", hairLoginPage); // 헤에 사용미사용상태 변경
 		list.put("/hairshop/hairInfoInsert.do", hairLoginPage); // 헤어시술등록이동
 		list.put("/hairshop/hairInfoInsertForm.do", hairLoginPage); // 헤어시술등록처리
-		list.put("/ajax/getTmicList.do",hairLoginPage);//시술중분류리스트 가져오기
-		list.put("/ajax/checkSameHhiName.do", hairLoginPage); //시술명 중복체크
-		list.put("/hairshop/myHairshopProfile.do", hairLoginPage); //미용실 프로필공지사항이미지 조회페이지
+		list.put("/ajax/getTmicList.do", hairLoginPage);// 시술중분류리스트 가져오기
+		list.put("/ajax/checkSameHhiName.do", hairLoginPage); // 시술명 중복체크
+		list.put("/hairshop/myHairshopProfile.do", hairLoginPage); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", hairLoginPage); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myParkingChange.do", hairLoginPage); //주차장 사용여부 변경
 		list.put("/ajax/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
 	}
-	
+
 	@Override
 	public void destroy() {
 	}
