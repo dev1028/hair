@@ -281,9 +281,17 @@
 								tabindex="-1" aria-disabled="true">제품관리</a></li>
 								<li class="nav-item"><a class="nav-link disabled" href="#"
 								tabindex="-1" aria-disabled="true">회원관리</a></li>
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairInfoList.do">시술관리
-									<span class="sr-only">(current)</span>
-							</a></li>
+
+								<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 시술관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/hairInfoList.do">시술목록</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/hairInfoInsert.do">시술등록</a>
+								</div></li>
 							
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
@@ -321,7 +329,7 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishCtrl.do">시술완료고객</a>
+										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishList.do">시술완료고객</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do">예약자찾기</a>
@@ -336,18 +344,6 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do">쿠폰등록</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
-							
-							
-							
-							
-
-
-
-
-
-
-
-							
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
 						<form id="siteSearchCustomerFrm"
@@ -359,7 +355,7 @@
 							<input type="text" id="siteInputSearch" name="inputSearch" placeholder="예약자찾기" aria-label="Search">
 							<button id="siteSearchCustomerBtn" type="button" class="btn btn-secondary btn-sm">Search</button>
 						</form>
-						<span>로그아웃</span>
+						<a href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
 					</div>
 				</nav>
 			</div>

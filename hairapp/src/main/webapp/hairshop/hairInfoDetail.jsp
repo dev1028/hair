@@ -29,21 +29,20 @@
 				.on(
 						"click",
 						function() {
-							var mdrStatus = $("#btnstatus").attr("data-status");
-							var mdrNo = $("#mdr_noParent").children()
-									.attr("id");
+							var hhiStatus = $("#btnstatus").attr("data-status");
+							var hhiNo = $("#btnstatus").attr("data-no");
 							$
 									.ajax({
-										url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
+										url : "${pageContext.request.contextPath}/ajax/hairStatusChange.do",
 										data : {
-											mdr_status : mdrStatus,
-											mdr_no : mdrNo
+											hhi_status : hhiStatus,
+											hhi_no : hhiNo
 										},
 										dataType : "json",
 										method : "post",
 										success : function(data) {
 											if (data == 0) {
-												alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+												alert("변경에 실패했습니다. 다시 시도해 주세요.");
 											} else {
 												location.reload();
 												window.opener.location.reload();
@@ -62,7 +61,7 @@
 		</div>
 		<div class="row justify-content-between">
 			<div class="col-4">
-				<h3>헤어목록 리스트</h3>
+				<h3>헤어상세정보</h3>
 			</div>
 			<div class="col-6">
 				<form id="searchCustomerFrm"
@@ -109,12 +108,12 @@
 					<li class="list-group-item">기본시술시간: <strong>${hair.hhi_time}시간</strong></li>
 				</ul>
 				<c:if test="${hair.hhi_status == '0'}">
-					<button class="btn btn-success btn-block" id="btnstatus"
+					<button class="btn btn-success btn-block" id="btnstatus" data-no="${hair.hhi_no}"
 						data-status="1" type="button">사용하기</button>
 				</c:if>
 				<c:if test="${hair.hhi_status == '1'}">
 					<button class="btn btn-danger btn-block" type="button"
-						id="btnstatus" data-status="0">사용중단</button>
+						id="btnstatus" data-status="0" data-no="${hair.hhi_no}">사용중단</button>
 				</c:if>
 			</div>
 		</div>
