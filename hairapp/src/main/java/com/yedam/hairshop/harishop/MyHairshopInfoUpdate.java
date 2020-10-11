@@ -1,4 +1,4 @@
-package com.yedam.hairshop.hairshop;
+package com.yedam.hairshop.harishop;
 
 import java.io.IOException;
 
@@ -6,19 +6,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.hairshop.common.ChangeUtil;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.model.HairshopVo;
 
-public class MyHairshopInfoCtrl implements Controller {
+public class MyHairshopInfoUpdate implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HairshopVo loginVo = (HairshopVo) request.getSession().getAttribute("login");
-		loginVo.setHs_regdate(loginVo.getHs_regdate().split(" ")[0]);
 		request.setAttribute("hairshop", loginVo);
-		request.getRequestDispatcher("/hairshop/myHairshopInfo.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/hairshop/myHairshopInfoUpdate.jsp").forward(request, response);
 	}
 
 }

@@ -31,6 +31,7 @@ import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
+import com.yedam.hairshop.admin.AnalysisCtrl;
 import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
@@ -112,6 +113,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
+import com.yedam.hairshop.hairshop.MyParkingChangeCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.SalesBydesignerCtrl;
 import com.yedam.hairshop.hairshop.SalesStatisticsByDesignerCtrl;
@@ -125,6 +127,7 @@ import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishSDCtrl;
+import com.yedam.hairshop.harishop.MyHairshopInfoUpdate;
 import com.yedam.hairshop.hairshop.salesCtrl;
 import com.yedam.hairshop.hairshop.salesStatisticsCtrl;
 import com.yedam.hairshop.members.ChangeDesignerCtrl;
@@ -357,13 +360,15 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshop/sales.do", new salesCtrl());
 
 		list.put("/hairshop/salesStatisticsByDesigner.do", new SalesStatisticsByDesignerCtrl());
-		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());
-		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());
-		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());
-		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());
-		list.put("/ajax/hairshop/analysisTreatGender.do", new AnalysisTreatGenderCtrl());
-		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());
-		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());
+		list.put("/hairshop/analysisByTreat.do", new AnalysisByTreatCtrl());//
+		list.put("/ajax/hairshop/analysisGender.do", new AnalysisGenderCtrl());//
+		list.put("/ajax/hairshop/analysis.do", new AnalysisCtrl());//
+		list.put("/ajax/hairshop/analysisAge.do", new AnalysisAgeCtrl());//
+		list.put("/ajax/hairshop/analysisTotal.do", new AnalysisTotalCtrl());//
+		list.put("/ajax/hairshop/analysisTreatGender.do", new AnalysisTreatGenderCtrl());//
+		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());//
+		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());//
+
 		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
 
 		list.put("/ajax/hairshop/chart.do", new ChartCtrl());
@@ -476,7 +481,10 @@ public class FrontController extends HttpServlet {
 
 		list.put("/hairshop/myHairshopProfile.do", new MyHairShopProfileCtrl()); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
-		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); // 미용실마이페이지
+		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); //미용실마이페이지
+		list.put("/hairshop/myParkingChange.do", new MyParkingChangeCtrl()); //주차장 사용여부 변경
+		list.put("/ajax/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
 
 	}
