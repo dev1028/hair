@@ -66,6 +66,7 @@ import com.yedam.hairshop.designer.FindMyCustomerCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerDetailCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.ChangeReservationStatusAjCtrl;
+import com.yedam.hairshop.hairshop.CheckSameHhiNameAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeAuthFCtrl;
@@ -98,7 +99,9 @@ import com.yedam.hairshop.hairshop.HsFindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.MemberReservationInfoCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
+import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
+import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
@@ -108,6 +111,7 @@ import com.yedam.hairshop.hairshop.hairshopNoticeViewCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
+import com.yedam.hairshop.hairshop.hairshopProcedureFinishSDCtrl;
 import com.yedam.hairshop.members.ChangeDesignerCtrl;
 import com.yedam.hairshop.members.DesignerBookmarkCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
@@ -264,6 +268,7 @@ public class FrontController extends HttpServlet {
 		
 		list.put("/hairshop/hairshopProcedureFinish.do", new hairshopProcedureFinishCtrl());
 		list.put("/hairshop/hairshopProcedureFinishList.do", new hairshopProcedureFinishListCtrl());
+		list.put("/hairshop/hairshopProcedureFinishSD.do", new hairshopProcedureFinishSDCtrl()); //시술완료고객 디자이너로검색해서 보기
 		
 
 		
@@ -436,8 +441,11 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairInfoInsert.do", new HairInfoInsertCtrl()); // 헤어시술등록이동
 		list.put("/hairshop/hairInfoInsertForm.do", new HairInfoInsertFormFCtrl()); // 헤어시술등록처리
 		list.put("/ajax/getTmicList.do", new GetTmicListAjCtrl());//시술중분류리스트 가져오기
+		list.put("/ajax/checkSameHhiName.do", new CheckSameHhiNameAjCtrl()); //시술명 중복체크
 		
-		list.put("/hairshop/myHairshopInfo", new MyHairshopInfoCtrl()); //미용실마이페이지
+		list.put("/hairshop/myHairshopProfile.do", new MyHairShopProfileCtrl()); //미용실 프로필공지사항이미지 조회페이지
+		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
+		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); //미용실마이페이지
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
 		
 	}
