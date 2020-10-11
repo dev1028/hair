@@ -344,6 +344,11 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do">쿠폰등록</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
+
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">휴무일관리</a></li>
+								
+
 									<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -354,6 +359,7 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/myHairshopProfile.do">프로필</a>
 								</div></li>
+
 								
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->

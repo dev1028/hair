@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
@@ -132,11 +133,24 @@ public class Login implements Filter {
 		// list.put("/hairshop/hairshopNoticeCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponListCtrl.do", hairLoginPage);
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", hairLoginPage);
+
+		list.put("/hairshop/HairshopCouponCtrl.do",  hairLoginPage);
+		
+		list.put("/hairshop/hairshopProcedureFinish.do",  hairLoginPage);
+		list.put("/hairshop/hairshopProcedureFinishList.do",  hairLoginPage);
+		list.put("/hairshop/hairshopProcedureFinishSD.do",  hairLoginPage);  //시술완료고객 디자이너로검색해서 보기
+		
+		list.put("/hairshop/HairshopCloseDayManage.do",  hairLoginPage); //미용실 휴무일 설정
+		list.put("/hairshop/employeeCloseDayManage.do",  hairLoginPage); //디자이너목록 휴무일수정
+		
+		
+
 		list.put("/hairshop/HairshopCouponCtrl.do", hairLoginPage);
 
 		list.put("/hairshop/hairshopProcedureFinish.do", hairLoginPage);
 		list.put("/hairshop/hairshopProcedureFinishList.do", hairLoginPage);
 		list.put("/hairshop/hairshopProcedureFinishSD.do", hairLoginPage); // 시술완료고객 디자이너로검색해서 보기
+
 
 		// 린아
 		list.put("/members/membersLogin.do", null); // 로그인 페이지 이동 컨트롤러
@@ -322,6 +336,8 @@ public class Login implements Filter {
 		list.put("/ajax/checkSameHhiName.do", hairLoginPage); // 시술명 중복체크
 		list.put("/hairshop/myHairshopProfile.do", hairLoginPage); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", hairLoginPage); // 미용실 프로필공지사항이미지 수정처리
+		list.put("/hairshop/myParkingChange.do", hairLoginPage); //주차장 사용여부 변경
+		list.put("/ajax/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
 	}
 
 	@Override

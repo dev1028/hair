@@ -319,5 +319,98 @@ System.out.println("vo"+resultVo.getCnt());
 		}
 		return list;
 	}
-
+ 
+	
+	//일별 기간
+	public ArrayList<AnalysisVo> getDayList(AnalysisVo vo){
+		ArrayList<AnalysisVo> list = new ArrayList<AnalysisVo>();
+		ResultSet rs = null;
+		String sql = 
+				"SELECT sum(mdp_price) sales, d FROM (\n" + 
+				"    SELECT mdp.mdp_price, TO_CHAR(mdr.mdr_date, 'yyyy-mm-dd') d\n" + 
+				"    FROM members_detail_paylist mdp, \n" + 
+				"         members_designer_rsv mdr\n" + 
+				"    WHERE hs_no=?)\n" + 
+				"GROUP BY d";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getHs_no());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AnalysisVo tmpVo = new AnalysisVo();
+				tmpVo.setSales(rs.getString("sales"));
+				tmpVo.setDate(rs.getString("d"));
+				list.add(tmpVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		if(list== null || list.size() == 0) {
+			System.out.println("getDayList is null or zero query");
+		}
+		return list;
+	}
+	
+	//월별 기간
+	public ArrayList<AnalysisVo> getMonthList(AnalysisVo vo){
+		ArrayList<AnalysisVo> list = new ArrayList<AnalysisVo>();
+		ResultSet rs = null;
+		String sql = 
+				"SELECT sum(mdp_price) sales, d FROM (\n" + 
+				"    SELECT mdp.mdp_price, TO_CHAR(mdr.mdr_date, 'yyyy-mm') d\n" + 
+				"    FROM members_detail_paylist mdp, \n" + 
+				"         members_designer_rsv mdr\n" + 
+				"    WHERE hs_no=?)\n" + 
+				"GROUP BY d";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getHs_no());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AnalysisVo tmpVo = new AnalysisVo();
+				tmpVo.setSales(rs.getString("sales"));
+				tmpVo.setDate(rs.getString("d"));
+				list.add(tmpVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	//연도별 기간
+	public ArrayList<AnalysisVo> getYearList(AnalysisVo vo){
+		ArrayList<AnalysisVo> list = new ArrayList<AnalysisVo>();
+		ResultSet rs = null;
+		String sql = 
+				"SELECT sum(mdp_price) sales, d FROM (\n" + 
+				"    SELECT mdp.mdp_price, TO_CHAR(mdr.mdr_date, 'yyyy') d\n" + 
+				"    FROM members_detail_paylist mdp, \n" + 
+				"         members_designer_rsv mdr\n" + 
+				"    WHERE hs_no=?)\n" + 
+				"GROUP BY d";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getHs_no());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AnalysisVo tmpVo = new AnalysisVo();
+				tmpVo.setSales(rs.getString("sales"));
+				tmpVo.setDate(rs.getString("d"));
+				list.add(tmpVo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
 }
