@@ -21,6 +21,7 @@ public class hairshopProcedureFinishListCtrl implements Controller{
 		
 		ArrayList<HairshopProcedureFinishVo> list = HairshopProcedureFinishDAO.getInstance().selectAll(vo);
 		request.setAttribute("list",list);
+		System.out.println(list);
 		request.getRequestDispatcher("/hairshop/hairshopProcedureFinishList.jsp").forward(request, response);
 	}
 
