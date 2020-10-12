@@ -19,8 +19,8 @@ public class ChartCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//String hs_no= request.getSession().getAttribute("hsno").toString();
-		List<Map<String, String>> list = SalesDAO.getInstance().chart("2");
+String hs_no= request.getSession().getAttribute("hsno").toString();
+		List<Map<String, String>> list = SalesDAO.getInstance().chart(hs_no);
 		
 		String str = JSONArray.fromObject(list).toString();
 		response.getWriter().print(str);
