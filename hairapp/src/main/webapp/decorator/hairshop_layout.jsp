@@ -290,6 +290,7 @@
 										href="${pageContext.request.contextPath}/hairshop/hairInfoList.do">시술목록</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hairInfoInsert.do">시술등록</a>
+										<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do">시술명신청</a>
 								</div></li>
@@ -315,7 +316,7 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisMonthly.do">월별결산</a> 
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do">시술별통계</a> 
 									<a
-										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisTreatTableGo.do">예약분석</a>
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">디자이너통계</a>
 								</div></li>
 								
 								

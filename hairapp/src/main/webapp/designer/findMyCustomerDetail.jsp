@@ -148,13 +148,18 @@
 		<div class="row justify-content-md-center">
 			<c:forEach items="${hairList}" var="hair">
 				<div class="card" style="width: 18rem;">
-					<img src="../images/hairshop/san.jpg" class="card-img-top"
-						alt="...">
+					<c:if test="${hair.hhmi_file != null}">
+					<img onerror="this.src='../images/no_img.gif'"
+                        src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${sessionScope.login.hs_no}/hairinfo&img_name=${hair.hhmi_file}">
+                        </c:if>
+                        <c:if test="${hair.hhmi_file == null}">
+                        <img src="../images/no_img.gif">
+                        </c:if>
 					<div class="card-body">
 						<h5 class="card-title">${hair.hhi_name}</h5>
 						<h6 class="card-subtitle mb-2 text-muted">${hair.hhi_time}시간</h6>
 						<p class="card-text">${hair.hhi_price}원</p>
-						<a href="${hair.hhi_no}" class="btn btn-sm btn-primary">헤어정보
+						<a href="${pageContext.request.contextPath}/designer/desHairInfoDetail.do?hhi_no=${hair.hhi_no}" class="btn btn-sm btn-primary">헤어정보
 							보기</a>
 					</div>
 				</div>
