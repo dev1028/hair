@@ -87,9 +87,12 @@ public class DesignerSelectCtrl implements Controller{
 	List<DesignerVo> filterDayOff(List<DesignerVo> srcList, String dayOfWeek){
 		List<DesignerVo> filterList = new ArrayList<DesignerVo>();
 		for(DesignerVo vo : srcList) {
-			String listDayOfWeek = ChangeUtil.changeDayOffNumToStr(vo.getDesigner_dayoff());
-			if(!listDayOfWeek.contains(dayOfWeek)) {
-				filterList.add(vo);
+			String dayoff = vo.getDesigner_dayoff();
+			if(dayoff != null) {
+				String listDayOfWeek = ChangeUtil.changeDayOffNumToStr(dayoff);
+				if(!listDayOfWeek.contains(dayOfWeek)) {
+					filterList.add(vo);
+				}
 			}
 		}
 		return filterList;
