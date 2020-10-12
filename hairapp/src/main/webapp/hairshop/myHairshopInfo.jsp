@@ -196,7 +196,7 @@ body {
 					class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
 					<div
 						class="d-flex justify-content-between align-items-center w-100">
-						<strong class="text-gray-dark">휴무일</strong> <a href="#">휴무일 수정</a>
+						<strong class="text-gray-dark">휴무일</strong> <a href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">휴무일 수정</a>
 					</div>
 					<span class="d-block">${hairshop.hs_dayoff}</span>
 				</div>
