@@ -102,7 +102,7 @@ public class Login implements Filter {
 		list.put("/popup/hairshopReview.do", memberLoginPage); // 리뷰 이동용
 		list.put("/members/hairshopReviewInsert.do", memberLoginPage);
 		list.put("/members/membersInsert.do", memberLoginPage);
-		list.put("/members/myRegionSetting.do", memberLoginPage);
+		list.put("/members/myRegionSetting.do", null);
 
 		list.put("/ajax/changeDesigner.do", memberLoginPage);
 
@@ -119,6 +119,8 @@ public class Login implements Filter {
 		list.put("/members/membersBookmarkDesigner.do", memberLoginPage);
 		list.put("/members/membersBookmarkHairstyle.do", memberLoginPage);
 
+		list.put("/hairshop/hairNameRequest.do", hairLoginPage); // 헤어 시술명 중분류 등록.
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", designerLoginPage);
 		list.put("/designer/designerInfo.do", designerLoginPage);
@@ -337,7 +339,9 @@ public class Login implements Filter {
 		list.put("/hairshop/myHairshopProfile.do", hairLoginPage); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", hairLoginPage); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myParkingChange.do", hairLoginPage); //주차장 사용여부 변경
-		list.put("/ajax/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
+		
 	}
 
 	@Override

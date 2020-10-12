@@ -188,6 +188,45 @@ public class TtCategoryDAO {
 		return r;
 	}
 
+	public boolean hasTmicWithName(TtCategoryVo vo) {
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT * FROM tt_middle_category WHERE tmic_name = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getTmic_name());
+			rs = pstmt.executeQuery();
+			return rs.next();
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return false;
+	}
+	
+	
+	public int requestTmic(TtCategoryVo vo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = 
+					  " INSERT INTO tt_middle_category(tmic_no, tmac_no, tmic_name, tmic_explication, tmic_status) "
+					+ " VALUES((SELECT max(tmic_no) "
+					+ "         FROM tt_middle_category)+1, ?, ?, ?, 0) ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getTmac_no());
+			pstmt.setString(2, vo.getTmic_name());
+			pstmt.setString(3, vo.getTmic_explication());
+			r = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return r;
+	}
+	
 	public int updateTmic(TtCategoryVo vo) {
 		int r = 0;
 		int pos = 1;

@@ -103,6 +103,7 @@ import com.yedam.hairshop.hairshop.HairInfoInsertCtrl;
 import com.yedam.hairshop.hairshop.HairInfoInsertFormFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrlRe;
+import com.yedam.hairshop.hairshop.HairNameRequestCtrl;
 import com.yedam.hairshop.hairshop.HairStatusChangeAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopCloseDayManageCtrl;
 import com.yedam.hairshop.hairshop.HairshopCloseDayManageUCtrl;
@@ -123,6 +124,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
+import com.yedam.hairshop.hairshop.MyHairshopInfoUpdateFrmFCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
 import com.yedam.hairshop.hairshop.MyParkingChangeCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
@@ -277,6 +279,8 @@ public class FrontController extends HttpServlet {
 
 		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
 
+		list.put("/hairshop/hairNameRequest.do", new HairNameRequestCtrl()); // 헤어 시술명 중분류 등록.
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
@@ -513,7 +517,8 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); //미용실마이페이지
 		list.put("/hairshop/myParkingChange.do", new MyParkingChangeCtrl()); //주차장 사용여부 변경
-		list.put("/ajax/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdateFrm.do", new MyHairshopInfoUpdateFrmFCtrl()); //미용실 정보업데이트처리
 
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
 
