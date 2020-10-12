@@ -89,6 +89,12 @@
   border-radius: 50%;
 }
 
+#radioCh {
+	width: 600px;
+	left: 39%;
+	display: contents;
+}
+
 
 /* 검색 */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -552,13 +558,13 @@ form.example::after {
 </div>
 </div><!-- 슬라이더끝 -->
 
-
 	<div class="myForm">
+	<br>
 		<form action="../members/searchDetail.do" method="post" style="margin:auto;max-width:300px">
-			<div>
-				<input autocomplete="off" type="text" name="date" id="date" size="12" />
-				<label class="radio-inline">
-		     		<input type="radio" name="radioDate" class="option-input radio" value="day0">오늘
+			<div id="radioCh">
+				날짜선택&emsp;<input autocomplete="off" type="text" name="date" id="date" size="12" />
+				<label class="radio-inline">&emsp;
+		     	<input type="radio" name="radioDate" class="option-input radio" value="day0">오늘
 		    	</label>
 		    	<label class="radio-inline">
 		      		<input type="radio" name="radioDate" class="option-input radio" value="day1" >내일
@@ -566,7 +572,9 @@ form.example::after {
 		    	<label class="radio-inline">
 		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모래
 		    	</label>
+		    	<br>
     		</div>
+    		<br>
 	    	
 			<div class="search">
 				<input autocomplete="off" id="project" type="text" class="searchTerm"  name="term" placeholder="미용실 이름을 적으세요.">
@@ -626,6 +634,6 @@ form.example::after {
 		<!-- 여기까지 공지사항과 QnA 뿌려주는거 -->
 		
 	</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 </body>
 </html>
