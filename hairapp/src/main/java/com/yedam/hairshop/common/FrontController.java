@@ -105,6 +105,8 @@ import com.yedam.hairshop.hairshop.HairInfoInsertCtrl;
 import com.yedam.hairshop.hairshop.HairInfoInsertFormFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrlRe;
+import com.yedam.hairshop.hairshop.HairInfoPicUploadFCtrl;
+import com.yedam.hairshop.hairshop.HairNameRequestCtrl;
 import com.yedam.hairshop.hairshop.HairStatusChangeAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopCloseDayManageCtrl;
 import com.yedam.hairshop.hairshop.HairshopCloseDayManageUCtrl;
@@ -125,6 +127,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
+import com.yedam.hairshop.hairshop.MyHairshopInfoUpdateFrmFCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
 import com.yedam.hairshop.hairshop.MyParkingChangeCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
@@ -132,6 +135,7 @@ import com.yedam.hairshop.hairshop.SalesBydesignerCtrl;
 import com.yedam.hairshop.hairshop.SalesStatisticsByDesignerCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
 import com.yedam.hairshop.hairshop.employeeCloseDayManageCtrl;
+import com.yedam.hairshop.hairshop.employeeCloseDayManageUCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
@@ -225,7 +229,7 @@ import com.yedam.hairshop.members.membersQnaVCtrl;
 			})
 */
 
-@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "c:/hairapp", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String charset = null;
@@ -279,6 +283,8 @@ public class FrontController extends HttpServlet {
 
 		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
 
+		list.put("/hairshop/hairNameRequest.do", new HairNameRequestCtrl()); // 헤어 시술명 중분류 등록.
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
@@ -302,8 +308,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopProcedureFinishSD.do", new hairshopProcedureFinishSDCtrl()); //시술완료고객 디자이너로검색해서 보기
 		
 		list.put("/hairshop/HairshopCloseDayManage.do", new HairshopCloseDayManageCtrl()); //미용실 휴무일 설정
-		list.put("/hairshop/HairshopCloseDayManageU.do", new HairshopCloseDayManageUCtrl()); //디자이너 리스트 휴무일 설정
+		list.put("/hairshop/HairshopCloseDayManageU.do", new HairshopCloseDayManageUCtrl()); //미용실 휴무일 업데이트
 		list.put("/hairshop/employeeCloseDayManage.do", new employeeCloseDayManageCtrl()); //디자이너 리스트 휴무일 설정
+		list.put("/hairshop/employeeCloseDayManageU.do", new employeeCloseDayManageUCtrl()); //디자이너 리스트 휴무일 설정
 		
 
 		//list.put("/hairshop/hairshopProcedureFinishSD.do", new hairshopProcedureFinishSDCtrl()); // 시술완료고객 디자이너로검색해서 보기
@@ -510,6 +517,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairInfoFullList.do", new HairInfoFullListCtrl()); // 헤어시술 전체목록
 		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); // 헤어시술목록 검색페이지로 이동
 		list.put("/hairshop/hairInfoDetail.do", new HairInfoDetailCtrl()); // 헤어시술목록 상세페이지
+		list.put("/hairshop/hairInfoPicUpload.do", new HairInfoPicUploadFCtrl()); // 헤어시술목록 상세페이지에서 이미지 업로드
 		list.put("/ajax/hairStatusChange.do", new HairStatusChangeAjCtrl()); // 헤어 사용미사용 상태 바꾸기
 		list.put("/hairshop/hairInfoInsert.do", new HairInfoInsertCtrl()); // 헤어시술등록이동
 		list.put("/hairshop/hairInfoInsertForm.do", new HairInfoInsertFormFCtrl()); // 헤어시술등록처리
@@ -520,8 +528,10 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); //미용실마이페이지
 		list.put("/hairshop/myParkingChange.do", new MyParkingChangeCtrl()); //주차장 사용여부 변경
-		list.put("/ajax/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
-
+		list.put("/hairshop/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdateFrm.do", new MyHairshopInfoUpdateFrmFCtrl()); //미용실 정보업데이트처리
+		
+		list.put("/ajax/imgView.do", new ImgViewCtrl()); //클라이언트에 이미지 다운로드 시키기 (뷰) //img_name, img_path
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
 
 	}

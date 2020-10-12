@@ -105,16 +105,13 @@ body {
 			$('.offcanvas-collapse').toggleClass('open')
 		}); */
 
-		$("#updateInfo").on("click",function() {
-			window.open("${pageContext.request.contextPath}//ajax/myHairshopInfoUpdate.do",
-						"pop",
-						"width=700,height=750, scrollbars=yes, resizable=yes");
-		});
+	
 		$('.bxslider').bxSlider({
 			auto : true,
 			autoControls : true,
 			stopAutoOnClick : true,
 			pager : true
+			
 		});
 	});
 </script>
@@ -131,9 +128,9 @@ body {
 		<hr>
 		<div
 			class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-			<img class="mr-3"
+			<!-- <img class="mr-3"
 				src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-outline.svg"
-				alt="" width="48" height="48">
+				alt="" width="48" height="48"> -->
 			<div class="lh-100">
 				<h5 class="mb-0 text-white lh-100">${hairshop.hs_name}</h5>
 				<small>가입일: ${hairshop.hs_regdate}</small>
@@ -142,9 +139,12 @@ body {
 		<div class="row justify-content-md-center">
 			<div class="col">
 				<div class="bxslider" id="imgList">
-					<div>
-						<img src="../images/hairshop/san.jpg">
-					</div>
+						<c:forEach items="${hsPhoto}" var="hs">
+						<div>
+							<img onerror="this.src='../images/no_img.gif'"
+								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairshop.hs_no}/profile&img_name=${hs.hsp_file}">
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -202,7 +202,7 @@ body {
 				</div>
 			</div>
 			<small class="d-block text-right mt-3"> <a id="updateInfo"
-				href="#">수정</a>
+				href="${pageContext.request.contextPath}/hairshop/myHairshopInfoUpdate.do">수정</a>
 			</small>
 		</div>
 
@@ -267,7 +267,7 @@ body {
 							test="${hairshop.hs_approval eq '1'}">
 							<span class="badge badge-pill badge-success">승인</span>
 						</c:if> <c:if test="${hairshop.hs_approval eq '0'}">
-							<span class="badge badge-pill badge-waring">미승인</span>
+							<span class="badge badge-pill badge-warning">미승인</span>
 						</c:if></span>
 				</div>
 			</div>

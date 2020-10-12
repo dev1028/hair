@@ -25,7 +25,6 @@ public class MyParkingChangeCtrl implements Controller {
 			hVo.setHs_parking(hsParking);
 			request.getSession().setAttribute("login",hVo); 
 		}
-		
 		response.sendRedirect(request.getContextPath()+"/hairshop/myHairshopInfo.do");
 	}
 

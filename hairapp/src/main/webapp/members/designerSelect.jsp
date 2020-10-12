@@ -83,7 +83,8 @@ $(function(){
     		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post">
 		            <div class="product-grid4">
 		                <div class="product-image4">
-	                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-3.jpg">
+		                <!-- <img src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairshop.hs_no}/profile&img_name=${hs.hsp_file}"> -->
+		                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${designerInfo.designer_no}&img_name=${designerInfo.file_name}">
 	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg">
 		                </div>
 		                <div class="product-content">

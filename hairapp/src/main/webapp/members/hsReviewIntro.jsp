@@ -213,7 +213,9 @@
 
 <!-- 본문쓰면됨 여기에 -->
 
-
+<c:if test="${empty intro}">
+	후기가 없습니다<br><br>
+</c:if>
 <!-- css -->
 <c:forEach items="${intro}" var="in">
 <div class="container">

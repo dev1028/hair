@@ -217,7 +217,10 @@
 <br><br><br><br><br><br>
 <div id="wrap2">	<!-- wrap2시작 -->
 	<h4>예약한 적이 있는 헤어샵</h4>	
-		<hr>
+	<hr>
+	<c:if test="${ empty onevisit }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
+				예약한적이 있는 헤어샵이 없습니다
+	</c:if>	
 			
 <!-- 슬라이더 -->
 <div class="swiper-container">

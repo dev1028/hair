@@ -16,11 +16,15 @@ public class MembersMyPageTopCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 파라미터
+		String mem_no = request.getSession().getAttribute("memNo").toString();
+		
+		MembersReservationVo vo = new MembersReservationVo();
+		vo.setMem_no(mem_no);
 
 		// DB 조회
 		MembersReservationDAO dao = new MembersReservationDAO();
-		List<MembersReservationVo> list = dao.bookingAll();
-		List<MembersReservationVo> list2 = dao.OnceVisitedHS();
+		List<MembersReservationVo> list = dao.bookingAll(vo);
+		List<MembersReservationVo> list2 = dao.OnceVisitedHS(vo);
 
 		// 결과 저장
 		request.setAttribute("booking", list);

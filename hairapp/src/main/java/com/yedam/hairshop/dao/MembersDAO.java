@@ -359,13 +359,17 @@ public class MembersDAO {
 
 	public int updateLatlng(MembersVo vo) {
 		int r = 0;
-		String sql = "UPDATE MEMBERS SET MEM_LATITUDE_LONGITUDE = ?, MEM_ADDR = ? WHERE MEM_EMAIL = ?";
+		String sql = 
+				" UPDATE MEMBERS SET MEM_LATITUDE_LONGITUDE = ?, MEM_ADDR = ?, MEM_CITY = ?, MEM_TOWNSHIP = ? "
+			  + " WHERE MEM_EMAIL = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMem_latitude_longitude());
 			pstmt.setString(2, vo.getMem_addr());
-			pstmt.setString(3, vo.getMem_email());
+			pstmt.setString(3, vo.getMem_addr());
+			pstmt.setString(4, vo.getMem_addr().split(" ")[2]);
+			pstmt.setString(5, vo.getMem_email());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -490,7 +494,7 @@ public class MembersDAO {
 	}
 
 	// 회원인증 9로 만들어서 회원탈퇴(10년간 정보 보관)
-	public void membersDelete(MembersVo membersVo) {
+	public MembersVo membersDelete(MembersVo membersVo) {
 		// 회원가입 인증 완료 1, 회원가입 인증 중 0, 회원가입 인증 전 -1, 회원탈퇴 9
 		String sql = "UPDATE MEMBERS SET MEM_ACCESS_STATUS = 9 WHERE MEM_EMAIL = ? AND MEM_PW = ?";
 		try {
@@ -502,6 +506,7 @@ public class MembersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return membersVo;
 	}
 
 	/**
