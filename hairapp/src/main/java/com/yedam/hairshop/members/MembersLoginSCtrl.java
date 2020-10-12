@@ -79,6 +79,11 @@ public class MembersLoginSCtrl implements Controller {
 					sess.setAttribute("lng", lng);
 				}
 				
+				String addr = resultVO.getMem_addr();
+				if(addr != null) {
+					sess.setAttribute("township", addr.split(" ")[2]);
+				}
+				
 				request.getSession().setAttribute("login", resultVO);
 				request.getSession().setAttribute("udong","member");
 				request.getSession().setAttribute("loginid", resultVO.getMem_email()); 	// 세션아이디

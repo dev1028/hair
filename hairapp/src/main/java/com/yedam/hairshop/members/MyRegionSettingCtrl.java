@@ -23,10 +23,15 @@ public class MyRegionSettingCtrl implements Controller {
 		}
 		
 		HttpSession session = request.getSession();
+		String roadAddress = request.getParameter("roadAddress");
+		if(roadAddress != null) {
+			String township = roadAddress.split(" ")[2];
+			session.setAttribute("township", township);
+		}
+		
 		MembersVo membersVo = (MembersVo) session.getAttribute("login");
 		if(membersVo != null) {
 			if(lat != null) {
-				String roadAddress = request.getParameter("roadAddress");
 				if(roadAddress != null) {
 					membersVo.setMem_addr(roadAddress);
 				}
