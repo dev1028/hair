@@ -142,7 +142,12 @@ $(function() {
 	
 	$("#changeFormToUpdate").on("click", function(){
 		if(arrayBeforeUpdate.length != 0){
-			$("#empUpdatefrm").submit();
+			if($.isNumeric($("#empworkstarttime").val()) && $.isNumeric($("#empworkendtime").val())){
+				if(parseInt($("#empworkstarttime").val())<parseInt($("#empworkendtime").val())){
+					$("#empUpdatefrm").submit();
+				}
+			}
+			
 		}
 		$("#empUpdatefrm").find("input").each(function(index){
 			arrayBeforeUpdate.push($(this).val())
@@ -156,6 +161,7 @@ $(function() {
 	});
 	
 });	
+
 </script>
 </head>
 <body>	
