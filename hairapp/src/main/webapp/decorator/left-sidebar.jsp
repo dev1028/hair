@@ -193,7 +193,8 @@
 		<div id="box">
 			<img src="${pageContext.request.contextPath }/tion/images/gps.png" />
 
-			<a href="">${login.mem_township} </a> |
+<%-- 			<a href="">${login.mem_township} </a> | --%>
+			<a href="">${sessionScope.township} </a> |
 			<c:if test="${empty loginid}">
 				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a>
 			</c:if>
