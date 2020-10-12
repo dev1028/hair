@@ -84,8 +84,8 @@ $(function(){
 		            <div class="product-grid4">
 		                <div class="product-image4">
 		                <!-- <img src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairshop.hs_no}/profile&img_name=${hs.hsp_file}"> -->
-		                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${designerInfo.designer_no}&img_name=${designerInfo.file_name}">
-	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg">
+		                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${designerInfo.designer_no}/profile&img_name=${designerInfo.file_name}"
+		                					   onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg'">
 		                </div>
 		                <div class="product-content">
 		                	<c:if test="${not empty sessionScope.login }">

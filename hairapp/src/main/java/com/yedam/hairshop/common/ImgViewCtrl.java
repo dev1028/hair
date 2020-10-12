@@ -14,6 +14,9 @@ public class ImgViewCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filename = request.getParameter("img_name"); //파일이름
+		if(filename == null || filename.equals(""))
+			return;
+		
 		String pathLocation = request.getParameter("img_path"); //중간 경로 이름쓰기
 		String realPath = "C:/hairapp" + pathLocation + "/" +filename;
 		System.out.println(realPath);

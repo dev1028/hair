@@ -16,7 +16,6 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <script src="../js/hairBookmark.js"></script>
-
 </head>
 <body>
 
@@ -123,15 +122,51 @@
 </div>
 
 <!-- 바디안에 -->
-<div id="shopbody">			
+<div id="shopbody">
+
+
+	<div class="container">
+    <h3 class="h3"></h3>
+	<c:if test="${empty intro}">
+		디자이너가 없습니다<br><br>
+	</c:if>
+	<c:forEach items="${list}" var="hairInfo">
+        <div class="col-md-3 col-sm-6">
+            <div class="product-grid4">
+                <div class="product-image4">
+                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hair/${hairInfo.hhi_no}/profile&img_name=${hairInfo.hhmi_file}"
+		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
+                </div>
+                <div class="product-content">
+                	asdffffffffffffffffffffffffffffdddddddddddddddddddddddddd
+						<c:if test="${not empty sessionScope.login }">
+							<a href='javascript: like_func("${hairInfo.hhi_no}")'> 
+								<c:if test="${hairInfo.hhi_book == 1 }">
+									<img class="img-${hairInfo.hhi_no}" src="../images/bookmark/heart.png" width="30" height="30">
+								</c:if> 
+								<c:if test="${hairInfo.hhi_book != 1 }">
+									<img class="img-${hairInfo.hhi_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+								</c:if>
+							</a>
+						</c:if>
+						<div class="price">${hairInfo.hhi_name}</div>
+					</div>
+				</div>
+				<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
+			</div>
+		</c:forEach>
+    
+</div>	<!-- container 마지막 -->
+<%--
 <div class="container">
-    <div class="row">
 		<c:forEach items="${list}" var="hairInfo">
 			<div class="col-md-3 col-sm-6">
 				<div class="product-grid4">
 					<div class="product-image4">
-						<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-						<img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+<!-- 						<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg"> -->
+						<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hair/${hairInfo.hhi_no}/profile&img_name=${hairInfo.hhmi_file}"
+		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
+<!-- 						<img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg"> -->
 					</div>
 					<div class="product-content">
 						<c:if test="${not empty sessionScope.login }">
@@ -150,8 +185,9 @@
 				<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
 			</div>
 		</c:forEach>
-	</div>
 </div>	<!-- container 마지막 -->
+ --%>
+ 
 <hr>
 </div>	<!-- shopbody 마지막 -->
 

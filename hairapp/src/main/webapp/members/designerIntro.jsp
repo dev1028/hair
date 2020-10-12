@@ -125,7 +125,6 @@
 <div id="shopbody">
 
 <form method="post" action="hsDesignerIntro.do" name="form" id="form">
-			
 	<div class="container">
     <h3 class="h3"></h3>
 	<c:if test="${empty intro}">
@@ -135,8 +134,8 @@
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
                 <div class="product-image4">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${in.designer_no}/profile&img_name=${in.file_name}"
+		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo6/images/img-2.jpg'">
                 </div>
                 <div class="product-content">
                     <h3 class="title">${in.designer_name}</h3>

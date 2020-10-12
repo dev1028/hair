@@ -23,7 +23,7 @@
                 <div class="product-image4">
                     <a href="#">
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+<!--                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg"> -->
                     </a>
                 </div>
                 <div class="product-content">
@@ -49,7 +49,7 @@
                 <div class="product-image9">
                     <a href="#">
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-2.jpg">
+<!--                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-2.jpg"> -->
                     </a>
                     <a href="#" class="fa fa-search product-full-view"></a>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="product-image9">
                     <a href="#">
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg">
+<!--                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg"> -->
                     </a>
                     <a href="#" class="fa fa-search product-full-view"></a>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="product-image9">
                     <a href="#">
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-6.jpg">
+<!--                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-6.jpg"> -->
                     </a>
                     <a href="#" class="fa fa-search product-full-view"></a>
                 </div>
@@ -118,7 +118,7 @@
                 <div class="product-image9">
                     <a href="#">
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-8.jpg">
+<!--                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-8.jpg"> -->
                     </a>
                     <a href="#" class="fa fa-search product-full-view"></a>
                 </div>

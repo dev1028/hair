@@ -43,7 +43,7 @@
 		            <div class="product-grid4">
 		                <div class="product-image4">
 	                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-3.jpg">
-	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg">
+<!-- 	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo6/images/img-4.jpg"> -->
 		                </div>
 		                <div class="product-content">
 		                	<c:if test="${not empty sessionScope.login }">
