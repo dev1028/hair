@@ -163,18 +163,31 @@
 			</div>
 			<input type="hidden" name="no" value="no" >
 			<h6>예약일자</h6>
+			<c:if test="${empty list.mdr_date }"><h4>예약일자가 없습니다</h4></c:if>
 			<h4>${list.mdr_date}</h4><br>
+			
 			<h6>디자이너</h6>
+			<c:if test="${empty list.designer_name }"><h4>디자이너가 없습니다</h4></c:if>
 			<h4>${list.designer_name}</h4><br>
+			
 			<h6>시술헤어</h6>
+			<c:if test="${empty list.hhi_name }"><h4>시술헤어가 없습니다</h4></c:if>
 			<h4>${list.hhi_name}</h4><br>
+			
 			<h6>헤어기장</h6>
+			<c:if test="${empty list2.mem_hair_length }"><h4>헤어기장이 없습니다</h4></c:if>
 			<h4>${list2.mem_hair_length}</h4><br>
+			
 			<h6>헤어상태</h6>
+			<c:if test="${empty list2.mem_hair_status }"><h4>헤어상태가 없습니다</h4></c:if>
 			<h4>${list2.mem_hair_status}</h4><br>
+			
 			<h6>결제금액</h6>
+			<c:if test="${empty list.mdp_price }"><h4>결제금액이 없습니다</h4></c:if>
 			<h4>${list.mdp_price}</h4><br>
+			
 			<h6>헤어샵 요청사항</h6>
+			<c:if test="${empty list.mdr_request }"><h4>요청사항이 없습니다</h4></c:if>
 			<h4>${list.mdr_request}</h4><br>
 		</div>
 	</div>

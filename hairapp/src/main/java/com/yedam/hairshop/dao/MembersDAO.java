@@ -490,7 +490,7 @@ public class MembersDAO {
 	}
 
 	// 회원인증 9로 만들어서 회원탈퇴(10년간 정보 보관)
-	public void membersDelete(MembersVo membersVo) {
+	public MembersVo membersDelete(MembersVo membersVo) {
 		// 회원가입 인증 완료 1, 회원가입 인증 중 0, 회원가입 인증 전 -1, 회원탈퇴 9
 		String sql = "UPDATE MEMBERS SET MEM_ACCESS_STATUS = 9 WHERE MEM_EMAIL = ? AND MEM_PW = ?";
 		try {
@@ -502,6 +502,7 @@ public class MembersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return membersVo;
 	}
 
 	/**

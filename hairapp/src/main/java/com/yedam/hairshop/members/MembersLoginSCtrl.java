@@ -33,6 +33,36 @@ public class MembersLoginSCtrl implements Controller {
 								.append("</script>");
 			page = "/members/membersLogin.do";
 			System.out.println("아디없음:"+page);
+			
+			// 로그인 후 인증확인
+			} else if (resultVO.getMem_access_status().equals("0")) {
+				response.getWriter().append("<script>")
+									.append("alert('인증이 완료되지 않았습니다');")
+									.append("</script>");
+				page = "/members/membersLogin.do";
+				System.out.println("인증불:"+page);
+			//} 
+			} else if(resultVO.getMem_access_status().equals("-1")) {
+				response.getWriter().append("<script>")
+				.append("alert('인증이 완료되지 않았습니다');")
+				.append("</script>");
+				page = "/members/membersLogin.do";
+				System.out.println("인증불:"+page);
+			
+			} else if(resultVO.getMem_access_status().equals("9")) {
+				response.getWriter().append("<script>")
+				.append("alert('탈퇴된 회원입니다');")
+				.append("</script>");
+				page = "/members/membersLogin.do";
+				System.out.println("탈퇴회원:"+page);
+			
+//			} else if (membersVO.getMem_pw() != resultVO.getMem_pw()) { // 패스워드 불일치
+//				response.getWriter().append("<script>")
+//									.append("alert('패스워드가 맞지 않습니다');")
+//									.append("</script>");
+//				page = "/members/membersLogin.do";
+//				System.out.println("패스워드불:"+page);
+//		}
 
 		} else {
 			// memberVO에 있는 pw와 resultVO의 pw를 비교해서 같으면 로그인성공 && 인증컬럼 1이어야지 로그인 성공
@@ -55,6 +85,7 @@ public class MembersLoginSCtrl implements Controller {
 				request.getSession().setAttribute("admin", resultVO.getMem_access_status());	// 인증컬럼
 				request.getSession().setAttribute("memNo", resultVO.getMem_no());		// 세션고객번호
 				request.getSession().setAttribute("memName", resultVO.getMem_name());	// 세션고객이름
+				request.getSession().setAttribute("memPw", resultVO.getMem_pw());	// 세션비밀번호
 
 				System.out.println("인증컬럼: " + resultVO.getMem_access_status());
 				page = "/members/membersMain.do";
@@ -62,40 +93,38 @@ public class MembersLoginSCtrl implements Controller {
 				
 				// 로그인 후 인증확인
 				
-				} else if (resultVO.getMem_access_status().equals("0")) {
-					response.getWriter().append("<script>")
-										.append("alert('인증이 완료되지 않았습니다');")
-										.append("</script>");
-					page = "/members/membersLogin.do";
-					System.out.println("인증불:"+page);
-				//} 
-				} else if(resultVO.getMem_access_status().equals("-1")) {
-					response.getWriter().append("<script>")
-					.append("alert('인증이 완료되지 않았습니다');")
-					.append("</script>");
-					page = "/members/membersLogin.do";
-					System.out.println("인증불:"+page);
-				
-				} else if(resultVO.getMem_access_status().equals("9")) {
-					response.getWriter().append("<script>")
-					.append("alert('탈퇴된 회원입니다');")
-					.append("</script>");
-					page = "/members/membersLogin.do";
-					System.out.println("탈퇴회원:"+page);
-				
-				} else if (membersVO.getMem_pw() != resultVO.getMem_pw()) { // 패스워드 불일치
-					response.getWriter().append("<script>")
-										.append("alert('패스워드가 맞지 않습니다');")
-										.append("</script>");
-					page = "/members/membersLogin.do";
-					System.out.println("패스워드불:"+page);
+//				} else if (resultVO.getMem_access_status().equals("0")) {
+//					response.getWriter().append("<script>")
+//										.append("alert('인증이 완료되지 않았습니다');")
+//										.append("</script>");
+//					page = "/members/membersLogin.do";
+//					System.out.println("인증불:"+page);
+//				//} 
+//				} else if(resultVO.getMem_access_status().equals("-1")) {
+//					response.getWriter().append("<script>")
+//					.append("alert('인증이 완료되지 않았습니다');")
+//					.append("</script>");
+//					page = "/members/membersLogin.do";
+//					System.out.println("인증불:"+page);
+//				
+//				} else if(resultVO.getMem_access_status().equals("9")) {
+//					response.getWriter().append("<script>")
+//					.append("alert('탈퇴된 회원입니다');")
+//					.append("</script>");
+//					page = "/members/membersLogin.do";
+//					System.out.println("탈퇴회원:"+page);
+//				
+//				} else if (membersVO.getMem_pw() != resultVO.getMem_pw()) { // 패스워드 불일치
+//					response.getWriter().append("<script>")
+//										.append("alert('패스워드가 맞지 않습니다');")
+//										.append("</script>");
+//					page = "/members/membersLogin.do";
+//					System.out.println("패스워드불:"+page);
 			}
 		}
 
 		System.out.println("이동: " + page);
 		
-		request.getSession().setAttribute("loginFalse", resultVO==null);
-
 		// 4. 뷰페이지 이동(redirect, forward) 또는 뷰페이지 출력
 		request.getRequestDispatcher(page).forward(request, response);
 

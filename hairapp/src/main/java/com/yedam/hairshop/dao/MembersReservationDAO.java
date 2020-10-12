@@ -29,17 +29,21 @@ public class MembersReservationDAO {
 	}
 
 	// 전체 예약 내역 조회
-	public List<MembersReservationVo> reservationAll() {
+	public List<MembersReservationVo> reservationAll(MembersReservationVo membersReservationVo) {
 		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select h.hs_name, r.mdr_date, r.mdr_no, r.mdr_status, m.mem_no, d.designer_name "
-					+ " from hairshop h join designer d " + " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " + " on(r.mem_no=m.mem_no) "
+					+ " from hairshop h right outer join designer d " 
+					+ " on(h.hs_no=d.hs_no) join members_designer_rsv r "
+					+ " on(d.designer_no=r.designer_no) join members m " 
+					+ " on(r.mem_no=m.mem_no) "
+					+ " where m.mem_no = ?"
 					+ " order by 2 desc";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersReservationVo.getMem_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -62,7 +66,7 @@ public class MembersReservationDAO {
 	}
 
 	// 예약중인 헤어샵 조회
-	public List<MembersReservationVo> bookingAll() {
+	public List<MembersReservationVo> bookingAll(MembersReservationVo membersReservationVo) {
 		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
@@ -73,9 +77,10 @@ public class MembersReservationDAO {
 					+ " ON(H.HS_NO=D.HS_NO) JOIN MEMBERS_DESIGNER_RSV R "
 					+ " ON(D.DESIGNER_NO=R.DESIGNER_NO) JOIN MEMBERS M " 
 					+ " ON(R.MEM_NO=M.MEM_NO) "
-					+ " WHERE R.MDR_STATUS = 'i2' AND R.MDR_DATE > SYSDATE" 
+					+ " WHERE R.MDR_STATUS = 'i2' AND R.MDR_DATE > SYSDATE AND M.MEM_NO=?" 
 					+ " ORDER BY 2 DESC";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersReservationVo.getMem_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -175,23 +180,20 @@ public class MembersReservationDAO {
 	
 
 	// 예약한 적 있는 미용실 조회
-	public List<MembersReservationVo> OnceVisitedHS() {
+	public List<MembersReservationVo> OnceVisitedHS(MembersReservationVo membersReservationVo) {
 		ResultSet rs = null;
 		List<MembersReservationVo> list = new ArrayList<MembersReservationVo>();
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select h.hs_name, max(r.mdr_date), max(r.mdr_no), max(r.mdr_status)," 
-					+ " max(m.mem_no), max(d.designer_name), max(p.hsp_file)" 
-					+ " from hs_photo p join hairshop h "
-					+ " on(p.hs_no=h.hs_no) join designer d " 
-					+ " on(h.hs_no=d.hs_no) join members_designer_rsv r "
-					+ " on(d.designer_no=r.designer_no) join members m " 
-					+ " on(r.mem_no=m.mem_no) "
-					+ " where r.mdr_status = 'i3' or r.mdr_status = 'i2' or r.mdr_status = 'i1' "
-					+ " group by h.hs_name" 
-					+ " order by 2 desc";
+			String sql = "SELECT MAX(H.HS_NAME), MAX(R.MDR_DATE), MAX(R.MEM_NO), MAX(R.MDR_NO), MAX(R.MDR_STATUS)"
+					+ " FROM MEMBERS_DESIGNER_RSV R JOIN HAIRSHOP H" 
+					+ " ON(R.HS_NO=H.HS_NO)"
+					+ " WHERE MEM_NO=? AND MDR_STATUS IN ('i2','i3','i4')"
+					+ " GROUP BY H.HS_NAME" 
+					+ " ORDER BY 2 DESC";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, membersReservationVo.getMem_no()); // ?의 첫번째 자리에 올 값 지정
 			rs = pstmt.executeQuery();
 			System.out.println(sql);
 			while (rs.next()) {
@@ -199,11 +201,9 @@ public class MembersReservationDAO {
 				String hsName = rs.getString(1);
 				members.setHs_name(hsName);
 				members.setMdr_date(rs.getString(2));
-				members.setMdr_no(rs.getString(3));
-				members.setMdr_status(rs.getString(4));
-				members.setMem_no(rs.getString(5));
-				members.setDesigner_name(rs.getString(6));
-				members.setHsp_file(rs.getString(7));
+				members.setMem_no(rs.getString(3));
+				members.setMdr_no(rs.getString(4));
+				members.setMdr_status(rs.getString(5));
 
 				list.add(members); // resultVo를 list에 담음
 			}

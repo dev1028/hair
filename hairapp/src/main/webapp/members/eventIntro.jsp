@@ -206,6 +206,9 @@ function qqq() {
 
 <!-- 본문쓰면됨 여기에 -->
 <div class="container">
+<c:if test="${empty intro}">
+	쿠폰이 없습니다<br><br>
+</c:if>
 <c:forEach items="${intro}" var="in">
 <form action="hsCouponIssuance.do">
 <div class="col-sm-12">
