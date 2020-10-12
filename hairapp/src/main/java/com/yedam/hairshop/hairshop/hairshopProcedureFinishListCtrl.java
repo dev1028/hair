@@ -15,9 +15,11 @@ public class hairshopProcedureFinishListCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HairshopProcedureFinishVo vo = new HairshopProcedureFinishVo();
+		String hsno = (String) request.getSession().getAttribute("hsno");
 		
-		vo.setHs_no((String)request.getSession().getAttribute("hsno"));
+		HairshopProcedureFinishVo vo = new HairshopProcedureFinishVo();
+		vo.setHs_no(hsno);
+		//vo.setHs_no((String)request.getSession().getAttribute("hsno"));
 		
 		ArrayList<HairshopProcedureFinishVo> list = HairshopProcedureFinishDAO.getInstance().selectAll(vo);
 		request.setAttribute("list",list);

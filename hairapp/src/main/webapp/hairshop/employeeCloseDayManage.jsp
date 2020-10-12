@@ -118,16 +118,17 @@ div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active
 -webkit-box-shadow: none;
 box-shadow: none;
 }
-
-
 </style>
+
 <body>
+
 <script>
-$(function(){
+/* 미용실,디자이너 클릭이벤트 */
+/* $(function(){
 	$(".hairshop").hide();
 })
-
 $(function(){
+
 	$(".designer_list").hide();
 })
 
@@ -140,7 +141,7 @@ function hairshop_show_button(){
 	$(".designer_list").hide();
 	$(".hairshop").show();
 }
-
+ */
 /* function toggle(){
 	if($('.designer_list').is(':visible')){
 		$(".designer_list").hide();
@@ -151,15 +152,57 @@ function hairshop_show_button(){
 	}
 } */
 </script>
+<script>
+// 테이블의 Row 클릭시 값 가져오기
+$("#example-table-1 tr").click(function(){ 	
+
+	var str = ""
+	var tdArr = new Array();	// 배열 선언
+	
+	// 현재 클릭된 Row(<tr>)
+	var tr = $(this);
+	var td = tr.children();
+	
+	// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+	
+	// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+	td.each(function(i){
+		tdArr.push(td.eq(i).text());
+	});
+	
+	console.log("배열에 담긴 값 : "+tdArr);
+	
+	var designer_no = td.eq(0).text();
+	var designer_name = td.eq(2).text();
+	var designer_dayoff = td.eq(4).text();
+
+	// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+	td.each(function(i){	
+		tdArr.push(td.eq(i).text());
+	});
+	
+	console.log("배열에 담긴 값 : "+tdArr);
+	
+});
+</script>
+<!-- <script>
+<script>
+$(document).ready(function(){
+	$('td').click(function(){
+		var rowIndex =$(this).parent().	
+	});
+});
+</script> -->
 
 	<div class="container">
 	<div class="row">
 			<br> <br> <br>
 	</div>
-	<div>
+<!-- 	<div>
 			<button class="button button1" onclick="hairshop_show_button();">미용실</button>
 			<button class="button button2" onclick="designer_show_button();">디자이너</button>
-	</div>
+	</div> -->
 	<br>
 	<div class="designer_list">
 		
@@ -168,7 +211,7 @@ function hairshop_show_button(){
 			<h3>디자이너 휴무일 관리</h3>
 		</div>
 		<br>
-		<table class="table-bordered table-hover table-sm text-center">
+		<table  id="example-table-1" class="table table-bordered table-hover text-center">
 			<thead>
 				<tr>
 					<th scope="row">직원번호</th>
@@ -189,7 +232,7 @@ function hairshop_show_button(){
 						<td>${e.designer_phone }</td>
 						<td>${e.hire_date }</td>
 						<td>${e.designer_dayoff }</td>
-						<td><a href="" class="btn btn-primary">수정</a>
+						<td><input type="button" class="checkBtn" value="클릭" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -201,17 +244,17 @@ function hairshop_show_button(){
   				<table>
   					<tr>
   						<td>디자이너 번호: </td>
-  						<td></td>
+  						<td id="designer_no"></td>
   					</tr>
   					
   					<tr>
   						<td>디자이너 이름: </td>
-  						<td></td>
+  						<td id="designer_name"></td>
   					</tr>
   					
   					<tr>
   						<td>휴무일: </td>
-  						<td></td>
+  						<td id="designer_dayoff"></td>
   					</tr>
   				</table>
   				<br>
@@ -220,34 +263,34 @@ function hairshop_show_button(){
 				  <form action="${pageContext.request.contextPath}/hairshop/employeeCloseDayManageU.do" method="post">
 				  
 				    <label class="btn" for='a'>
-				    <input type="checkbox" name='dayoff' id='a' value='0'> 일요일 <i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+				    <input type="checkbox" name='designerDayoff' id='a' value='0'> 일요일 <i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
 				    <label class="btn" for='b'>
-				      <input type="checkbox" name='dayoff' id='b' value='1'> 월요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> 
+				      <input type="checkbox" name='designerDayoff' id='b' value='1'> 월요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i> 
 				    </label>
 				    
 				    <label class="btn" for='c'>
-				      <input type="checkbox" name='dayoff' id='c' value='2'> 화요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+				      <input type="checkbox" name='designerDayoff' id='c' value='2'> 화요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
 				    <label class="btn" for='d'>
-				      <input type="checkbox" name='dayoff' id='d' value='3'> 수요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+				      <input type="checkbox" name='designerDayoff' id='d' value='3'> 수요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
 				    <label class="btn" for='e'>
-				      <input type="checkbox" name='dayoff' id='e' value='4'> 목요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+				      <input type="checkbox" name='designerDayoff' id='e' value='4'> 목요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
 				    <label class="btn" for='f'>
-				      <input type="checkbox" name='dayoff' id='f' value='5'> 금요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+				      <input type="checkbox" name='designerDayoff' id='f' value='5'> 금요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
 				    <label class="btn" for='g'>
-				      <input type="checkbox" name='dayoff' id='g' value='6'> 토요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
+				      <input type="checkbox" name='designerDayoff' id='g' value='6'> 토요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
-					<button id="btn"  class="btn btn-primary">수정</button>
+					<button id="checkBtn"  class="btn btn-primary">수정</button>
 					</form>
 				  </div>
 <!--   				<div>
@@ -266,7 +309,7 @@ function hairshop_show_button(){
 	</div>
 
 	<!-- 미용실 휴무쪽 -->		
-	<div class="hairshop">
+<%-- 	<div class="hairshop">
 	<div class="row">	
 	<h3> 미용실 휴무 수정</h3>
 	</div>
@@ -323,7 +366,7 @@ function hairshop_show_button(){
 				  
 	
  		 <!--test  -->
-			</div>
+			</div> --%>
 	</div>
 </body>
 </html>

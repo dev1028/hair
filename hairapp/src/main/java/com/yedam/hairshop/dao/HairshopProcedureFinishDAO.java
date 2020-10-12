@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HairshopProcedureFinishVo;
@@ -31,7 +30,7 @@ public class HairshopProcedureFinishDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = " select a.mdr_date, a.mdr_no, b.hhi_no, a.designer_no, c.hhi_price, d.designer_name, m.mem_name, c.hhi_name "
 					+ " from members_designer_rsv a, mem_designer_rsv_info b, hairshop_hair_info c, designer d, members m "
-					+ " where mdr_status = 'i4' "
+					+ " where mdr_status = 'i4'"
 					+ " and a.mdr_no = b.mdr_no and c.hhi_no = b.hhi_no and a.designer_no = d.designer_no and m.mem_no = a.mem_no"
 					+ " and a.hs_no = ?" + " order by a.mdr_date";
 			pstmt = conn.prepareStatement(sql);

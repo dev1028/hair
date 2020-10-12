@@ -52,6 +52,7 @@
 					<td>디자이너번호</td>
 					<td>디자이너이름</td>
 					<td>헤어가격</td>
+					<td>상세정보</td>
 
 				</tr>
 			</thead>
@@ -66,6 +67,8 @@
 						<td>${f.designer_no }</td>
 						<td>${f.designer_name }</td>
 						<td>${f.hhi_price }원</td>
+						<td><a href="${pageContext.request.contextPath}/hairshop/hairInfoDetail.do?hhi_no=${f.hhi_no}"
+								 class="btn btn-secondary btn-sm">상세보기</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
