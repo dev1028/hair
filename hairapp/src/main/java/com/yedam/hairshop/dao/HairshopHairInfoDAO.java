@@ -330,6 +330,7 @@ public class HairshopHairInfoDAO {
 		return r;
 	}
 
+
 	// 2020.10.10 김승연
 	// 미용실 헤어 입력 프로시저(사진있거나 없거나 둘다 가능)
 	public HairshopHairInfoVo insertHhi(HairshopHairInfoVo hHIVo) {

@@ -109,7 +109,7 @@ var checkSame = 0;
 							} else {
 								checkSame = 1;
 								alert("사용가능한 시술명입니다.");
-								$("#hhi_name").attr("disabled",true);
+								$("#hhi_name").attr("readonly",true);
 							}
 						
 							}
