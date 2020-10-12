@@ -465,4 +465,32 @@ public class HairshopDAO {
 			}
 			return result;
 		}
+		
+		//2020.10.12 김승연
+		//헤어샵 마이페이지에서 정보수정
+		public int updateHairshop(HairshopVo hVo) {
+			ResultSet rs = null;
+			int result = 0;
+			String sql = "UPDATE HAIRSHOP SET HS_TEL = ?, HS_FULLADDR = ? , HS_CITYADDR = ?, HS_TOWNADDR = ?, HS_STREETADDR = ?, HS_LATLONG = ?," + 
+					" HS_STARTTIME = ?, HS_ENDTIME = ? WHERE HS_NO = ?";
+			try {
+				conn = ConnectionManager.getConnnect();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, hVo.getHs_tel());
+				pstmt.setString(2, hVo.getHs_fulladdr());
+				pstmt.setString(3, hVo.getHs_cityaddr());
+				pstmt.setString(4, hVo.getHs_townaddr());
+				pstmt.setString(5, hVo.getHs_streetaddr());
+				pstmt.setString(6, hVo.getHs_latlong());
+				pstmt.setString(7, hVo.getHs_starttime());
+				pstmt.setString(8, hVo.getHs_endtime());
+				pstmt.setString(9, hVo.getHs_no());
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return result;
+		}
 }

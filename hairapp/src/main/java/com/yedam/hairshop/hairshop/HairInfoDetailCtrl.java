@@ -21,11 +21,9 @@ public class HairInfoDetailCtrl implements Controller {
 		HairshopHairInfoVo hVo = new HairshopHairInfoVo();
 		hVo.setHhi_no(hhiNo);
 		hVo = HairshopHairInfoDAO.getInstance().selectOneHairInfo(hVo);
-		
 		HairshopHairMoreInfoVo hhmiVo = new HairshopHairMoreInfoVo();
 		hhmiVo.setHhi_no(hVo.getHhi_no());
 		List<HairshopHairMoreInfoVo> list = HairshopHairMoreInfoDAO.getInstance().selectByHhiNo(hhmiVo);
-		
 		request.setAttribute("hair", hVo);
 		request.setAttribute("picList", list);
 		request.getRequestDispatcher("/hairshop/hairInfoDetail.jsp").forward(request, response);

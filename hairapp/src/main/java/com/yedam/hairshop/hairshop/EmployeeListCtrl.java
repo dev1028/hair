@@ -28,7 +28,7 @@ public class EmployeeListCtrl implements Controller {
 			String hs_no = (String) request.getSession().getAttribute("hsno");
 			DesignerVo dVo = new DesignerVo();
 			dVo.setHs_no(hs_no);
-			ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShop(dVo);
+			ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShopAccessAll(dVo);
 			for (DesignerVo emp : emplist) {
 				if (emp.getDesigner_dayoff() == null) {
 					emp.setDesigner_dayoff("-");

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
+
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
@@ -102,7 +103,7 @@ public class Login implements Filter {
 		list.put("/popup/hairshopReview.do", memberLoginPage); // 리뷰 이동용
 		list.put("/members/hairshopReviewInsert.do", memberLoginPage);
 		list.put("/members/membersInsert.do", memberLoginPage);
-		list.put("/members/myRegionSetting.do", memberLoginPage);
+		list.put("/members/myRegionSetting.do", null);
 
 		list.put("/ajax/changeDesigner.do", memberLoginPage);
 
@@ -110,8 +111,8 @@ public class Login implements Filter {
 		list.put("/ajax/hairshopBookmark.do", memberLoginPage); // 헤어샵 북마크
 		list.put("/ajax/designerBookmark.do", memberLoginPage); // 디자이너 북마크
 
-		list.put("/ajax/searchRealtime.do", memberLoginPage); // 자동완성 검색
-		list.put("/members/searchDetail.do", memberLoginPage); // 상세검색
+		list.put("/ajax/searchRealtime.do", null); // 자동완성 검색
+		list.put("/members/searchDetail.do", null); // 상세검색
 
 		list.put("/members/gpsHairshopSearch.do", null);
 
@@ -119,6 +120,8 @@ public class Login implements Filter {
 		list.put("/members/membersBookmarkDesigner.do", memberLoginPage);
 		list.put("/members/membersBookmarkHairstyle.do", memberLoginPage);
 
+		list.put("/hairshop/hairNameRequest.do", hairLoginPage); // 헤어 시술명 중분류 등록.
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", designerLoginPage);
 		list.put("/designer/designerInfo.do", designerLoginPage);
@@ -325,6 +328,7 @@ public class Login implements Filter {
 
 		list.put("/hairshop/hairInfoList.do", hairLoginPage); // 헤어시술목록 페이지이동
 		list.put("/hairshop/hairInfoDetail.do", hairLoginPage); // 헤어시술상세페이지 이동
+		list.put("/hairshop/hairInfoPicUpload.do", hairLoginPage); // 헤어시술목록 상세페이지에서 이미지 업로드
 		list.put("/hairshop/hairInfoListRe.do", hairLoginPage); // 헤어시술목록 검색페이지로 이동
 		list.put("/hairshop/hairInfoFullList.do", hairLoginPage); // 헤어시술 전체목록
 		list.put("/hairshop/myHairshopInfo", hairLoginPage); // 마이페이지
@@ -337,7 +341,9 @@ public class Login implements Filter {
 		list.put("/hairshop/myHairshopProfile.do", hairLoginPage); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", hairLoginPage); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myParkingChange.do", hairLoginPage); //주차장 사용여부 변경
-		list.put("/ajax/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
+		list.put("/ajax/imgView.do", null);
 	}
 
 	@Override

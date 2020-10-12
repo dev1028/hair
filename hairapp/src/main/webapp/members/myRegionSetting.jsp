@@ -16,14 +16,6 @@
 	</style>
 </head>
 <body>
-<%--
-<c:if test="${empty login }">
-	<script>
-		alert("로그인을 해주세요")
-		location.href="membersLogin.do"
-	</script>
-</c:if>
---%>
 
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -34,6 +26,8 @@
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463&libraries=services"></script>
+<script src="../js/locationFromIP.js"></script>
+
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -143,6 +137,11 @@ marker.setMap(map);
 			}
 		});
 </script>
-		
+<c:if test="${empty lat }">
+<script>
+	setLocationFromIP();
+</script>
+</c:if>
+
 </body>
 </html>

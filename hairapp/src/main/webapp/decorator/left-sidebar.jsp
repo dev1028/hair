@@ -193,12 +193,13 @@
 		<div id="box">
 			<img src="${pageContext.request.contextPath }/tion/images/gps.png" />
 
-			<a href="">동성로 </a> |
+<%-- 			<a href="">${login.mem_township} </a> | --%>
+			<a href="">${sessionScope.township} </a> |
 			<c:if test="${empty loginid}">
 				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a>
 			</c:if>
 			<c:if test="${not empty loginid }">
-				<%=session.getAttribute("empname")%>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<%=session.getAttribute("memName")%>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 				<div>
 					<a class="hamburger-shell">
 						<div class="hamb top"></div>
