@@ -290,6 +290,7 @@
 										href="${pageContext.request.contextPath}/hairshop/hairInfoList.do">시술목록</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hairInfoInsert.do">시술등록</a>
+										<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do">시술명신청</a>
 								</div></li>

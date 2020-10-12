@@ -91,8 +91,19 @@
 
 #radioCh {
 	width: 600px;
-	left: 39%;
-	display: contents;
+    left: 39%;
+    display: block;
+    position: absolute;
+}
+
+#date {
+	width: 215px;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  color: #9DBFAF;
 }
 
 
@@ -559,8 +570,16 @@ form.example::after {
 </div><!-- 슬라이더끝 -->
 
 	<div class="myForm">
-	<br>
-		<form action="../members/searchDetail.do" method="post" style="margin:auto;max-width:300px">
+		<form action="../members/searchDetail.do" method="post">
+			<div class="search">
+				<input autocomplete="off" id="project" type="text" class="searchTerm"  name="term" placeholder="미용실 이름을 적으세요.">
+				<button type="submit" class="searchButton" name="detail"><i class="fa fa-search"></i></button>
+				<input type="hidden" id="project-id">
+				<p id="project-description"></p>
+			</div>
+			
+			<br><br><br>
+			
 			<div id="radioCh">
 				날짜선택&emsp;<input autocomplete="off" type="text" name="date" id="date" size="12" />
 				<label class="radio-inline">&emsp;
@@ -574,16 +593,8 @@ form.example::after {
 		    	</label>
 		    	<br>
     		</div>
-    		<br>
+    		<br><br><br><br>
 	    	
-			<div class="search">
-				<input autocomplete="off" id="project" type="text" class="searchTerm"  name="term" placeholder="미용실 이름을 적으세요.">
-				<button type="submit" class="searchButton" name="detail"><i class="fa fa-search"></i></button>
-				<input type="hidden" id="project-id">
-				<p id="project-description"></p>
-			</div>
-			
-			<br><br><br><br>
 			<div id="timepi">
 		        영업시간&emsp;<input autocomplete="off" id="timepicker_start" value="00" type="text" name="hs_starttime">
 		   &emsp;-&emsp; <input autocomplete="off" id="timepicker_end" value="23" type="text" name="hs_endtime">

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
@@ -344,6 +345,7 @@ public class Login implements Filter {
 		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
 		list.put("/ajax/imgView.do", null);
+		list.put("/designer/desHairInfoDetail.do", designerLoginPage); // 헤어시술목록상세페이지 디자이너용
 	}
 
 	@Override
