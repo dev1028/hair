@@ -105,11 +105,7 @@ body {
 			$('.offcanvas-collapse').toggleClass('open')
 		}); */
 
-		$("#updateInfo").on("click",function() {
-			window.open("${pageContext.request.contextPath}//ajax/myHairshopInfoUpdate.do",
-						"pop",
-						"width=700,height=750, scrollbars=yes, resizable=yes");
-		});
+	
 		$('.bxslider').bxSlider({
 			auto : true,
 			autoControls : true,
@@ -202,7 +198,7 @@ body {
 				</div>
 			</div>
 			<small class="d-block text-right mt-3"> <a id="updateInfo"
-				href="#">수정</a>
+				href="${pageContext.request.contextPath}/hairshop/myHairshopInfoUpdate.do">수정</a>
 			</small>
 		</div>
 
@@ -267,7 +263,7 @@ body {
 							test="${hairshop.hs_approval eq '1'}">
 							<span class="badge badge-pill badge-success">승인</span>
 						</c:if> <c:if test="${hairshop.hs_approval eq '0'}">
-							<span class="badge badge-pill badge-waring">미승인</span>
+							<span class="badge badge-pill badge-warning">미승인</span>
 						</c:if></span>
 				</div>
 			</div>

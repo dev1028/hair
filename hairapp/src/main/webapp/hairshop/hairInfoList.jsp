@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>헤어시술목록</title>
+<title>헤어시술목록</title>  
 <script>
 	$(function() {
 		$("#searchCustomerBtn").on("click", function() {
