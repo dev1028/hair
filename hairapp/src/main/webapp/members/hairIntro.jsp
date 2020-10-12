@@ -6,7 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>디자이너 소개</title>
+<title>헤어 모아보기</title>
 <link rel="stylesheet" href="../css/membersHairshop.css">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -15,7 +15,8 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-<script src="../js/designerBookmark.js"></script>
+<script src="../js/hairBookmark.js"></script>
+
 </head>
 <body>
 
@@ -117,54 +118,41 @@
 <br>
 <div id="menubar">
 	<div id="shopdata">
-		디자이너 소개
+		헤어 모아보기
 	</div>
 </div>
 
 <!-- 바디안에 -->
-<div id="shopbody">
-
-<form method="post" action="hsDesignerIntro.do" name="form" id="form">
-			
-	<div class="container">
-    <h3 class="h3"></h3>
-			 <c:forEach items="${intro}" var="in">
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid4">
-                <div class="product-image4">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
-                </div>
-                <div class="product-content">
-                    <h3 class="title">${in.designer_name}</h3>
-                    <h3 class="title">${in.position}</h3>
-                    <div class="price">
-                        ${in.designer_profile}
-                    </div>
-                    <c:if test="${not empty sessionScope.login }">
-                    	<a href='javascript: like_func("${in.designer_no}")'>
-                    	<c:if test="${in.designer_book == 1 }">
-                    		<%-- <a class="add-to-cart" href="${in.designer_no}">북마크</a><br><br> --%>
-                    		<img class="img-${in.designer_no}" src="../images/bookmark/heart.png" width="30" height="30">
-                    	</c:if>
-                    	<c:if test="${in.designer_book != 1 }">
-							<img class="img-${in.designer_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+<div id="shopbody">			
+<div class="container">
+    <div class="row">
+		<c:forEach items="${list}" var="hairInfo">
+			<div class="col-md-3 col-sm-6">
+				<div class="product-grid4">
+					<div class="product-image4">
+						<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+						<img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+					</div>
+					<div class="product-content">
+						<c:if test="${not empty sessionScope.login }">
+							<a href='javascript: like_func("${hairInfo.hhi_no}")'> 
+								<c:if test="${hairInfo.hhi_book == 1 }">
+									<img class="img-${hairInfo.hhi_no}" src="../images/bookmark/heart.png" width="30" height="30">
+								</c:if> 
+								<c:if test="${hairInfo.hhi_book != 1 }">
+									<img class="img-${hairInfo.hhi_no}" src="../images/bookmark/empty_heart.png" width="30" height="30">
+								</c:if>
+							</a>
 						</c:if>
-                    	</a>
-                    </c:if>
-                    
-                    <input type="hidden" name="hsNo" value="${in.hs_no}"><br>
-                </div>
-            </div>
-        </div>
-			</c:forEach>
-    
+						<div class="price">${hairInfo.hhi_name}</div>
+					</div>
+				</div>
+				<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
+			</div>
+		</c:forEach>
+	</div>
 </div>	<!-- container 마지막 -->
 <hr>
-			
-			
-</form>
-
 </div>	<!-- shopbody 마지막 -->
 
 

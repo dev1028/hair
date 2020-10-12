@@ -32,13 +32,10 @@ import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
-<<<<<<< HEAD
 import com.yedam.hairshop.admin.AdminTmicApprovalCtrl;
 import com.yedam.hairshop.admin.AdminTtCategoryRequestCtrl;
 import com.yedam.hairshop.admin.AnalysisByNewCtrl;
-=======
 import com.yedam.hairshop.admin.AnalysisCtrl;
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
@@ -141,9 +138,9 @@ import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishSDCtrl;
-import com.yedam.hairshop.harishop.MyHairshopInfoUpdate;
 import com.yedam.hairshop.hairshop.salesCtrl;
 import com.yedam.hairshop.hairshop.salesStatisticsCtrl;
+import com.yedam.hairshop.harishop.MyHairshopInfoUpdate;
 import com.yedam.hairshop.members.ChangeDesignerCtrl;
 import com.yedam.hairshop.members.DesignerBookmarkCtrl;
 import com.yedam.hairshop.members.DesignerSelectCtrl;
