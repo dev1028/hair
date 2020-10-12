@@ -16,6 +16,33 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <script src="../js/designerBookmark.js"></script>
+<style>
+/* 슬라이더 */
+input.set { display:none; }
+
+#slide1:checked ~ .mask .overflow { margin-left:0; }
+#slide2:checked ~ .mask .overflow { margin-left:-100%; }
+
+#slides { margin:35px auto; width:80%; position:relative; 
+text-align:center; font-family:Helvetica; font-size:3em; color:white;}
+
+#slides .mask { width:90%; overflow:hidden; margin:auto; }
+
+#slides .overflow { width:400%; -webkit-transform:translateZ(0); -webkit-transition:all 0.5s ease-out; -moz-transition:all 0.5s ease-out; -o-transition:all 0.5s ease-out; transition:all 0.5s ease-out; }
+
+#slides .slide { width:25%; height:200px; line-height:200px; float:left; background:#fff; }
+
+#controls { width:100%; }
+
+#controls label { display:none; width:5%; height:60px; opacity:0.3; position:absolute; top:50%; margin-top:-30px; cursor:pointer; background:#000; }
+
+#controls label:hover { opacity:0.8; }
+
+#slide1:checked ~ #controls label:nth-child(2) { right:0; display:block; }
+
+#slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2) { left:0; display:block; }
+/* 슬라이더끝 */
+</style>
 </head>
 <body>
 
@@ -24,33 +51,27 @@
 </div>
 
 <!-- 슬라이더 -->
-<div id="divSlider">
+<div id="slides">
+  <input checked type="radio" name="slider" id="slide1" class="set" />
+  <input type="radio" name="slider" id="slide2" class="set" />
+  <input type="radio" name="slider" id="slide3" class="set" />
+  <input type="radio" name="slider" id="slide4" class="set" />  
+		  
+  <div class="mask">    
+    <div class="overflow">
+      
+      <div class="slide" style="background:lightsteelblue;">${shop.hs_name} 입니다</div>
+      <div class="slide" style="background:#85b;">${shop.hs_profile}</div>
+      
+    </div>    
+  </div>
 
-<section id="contenedor">
-	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
-	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
-	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
-	<div class="mini"><img src="http://placehold.it/150x50" alt="" height="50" width="150"></div>
-	<ul id="slider">
-		<li>
-			<div><p>상민미용실</p></div>
-			<img src="http://placehold.it/600x200" alt="" height="200" width="600">
-		</li>
-		<li>
-			<div><p>송현미용실</p></div>
-			<img src="http://placehold.it/600x200" alt="" height="200" width="600">
-		</li>
-		<li>
-			<div><p>강산미용실</p></div>
-			<img src="http://placehold.it/600x200" alt="" height="200" width="600">
-		</li>
-		<li>
-			<div><p>승연미용실</p></div>
-			<img src="http://placehold.it/600x200" alt="" height="200" width="600">
-		</li>
-	</ul>
-</section>
-
+  <div id="controls" onclick="">  
+    <label for="slide1"></label>
+    <label for="slide2"></label>
+    <label for="slide3"></label>
+    <label for="slide4"></label>    
+  </div>
 </div>
 
 <!-- 미용실정보 -->
@@ -125,7 +146,6 @@
 <div id="shopbody">
 
 <form method="post" action="hsDesignerIntro.do" name="form" id="form">
-			
 	<div class="container">
     <h3 class="h3"></h3>
 	<c:if test="${empty intro}">
@@ -135,8 +155,8 @@
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
                 <div class="product-image4">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg">
+                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${in.designer_no}/profile&img_name=${in.file_name}"
+		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo6/images/img-2.jpg'">
                 </div>
                 <div class="product-content">
                     <h3 class="title">${in.designer_name}</h3>

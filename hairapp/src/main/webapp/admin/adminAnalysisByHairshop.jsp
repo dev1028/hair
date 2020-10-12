@@ -53,8 +53,8 @@ $(function(){
 			// Set chart options
 			var options = {
 				'title' : '인기헤어순위 ',
-				'width' : 1500,
-				'height' : 700
+				'width' :400,
+				'height' : 300
 			};
 
 			// Instantiate and draw our chart, passing in some options.
@@ -66,6 +66,6 @@ $(function(){
 </script>
 </head>
 <body>
-
+<div id = "chart_div"></div>
 </body>
 </html>

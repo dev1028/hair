@@ -45,6 +45,7 @@ $(function() {
 			$("#empincentive").val(empOne.incentive);
 			$("#empposition").val(empOne.position);
 			$("#empprofile").val(empOne.designer_profile);
+			$("#imgDes").attr("src", "${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/"+empOne.designer_no+"/profile&img_name="+empOne.file_name)
 			$("#myModal").modal('toggle');
 			
 			$("#option1").attr("checked",true);
@@ -58,6 +59,7 @@ $(function() {
 	
 	$("#myModal").on('hide.bs.modal', function(){
 		$("#modal_title").text("");
+		$("#imgDes").attr("src", "#");
 		empOne = null;
 		$("#infoFrm").hide();
 		$("#profileFrm").hide();
@@ -140,7 +142,12 @@ $(function() {
 	
 	$("#changeFormToUpdate").on("click", function(){
 		if(arrayBeforeUpdate.length != 0){
-			$("#empUpdatefrm").submit();
+			if($.isNumeric($("#empworkstarttime").val()) && $.isNumeric($("#empworkendtime").val())){
+				if(parseInt($("#empworkstarttime").val())<parseInt($("#empworkendtime").val())){
+					$("#empUpdatefrm").submit();
+				}
+			}
+			
 		}
 		$("#empUpdatefrm").find("input").each(function(index){
 			arrayBeforeUpdate.push($(this).val())
@@ -154,6 +161,7 @@ $(function() {
 	});
 	
 });	
+
 </script>
 </head>
 <body>	
@@ -220,8 +228,7 @@ $(function() {
 					<div class="modal-body">
 						<div class="container">
 							<div class="text-center">
-								<img src="../images/hairshop/san.jpg" class="img-fluid"
-									alt="...">
+								<img id="imgDes" onerror="this.src='../images/no_img.gif'" src="#" class="img-fluid">
 							</div>
 							<hr>
 							<div class="row">

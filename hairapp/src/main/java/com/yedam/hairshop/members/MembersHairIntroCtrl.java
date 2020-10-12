@@ -10,9 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairBookmarkDAO;
 import com.yedam.hairshop.dao.HairshopHairInfoDAO;
+import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairBookmarkVo;
+import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.model.MembersHairshopVo;
 import com.yedam.hairshop.model.MembersVo;
 
 public class MembersHairIntroCtrl implements Controller {
@@ -38,6 +42,17 @@ public class MembersHairIntroCtrl implements Controller {
 				}
 			}
 		}
+		
+		// 헤어샵 정보 뿌리는거
+		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hairshopVo);
+		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hairshopVo);
+		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hairshopVo);
+		
+		request.setAttribute("shop", shop);
+		request.setAttribute("shop2", shop2);
+		request.setAttribute("shop3", shop3);
+		
+		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/members/hairIntro.jsp").forward(request, response);
 	}

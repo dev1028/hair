@@ -21,6 +21,49 @@ public class AnalysisDAO {
 		return instance;
 	}
 
+	
+	
+	public ArrayList<AnalysisVo> designerRsvRank(AnalysisVo vo) {
+		ResultSet rs = null;
+		String sql = "SELECT d. designer_name, count(*) as cnt ,rank() over (order by count(*) desc) rank\r\n" + 
+				"FROM designer d \r\n" + 
+				"JOIN members_designer_rsv r ON(r.designer_no = d.designer_no)\r\n" + 
+				"\r\n" + 
+				"WHERE r.hs_no = ?\r\n" + 
+				"\r\n" + 
+				"group by d.designer_name";
+
+		System.out.println(sql);
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+//			pstmt.setString(1, vo.getDate());
+//			pstmt.setString(2, vo.getDate());
+			pstmt.setString(1, vo.getHs_no());
+			rs = pstmt.executeQuery();
+			System.out.println("nnsql");
+
+			while (rs.next()) {
+
+				AnalysisVo resultVo = new AnalysisVo();
+				resultVo.setRank(rs.getString("rank"));
+				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setDesigner_name(rs.getString("designer_name"));
+System.out.println("vo"+resultVo.getCnt());
+				list.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
 	public ArrayList<AnalysisVo> countTotal(AnalysisVo vo) {
 		ResultSet rs = null;
 		String sql = "SELECT\n" + "    to_char(mdr_date, 'yy-mm') AS dat , \n" + "    COUNT(mdr_date) AS cnt\n"

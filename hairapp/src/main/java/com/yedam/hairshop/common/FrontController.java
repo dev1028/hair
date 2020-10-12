@@ -78,6 +78,8 @@ import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
 import com.yedam.hairshop.hairshop.AnalysisByTreatCtrl;
+import com.yedam.hairshop.hairshop.AnalysisDesignerRsvRankCtrl;
+import com.yedam.hairshop.hairshop.AnalysisDesignerTotalCtrl;
 import com.yedam.hairshop.hairshop.AnalysisGenderCtrl;
 import com.yedam.hairshop.hairshop.AnalysisMonthlyCtrl;
 import com.yedam.hairshop.hairshop.AnalysisTotalCtrl;
@@ -396,6 +398,11 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());//
 		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());//
 
+		
+		list.put("/hairshop/analysisDesignerTotal.do", new AnalysisDesignerTotalCtrl());
+		list.put("/ajax/hairshop/analysisDesignerRsvRank.do", new AnalysisDesignerRsvRankCtrl());//
+		
+		
 		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
 		list.put("/ajax/designer/analysisSales.do", new AnalysisSalesByDsCtrl());//
 		list.put("/designer/analysisSalesGo.do", new AnalysisSalesByDsGoCtrl());//
@@ -510,6 +517,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairInfoFullList.do", new HairInfoFullListCtrl()); // 헤어시술 전체목록
 		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); // 헤어시술목록 검색페이지로 이동
 		list.put("/hairshop/hairInfoDetail.do", new HairInfoDetailCtrl()); // 헤어시술목록 상세페이지
+		list.put("/designer/desHairInfoDetail.do", new HairInfoDetailCtrl()); // 헤어시술목록상세페이지 디자이너용
 		list.put("/hairshop/hairInfoPicUpload.do", new HairInfoPicUploadFCtrl()); // 헤어시술목록 상세페이지에서 이미지 업로드
 		list.put("/ajax/hairStatusChange.do", new HairStatusChangeAjCtrl()); // 헤어 사용미사용 상태 바꾸기
 		list.put("/hairshop/hairInfoInsert.do", new HairInfoInsertCtrl()); // 헤어시술등록이동
