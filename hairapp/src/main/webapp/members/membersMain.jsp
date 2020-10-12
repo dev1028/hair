@@ -15,12 +15,89 @@
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 <style>
+ /* 라디오 */
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #40e0d0;
+}
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+
+/* 검색 */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 .search {
-  width: 100%;
-  position: relative;
+  width: 70%;
+  position: absolute;
   display: flex;
+  left: 16%;
 }
 
 .searchTerm {
@@ -28,7 +105,7 @@
   border: 3px solid #00B4CC;
   border-right: none;
   padding: 5px;
-  height: 36px;
+  height: 60px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #9DBFAF;
@@ -40,7 +117,7 @@
 
 .searchButton {
   width: 40px;
-  height: 36px;
+  height: 60px;
   border: 1px solid #00B4CC;
   background: #00B4CC;
   text-align: center;
@@ -48,6 +125,30 @@
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+}
+
+#timepicker_start {
+	width: 85px;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+#timepicker_end {
+	width: 85px;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px 5px 5px 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+#timepi {
+  position: absolute;
+  left: 39%;
 }
 
 </style>
@@ -457,30 +558,33 @@ form.example::after {
 			<div>
 				<input autocomplete="off" type="text" name="date" id="date" size="12" />
 				<label class="radio-inline">
-		     		<input type="radio" name="radioDate" value="day0">오늘
+		     		<input type="radio" name="radioDate" class="option-input radio" value="day0">오늘
 		    	</label>
 		    	<label class="radio-inline">
-		      		<input type="radio" name="radioDate" value="day1" >내일
+		      		<input type="radio" name="radioDate" class="option-input radio" value="day1" >내일
 		    	</label>
 		    	<label class="radio-inline">
-		      		<input type="radio" name="radioDate" value="day2">모래
+		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모래
 		    	</label>
     		</div>
 	    	
-		    <input autocomplete="off" id="timepicker_start" value="00" type="text" name="hs_starttime" style="width:80px"> -
-		    <input autocomplete="off" id="timepicker_end" value="23" type="text" name="hs_endtime" style="width:80px" > 영업시간
-	    	
-    	
-			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->
-			<!-- 여기서도 term을 보낸다. -->
 			<div class="search">
 				<input autocomplete="off" id="project" type="text" class="searchTerm"  name="term" placeholder="미용실 이름을 적으세요.">
 				<button type="submit" class="searchButton" name="detail"><i class="fa fa-search"></i></button>
 				<input type="hidden" id="project-id">
 				<p id="project-description"></p>
 			</div>
+			
+			<br><br><br><br>
+			<div id="timepi">
+		        영업시간&emsp;<input autocomplete="off" id="timepicker_start" value="00" type="text" name="hs_starttime">
+		   &emsp;-&emsp; <input autocomplete="off" id="timepicker_end" value="23" type="text" name="hs_endtime">
+	    	</div>
+    	
+			<!--  <img id="project-icon" src="images/transparent_1x1.png" class="ui-state-default" alt="">-->
+			<!-- 여기서도 term을 보낸다. -->
 		</form>
-		<br><br><br>
+		<br><br><br><br><br><br>
 		
 		<!-- 여기서부터 공지사항과 QnA 뿌려주는거 -->
 		<div id="qnaNotice">
@@ -522,5 +626,6 @@ form.example::after {
 		<!-- 여기까지 공지사항과 QnA 뿌려주는거 -->
 		
 	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </body>
 </html>
