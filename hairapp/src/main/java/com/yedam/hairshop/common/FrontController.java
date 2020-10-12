@@ -225,7 +225,7 @@ import com.yedam.hairshop.members.membersQnaVCtrl;
 			})
 */
 
-@MultipartConfig(location = "c:/upload", maxRequestSize = 1024 * 1024 * 10)
+@MultipartConfig(location = "c:/hairapp", maxRequestSize = 1024 * 1024 * 10)
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String charset = null;

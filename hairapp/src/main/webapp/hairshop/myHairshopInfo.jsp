@@ -111,6 +111,7 @@ body {
 			autoControls : true,
 			stopAutoOnClick : true,
 			pager : true
+			
 		});
 	});
 </script>
@@ -127,9 +128,9 @@ body {
 		<hr>
 		<div
 			class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-			<img class="mr-3"
+			<!-- <img class="mr-3"
 				src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-outline.svg"
-				alt="" width="48" height="48">
+				alt="" width="48" height="48"> -->
 			<div class="lh-100">
 				<h5 class="mb-0 text-white lh-100">${hairshop.hs_name}</h5>
 				<small>가입일: ${hairshop.hs_regdate}</small>
@@ -140,7 +141,7 @@ body {
 				<div class="bxslider" id="imgList">
 						<c:forEach items="${hsPhoto}" var="hs">
 						<div>
-							<img
+							<img onerror="this.src='../images/no_img.gif'"
 								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairshop.hs_no}/profile&img_name=${hs.hsp_file}">
 						</div>
 					</c:forEach>
