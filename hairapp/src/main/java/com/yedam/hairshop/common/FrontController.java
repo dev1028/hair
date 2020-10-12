@@ -103,6 +103,7 @@ import com.yedam.hairshop.hairshop.HairInfoInsertCtrl;
 import com.yedam.hairshop.hairshop.HairInfoInsertFormFCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrl;
 import com.yedam.hairshop.hairshop.HairInfoListCtrlRe;
+import com.yedam.hairshop.hairshop.HairNameRequestCtrl;
 import com.yedam.hairshop.hairshop.HairStatusChangeAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopCloseDayManageCtrl;
 import com.yedam.hairshop.hairshop.HairshopCloseDayManageUCtrl;
@@ -277,6 +278,8 @@ public class FrontController extends HttpServlet {
 
 		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
 
+		list.put("/hairshop/hairNameRequest.do", new HairNameRequestCtrl()); // 헤어 시술명 중분류 등록.
+		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
