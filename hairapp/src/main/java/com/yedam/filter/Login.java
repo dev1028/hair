@@ -110,8 +110,8 @@ public class Login implements Filter {
 		list.put("/ajax/hairshopBookmark.do", memberLoginPage); // 헤어샵 북마크
 		list.put("/ajax/designerBookmark.do", memberLoginPage); // 디자이너 북마크
 
-		list.put("/ajax/searchRealtime.do", memberLoginPage); // 자동완성 검색
-		list.put("/members/searchDetail.do", memberLoginPage); // 상세검색
+		list.put("/ajax/searchRealtime.do", null); // 자동완성 검색
+		list.put("/members/searchDetail.do", null); // 상세검색
 
 		list.put("/members/gpsHairshopSearch.do", null);
 

@@ -46,7 +46,8 @@ public class MyHairshopProfileUpdateFCtrl implements Controller {
 			System.out.println("파일 에러");
 			photoResult = 1;
 		} else {
-			String path = request.getServletContext().getRealPath("/");
+//			String path = request.getServletContext().getRealPath("/");
+			String path = "C:/upload";
 			// 파일명 중복체크
 			File renameFile = FileRenamePolicy.rename(new File(path, filename));
 			part.write(path + "/" + renameFile.getName());
