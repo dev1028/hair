@@ -359,13 +359,14 @@ public class MembersDAO {
 
 	public int updateLatlng(MembersVo vo) {
 		int r = 0;
-		String sql = "UPDATE MEMBERS SET MEM_LATITUDE_LONGITUDE = ?, MEM_ADDR = ? WHERE MEM_EMAIL = ?";
+		String sql = "UPDATE MEMBERS SET MEM_LATITUDE_LONGITUDE = ?, MEM_ADDR = ?, MEM_CITY = ? WHERE MEM_EMAIL = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMem_latitude_longitude());
 			pstmt.setString(2, vo.getMem_addr());
-			pstmt.setString(3, vo.getMem_email());
+			pstmt.setString(3, vo.getMem_addr());
+			pstmt.setString(4, vo.getMem_email());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
