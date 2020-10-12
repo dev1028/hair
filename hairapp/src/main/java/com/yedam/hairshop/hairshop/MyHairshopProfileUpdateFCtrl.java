@@ -11,6 +11,7 @@ import javax.servlet.http.Part;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.FileRenamePolicy;
+import com.yedam.hairshop.common.FileUpload;
 import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.dao.HsPhotoDAO;
 import com.yedam.hairshop.model.HairshopVo;
@@ -26,35 +27,34 @@ public class MyHairshopProfileUpdateFCtrl implements Controller {
 		Part part = request.getPart("hsp_file");
 
 		HsPhotoVo hPVo = new HsPhotoVo();
+		hPVo.setHs_no(hsNo);
 		HairshopVo hVo = new HairshopVo();
 		hVo.setHs_no(hsNo);
 		hVo.setHs_profile(hsProfile);
 		hVo.setHs_notice(hsNotice);
 
-		int photoResult = 0;
+		int photoResult = 1;
 		int haishopResult = 0;
 
 		haishopResult = HairshopDAO.getInstance().updateNoticeAndProfile(hVo);
-
-		String filename;
-		if (part == null) {
-			filename = null;
-		} else {
-			filename = getFilename(part);
-		}
-		if (filename == null) {
-			System.out.println("파일 에러");
-			photoResult = 1;
-		} else {
-			//String path = request.getServletContext().getRealPath("/");
-			String path = "C:/upload";
-			// 파일명 중복체크
-			File renameFile = FileRenamePolicy.rename(new File(path, filename));
-			part.write(path + "/" + renameFile.getName());
-			hPVo.setHsp_file(renameFile.getName());
-			hPVo.setHs_no(hsNo);
+		
+		String path = "/hairshop/"+hsNo+"/profile";
+		String result = FileUpload.upload(path, part);
+		if(result != null) {
+			hPVo.setHsp_file(result);
 			photoResult = HsPhotoDAO.getInstance().insert(hPVo);
 		}
+		
+		/*
+		 * String filename; if (part == null) { filename = null; } else { filename =
+		 * getFilename(part); } if (filename == null) { System.out.println("파일 에러");
+		 * photoResult = 1; } else { //String path =
+		 * request.getServletContext().getRealPath("/"); String path = "C:/upload"; //
+		 * 파일명 중복체크 File renameFile = FileRenamePolicy.rename(new File(path, filename));
+		 * part.write(path + "/" + renameFile.getName());
+		 * hPVo.setHsp_file(renameFile.getName()); hPVo.setHs_no(hsNo); photoResult =
+		 * HsPhotoDAO.getInstance().insert(hPVo); }
+		 */
 
 		if (haishopResult == 1 && photoResult == 1) {
 			response.getWriter().append("<script>").append("alert('수정에 성공하였습니다.');")
