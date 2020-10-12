@@ -32,10 +32,7 @@ public class employeeCloseDayManageCtrl implements Controller {
 		
 		loginVo.setHs_dayoff(ChangeUtil.changeDayOffNumToStr(loginVo.getHs_dayoff()));
 		loginVo.setHs_regdate(loginVo.getHs_regdate().split(" ")[0]);
-		
-		
-		
-		
+				
 		dVo.setHs_no(hs_no);
 		ArrayList<DesignerVo> emplist = DesignerDAO.getInstance().selectByHairShop(dVo);
 		for (DesignerVo emp : emplist) {
@@ -52,7 +49,7 @@ public class employeeCloseDayManageCtrl implements Controller {
 				emp.setHire_date(dateList[0]);
 			}
 		}
-			System.out.println(emplist);
+			System.out.println("디자이너: " + emplist);
 			request.setAttribute("hairshop", loginVo);
 			request.setAttribute("emplist", emplist);
 			request.getRequestDispatcher("/hairshop/employeeCloseDayManage.jsp").forward(request, response);

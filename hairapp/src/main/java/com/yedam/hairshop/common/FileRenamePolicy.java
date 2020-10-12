@@ -31,7 +31,8 @@ public class FileRenamePolicy {
 	    return f;
 	  }
 	 
-	  private boolean createNewFile(File f) {
+	  @SuppressWarnings("unused")
+	private boolean createNewFile(File f) {
 	    try {
 	      return f.createNewFile();                        //존재하는 파일이 아니면
 	    }catch (IOException ignored) {

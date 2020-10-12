@@ -50,6 +50,20 @@
 										}
 									});// end of ajax 
 						});
+		$("#hhmi_file").on("change", function(event) {
+			var fileName = $(this).val();
+			$("#hhmi_fileLabel").text(fileName);
+			
+			/* var reader = new FileReader();
+			reader.onload = function(event) {
+				var img = document.createElement("img");
+				img.setAttribute("src", event.target.result);
+				img.setAttribute("class", "rounded mx-auto d-block");
+				document.querySelector("div#image_container")
+						.appendChild(img);
+			};
+			reader.readAsDataURL(event.target.files[0]); */
+		});
 
 	});
 </script>
@@ -120,25 +134,35 @@
 		<hr>
 		<div class="row justify-content-md-center">
 			<div class="bxslider" id="imgList">
+				<c:if test="${picList.size() == 0 || picList == null}">
 				<div>
-					<img src="../images/hairshop/san.jpg">
+					<img src="../images/no_img.gif">
 				</div>
+				</c:if>
+				<c:forEach items="${picList}" var="pic">
+					<div>
+						<img onerror="this.src='../images/no_img.gif'"
+                        src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hair.hs_no}/hairinfo&img_name=${pic.hhmi_file}">
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 		<hr>
 		<div class="row justify-content-md-center">
 			<div class="col-2"><h5>헤어사진 업로드</h5>	</div>
 			<div class="col-sm">
-				<form>
+				<form action="${pageContext.request.contextPath}/hairshop/hairInfoPicUpload.do" method="post" 
+				enctype="multipart/form-data">
 					<div class="input-group">
 						<div class="custom-file">
-							<input type="file" class="custom-file-input"
-								id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-							<label class="custom-file-label" for="inputGroupFile04">Choose
+							<input type="hidden" name="hhi_no" value="${hair.hhi_no}">
+							<input type="file" class="custom-file-input" name ="hhmi_file" accept=".gif, .jpg, .png"
+								id="hhmi_file" aria-describedby="inputGroupFileAddon04">
+							<label class="custom-file-label" for="inputGroupFile04" id="hhmi_fileLabel">Choose
 								file</label>
 						</div>
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button"
+							<button class="btn btn-outline-secondary" type="submit"
 								id="inputGroupFileAddon04">업로드</button>
 						</div>
 					</div>

@@ -1,8 +1,12 @@
+//김승연
 package com.yedam.hairshop.common;
 
 public class ChangeUtil {
 
 	public static String changeDayOffNumToStr(String dayoff) { // 숫자로 된 휴무일 변환
+		if(dayoff == null) {
+			return null;
+		}
 		String[] dayoffArr = dayoff.split(",");
 		String result = "";
 		if (dayoffArr.length > 1) {
@@ -18,6 +22,9 @@ public class ChangeUtil {
 	}
 
 	public static String changeDayOffStrToNum(String dayoff) { // 문자로 된 숫자로 변환
+		if(dayoff == null) {
+			return null;
+		}
 		String[] dayoffArr = dayoff.split(",");
 		String result = "";
 		if (dayoffArr.length > 1) {

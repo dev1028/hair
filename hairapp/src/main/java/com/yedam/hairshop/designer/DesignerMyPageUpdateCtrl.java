@@ -42,6 +42,7 @@ public class DesignerMyPageUpdateCtrl implements Controller {
 
 		String path = "/designer/" + designerVo.getDesigner_no() + "/profile";
 		Part part = request.getPart("file_name");
+
 		String fileName = FileUpload.upload(path, part);
 		designerVo.setFile_name(fileName);
 		
@@ -59,6 +60,7 @@ public class DesignerMyPageUpdateCtrl implements Controller {
 //			designerVo.setFile_name(renameFile.getName());
 //
 //		}
+
 		int resultVo = DesignerDAO.getInstance().mypageUpdate(designerVo);
 		request.setAttribute("designer", resultVo);
 		request.getRequestDispatcher("/designer/designerMyPageOutput.jsp").forward(request, response);

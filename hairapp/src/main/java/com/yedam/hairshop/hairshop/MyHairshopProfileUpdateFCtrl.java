@@ -38,11 +38,11 @@ public class MyHairshopProfileUpdateFCtrl implements Controller {
 
 		haishopResult = HairshopDAO.getInstance().updateNoticeAndProfile(hVo);
 		
-		String path = "/hairshop/"+hsNo+"/profile";
-		String result = FileUpload.upload(path, part);
+		String path = "/hairshop/"+hsNo+"/profile"; //중간경로 // 경로가 없으면 경로 자동생성됨
+		String result = FileUpload.upload(path, part); //결과는 파일이름으로 반환 실패하면 null반환, part는 jsp에서 올린거
 		if(result != null) {
 			hPVo.setHsp_file(result);
-			photoResult = HsPhotoDAO.getInstance().insert(hPVo);
+			photoResult = HsPhotoDAO.getInstance().insert(hPVo); //디비에 파일이름 넣기
 		}
 		
 		/*

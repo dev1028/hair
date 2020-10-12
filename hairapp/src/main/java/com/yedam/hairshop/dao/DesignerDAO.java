@@ -187,7 +187,7 @@ public class DesignerDAO {
 	 * RuntimeException(e.getMessage()); } } } // end loginCheck()
 	 */
 
-	// 미용실별 디자이너 목록
+	// 미용실별 디자이너 목록 인증받은사람
 	// 2020.09.17 승연
 	public ArrayList<DesignerVo> selectByHairShop(DesignerVo dVo) {
 		ResultSet rs = null; // 초기화
@@ -197,7 +197,7 @@ public class DesignerDAO {
 			String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
 					+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
 					+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" + " FROM DESIGNER"
-					+ " WHERE HS_NO=?" + " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
+					+ " WHERE HS_NO=? and DESIGNER_ACCESS_STATUS = 1" + " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dVo.getHs_no());
 			rs = pstmt.executeQuery();
@@ -229,6 +229,48 @@ public class DesignerDAO {
 		}
 		return list;
 	}
+	// 미용실별 디자이너 목록 인증미인증 상관없이 전체
+		// 2020.09.17 승연
+		public ArrayList<DesignerVo> selectByHairShopAccessAll(DesignerVo dVo) {
+			ResultSet rs = null; // 초기화
+			ArrayList<DesignerVo> list = new ArrayList<DesignerVo>();
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "SELECT DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,"
+						+ " DESIGNER_DAYOFF,WORK_START_TIME,WORK_END_TIME,DESIGNER_ACCESS_STATUS,POSITION,"
+						+ " SALARY,INCENTIVE,HIRE_DATE,HS_NO,DESIGNER_PROFILE,FILE_NAME" + " FROM DESIGNER"
+						+ " WHERE HS_NO=?" + " ORDER BY DESIGNER_NO, DESIGNER_ACCESS_STATUS DESC";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dVo.getHs_no());
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					DesignerVo designer = new DesignerVo();
+					designer.setDesigner_no(rs.getString("DESIGNER_NO"));
+					designer.setDesigner_name(rs.getString("DESIGNER_NAME"));
+					designer.setDesigner_phone(rs.getString("DESIGNER_PHONE"));
+					designer.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
+					designer.setDesigner_pw(rs.getString("DESIGNER_PW"));
+					designer.setDesigner_dayoff(rs.getString("DESIGNER_DAYOFF"));
+					designer.setWork_start_time(rs.getString("WORK_START_TIME"));
+					designer.setWork_end_time(rs.getString("WORK_END_TIME"));
+					designer.setDesigner_access_status(rs.getString("DESIGNER_ACCESS_STATUS"));
+					designer.setPosition(rs.getString("POSITION"));
+					designer.setSalary(rs.getString("SALARY"));
+					designer.setIncentive(rs.getString("INCENTIVE"));
+					designer.setHire_date(rs.getString("HIRE_DATE"));
+					designer.setHs_no(rs.getString("HS_NO"));
+					designer.setDesigner_profile(rs.getString("DESIGNER_PROFILE"));
+					designer.setFile_name(rs.getString("FILE_NAME"));
+					list.add(designer);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return list;
+		}
 
 	// 디자이너 간편등록
 	// 2020.09.18

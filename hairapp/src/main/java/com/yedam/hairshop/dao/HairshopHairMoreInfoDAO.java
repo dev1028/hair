@@ -30,10 +30,10 @@ public class HairshopHairMoreInfoDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT HHMI_NO,HHI_NO,HHMI_FILE,DESIGNER_NO FROM HAIRSHOP_HAIR_MORE_INFO";
+			String sql = "SELECT HHMI_NO,HHI_NO,HHMI_FILE,DESIGNER_NO FROM HAIRSHOP_HAIR_MORE_INFO where HHI_NO = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, hhmiVo.getHhi_no());
 			rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				HairshopHairMoreInfoVo resultVo = new HairshopHairMoreInfoVo();
 				resultVo.setHhmi_no(rs.getString("HHMI_NO"));
@@ -47,7 +47,30 @@ public class HairshopHairMoreInfoDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		return null;
+		return list;
+	}
+	
+	
+	public int inserthairPic(HairshopHairMoreInfoVo hhmiVo) {
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = " insert into hairshop_hair_more_info (hhmi_no,hhi_no,hhmi_file,designer_no)" + 
+					" VALUES ((select nvl(max(hhmi_no),0)" + 
+					" from hairshop_hair_more_info" + 
+					" where hhi_no = ?), ?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(hhmiVo.getHhi_no()));
+			pstmt.setInt(2, Integer.parseInt(hhmiVo.getHhi_no()));
+			pstmt.setString(3, hhmiVo.getHhmi_file());
+			pstmt.setString(4, hhmiVo.getDesigner_no());
+			r = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return r;
 	}
 
 }
