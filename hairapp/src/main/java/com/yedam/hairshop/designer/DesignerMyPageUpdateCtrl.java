@@ -46,6 +46,11 @@ public class DesignerMyPageUpdateCtrl implements Controller {
 			return;
 		} else {
 			String path = request.getServletContext().getRealPath("/");
+			/*
+			 * String path = "/hairshop/"+hsNo+"/profile"; String result =
+			 * FileUpload.upload(path, part); if(result != null) { hPVo.setHsp_file(result);
+			 * photoResult = HsPhotoDAO.getInstance().insert(hPVo); }
+			 */
 
 			// 파일명 중복체크
 			File renameFile = FileRenamePolicy.rename(new File(path, filename));
