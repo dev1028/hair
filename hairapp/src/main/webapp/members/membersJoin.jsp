@@ -328,35 +328,35 @@ label.light {
 	<!-- 조인css부분 -->
 		<fieldset>
           <legend><span class="number">1</span>Your basic info</legend><br>
-          <label for="mail">Email:</label>
+          <label for="mail"><img src="../images/members/check.png" style="width: 30px; height: 30px;"> Email:</label>
           <input type="email" id="mail" name="joinemail" maxlength="50" onkeydown="inputIdChk()"
 			placeholder="sample@naver.com 형식">
 			<input type="button" value="중복확인" onclick="openIdChk()">
 			<input type="hidden" name="idDuplication" value="idUncheck" ><br><br>
 			
-          <label for="password">Password:</label>
+          <label for="password"><img src="../images/members/check.png" style="width: 30px; height: 30px;"> Password:</label>
           <input type="password" id="joinpw" name="joinpw" maxlength="15"
 			placeholder="15자 내로 적어주세요">
 			
-			<label for="password">Password 재확인:</label>
+			<label for="password"><img src="../images/members/check.png" style="width: 30px; height: 30px;"> Password 재확인:</label>
 			<input type="password" id="joinpwcheck" name="joinpwcheck" maxlength="15"
 				placeholder="비밀번호 재입력">
           
-          <label for="name">이름:</label>
+          <label for="name"><img src="../images/members/check.png" style="width: 30px; height: 30px;"> 이름:</label>
           <input type="text" id="name" name="joinname" maxlength="10">
           
-          <label for="phone">전화번호:</label>
+          <label for="phone"><img src="../images/members/check.png" style="width: 30px; height: 30px;"> 전화번호:</label>
           <input type="text" name="joinphone" placeholder="ex) 010-0000-0000">
           
-          <label for="birth">생일:</label>
+          <label for="birth"><img src="../images/members/check.png" style="width: 30px; height: 30px;"> 생일:</label>
           <input type="date" id="joinbirth" name="joinbirth">
           
-          <label>성별:</label><br>
-          <input type="radio" name="joingender" value="male"><label for="under_13" class="light">남</label> 
+          <label><img src="../images/members/check.png" style="width: 30px; height: 30px;"> 성별:</label><br>
+          <input type="radio" name="joingender" value="male"><label for="under_13" class="light">남</label>&emsp;
           <input type="radio" name="joingender" value="female" checked><label for="over_13" class="light">여</label>
         <br>
         
-        <br><label>도로명주소 전체:</label>
+        <br><label><img src="../images/members/check.png" style="width: 30px; height: 30px;"> 도로명주소 전체:</label>
         <input type="text" id="roadFullAddr" name="roadFullAddr" placeholder="팝업을 먼저 눌러주세요" />
         <input type="button" onClick="goPopup();" value="팝업" /><br><br>
          

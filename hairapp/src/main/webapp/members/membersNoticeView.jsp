@@ -135,8 +135,10 @@
   
   <tr>
   	<th>내용</th>
-    <td><img src="../${view.notice_image}" style="width: 600px; height: 400px; 
-    		padding: 10px"> <br><br> ${view.notice_contents}</td>
+    <td><img src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/members/notice&img_name=${view.notice_image}" style="width: 600px; height: 400px; 
+    		padding: 10px">
+    <%-- <img src="../${view.notice_image}" style="width: 600px; height: 400px; 
+    		padding: 10px"> --%> <br><br> ${view.notice_contents}</td>
   </tr>
   </tbody>
 </table>
