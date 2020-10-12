@@ -205,6 +205,36 @@ public class TtCategoryDAO {
 		return false;
 	}
 	
+	public List<TtCategoryVo> selectListRequstTmic() {
+		List<TtCategoryVo> list = new ArrayList<TtCategoryVo>();
+		ResultSet rs = null;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = 
+					  " SELECT mid.tmic_no, mid.tmac_no, mid.tmic_name, mid.tmic_explication, mid.tmic_status, ma.tmac_name\r\n" + 
+					  " FROM tt_middle_category mid, tt_main_category ma\r\n" + 
+					  " WHERE tmic_status != 1\r\n" + 
+					  " AND mid.tmac_no = ma.tmac_no";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				TtCategoryVo vo = new TtCategoryVo();
+				vo.setTmic_no(rs.getString("tmic_no"));
+				vo.setTmac_no(rs.getString("tmac_no"));
+				vo.setTmic_name(rs.getString("tmic_name"));
+				vo.setTmic_explication(rs.getString("tmic_explication"));
+				vo.setTmic_status(rs.getString("tmic_status"));
+				vo.setTmac_name(rs.getString("tmac_name"));
+				list.add(vo);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		
+		return list;
+	}
 	
 	public int requestTmic(TtCategoryVo vo) {
 		int r = 0;

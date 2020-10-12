@@ -16,8 +16,8 @@ public class HairNameRequestCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("HairNameRequestCtrl");
-		List<TtCategoryVo> list = TtCategoryDAO.getInstance().selectTmacAll();
-		request.setAttribute("tmacList", list);
+		List<TtCategoryVo> tmacList = TtCategoryDAO.getInstance().selectTmacAll();
+		request.setAttribute("tmacList", tmacList);
 		
 		String tmac_no = request.getParameter("tmac_no");
 		String tmic_name = request.getParameter("tmic_name");
@@ -33,6 +33,20 @@ public class HairNameRequestCtrl implements Controller {
 			if(!TtCategoryDAO.getInstance().hasTmicWithName(vo))
 				TtCategoryDAO.getInstance().requestTmic(vo);
 		}
+		
+		List<TtCategoryVo> reqList = TtCategoryDAO.getInstance().selectListRequstTmic();
+		for(TtCategoryVo tmp : reqList) {
+			String status = tmp.getTmic_status();
+			if(status.equals("0")) {
+				status = "미승인";
+			}else if(status.equals("2")) {
+				status = "보류";
+			}else if(status.equals("3")) {
+				status = "거절";
+			}
+			tmp.setTmic_status(status);
+		}
+		request.setAttribute("reqList", reqList);
 		
 		request.getRequestDispatcher("/hairshop/hairNameRequest.jsp").forward(request, response);
 	}

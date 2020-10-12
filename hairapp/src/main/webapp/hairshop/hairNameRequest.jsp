@@ -22,7 +22,6 @@
 		</div>
 
 		<div class="row">
-
 			<div class="col-md justify-content-md-center">
 				<form class="needs-validation" id="hairinfoInsertFrm" 
 				action="${pageContext.request.contextPath}/hairshop/hairNameRequest.do" method="post"
@@ -39,12 +38,12 @@
 						</div>
 						<div class="col-md-3 mb-3">
 							<label for="tmic_no">중분류<span class="badge badge-pill badge-danger">필수</span></label> 
-							<input type='text' class="custom-select d-block w-100" id="tmic_name" name="tmic_name" required>
+							<input type='text' class="custom d-block w-100" id="tmic_name" name="tmic_name" required>
 						</div>
 						
 						<div class="col-md-6 mb-3">
 							<label for="tmic_explication">설명<span class="badge badge-pill badge-danger">필수</span></label> 
-							<input type='text' class="custom-select d-block w-100" id="tmic_explication" name="tmic_explication" required>
+							<input type='text' class="custom d-block w-100" id="tmic_explication" name="tmic_explication" required>
 						</div>
 					</div>
 				
@@ -54,6 +53,31 @@
 			</div>
 		</div>
 
+		<div class="py-5 text-center">
+			<h2>시술명 신청현황</h2>
+		</div>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">대분류</th>
+					<th scope="col">증분류</th>
+					<th scope="col">설명</th>
+					<th scope="col">상태</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${reqList}" var="item" >
+					<tr>
+						<td>${item.tmac_name }</td>
+						<td>${item.tmic_name}</td>
+						<td>${item.tmic_explication}</td>
+						<td>${item.tmic_status}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	
 		<footer class="my-5 pt-5 text-muted text-center text-small">
 			<p class="mb-1">&copy; 2017-{{ site.time | date: "%Y" }} Company
 				Name</p>
@@ -64,6 +88,8 @@
 			</ul>
 		</footer>
 	</div>
-	<hr>
+	
+	
+	
 </body>
 </html>
