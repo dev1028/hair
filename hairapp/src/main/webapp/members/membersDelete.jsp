@@ -29,10 +29,11 @@
        
 	// 비밀번호 미입력시 경고창
 	function checkValue() {
-		if (!document.deleteform.password.value) {
+		if (!document.deleteform.mempw.value) {
 			alert("비밀번호를 입력하지 않았습니다.");
 			return false;
 		}
+		return true;
 	}
 	
 	function membersMain() {
@@ -62,7 +63,7 @@
         <table>
             <tr>
                 <td>비밀번호 :&nbsp;</td>
-                <td><input type="password" name="mempw" maxlength="15"></td>
+                <td><input type="password" id="mempw" name="mempw" maxlength="15"></td>
             </tr>
         </table>
         

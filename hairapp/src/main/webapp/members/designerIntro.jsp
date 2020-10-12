@@ -128,7 +128,10 @@
 			
 	<div class="container">
     <h3 class="h3"></h3>
-			 <c:forEach items="${intro}" var="in">
+	<c:if test="${empty intro}">
+		디자이너가 없습니다<br><br>
+	</c:if>
+	<c:forEach items="${intro}" var="in">
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
                 <div class="product-image4">

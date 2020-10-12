@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.QnaDAO;
-import com.yedam.hairshop.model.MembersVo;
 import com.yedam.hairshop.model.QnaVo;
 
 public class membersQnaVCtrl implements Controller {

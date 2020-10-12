@@ -307,6 +307,9 @@ function openWriteDR(mdr_no) {
 		<div id="wrap2">	<!-- wrap2 시작 -->
 			<h3>전체 예약 내역</h3>	
 			<hr style="border: solid 1px">
+			<c:if test="${ empty list2 }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
+				예약한 헤어샵이 없습니다
+			</c:if>
 		
 <!-- css -->
 <%-- <c:forEach items="${list}" var="reservation">
@@ -335,12 +338,16 @@ function openWriteDR(mdr_no) {
 <!-- 슬라이더 -->
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-		
-			<c:forEach items="${list}" var="reservation">
+			
+			<c:if test="${not empty list2 }">
+			<c:forEach items="${list2}" var="reservation">
 			<div class="swiper-slide">
 			<div class="card">
 				<div class="slider-text">
 					<h3>
+					<c:if test="${empty reservation.hs_name }">
+						미용실 정보가 확인되지 않습니다
+					</c:if>
 						${reservation.hs_name}<br>
 					</h3>
 				</div>
@@ -357,6 +364,7 @@ function openWriteDR(mdr_no) {
 			</div>
 		</div>
 		</c:forEach>
+		</c:if>
 		
 	</div>
 </div>	<!-- 슬라이더끝 -->
