@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.yedam.hairshop.common.ConnectionManager;
 import com.yedam.hairshop.model.HsPhotoVo;
@@ -44,5 +46,33 @@ public class HsPhotoDAO {
 		}
 
 		return r;
+	}
+	
+	//2020.10.12 김승연
+	//미용실별 헤어샵사진 가져오기
+	public List<HsPhotoVo> selectByHairshop(HsPhotoVo hPVo){
+		ResultSet rs = null;
+		List<HsPhotoVo> list = new ArrayList<HsPhotoVo>(); 
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			String sql = "SELECT HSP_NO, HS_NO, HSP_FILE FROM HS_PHOTO WHERE HS_NO = ?";
+			pstmt = conn.prepareStatement(sql); 
+			pstmt.setString(1, hPVo.getHs_no()); 
+			rs = pstmt.executeQuery();
+			while (rs.next()) { 
+				HsPhotoVo resultVO = new HsPhotoVo(); 
+				resultVO.setHsp_no(rs.getString("HSP_NO"));
+				resultVO.setHs_no(rs.getString("HS_NO"));
+				resultVO.setHsp_file(rs.getString("HSP_FILE"));
+			
+				list.add(resultVO); // resultVo를 list에 담음
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list; // 값을 리턴해줌
 	}
 }

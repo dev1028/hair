@@ -339,7 +339,7 @@ public class Login implements Filter {
 		list.put("/hairshop/myParkingChange.do", hairLoginPage); //주차장 사용여부 변경
 		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
-		
+		list.put("/ajax/imgView.do", null);
 	}
 
 	@Override

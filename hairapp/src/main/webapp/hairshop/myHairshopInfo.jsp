@@ -138,9 +138,12 @@ body {
 		<div class="row justify-content-md-center">
 			<div class="col">
 				<div class="bxslider" id="imgList">
-					<div>
-						<img src="../images/hairshop/san.jpg">
-					</div>
+						<c:forEach items="${hsPhoto}" var="hs">
+						<div>
+							<img
+								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairshop.hs_no}/profile&img_name=${hs.hsp_file}">
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
