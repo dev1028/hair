@@ -337,7 +337,9 @@ public class Login implements Filter {
 		list.put("/hairshop/myHairshopProfile.do", hairLoginPage); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", hairLoginPage); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myParkingChange.do", hairLoginPage); //주차장 사용여부 변경
-		list.put("/ajax/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
+		
 	}
 
 	@Override

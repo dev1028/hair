@@ -32,13 +32,10 @@ import com.yedam.hairshop.admin.AdminQnaManageCtrl;
 import com.yedam.hairshop.admin.AdminQnaManageFCtrl;
 import com.yedam.hairshop.admin.AdminQnaViewCtrl;
 import com.yedam.hairshop.admin.AdminSalesStatisticsCtrl;
-<<<<<<< HEAD
 import com.yedam.hairshop.admin.AdminTmicApprovalCtrl;
 import com.yedam.hairshop.admin.AdminTtCategoryRequestCtrl;
 import com.yedam.hairshop.admin.AnalysisByNewCtrl;
-=======
 import com.yedam.hairshop.admin.AnalysisCtrl;
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
@@ -126,6 +123,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
+import com.yedam.hairshop.hairshop.MyHairshopInfoUpdateFrmFCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
 import com.yedam.hairshop.hairshop.MyParkingChangeCtrl;
 import com.yedam.hairshop.hairshop.RetiredEmployeeListCtrl;
@@ -516,7 +514,8 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
 		list.put("/hairshop/myHairshopInfo.do", new MyHairshopInfoCtrl()); //미용실마이페이지
 		list.put("/hairshop/myParkingChange.do", new MyParkingChangeCtrl()); //주차장 사용여부 변경
-		list.put("/ajax/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
+		list.put("/hairshop/myHairshopInfoUpdateFrm.do", new MyHairshopInfoUpdateFrmFCtrl()); //미용실 정보업데이트처리
 
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리
 
