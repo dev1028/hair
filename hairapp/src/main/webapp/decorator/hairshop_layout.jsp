@@ -316,7 +316,7 @@
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisMonthly.do">월별결산</a> 
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do">시술별통계</a> 
 									<a
-										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisTreatTableGo.do">예약분석</a>
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">디자이너통계</a>
 								</div></li>
 								
 								

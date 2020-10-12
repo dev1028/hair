@@ -32,15 +32,25 @@ public class MembersNoticeWCtrl implements Controller {
 			return;
 		}
 		System.out.println("vo" + vo);
+		
+		int photoResult = 0;
+		int haishopResult = 0;
 
 		Part part = request.getPart("notice_image");
-		String filename = getFilename(part);
+		
+		String filename;
+		if (part == null) {
+			filename = null;
+		} else {
+			filename = getFilename(part);
+		}
 		if (filename == null) {
 			System.out.println("파일 에러");
-			return;
+			photoResult = 1;
 		} else {
-			String path = request.getServletContext().getRealPath("/");
-
+//			String path = request.getServletContext().getRealPath("/");
+			String path = "C:/hairapp/members/notice/";
+			
 			// 파일명 중복체크
 			File renameFile = FileRenamePolicy.rename(new File(path, filename));
 			part.write(path + "/" + renameFile.getName());
@@ -50,6 +60,19 @@ public class MembersNoticeWCtrl implements Controller {
 			System.out.println("notice resultVo:" + resultVo);
 			response.sendRedirect("membersNotice.do");
 		}
+		
+		
+		if (haishopResult == 1 && photoResult == 1) {
+			response.getWriter().append("<script>").append("alert('수정에 성공하였습니다.');")
+					.append("location.href='" + request.getContextPath() + "/members/membersNotice.do';")
+					.append("</script>");
+		} else {
+			response.getWriter().append("<script>").append("alert('수정에 실패하였습니다.');")
+					.append("location.href='" + request.getContextPath() + "/members/membersNotice.do';")
+					.append("</script>");
+		}
+		
+		
 	}
 
 	private String getFilename(Part part) throws UnsupportedEncodingException {

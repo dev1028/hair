@@ -232,7 +232,7 @@ public class Login implements Filter {
 
 		list.put("/ajax/hairshop/chart.do", hairLoginPage);
 		list.put("/admin/adminSalesStatistics.do", adminLoginPage);
-//		list.put("/admin/adminSalesStatisticsFind.do", adminLoginPage);
+////		list.put("/admin/adminSalesStatisticsFind.do", adminLoginPage);
 		// list.put("/admin/adminSales.do", adminLoginPage);
 
 		list.put("/admin/adminBoardManage.do", adminLoginPage);// 보드

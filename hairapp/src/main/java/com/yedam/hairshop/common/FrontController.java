@@ -78,6 +78,8 @@ import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
 import com.yedam.hairshop.hairshop.AnalysisByTreatCtrl;
+import com.yedam.hairshop.hairshop.AnalysisDesignerRsvRankCtrl;
+import com.yedam.hairshop.hairshop.AnalysisDesignerTotalCtrl;
 import com.yedam.hairshop.hairshop.AnalysisGenderCtrl;
 import com.yedam.hairshop.hairshop.AnalysisMonthlyCtrl;
 import com.yedam.hairshop.hairshop.AnalysisTotalCtrl;
@@ -133,6 +135,7 @@ import com.yedam.hairshop.hairshop.SalesBydesignerCtrl;
 import com.yedam.hairshop.hairshop.SalesStatisticsByDesignerCtrl;
 import com.yedam.hairshop.hairshop.UpdateMdriMemoAjCtrl;
 import com.yedam.hairshop.hairshop.employeeCloseDayManageCtrl;
+import com.yedam.hairshop.hairshop.employeeCloseDayManageUCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
@@ -305,8 +308,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopProcedureFinishSD.do", new hairshopProcedureFinishSDCtrl()); //시술완료고객 디자이너로검색해서 보기
 		
 		list.put("/hairshop/HairshopCloseDayManage.do", new HairshopCloseDayManageCtrl()); //미용실 휴무일 설정
-		list.put("/hairshop/HairshopCloseDayManageU.do", new HairshopCloseDayManageUCtrl()); //디자이너 리스트 휴무일 설정
+		list.put("/hairshop/HairshopCloseDayManageU.do", new HairshopCloseDayManageUCtrl()); //미용실 휴무일 업데이트
 		list.put("/hairshop/employeeCloseDayManage.do", new employeeCloseDayManageCtrl()); //디자이너 리스트 휴무일 설정
+		list.put("/hairshop/employeeCloseDayManageU.do", new employeeCloseDayManageUCtrl()); //디자이너 리스트 휴무일 설정
 		
 
 		//list.put("/hairshop/hairshopProcedureFinishSD.do", new hairshopProcedureFinishSDCtrl()); // 시술완료고객 디자이너로검색해서 보기
@@ -394,6 +398,11 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/hairshop/analysisTreatTable.do", new AnalysisTreatTableCtrl());//
 		list.put("/hairshop/analysisTreatTableGo.do", new AnalysisTreatTableGoCtrl());//
 
+		
+		list.put("/hairshop/analysisDesignerTotal.do", new AnalysisDesignerTotalCtrl());
+		list.put("/ajax/hairshop/analysisDesignerRsvRank.do", new AnalysisDesignerRsvRankCtrl());//
+		
+		
 		list.put("/ajax/hairshop/salesByDesigner.do", new SalesBydesignerCtrl());
 		list.put("/ajax/designer/analysisSales.do", new AnalysisSalesByDsCtrl());//
 		list.put("/designer/analysisSalesGo.do", new AnalysisSalesByDsGoCtrl());//

@@ -37,9 +37,9 @@ public class AdminAnalysisDAO {
 				"WHERE\n" + 
 				"    mdr_status IN (\n" + 
 				"        'i3',\n" + 
-				"        'i4'\n" +  "and\n"
-				+ "    mdr_date BETWEEN ? AND last_day(TO_DATE(?, 'yyyy-mm'))\n" +
-				"    )\n" + 
+				"        'i4')\n" +  "and\n"
+				+ "    mdr_date BETWEEN TO_DATE(?, 'yyyy-mm') AND last_day(TO_DATE(?, 'yyyy-mm'))\n" +
+				"    \n" + 
 				"GROUP BY\n" + 
 				"    h.hs_name";
 		System.out.println(sql);

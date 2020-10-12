@@ -30,6 +30,7 @@ public class adminLoginCtrl implements Controller {
 			page = "/admin/adminLogin.jsp";
 		} else {
 			if (empVo.getEmp_password().equals(resultVo.getEmp_password())) {
+				request.getSession().setAttribute("udong", "admin");
 				request.getSession().setAttribute("login", resultVo);
 				request.getSession().setAttribute("empno", resultVo.getEmp_no());
 				request.getSession().setAttribute("empname", resultVo.getEmp_name());

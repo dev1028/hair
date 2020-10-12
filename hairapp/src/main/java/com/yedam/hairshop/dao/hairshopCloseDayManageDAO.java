@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.yedam.hairshop.common.ConnectionManager;
+import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopVo;
 
 public class hairshopCloseDayManageDAO {
@@ -42,6 +43,25 @@ public class hairshopCloseDayManageDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 
+		return r;
+	}
+	
+	//디자이너 휴무일 업데이트
+	public int designerDayOffUpdate(DesignerVo designerVo) {
+		ResultSet rs = null;
+		int r = 0;
+		String sql = "UPDATE designer set designer_dayoff =? where designer_no = ?";
+		try {
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designerVo.getDesigner_dayoff());
+			pstmt.setString(2, designerVo.getDesigner_no());
+			r = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
 		return r;
 	}
 }
