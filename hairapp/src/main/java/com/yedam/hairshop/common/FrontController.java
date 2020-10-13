@@ -62,6 +62,11 @@ import com.yedam.hairshop.designer.AnalysisSalesByDsCtrl;
 import com.yedam.hairshop.designer.AnalysisSalesByDsGoCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListCtrl;
+import com.yedam.hairshop.designer.DesFindHairInfoCtrl;
+import com.yedam.hairshop.designer.DesFindHairInfoGoCtrl;
+import com.yedam.hairshop.designer.DesHairInfoDetailCtrl;
+import com.yedam.hairshop.designer.DesHairInfoFullListCtrl;
+import com.yedam.hairshop.designer.DesHairInfoListCtrl;
 import com.yedam.hairshop.designer.DesMemberReservationInfoCtrl;
 import com.yedam.hairshop.designer.DesReturnToLoginCtrl;
 import com.yedam.hairshop.designer.DesWeeklyReservationListAjCtrl;
@@ -515,15 +520,23 @@ public class FrontController extends HttpServlet {
 
 		list.put("/hairshop/hairInfoList.do", new HairInfoListCtrl()); // 헤어시술목록 페이지이동
 		list.put("/hairshop/hairInfoFullList.do", new HairInfoFullListCtrl()); // 헤어시술 전체목록
-		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); // 헤어시술목록 검색페이지로 이동
+		list.put("/hairshop/hairInfoListRe.do", new HairInfoListCtrlRe()); // 헤어시술목록 검색페이지로 이동 // 이거 안씀
 		list.put("/hairshop/hairInfoDetail.do", new HairInfoDetailCtrl()); // 헤어시술목록 상세페이지
-		list.put("/designer/desHairInfoDetail.do", new HairInfoDetailCtrl()); // 헤어시술목록상세페이지 디자이너용
 		list.put("/hairshop/hairInfoPicUpload.do", new HairInfoPicUploadFCtrl()); // 헤어시술목록 상세페이지에서 이미지 업로드
 		list.put("/ajax/hairStatusChange.do", new HairStatusChangeAjCtrl()); // 헤어 사용미사용 상태 바꾸기
 		list.put("/hairshop/hairInfoInsert.do", new HairInfoInsertCtrl()); // 헤어시술등록이동
 		list.put("/hairshop/hairInfoInsertForm.do", new HairInfoInsertFormFCtrl()); // 헤어시술등록처리
 		list.put("/ajax/getTmicList.do", new GetTmicListAjCtrl());// 시술중분류리스트 가져오기
 		list.put("/ajax/checkSameHhiName.do", new CheckSameHhiNameAjCtrl()); // 시술명 중복체크
+		
+		list.put("/designer/desHairInfoFullList.do", new DesHairInfoFullListCtrl()); // 디자이너용 헤어시술 목록페이지
+		list.put("/designer/desHairInfoDetail.do", new DesHairInfoDetailCtrl()); // 헤어시술목록상세페이지 디자이너용
+		list.put("/designer/desHairInfoList.do", new DesHairInfoListCtrl()); // 헤어시술목록 페이지이동 디자이너용
+		list.put("/designer/desFindHairInfo.do", new DesFindHairInfoCtrl());
+		list.put("/designer/desFindHairInfoGo.do", new DesFindHairInfoGoCtrl());
+		
+		
+		
 
 		list.put("/hairshop/myHairshopProfile.do", new MyHairShopProfileCtrl()); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리

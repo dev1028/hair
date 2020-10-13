@@ -21,7 +21,7 @@ public class EmployeeAuthFCtrl implements Controller {
 		
 		response.getWriter().append("<script>")
 		.append("alert('인증완료되었습니다.');")
-		.append("location.href='hairshopReturnToLogin.do';")
+		.append("location.href='" + request.getContextPath() + "/ajax/hairshopReturnToLogin.do';")
 		.append("</script>");
 	}
 

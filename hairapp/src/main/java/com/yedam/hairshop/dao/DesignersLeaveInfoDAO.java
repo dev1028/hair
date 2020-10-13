@@ -97,6 +97,32 @@ public class DesignersLeaveInfoDAO {
 	
 	//2020-09-22 김승연
 	//직원퇴사 처리 프로시저  // 7번이 해당처리가 정상적으로 되었는지 리턴함
+	/*
+	create or replace procedure fire_designer
+	(v_dli_leave_date IN VARCHAR2,
+	v_designer_no IN VARCHAR2,
+	v_hs_no IN VARCHAR2,
+	v_hire_date IN VARCHAR2,
+	v_fin_position IN DESIGNERS_LEAVE_INFO.FIN_POSITION%TYPE,
+	v_dli_reason IN DESIGNERS_LEAVE_INFO.DLI_REASON%TYPE,
+	v_cnt out number)
+	IS
+	BEGIN
+	  INSERT INTO DESIGNERS_LEAVE_INFO (dli_leave_date, designer_no, dli_reason, fin_position, hs_no, hire_date)
+	  VALUES (TO_DATE(v_dli_leave_date, 'YYYY/MM/DD hh24:MI:SS'), to_number(v_designer_no), v_dli_reason, v_fin_position, to_number(v_hs_no), TO_DATE(v_hire_date,'YYYY/MM/DD HH24:MI:SS'));
+	  
+	  UPDATE designer SET designer_dayoff = null, work_start_time = null, position = null, salary = null, incentive = null, hire_date = null, designer_profile = null, hs_no = null
+	  WHERE designer_no = to_number(v_designer_no);
+	  
+	  select count(v_designer_no)
+	  into v_cnt
+	  from DESIGNERS_LEAVE_INFO
+	  where designer_no = to_number(v_designer_no);
+	  
+	  commit;
+	END fire_designer;
+	*/
+	
 	public int fireDesigner(DesignersLeaveInfoVo dVo) {
 		ResultSet rs = null; // 초기화
 		int isInsert = 0;

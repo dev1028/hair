@@ -62,6 +62,15 @@
 				}
 			});// end of ajax 
 		});
+		$("#collapseTwo").on("click", ".card-title", function(){
+			opener.document.location.href=$(this).attr("data-link");
+			self.close();
+		});
+	
+		$("#aBigPageMove").on("click" ,function(){
+			opener.document.location.href="${pageContext.request.contextPath}/designer/findMyCustomerDetail.do?mdr_no=${mdrResult.mdr_no}";
+			self.close();
+		});
 
 	});
 </script>
@@ -73,7 +82,7 @@
 		<div class="card">
 			<div class="card-header" id="headingOne">
 				<div class="row">
-					<div class="col-9">
+					<div class="col-6">
 						<h2 class="mb-0">
 							<button class="btn btn-link btn-block text-left" type="button"
 								data-toggle="collapse" data-target="#collapseOne"
@@ -90,6 +99,9 @@
 								id="btnstatus" data-status="i4">시술완료</button>
 						</c:if>
 					</div>
+						<div class="col-3">
+						<a id="aBigPageMove" href="#" class="btn btn-primary btn-block">큰 창에서 보기</a>
+						</div>
 				</div>
 			</div>
 
@@ -185,7 +197,7 @@
 					<c:forEach items="${detailInfo}" var="info">
 						<div class="card text-center " style="width: 18rem;">
 							<div class="card-body">
-								<h5 class="card-title">${info.hhi_name}</h5>
+								<h5 class="card-title" data-hhiNo="${info.hhi_no}" data-link="${pageContext.request.contextPath}/designer/desHairInfoDetail.do?hhi_no=${info.hhi_no}"><a href="#">${info.hhi_name}</a></h5>
 								<h6 class="card-subtitle mb-2 text-muted">${info.hhi_time}시간</h6>
 								<p class="card-text">${info.hhi_price}원</p>
 							</div>

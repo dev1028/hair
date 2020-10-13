@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
@@ -281,7 +282,7 @@ public class Login implements Filter {
 		list.put("/hairshop/employeeUpdate.do", hairLoginPage); // 직원정보수정
 		list.put("/ajax/findEmployees.do", hairLoginPage); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", hairLoginPage); // 직원퇴사처리
-		list.put("/hairshop/employeeAuth.do", hairLoginPage); // 직원 인증 처리
+		list.put("/hairshop/employeeAuth.do", null); // 직원 인증 처리
 		list.put("/ajax/hairshopJoin.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinPre.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinFin.do", null); // 회원가입
@@ -345,7 +346,13 @@ public class Login implements Filter {
 		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
 		list.put("/ajax/imgView.do", null);
+		
+		list.put("/designer/desHairInfoFullList.do", designerLoginPage); // 디자이너용 헤어시술 목록페이지
 		list.put("/designer/desHairInfoDetail.do", designerLoginPage); // 헤어시술목록상세페이지 디자이너용
+		list.put("/designer/desHairInfoList.do", designerLoginPage); // 헤어시술목록 페이지이동 디자이너용
+		list.put("/designer/desFindHairInfo.do",designerLoginPage);
+		list.put("/designer/desFindHairInfoGo.do", designerLoginPage);
+
 	}
 
 	@Override

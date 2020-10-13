@@ -99,8 +99,8 @@
 							<button class="btn btn-info btn-block" type="button"
 								id="btnstatus" data-status="i4">시술완료</button>
 						</c:if>
-						</div>
-						<div class="col-3">
+					</div>
+					<div class="col-3">
 						<a id="aBigPageMove" href="#" class="btn btn-primary btn-block">큰 창에서 보기</a>
 					</div>
 				</div>

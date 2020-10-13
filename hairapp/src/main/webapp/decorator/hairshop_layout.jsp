@@ -294,10 +294,20 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do">시술명신청</a>
 								</div></li>
-							
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원관리</a></li>
-
+	
+								<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 직원관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/employeeList.do">직원목록</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/retiredEmployeeList.do">퇴사자목록</a>
+										<div class="dropdown-divider"></div>
+									<a
+										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">디자이너 휴무일</a>
+								</div></li>
 								<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -330,10 +340,11 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do">주간예약</a>
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약현황</a>
-									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishList.do">시술완료고객</a>
+										href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do">월간예약</a>
+				
 									<div class="dropdown-divider"></div>
+										<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishList.do">시술완료고객</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do">예약자찾기</a>
 								</div></li>
@@ -341,22 +352,12 @@
 								
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
+									role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 쿠폰관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do">쿠폰등록</a> <a
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do">쿠폰리스트</a>
 								</div></li>
-
-										<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-								role="button" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"> 휴무일관리 </a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCloseDayManage.do">미용실 휴무</a> <a
-										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">디자이너 휴무</a>
-								</div></li>
-								
 
 									<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
@@ -367,6 +368,8 @@
 										href="${pageContext.request.contextPath}/hairshop/myHairshopInfo.do">마이페이지</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/hairshop/myHairshopProfile.do">프로필</a>
+											<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/HairshopCloseDayManage.do">미용실 휴무일</a>
 								</div></li>
 
 								

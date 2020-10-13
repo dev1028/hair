@@ -142,15 +142,15 @@ public class DesignerDAO {
 				resultVo.setDesigner_pw(rs.getString("DESIGNER_PW"));
 				resultVo.setDesigner_name(rs.getString("DESIGNER_NAME"));
 				resultVo.setDesigner_email(rs.getString("DESIGNER_EMAIL"));
-				resultVo.setDesigner_access_status(rs.getString("Designer_access_status"));
-				resultVo.setDesigner_phone(rs.getString("Designer_phone"));
+				resultVo.setDesigner_access_status(rs.getString("DESIGNER_ACCESS_STATUS"));
+				resultVo.setDesigner_phone(rs.getString("DESIGNER_PHONE"));
 				
 				resultVo.setDesigner_dayoff(rs.getString("DESIGNER_DAYOFF"));
 				resultVo.setWork_start_time(rs.getString("WORK_START_TIME"));
 				resultVo.setWork_end_time(rs.getString("WORK_END_TIME"));
 				resultVo.setDesigner_profile(rs.getString("DESIGNER_PROFILE"));
 				resultVo.setFile_name(rs.getString("FILE_NAME"));
-				resultVo.setHs_no(rs.getString("hs_no"));
+				resultVo.setHs_no(rs.getString("HS_NO"));
 
 			} else {
 				System.out.println("no data");
@@ -287,6 +287,27 @@ public class DesignerDAO {
 			pstmt.setString(3, dVo.getDesigner_email());
 			pstmt.setString(4, dVo.getDesigner_pw());
 			pstmt.setString(5, dVo.getHs_no());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+	}
+	
+	
+	//2020.10.13 김승연
+	//퇴사직원 재입사 처리 
+	public int simpleReJoin(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "UPDATE DESIGNER SET DESIGNER_ACCESS_STATUS = 0, HS_NO = ? WHERE DESIGNER_EMAIL = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dVo.getHs_no());
+			pstmt.setString(2, dVo.getDesigner_email());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
