@@ -157,7 +157,7 @@ background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 
 }
 #shopdata2 {
     position: absolute;
-    left: 21%;
+    left: 29%;
     top: 2.3%;
 }
 .datePick {
@@ -357,7 +357,6 @@ function check(frm){
 				&emsp;-&emsp;
 				<input disabled type="text" name="hs_endtime" value="${total_hour }" style="width:100px" class="datePick">
 				&emsp;&emsp;
-<!-- 				<button class="custom-btn btn-6">검색하기</button> -->
 			</form>
 		</div>
 	</div>
