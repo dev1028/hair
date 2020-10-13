@@ -124,14 +124,7 @@
 						</a>
 
 
-						<div class="sb-sidenav-menu-heading">시술</div>
-						<a class="nav-link"
-							href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
-							</div> 시술중분류관리
-						</a>
-
+						
 
 
 						<div class="sb-sidenav-menu-heading">통계</div>
@@ -195,8 +188,8 @@
 
 						<a class="nav-link collapsed"
 							href="${pageContext.request.contextPath}/admin/adminCustomerManage.do"
-							data-toggle="collapse" data-target="#collapsePages"
-							aria-expanded="false" aria-controls="collapsePages">
+							data-toggle="collapse" data-target="#collapsePages1"
+							aria-expanded="false" aria-controls="collapsePages1">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
 							</div> 시술관리
@@ -205,7 +198,7 @@
 							</div>
 						</a>
 
-						<div class="collapse" id="collapsePages"
+						<div class="collapse" id="collapsePages1"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
@@ -214,7 +207,7 @@
 									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술 중분류 관리
 									</a> <a class="nav-link"
 									href="${pageContext.request.contextPath}/admin/ttCategoryRequest.do">시술 요청 관리
-									]</a> 
+									</a> 
 							</nav>
 						</div>
 						<!-- 

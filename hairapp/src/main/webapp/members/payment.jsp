@@ -131,6 +131,14 @@ tr:hover {
     background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
     box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
 }
+/* 버튼끝 */
+
+#shopdata {
+    position: absolute;
+    left: 2%;
+    top: 10%
+ }
+ 
 </style>
 </head>
 <body>
@@ -302,7 +310,7 @@ function changePrice(){
 <br>
 <div id="menubar">
 <div id="shopdata">
-		예약 및 결제 페이지
+		<img src="../images/members/step3.png" style="width: 80px; height: 40px;"> 예약 및 결제 페이지
 	</div>
 </div>
 
