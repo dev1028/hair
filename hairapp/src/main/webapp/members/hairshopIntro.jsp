@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>헤어샵 소개</title>
+<link rel="stylesheet" href="../css/membersHairshop.css"> <!-- 헤어샵레이아웃 -->
 <style>
 	    .map_wrap {position:relative;width:1000px;height:600px;}
 /* 	    .title {font-weight:bold;display:block;} */
@@ -91,7 +92,6 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 	top:100%;
 }
 </style>
-<link rel="stylesheet" href="../css/membersHairshop.css"> <!-- 헤어샵레이아웃 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463&libraries=services"></script>
 <script>
 $(function(){

@@ -12,12 +12,14 @@
 	width:100%;
 	height:100px;
 	background-color: #d8ddee;
+	color: #1306e2;
 }
 
 #shopName {
 	position:absolute;
 	left:30%;
 	top:40%;
+	-webkit-text-stroke-width: medium;
 }
 
 #shopStar1 {
