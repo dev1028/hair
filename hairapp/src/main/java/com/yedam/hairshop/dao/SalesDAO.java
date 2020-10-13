@@ -116,7 +116,7 @@ public class SalesDAO {
 			pstmt.setString(2, end);
 			pstmt.setString(3, hs_no);
 			rs = pstmt.executeQuery();
-			System.out.println("sql");
+			System.out.println(totaldaily);
 			while (rs.next()) {
 
 				resultVo = new SalesVo();

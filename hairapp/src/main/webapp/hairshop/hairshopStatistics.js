@@ -1,8 +1,8 @@
 $(function() {
 	
 	period();
-	$("button").attr('class','btn btn-secondary btn-sm');
-	$("input").attr('class','btn btn-secondary btn-sm');
+//	$("button").attr('class','btn btn-secondary btn-sm');
+//	$("input").attr('class','btn btn-secondary btn-sm');
 	$(document).on(
 			"click",
 			"#excel",
@@ -37,13 +37,13 @@ $(function() {
 		console.log($(this).attr('id'));
 
 		if ($(this).is("#year") === true) {
-			year();
+			yearfun();
 		} else if ($(this).is("#period") === true) {
-			period();
+			periodfun();
 		} else if ($(this).is("#quarter") === true) {
-			quarter();
+			quarterfun();
 		} else if ($(this).is("#month") === true) {
-			month();
+			monthfun();
 		}
 	});
 
@@ -101,7 +101,7 @@ $(function() {
 
 				);
 	}
-	function year() {
+	function yearfun() {
 		$("#range").attr('class', 'yearResult');
 		$("#range").html("");
 		select = $("<select/>").attr('id', 'selectYear');
@@ -113,7 +113,7 @@ $(function() {
 		$("#range").append(select);
 
 	}
-	function quarter() {
+	function quarterfun() {
 		$("#range").attr('class', 'quarter');
 		$("#range").html("");
 		year = $("<select/>").attr('id', 'selectYear');
@@ -132,7 +132,7 @@ $(function() {
 		$("#range").append(quarter);
 
 	}
-	function month() {
+	function monthfun() {
 		$("#range").attr('class', 'month');
 		$("#range").html("");
 		year = $("<select/>").attr('id', 'selectYear');

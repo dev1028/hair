@@ -12,6 +12,8 @@ import com.yedam.hairshop.dao.AdminMemberManageDAO;
 import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.HairshopVo;
 
+import net.sf.json.JSONArray;
+
 public class AdminHairshopManageCtrl implements Controller {
 
 	@Override
@@ -21,6 +23,7 @@ public class AdminHairshopManageCtrl implements Controller {
 		List<HairshopVo> list = AdminMemberManageDAO.getInstance().findHs(null);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("hairshoplist", JSONArray.fromObject(list));
 		
 		request.getRequestDispatcher("/admin/adminHairshopManage.jsp").forward(request, response);
 

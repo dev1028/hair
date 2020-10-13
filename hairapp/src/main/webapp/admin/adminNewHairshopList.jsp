@@ -11,9 +11,19 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-    <link href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css" rel="stylesheet" />
-        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+<link
+	href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css"
+	rel="stylesheet" />
+<link
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
+	rel="stylesheet" crossorigin="anonymous" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <script type="text/javascript">
 	$(function() {
 		$("#all").on("click", function() {
@@ -69,10 +79,7 @@ var empOne;
 var clickcnt = 0;
 var thisTr;
 $(function() {
-	$("#infoFrm").hide();
-	$("#profileFrm").hide();
-	$("#jobFrm").hide();
-	$("#moneyFrm").hide();
+
 	$("#tbody").on("click","tr",function(){
 		if(clickcnt == 0){
 			thisTr = $(this);
@@ -87,7 +94,7 @@ $(function() {
 				}
 			}
 			
-			$("#modal_title").text(empOne.hs_name+" 디자이너 상세정보");
+			$("#modal_title").text(empOne.hs_name+" 상세정보");
 			$("#hs_no").val(empOne.hs_no);
 			$("#hs_name").val(empOne.hs_name);
 			$("#hs_tel").val(empOne.hs_tel);
@@ -129,21 +136,6 @@ $(function() {
 	 });
 	
 	
-	$("#radioForFrms").on("click","input", function(){
-		$("#infoFrm").hide();
-		$("#profileFrm").hide();
-		$("#jobFrm").hide();
-		$("#moneyFrm").hide();
-		if($(this).attr("id") == "option1"){
-			$("#infoFrm").show();
-		} else if($(this).attr("id") == "option2"){
-			$("#profileFrm").show();
-		} else if($(this).attr("id") == "option3"){
-			$("#jobFrm").show();
-		} else if($(this).attr("id") == "option4"){
-			$("#moneyFrm").show();
-		}
-	});
 	
 	
 	$("#staticBackdrop").on('hide.bs.modal', function(){
@@ -254,7 +246,7 @@ $(function() {
 		<div class="modal fade" id="myModal" data-backdrop="static"
 			data-keyboard="false" tabindex="-1"
 			aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog">
+			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
 
 					<!-- Modal Header -->
@@ -266,50 +258,60 @@ $(function() {
 					<!-- Modal body -->
 					<div class="modal-body">
 						<div class="container">
-							<div class="text-center"></div>
-							<hr>
+
 							<form id="empUpdatefrm"
 								action="${pageContext.request.contextPath}/hairshop/newHairshopApproval.do">
-								<div class="form-group">
-									<div class="form-group">
-										<label for="hs_name">헤어샵번호</label> <input type="text"
-											name="hs_name" id="hs_no" value="" />
-									</div>
-									<label for="hs_name">이름</label> <input type="text"
-										name="hs_name" id="hs_name" value="" />
-								</div>
-								<div class="form-group">
-									<label for="hs_comp_no">사업자번호</label> <input type="text"
-										name=hs_comp_no id="hs_comp_no" value="" />
-								</div>
-								<div class="form-group">
-									<label for="hs_owner">대표자명</label> <input type="text"
-										name="hs_owner" id="hs_owner" value="" />
-								</div>
-								<div class="form-group">
+								<div class="card">
+									<div class="card-body">
+										<div class="form-group">
+											<div class="form-group">
+												<label for="hs_name">헤어샵번호</label> <input
+													class="form-control" type="text" name="hs_name" id="hs_no"
+													value="" />
+											</div>
+											<label for="hs_name">이름</label> <input class="form-control"
+												type="text" name="hs_name" id="hs_name" value="" />
+										</div>
+										<div class="form-group">
+											<label for="hs_comp_no">사업자번호</label> <input
+												class="form-control" type="text" name=hs_comp_no
+												id="hs_comp_no" value="" />
+										</div>
+										<div class="form-group">
+											<label for="hs_owner">대표자명</label> <input
+												class="form-control" type="text" name="hs_owner"
+												id="hs_owner" value="" />
+										</div>
+										<div class="form-group">
 
-									<label for="hs_email">이메일</label> <input type="email"
-										name="hs_email" id="hs_email" value=""
-										placeholder="이메일을 입력하세요." /> <span id="emailChecking"></span>
-								</div>
-								<div class="form-group">
-									<label for="hs_pw">비밀번호</label> <input type="text" name="hs_pw"
-										id="hs_pw" value="" placeholder="비밀번호를 입력하세요." />
-								</div>
-								<div class="form-group">
-									<label for="hs_name">주소</label> <input type="text"
-										name="hs_name" id="hs_fulladdr" value="" />
-								</div>
-								<div class="form-group">
-									<label for="hs_name">승인여부</label> <input type="text"
-										name="hs_name" id="hs_approval" value="" />
-								</div>
-								<div class="form-group">
-									<label for="hs_tel">전화번호</label> <input type="text"
-										name="hs_tel" id="hs_tel" value="" placeholder="전화번호를 입력하세요." />
+											<label for="hs_email">이메일</label> <input class="form-control"
+												type="email" name="hs_email" id="hs_email" value=""
+												placeholder="이메일을 입력하세요." /> <span id="emailChecking"></span>
+										</div>
+										<div class="form-group">
+											<label for="hs_pw">비밀번호</label> <input class="form-control"
+												type="text" name="hs_pw" id="hs_pw" value=""
+												placeholder="비밀번호를 입력하세요." />
+										</div>
+										<div class="form-group">
+											<label for="hs_name">주소</label> <input class="form-control"
+												type="text" name="hs_name" id="hs_fulladdr" value="" />
+										</div>
+										<div class="form-group">
+											<label for="hs_name">승인여부</label> <input class="form-control"
+												type="text" name="hs_name" id="hs_approval" value="" />
+										</div>
+										<div class="form-group">
+											<label for="hs_tel">전화번호</label> <input class="form-control"
+												type="text" name="hs_tel" id="hs_tel" value=""
+												placeholder="전화번호를 입력하세요." />
+										</div>
+
+
+									</div>
 								</div>
 							</form>
-							<hr>
+
 
 						</div>
 					</div>

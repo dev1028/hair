@@ -1,7 +1,60 @@
 $(function() {
-	/*$("button").attr('class', 'btn btn-secondary btn-sm');
-	$("input").attr('class', 'btn btn-secondary btn-sm');*/
+	/*
+	 * $("button").attr('class', 'btn btn-secondary btn-sm');
+	 * $("input").attr('class', 'btn btn-secondary btn-sm');
+	 */
+	function yearfun() {
+		$("#range").attr('class', 'yearResult');
+		$("#range").html("");
+		select = $("<select/>").attr('id', 'selectYear');
+		for (var i = 2020; i > 2000; i--) {
 
+			select.append($("<option />").val(i).text(i + "년"));
+
+		}
+		$("#range").append(select);
+
+	}
+	function quarterfun() {
+		$("#range").attr('class', 'quarter');
+		$("#range").html("");
+		year = $("<select/>").attr('id', 'selectYear');
+		for (var i = 2020; i > 2000; i--) {
+
+			year.append($("<option />").text(i + "년").val(i));
+
+		}
+		$("#range").append(year);
+		quarter = $("<select/>").attr('id', 'selectQuarter');
+
+		quarter.append($("<option />").text("1/4 분기").val(0));
+		quarter.append($("<option />").text("2/4 분기").val(3));
+		quarter.append($("<option />").text("3/4 분기").val(6));
+		quarter.append($("<option />").text("4/4 분기").val(9));
+		$("#range").append(quarter);
+
+	}
+	function monthfun() {
+		$("#range").attr('class', 'month');
+		$("#range").html("");
+		year = $("<select/>").attr('id', 'selectYear');
+		;
+		for (var i = 2020; i > 2000; i--) {
+
+			year.append($("<option />").text(i + " 년").val(i));
+		}
+		$("#range").append(year);
+		month = $("<select/>").attr('id', 'selectMonth');
+		;
+		for (var i = 0; i < 12; i++) {
+
+			month.append($("<option />").text(i + 1 + " 월").val(i));
+		}
+		$("#range").append(month);
+	}
+	yearfun();
+	monthfun();
+	quarterfun();
 	period();
 	$("#all").on("click", function() {
 
@@ -26,7 +79,10 @@ $(function() {
 	$(document).on("click", '#submit', function() {
 		var ds = [];
 		$("input[name='designer_name']:checked").each(function() {
-			ds.push($(this).val());
+		//	if (!($(this).attr('id', 'all'))) {
+
+				ds.push($(this).val());
+			//}
 		});
 		$("#result").html("");
 		for (i = 0; i < ds.length; i++) {
@@ -50,7 +106,7 @@ $(function() {
 
 					}
 
-				}, 100 * x);
+				}, 200 * x);
 
 			})(i);
 		}
@@ -61,13 +117,13 @@ $(function() {
 		console.log($(this).attr('id'));
 
 		if ($(this).is("#year") === true) {
-			year();
+			yearfun();
 		} else if ($(this).is("#period") === true) {
 			period();
 		} else if ($(this).is("#quarter") === true) {
-			quarter();
+			quarterfun();
 		} else if ($(this).is("#month") === true) {
-			month();
+			monthfun();
 		}
 	});
 
@@ -124,7 +180,7 @@ $(function() {
 
 				);
 	}
-	
+
 	function startDate(d) {
 		$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 	}
@@ -164,7 +220,7 @@ $(function() {
 	}
 
 	function result(start, end) {
-		dsNm = "";
+		
 
 		var url = "/hairapp/ajax/hairshop/salesByDesigner.do"
 		var table = $("<table />").attr({
@@ -196,6 +252,7 @@ $(function() {
 			},
 			traditional : true,
 			success : function(obj) {
+				var dsNm = "";
 				var card = 0;
 				var cash = 0;
 				var kakao = 0;
@@ -210,8 +267,9 @@ $(function() {
 					kakao += parseInt(o.ka);
 					account += parseInt(o.ac);
 					ammount += parseInt(o.to);
-					dsNm = o.dsNo;
-					console.log(o.dsNo);
+					dsNm = o.dsNm;
+					console.log(o.dsNm);
+					console.log(dsNm);
 
 					tr.append($("<td>").text(o.mdrDt));
 					tr.append($("<td>").text(o.mdrNo));
@@ -225,7 +283,7 @@ $(function() {
 					tr.append($("<td>").text(o.to));
 					table.append(tr);
 				})
-
+$("#result").append($("<p />").text(dsNm));
 				var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
 						$("<td>").text(obj.length), $("<td>"), $("<td>"),
 						$("<td>").text(card), $("<td>").text(cash),
@@ -233,65 +291,16 @@ $(function() {
 						$("<td>").text(ammount)
 
 				).css('color', 'red');
-
+console.log(dsNm);
+		
 				table.append(tr);
 			}
 		});
-		console.log(dsNm);
-		$("#result").append($("<p />").text(dsNm));
+		
 
 		$("#result").append($(table));
-		$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
+	//	$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 
 	}
 
 });
-function year() {
-	$("#range").attr('class', 'yearResult');
-	$("#range").html("");
-	select = $("<select/>").attr('id', 'selectYear');
-	for (var i = 2020; i > 2000; i--) {
-
-		select.append($("<option />").val(i).text(i + "년"));
-
-	}
-	$("#range").append(select);
-
-}
-function quarter() {
-	$("#range").attr('class', 'quarter');
-	$("#range").html("");
-	year = $("<select/>").attr('id', 'selectYear');
-	for (var i = 2020; i > 2000; i--) {
-
-		year.append($("<option />").text(i + "년").val(i));
-
-	}
-	$("#range").append(year);
-	quarter = $("<select/>").attr('id', 'selectQuarter');
-
-	quarter.append($("<option />").text("1/4 분기").val(0));
-	quarter.append($("<option />").text("2/4 분기").val(3));
-	quarter.append($("<option />").text("3/4 분기").val(6));
-	quarter.append($("<option />").text("4/4 분기").val(9));
-	$("#range").append(quarter);
-
-}
-function month() {
-	$("#range").attr('class', 'month');
-	$("#range").html("");
-	year = $("<select/>").attr('id', 'selectYear');
-	;
-	for (var i = 2020; i > 2000; i--) {
-
-		year.append($("<option />").text(i + " 년").val(i));
-	}
-	$("#range").append(year);
-	month = $("<select/>").attr('id', 'selectMonth');
-	;
-	for (var i = 0; i < 12; i++) {
-
-		month.append($("<option />").text(i + 1 + " 월").val(i));
-	}
-	$("#range").append(month);
-}

@@ -8,24 +8,170 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<style type="text/css">
+body {
+	padding: 10px;
+}
 
+/* change border radius for the tab , apply corners on top*/
+#exTab3 .nav-pills>li>a {
+	border-radius: 4px 4px 0 0;
+}
+
+#exTab3 .tab-content {
+	color: white;
+	background-color: gray;
+	padding: 5px 15px;
+}
+</style>
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
+var rsvjsonlist = ${rsvjsonlist};
+var salesjsonlist = ${salesjsonlist};var ratejsonlist = ${ratejsonlist};
+
+
+
+function chart() {
+
+	google.charts.load('current', {
+		'packages' : [ 'corechart' ]
+	});
+
+	google.charts.setOnLoadCallback(drawChartrsv);
+	google.charts.setOnLoadCallback(drawChartsales);
+	google.charts.setOnLoadCallback(drawChartrate);
+
+	function drawChartsales() {
+
+		// Create the data table.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', '순위');
+		data.addColumn('number', '매출 ');
+		data.addColumn({
+			type : 'string',
+			role : 'annotation'
+		});
+
+		var datatable = [];
+		
+
+		for( datas of salesjsonlist){
+		
+		
+				console.log(datas);
+			
+					datatable.push([ datas.rank + "위",
+							parseInt(datas.sales), datas.designer_name ]);
+				
+				//
+			}
+	
+		data.addRows(datatable);
+
+		// Set chart options
+		var options = {
+			'title' : '매출순 ',
+			'width' :400,
+			'height' : 300
+		};
+
+		// Instantiate and draw our chart, passing in some options.
+		var chart = new google.visualization.ColumnChart(document
+				.getElementById('chart_divsales'));
+		chart.draw(data, options);
+	}
+	function drawChartrate() {
+
+		// Create the data table.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', '순위');
+		data.addColumn('number', '평점');
+		data.addColumn({
+			type : 'string',
+			role : 'annotation'
+		});
+
+		var datatable = [];
+		
+
+		for( datas of ratejsonlist){
+		
+		
+				console.log(datas);
+			
+					datatable.push([ datas.rank + "위",
+							parseInt(datas.hr_rate), datas.designer_name ]);
+				
+				//
+			}
+	
+		data.addRows(datatable);
+
+		// Set chart options
+		var options = {
+			'title' : '평점순위 ',
+			'width' :400,
+			'height' : 300
+		};
+
+		// Instantiate and draw our chart, passing in some options.
+		var chart = new google.visualization.ColumnChart(document
+				.getElementById('chart_divrate'));
+		chart.draw(data, options);
+	}
+	function drawChartrsv() {
+
+		// Create the data table.
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', '순위');
+		data.addColumn('number', '예약');
+		data.addColumn({
+			type : 'string',
+			role : 'annotation'
+		});
+
+		var datatable = [];
+		
+
+		for( datas of rsvjsonlist){
+		
+		
+				console.log(datas);
+			
+					datatable.push([ datas.rank + "위",
+							parseInt(datas.cnt), datas.designer_name ]);
+				
+				//
+			}
+	
+		data.addRows(datatable);
+
+		// Set chart options
+		var options = {
+			'title' : '인기헤어순위 ',
+			'width' :400,
+			'height' : 300
+		};
+
+		// Instantiate and draw our chart, passing in some options.
+		var chart = new google.visualization.ColumnChart(document
+				.getElementById('chart_divrsv'));
+		chart.draw(data, options);
+	}
+}
 	$(function() {
-		$('#myTab a:last').tab('show')
-		$('#myTab a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+		chart();
+		
 		period();
-		$("button").attr('class', 'btn btn-default');
-		$("input").attr('class', 'btn btn-default');
+
 		$(document)
 				.on(
 						"click",
@@ -244,50 +390,156 @@
 			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
 		</div>
 	</form>
-	<!--  result -->
-	<!-- 매출 -->
 
 
 
-	<h2 class="heading">지출합계</h2>
-	<div class="form-group" id="result"></div>
-	<!-- <button type="button" id="excel">excel</button> -->
 
 
-
-	<div role="tabpanel">
-
-		<ul class="nav nav-tabs nav-justified" role="tablist" id="myTab">
-			<li role="presentation" class="active"><a href="#home"
-				aria-controls="sales" role="tab" data-toggle="tab">매출</a></li>
-			<li role="presentation"><a href="#profile"
-				aria-controls="customer" role="tab" data-toggle="tab">객수</a></li>
-			<li role="presentation"><a href="#messages" aria-controls="rate"
-				role="tab" data-toggle="tab">평점</a></li>
-
+	<div class="container">
+		<h2>Example 3</h2>
+	</div>
+	<div id="exTab3" class="container">
+		<ul class="nav nav-pills">
+			<li class="active"><a href="#1b" data-toggle="tab">예약수</a></li>
+			<li><a href="#2b" data-toggle="tab">매출 </a></li>
+			<li><a href="#3b" data-toggle="tab"> 리뷰평점 </a></li>
 		</ul>
 
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane active" id="sales">
+		<div class="tab-content clearfix">
+			<div class="tab-pane active" id="1b">
+				<div id="chart_divrsv"></div>
+				<div class="table-responsive" id="result">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
 
-				<div id="salesChart">d</div>
-				<div id="salesTable">d</div>
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>사진</th>
+								<th>이름</th>
+								<th>예약수</th>
+
+								<th>전월대비</th>
+								<th>전월대비순위</th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<c:forEach items="${rsvlist }" var="l">
+								<tr>
+
+									<td>${ l.rank}</td>
+									<td>사진</td>
+									<td>${ l.designer_name}</td>
+
+									<td>${l.cnt }</td>
+
+
+
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<button id="excel">excel</button>
+					<button id="email">email</button>
+				</div>
+
+
 
 			</div>
-			<div role="tabpanel" class="tab-pane" id="customer">
+			<div class="tab-pane" id="2b">
+				<div id="chart_divsales"></div>
+				<div class="table-responsive" id="result">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
 
-				<div id="customerChart"></div>
-				<div id="customerTable"></div>
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>사진</th>
+								<th>이름</th>
+								<th>매출</th>
 
+								<th>전월대비</th>
+								<th>전월대비순위</th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<c:forEach items="${saleslist }" var="l">
+								<tr>
+
+									<td>${ l.rank}</td>
+									<td>사진</td>
+									<td>${ l.designer_name}</td>
+
+									<td>${l.sales }</td>
+
+
+
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<button id="excel">excel</button>
+					<button id="email">email</button>
+				</div>
 			</div>
-			<div role="tabpanel" class="tab-pane" id="rate">
-				<div id="rateChart"></div>
-				<div id="rateTable"></div>
-			</div>
+			<div class="tab-pane" id="3b">
+				<div id="chart_divrate"></div>
+				<div class="table-responsive" id="result">
+					<table class="table table-bordered" id="dataTable" width="100%"
+						cellspacing="0">
 
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>사진</th>
+								<th>이름</th>
+								<th>평점</th>
+
+								<th>전월대비</th>
+								<th>전월대비순위</th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<c:forEach items="${ratelist }" var="l">
+								<tr>
+
+									<td>${ l.rank}</td>
+									<td>사진</td>
+									<td>${ l.designer_name}</td>
+
+									<td>${l.hr_rate }</td>
+
+
+
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<button id="excel">excel</button>
+					<button id="email">email</button>
+				</div>
+			</div>
+			<div class="tab-pane" id="4b">
+				<h3>We use css to change the background color of the content to
+					be equal to the tab</h3>
+			</div>
 		</div>
-
 	</div>
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+
+
 
 
 </body>
