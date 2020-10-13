@@ -291,37 +291,37 @@ $(function(){
 			
 			<table>
 				<tr>
-					<th id="title">전화번호</th>
+					<th>전화번호</th>
 					<td>${intro.hs_tel}</td>
 				</tr>
 
 				<tr>
-					<th id="title">주소</th>
+					<th>주소</th>
 					<td>${intro.hs_fulladdr}</td>
 				</tr>
 
 				<tr>
-					<th id="title">영업시간</th>
+					<th>영업시간</th>
 					<td>${intro.hs_starttime} ~ ${intro.hs_endtime} 시</td>
 				</tr>
 
 				<tr>
-					<th id="title">휴무일</th>
+					<th>휴무일</th>
 					<td>${intro.hs_dayoff} 일</td>
 				</tr>
 
 				<tr>
-					<th id="title">직원수</th>
+					<th>직원수</th>
 					<td>${intro.designer_access_status} 명</td>
 				</tr>
 
 				<tr>
-					<th id="title">주차장유무</th>
+					<th>주차장유무</th>
 					<td>${intro.hs_parking}</td>
 				</tr>
 
 				<tr>
-					<th id="title">비고</th>
+					<th>비고</th>
 					<td>${intro.hs_etc}</td>
 				</tr>
 
@@ -347,10 +347,11 @@ $(function(){
 	        <span class="title">지도중심기준 행정동 주소정보</span>
 	        <span id="centerAddr"></span>
 	    </div>
+	    <br><br><br><br><br><br><br><br><br><br>
 	</div>
-	
-</div>
 
+
+</div>
 
 
 <!-- 왼쪽메뉴 -->

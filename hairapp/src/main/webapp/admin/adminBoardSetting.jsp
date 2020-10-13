@@ -44,15 +44,15 @@
 					</tr>
 				</c:forEach>
 
-				<tr>
+				<%-- <tr>
 					<td>이용안내FAQ</td>
 					<td>hairshop</td>
 					<td>admin/hairshop</td>
-					<%-- <td>${new }/${total }</td> --%>
+					<td>${new }/${total }</td>
 					<td><button>글보기</button>
 						<button>글삭제</button>
 						<button>고정</button></td>
-				</tr>
+				</tr> --%>
 			</tbody>
 
 		</table>
