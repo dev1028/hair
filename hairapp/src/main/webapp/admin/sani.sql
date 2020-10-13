@@ -225,3 +225,77 @@ WHERE
     a.ranking < 2;
     
        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    SELECT
+    d.designer_name,
+    sum
+(
+( SELECT
+    mdp_price
+FROM
+    members_detail_paylist
+WHERE ) ) as cnt,
+          RANK() OVER(
+              ORDER BY
+                  SUM(p.mdp_price) DESC
+          ) AS rank
+FROM
+    designer                 d
+    JOIN members_designer_rsv     r ON ( d.designer_no = r.designer_no )
+    JOIN members_detail_paylist   p ON ( r.mdr_no = p.mdr_no )
+--where d.hs_no = 2
+GROUP BY
+    d.designer_name,
+    mdp_price;
+
+SELECT
+    *
+FROM
+    designer                 d
+    JOIN members_designer_rsv     r ON ( d.designer_no = r.designer_no )
+    JOIN members_detail_paylist   p ON ( r.mdr_no = p.mdr_no )
+WHERE
+    d.hs_no = 2;
+
+SELECT
+    d.designer_name,
+   nvl( AVG((
+        SELECT
+            AVG(hr_rate)
+        FROM
+            hairshop_reviews
+        WHERE
+            mdr_no = r.mdr_no
+    )), 0) AS rate,
+    RANK() OVER(
+        ORDER BY
+            nvl(AVG((
+                SELECT
+                    AVG(hr_rate)
+                FROM
+                    hairshop_reviews
+                WHERE
+                    mdr_no = r.mdr_no
+            )), 0) DESC
+    ) AS rank
+FROM
+    members_designer_rsv   r
+    JOIN designer               d ON ( r.designer_no = d.designer_no )
+WHERE
+    r.hs_no = 2
+GROUP BY
+    d.designer_name;
+
+SELECT
+    *
+FROM
+    hairshop_reviews;
