@@ -251,7 +251,9 @@ function changePrice(){
 <br>
 <div id="shopInfo">
 	<div id="shopName">
-		<h4>${shop.hs_name}</h4>
+		<div id="hsname">
+			<h4><b>${shop.hs_name}</b></h4>
+		</div>
 		<h6>${shop.hs_fulladdr}</h6>
 	</div>
 	<div id="shopStar1">
