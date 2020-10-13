@@ -11,6 +11,8 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MembersDAO;
 import com.yedam.hairshop.model.MembersVo;
 
+import net.sf.json.JSONArray;
+
 public class AdminCustomerManageCtrl implements Controller {
 
 	@Override
@@ -18,7 +20,7 @@ public class AdminCustomerManageCtrl implements Controller {
 		// TODO Auto-generated method stub
 		List<MembersVo> list = MembersDAO.getInstance().selectAll();
 		request.setAttribute("list", list);
-		
+		request.setAttribute("jsonlist", JSONArray.fromObject(list));
 		request.getRequestDispatcher("/admin/adminCustomerManage.jsp").forward(request, response);
 
 	}
