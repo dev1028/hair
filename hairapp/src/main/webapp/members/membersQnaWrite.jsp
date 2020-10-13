@@ -41,6 +41,7 @@ function inputCheck() {
 	
 }
 	return true;
+	
 }
 
 </script>
@@ -70,7 +71,8 @@ function inputCheck() {
 	</div>
 	<div class="col-auto">
 		<label for="contents">내용</label>
-  		<textarea class="form-control" id="qna_contents" name="qna_contents" rows="3" cols="30">내용</textarea>
+  		<textarea class="form-control" id="qna_contents" name="qna_contents" rows="3" cols="30"></textarea>
+  		<p id="text"></p>
   		<br>
   	</div>
   	<div>

@@ -33,6 +33,7 @@ public class MembersNoticeVCtrl implements Controller {
 		// DB 조회
 		HairshopNoticeVo resultVo = NoticeDAO.getInstance().noticeView(vo);
 		int hitup = NoticeDAO.getInstance().upHit(vo);
+		System.out.println("notice vo 나와라: "+vo);
 		System.out.println("hitup: " + hitup);
 
 		// 결과 저장

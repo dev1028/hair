@@ -133,7 +133,7 @@
 }
 
 .searchButton {
-  width: 40px;
+  width: 220px;
   height: 60px;
   border: 1px solid #00B4CC;
   background: #00B4CC;
@@ -589,7 +589,7 @@ form.example::after {
 		      		<input type="radio" name="radioDate" class="option-input radio" value="day1" >내일
 		    	</label>
 		    	<label class="radio-inline">
-		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모래
+		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모레
 		    	</label>
 		    	<br>
     		</div>

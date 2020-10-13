@@ -49,6 +49,9 @@
     .table > tbody > tr > #title {
       text-align: left;
     }
+    tr:first-child {
+    	width:10px;
+    }
      
     #paging {
       text-align: center;

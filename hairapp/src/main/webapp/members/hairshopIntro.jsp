@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>헤어샵 소개</title>
+<link rel="stylesheet" href="../css/membersHairshop.css"> <!-- 헤어샵레이아웃 -->
 <style>
 	    .map_wrap {position:relative;width:1000px;height:600px;}
 /* 	    .title {font-weight:bold;display:block;} */
@@ -16,6 +17,32 @@
 </style>
 	
 <style>
+/* 테이블 */
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background: #ccc;
+  border: 1px solid #8c8a8a;
+  width: 300px;
+}
+
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 550px;
+}
+
+tr:nth-child(even) {
+  background: #efefef;
+}
+
+tr:hover {
+  background: #d1d1d1;
+}
+/* 테이블끝 */
+
 /* 슬라이더 */
 input.set { display:none; }
 
@@ -45,7 +72,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 
 /* 메뉴바 */
 #menubar2{
-	top:91%;
+	top:880px;
 	right:0px;
 	position:absolute;
 	width:80%;
@@ -65,7 +92,6 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 	top:100%;
 }
 </style>
-<link rel="stylesheet" href="../css/membersHairshop.css"> <!-- 헤어샵레이아웃 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463&libraries=services"></script>
 <script>
 $(function(){
@@ -265,43 +291,44 @@ $(function(){
 			
 			<table>
 				<tr>
-					<td id="title">전화번호</td>
+					<th>전화번호</th>
 					<td>${intro.hs_tel}</td>
 				</tr>
 
 				<tr>
-					<td id="title">주소</td>
+					<th>주소</th>
 					<td>${intro.hs_fulladdr}</td>
 				</tr>
 
 				<tr>
-					<td id="title">영업시간</td>
+					<th>영업시간</th>
 					<td>${intro.hs_starttime} ~ ${intro.hs_endtime} 시</td>
 				</tr>
 
 				<tr>
-					<td id="title">휴무일</td>
+					<th>휴무일</th>
 					<td>${intro.hs_dayoff} 일</td>
 				</tr>
 
 				<tr>
-					<td id="title">직원수</td>
+					<th>직원수</th>
 					<td>${intro.designer_access_status} 명</td>
 				</tr>
 
 				<tr>
-					<td id="title">주차장유무</td>
+					<th>주차장유무</th>
 					<td>${intro.hs_parking}</td>
 				</tr>
 
 				<tr>
-					<td id="title">비고</td>
+					<th>비고</th>
 					<td>${intro.hs_etc}</td>
 				</tr>
 
 			</table>
 		</form>
 
+<br><br><br><br><br><br><br><br><br><br>
 </div>
 
 <!-- 바디안에 메뉴바 -->
@@ -315,15 +342,16 @@ $(function(){
 <!-- 이안에 지도하면됨 -->
 <div id="shopbody2">
 	<div class="map_wrap">
-	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+	    <div id="map" style="top:30%;width:100%;height:100%;position:relative;overflow:hidden;"></div>
 	    <div class="hAddr">
 	        <span class="title">지도중심기준 행정동 주소정보</span>
 	        <span id="centerAddr"></span>
 	    </div>
+	    <br><br><br><br><br><br><br><br><br><br>
 	</div>
-	
-</div>
 
+
+</div>
 
 
 <!-- 왼쪽메뉴 -->

@@ -119,6 +119,7 @@ import com.yedam.hairshop.hairshop.HairshopCouponCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponInsertCtrl;
 import com.yedam.hairshop.hairshop.HairshopCouponListCtrl;
 import com.yedam.hairshop.hairshop.HairshopDesignerLoginCtrl;
+import com.yedam.hairshop.hairshop.HairshopEmailAuthCtrl;
 import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
@@ -441,6 +442,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());
 		list.put("/admin/adminNewHairshop.do", new AdminNewHairshopCtrl());
 		list.put("/admin/adminNewHairshopApproval.do", new AdminNewHairshopApprovalCtrl());
+//		list.put("/admin/sendEmail.do", new SendEmailToCustomerCtrl());
 		
 
 		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());// 분석
@@ -535,10 +537,10 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/desHairInfoFullList.do", new DesHairInfoFullListCtrl()); // 디자이너용 헤어시술 목록페이지
 		list.put("/designer/desHairInfoDetail.do", new DesHairInfoDetailCtrl()); // 헤어시술목록상세페이지 디자이너용
 		list.put("/designer/desHairInfoList.do", new DesHairInfoListCtrl()); // 헤어시술목록 페이지이동 디자이너용
-		list.put("/designer/desFindHairInfo.do", new DesFindHairInfoCtrl());
-		list.put("/designer/desFindHairInfoGo.do", new DesFindHairInfoGoCtrl());
+		list.put("/designer/desFindHairInfo.do", new DesFindHairInfoCtrl()); //헤어시술검색 진퉁
+		list.put("/designer/desFindHairInfoGo.do", new DesFindHairInfoGoCtrl()); //헤어시술검색
 		
-		
+		list.put("/ajax/hairshopEmailAuth.do", new HairshopEmailAuthCtrl());
 		
 
 		list.put("/hairshop/myHairshopProfile.do", new MyHairShopProfileCtrl()); // 미용실 프로필공지사항이미지 조회페이지

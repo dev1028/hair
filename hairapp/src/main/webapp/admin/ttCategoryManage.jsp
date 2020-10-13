@@ -496,7 +496,7 @@
 <body>
 	<div class="container">
 		<br>
-		<h3 class="font-weight-bold">코드리스트</h3>
+		<h3 class="font-weight-bold">시술 분류 관리 </h3>
 		<hr>
 		<form id="tmic_insert_frm">
 			<div>
