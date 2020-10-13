@@ -21,7 +21,7 @@ public class adminBoardSettingCtrl implements Controller {
 
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).setNevv(BoardSettingDAO.getInstance().countNew(list.get(i)));
-			list.get(i).setTotal(BoardSettingDAO.getInstance().countNew(list.get(i)));
+			list.get(i).setTotal(BoardSettingDAO.getInstance().countTotal(list.get(i)));
 		}
 
 		request.setAttribute("list", list);
