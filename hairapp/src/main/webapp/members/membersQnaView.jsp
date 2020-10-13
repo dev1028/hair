@@ -158,7 +158,7 @@
   
   <tr>
   	<th>내용</th>
-    <td>${view.qna_contents}</td>
+    <td><pre><c:out value="${content}">${view.qna_contents}</c:out></pre></td>
   </tr>
   
   </tbody>

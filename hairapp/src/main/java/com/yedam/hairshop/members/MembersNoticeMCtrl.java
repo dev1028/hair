@@ -11,6 +11,7 @@ import javax.servlet.http.Part;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.FileRenamePolicy;
+import com.yedam.hairshop.common.FileUpload;
 import com.yedam.hairshop.dao.NoticeDAO;
 import com.yedam.hairshop.model.HairshopNoticeVo;
 
@@ -28,7 +29,7 @@ public class MembersNoticeMCtrl implements Controller {
 		String notice_title = request.getParameter("notice_title");
 		String notice_contents = request.getParameter("notice_contents");
 		String notice_image = request.getParameter("notice_image");
-
+		
 		vo.setNotice_no(notice_no);
 		vo.setNotice_categoryname(notice_categoryname);
 		vo.setNotice_title(notice_title);
@@ -36,23 +37,16 @@ public class MembersNoticeMCtrl implements Controller {
 		vo.setNotice_image(notice_image);
 
 		Part part = request.getPart("notice_image");
-		String filename = getFilename(part);
-		if (filename == null) {
-			System.out.println("파일 에러");
-			return;
-		} else {
-			String path = request.getServletContext().getRealPath("/");
-
-			// 파일명 중복체크
-			File renameFile = FileRenamePolicy.rename(new File(path, filename));
-			part.write(path + "/" + renameFile.getName());
-			vo.setNotice_image(renameFile.getName());
-
+		String path = "/members/notice/"+vo.getNotice_title();
+		String result =FileUpload.upload(path, part);
+		if(result != null) {
+			vo.setNotice_image(result);
 			NoticeDAO dao = new NoticeDAO();
 			dao.noticeModify(vo);
-			
-			response.sendRedirect("membersNoticeV.do?notice_no="+notice_no);
 		}
+		
+		response.sendRedirect("membersNoticeV.do?notice_no="+notice_no);
+		
 	}
 
 	private String getFilename(Part part) throws UnsupportedEncodingException {

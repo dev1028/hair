@@ -589,7 +589,7 @@ form.example::after {
 		      		<input type="radio" name="radioDate" class="option-input radio" value="day1" >내일
 		    	</label>
 		    	<label class="radio-inline">
-		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모래
+		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모레
 		    	</label>
 		    	<br>
     		</div>

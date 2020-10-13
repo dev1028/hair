@@ -33,13 +33,13 @@ public class employeeCloseDayManageUCtrl implements Controller{
 			
 			DesignerVo designerVo = new DesignerVo();
 //			String designer_no = request.getSession().getAttribute("login")
-	//		String designer_no = (String) request.getSession().getAttribute("login");
+//			String designer_no = (String) request.getSession().getAttribute("login");
 			System.out.println("디자이너 번호"+ designer_no);
 			designerVo.setDesigner_no(designer_no);
 			designerVo.setDesigner_dayoff(strDayoff);
 
 			hairshopCloseDayManageDAO.getInstance().designerDayOffUpdate(designerVo);
-			//request.getRequestDispatcher("/hairshop/employeeCloseDayManage.jsp").forward(request, response);
+			request.getRequestDispatcher("/hairshop/employeeCloseDayManage.do").forward(request, response);
 		}
 		
 	}
