@@ -162,7 +162,7 @@ background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 
 }
 .datePick {
 	height:60px;
-	border-style: dashed;
+	border-style: unset;
 }
 
 </style>
