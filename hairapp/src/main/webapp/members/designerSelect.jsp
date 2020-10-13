@@ -357,7 +357,7 @@ function check(frm){
 				&emsp;-&emsp;
 				<input disabled type="text" name="hs_endtime" value="${total_hour }" style="width:100px" class="datePick">
 				&emsp;&emsp;
-				<button class="custom-btn btn-6">검색하기</button>
+<!-- 				<button class="custom-btn btn-6">검색하기</button> -->
 			</form>
 		</div>
 	</div>
