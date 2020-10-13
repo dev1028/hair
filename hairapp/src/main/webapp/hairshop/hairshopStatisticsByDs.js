@@ -1,7 +1,7 @@
 $(function() {
-	$("button").attr('class','btn btn-secondary btn-sm');
-	$("input").attr('class','btn btn-secondary btn-sm');
-	
+	$("button").attr('class', 'btn btn-secondary btn-sm');
+	$("input").attr('class', 'btn btn-secondary btn-sm');
+
 	period();
 	$("#all").on("click", function() {
 

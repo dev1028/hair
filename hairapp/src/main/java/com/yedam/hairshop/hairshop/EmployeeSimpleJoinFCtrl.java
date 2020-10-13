@@ -30,8 +30,40 @@ public class EmployeeSimpleJoinFCtrl implements Controller {
 		}
 		String hs_no = (String) request.getSession().getAttribute("hsno");
 		dVo.setHs_no(hs_no);
-		int r = DesignerDAO.getInstance().simpleInsert(dVo);
-		if (r == 0) {
+		
+		DesignerVo deseExVo = new DesignerVo();
+		deseExVo = DesignerDAO.getInstance().selectOneEmail(dVo);
+		int r1 = 0;
+		String alertSay;
+		if(deseExVo == null) {
+			r1 = DesignerDAO.getInstance().simpleInsert(dVo);
+		} else {
+			String acc = deseExVo.getDesigner_access_status();
+			if(Integer.parseInt(acc) == 1) {
+				if(deseExVo.getHs_no() == null) {
+					//재가입알리기
+					int r2 = DesignerDAO.getInstance().simpleReJoin(dVo);
+					if(r2 == 0) {
+						alertSay = "alert('직원등록에 실패하였습니다. 반복시 관리자에게 문의해주세요.');";
+					} else {
+						alertSay = "alert('가입한 이력이 있는 디자이너입니다. 인증없이 바로 로그인 해주세요.');";
+					}
+				} else {
+					//이미 다른미용실에서 일하고 있음 // 아무 처리하지않고 되돌아 가기
+					alertSay = "alert('직원등록에 실패하였습니다. 사용 중인 이메일 입니다.');";
+				}
+			} else {
+				//아직 인증절차를 하지않은 회원
+				alertSay = "alert('직원등록에 실패하였습니다. 인증절차를 마치지 않은 이메일입니다.');";
+			}
+			
+			response.getWriter().append("<script>")
+			.append(alertSay)
+			.append("location.href='employeeList.do';")
+			.append("</script>");
+		}
+
+		if (r1 == 0) {
 			response.getWriter().append("<script>")
 								.append("alert('직원등록에 실패하였습니다. 반복시 관리자에게 문의해주세요.');")
 								.append("location.href='employeeList.do';")

@@ -291,15 +291,16 @@ public class TtCategoryDAO {
 		return r;
 	}
 
-	public int approveTmic(TtCategoryVo vo) {
+	public int updateTmicStatus(TtCategoryVo vo) {
 		int r = 0;
 
-		String sql = "update  tt_middle_category set  tmic_status = 1 " + "where tmic_no=?";
+		String sql = "update  tt_middle_category set  tmic_status = ? " + "where tmic_no=?";
 		try {
 			conn = ConnectionManager.getConnnect();
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, vo.getTmic_no());
+			pstmt.setString(1, vo.getTmic_status());
+			pstmt.setString(2, vo.getTmic_no());
 
 			r = pstmt.executeUpdate();
 

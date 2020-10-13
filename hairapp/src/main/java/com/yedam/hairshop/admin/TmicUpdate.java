@@ -20,16 +20,16 @@ public class TmicUpdate implements Controller {
 		String tmac_name = request.getParameter("tmac_name");
 		String tmic_no = request.getParameter("tmic_no");
 		String tmic_explication = request.getParameter("tmic_explication");
-		String tmic_approval = request.getParameter("tmic_approval");
+		String tmic_status = request.getParameter("tmic_status");
 
 		TtCategoryVo vo = new TtCategoryVo();
 
 		vo.setTmac_name(tmac_name);
 		vo.setTmic_explication(tmic_explication);
 		vo.setTmic_no(tmic_no);
-		vo.setTmic_status(tmic_approval);
+		vo.setTmic_status(tmic_status);
 		if (tmac_name == null) {
-			TtCategoryDAO.getInstance().approveTmic(vo);
+			TtCategoryDAO.getInstance().updateTmicStatus(vo);
 		} else {
 			TtCategoryDAO.getInstance().updateTmic(vo);
 

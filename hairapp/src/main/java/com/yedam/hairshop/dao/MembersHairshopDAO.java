@@ -196,7 +196,7 @@ public class MembersHairshopDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			String sql = "select count(hs_no) as hs_no, avg(hr_rate) as hr_rate" 
+			String sql = "select count(hs_no) as hs_no, round(avg(hr_rate),1) as hr_rate" 
 					+ " from hairshop_reviews" 
 					+ " where hs_no=?"
 					+ " group by hs_no";
