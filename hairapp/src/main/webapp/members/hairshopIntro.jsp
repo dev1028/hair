@@ -348,9 +348,9 @@ $(function(){
 	        <span id="centerAddr"></span>
 	    </div>
 	</div>
-	
-</div>
 
+
+</div>
 
 
 <!-- 왼쪽메뉴 -->
