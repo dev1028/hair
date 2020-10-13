@@ -22,11 +22,13 @@ public class HairSelectResultCtrl implements Controller{
 		String hour = request.getParameter("total_hour");
 		request.getSession().setAttribute("total_hour", hour);
 		System.out.println(hour + "시간");
+		int sumPrice = 0;
 		
 		if(hhiNos == null) {
 			return;
 		}
 		else {
+			String selHairNames = "";
 			List<HairshopHairInfoVo> listHairInfoVo = new ArrayList<HairshopHairInfoVo>();
 			for(String hhiNo : hhiNos) {
 				HairshopHairInfoVo tmpHairInfoVo = new HairshopHairInfoVo();
@@ -34,7 +36,14 @@ public class HairSelectResultCtrl implements Controller{
 				
 				HairshopHairInfoVo hairInfoVo = HairshopHairInfoDAO.getInstance().selectHairInfo(tmpHairInfoVo);
 				listHairInfoVo.add(hairInfoVo);
+				
+				selHairNames += hairInfoVo.getHhi_name() + ",";
+				sumPrice += Integer.parseInt(hairInfoVo.getHhi_price());
 			}
+			if(selHairNames.length() > 0)
+				selHairNames = selHairNames.substring(0, selHairNames.length()-1);	//마지막 콤마 제거
+			request.getSession().setAttribute("sumPrice", sumPrice);
+			request.getSession().setAttribute("selHairNames", selHairNames);
 			request.getSession().setAttribute("selListHairInfoVo", listHairInfoVo);
 			request.getRequestDispatcher("designerSelect.do").forward(request, response);
 		}

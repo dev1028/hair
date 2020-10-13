@@ -133,54 +133,8 @@
 																		.text(
 																				data.tmic_explication);
 
-																/* $(
-																		".toggleupdate")
-																		.slideToggle(
-																				"fast");
-																$(
-																		"#updateslide")
-																		.hide(
-																				"slow");
-																setTimeout(
-																		function() {
-																			$(
-																					"#updateslide")
-																					.remove();
-																			cntForUpdateBtn = 0;
-																			whichUpdateBtn
-																					.text("수정");
-																			whichUpdateBtn
-																					.next()
-																					.attr(
-																							'disabled',
-																							false);
-																			whichUpdateBtn = null;
-																		}, 1000); */
-															} else {
-																/* $(
-																		".toggleupdate")
-																		.slideToggle(
-																				"fast");
-																$(
-																		"#updateslide")
-																		.hide(
-																				"slow");
-																setTimeout(
-																		function() {
-																			$(
-																					"#updateslide")
-																					.remove();
-																			cntForUpdateBtn = 0;
-																			whichUpdateBtn
-																					.text("수정");
-																			whichUpdateBtn
-																					.next()
-																					.attr(
-																							'disabled',
-																							false);
-																			whichUpdateBtn = null;
-																		}, 1000); */
-															}
+																
+															} 
 														}
 													});
 										});

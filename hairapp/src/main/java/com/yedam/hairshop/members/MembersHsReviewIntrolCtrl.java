@@ -13,7 +13,6 @@ import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.HairShopReviewVo;
 import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
-import com.yedam.hairshop.model.MembersEventVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
 
 public class MembersHsReviewIntrolCtrl implements Controller {

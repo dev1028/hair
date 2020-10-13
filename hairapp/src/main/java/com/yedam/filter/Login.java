@@ -94,27 +94,28 @@ public class Login implements Filter {
 		list.put("/members/designerSelect.do", null);
 		list.put("/members/designerSelectResult.do", null);
 
-		list.put("/members/regionHairshopRank.do", null); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", null); // 우리동네 디자이너 순위
-		list.put("/members/regionHairRank.do", null); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", null); 		// 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", null); 		// 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", null); 			// 헤어 순위
 
 		list.put("/members/payment.do", memberLoginPage);
 		list.put("/members/paymentMember.do", memberLoginPage); // 회원결제
 		list.put("/members/paymentImport.do", memberLoginPage);
 
-		list.put("/popup/hairshopReview.do", memberLoginPage); // 리뷰 이동용
+		list.put("/popup/hairshopReview.do", memberLoginPage); 	// 리뷰 이동용
 		list.put("/members/hairshopReviewInsert.do", memberLoginPage);
 		list.put("/members/membersInsert.do", memberLoginPage);
 		list.put("/members/myRegionSetting.do", null);
 
-		list.put("/ajax/changeDesigner.do", memberLoginPage);
+		list.put("/ajax/changeDesigner.do", null);
+		list.put("/ajax/chkCoupon.do", null);					//쿠폰확인
+		
+		list.put("/ajax/hairBookmark.do", null); 				// 헤어 북마크
+		list.put("/ajax/hairshopBookmark.do", null); 			// 헤어샵 북마크
+		list.put("/ajax/designerBookmark.do", null); 			// 디자이너 북마크
 
-		list.put("/ajax/hairBookmark.do", memberLoginPage); // 헤어 북마크
-		list.put("/ajax/hairshopBookmark.do", memberLoginPage); // 헤어샵 북마크
-		list.put("/ajax/designerBookmark.do", memberLoginPage); // 디자이너 북마크
-
-		list.put("/ajax/searchRealtime.do", null); // 자동완성 검색
-		list.put("/members/searchDetail.do", null); // 상세검색
+		list.put("/ajax/searchRealtime.do", null); 				// 자동완성 검색
+		list.put("/members/searchDetail.do", null); 			// 상세검색
 
 		list.put("/members/gpsHairshopSearch.do", null);
 

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopDAO;
+import com.yedam.hairshop.dao.MembersHairshopDAO;
+import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 
 public class HairshopSelectResultCtrl implements Controller{
@@ -24,6 +27,7 @@ public class HairshopSelectResultCtrl implements Controller{
 			vo.setHs_no(hsNo);
 		
 			HairshopVo selHairshopVo = HairshopDAO.getInstance().selectOne(vo);
+			
 			request.getSession().setAttribute("selHairshopVo", selHairshopVo);
 			request.getRequestDispatcher("hairSelect.do").forward(request, response);
 		}else {
