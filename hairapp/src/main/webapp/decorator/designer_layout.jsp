@@ -15,6 +15,7 @@
 <link
 	href='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/main.min.css'
 	rel='stylesheet' />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,7 +25,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.3.2/locales-all.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <style>
@@ -276,14 +277,35 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 
-							<li class="nav-item active"><a class="nav-link" href="#">제품관리
-									<span class="sr-only">(current)</span>
-							</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">내정보수정</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/designer/analysisSalesGo.do">나의
-									매출정보</a></li>
+							<li class="nav-item"><a class="nav-link disabled" href="#"
+								tabindex="-1" aria-disabled="true">제품관리</a></li>
+								<li class="nav-item"><a class="nav-link disabled" href="#"
+								tabindex="-1" aria-disabled="true">회원관리</a></li>
+							
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 시술관리 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/desHairInfoList.do">시술목록</a>
+										<div class="dropdown-divider"></div>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/desFindHairInfoGo.do">시술검색</a>
+								</div></li>
+								
+								<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 매출통계 </a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/analysisSalesGo.do">매출정보</a>
+									
+									<a class="dropdown-item"
+										href="#">통계정보</a>
+								</div></li>
+					
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -301,11 +323,13 @@
 								</div></li>
 
 
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">마이페이지</a></li>
 
 
-
+<!-- 
 							<li class="nav-item"><a class="nav-link disabled" href="#"
-								tabindex="-1" aria-disabled="true">Disabled</a></li>
+								tabindex="-1" aria-disabled="true">Disabled</a></li> -->
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
 						<form id="siteSearchCustomerFrm"

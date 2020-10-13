@@ -20,6 +20,32 @@ public class MembersCouponDAO {
 		return instance;
 	}
 	
+	public MembersCouponVo selectCoupon(MembersCouponVo vo) {
+		ResultSet rs = null;
+		MembersCouponVo resultVo = null;
+		try {
+			String sql = 
+					"SELECT hsc_discount_rate, hsc_maxdiscount_pay\r\n" + 
+					"FROM members_coupon mc, hs_coupon hc\r\n" + 
+					"WHERE mc.hsc_no = hc.hsc_no\r\n" + 
+					"AND mc.mc_no = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMc_no());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultVo = new MembersCouponVo();
+				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
+				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return resultVo;
+	}
+	
 	public List<MembersCouponVo> selectListUnusedCoupon(MembersCouponVo vo){
 		ResultSet rs = null;
 		List<MembersCouponVo> list = new ArrayList<MembersCouponVo>();

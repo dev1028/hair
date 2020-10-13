@@ -66,16 +66,17 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 /* 결제ui끝 */
 
 /* 테이블 */
-table {
+.tbl {
   border-collapse: collapse;
 }
- th {
+
+.tbl th {
   background: #ccc;
   border: 1px solid #8c8a8a;
   width: 300px;
 }
 
-td {
+.tbl td {
   border: 1px solid #ccc;
   padding: 8px;
   width: 550px;
@@ -182,7 +183,29 @@ function layer_popup(el){
         	return false;
 	});
 }  
-   
+
+function chk_number(){
+	if((event.keyCode<48) || (event.keyCode>57))
+		event.returnValue=false;
+}
+
+function chk_use_saved_money(obj){
+	value = parseInt(obj.value);
+	maxValue = parseInt("${sessionScope.login.mem_saved_money}");
+	if( value > maxValue){
+		obj.value = maxValue;
+	}
+	
+	changePrice();
+}
+
+function changePrice(){
+	realPrice = parseInt("${sessionScope.sumPrice}") - 
+				parseInt($(".use_saved_money").val()) - 
+				parseInt($(".couponDiscount").val());
+	$(".realPrice").val(realPrice);
+}
+
 </script>
 
 <%--
@@ -306,7 +329,7 @@ function layer_popup(el){
 	</div>
 	<br><br>
 	
-<table>
+<table class="tbl">
 	<tbody>
 		<tr>
 			<th>
@@ -337,7 +360,7 @@ function layer_popup(el){
 				헤어 이름
 			</th>
 			<td>
-				${sessionScope.selHairInfoVo.hhi_name }
+				${sessionScope.selHairNames }
 			</td>
 		</tr>
 		<tr>
@@ -365,7 +388,35 @@ function layer_popup(el){
 		</div>
 	</div>
 	<br><br>
+
+<script>
+function applyCoupon(){
+	// 전체 체크 순회
+	$("input:radio[name=radio_coupon]").each(function() {
+		if(this.checked){
+			//ajax
+			$.ajax({
+				url : "../ajax/chkCoupon.do",
+				data : {
+					mc_no : this.value,
+					sumPrice : "${sessionScope.sumPrice}"
+				},
+				dataType : "json",
+				success : function(data) {
+					$(".couponDiscount").val(data.discount)
+					changePrice();
+				}
+			});
+		}
+	});
+}
+
+function cancelCoupon(){
 	
+}
+
+</script>
+
 <div class="dim-layer">
     <div class="dimBg"></div>
     <div id="notice_layer" class="pop-layer">
@@ -374,7 +425,7 @@ function layer_popup(el){
                 <!--content //-->
                 <p class="title">쿠폰 사용</p>
                 <div class="container">
-                	<table>
+                	<table class="coupon_list">
 		                <c:forEach items="${listCoupon}" var="coupon">
 		                	<tr>
 		                		<td><input id="radio-${coupon.mc_no}" name="radio_coupon" type="radio" value="${coupon.mc_no}"></td>
@@ -386,7 +437,8 @@ function layer_popup(el){
 					</table>
 				</div>
                 <div class="btn-r">
-                    <a href="#" class="btn-layerClose">적용</a>
+                	<a href="#" class="btn-layerClose" onclick="applyCoupon();">적용</a>
+                	<a href="#" class="btn-layerClose" onclick="cancelCoupon();">닫기</a>
                 </div>
             </div>
         </div>
@@ -410,7 +462,7 @@ function layer_popup(el){
 				마일리지 사용
 			</th>
 			<td>
-				<input type="text" name="use_saved_money" value=""> / ${sessionScope.login.mem_saved_money}원
+				<input type="text" class="use_saved_money" name="use_saved_money" onkeypress="chk_number();" onchange="chk_use_saved_money(this);" value="0"> / ${sessionScope.login.mem_saved_money}원
 			</td>
 		</tr>
 		<tr>
@@ -418,7 +470,7 @@ function layer_popup(el){
 				원가
 			</th>
 			<td>
-				${sessionScope.selHairInfoVo.hhi_price }
+				${sessionScope.sumPrice}
 			</td>
 		</tr>
 		<tr>
@@ -426,7 +478,7 @@ function layer_popup(el){
 				쿠폰할인 금액
 			</th>
 			<td>
-			
+				<input type="text" class="couponDiscount" name="couponDiscount" value="0" disabled>
 			</td>
 		</tr>
 		<tr>
@@ -434,7 +486,7 @@ function layer_popup(el){
 				실제결제 금액
 			</th>
 			<td>
-			
+				<input type="text" class="realPrice" name="realPrice" value="${sessionScope.sumPrice}" disabled>
 			</td>
 		</tr>
 	</tbody>

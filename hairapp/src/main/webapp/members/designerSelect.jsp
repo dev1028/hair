@@ -222,6 +222,9 @@ function check(frm){
 		alert('예약 불가능한 시간입니다.');
 		return false;
 	}
+	
+	frm.date.value = $("#date").val();
+	frm.hs_starttime.value = $("#timepicker_start").val();
 	return true;
 }
 
@@ -414,6 +417,9 @@ function check(frm){
 						<input type="hidden" name="work_start_time" value="${designerInfo.work_start_time}">
 						<input type="hidden" name="work_end_time" value="${designerInfo.work_end_time }">
 						<input type="hidden" name="dayoff" value="${designerInfo.designer_dayoff}">
+						
+						<input type="hidden" name="date" value="">
+						<input type="hidden" name="hs_starttime" value="">
 						
 					</div>
 	        </form>

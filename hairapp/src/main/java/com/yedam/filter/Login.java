@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 public class Login implements Filter {
 	HashMap<String, String> list = null;
 	final String memberLoginPage = "/members/membersLogin.do";
@@ -93,27 +94,28 @@ public class Login implements Filter {
 		list.put("/members/designerSelect.do", null);
 		list.put("/members/designerSelectResult.do", null);
 
-		list.put("/members/regionHairshopRank.do", null); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", null); // 우리동네 디자이너 순위
-		list.put("/members/regionHairRank.do", null); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", null); 		// 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", null); 		// 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", null); 			// 헤어 순위
 
 		list.put("/members/payment.do", memberLoginPage);
 		list.put("/members/paymentMember.do", memberLoginPage); // 회원결제
 		list.put("/members/paymentImport.do", memberLoginPage);
 
-		list.put("/popup/hairshopReview.do", memberLoginPage); // 리뷰 이동용
+		list.put("/popup/hairshopReview.do", memberLoginPage); 	// 리뷰 이동용
 		list.put("/members/hairshopReviewInsert.do", memberLoginPage);
 		list.put("/members/membersInsert.do", memberLoginPage);
 		list.put("/members/myRegionSetting.do", null);
 
-		list.put("/ajax/changeDesigner.do", memberLoginPage);
+		list.put("/ajax/changeDesigner.do", null);
+		list.put("/ajax/chkCoupon.do", null);					//쿠폰확인
+		
+		list.put("/ajax/hairBookmark.do", null); 				// 헤어 북마크
+		list.put("/ajax/hairshopBookmark.do", null); 			// 헤어샵 북마크
+		list.put("/ajax/designerBookmark.do", null); 			// 디자이너 북마크
 
-		list.put("/ajax/hairBookmark.do", memberLoginPage); // 헤어 북마크
-		list.put("/ajax/hairshopBookmark.do", memberLoginPage); // 헤어샵 북마크
-		list.put("/ajax/designerBookmark.do", memberLoginPage); // 디자이너 북마크
-
-		list.put("/ajax/searchRealtime.do", null); // 자동완성 검색
-		list.put("/members/searchDetail.do", null); // 상세검색
+		list.put("/ajax/searchRealtime.do", null); 				// 자동완성 검색
+		list.put("/members/searchDetail.do", null); 			// 상세검색
 
 		list.put("/members/gpsHairshopSearch.do", null);
 
@@ -281,7 +283,7 @@ public class Login implements Filter {
 		list.put("/hairshop/employeeUpdate.do", hairLoginPage); // 직원정보수정
 		list.put("/ajax/findEmployees.do", hairLoginPage); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", hairLoginPage); // 직원퇴사처리
-		list.put("/hairshop/employeeAuth.do", hairLoginPage); // 직원 인증 처리
+		list.put("/hairshop/employeeAuth.do", null); // 직원 인증 처리
 		list.put("/ajax/hairshopJoin.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinPre.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinFin.do", null); // 회원가입
@@ -345,7 +347,13 @@ public class Login implements Filter {
 		list.put("/hairshop/myHairshopInfoUpdate.do", hairLoginPage); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", hairLoginPage);
 		list.put("/ajax/imgView.do", null);
+		
+		list.put("/designer/desHairInfoFullList.do", designerLoginPage); // 디자이너용 헤어시술 목록페이지
 		list.put("/designer/desHairInfoDetail.do", designerLoginPage); // 헤어시술목록상세페이지 디자이너용
+		list.put("/designer/desHairInfoList.do", designerLoginPage); // 헤어시술목록 페이지이동 디자이너용
+		list.put("/designer/desFindHairInfo.do",designerLoginPage);
+		list.put("/designer/desFindHairInfoGo.do", designerLoginPage);
+
 	}
 
 	@Override

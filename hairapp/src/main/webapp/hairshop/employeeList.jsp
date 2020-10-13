@@ -41,6 +41,7 @@ $(function() {
 			$("#empworkstarttime").val(empOne.work_start_time);
 			$("#empworkendtime").val(empOne.work_end_time);
 			$("#empdayoff").val(empOne.designer_dayoff);
+			$("#desDayoffAtag").attr("href", "${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do?designer_no="+empOne.designer_no);
 			$("#empsalary").val(empOne.salary);
 			$("#empincentive").val(empOne.incentive);
 			$("#empposition").val(empOne.position);
@@ -60,6 +61,7 @@ $(function() {
 	$("#myModal").on('hide.bs.modal', function(){
 		$("#modal_title").text("");
 		$("#imgDes").attr("src", "#");
+		$("#desDayoffAtag").attr("href", "#");
 		empOne = null;
 		$("#infoFrm").hide();
 		$("#profileFrm").hide();
@@ -142,19 +144,33 @@ $(function() {
 	
 	$("#changeFormToUpdate").on("click", function(){
 		if(arrayBeforeUpdate.length != 0){
-			if($.isNumeric($("#empworkstarttime").val()) && $.isNumeric($("#empworkendtime").val())){
-				if(parseInt($("#empworkstarttime").val())<parseInt($("#empworkendtime").val())){
-					$("#empUpdatefrm").submit();
+			if(nCheck($("#empworkstarttime").val()) && nCheck($("#empworkendtime").val())){
+				if(parseInt($("#empworkstarttime").val()) < parseInt($("#empworkendtime").val()) &&
+				0<=parseInt($("#empworkstarttime").val()) &&
+				parseInt($("#empworkendtime").val()) < 24
+				) {
+					if(nCheck($("#empsalary").val()) || $("#empsalary").val() == ''){
+						if($. isNumeric($("#empincentive").val()) ||$("#empincentive").val()==''){
+							$("#empUpdatefrm").submit();
+						} else{
+							alert("인센티브의 값이 적합하지 않습니다.");
+						}
+					} else {
+						alert("기본급여는 숫자만 가능합니다.");
+					}
+				} else{
+					alert("시작시간이 종료시간보다 작아야합니다.");
 				}
-			}
-			
+			} else{
+				alert("숫자만 가능합니다.");
+			}	
 		}
 		$("#empUpdatefrm").find("input").each(function(index){
 			arrayBeforeUpdate.push($(this).val())
 		});
 		$("#empprofile").attr("readonly", false);
 		$("#empUpdatefrm").find("input").attr("readonly", false);
-		$("#empUpdatefrm").find("#empname,#empno,#empemail,#emphiredate").attr("readonly",true);
+		$("#empUpdatefrm").find("#empname,#empno,#empemail,#emphiredate,#empdayoff").attr("readonly",true);
 		$("#empUpdatefrm").find("label").css('color', 'blue');
 		$("#radioForFrms").find("label").attr("class","btn btn-primary")
 		$("#changeFormToUpdate").attr("class", "btn btn-danger").text("변경내용 승인");
@@ -162,6 +178,12 @@ $(function() {
 	
 });	
 
+function nCheck(num){
+    if(/[^0123456789]/g.test(num)){
+        return false;
+    }
+    return true;
+}
 </script>
 </head>
 <body>	
@@ -201,7 +223,9 @@ $(function() {
 				<tbody id="emp_list_tbody" class="table table-striped">
 					<c:forEach items="${emplist}" var="emp">
 						<tr id="${emp.designer_no}">
-							<td><c:if test="${emp.designer_access_status == '-1'}"><span class="badge badge-pill badge-warning">미인증</span></c:if><strong>${emp.designer_no}</strong></td>
+							<td><c:if test="${emp.designer_access_status == '-1'}"><span class="badge badge-pill badge-danger">미인증</span></c:if>
+							<c:if test="${emp.designer_access_status == '0'}"><span class="badge badge-pill badge-warning">수정전</span></c:if>
+							<strong>${emp.designer_no}</strong></td>
 							<td>${emp.position}</td>
 							<td>${emp.designer_name}</td>
 							<td>${emp.designer_phone}</td>
@@ -317,7 +341,7 @@ $(function() {
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="empdayoff" class="col-sm-4 col-form-label">휴무일</label>
+										<label for="empdayoff" class="col-sm-4 col-form-label"><a id="desDayoffAtag" href="#" title="디자이너 휴무일 수정페이지로 이동">휴무일</a></label>
 										<div class="col-sm-6">
 											<input type="text" readonly class="form-control-plaintext"
 												id="empdayoff" name="designer_dayoff" value="">

@@ -22,6 +22,13 @@ public class DesignerSelectResultCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("DesignerSelectResultCtrl");
 		
+		String strDate = request.getParameter("date");
+		String strStartHour = request.getParameter("hs_starttime");
+		request.getSession().setAttribute("date", strDate);
+		request.getSession().setAttribute("hour", strStartHour);
+//		System.out.println(strDate);
+//		System.out.println(strStartHour);
+		
 		String designerNo = request.getParameter("designerNo");
 		if(designerNo != null) {
 			DesignerVo tmpDesignerVo = new DesignerVo();
