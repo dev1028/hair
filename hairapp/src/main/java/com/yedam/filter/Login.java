@@ -353,6 +353,7 @@ public class Login implements Filter {
 		list.put("/designer/desHairInfoList.do", designerLoginPage); // 헤어시술목록 페이지이동 디자이너용
 		list.put("/designer/desFindHairInfo.do",designerLoginPage);
 		list.put("/designer/desFindHairInfoGo.do", designerLoginPage);
+		list.put("/ajax/hairshopEmailAuth.do", null);
 
 	}
 

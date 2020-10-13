@@ -15,7 +15,8 @@ public class employeeCloseDayManageUCtrl implements Controller{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("HairshopCloseDayManageUCtrl");
-		
+		String designer_no = request.getParameter("empno");
+		System.out.println("디자이너 번호    " + designer_no);
 		String[] designerDayoffs = request.getParameterValues("designerDayoff");
 		if(designerDayoffs == null) {
 			System.out.println("dayoffs is null");
@@ -31,10 +32,14 @@ public class employeeCloseDayManageUCtrl implements Controller{
 			System.out.println("designerDayoffs: " + strDayoff);
 			
 			DesignerVo designerVo = new DesignerVo();
-			String hsNo = (String) request.getSession().getAttribute("hsno");
-			designerVo.setDesigner_no(hsNo);
+//			String designer_no = request.getSession().getAttribute("login")
+	//		String designer_no = (String) request.getSession().getAttribute("login");
+			System.out.println("디자이너 번호"+ designer_no);
+			designerVo.setDesigner_no(designer_no);
 			designerVo.setDesigner_dayoff(strDayoff);
+
 			hairshopCloseDayManageDAO.getInstance().designerDayOffUpdate(designerVo);
+			//request.getRequestDispatcher("/hairshop/employeeCloseDayManage.jsp").forward(request, response);
 		}
 		
 	}

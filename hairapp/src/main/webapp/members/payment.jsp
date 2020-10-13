@@ -59,7 +59,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 #shopdata3 {
 	position:absolute;
 	left:2%;
-	top:393px;
+	top:407px;
 	-webkit-text-stroke-width: medium;
 }
 
@@ -447,7 +447,7 @@ function cancelCoupon(){
 
 
 
-<table>
+<table class="tbl">
 	<tbody>
 		<tr>
 			<th>

@@ -493,4 +493,23 @@ public class HairshopDAO {
 			}
 			return result;
 		}
+		
+		
+		public int updateForAuth(String hsEmail) {
+			ResultSet rs = null; // 초기화
+			int r = 0;
+			String sql = "UPDATE hairshop SET HS_APPROVAL = 0 WHERE hs_email = ?";
+			try {
+				conn = ConnectionManager.getConnnect();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, hsEmail);
+				r = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return r;
+		}
+		
 }

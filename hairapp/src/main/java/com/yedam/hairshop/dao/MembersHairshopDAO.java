@@ -35,11 +35,12 @@ public class MembersHairshopDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select h.hs_tel, h.hs_fulladdr, h.hs_starttime, h.hs_endtime, h.hs_dayoff,"
-					+ " count(d.designer_access_status), h.hs_parking, h.hs_etc, h.hs_name, h.hs_latlong, h.hs_notice"
+					+ " count(d.designer_access_status), h.hs_parking, h.hs_etc, h.hs_name, h.hs_latlong, "
+					+ "	h.hs_notice, h.hs_profile"
 					+ " from hairshop h left outer join designer d" + " on (h.hs_no=d.hs_no)"
 					+ " where h.hs_no = ?"
 					+ " group by h.hs_tel, h.hs_fulladdr, h.hs_starttime, h.hs_endtime,"
-					+ 			" h.hs_dayoff, h.hs_parking, h.hs_etc, h.hs_name, h.hs_latlong, h.hs_notice";
+					+ 			" h.hs_dayoff, h.hs_parking, h.hs_etc, h.hs_name, h.hs_latlong, h.hs_notice, h.hs_profile";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hairshopVo.getHs_no());
 			rs = pstmt.executeQuery();
@@ -58,6 +59,7 @@ public class MembersHairshopDAO {
 				members.setHs_name(rs.getString(9));
 				members.setHs_latlong(rs.getString(10));
 				members.setHs_notice(rs.getString(11));
+				members.setHs_profile(rs.getString(12));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

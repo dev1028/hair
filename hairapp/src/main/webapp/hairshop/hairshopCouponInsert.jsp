@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="hairshopCouponInsert.css">
 <script>
 	function inputNumberAutoComma(obj) {
 		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
@@ -31,41 +30,113 @@
 	}
 </script>
 <style>
-
 </style>
 </head>
 <body>
 	<div class="container">
-		<div class="row">
-			<br> <br> <br> <br> <br>
+	<br><br><br>
+		<form method="post"
+			action="${pageContext.request.contextPath}/hairshop/HairshopCouponInsertCtrl.do"
+			id="contact_form" class="well form-horizontal" name="frm"
+			onsubmit="return checkValue();">
 
-		</div>
-		<div class="row">
-			<h3>쿠폰 등록</h3>
-		</div>
-		<div class="row">
-			<form method="post" action="${pageContext.request.contextPath}/hairshop/HairshopCouponInsertCtrl.do"
-				id="frm" name="frm" onsubmit="return checkValue();">
-				<!-- <input type="hidden" name="hsc_name"value=""> <br>  -->
-				<label for="">쿠폰명</label><input type="text" name="hsc_name"><br>
-				<br> <label for="">쿠폰발급생성일</label><input type="date" name="hsc_issuedate"><br>
-				<br> <label for="">쿠폰발급만료일</label><input type="date" name="hsc_expiredate"><br>
-				<br> <label for="">쿠폰개수</label><input type="number" min="0" max="100" name="hsc_coupon_quantity" style="text-align:center;">
+			<fieldset>
 
-				<br> <label for="">최대할인금액</label><input type="text"
-					onKeyup="inputNumberAutoComma(this);" value=""
-					name="hsc_maxdiscount_pay" style="text-align: center;" /><br>
-				<br> <label for="">할인율(%)</label><input type="number" min="0"
-					name="hsc_discount_rate" style="text-align: center;"> <br>
-				<br>
+				<!-- Form Name -->
+				<legend>쿠폰 등록</legend>
 
-				<div>
-					<button type="submit">등록하기</button>
-					<button type="reset">초기화</button>
-					<!-- onclick="location.href='/designer/designerMyPageOutput.jsp'" -->
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">쿠폰명</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="hsc_name"
+								placeholder="쿠폰명 입력하세요" class="form-control" type="text">
+						</div>
+					</div>
 				</div>
-			</form>
-		</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">쿠폰사용 기간</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input
+								name="hsc_issuedate" class="form-control" type="date"> <input
+								name="hsc_expiredate" class="form-control" type="date">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label">쿠폰갯수</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> <input
+								name="hsc_coupon_quantity" min="0" max="100"
+								placeholder="쿠폰갯수 입력하세요" class="form-control" type="number">
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">최대 할인금액</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-earphone"></i></span> <input
+								name="hsc_maxdiscount_pay" placeholder="" class="form-control"
+								onKeyup="inputNumberAutoComma(this);" value="" type="text">
+						</div>
+					</div>
+				</div>
+
+				<!-- Text input-->
+
+				<div class="form-group">
+					<label class="col-md-4 control-label">할인율(%)</label>
+					<div class="col-md-4 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input
+								name="hsc_discount_rate" placeholder="" class="form-control"
+								type="number" min="0" max="100">
+						</div>
+					</div>
+				</div>
+
+				<!-- Success message -->
+				<div class="alert alert-success" role="alert" id="success_message">
+					Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for
+					contacting us, we will get back to you shortly.
+				</div>
+
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-4">
+						<button type="submit" class="btn btn-warning">
+							Send <span class="glyphicon glyphicon-send"></span>
+						</button>
+						<button type="reset" class="btn btn-warning">
+							Reset <span class="glyphicon glyphicon-send"></span>
+						</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form>
 	</div>
+	
+	<!-- /.container -->
 </body>
 </html>
