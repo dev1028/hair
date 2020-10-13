@@ -1,5 +1,4 @@
 package com.yedam.hairshop.dao;
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -146,22 +145,22 @@ public class HairshopHairInfoDAO {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
 		ResultSet rs = null;
 		try {
-//			String sql = "select t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION, tmi.TMIC_NO, tmi.TMIC_NAME,"
-//					+ " tmi.TMIC_EXPLICATION, h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS"
-//					+ " from hairshop_hair_info h join tt_middle_category tmi" + " on (h.tmic_no = tmi.tmic_no)"
-//					+ " join tt_main_category t" + " on (tmi.TMAC_NO = t.TMAC_NO)" + " where h.hs_no = ?"
-//					+ " order by hhi_no";
-			String sql = 
-					"SELECT t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION,\r\n" + 
-					"       tmi.TMIC_NO, tmi.TMIC_NAME, tmi.TMIC_EXPLICATION,\r\n" + 
-					"       h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS,\r\n" + 
-					"       hmi.hhmi_file\r\n" + 
-					"FROM hairshop_hair_info h \r\n" + 
-					"JOIN tt_middle_category tmi ON (h.tmic_no = tmi.tmic_no)\r\n" + 
-					"JOIN tt_main_category t ON (tmi.TMAC_NO = t.TMAC_NO)\r\n" + 
-					"JOIN hairshop_hair_more_info hmi ON (hmi.hhi_no = h.hhi_no)\r\n" + 
-					"WHERE h.hs_no = ?\r\n" + 
-					"ORDER BY hhi_no";
+			String sql = "select t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION, tmi.TMIC_NO, tmi.TMIC_NAME,"
+					+ " tmi.TMIC_EXPLICATION, h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS"
+					+ " from hairshop_hair_info h join tt_middle_category tmi" + " on (h.tmic_no = tmi.tmic_no)"
+					+ " join tt_main_category t" + " on (tmi.TMAC_NO = t.TMAC_NO)" + " where h.hs_no = ?"
+					+ " order by hhi_no";
+//			String sql = 
+//					"SELECT t.TMAC_NO, t.TMAC_NAME, t.TMAC_EXPLICATION,\r\n" + 
+//					"       tmi.TMIC_NO, tmi.TMIC_NAME, tmi.TMIC_EXPLICATION,\r\n" + 
+//					"       h.HHI_NO, h.HHI_NAME, h.HHI_PRICE, h.HHI_TIME, h.HS_NO, h.HHI_STATUS,\r\n" + 
+//					"       hmi.hhmi_file\r\n" + 
+//					"FROM hairshop_hair_info h \r\n" + 
+//					"JOIN tt_middle_category tmi ON (h.tmic_no = tmi.tmic_no)\r\n" + 
+//					"JOIN tt_main_category t ON (tmi.TMAC_NO = t.TMAC_NO)\r\n" + 
+//					"JOIN hairshop_hair_more_info hmi ON (hmi.hhi_no = h.hhi_no)\r\n" + 
+//					"WHERE h.hs_no = ?\r\n" + 
+//					"ORDER BY hhi_no";
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hsHIVo.getHs_no());
@@ -180,7 +179,7 @@ public class HairshopHairInfoDAO {
 				hVo.setHhi_time(rs.getString("HHI_TIME"));
 				hVo.setHs_no(rs.getString("HS_NO"));
 				hVo.setHhi_status(rs.getString("HHI_STATUS"));
-				hVo.setHhmi_file(rs.getString("HHMI_FILE"));
+				//hVo.setHhmi_file(rs.getString("HHMI_FILE"));
 				list.add(hVo);
 			}
 		} catch (SQLException e) {
