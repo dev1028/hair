@@ -40,7 +40,6 @@ import com.yedam.hairshop.admin.CategoryMajorDeleteAjCtrl;
 import com.yedam.hairshop.admin.CodeListCtrl;
 import com.yedam.hairshop.admin.PrimaryCodeInsertAjCtrl;
 import com.yedam.hairshop.admin.SecondaryCodeInsertAjCtrl;
-import com.yedam.hairshop.admin.SendEmailToCustomerCtrl;
 import com.yedam.hairshop.admin.TestController;
 import com.yedam.hairshop.admin.TmicDelete;
 import com.yedam.hairshop.admin.TmicInsert;
@@ -443,7 +442,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/adminHairshopManageFind.do", new AdminHairshopManageFCtrl());
 		list.put("/admin/adminNewHairshop.do", new AdminNewHairshopCtrl());
 		list.put("/admin/adminNewHairshopApproval.do", new AdminNewHairshopApprovalCtrl());
-		list.put("/admin/sendEmail.do", new SendEmailToCustomerCtrl());
+		
 
 		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());// 분석
 		list.put("/admin/designerAnalysisFind.do", new designerAnalysisFCtrl());
