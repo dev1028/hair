@@ -51,7 +51,7 @@
 
 
 
-	<h2 class="heading">지출합계</h2>
+	<h2 class="heading"></h2>
 	<div class="form-group" id="result"></div>
 	<!-- <button type="button" id="excel">excel</button> -->
 
