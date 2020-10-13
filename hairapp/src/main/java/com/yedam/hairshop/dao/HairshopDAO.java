@@ -22,9 +22,9 @@ public class HairshopDAO {
 	static HairshopDAO instance;
 
 	public static HairshopDAO getInstance() {
-		if (instance == null)
-			instance = new HairshopDAO();
-		return instance;
+//		if (instance == null)
+//			instance = new HairshopDAO();
+		return new HairshopDAO();//instance;
 	}
 
 	public HairshopVo selectOne(HairshopVo hsVo) {

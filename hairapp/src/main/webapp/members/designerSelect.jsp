@@ -48,39 +48,66 @@ $(function(){
 	changeHour();
 })
 
-// function changeDesigner(){
-// 	hour = $("#timepicker_start").val();
-// 	date = $("#date").val();
+function check(frm){
+	var week = ['일', '월', '화', '수', '목', '금', '토'];
+	var dayOfWeek = week[new Date($("input[name='date']").val()).getDay()];
+	var dayoff = frm.dayoff.value;
+		
+	if(dayoff.indexOf(dayOfWeek) != -1) {
+		alert("휴무일입니다.");
+		return false;
+	}
 	
-// 	$.ajax({
-// 		url: "../ajax/changeDesigner.do",
-// 		type: "POST",
-// 		dataType : "json",
-// 		data : {
-// 			date : date,
-// 			hour : hour
-// 		},
-// 		method : "post",
-// 		success : function(data){
-// 			alert(data[0].rn);
-// 		}
-// 	})
-// }
-</script>
+	work_start_time = parseInt(frm.work_start_time.value);
+	work_end_time = parseInt(frm.work_end_time.value);
+	
+	startHour = parseInt($("input[name='hs_starttime']").val());
+	endHour = parseInt($("input[name='hs_endtime']").val());
+	
+	if( startHour >= work_start_time && startHour < work_end_time &&
+		endHour > work_start_time && endHour <= work_end_time){
+	}else{
+		alert('예약 불가능한 시간입니다.');
+		return false;
+	}
+	return true;
+}
 
+</script>
 </head>
+<style>
+.out {
+ width: 100%;
+ text-align: center;
+ }
+.in {
+ display: inline-block;
+ }
+</style>
 <body>
 <div class="container">
-    <h3 class="h3">디자이너 정보</h3>
-    <form action="designerSelect.do" method="post">
-	    <input autocomplete="off" type="text" name="date" id="date" size="12" />
-		<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px">-
-		<input disabled type="text" name="hs_endtime" value="${total_hour }" style="width:80px">
-		<button>검색</button>
-	</form>
+    <h3 class="h3">예약시간 설정</h3>
+    <div class="out">
+    	<div class = "in">
+		    <input autocomplete="off" type="text" name="date" id="date" size="12" />
+		    <input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px">시 -
+		    <input disabled type="text" name="hs_endtime" value="${total_hour }" style="width:80px">시
+	    </div>
+	</div>
+	<br>
+<!--     <form action="designerSelect.do" method="post"> -->
+<!-- 	    <input autocomplete="off" type="text" name="date" id="date" size="12" /> -->
+<!-- 		<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:80px">- -->
+<%-- 		<input disabled type="text" name="hs_endtime" value="${total_hour }" style="width:80px"> --%>
+<!-- 		<button>검색</button> -->
+<!-- 	</form> -->
     <div class="row">
+    	<c:if test="${empty list }">
+    		등록된 디자이너가 없습니다.
+    	</c:if>
+    	
     	<c:forEach items="${list}" var="designerInfo" >
-    		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post">
+    		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post" onsubmit="return check(this)">
 		            <div class="product-grid4">
 		                <div class="product-image4">
 		                <!-- <img src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairshop.hs_no}/profile&img_name=${hs.hsp_file}"> -->
@@ -117,6 +144,12 @@ $(function(){
 						<input type="hidden" name="designerNo" value="${designerInfo.designer_no}">
 						<input type="hidden" name="hsNo" value="${hairInfo.hs_no}">
 						<input type="hidden" name="hhiNo" value="${hairInfo.hhi_no}">
+						
+						<!-- for check -->
+						<input type="hidden" name="work_start_time" value="${designerInfo.work_start_time}">
+						<input type="hidden" name="work_end_time" value="${designerInfo.work_end_time }">
+						<input type="hidden" name="dayoff" value="${designerInfo.designer_dayoff}">
+						
 					</div>
 	        </form>
         </c:forEach>

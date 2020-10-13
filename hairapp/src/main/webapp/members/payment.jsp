@@ -1,13 +1,136 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title>form</title>
+<title>예약 및 결제하기</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link rel="stylesheet" href="../css/membersHairshop.css">
+
 <link rel="stylesheet" type="text/css" href="../css/popup.css">
+<style>
+/* 슬라이더 */
+input.set { display:none; }
+
+#slide1:checked ~ .mask .overflow { margin-left:0; }
+#slide2:checked ~ .mask .overflow { margin-left:-100%; }
+
+#slides { margin:35px auto; width:80%; position:relative; 
+text-align:center; font-family:Helvetica; font-size:3em; color:white;}
+
+#slides .mask { width:90%; overflow:hidden; margin:auto; }
+
+#slides .overflow { width:400%; -webkit-transform:translateZ(0); -webkit-transition:all 0.5s ease-out; -moz-transition:all 0.5s ease-out; -o-transition:all 0.5s ease-out; transition:all 0.5s ease-out; }
+
+#slides .slide { width:25%; height:200px; line-height:200px; float:left; background:#fff; }
+
+#controls { width:100%; }
+
+#controls label { display:none; width:5%; height:60px; opacity:0.3; position:absolute; top:50%; margin-top:-30px; cursor:pointer; background:#000; }
+
+#controls label:hover { opacity:0.8; }
+
+#slide1:checked ~ #controls label:nth-child(2) { right:0; display:block; }
+
+#slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2) { left:0; display:block; }
+/* 슬라이더끝 */
+
+
+/* 결제ui */
+#menubar2 {
+	width:900px;
+	height:50px;
+	background-color: #b0b4c2;
+}
+#shopdata2 {
+	position:absolute;
+	left:2%;
+	top:15px;
+	-webkit-text-stroke-width: medium;
+}
+
+#menubar3 {
+	width:900px;
+	height:50px;
+	background-color: #b0b4c2;
+}
+#shopdata3 {
+	position:absolute;
+	left:2%;
+	top:393px;
+	-webkit-text-stroke-width: medium;
+}
+
+/* 결제ui끝 */
+
+/* 테이블 */
+table {
+  border-collapse: collapse;
+}
+ th {
+  background: #ccc;
+  border: 1px solid #8c8a8a;
+  width: 300px;
+}
+
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 550px;
+}
+
+tr:nth-child(even) {
+  background: #efefef;
+}
+
+tr:hover {
+  background: #d1d1d1;
+}
+/* 테이블끝 */
+
+/* 버튼 */
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
+
+.btn-hover {
+    width: 800px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-3 {
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+</style>
 </head>
 <body>
 
@@ -62,8 +185,179 @@ function layer_popup(el){
 </script>
 </c:if>
  --%>
+ 
+ 
+ <!-- 맨위에 선 -->
+<div id="headerLine">
+</div>
+
+<!-- 슬라이더 -->
+<div id="slides">
+  <input checked type="radio" name="slider" id="slide1" class="set" />
+  <input type="radio" name="slider" id="slide2" class="set" />
+  <input type="radio" name="slider" id="slide3" class="set" />
+  <input type="radio" name="slider" id="slide4" class="set" />  
+		  
+  <div class="mask">    
+    <div class="overflow">
+      
+      <div class="slide" style="background:lightsteelblue;">${shop.hs_name} 입니다</div>
+      <div class="slide" style="background:#85b;">${shop.hs_profile}</div>
+      
+    </div>    
+  </div>
+
+  <div id="controls" onclick="">  
+    <label for="slide1"></label>
+    <label for="slide2"></label>
+    <label for="slide3"></label>
+    <label for="slide4"></label>    
+  </div>
+</div>
+			
+
+<!-- 미용실정보 -->
+<br>
+<div id="shopInfo">
+	<div id="shopName">
+		<h4>${shop.hs_name}</h4>
+		<h6>${shop.hs_fulladdr}</h6>
+	</div>
+	<div id="shopStar1">
+		<c:choose>
+			<c:when test="${shop2.hr_rate > 4.5}">
+	        	★★★★★
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 3.5}">
+	        	★★★★☆
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 2.5}">
+	        	★★★☆☆
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 1.5}">
+	        	★★☆☆☆
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 0.5}">
+	        	★☆☆☆☆
+	        </c:when>
+	        <c:when test="${empty shop2.hr_rate}">
+	        	☆☆☆☆☆
+	        </c:when>
+        </c:choose>
+	</div>
+	<div id="shopStar2">
+		<c:choose>
+			<c:when test="${empty shop2.hr_rate}">
+	        	<br><h4>0.0</h4>
+	        </c:when>
+	        <c:when test="${shop2.hr_rate > 0.0}">
+	        	<br><h4>${shop2.hr_rate}</h4>
+	        </c:when>
+	    </c:choose>
+	</div>
+	<div id="reviewBook">
+		<c:choose>
+			<c:when test="${shop2.hs_no > 0}">
+	        	리뷰수 : ${shop2.hs_no} +<br>
+	        </c:when>
+	        <c:when test="${empty shop2.hs_no}">
+	        	리뷰수 : 리뷰가 없습니다<br>
+	        </c:when>
+	    </c:choose>
+		<c:choose>
+			<c:when test="${shop3.hs_no > 0}">
+				북마크 : ${shop3.hs_no} +
+			</c:when>
+			<c:when test="${empty shop3.hs_no}">
+				북마크 : 북마크가 없습니다
+			</c:when>
+		</c:choose>
+	</div>
+</div>
+
+<!-- 바디안에 메뉴바 -->
+<br>
+<div id="menubar">
+<div id="shopdata">
+		예약 및 결제 페이지
+	</div>
+</div>
+
+
+
+<!-- 여기서부터 본문. div shopbody 부터 본문시작-->
+<div id="shopbody">
+ 
 	
 <form action="paymentMember.do" method="post">
+	
+	<div id="menubar2">
+		<div id="shopdata2">
+			고객정보와 미용실 정보를 확인해주세요
+		</div>
+	</div>
+	<br><br>
+	
+<table>
+	<tbody>
+		<tr>
+			<th>
+				예약자 이름
+			</th>
+			<td>
+				${login.mem_name }
+			</td>
+		</tr>
+		<tr>
+			<th>
+				전화 번호
+			</th>
+			<td>
+				${login.mem_phone }
+			</td>
+		</tr>
+		<tr>
+			<th>
+				미용실 이름
+			</th>
+			<td>
+				${sessionScope.selHairshopVo.hs_name }
+			</td>
+		</tr>
+		<tr>
+			<th>
+				헤어 이름
+			</th>
+			<td>
+				${sessionScope.selHairInfoVo.hhi_name }
+			</td>
+		</tr>
+		<tr>
+			<th>
+				디자이너 이름
+			</th>
+			<td>
+				${sessionScope.selDesignerVo.designer_name }
+			</td>
+		</tr>
+		<tr>
+			<th>
+				총 시술시간
+			</th>
+			<td>
+				${total_hour} 시간
+			</td>
+		</tr>
+	</tbody>
+</table>	
+<br><br>
+	<div id="menubar3">
+		<div id="shopdata3">
+			쿠폰과 결제
+		</div>
+	</div>
+	<br><br>
+	
 <div class="dim-layer">
     <div class="dimBg"></div>
     <div id="notice_layer" class="pop-layer">
@@ -89,32 +383,69 @@ function layer_popup(el){
             </div>
         </div>
     </div>
-</div>
+</div><!-- dim-layer끝 -->
 
-<input type="button" id="button1" onclick="layer_popup('#notice_layer');" value="쿠폰 선택" />
+
+
+<table>
+	<tbody>
+		<tr>
+			<th>
+				쿠폰선택
+			</th>
+			<td>
+				<input type="button" id="button1" onclick="layer_popup('#notice_layer');" value="쿠폰을 선택해주세요" />
+			</td>
+		</tr>
+		<tr>
+			<th>
+				마일리지 사용
+			</th>
+			<td>
+				<input type="text" name="use_saved_money" value=""> / ${sessionScope.login.mem_saved_money}원
+			</td>
+		</tr>
+		<tr>
+			<th>
+				원가
+			</th>
+			<td>
+				${sessionScope.selHairInfoVo.hhi_price }
+			</td>
+		</tr>
+		<tr>
+			<th>
+				쿠폰할인 금액
+			</th>
+			<td>
+			
+			</td>
+		</tr>
+		<tr>
+			<th>
+				실제결제 금액
+			</th>
+			<td>
+			
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<br>
+	<button class="btn-hover color-3">결제하기</button>
 	
-	<hr>
-	고객정보를 입력해 주세요 <br>
-	예약자 이름: ${login.mem_name }<br>
-	전화 번호: ${login.mem_phone }<br>
-	
-	<hr>
-	<b>미용실 이름:  </b> ${sessionScope.selHairshopVo.hs_name } <br>
-	<b>헤어 이름   :  </b> ${sessionScope.selHairInfoVo.hhi_name } <br>
-	<b>디자이너 이름: </b> ${sessionScope.selDesignerVo.designer_name } <br>
-	<b>총 시술시간: </b> ${total_hour} 시간<br>
-	<hr>
-	고객에게 확인 사항(알림말) <br>
-	
-	<hr>
-	쿠폰등록 정보 <br>
-	
-	원가: ${sessionScope.selHairInfoVo.hhi_price }<br>
-	마일리지 사용: <input type="text" name="use_saved_money" value=""> / ${sessionScope.login.mem_saved_money}원<br>
-	쿠판할인 금액: <br>
-	실제결제 금액: <br> 
-	
-	<button>결제하기</button>
 </form>
+
+
+
+</div> <!-- shopbody끝 -->
+
+
+
+<!-- 왼쪽메뉴 -->
+<div id="mypage">
+	<%@include file="/decorator/membersLeftMenu.jsp" %>
+</div>
 </body>
 </html>
