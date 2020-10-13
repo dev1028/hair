@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="hairshopCouponInsert.css">
 <script>
 	function inputNumberAutoComma(obj) {
 		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
@@ -50,12 +49,12 @@
 				<label for="">쿠폰명</label><input type="text" name="hsc_name"><br>
 				<br> <label for="">쿠폰발급생성일</label><input type="date" name="hsc_issuedate"><br>
 				<br> <label for="">쿠폰발급만료일</label><input type="date" name="hsc_expiredate"><br>
-				<br> <label for="">쿠폰개수</label><input type="number" min="0" max="100" name="hsc_coupon_quantity" style="text-align:center;">
+				<br> <label for="">쿠폰갯수</label><input type="number" min="0" max="100" name="hsc_coupon_quantity" style="text-align:center;">
 
 				<br> <label for="">최대할인금액</label><input type="text"
 					onKeyup="inputNumberAutoComma(this);" value=""
 					name="hsc_maxdiscount_pay" style="text-align: center;" /><br>
-				<br> <label for="">할인율(%)</label><input type="number" min="0"
+				<br> <label for="">할인율(%)</label><input type="number" min="0" max="100"
 					name="hsc_discount_rate" style="text-align: center;"> <br>
 				<br>
 

@@ -7,8 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="hairshopCoupon.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 </head>
 <style>
@@ -123,6 +121,12 @@ box-shadow: none;
 <body>
 
 <script>
+$(function(){
+	$(".designerSearch").hide();
+})
+function designer_show_button(){
+	$(".designerSearch").show();
+}
 /* 미용실,디자이너 클릭이벤트 */
 /* $(function(){
 	$(".hairshop").hide();
@@ -154,37 +158,57 @@ function hairshop_show_button(){
 </script>
 <script>
 // 테이블의 Row 클릭시 값 가져오기
-$("#example-table-1 tr").click(function(){ 	
+$(function(){
+	
+	$("#checkBtn").on("click", function(){
+		$("#updateempno").val($("#empno").val());
+		$("#dayoffUpdateFrm").submit();
+	});
 
-	var str = ""
-	var tdArr = new Array();	// 배열 선언
 	
-	// 현재 클릭된 Row(<tr>)
-	var tr = $(this);
-	var td = tr.children();
-	
-	// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
-	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-	
+	$("#example-table-1 tr").click(function(){ 	
+		var str = ""
+		var tdArr = new Array();	// 배열 선언
+		
+		// 현재 클릭된 Row(<tr>)
+		var tr = $(this);
+		var td = tr.children();
+		
+		// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+		//console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		console.log(td.eq(0).text());
+		console.log(td.eq(1).text());
+		console.log(td.eq(2).text());
+		console.log(td.eq(3).text());
+		console.log(td.eq(4).text());
+		console.log(td.eq(5).text());
+		
+		// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+		td.each(function(i){
+			tdArr.push(td.eq(i).text());
+		});
+		
+		console.log("배열에 담긴 값 : "+tdArr);
+		
+		$("#empno").val(td.eq(0).text());
+		$("#empname").val(td.eq(2).text());
+		$("#designerDayoff").val(td.eq(5).text());
+
 	// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-	td.each(function(i){
+/* 	td.each(function(i){	
 		tdArr.push(td.eq(i).text());
+	$
 	});
 	
-	console.log("배열에 담긴 값 : "+tdArr);
-	
-	var designer_no = td.eq(0).text();
-	var designer_name = td.eq(2).text();
-	var designer_dayoff = td.eq(4).text();
-
-	// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-	td.each(function(i){	
-		tdArr.push(td.eq(i).text());
-	});
-	
-	console.log("배열에 담긴 값 : "+tdArr);
-	
+	console.log("배열에 담긴 값 : "+tdArr); */
 });
+});
+/* $(function(){
+	$('.checkBtn').on('click',()){
+		
+	}'
+}) */
+
 </script>
 <!-- <script>
 <script>
@@ -211,6 +235,10 @@ $(document).ready(function(){
 			<h3>디자이너 휴무일 관리</h3>
 		</div>
 		<br>
+		<div class="row">
+			<h6>수정할 디자이너 조회버튼 누르세요</h6>
+		</div>
+		<br>
 		<table  id="example-table-1" class="table table-bordered table-hover text-center">
 			<thead>
 				<tr>
@@ -220,7 +248,7 @@ $(document).ready(function(){
 					<th scope="row">전화번호</th>
 					<th scope="row">입사일</th>
 					<th scope="row">휴무일</th>
-					<th scope="row">Edit</th>
+					<th scope="row">조회</th>
 				</tr>
 			</thead>
 			<tbody id="tbody" class="tbody">
@@ -232,36 +260,37 @@ $(document).ready(function(){
 						<td>${e.designer_phone }</td>
 						<td>${e.hire_date }</td>
 						<td>${e.designer_dayoff }</td>
-						<td><input type="button" class="checkBtn" value="클릭" /></td>
+						<td><input id="btn" type="button" class="btn btn-info checkBtn" onclick="designer_show_button();" value="조회" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<!-- 클릭이벤트 -->
+		<div class="designerSearch">
 		<br><br>
   				<p>여기는 디자이너 수정버튼눌렀을때 나오는곳</p>
 		  <div class="row">
   				<br>
   				<table>
   					<tr>
-  						<td>디자이너 번호: </td>
-  						<td id="designer_no"></td>
+  						<td >디자이너 번호: <input type="text"  readonly id="empno" name="empno"  style="border:none"></td>
   					</tr>
   					
   					<tr>
-  						<td>디자이너 이름: </td>
-  						<td id="designer_name"></td>
+  						<td>디자이너 이름: <input type="text"  readonly id="empname" name="empname" style="border:none"></td>
+  						
   					</tr>
   					
-  					<tr>
-  						<td>휴무일: </td>
-  						<td id="designer_dayoff"></td>
+  					<tr><!-- style = "text-align:right;" -->
+  						<td>휴무일: <input  type="text"  readonly id="designerDayoff" name="designerDayoff" style="border:none"> </td>
+  						
   					</tr>
   				</table>
   				<br>
   				 <div class="btn-group btn-group" data-toggle="buttons">
   				 <br>
-				  <form action="${pageContext.request.contextPath}/hairshop/employeeCloseDayManageU.do" method="post">
-				  
+				  <form id="dayoffUpdateFrm" action="${pageContext.request.contextPath}/hairshop/employeeCloseDayManageU.do" method="post">
+				  <input type="hidden" type="text" id="updateempno" name="empno" value="">
 				    <label class="btn" for='a'>
 				    <input type="checkbox" name='designerDayoff' id='a' value='0'> 일요일 <i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
@@ -290,7 +319,7 @@ $(document).ready(function(){
 				      <input type="checkbox" name='designerDayoff' id='g' value='6'> 토요일<i class="fa fa-square-o fa-2x"></i><i class="fa fa-check-square-o fa-2x"></i>
 				    </label>
 				    
-					<button id="checkBtn"  class="btn btn-primary">수정</button>
+					<button id="checkBtn" type="button"  class="btn btn-primary">수정</button>
 					</form>
 				  </div>
 <!--   				<div>
@@ -305,6 +334,7 @@ $(document).ready(function(){
   					<label>휴무일</label>
   					<input id="designer_dayoff" name="designer_dayoff">
   				</div> -->
+  		</div>
   		</div>
 	</div>
 
