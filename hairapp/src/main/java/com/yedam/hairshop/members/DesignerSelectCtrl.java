@@ -32,68 +32,92 @@ public class DesignerSelectCtrl implements Controller{
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("DesignerSelectCtrl");
 
-		String strDate = request.getParameter("date");
-		String strStartHour = request.getParameter("hs_starttime");
-		String strTotalHour = (String)request.getSession().getAttribute("total_hour");
+//		String strDate = request.getParameter("date");
+//		String strStartHour = request.getParameter("hs_starttime");
+//		String strTotalHour = (String)request.getSession().getAttribute("total_hour");
 		
-		HairshopVo hsVo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
+		HttpSession session = request.getSession();
+		HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
 		
-		if(strDate != null && strStartHour != null && strTotalHour != null) {
-			request.getSession().setAttribute("date", strDate);
-			request.getSession().setAttribute("hour", strStartHour);
-			
-			Date date = null;
-			String dayOfWeek = null;
-			try {
-				date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
-				System.out.println(date.toString());
-				dayOfWeek = new SimpleDateFormat("E").format(date);
-				System.out.println(dayOfWeek + "요일입니다.");
+		DesignerVo vo = new DesignerVo();
+		vo.setHs_no(hairshopVo.getHs_no());
+		List<DesignerVo> list = DesignerDAO.getInstance().notRetireeByHairShop(vo);
+		
+		//북마크 세팅
+		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+		for(DesignerVo v : list) {
+			if(memVo != null) {
+				DesignerBookmarkVo bookVo = new DesignerBookmarkVo();
+				bookVo.setDesigner_no(v.getDesigner_no());
+				bookVo.setMem_no(memVo.getMem_no());
 				
-				HttpSession session = request.getSession();
-				HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
-				
-				DesignerVo vo = new DesignerVo();
-				vo.setHs_no(hairshopVo.getHs_no());
-				List<DesignerVo> list = DesignerDAO.getInstance().notRetireeByHairShop(vo);
-
-				list = filterDayOff(list, dayOfWeek);
-				list = filterHour(list, Integer.parseInt(strStartHour), 
-										Integer.parseInt(strStartHour) + Integer.parseInt(strTotalHour));
-				
-				//월화수목금 휴일 필터링
-				
-				//북마크 세팅
-				MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
-				for(DesignerVo v : list) {
-					if(memVo != null) {
-						DesignerBookmarkVo bookVo = new DesignerBookmarkVo();
-						bookVo.setDesigner_no(v.getDesigner_no());
-						bookVo.setMem_no(memVo.getMem_no());
-						
-						//북마크 되어 있는 것이라면
-						if(DesignerBookmarkDAO.getInstance().HasBookmark(bookVo)) {
-							v.setDesigner_book("1");
-						}
-					}
-					v.setDesigner_dayoff(ChangeUtil.changeDayOffNumToStr(v.getDesigner_dayoff()));
+				//북마크 되어 있는 것이라면
+				if(DesignerBookmarkDAO.getInstance().HasBookmark(bookVo)) {
+					v.setDesigner_book("1");
 				}
-				
-				request.setAttribute("list", list);
-			} catch (ParseException e) {
-				e.printStackTrace();
 			}
-		}else {
-			request.setAttribute("list", null);
+			v.setDesigner_dayoff(ChangeUtil.changeDayOffNumToStr(v.getDesigner_dayoff()));
 		}
+		request.setAttribute("list", list);
 		
 		// 헤어샵 정보 뿌리는것들
-		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hsVo);
-		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hsVo);
-		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hsVo);
+		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hairshopVo);
+		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hairshopVo);
+		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hairshopVo);
 		request.setAttribute("shop", shop);
 		request.setAttribute("shop2", shop2);
 		request.setAttribute("shop3", shop3);
+
+		
+		
+//		if(strDate != null && strStartHour != null && strTotalHour != null) {
+//			request.getSession().setAttribute("date", strDate);
+//			request.getSession().setAttribute("hour", strStartHour);
+//			
+//			Date date = null;
+//			String dayOfWeek = null;
+//			try {
+//				date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+//				System.out.println(date.toString());
+//				dayOfWeek = new SimpleDateFormat("E").format(date);
+//				System.out.println(dayOfWeek + "요일입니다.");
+//				
+//				HttpSession session = request.getSession();
+//				HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
+//				
+//				DesignerVo vo = new DesignerVo();
+//				vo.setHs_no(hairshopVo.getHs_no());
+//				List<DesignerVo> list = DesignerDAO.getInstance().notRetireeByHairShop(vo);
+//
+//				list = filterDayOff(list, dayOfWeek);
+//				list = filterHour(list, Integer.parseInt(strStartHour), 
+//										Integer.parseInt(strStartHour) + Integer.parseInt(strTotalHour));
+//				
+//				//월화수목금 휴일 필터링
+//				
+//				//북마크 세팅
+//				MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+//				for(DesignerVo v : list) {
+//					if(memVo != null) {
+//						DesignerBookmarkVo bookVo = new DesignerBookmarkVo();
+//						bookVo.setDesigner_no(v.getDesigner_no());
+//						bookVo.setMem_no(memVo.getMem_no());
+//						
+//						//북마크 되어 있는 것이라면
+//						if(DesignerBookmarkDAO.getInstance().HasBookmark(bookVo)) {
+//							v.setDesigner_book("1");
+//						}
+//					}
+//					v.setDesigner_dayoff(ChangeUtil.changeDayOffNumToStr(v.getDesigner_dayoff()));
+//				}
+//				
+//				request.setAttribute("list", list);
+//			} catch (ParseException e) {
+//				e.printStackTrace();
+//			}
+//		}else {
+//			request.setAttribute("list", null);
+//		}
 		
 		
 		request.getRequestDispatcher("/members/designerSelect.jsp").forward(request, response);
