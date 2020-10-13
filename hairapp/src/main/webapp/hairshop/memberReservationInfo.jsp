@@ -25,16 +25,19 @@
 										url : "${pageContext.request.contextPath}/ajax/changeReservationStatus.do",
 										data : {
 											mdr_status : mdrStatus,
-											mdr_no : mdrNo
+											mdr_no : mdrNo,
+											check : "N"
 										},
 										dataType : "json",
 										method : "post",
 										success : function(data) {
 											if (data == 0) {
 												alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
-											} else {
+											} else if(data == 1) {
 												location.reload();
 												window.opener.location.reload();
+											} else {
+												data ? -3 : alert("예약시작 시간보다 한시간 전입니다. 변경 할 수 없습니다.");
 											}
 										}
 									});// end of ajax 

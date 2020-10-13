@@ -1,8 +1,6 @@
 package com.yedam.hairshop.hairshop;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.common.FileRenamePolicy;
 import com.yedam.hairshop.common.FileUpload;
 import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.dao.HsPhotoDAO;
@@ -57,6 +54,11 @@ public class MyHairshopProfileUpdateFCtrl implements Controller {
 		 */
 
 		if (haishopResult == 1 && photoResult == 1) {
+			HairshopVo reVo = (HairshopVo) request.getSession().getAttribute("login");
+			reVo.setHs_profile(hVo.getHs_profile());
+			reVo.setHs_notice(hVo.getHs_notice());
+			request.getSession().setAttribute("login", reVo);
+			
 			response.getWriter().append("<script>").append("alert('수정에 성공하였습니다.');")
 					.append("location.href='" + request.getContextPath() + "/hairshop/myHairshopProfile.do';")
 					.append("</script>");
@@ -65,16 +67,6 @@ public class MyHairshopProfileUpdateFCtrl implements Controller {
 					.append("location.href='" + request.getContextPath() + "/hairshop/myHairshopProfile.do';")
 					.append("</script>");
 		}
-
-	}
-
-	private String getFilename(Part part) throws UnsupportedEncodingException {
-		for (String cd : part.getHeader("Content-Disposition").split(";")) {
-			if (cd.trim().startsWith("filename")) {
-				return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return null;
 
 	}
 
