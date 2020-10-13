@@ -133,7 +133,11 @@
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 헤어샵별 통계
-						</a><a class="nav-link"
+						</a>
+						
+						
+						
+					<%-- 	<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/designerAnalysis.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
@@ -144,7 +148,7 @@
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 헤어별통계
 						</a>
-
+ --%>
 
 
 
@@ -201,10 +205,10 @@
 						<div class="collapse" id="collapsePages1"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술 대분류 관리
-								 </a> <a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술 중분류 관리
+							<%-- 	<a class="nav-link"
+									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술분류 관리
+								 </a> --%> <a class="nav-link"
+									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술 분류 관리
 									</a> <a class="nav-link"
 									href="${pageContext.request.contextPath}/admin/ttCategoryRequest.do">시술 요청 관리
 									</a> 
