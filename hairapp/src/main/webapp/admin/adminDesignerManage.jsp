@@ -38,7 +38,7 @@ src="${pageContext.request.contextPath}/decorator/ges/dist/assets/demo/datatable
 </script>
 </head>
 <body>
-	<h2 class="heading">헤어샵회원관리</h2>
+	<h2 class="heading">디자이너관리</h2>
 	<form
 		action="${pageContext.request.contextPath}/admin/adminDesignerManageFind.do">
 		<div class="form-group">

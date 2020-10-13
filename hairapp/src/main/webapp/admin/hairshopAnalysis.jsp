@@ -50,7 +50,7 @@
 
 </head>
 <body>
-	<h2 class="heading">쿠폰</h2>
+	<h2 class="heading"></h2>
 	<form
 		action="${pageContext.request.contextPath}/admin/hairshopAnalysisFind.do">
 

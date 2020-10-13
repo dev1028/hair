@@ -27,7 +27,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<h2 class="heading">매출결산</h2>
+	<h2 class="heading">qna 게시판 관리</h2>
 	<form
 		action="${pageContext.request.contextPath}/admin/adminQnaManageFind.do">
 
