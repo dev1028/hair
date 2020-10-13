@@ -33,7 +33,7 @@ public class HairshopCouponInsertCtrl implements Controller {
 		vo.setHsc_coupon_quantity(hsc_coupon_quantity);
 		System.out.println("쿠폰갯수 :" + vo.getHsc_coupon_quantity() );
 		vo.setHsc_discount_rate(hsc_discount_rate);
-		vo.setHsc_maxdiscount_pay(hsc_maxdiscount_pay);
+		vo.setHsc_maxdiscount_pay(hsc_maxdiscount_pay.replace(",",""));
 		vo.setHsc_name(hsc_name);
 		HairshopCouponDAO.getInstance().insert(vo);
 		

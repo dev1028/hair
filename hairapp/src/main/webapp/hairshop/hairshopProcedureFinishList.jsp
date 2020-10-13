@@ -28,19 +28,27 @@
 		<div class="row">
 			<br> <br> <br>
 		</div>
-		<div class="row">
+		<div class="row justify-content-between">
+		<div class="col-4">
 			<h3>시술완료고객</h3>
 		</div>
-
+		<div class="col-6"> 
 		<form id="frm"
 			action="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishSD.do"
 			method="post">
-			<div align="right">
-				<input type="text" id="search" name="search" placeholder="디자이너명 입력">
-				<button type="button" id="btn" class="btn btn-primary">검색</button>
+			<div class="input-group flex-nowrap">
+				<input type="text" class="form-control" id="search" name="search" placeholder="디자이너명 입력" aria-label="Username"
+							aria-describedby="addon-wrapping">
+				<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button"
+								id="btn">Search</button>
+				</div>
 			</div>
 		</form>
-		<br>
+		</div>
+		</div>
+		<hr>
+		<div >
 		<table>
 			<thead>
 				<tr>
@@ -67,12 +75,13 @@
 						<td>${f.designer_no }</td>
 						<td>${f.designer_name }</td>
 						<td>${f.hhi_price }원</td>
-						<td><a href="${pageContext.request.contextPath}/hairshop/hairInfoDetail.do?hhi_no=${f.hhi_no}"
+						<td><a href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomerDetail.do?mdr_no=${f.mdr_no}"
 								 class="btn btn-secondary btn-sm">상세보기</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		</div>
 		<br> <br>
 		<div align="center">
 			<button id="btn" onclick="${pageContext.request.contextPath}/hairshop/hairshopMain.do'" type="button" class="btn btn-primary">Home</button>
