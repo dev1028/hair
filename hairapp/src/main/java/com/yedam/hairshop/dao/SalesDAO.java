@@ -257,7 +257,7 @@ public class SalesDAO {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT designer_no, designer_name	FROM designer  where hs_no = ? order by designer_no  ";
+			String sql = "SELECT designer_no, designer_name	FROM designer  where hs_no = ?  and designer_access_status =1 order by designer_no  ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hs_no);
 			rs = pstmt.executeQuery();
@@ -285,7 +285,7 @@ public class SalesDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT  designer_name	FROM designer  where designer_no = ? ";
+			String sql = "SELECT  designer_name	FROM designer  where designer_no = ? and designer_access_status =1 ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ds_no);
 			rs = pstmt.executeQuery();
