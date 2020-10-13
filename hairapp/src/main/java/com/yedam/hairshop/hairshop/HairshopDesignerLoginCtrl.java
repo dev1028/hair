@@ -41,11 +41,11 @@ public class HairshopDesignerLoginCtrl implements Controller {
 				response.sendRedirect(request.getContextPath() + page);
 			} else if (Integer.parseInt(resultVo.getHs_approval()) == 0) {
 				response.getWriter().append("<script>").append("alert('관리자의 승인이 필요한 계정입니다.');")
-						.append("location.href='" + request.getContextPath() + "/hairshop/myHairshopInfo.do';")
+						.append("location.href='" + request.getContextPath() + "/ajax/hairshopReturnToLogin.do';")
 						.append("</script>");
 			} else {
 				response.getWriter().append("<script>").append("alert('이메일 인증이 필요한 계정입니다..');")
-						.append("location.href='" + request.getContextPath() + "/hairshop/myHairshopInfo.do';")
+						.append("location.href='" + request.getContextPath() + "/ajax/hairshopReturnToLogin.do';")
 						.append("</script>");
 			}
 

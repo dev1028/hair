@@ -185,8 +185,8 @@ public class HairshopDAO {
 			String sql = "insert into hairshop(HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,"
 					+ "HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,HS_FULLADDR,HS_CITYADDR,"
 					+ "HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME,"
-					+ "HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC,HS_APPROVAL)"
-					+ " values(hs_no_seq.nextVal, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC,HS_APPROVAL,HS_REGDATE)"
+					+ " values(hs_no_seq.nextVal, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hVo.getHs_name());
 			pstmt.setString(2, hVo.getHs_owner());
