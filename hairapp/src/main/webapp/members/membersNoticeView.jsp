@@ -135,10 +135,11 @@
   
   <tr>
   	<th>내용</th>
-    <td><img src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/members/notice&img_name=${view.notice_image}" style="width: 600px; height: 400px; 
-    		padding: 10px">
+    <td><img src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/members/notice/${view.notice_title}&img_name=${view.notice_image}" style="width: 600px; height: 400px; 
+    		padding: 10px" onerror="this.src='../images/no_img.gif'">
     <%-- <img src="../${view.notice_image}" style="width: 600px; height: 400px; 
-    		padding: 10px"> --%> <br><br> ${view.notice_contents}</td>
+    		padding: 10px"> --%> <br><br> 
+    	<pre><c:out value="${content}">${view.notice_contents}</c:out></pre></td>
   </tr>
   </tbody>
 </table>

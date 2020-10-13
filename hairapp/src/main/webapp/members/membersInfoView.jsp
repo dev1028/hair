@@ -156,26 +156,26 @@
 
 				<tr>
 					<td id="title">기장 선택</td>
-					<td><input type="radio" name="modifyhairlengths" value="short"
-					<c:if test="${modify.mem_hair_length=='short'}">checked="checked"</c:if>>숏
-					<input type="radio" name="modifyhairlengths" value="jawline"
-					<c:if test="${modify.mem_hair_length=='jawline'}">checked="checked"</c:if>>턱선 아래
-					<input type="radio" name="modifyhairlengths" value="shoulderline"
-					<c:if test="${modify.mem_hair_length=='shoulderline'}">checked="checked"</c:if>>어깨선 아래
-					<input type="radio" name="modifyhairlengths" value="chestline"
-					<c:if test="${modify.mem_hair_length=='chestline'}">checked="checked"</c:if>>가슴선 아래</td>
+					<td><input type="radio" name="modifyhairlengths" value="숏"
+					<c:if test="${modify.mem_hair_length=='숏'}">checked="checked"</c:if>>숏
+					<input type="radio" name="modifyhairlengths" value="턱선아래"
+					<c:if test="${modify.mem_hair_length=='턱선아래'}">checked="checked"</c:if>>턱선아래
+					<input type="radio" name="modifyhairlengths" value="어깨선아래"
+					<c:if test="${modify.mem_hair_length=='어깨선아래'}">checked="checked"</c:if>>어깨선아래
+					<input type="radio" name="modifyhairlengths" value="가슴선아래"
+					<c:if test="${modify.mem_hair_length=='가슴선아래'}">checked="checked"</c:if>>가슴선아래</td>
 				</tr>
 
 				<tr>
 					<td id="title">머릿결 상태</td>
-					<td><input type="radio" name="modifyhairstatus" value="normal"
-					<c:if test="${modify.mem_hair_status=='normal'}">checked="checked"</c:if>>정상 모발
-					<input type="radio" name="modifyhairstatus" value="damaged"
-					<c:if test="${modify.mem_hair_status=='damaged'}">checked="checked"</c:if>>손상 모발
-					<input type="radio" name="modifyhairstatus" value="extremedamage"
-					<c:if test="${modify.mem_hair_status=='extremedamage'}">checked="checked"</c:if>>극손상 모발
-					<input type="radio" name="modifyhairstatus" value="bleachedhair"
-					<c:if test="${modify.mem_hair_status=='bleachedhair'}">checked="checked"</c:if>>탈색모 모발</td>
+					<td><input type="radio" name="modifyhairstatus" value="정상모발"
+					<c:if test="${modify.mem_hair_status=='정상모발'}">checked="checked"</c:if>>정상모발
+					<input type="radio" name="modifyhairstatus" value="손상모발"
+					<c:if test="${modify.mem_hair_status=='손상모발'}">checked="checked"</c:if>>손상모발
+					<input type="radio" name="modifyhairstatus" value="극손상모발"
+					<c:if test="${modify.mem_hair_status=='극손상모발'}">checked="checked"</c:if>>극손상모발
+					<input type="radio" name="modifyhairstatus" value="탈색모모발"
+					<c:if test="${modify.mem_hair_status=='탈색모모발'}">checked="checked"</c:if>>탈색모모발</td>
 				</tr>
 			</table>
 		</form>

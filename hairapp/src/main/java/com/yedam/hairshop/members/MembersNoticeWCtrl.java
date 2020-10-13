@@ -13,6 +13,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.FileRenamePolicy;
+import com.yedam.hairshop.common.FileUpload;
 import com.yedam.hairshop.dao.NoticeDAO;
 import com.yedam.hairshop.model.HairshopNoticeVo;
 
@@ -31,46 +32,52 @@ public class MembersNoticeWCtrl implements Controller {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("vo" + vo);
+		System.out.println("noticeW vo: " + vo);
 		
-		int photoResult = 0;
-		int haishopResult = 0;
+//		int photoResult = 1;
+//		int haishopResult = 0;
 
 		Part part = request.getPart("notice_image");
-		
-		String filename;
-		if (part == null) {
-			filename = null;
-		} else {
-			filename = getFilename(part);
-		}
-		if (filename == null) {
-			System.out.println("파일 에러");
-			photoResult = 1;
-		} else {
-//			String path = request.getServletContext().getRealPath("/");
-			String path = "C:/hairapp/members/notice/";
-			
-			// 파일명 중복체크
-			File renameFile = FileRenamePolicy.rename(new File(path, filename));
-			part.write(path + "/" + renameFile.getName());
-			vo.setNotice_image(renameFile.getName());
-
+		String path = "/members/notice/"+vo.getNotice_title();
+		String result =FileUpload.upload(path, part);
+		if(result != null) {
+			vo.setNotice_image(result);
 			int resultVo = NoticeDAO.getInstance().insert(vo);
 			System.out.println("notice resultVo:" + resultVo);
+		}
+		
+		
+//		String filename;
+//		if (part == null) {
+//			filename = null;
+//		} else {
+//			filename = getFilename(part);
+//		}
+//		if (filename == null) {
+//			System.out.println("파일 에러");
+//			photoResult = 1;
+//		} else {
+//			String path = request.getServletContext().getRealPath("/");
+		//	String path = "C:/hairapp/members/notice/";
+			
+//			// 파일명 중복체크
+//			File renameFile = FileRenamePolicy.rename(new File(path, filename));
+//			part.write(path + "/" + renameFile.getName());
+//			vo.setNotice_image(renameFile.getName());
+
 			response.sendRedirect("membersNotice.do");
-		}
+//		}
 		
 		
-		if (haishopResult == 1 && photoResult == 1) {
-			response.getWriter().append("<script>").append("alert('수정에 성공하였습니다.');")
-					.append("location.href='" + request.getContextPath() + "/members/membersNotice.do';")
-					.append("</script>");
-		} else {
-			response.getWriter().append("<script>").append("alert('수정에 실패하였습니다.');")
-					.append("location.href='" + request.getContextPath() + "/members/membersNotice.do';")
-					.append("</script>");
-		}
+//		if (haishopResult == 1 && photoResult == 1) {
+//			response.getWriter().append("<script>").append("alert('수정에 성공하였습니다.');")
+//					.append("location.href='" + request.getContextPath() + "/members/membersNotice.do';")
+//					.append("</script>");
+//		} else {
+//			response.getWriter().append("<script>").append("alert('수정에 실패하였습니다.');")
+//					.append("location.href='" + request.getContextPath() + "/members/membersNotice.do';")
+//					.append("</script>");
+//		}
 		
 		
 	}
