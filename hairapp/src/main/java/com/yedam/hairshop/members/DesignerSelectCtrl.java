@@ -16,10 +16,14 @@ import com.yedam.hairshop.common.ChangeUtil;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.DesignerBookmarkDAO;
 import com.yedam.hairshop.dao.DesignerDAO;
+import com.yedam.hairshop.dao.MembersHairshopDAO;
 import com.yedam.hairshop.model.DesignerBookmarkVo;
 import com.yedam.hairshop.model.DesignerVo;
+import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopBookmarkVo;
 //import com.yedam.hairshop.model.HairshopHairInfoVo;
 import com.yedam.hairshop.model.HairshopVo;
+import com.yedam.hairshop.model.MembersHairshopVo;
 import com.yedam.hairshop.model.MembersVo;
 
 public class DesignerSelectCtrl implements Controller{
@@ -31,6 +35,8 @@ public class DesignerSelectCtrl implements Controller{
 		String strDate = request.getParameter("date");
 		String strStartHour = request.getParameter("hs_starttime");
 		String strTotalHour = (String)request.getSession().getAttribute("total_hour");
+		
+		HairshopVo hsVo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
 		
 		if(strDate != null && strStartHour != null && strTotalHour != null) {
 			request.getSession().setAttribute("date", strDate);
@@ -80,6 +86,16 @@ public class DesignerSelectCtrl implements Controller{
 		}else {
 			request.setAttribute("list", null);
 		}
+		
+		// 헤어샵 정보 뿌리는것들
+		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hsVo);
+		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hsVo);
+		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hsVo);
+		request.setAttribute("shop", shop);
+		request.setAttribute("shop2", shop2);
+		request.setAttribute("shop3", shop3);
+		
+		
 		request.getRequestDispatcher("/members/designerSelect.jsp").forward(request, response);
 	}
 	
