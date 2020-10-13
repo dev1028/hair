@@ -378,17 +378,17 @@ label.light {
           <legend><span class="number">2</span>Your hair status</legend><br>
           
           <label>기장 선택:</label><br>
-          <input type="radio" name="joinhairlengths" value="short" checked><label for="under_13" class="light">숏</label><br>
-          <input type="radio" name="joinhairlengths" value="jawline"><label for="over_13" class="light">턱선 아래</label><br>
-          <input type="radio" name="joinhairlengths" value="shoulderline"><label for="over_13" class="light">어깨선 아래</label><br>
-          <input type="radio" name="joinhairlengths" value="chestline"><label for="over_13" class="light">가슴선 아래</label><br>
+          <input type="radio" name="joinhairlengths" value="숏" checked><label for="under_13" class="light">숏</label><br>
+          <input type="radio" name="joinhairlengths" value="턱선아래"><label for="over_13" class="light">턱선아래</label><br>
+          <input type="radio" name="joinhairlengths" value="어깨선아래"><label for="over_13" class="light">어깨선아래</label><br>
+          <input type="radio" name="joinhairlengths" value="가슴선아래"><label for="over_13" class="light">가슴선아래</label><br>
           
           
           <br><label>머릿결 상태:</label><br>
-          <input type="radio" name="joinhairstatus" value="normal" checked><label for="under_13" class="light">정상 모발</label><br>
-          <input type="radio" name="joinhairstatus" value="damaged"><label for="over_13" class="light">손상 모발</label><br>
-          <input type="radio" name="joinhairstatus" value="extremedamage"><label for="over_13" class="light">극손상 모발</label><br>
-          <input type="radio" name="joinhairstatus" value="bleachedhair"><label for="over_13" class="light">탈색모 모발</label><br>
+          <input type="radio" name="joinhairstatus" value="정상모발" checked><label for="under_13" class="light">정상모발</label><br>
+          <input type="radio" name="joinhairstatus" value="손상모발"><label for="over_13" class="light">손상모발</label><br>
+          <input type="radio" name="joinhairstatus" value="극손상모발"><label for="over_13" class="light">극손상모발</label><br>
+          <input type="radio" name="joinhairstatus" value="탈색모모발"><label for="over_13" class="light">탈색모모발</label><br>
 
         </fieldset><br>
         

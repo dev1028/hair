@@ -1,6 +1,6 @@
 $(function() {
-	$("button").attr('class', 'btn btn-secondary btn-sm');
-	$("input").attr('class', 'btn btn-secondary btn-sm');
+	/*$("button").attr('class', 'btn btn-secondary btn-sm');
+	$("input").attr('class', 'btn btn-secondary btn-sm');*/
 
 	period();
 	$("#all").on("click", function() {
@@ -124,55 +124,7 @@ $(function() {
 
 				);
 	}
-	function year() {
-		$("#range").attr('class', 'yearResult');
-		$("#range").html("");
-		select = $("<select/>").attr('id', 'selectYear');
-		for (var i = 2020; i > 2000; i--) {
-
-			select.append($("<option />").val(i).text(i + "년"));
-
-		}
-		$("#range").append(select);
-
-	}
-	function quarter() {
-		$("#range").attr('class', 'quarter');
-		$("#range").html("");
-		year = $("<select/>").attr('id', 'selectYear');
-		for (var i = 2020; i > 2000; i--) {
-
-			year.append($("<option />").text(i + "년").val(i));
-
-		}
-		$("#range").append(year);
-		quarter = $("<select/>").attr('id', 'selectQuarter');
-
-		quarter.append($("<option />").text("1/4 분기").val(0));
-		quarter.append($("<option />").text("2/4 분기").val(3));
-		quarter.append($("<option />").text("3/4 분기").val(6));
-		quarter.append($("<option />").text("4/4 분기").val(9));
-		$("#range").append(quarter);
-
-	}
-	function month() {
-		$("#range").attr('class', 'month');
-		$("#range").html("");
-		year = $("<select/>").attr('id', 'selectYear');
-		;
-		for (var i = 2020; i > 2000; i--) {
-
-			year.append($("<option />").text(i + " 년").val(i));
-		}
-		$("#range").append(year);
-		month = $("<select/>").attr('id', 'selectMonth');
-		;
-		for (var i = 0; i < 12; i++) {
-
-			month.append($("<option />").text(i + 1 + " 월").val(i));
-		}
-		$("#range").append(month);
-	}
+	
 	function startDate(d) {
 		$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 	}
@@ -294,3 +246,52 @@ $(function() {
 	}
 
 });
+function year() {
+	$("#range").attr('class', 'yearResult');
+	$("#range").html("");
+	select = $("<select/>").attr('id', 'selectYear');
+	for (var i = 2020; i > 2000; i--) {
+
+		select.append($("<option />").val(i).text(i + "년"));
+
+	}
+	$("#range").append(select);
+
+}
+function quarter() {
+	$("#range").attr('class', 'quarter');
+	$("#range").html("");
+	year = $("<select/>").attr('id', 'selectYear');
+	for (var i = 2020; i > 2000; i--) {
+
+		year.append($("<option />").text(i + "년").val(i));
+
+	}
+	$("#range").append(year);
+	quarter = $("<select/>").attr('id', 'selectQuarter');
+
+	quarter.append($("<option />").text("1/4 분기").val(0));
+	quarter.append($("<option />").text("2/4 분기").val(3));
+	quarter.append($("<option />").text("3/4 분기").val(6));
+	quarter.append($("<option />").text("4/4 분기").val(9));
+	$("#range").append(quarter);
+
+}
+function month() {
+	$("#range").attr('class', 'month');
+	$("#range").html("");
+	year = $("<select/>").attr('id', 'selectYear');
+	;
+	for (var i = 2020; i > 2000; i--) {
+
+		year.append($("<option />").text(i + " 년").val(i));
+	}
+	$("#range").append(year);
+	month = $("<select/>").attr('id', 'selectMonth');
+	;
+	for (var i = 0; i < 12; i++) {
+
+		month.append($("<option />").text(i + 1 + " 월").val(i));
+	}
+	$("#range").append(month);
+}

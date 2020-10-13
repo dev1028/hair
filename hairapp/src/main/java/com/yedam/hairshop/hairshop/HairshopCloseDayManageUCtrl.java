@@ -33,8 +33,8 @@ public class HairshopCloseDayManageUCtrl implements Controller {
 			String hsNo = (String) request.getSession().getAttribute("hsno");
 			hairshopVo.setHs_no(hsNo);
 			hairshopVo.setHs_dayoff(strDayoff);
-			int r =hairshopCloseDayManageDAO.getInstance().dayOffUpdate(hairshopVo);
-			
+			hairshopCloseDayManageDAO.getInstance().dayOffUpdate(hairshopVo);
+			request.getRequestDispatcher("/hairshop/HairshopCloseDayManage.do").forward(request, response);
 			// 왜 안되노
 //			if (r == 1) {
 //				hairshopVo = (HairshopVo) request.getSession().getAttribute("hsno");
