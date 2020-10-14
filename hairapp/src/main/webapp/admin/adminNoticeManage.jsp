@@ -121,7 +121,7 @@
 						<td>${ l.notice_whov}</td>
 						<td><a href="adminNoticeView.do?notice_no=${ l.notice_no}">${ l.notice_title}</a></td>
 
-						<td>${ l.emp_no}</td>
+						<td>${ l.emp_alias}</td>
 						<td>${ l.notice_writedate}</td>
 						<td>${ l.notice_hits}</td>
 					</tr>

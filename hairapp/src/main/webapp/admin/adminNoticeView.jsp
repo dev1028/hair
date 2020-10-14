@@ -55,7 +55,7 @@ src="adminQnaView.js"></script> -->
 		
 
 			<div class="control">
-				<label for="name">작성자:${vo.emp_no }</label>
+				<label for="name">작성자:${vo.emp_alias }</label>
 
 			</div>
 			<div class="control">
