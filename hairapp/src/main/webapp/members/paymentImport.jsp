@@ -11,8 +11,8 @@
 <script>
 
 	$(function(){
-		//startImport();
-		testSuc();
+		startImport();
+// 		testSuc();
 	});
 	
 	function testSuc(){

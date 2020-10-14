@@ -32,6 +32,8 @@ public class PaymentImportCtrl implements Controller {
 		if(suc.equals("suc")) {
 			PaymentDAO.getInstance().onlinePayi1(payVo);
 			System.out.println("결제 완료 프로시저 실행");
+			
+			request.getRequestDispatcher("paymentS.do").forward(request, response);
 		}else {
 			int r = PaymentDAO.getInstance().onlinePayFailed(payVo);
 			System.out.println(r + "건 삭제됨");
