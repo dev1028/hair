@@ -7,7 +7,8 @@
 <title>헤어살롱 메인페이지</title>
 
 
-<script src="${pageContext.request.contextPath}/hairshop/hairshopMainChart.js"></script>
+<script
+	src="${pageContext.request.contextPath}/hairshop/hairshopMainChart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {	
 	
@@ -149,28 +150,28 @@ document.addEventListener('DOMContentLoaded', function() {
 	calendar.render();
 }); 
 
-function getFormatDate(date){
-    var year = date.getFullYear();              //yyyy
-    var month = (1 + date.getMonth());          //M
-    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
-    var day = date.getDate();                   //d
-    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
-    return  year + '/' + month + '/' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
-}	
+
+
+	function getFormatDate(date) {
+		var year = date.getFullYear(); //yyyy
+		var month = (1 + date.getMonth()); //M
+		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+		var day = date.getDate(); //d
+		day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+		return year + '/' + month + '/' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+	}
 </script>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<br>
-			<br>
-			<br>
+			<br> <br> <br>
 		</div>
-			
+
 		<div class="row">
 			<div class="col">
 				<h3>
-					일간 스케줄 <br>ㅉㅉ
+					일간 스케줄 <br>
 					<button type="button" class="btn btn-outline-primary btn-sm"
 						disabled>
 						총 현황 <span class="badge badge-light" id="countDailyAll"></span>
@@ -191,19 +192,20 @@ function getFormatDate(date){
 				<hr>
 			</div>
 		</div>
-	
 
-		</div>
+
+	</div>
 		<div class="row">
 			<div class="col-6">
 				<div id='calendar'></div>
 			</div>
 			<div class="col-6">
-				<div class="container-fluid">
-				<div id="chart_div"></div>
-				</div>
+			<div class="container-fluid">
+				<div id="str"></div>
+				<div id="chart_div" style="width: 500px; height: 300px;"></div>
+				
 			</div>
 		</div>
-	
+	</div>
 </body>
 </html>

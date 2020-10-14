@@ -18,9 +18,8 @@ public class SalesVo {
 	String hName;
 	String totalAmountRsv;
 	String totalAmountDay;
-	String cash;
-	String kakao;
-	String account;
+	String point;
+	String coupon;
 	String card;
 	String etc;
 }

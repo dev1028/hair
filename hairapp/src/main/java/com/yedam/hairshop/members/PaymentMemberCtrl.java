@@ -65,6 +65,7 @@ public class PaymentMemberCtrl implements Controller {
 			payVo.setHhi_no1("-1");
 			payVo.setHhi_no2("-1");
 			payVo.setHhi_no3("-1");
+			
 			if(listHairInfoVo.size() > 0)
 				payVo.setHhi_no1(listHairInfoVo.get(0).getHhi_no());
 			if(listHairInfoVo.size() > 1)
@@ -73,16 +74,27 @@ public class PaymentMemberCtrl implements Controller {
 				payVo.setHhi_no3(listHairInfoVo.get(2).getHhi_no());
 			
 			
-//			// 나중에 마일리지 쿠폰 등등을 실제 금액 계산해야함.
-			int mdrNo = PaymentDAO.getInstance().onlinePay(payVo);
-			System.out.println("mdrNo: " + mdrNo);
-			if(mdrNo > 0) {
-				session.setAttribute("mdrNo", String.valueOf(mdrNo));
+			int mdrNo = PaymentDAO.getInstance().onlinePayi0(payVo);
+			if(mdrNo >= 0) {
 				request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
-			}else {
+				payVo.setMdr_no(String.valueOf(mdrNo));
+				session.setAttribute("payVo", payVo);
+				System.out.println("결제 대기 상태로 돌임");
+			}
+			else {
 				request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
 				System.out.println("예약 불가능한 시간.");
 			}
+			
+//			int mdrNo = PaymentDAO.getInstance().onlinePay(payVo);
+//			System.out.println("mdrNo: " + mdrNo);
+//			if(mdrNo > 0) {
+//				session.setAttribute("mdrNo", String.valueOf(mdrNo));
+//				request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
+//			}else {
+//				request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
+//				System.out.println("예약 불가능한 시간.");
+//			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -1,0 +1,139 @@
+/* 슬라이더 */
+input.set { display:none; }
+
+#slide1:checked ~ .mask .overflow { margin-left:0; }
+#slide2:checked ~ .mask .overflow { margin-left:-100%; }
+
+#slides { margin:35px auto; width:80%; position:relative; 
+text-align:center; font-family:Helvetica; font-size:3em; color:white;}
+
+#slides .mask { width:90%; overflow:hidden; margin:auto; }
+
+#slides .overflow { width:400%; -webkit-transform:translateZ(0); -webkit-transition:all 0.5s ease-out; -moz-transition:all 0.5s ease-out; -o-transition:all 0.5s ease-out; transition:all 0.5s ease-out; }
+
+#slides .slide { width:25%; height:200px; line-height:200px; float:left; background:#fff; }
+
+#controls { width:100%; }
+
+#controls label { display:none; width:5%; height:60px; opacity:0.3; position:absolute; top:50%; margin-top:-30px; cursor:pointer; background:#000; }
+
+#controls label:hover { opacity:0.8; }
+
+#slide1:checked ~ #controls label:nth-child(2) { right:0; display:block; }
+
+#slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2) { left:0; display:block; }
+/* 슬라이더끝 */
+
+
+/* 결제ui */
+#menubar2 {
+	width:900px;
+	height:50px;
+	background-color: #b0b4c2;
+}
+#shopdata2 {
+	position:absolute;
+	left:2%;
+	top:15px;
+	-webkit-text-stroke-width: medium;
+}
+
+#menubar3 {
+	width:900px;
+	height:50px;
+	background-color: #b0b4c2;
+}
+#shopdata3 {
+	position:absolute;
+	left:2%;
+	top:407px;
+	-webkit-text-stroke-width: medium;
+}
+
+#menubar4 {
+	width:900px;
+	height:50px;
+	background-color: #b0b4c2;
+}
+#shopdata4 {
+	position:absolute;
+	left:2%;
+	top: 608px;
+	-webkit-text-stroke-width: medium;
+}
+
+/* 결제ui끝 */
+
+/* 테이블 */
+.tbl {
+  border-collapse: collapse;
+}
+
+.tbl th {
+  background: #ccc;
+  border: 1px solid #8c8a8a;
+  width: 300px;
+}
+
+.tbl td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 550px;
+}
+
+tr:nth-child(even) {
+  background: #efefef;
+}
+
+tr:hover {
+  background: #d1d1d1;
+}
+/* 테이블끝 */
+
+/* 버튼 */
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
+
+.btn-hover {
+    width: 800px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+.btn-hover.color-3 {
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+/* 버튼끝 */
+
+#shopdata {
+    position: absolute;
+    left: 2%;
+    top: 10%
+ }

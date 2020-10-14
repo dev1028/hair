@@ -101,8 +101,8 @@
 		});
 	})
 </script>
-<body>
-
+<body>	<div class="container">
+	<div class="container">
 	<div class="card mb-4">
 
 		<div class="card-body">
@@ -138,6 +138,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

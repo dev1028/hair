@@ -193,11 +193,11 @@ function changePrice(){
 <div id="shopbody">
  
 	
-<form action="paymentMember.do" method="post">
+<form action="" method="post">
 	
 	<div id="menubar2">
 		<div id="shopdata2">
-			고객정보와 미용실 정보를 확인해주세요
+			결제 및 예약 완료
 		</div>
 	</div>
 	<br><br>
@@ -254,160 +254,9 @@ function changePrice(){
 		</tr>
 	</tbody>
 </table>	
-<br><br>
-	<div id="menubar3">
-		<div id="shopdata3">
-			기장과 머릿결 상태 확인 및 수정 & 요청사항
-		</div>
-	</div>
-	<br><br>
-	
-<table class="tbl">
-	<tbody>
-		<tr>
-			<th>
-				헤어 기장
-			</th>
-			<td>
-				
-			</td>
-		</tr>
-		<tr>
-			<th>
-				머릿결 상태
-			</th>
-			<td>
-				
-			</td>
-		</tr>
-		<tr>
-			<th>
-				요청 사항
-			</th>
-			<td>
-				
-			</td>
-		</tr>
-	</tbody>
-</table>	
-<br><br>	
-	
-	
-	
-	<div id="menubar4">
-		<div id="shopdata4">
-			쿠폰과 결제
-		</div>
-	</div>
-	<br><br>
-
-<script>
-function applyCoupon(){
-	// 전체 체크 순회
-	$("input:radio[name=radio_coupon]").each(function() {
-		if(this.checked){
-			//ajax
-			$.ajax({
-				url : "../ajax/chkCoupon.do",
-				data : {
-					mc_no : this.value,
-					sumPrice : "${sessionScope.sumPrice}"
-				},
-				dataType : "json",
-				success : function(data) {
-					$(".couponDiscount").val(data.discount)
-					changePrice();
-				}
-			});
-		}
-	});
-}
-
-function cancelCoupon(){
-	
-}
-
-</script>
-
-<div class="dim-layer">
-    <div class="dimBg"></div>
-    <div id="notice_layer" class="pop-layer">
-        <div class="pop-container">
-            <div class="pop-conts">
-                <!--content //-->
-                <p class="title">쿠폰 사용</p>
-                <div class="container">
-                	<table class="coupon_list">
-		                <c:forEach items="${listCoupon}" var="coupon">
-		                	<tr>
-		                		<td><input id="radio-${coupon.mc_no}" name="radio_coupon" type="radio" value="${coupon.mc_no}"></td>
-		                		<td><label for="radio-${coupon.mc_no}" class="radio-label"> &nbsp ${coupon.hsc_maxdiscount_pay}원</label></td>
-		                		<td><label for="radio-${coupon.mc_no}" class="radio-label"> &nbsp ${coupon.hsc_name} </label></td>
-		                		<td><label for="radio-${coupon.mc_no}" class="radio-label"> &nbsp ${coupon.hsc_discount_rate}% </label></td>
-		                	</tr>
-						</c:forEach>
-					</table>
-				</div>
-                <div class="btn-r">
-                	<a href="#" class="btn-layerClose" onclick="applyCoupon();">적용</a>
-                	<a href="#" class="btn-layerClose" onclick="cancelCoupon();">닫기</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div><!-- dim-layer끝 -->
 
 
-
-<table class="tbl">
-	<tbody>
-		<tr>
-			<th>
-				쿠폰선택
-			</th>
-			<td>
-				<input type="button" id="button1" onclick="layer_popup('#notice_layer');" value="쿠폰을 선택해주세요" />
-			</td>
-		</tr>
-		<tr>
-			<th>
-				마일리지 사용
-			</th>
-			<td>
-				<input type="text" class="use_saved_money" name="use_saved_money" onkeypress="chk_number();" onchange="chk_use_saved_money(this);" value="0"> / ${sessionScope.login.mem_saved_money}원
-			</td>
-		</tr>
-		<tr>
-			<th>
-				원가
-			</th>
-			<td>
-				${sessionScope.sumPrice}
-			</td>
-		</tr>
-		<tr>
-			<th>
-				쿠폰할인 금액
-			</th>
-			<td>
-				<input type="text" class="couponDiscount" name="couponDiscount" value="0" disabled>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				실제결제 금액
-			</th>
-			<td>
-				<input type="text" class="realPrice" name="realPrice" value="${sessionScope.sumPrice}" disabled>
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<br>
-	<button class="btn-hover color-3">결제하기</button>
 </form>
-
 
 
 </div> <!-- shopbody끝 -->

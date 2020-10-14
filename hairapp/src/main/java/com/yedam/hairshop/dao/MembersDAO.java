@@ -368,7 +368,10 @@ public class MembersDAO {
 			pstmt.setString(1, vo.getMem_latitude_longitude());
 			pstmt.setString(2, vo.getMem_addr());
 			pstmt.setString(3, vo.getMem_addr());
-			pstmt.setString(4, vo.getMem_addr().split(" ")[2]);
+			if(vo.getMem_addr().split(" ").length > 2)
+				pstmt.setString(4, vo.getMem_addr().split(" ")[2]);
+			else
+				pstmt.setString(4, "");
 			pstmt.setString(5, vo.getMem_email());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {

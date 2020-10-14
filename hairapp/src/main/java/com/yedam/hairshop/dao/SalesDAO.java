@@ -24,9 +24,9 @@ public class SalesDAO {
 			+ "nvl\r\n" + "((\r\n" + "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
 			+ "WHERE mdp_code='d1' AND mdr_no=r.mdr_no),0) AS card,\r\n" + "nvl\r\n" + "((\r\n"
 			+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
-			+ "WHERE mdp_code='d2' AND mdr_no=r.mdr_no),0) AS cash,\r\n" + "nvl\r\n" + "((\r\n"
+			+ "WHERE mdp_code='d4' AND mdr_no=r.mdr_no),0) AS point,\r\n" + "nvl\r\n" + "((\r\n"
 			+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
-			+ "WHERE mdp_code='d3' AND mdr_no=r.mdr_no),0) AS kakao,\r\n" + "nvl\r\n" + "((\r\n"
+			+ "WHERE mdp_code='d5' AND mdr_no=r.mdr_no),0) AS coupon,\r\n" + "nvl\r\n" + "((\r\n"
 			+ "SELECT  mdp_price\r\n" + "FROM members_detail_paylist\r\n"
 			+ "WHERE mdp_code='d6' AND mdr_no=r.mdr_no),0) AS ACCOUNT\r\n" + ",(\r\n"
 			+ "SELECT  nvl(sum(mdp_price),0) \r\n" + "FROM members_detail_paylist\r\n"
@@ -126,9 +126,8 @@ public class SalesDAO {
 				resultVo.setMemName(rs.getString("mem_name"));
 				resultVo.setHName(rs.getString("hhi_name"));
 				resultVo.setCard(rs.getString("card"));
-				resultVo.setCash(rs.getString("cash"));
-				resultVo.setKakao(rs.getString("kakao"));
-				resultVo.setAccount(rs.getString("account"));
+				resultVo.setPoint(rs.getString("point"));
+				resultVo.setCoupon(rs.getString("coupon"));
 				resultVo.setTotalAmountRsv(rs.getString("ammount"));
 
 				list.add(resultVo);
@@ -186,9 +185,9 @@ public class SalesDAO {
 				resultVo.setMemName(rs.getString("mem_name"));
 				resultVo.setHName(rs.getString("hhi_name"));
 				resultVo.setCard(rs.getString("card"));
-				resultVo.setCash(rs.getString("cash"));
-				resultVo.setKakao(rs.getString("kakao"));
-				resultVo.setAccount(rs.getString("account"));
+	
+				resultVo.setPoint(rs.getString("point"));
+				resultVo.setCoupon(rs.getString("coupon"));
 				resultVo.setTotalAmountRsv(rs.getString("ammount"));
 
 				list.add(resultVo);
@@ -230,9 +229,8 @@ public class SalesDAO {
 				resultVo.setMemName(rs.getString("mem_name"));
 				resultVo.setHName(rs.getString("hhi_name"));
 				resultVo.setCard(rs.getString("card"));
-				resultVo.setCash(rs.getString("cash"));
-				resultVo.setKakao(rs.getString("kakao"));
-				resultVo.setAccount(rs.getString("account"));
+				resultVo.setPoint(rs.getString("point"));
+				resultVo.setCoupon(rs.getString("coupon"));
 				resultVo.setTotalAmountRsv(rs.getString("ammount"));
 
 				list.add(resultVo);

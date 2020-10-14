@@ -1,10 +1,7 @@
 package com.yedam.hairshop.members;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -38,6 +35,7 @@ public class DesignerSelectCtrl implements Controller{
 		
 		HttpSession session = request.getSession();
 		HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
+		session.setAttribute("hs_dayoff", hairshopVo.getHs_dayoff());
 		
 		DesignerVo vo = new DesignerVo();
 		vo.setHs_no(hairshopVo.getHs_no());

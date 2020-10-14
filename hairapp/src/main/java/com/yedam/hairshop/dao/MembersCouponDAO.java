@@ -54,7 +54,7 @@ public class MembersCouponDAO {
 						" FROM members_coupon mc, hs_coupon hc " + 
 						" WHERE mc.hsc_no = hc.hsc_no " + 
 						" AND mc.mem_no = ? AND hs_no = ? " + 
-						" AND sysdate BETWEEN mc.mc_issuedate and mc.mc_expiredate";
+						" AND sysdate BETWEEN mc.mc_issuedate and mc.mc_expiredate AND mc.mc_used = 0";
 			
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
