@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html><html><head>
 <meta charset="UTF-8">
-<title>예약 및 결제하기</title>
+<title>예약 및 결제완료</title>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -209,15 +209,7 @@ function changePrice(){
 				예약자 이름
 			</th>
 			<td>
-				${login.mem_name }
-			</td>
-		</tr>
-		<tr>
-			<th>
-				전화 번호
-			</th>
-			<td>
-				${login.mem_phone }
+				${list2.mem_name}
 			</td>
 		</tr>
 		<tr>
@@ -225,7 +217,7 @@ function changePrice(){
 				미용실 이름
 			</th>
 			<td>
-				${sessionScope.selHairshopVo.hs_name }
+				${list.hs_name }
 			</td>
 		</tr>
 		<tr>
@@ -233,7 +225,7 @@ function changePrice(){
 				헤어 이름
 			</th>
 			<td>
-				${sessionScope.selHairNames }
+				${list.hhi_name}
 			</td>
 		</tr>
 		<tr>
@@ -241,15 +233,23 @@ function changePrice(){
 				디자이너 이름
 			</th>
 			<td>
-				${sessionScope.selDesignerVo.designer_name }
+				${list.designer_name}
 			</td>
 		</tr>
 		<tr>
 			<th>
-				총 시술시간
+				예약날짜
 			</th>
 			<td>
-				${total_hour} 시간
+				${list.mdr_date}
+			</td>
+		</tr>
+		<tr>
+			<th>
+				총 결제 금액
+			</th>
+			<td>
+				${list.mdp_price}
 			</td>
 		</tr>
 	</tbody>

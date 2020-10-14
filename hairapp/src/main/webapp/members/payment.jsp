@@ -269,7 +269,12 @@ function changePrice(){
 				헤어 기장
 			</th>
 			<td>
-				
+				<select name="hairLength">
+					<option value="U1">숏</option>
+					<option value="U2">턱선아래</option>
+					<option value="U3">어깨선아래</option>
+					<option value="U4">가슴선아래</option>
+				</select>
 			</td>
 		</tr>
 		<tr>
@@ -277,7 +282,12 @@ function changePrice(){
 				머릿결 상태
 			</th>
 			<td>
-				
+				<select name="hairStatus">
+					<option value="O1">정상모발</option>
+					<option value="O2">손상모발</option>
+					<option value="O3">극손상모발</option>
+					<option value="O4">탈색모모발</option>
+				</select>
 			</td>
 		</tr>
 		<tr>
@@ -285,7 +295,7 @@ function changePrice(){
 				요청 사항
 			</th>
 			<td>
-				
+				<textarea id="reqHairshop" name="reqHairshop" rows="4" cols="50" placeholder="요청사항을 적어주세요."></textarea>
 			</td>
 		</tr>
 	</tbody>
