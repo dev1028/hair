@@ -19,18 +19,18 @@ public class ChangeReservationStatusAjCtrl implements Controller {
 		String mdrStatus = request.getParameter("mdr_status");
 		String mdrNo = request.getParameter("mdr_no");
 		String checkChange = request.getParameter("check");
-		
 		MembersDesignerRsvVo mDRVo = new MembersDesignerRsvVo();
 		mDRVo.setMdr_status(mdrStatus);
 		mDRVo.setMdr_no(mdrNo);
 
 		LocalDateTime currDT = LocalDateTime.now();
 		Map<String,String> mr = MembersReservationDAO.getInstance().selectReservationOne(mdrNo);
+		System.out.println(mr);
 		int r = -1;
-		if(checkChange == "Y") {
+		if(checkChange.equals("Y")) {
 			r = MembersReservationDAO.getInstance().updateMdrStatus(mDRVo);
 		}
-		if (!mr.isEmpty()) {
+		if (!mr.isEmpty() || r == -1) {
 			String targetDateTime = mr.get("mdr_date");
 			String endDateTime = mr.get("sum_time");
 			
@@ -62,7 +62,7 @@ public class ChangeReservationStatusAjCtrl implements Controller {
 				}
 			}
 		}
-
+	//	System.out.println("sout--> " + r );
 		response.getWriter().print(r);
 	}
 

@@ -11,10 +11,6 @@ html, body {
 	overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
-body {
-	padding-top: 56px;
-}
-
 @media ( max-width : 991.98px) {
 	.offcanvas-collapse {
 		position: fixed;
@@ -120,8 +116,9 @@ body {
 
 	<main role="main" class="container">
 		<div class="row">
+		
 			<div class="col">
-				<br>
+			<br><br><br>
 				<h3>마이페이지</h3>
 			</div>
 		</div>
