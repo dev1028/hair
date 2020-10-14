@@ -50,6 +50,18 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 	-webkit-text-stroke-width: medium;
 }
 
+#menubar4 {
+	width:900px;
+	height:50px;
+	background-color: #b0b4c2;
+}
+#shopdata4 {
+	position:absolute;
+	left:2%;
+	top: 608px;
+	-webkit-text-stroke-width: medium;
+}
+
 /* 결제ui끝 */
 
 /* 테이블 */
