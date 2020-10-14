@@ -24,14 +24,15 @@ public class AnalysisDAO {
 	public ArrayList<AnalysisVo> designerRateRank(AnalysisVo vo) {
 		ResultSet rs = null;
 
-		String sql = "SELECT\n" + "    d.designer_name,\n" + "    nvl(avg((\n" + "        SELECT\n"
-				+ "            avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
-				+ "            mdr_no = r.mdr_no\n" + "    )), 0) AS rate,\n" + "    RANK() OVER(\n" + "        ORDER BY\n"
-				+ "            nvl(avg((\n" + "        SELECT\n" + "         avg(hr_rate)\n" + "        FROM\n"
+		String sql = "SELECT\n" + "    d.designer_name,d.file_name, d.designer_no, \n" + "    nvl(avg((\n"
+				+ "        SELECT\n" + "            avg(hr_rate)\n" + "        FROM\n"
 				+ "            hairshop_reviews\n" + "        WHERE\n" + "            mdr_no = r.mdr_no\n"
-				+ "    )), 0) DESC\n" + "    ) AS rank\n" + "FROM\n" + "    members_designer_rsv   r\n"
+				+ "    )), 0) AS rate,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n"
+				+ "        SELECT\n" + "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n"
+				+ "        WHERE\n" + "            mdr_no = r.mdr_no\n" + "    )), 0) DESC\n" + "    ) AS rank\n"
+				+ "FROM\n" + "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name";
+				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -50,6 +51,8 @@ public class AnalysisDAO {
 				resultVo.setRank(rs.getString("rank"));
 				resultVo.setHr_rate(rs.getString("rate"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
+				resultVo.setFile_name(rs.getString("file_name"));
+				resultVo.setDesigner_no(rs.getString("designer_no"));
 				System.out.println("vo" + resultVo.getCnt());
 				list.add(resultVo);
 
@@ -65,16 +68,16 @@ public class AnalysisDAO {
 
 	public ArrayList<AnalysisVo> designerSalesRank(AnalysisVo vo) {
 		ResultSet rs = null;
-		String sql = "SELECT\n" + "    d.designer_name,\n" + "    SUM((\n" + "        SELECT\n"
-				+ "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n" + "            members_detail_paylist\n"
-				+ "        WHERE\n" + "            mdr_no = r.mdr_no\n" + "    )) AS sales,\n" + "    RANK() OVER(\n"
-				+ "        ORDER BY\n" + "            SUM((\n" + "                SELECT\n"
-				+ "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
+		String sql = "SELECT\n" + "    d.designer_name, d.designer_no, d.file_name ,\n" + "    SUM((\n"
+				+ "        SELECT\n" + "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n"
+				+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no\n"
+				+ "    )) AS sales,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            SUM((\n"
+				+ "                SELECT\n" + "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
 				+ "                    members_detail_paylist\n" + "                WHERE\n"
 				+ "                    mdr_no = r.mdr_no\n" + "            )) DESC\n" + "    ) AS rank\n" + "FROM\n"
 				+ "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name";
+				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -93,6 +96,9 @@ public class AnalysisDAO {
 				resultVo.setRank(rs.getString("rank"));
 				resultVo.setSales(rs.getString("sales"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
+				resultVo.setFile_name(rs.getString("file_name"));
+				resultVo.setFile_name(rs.getString("file_name"));
+				resultVo.setDesigner_no(rs.getString("designer_no"));
 				System.out.println("vo" + resultVo.getCnt());
 				list.add(resultVo);
 
@@ -108,9 +114,9 @@ public class AnalysisDAO {
 
 	public ArrayList<AnalysisVo> designerRsvRank(AnalysisVo vo) {
 		ResultSet rs = null;
-		String sql = "SELECT d. designer_name, count(*) as cnt ,rank() over (order by count(*) desc) rank\r\n"
+		String sql = "SELECT d. designer_name, d.designer_no,  count(*) as cnt, d.file_name ,rank() over (order by count(*) desc) rank\r\n"
 				+ "FROM designer d \r\n" + "JOIN members_designer_rsv r ON(r.designer_no = d.designer_no)\r\n" + "\r\n"
-				+ "WHERE r.hs_no = ?\r\n" + "\r\n" + "group by d.designer_name";
+				+ "WHERE r.hs_no = ?\r\n" + "\r\n" + "group by d.designer_name, d.designer_no, d.file_name";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -129,7 +135,10 @@ public class AnalysisDAO {
 				AnalysisVo resultVo = new AnalysisVo();
 				resultVo.setRank(rs.getString("rank"));
 				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setFile_name(rs.getString("file_name"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
+				resultVo.setFile_name(rs.getString("file_name"));
+				resultVo.setDesigner_no(rs.getString("designer_no"));
 				System.out.println("vo" + resultVo.getCnt());
 				list.add(resultVo);
 

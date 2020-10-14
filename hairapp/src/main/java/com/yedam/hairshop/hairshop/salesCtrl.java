@@ -31,26 +31,11 @@ public class salesCtrl implements Controller {
 //		ArrayList<SalesVo> salesList = SalesDAO.getInstance().dailySalesAllAddDs(startDate, endDate,ds);
 		ArrayList<SalesVo> salesList = SalesDAO.getInstance().dailySalesAll(startDate, endDate,hs_no);
 
-		JSONObject jObj = new JSONObject();
-
-		for (SalesVo vo : salesList) {
-			jObj = new JSONObject();
-			jObj.put("mdrDt", vo.getMdrDate());
-			jObj.put("hNm", vo.getHName());
-			jObj.put("dsNm", vo.getDsName());
-			jObj.put("mdrNo", vo.getMdrNo());
-			jObj.put("memNm", vo.getMemName());
-			jObj.put("cd", vo.getCard());
-			jObj.put("cs", vo.getCash());
-			jObj.put("ka", vo.getKakao());
-			jObj.put("ac", vo.getAccount());
-			jObj.put("to", vo.getTotalAmountRsv());
-			jArray.add(jObj);
-		}
+		
 
 //		 System.out.println(jArray);
 
-		String str = JSONArray.fromObject(jArray).toString();
+		String str = JSONArray.fromObject(salesList).toString();
 
 //		System.out.println(str);
 		response.getWriter().print(str);

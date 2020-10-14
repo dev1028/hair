@@ -22,5 +22,7 @@ public class AnalysisVo {
 	String hhi_name;
 	String prevMonth;		//전월
 	String designer_name;	//디자이너 이름
+	String designer_no;
+	String file_name;
 	String hr_rate;		
 }

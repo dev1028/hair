@@ -7,7 +7,7 @@
 	<decorator name="designer" page="designer_layout.jsp">
 		<pattern>/designer/*</pattern>
 	</decorator>
-		<decorator name="admin" page="ges/dist/index.jsp">
+	<decorator name="admin" page="ges/dist/index.jsp">
 		<pattern>/admin/*</pattern>
 	</decorator>
 	<decorator name="user" page="left-sidebar.jsp">
@@ -17,11 +17,7 @@
 
 	<excludes>
 		<pattern>/ajax/*</pattern>
-		
+
 	</excludes>
-	
-		<excludes>
-		<pattern>/ajax/*</pattern>
-		<pattern>/hairshop/hairshopNotice*</pattern>
-	</excludes>
+
 </decorators>

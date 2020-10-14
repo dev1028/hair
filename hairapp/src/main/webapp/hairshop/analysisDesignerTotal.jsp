@@ -23,6 +23,19 @@ body {
 	background-color: gray;
 	padding: 5px 15px;
 }
+
+.imagebox {
+	width: 150px;
+	height: 150px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+
+.imageprofile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 </style>
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
@@ -36,8 +49,6 @@ body {
 <script type="text/javascript">
 var rsvjsonlist = ${rsvjsonlist};
 var salesjsonlist = ${salesjsonlist};var ratejsonlist = ${ratejsonlist};
-
-
 
 function chart() {
 
@@ -110,6 +121,8 @@ function chart() {
 					datatable.push([ datas.rank + "위",
 							parseInt(datas.hr_rate), datas.designer_name ]);
 				
+
+
 				//
 			}
 	
@@ -423,12 +436,18 @@ function chart() {
 								<th>전월대비순위</th>
 							</tr>
 						</thead>
-						<tbody id="tbody">
+
+
+
+						<%-- 	<tbody id="tbody">
 							<c:forEach items="${rsvlist }" var="l">
 								<tr>
 
 									<td>${ l.rank}</td>
-									<td>사진</td>
+									<td><img id="imgDes"
+										onerror="this.src='../images/no_img.gif'" width="200" height ="200" border-radius="7"
+										src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+										class="img-fluid"></td>
 									<td>${ l.designer_name}</td>
 
 									<td>${l.cnt }</td>
@@ -437,8 +456,39 @@ function chart() {
 
 								</tr>
 							</c:forEach>
-						</tbody>
+						</tbody> --%>
 					</table>
+
+
+
+
+
+
+					<c:forEach items="${rsvlist }" var="l">
+						<div class="rows">
+							<div class="col-sm-3">${ l.rank}</div>
+							<div class="imagebox col-sm-3">
+								<img id="imgDes" onerror="this.src='../images/no_img.gif'"
+									width="80" height="80"
+									src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+									class="img-fluid imageprofile">
+
+							</div>
+							<div class="col-sm-3">${ l.designer_name}</div>
+							<div class="col-sm-3">${l.cnt }</div>
+
+
+
+						</div>
+
+					</c:forEach>
+
+
+
+
+
+
+
 					<button id="excel">excel</button>
 					<button id="email">email</button>
 				</div>
@@ -468,7 +518,10 @@ function chart() {
 								<tr>
 
 									<td>${ l.rank}</td>
-									<td>사진</td>
+									<td><img id="imgDes"
+										onerror="this.src='../images/no_img.gif'"
+										src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+										class="img-fluid"></td>
 									<td>${ l.designer_name}</td>
 
 									<td>${l.sales }</td>
@@ -501,11 +554,16 @@ function chart() {
 							</tr>
 						</thead>
 						<tbody id="tbody">
+
 							<c:forEach items="${ratelist }" var="l">
+
 								<tr>
 
 									<td>${ l.rank}</td>
-									<td>사진</td>
+									<td><img id="imgDes"
+										onerror="this.src='../images/no_img.gif'"
+										src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+										class="img-fluid"></td>
 									<td>${ l.designer_name}</td>
 
 									<td>${l.hr_rate }</td>
