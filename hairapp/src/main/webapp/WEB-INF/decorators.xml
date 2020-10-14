@@ -20,6 +20,10 @@
 		
 	</excludes>
 	
+	<excludes>
+		<pattern>/members/membersDR*</pattern>
+	</excludes>
+	
 		<excludes>
 		<pattern>/ajax/*</pattern>
 		<pattern>/hairshop/hairshopNotice*</pattern>
