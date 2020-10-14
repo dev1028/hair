@@ -1,8 +1,6 @@
 package com.yedam.hairshop.designer;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.common.FileRenamePolicy;
 import com.yedam.hairshop.common.FileUpload;
 import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
