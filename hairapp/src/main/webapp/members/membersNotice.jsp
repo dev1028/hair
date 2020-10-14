@@ -96,6 +96,13 @@
 <hr>
 <br><br>
 <table class="table table-striped table-bordered table-hover">
+<colgroup>
+    <col width="5%"/>
+    <col width="50%"/>
+    <col width="10%"/>
+    <col width="10%"/>
+    <col width="5%"/>
+</colgroup>
 <thead>
   <tr>
     <th>번호</th>

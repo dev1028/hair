@@ -149,7 +149,6 @@ $(document).ready(function() {
 
 				<!-- Form Name -->
 				<legend>쿠폰 등록</legend>
-
 				<!-- Text input-->
 
 				<div class="form-group">

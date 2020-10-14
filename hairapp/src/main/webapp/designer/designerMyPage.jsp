@@ -84,106 +84,216 @@
 		 */
 	}
 </script>
+<style>
+.fileUpload {
+	background: #00bcbe;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: #fff;
+	font-size: 1em;
+	font-weight: bold;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 147px;
+   cursor: pointer;
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    width: 148px;
+    height: 46px;
+  cursor: pointer;
+}
+
+input[type="file"] {
+    position: fixed;
+    right: 100%;
+    bottom: 100%;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+</style>
 </head>
 <body>
 
 	<div class="container">
-		<div class="row">
-			<br> <br> <br>
-		</div>
-		<div class="row">
+		<br> <br> <br>
+		<form method="post"
+			action="${pageContext.request.contextPath}/designer/designerMyPageUpdateCtrl.do"
+			id="frm" name="frm" onsubmit="return checkValue();"
+			enctype="multipart/form-data">
+			<input type="hidden" name="designer_no"
+				value="${ designer.designer_no}">
+
 			<h3>디자이너 개인정보 수정</h3>
-		</div>
-		<div class="row">
-			<form method="post"
-				action="${pageContext.request.contextPath}/designer/designerMyPageUpdateCtrl.do"
-				id="frm" name="frm" onsubmit="return checkValue();"
-				enctype="multipart/form-data">
-				<input type="hidden" name="designer_no"
-					value="${ designer.designer_no}">
+			<hr>
+			<div class="form-group">
+				<br> <label class="col-md-4 control-label">디자이너번호</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="" readonly
+							class="form-control" type="text" value="${designer.designer_no}">
+					</div>
+				</div>
+			</div>
 
-				<table>
-					<tr>
-						<td>디자이너 번호</td>
-						<td>${designer.designer_no}</td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>${designer.designer_name}</td>
-					</tr>
+			<div class="form-group">
+				<label class="col-md-4 control-label">디자이너 이름</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="" readonly
+							class="form-control" type="text"
+							value="${designer.designer_name}">
+					</div>
+				</div>
+			</div>
 
-					<tr>
-						<td>전화번호</td>
-						<td><input id="phoneNum" name="designer_phone" maxlength="13"
-							 onKeyup="inputPhoneNumber(this);" type="text" value="${designer.designer_phone }"></td>
-					</tr>
-					<tr>
-						<td>Email</td>
-						<td>${designer.designer_email}</td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" name="designer_pw"
-							id="designer_pw"></td>
-					</tr>
-					<tr>
-						<td>비밀번호 확인</td>
-						<td><input type="password" name="designer_pw2"
-							id="designer_pw2" /><span></span></td>
+			<div class="form-group">
+				<label class="col-md-4 control-label">Email</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="" readonly
+							class="form-control" type="text"
+							value="${designer.designer_email}">
+					</div>
+				</div>
+			</div>
 
-					</tr>
+			<div class="form-group">
+				<label class="col-md-4 control-label">전화번호</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input id="phoneNum"
+							name="designer_phone" maxlength="13" class="form-control"
+							onKeyup="inputPhoneNumber(this);" type="text"
+							value="${designer.designer_phone }">
+					</div>
+				</div>
+			</div>
 
-					<tr>
-						<td>휴무일</td>
-						<td><input type="text" id="designer_dayoff"
-							name="designer_dayoff" value="${designer.designer_dayoff }"></td>
-					</tr>
-					<tr>
-						<td>근무시작시간</td>
-						<td><input id="work_start_time" name="work_start_time"
-							type="text" value="${designer.work_start_time}"></td>
-					</tr>
-					<tr>
-						<td>근무종료시간</td>
-						<td><input id="work_end_time" name="work_end_time"
-							type="text" value="${designer.work_end_time}"></td>
-					</tr>
-					<tr>
-						<td>프로필</td>
-						<td><textarea id="designer_profile" name="designer_profile"></textarea></td>
-					</tr>
+			<div class="form-group">
+				<label class="col-md-4 control-label">비밀번호 재설정</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="designer_pw"
+							 placeholder="비밀번호를 4~12자까지 입력해주세요."
+							class="form-control" type="password" id="designer_pw">
+					</div>
+					<input  name="designer_pw2" class="form-control"
+						type="password" id="designer_pw2">
+				</div>
+			</div>
 
-				</table>
-				<br> <br>
-				<!-- 				
+			<div class="form-group">
+				<label class="col-md-4 control-label">휴무일</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input
+							name="designer_dayoff" class="form-control" type="text"
+							id="designer_dayoff" value="${designer.designer_dayoff }">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">근무시간</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input
+							name="work_start_time" class="form-control" type="text"
+							id="work_start_time" value="${designer.work_start_time}">
+					</div>
+					<div>
+						<input name="work_end_time" class="form-control" type="text"
+							id="work_end_time" value="${designer.work_end_time}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">프로필</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-pencil"></i></span>
+						<textarea class="form-control" name="designer_profile"
+							id="designer_profile" placeholder=""></textarea>
+					</div>
+				</div>
+			</div>
+			<!-- 				
 				<div>
 					<label for="image">첨부 파일 </label> <input type="file"
 						class="form-control-file" name="file_name" size=30
 						accept=".gif, .jpg, .png" onchange="setThumbnail(event);"><br>
 				</div>
+				
  -->
-				<input type="file" id="image" name="file_name"
-					accept=".gif, .jpg, .png" onchange="setThumbnail(event);" />
-				<div id="image_container"></div>
-				<script>
-					function setThumbnail(event) {
-						var reader = new FileReader();
-						reader.onload = function(event) {
-							var img = document.createElement("img");
-							img.setAttribute("src", event.target.result);
-							document.querySelector("div#image_container")
-									.appendChild(img);
-						};
-						reader.readAsDataURL(event.target.files[0]);
-					}
-				</script>
-				<div>
-					<button>수정하기</button>
-					<button type="reset">초기화</button>
-					<!-- onclick="location.href='/designer/designerMyPageOutput.jsp'" -->
+			<!-- 파일업로드 -->
+
+
+			<div class="form-group">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-4">
+					<div class="fileUpload">
+
+						<input type="file" id="image" name="file_name" class="upload"
+							accept=".gif, .jpg, .png" onchange="setThumbnail(event);" />
+							<span>File Upload</span>
+					</div>
+					<div id="image_container"></div>
 				</div>
-			</form>
-		</div>
+			</div>
+
+			<script>
+				function setThumbnail(event) {
+					var reader = new FileReader();
+					reader.onload = function(event) {
+						var img = document.createElement("img");
+						img.setAttribute("src", event.target.result);
+						document.querySelector("div#image_container")
+								.appendChild(img);
+					};
+					reader.readAsDataURL(event.target.files[0]);
+				}
+			</script>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-4">
+					<button class="btn btn-warning">
+						Update <span class="glyphicon glyphicon-send"></span>
+					</button>
+					<button type="reset" class="btn btn-warning">
+						Reset <span class="glyphicon glyphicon-send"></span>
+					</button>
+				</div>
+			</div>
+
+		</form>
 	</div>
+
 </body>
 </html>

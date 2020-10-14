@@ -37,7 +37,6 @@ public class DesignerUpdateCtrl implements Controller{
 		
 		int resultVo = DesignerDAO.getInstance().update(designerVo);
 		request.setAttribute("designer", resultVo);
-		request.getRequestDispatcher("/hairshop/hairshopMain.jsp").forward(request, response);
+		request.getRequestDispatcher("/designer/designerMain.do").forward(request, response);
 	}
-
 }

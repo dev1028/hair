@@ -26,6 +26,7 @@ public class DesignerInfoCtrl implements Controller{
 		DesignerVo designer = DesignerDAO.getInstance().selectOne(vo);
 		request.setAttribute("designer", designer);
 		System.out.println("designer NO: " + designer.getDesigner_no());
+		System.out.println("입사날 " + designer.getHire_date());
 		request.getRequestDispatcher("/designer/designerUpdate.jsp").forward(request, response);
 	}
 }

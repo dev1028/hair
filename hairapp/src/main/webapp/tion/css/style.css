@@ -1,16 +1,10 @@
 @charset 'UTF-8';
 
 @import
-	url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Sunflower:wght@300&display=swap')
-	;
+	url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 
 @font-face {
-	font-family: 'IBMPlexSansKR-Text';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Text.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
+	font-family: 'Do Hyeon', sans-serif;
 }
 
 /*********************************************************************************/
@@ -62,10 +56,10 @@ footer {
 /* box                                                                        */
 /*********************************************************************************/
 #box {
-	float: right;
-	margin: 1em 1em;
-	display: block;
-	left: 2em;
+	display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 20px
 }
 
 
@@ -75,8 +69,8 @@ footer {
 
 #header {
 	position: relative;
-	/* height: 80px; */
 	background: #FFF;
+	padding: 91.8px;
 }
 
 #header .container {
@@ -90,11 +84,11 @@ clear: both;
 /*********************************************************************************/
 /* Logo                                                                          */
 /*********************************************************************************/
-/* #logo {
+#logo {
 	position: absolute;
-	left: 3em;
-	top: 1.7em;
-} */
+	left: 6em;
+	top: 1.5em;
+}
 .mainLogo {
 	font-family: 'Montserrat', sans-serif;
 	text-decoration: none;
@@ -114,13 +108,50 @@ clear: both;
 }
 
 /*********************************************************************************/
-/* Nav                                                                           */
+/* mainMenu                                                                           */
 /*********************************************************************************/
-#nav {
-	/* 	position: absolute;
-	right: 1em;
-	top: 1.7em; */
-	/* float: right; */
+
+#mainMenu {
+	font-family: 'Do Hyeon', sans-serif;
+}
+#mainMenu1 {
+	position: absolute;
+    top: 120px;
+    left: 400px;
+    width: 200px;
+    height: 60px;
+    background: #00b4cc;
+}
+#mainMenu2 {
+	position:absolute;
+	top:50px;
+	left:500px;
+}
+#mainMenu3 {
+	position:absolute;
+	top:50px;
+	left:600px;
+}
+#mainMenu4 {
+	position:absolute;
+	top:50px;
+	left:700px;
+}
+#mainMenu5 {
+	position:absolute;
+	top:50px;
+	left:800px;
+}
+
+
+
+
+
+/*********************************************************************************/
+/* Nav & tab                                                                     */
+/*********************************************************************************/
+/* #nav {
+	background: #FFF;
 }
 
 #nav>ul>li {
@@ -130,31 +161,85 @@ clear: both;
 
 #nav>ul>li:last-child {
 	padding-right: 0;
-}
+} */
 
-#nav>ul>li>a, #nav>ul>li>span {
-	font-family: 'IBMPlexSansKR-Text';
-	display: block;
-	margin-left: 0.4em;
-	padding: 0.80em 1em;
-	letter-spacing: 0.06em;
-	text-decoration: none;
-	text-transform: uppercase;
-	font-size: 18px;
-	font-weight: 300;
-	outline: 0;
-	color: #252525;
-	outline: 0;
-}
 
-#nav li.active a {
-	background: #99a6d2;
-	border-radius: 5px;
+/* #nav>ul>li>a, #nav>ul>li>span {
+	font-family: 'Do Hyeon', sans-serif;
+    display: block;
+    margin-left: 0.4em;
+    padding: 0px 40px 0px 10px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 300;
+    outline: 0;
+    color: #252525;
+    outline: 0;
+} */
+
+/* #nav li.active a {
 	color: #FFF;
 }
 
 #nav>ul>li>ul {
 	display: none;
+} */
+
+
+
+.tab-wrapper {
+	width: 1200px;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 19px;
+}
+
+.tab-menu {
+	position: absolute;
+    top: 116.4px;
+    left:27%;
+}
+
+.tab-menu li {
+  position:relative;
+  background-color: #f9f9f9;
+  color:#bcbcbc;
+  display: inline-block;
+  padding: 20px 40px;
+  opacity: 0.8;
+  cursor:pointer;
+}
+
+.tab-menu li:hover {
+  color:#464646;
+}
+
+.tab-menu li.active {
+  color:#464646;
+  opacity: 1;
+}
+
+.tab-menu li.active:hover {
+  color:aqua;
+}
+
+.tab-content>div {
+  background-color: #fff;
+  box-sizing:border-box;
+  width: 100%;
+  padding: 50px;   
+  min-height:200px;
+}
+
+.line {
+  position:absolute;
+  width: 0;
+  height: 7px;
+  background-color: aqua;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 
 /*********************************************************************************/

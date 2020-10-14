@@ -17,7 +17,9 @@
 
 	<excludes>
 		<pattern>/ajax/*</pattern>
-
+		<pattern>/members/membersDR*</pattern>
 	</excludes>
+
+
 
 </decorators>

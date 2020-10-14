@@ -21,23 +21,30 @@
 							var mdrStatus = $("#btnstatus").attr("data-status");
 							var mdrNo = $("#mdr_noParent").children()
 									.attr("id");
-							$.ajax({
-										url : "${pageContext.request.contextPath}/ajax/desChangeReservationStatus.do",
-										data : {
-											mdr_status : mdrStatus,
-											mdr_no : mdrNo
-										},
-										dataType : "json",
-										method : "post",
-										success : function(data) {
-											if (data == 0) {
-												alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
-											} else {
-												location.reload();
-												window.opener.location.reload();
-											}
-										}
-									});// end of ajax 
+							var returnData = callAjax(mdrNo, mdrStatus, "N");
+							if(returnData != null){
+								if(returnData == 0 || returnData == -1){
+									alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+								} else if(returnData == 1){
+									reloadAll();
+								} else if(returnData == -2){
+									if(confirm("예약시간 보다 이릅니다. 정말 변경 하시겠습니까?") == true){
+										mdrStatus == "i3" ? alertZero(callAjax(mdrNo, mdrStatus, "Y")) : alert("시술완료 처리는 예약시간전에 변경 할 수 없습니다."); 			
+									} else {
+										return;
+									}
+								} else if(returnData == -3){
+									alert("예약시간 한 시간 전입니다. 변경 할 수 없습니다.");
+								} else if(returnData == 2){
+									alert("시술이 잘 완료되었나요? 해당 예약에 대한 기록을 남겨두세요.");
+									alertZero(callAjax(mdrNo, mdrStatus, "Y"));
+								} else if(returnData == 3){
+									alert("시술이 잘 완료되었나요? 해당 예약에 대한 기록을 남겨두세요.");
+									alertZero(callAjax(mdrNo, mdrStatus, "Y"));
+								} 	
+							} else {
+								alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+							}
 						});
 		$("#savetextArea").on("click", "button", function(){
 			var textInfo = $(this).attr("data-text");
@@ -73,6 +80,44 @@
 		});
 
 	});
+	
+	function alertZero(inData){
+		if(inData != null){
+			if(inData == 0 || inData == -1){
+				alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+			} else {
+				reloadAll();
+			}		
+		} else {
+			alert("시술 변화가 수정되지 않았습니다. 다시 시도해 주세요.");
+		}	
+
+	}
+
+	function reloadAll(){
+		location.reload();
+		window.opener.location.reload();
+	}
+
+
+	function callAjax(mdrNo, mdrStatus, checking){
+		var data2;
+		$.ajax({
+			async : false,
+			url : "${pageContext.request.contextPath}/ajax/desChangeReservationStatus.do",
+			data : {
+				mdr_status : mdrStatus,
+				mdr_no : mdrNo,
+				check : checking
+			},
+			dataType : "json",
+			method : "post",
+			success : function(data) {
+				data2 =data;
+			}		
+		});// end of ajax 
+		return data2;
+	}
 </script>
 
 </head>
