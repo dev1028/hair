@@ -405,7 +405,7 @@ public class HairshopDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
 					+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + " FROM NOTICE "
-					+ " WHERE NOTICE_WHO = 'j2'" + " AND NOTICE_NO = ? ";
+					+ " WHERE NOTICE_WHO = 'j1'" + " AND NOTICE_NO = ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, noticeVo.getNotice_no());
 			rs = pstmt.executeQuery();
@@ -459,7 +459,7 @@ public class HairshopDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "INSERT INTO NOTICE(NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
 					+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME, NOTICE_WHO)"
-					+ " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, sysdate, 0, ?, 50, ?,'j2')";
+					+ " VALUES(NOTICE_NO_SEQ.NEXTVAL, ?, ?, sysdate, 0, ?, 50, ?,'j1')";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, noticeVo.getNotice_title());
 			pstmt.setString(2, noticeVo.getNotice_contents());
@@ -485,7 +485,7 @@ public class HairshopDAO {
 			String sql = "select a.* from (select rownum rn,b.* from ("
 					+ " SELECT NOTICE_NO, NOTICE_TITLE, NOTICE_CONTENTS, NOTICE_WRITEDATE,"
 					+ " NOTICE_HITS, NOTICE_IMAGE, EMP_NO, NOTICE_CATEGORYNAME" + " FROM NOTICE"
-					+ " where notice_who = 'j2'" + " ORDER BY NOTICE_WRITEDATE desc"
+					+ " where notice_who = 'j1'" + " ORDER BY NOTICE_WRITEDATE desc"
 					+ " ) b) a where rn between ? and ?";
 			pstmt = conn.prepareStatement(sql); // 미리 sql 구문이 준비가 되어야한다
 			int pos = 1; // 물음표값 동적으로 하려고 변수선언
@@ -521,7 +521,7 @@ public class HairshopDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			String sql = "SELECT COUNT(*) FROM NOTICE" + " WHERE NOTICE_WHO = 'j2' ";
+			String sql = "SELECT COUNT(*) FROM NOTICE" + " WHERE NOTICE_WHO = 'j1' ";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -581,7 +581,7 @@ public class HairshopDAO {
 		ArrayList<HairshopNoticeVo> list = new ArrayList<HairshopNoticeVo>();
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "SELECT NOTICE_TITLE FROM NOTICE" + " WHERE ROWNUM <=3 AND NOTICE_WHO = 'j2'"
+			String sql = "SELECT NOTICE_TITLE FROM NOTICE" + " WHERE ROWNUM <=3 AND NOTICE_WHO = 'j1'"
 					+ " ORDER BY NOTICE_NO DESC";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();

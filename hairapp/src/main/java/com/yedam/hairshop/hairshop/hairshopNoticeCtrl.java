@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.Paging;
-import com.yedam.hairshop.dao.NoticeDAO;
+import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.HairshopNoticeVo;
 
 public class hairshopNoticeCtrl implements Controller {
@@ -40,7 +40,7 @@ public class hairshopNoticeCtrl implements Controller {
 
 		// 파라미터 VO에 담기
 		HairshopNoticeVo vo = new HairshopNoticeVo();
-		NoticeDAO dao = new NoticeDAO();
+		HairshopDAO dao = new HairshopDAO();
 		
 		paging.setTotalRecord(dao.count(vo)); // dao.count() 쓰면 first,last paging에서 알아서 계산다해주고 카운트에도 넘김
 		vo.setFirst(paging.getFirst()); // first를 dept에 담음

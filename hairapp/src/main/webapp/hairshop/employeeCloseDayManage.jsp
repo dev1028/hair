@@ -234,11 +234,9 @@ $(document).ready(function(){
 		<div class="row">
 			<h3>디자이너 휴무일 관리</h3>
 		</div>
+		<hr>
 		<br>
-		<div class="row">
-			<h6>수정할 디자이너 조회버튼 누르세요</h6>
-		</div>
-		<br>
+
 		<table  id="example-table-1" class="table table-bordered table-hover text-center">
 			<thead>
 				<tr>
