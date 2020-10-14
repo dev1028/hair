@@ -257,6 +257,37 @@ function changePrice(){
 <br><br>
 	<div id="menubar3">
 		<div id="shopdata3">
+			기장과 머릿결 상태 확인 및 수정
+		</div>
+	</div>
+	<br><br>
+	
+<table class="tbl">
+	<tbody>
+		<tr>
+			<th>
+				헤어 기장
+			</th>
+			<td>
+				
+			</td>
+		</tr>
+		<tr>
+			<th>
+				머릿결 상태
+			</th>
+			<td>
+				
+			</td>
+		</tr>
+	</tbody>
+</table>	
+<br><br>	
+	
+	
+	
+	<div id="menubar4">
+		<div id="shopdata4">
 			쿠폰과 결제
 		</div>
 	</div>
