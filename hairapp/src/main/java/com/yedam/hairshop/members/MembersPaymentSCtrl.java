@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
+import com.yedam.hairshop.dao.MembersReservationDAO;
 import com.yedam.hairshop.model.HairShopReviewVo;
 import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
+import com.yedam.hairshop.model.MembersReservationVo;
+import com.yedam.hairshop.model.MembersVo;
+import com.yedam.hairshop.model.PaymentVo;
 
 public class MembersPaymentSCtrl implements Controller {
 
@@ -20,12 +24,31 @@ public class MembersPaymentSCtrl implements Controller {
 		System.out.println("MembersPaymentSCtrl");
 		
 		HairshopVo hsVo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
+		MembersReservationVo payVo = (MembersReservationVo) request.getSession().getAttribute("payVo");
+		
+		MembersReservationDAO dao = MembersReservationDAO.getInstance();
+		MembersReservationVo resultVo = dao.drHairshop(payVo);
+		MembersReservationVo resultVo2 = dao.drHairshop2(payVo);
+		System.out.println("resultVo: " + resultVo);
+		System.out.println("resultVo2: " + resultVo2);
 		
 		
 		// 헤어샵 정보 뿌리는거
 		MembersHairshopVo shop = MembersHairshopDAO.getInstance().selectOne(hsVo);
 		HairShopReviewVo shop2 = MembersHairshopDAO.getInstance().reviewCount(hsVo);
 		HairshopBookmarkVo shop3 = MembersHairshopDAO.getInstance().bookmarkCount(hsVo);
+		
+		
+		// 결과 저장
+		request.setAttribute("list", resultVo);
+		request.setAttribute("list2", resultVo2);
+		
+		request.setAttribute("shop", shop);
+		request.setAttribute("shop2", shop2);
+		request.setAttribute("shop3", shop3);
+
+		// 페이지 이동
+		request.getRequestDispatcher("paymentSuccess.jsp").forward(request, response);
 
 	}
 
