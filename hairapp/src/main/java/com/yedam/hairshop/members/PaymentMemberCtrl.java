@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.MembersDAO;
 import com.yedam.hairshop.dao.PaymentDAO;
 import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
@@ -33,10 +34,25 @@ public class PaymentMemberCtrl implements Controller {
 		
 		System.out.println("PaymentMemberCtrl");
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+		
 		try {
 			if(memVo == null)
 				throw new Exception("memVo is null");
-		
+
+			String hairLength = request.getParameter("hairLength");
+			if(hairLength == null)
+				throw new Exception("hairLength is null");
+			
+			String hairStatus = request.getParameter("hairStatus");
+			if(hairStatus == null)
+				throw new Exception("hairStatus is null");
+			
+			memVo.setMem_hair_length(hairLength);
+			memVo.setMem_hair_status(hairStatus);
+			
+			int r = MembersDAO.getInstance().updateHairInfo(memVo);
+			System.out.println(r + "건 헤어 정보 업데이트 됨");
+			
 			HttpSession session = request.getSession();
 			List<HairshopHairInfoVo> listHairInfoVo = (List<HairshopHairInfoVo>) session.getAttribute("selListHairInfoVo");
 			if(listHairInfoVo == null)

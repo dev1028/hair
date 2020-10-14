@@ -380,6 +380,23 @@ public class MembersDAO {
 		return r;
 	}
 
+	public int updateHairInfo(MembersVo vo) {
+		int r = 0;
+		try {
+			String sql = " UPDATE MEMBERS SET MEM_HAIR_LENGTH = ?, MEM_HAIR_STATUS = ? " 
+					   + " WHERE MEM_EMAIL = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMem_hair_length());
+			pstmt.setString(2, vo.getMem_hair_status());
+			pstmt.setString(3, vo.getMem_email());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
+	
 	/**
 	 * 아이디 중복체크를 한다.
 	 * 
