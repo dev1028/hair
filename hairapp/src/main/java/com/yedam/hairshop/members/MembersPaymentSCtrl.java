@@ -14,8 +14,6 @@ import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
 import com.yedam.hairshop.model.MembersReservationVo;
-import com.yedam.hairshop.model.MembersVo;
-import com.yedam.hairshop.model.PaymentVo;
 
 public class MembersPaymentSCtrl implements Controller {
 
