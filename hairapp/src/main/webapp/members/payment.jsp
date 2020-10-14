@@ -304,7 +304,7 @@ $(function(){
 				요청 사항
 			</th>
 			<td>
-				<textarea id="reqHairshop" name="reqHairshop" rows="4" cols="50" placeholder="요청사항을 적어주세요."></textarea>
+				<textarea id="mdr_request" name="mdr_request" rows="4" cols="50" placeholder="요청사항을 적어주세요."></textarea>
 			</td>
 		</tr>
 	</tbody>

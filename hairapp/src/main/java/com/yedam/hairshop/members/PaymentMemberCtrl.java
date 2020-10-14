@@ -47,6 +47,7 @@ public class PaymentMemberCtrl implements Controller {
 			if(hairStatus == null)
 				throw new Exception("hairStatus is null");
 			
+			
 			memVo.setMem_hair_length(hairLength);
 			memVo.setMem_hair_status(hairStatus);
 			
@@ -67,6 +68,10 @@ public class PaymentMemberCtrl implements Controller {
 			if(hour == null)
 				throw new Exception("hour is null");
 
+			String mdr_request = request.getParameter("mdr_request");;
+			if(mdr_request == null)
+				mdr_request = "";
+			
 			HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
 			DesignerVo designerVo = (DesignerVo) session.getAttribute("selDesignerVo");
 			
@@ -77,10 +82,12 @@ public class PaymentMemberCtrl implements Controller {
 			payVo.setDesigner_no(designerVo.getDesigner_no());
 			payVo.setMdr_date(date + " " + hour);
 			payVo.setUse_saved_money(use_saved_money);
+			payVo.setMdr_request(mdr_request);
 			System.out.println(payVo.getMdr_date());
 			payVo.setHhi_no1("-1");
 			payVo.setHhi_no2("-1");
 			payVo.setHhi_no3("-1");
+			
 			
 			if(listHairInfoVo.size() > 0)
 				payVo.setHhi_no1(listHairInfoVo.get(0).getHhi_no());
