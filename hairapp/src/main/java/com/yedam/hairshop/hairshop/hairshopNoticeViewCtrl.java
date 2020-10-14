@@ -15,24 +15,34 @@ public class hairshopNoticeViewCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("공지사항 보기");
-		String notice_no = request.getParameter("notice_no");
-		String notice_title = request.getParameter("notice_title");
-		String notice_contents = request.getParameter("notice_contents");
-		
+
+		String admin = request.getSession().getAttribute("admin").toString();
+
+		// 파라미터
 		HairshopNoticeVo vo = new HairshopNoticeVo();
-		
-		vo.setNotice_no(notice_no);
-		vo.setNotice_title(notice_title);
-		vo.setNotice_contents(notice_contents);
-		
+		String noticeNo = request.getParameter("notice_no");
+		String noticeHit = request.getParameter("notice_hit");
+		System.out.println();
+		System.out.println("noticeNo: " + noticeNo);
+		System.out.println("noticeHit: " + noticeHit);
+		vo.setNotice_no(noticeNo);
+		// vo.setNotice_no(noticeHit);
+
+		// DB 조회
 		HairshopNoticeVo resultVo = HairshopDAO.getInstance().noticeView(vo);
-		int hit =HairshopDAO.getInstance().hitUpdate(vo);
+		int hitup = HairshopDAO.getInstance().upHit(vo);
+		System.out.println("notice vo 나와라: " + vo);
+		System.out.println("hitup: " + hitup);
+
+		// 결과 저장
 		request.getSession().setAttribute("view", resultVo);
-		request.getSession().setAttribute("viewNo",resultVo.getNotice_no());
-		request.getSession().setAttribute("hit", hit);
-		
+		request.getSession().setAttribute("viewNo", resultVo.getNotice_no());
+		request.getSession().setAttribute("hit", hitup);
+		request.getSession().setAttribute("admin", admin);
+		// request.setAttribute("view", resultVo);
+
 		request.getRequestDispatcher("hairshopNoticeView.jsp").forward(request, response);
-		
+
 	}
 
 }

@@ -145,7 +145,11 @@ import com.yedam.hairshop.hairshop.employeeCloseDayManageUCtrl;
 import com.yedam.hairshop.hairshop.hairshopJoinCtrl;
 import com.yedam.hairshop.hairshop.hairshopMainCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeDCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeMCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeMGCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeViewCtrl;
+import com.yedam.hairshop.hairshop.hairshopNoticeWGCtrl;
 import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
@@ -299,14 +303,18 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerInfo.do", new DesignerInfoCtrl());
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		// list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
-
-		list.put("/hairshop/hairshopNotice.do", new hairshopNoticeCtrl());
+		
+		list.put("/hairshop/hairshopNotice.do", new hairshopNoticeCtrl());//공지사항
+	    list.put("/hairshop/hairshopNoticeWG.do", new hairshopNoticeWGCtrl());
 		list.put("/hairshop/hairshopNoticeWrite.do", new hairshopNoticeWriteCtrl());
 		list.put("/hairshop/hairshopNoticeView.do", new hairshopNoticeViewCtrl());
+		list.put("/hairshop/hairshopNoticeMG.do", new hairshopNoticeMGCtrl());
+		list.put("/hairshop/hairshopNoticeM.do", new hairshopNoticeMCtrl());
+		list.put("/hairshop/hairshopNoticeD.do", new hairshopNoticeDCtrl());
 
 		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
 		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
-		// list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
+		list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
 		list.put("/hairshop/HairshopCouponCtrl.do", new HairshopCouponCtrl());
 		list.put("/hairshop/HairshopCouponListCtrl.do", new HairshopCouponListCtrl());
 		list.put("/hairshop/HairshopCouponInsertCtrl.do", new HairshopCouponInsertCtrl());

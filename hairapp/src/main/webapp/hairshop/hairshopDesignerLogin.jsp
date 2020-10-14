@@ -76,7 +76,7 @@ $(function() {
 				<h3 class="masthead-brand">우동</h3>
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="#">Home</a> <a class="nav-link" href="#">AboutUs</a>
-					<a class="nav-link" href="#">공지사항</a> 
+					<a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairshopNotice.do">공지사항</a> 
 						<a class="nav-link" href="#">QnA</a>
 				</nav>
 			</div>
