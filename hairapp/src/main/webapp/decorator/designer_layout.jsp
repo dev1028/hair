@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +33,14 @@
 	display: block;
 	clear: both;
 } */
+.sidenavself{
+	 position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+   overflow-x: hidden;
+}
 </style>
 <decorator:head></decorator:head>
 <script>
@@ -45,12 +53,47 @@
 				alert("값을 입력해주세요");
 			} else {
 				$("#siteSearchCustomerFrm").submit();
-			}
+			}		
 		});
 		findNext();
 		var dated = new Date();  //or use any other date
 		var rounded = new Date(Math.ceil(dated.getTime() / coeff) * coeff)
 		setTimeout(IntervalOn, rounded-dated);
+		
+		
+		
+		
+		
+
+	<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/desHairInfoList.do") != -1
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/desFindHairInfo.do") != -1 
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/desHairInfoDetail.do") != -1 
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/desHairInfoFullList.do") != -1}'>
+			$("#navbarDropdown1").addClass("active");
+	</c:if>	
+	<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/analysisSalesGo.do") != -1
+		 || fn:indexOf(pageContext.request.requestURI,"강산아 여기얼른 통계정보 넣어라") != -1}'>
+		$("#navbarDropdown2").addClass("active");
+	</c:if>		 
+	<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/desDailyReservationList.do") != -1
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/desWeeklyReservationList.do") != -1 
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/desMonthlyReservationList.do") != -1
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/findMyCustomer.do") != -1 
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/findMyCustomerDetail.do") != -1  
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/findMycustomerRe.do") != -1}'>	
+		$("#navbarDropdown3").addClass("active");
+	</c:if>	
+	<c:if test='${fn:indexOf(pageContext.request.requestURI,"송현씨 여기다 써라") != -1
+		 || fn:indexOf(pageContext.request.requestURI,"/designer/designerMyPageCtrl.do") != -1}'>
+	$("#navbarDropdown3").addClass("active");
+	</c:if>	
+		
+		
+		
+		
+		
+		
+		
 	});
 
 	function IntervalOn(){
@@ -214,7 +257,7 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar sidenavself">
 				<div class="sidebar-sticky">
 					<div>
 						<br> <br>
@@ -223,25 +266,87 @@
 
 					<div>
 						<h5>디자이너 ${login.designer_name}님</h5>
+						<hr>
+							<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/designerMain.do") != -1}'>
+
 						<ul class="nav flex-column">
-
-
-							<li class="nav-item"><a class="nav-link active" href="#">
-									<span data-feather="home"></span> Home <span class="sr-only">(current)</span>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desDailyReservationList.do"> <span
+									data-feather="hairinfo">일간예약</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="shopping-cart"></span> Products
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do"> <span
+									data-feather="hairinfo">주간예약</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="users"></span> Customers
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desMonthlyReservationList.do"> <span
+									data-feather="hairinfo">월간예약</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="bar-chart-2"></span> Reports
-							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="layers"></span> Integrations
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/findMycustomerRe.do"> <span
+									data-feather="hairinfo">예약자찾기</span> 
 							</a></li>
 						</ul>
+						</c:if>
+						
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/desHairInfoList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/desFindHairInfo.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/desHairInfoDetail.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/desHairInfoFullList.do") != -1}'>
+
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desHairInfoList.do"> <span
+									data-feather="hairinfo">시술목록</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desFindHairInfoGo.do"> <span
+									data-feather="hairinfo">시술검색</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/analysisSalesGo.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"강산아 여기얼른 통계정보 넣어라") != -1}'>
+
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/analysisSalesGo.do"> <span
+									data-feather="hairinfo">매출정보</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="hairinfo">통계정보</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/designer/desDailyReservationList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/desWeeklyReservationList.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/desMonthlyReservationList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/findMyCustomer.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/findMyCustomerDetail.do") != -1  
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/findMycustomerRe.do") != -1}'>
+
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desDailyReservationList.do"> <span
+									data-feather="hairinfo">일간예약</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desWeeklyReservationList.do"> <span
+									data-feather="hairinfo">주간예약</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/desMonthlyReservationList.do"> <span
+									data-feather="hairinfo">월간예약</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/findMycustomerRe.do"> <span
+									data-feather="hairinfo">예약자찾기</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"송현씨 여기다 써라") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/designer/designerMyPageCtrl.do") != -1}'>
+
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="#"> <span
+									data-feather="hairinfo">프로필</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do"> <span
+									data-feather="hairinfo">내정보 수정</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						
+						
 						<div>
 							<hr>
 
@@ -283,7 +388,7 @@
 								tabindex="-1" aria-disabled="true">회원관리</a></li>
 							
 							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 시술관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -295,7 +400,7 @@
 								</div></li>
 								
 								<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 매출통계 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -307,7 +412,7 @@
 								</div></li>
 					
 							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 예약관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -321,11 +426,16 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/findMyCustomer.do">예약자찾기</a>
 								</div></li>
-
-
-							<li class="nav-item"><a class="nav-link"
-								href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">마이페이지</a></li>
-
+							<li class="nav-item dropdown"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown4"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> 마이페이지</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item"
+										href="#">프로필</a>
+									<a class="dropdown-item"
+										href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">내정보 수정</a>
+								</div></li>
 
 <!-- 
 							<li class="nav-item"><a class="nav-link disabled" href="#"
@@ -343,7 +453,7 @@
 							<button id="siteSearchCustomerBtn" type="button"
 								class="btn btn-secondary btn-sm">Search</button>
 						</form>
-						<a href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
+						<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
 					</div>
 				</nav>
 			</div>

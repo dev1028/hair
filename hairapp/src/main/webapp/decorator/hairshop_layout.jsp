@@ -43,6 +43,24 @@
   height: 100%;
    overflow-x: hidden;
 }
+
+.footerself {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+#footer { 
+            position: fixed; 
+            padding: 10px 10px 0px 10px; 
+            bottom: 0; 
+            width: 100%; 
+            /* Height of the footer*/  
+            height: 40px; 
+            background: grey; 
+        } 
 </style>
 <decorator:head></decorator:head>
 <script>
@@ -61,29 +79,19 @@
 		var rounded = new Date(Math.ceil(dated.getTime() / coeff) * coeff)
 		setTimeout(IntervalOn, rounded-dated);
 		
-		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoFullList.do") != -1
-			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoInsert.do") != -1
-			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairNameRequest.do") != -1
-			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoList.do") != -1			 
-			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoDetail.do") != -1 }'>
-			$("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoFullList.do") != -1|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoInsert.do") != -1|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairNameRequest.do") != -1|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoList.do") != -1|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoDetail.do") != -1 }'>
 			$("#navbarDropdown1").addClass("active");
 		</c:if>
-		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeList.do") != -1
-			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/retiredEmployeeList.do") != -1 
-			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeCloseDayManage.do") != -1 }'>
-			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeList.do") != -1|| fn:indexOf(pageContext.request.requestURI,"/hairshop/retiredEmployeeList.do") != -1|| fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeCloseDayManage.do") != -1 }'>
 			$("#navbarDropdown2").addClass("active");
 		</c:if>
 		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/salesStatistics.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/salesStatisticsByDesigner.do") != -1}'>
-			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
 			$("#navbarDropdown3").addClass("active");
 		</c:if>
 		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisMonthly.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisByTreat.do") != -1 
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisDesignerTotal.do") != -1 }'>
-			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
 				$("#navbarDropdown4").addClass("active");
 		</c:if>
 		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/dailyReservationList.do") != -1
@@ -93,19 +101,16 @@
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMyCustomer.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMyCustomerDetail.do") != -1 
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMycustomerRe.do") != -1 }'>
-			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
 			$("#navbarDropdown5").addClass("active");
 		</c:if>
 		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCouponCtrl.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCouponListCtrl.do") != -1}'>
-			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
 				$("#navbarDropdown6").addClass("active");
 		</c:if>	
 		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopInfo.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopInfoUpdate.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopProfile.do") != -1
 			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCloseDayManage.do") != -1}'>
-			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
 			$("#navbarDropdown7").addClass("active");
 		</c:if>		 
 	});
@@ -432,7 +437,7 @@
 				</div>
 			</nav>
 			<div class="block">
-				<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+				<nav class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top">
 					<a class="navbar-brand"
 						href="${pageContext.request.contextPath}/hairshop/hairshopMain.do">${sessionScope.login.hs_name}</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -559,17 +564,13 @@
 				</nav>
 			</div>
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-				<decorator:body></decorator:body>
-				<div>
-					<br> <br> <br>
-				</div>
-				<div></div>
+				<decorator:body></decorator:body>			
+				
 			</main>
+			<div id="footer">This is a footer. 
+                      This stays at the bottom of the page. 
+                  </div> 
 		</div>
-
-
-
-
 
 	</div>
 
