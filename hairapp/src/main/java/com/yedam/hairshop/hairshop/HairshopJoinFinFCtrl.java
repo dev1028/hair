@@ -80,7 +80,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 			});
 			
 			task.start();
-			response.sendRedirect("/hairapp/hairshop/hairJoinSuccess.jsp");
+			response.sendRedirect("/hairapp/hairshop/hairshopJoinSuccess.jsp");
 
 		}
 

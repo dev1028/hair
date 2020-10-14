@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.MembersDAO;
 import com.yedam.hairshop.dao.PaymentDAO;
 import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.HairshopHairInfoVo;
@@ -33,10 +34,25 @@ public class PaymentMemberCtrl implements Controller {
 		
 		System.out.println("PaymentMemberCtrl");
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
+		
 		try {
 			if(memVo == null)
 				throw new Exception("memVo is null");
-		
+
+			String hairLength = request.getParameter("hairLength");
+			if(hairLength == null)
+				throw new Exception("hairLength is null");
+			
+			String hairStatus = request.getParameter("hairStatus");
+			if(hairStatus == null)
+				throw new Exception("hairStatus is null");
+			
+			memVo.setMem_hair_length(hairLength);
+			memVo.setMem_hair_status(hairStatus);
+			
+			int r = MembersDAO.getInstance().updateHairInfo(memVo);
+			System.out.println(r + "건 헤어 정보 업데이트 됨");
+			
 			HttpSession session = request.getSession();
 			List<HairshopHairInfoVo> listHairInfoVo = (List<HairshopHairInfoVo>) session.getAttribute("selListHairInfoVo");
 			if(listHairInfoVo == null)
@@ -65,6 +81,7 @@ public class PaymentMemberCtrl implements Controller {
 			payVo.setHhi_no1("-1");
 			payVo.setHhi_no2("-1");
 			payVo.setHhi_no3("-1");
+			
 			if(listHairInfoVo.size() > 0)
 				payVo.setHhi_no1(listHairInfoVo.get(0).getHhi_no());
 			if(listHairInfoVo.size() > 1)
@@ -73,16 +90,27 @@ public class PaymentMemberCtrl implements Controller {
 				payVo.setHhi_no3(listHairInfoVo.get(2).getHhi_no());
 			
 			
-//			// 나중에 마일리지 쿠폰 등등을 실제 금액 계산해야함.
-			int mdrNo = PaymentDAO.getInstance().onlinePay(payVo);
-			System.out.println("mdrNo: " + mdrNo);
-			if(mdrNo > 0) {
-				session.setAttribute("mdrNo", String.valueOf(mdrNo));
+			int mdrNo = PaymentDAO.getInstance().onlinePayi0(payVo);
+			if(mdrNo >= 0) {
 				request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
-			}else {
+				payVo.setMdr_no(String.valueOf(mdrNo));
+				session.setAttribute("payVo", payVo);
+				System.out.println("결제 대기 상태로 돌임");
+			}
+			else {
 				request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
 				System.out.println("예약 불가능한 시간.");
 			}
+			
+//			int mdrNo = PaymentDAO.getInstance().onlinePay(payVo);
+//			System.out.println("mdrNo: " + mdrNo);
+//			if(mdrNo > 0) {
+//				session.setAttribute("mdrNo", String.valueOf(mdrNo));
+//				request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
+//			}else {
+//				request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
+//				System.out.println("예약 불가능한 시간.");
+//			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

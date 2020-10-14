@@ -207,6 +207,7 @@ import com.yedam.hairshop.members.MembersNoticeMGCtrl;
 import com.yedam.hairshop.members.MembersNoticeVCtrl;
 import com.yedam.hairshop.members.MembersNoticeWCtrl;
 import com.yedam.hairshop.members.MembersNoticeWGCtrl;
+import com.yedam.hairshop.members.MembersPaymentSCtrl;
 import com.yedam.hairshop.members.MembersPwEmailCtrl;
 import com.yedam.hairshop.members.MembersPwEndCtrl;
 import com.yedam.hairshop.members.MembersPwModifyCtrl;
@@ -264,18 +265,18 @@ public class FrontController extends HttpServlet {
 		list.put("/members/designerSelect.do", new DesignerSelectCtrl());
 		list.put("/members/designerSelectResult.do", new DesignerSelectResultCtrl());
 
-		list.put("/members/regionHairshopRank.do", new RegionHairshopRankCtrl()); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", new RegionDesignerRankCtrl()); // 우리동네 디자이너 순위
-		list.put("/members/regionHairRank.do", new RegionHairRankCtrl()); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", new RegionHairshopRankCtrl()); 		// 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", new RegionDesignerRankCtrl()); 		// 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", new RegionHairRankCtrl()); 				// 헤어 순위
 
 		list.put("/members/payment.do", new PaymentCtrl());
-		list.put("/members/paymentMember.do", new PaymentMemberCtrl()); // 회원결제
-		list.put("/members/paymentImport.do", new PaymentImportCtrl());
+		list.put("/members/paymentMember.do", new PaymentMemberCtrl()); 				// 회원결제
+		list.put("/members/paymentImport.do", new PaymentImportCtrl());					// 실제 결제 처리 페이지
 
-		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl()); // 리뷰 이동용
-		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());
-		list.put("/members/membersInsert.do", new TestController());
-		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
+		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl()); 				// 리뷰 이동용
+		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());	// 헤ㅔ어샵 리뷰 삽입
+		list.put("/members/membersInsert.do", new TestController());					//
+		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());				// GSP 설정
 
 		list.put("/ajax/changeDesigner.do", new ChangeDesignerCtrl());
 		list.put("/ajax/chkCoupon.do", new ChkCouponCtrl());
@@ -367,6 +368,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hsEventIntro.do", new MembersHsEventIntroCtrl()); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
 		list.put("/members/hsCouponIssuance.do", new MembersHsCouponICtrl()); // 헤어샵 안의 쿠폰 발급해주는 컨트롤러
 		list.put("/members/hsReviewIntro.do", new MembersHsReviewIntrolCtrl()); // 헤어샵 안의 리뷰보기 컨트롤러
+		list.put("/members/paymentS.do", new MembersPaymentSCtrl());	// 헤어샵 예약완료 후 결제완료 페이지로 이동
 		
 		list.put("/members/membersNotice.do", new MembersNoticeCtrl()); // 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl()); // 공지사항 글쓰기로 이동하는 컨트롤러

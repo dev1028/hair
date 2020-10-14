@@ -7,16 +7,15 @@
 <title>헤어살롱 메인페이지</title>
 
 
-<script src="${pageContext.request.contextPath}/hairshop/hairshopMainChart.js"></script>
+<script
+	src="${pageContext.request.contextPath}/hairshop/hairshopMainChart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {	
 	
 	var calendarEl = document.getElementById('calendar');	
 	var calendar = new FullCalendar.Calendar(calendarEl, {	
 		schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',	
-		initialView : 'resourceTimeGridDay',
-		  contentHeight: 700,
-		expandRows : true,
+		initialView : 'listDay',
 	 	businessHours: {
 			  // days of week. an array of zero-based day of week integers (0=Sunday)
 			  daysOfWeek: JSON.parse('${dayonList}'),//, // Monday - Thursday
@@ -41,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			    	           
 			    	          
 			    	        	$.ajax({
-			    	        	    url: "${pageContext.request.contextPath}/ajax/dailyReservationListAj.do",
+			    	        	    url: "${pageContext.request.contextPath}/ajax/monthlyReservationListAj.do",
 			    	        	    type: "POST",
 			    	        	    data: {
 			    	        	    	startDate : info.startStr,
@@ -151,28 +150,28 @@ document.addEventListener('DOMContentLoaded', function() {
 	calendar.render();
 }); 
 
-function getFormatDate(date){
-    var year = date.getFullYear();              //yyyy
-    var month = (1 + date.getMonth());          //M
-    month = month >= 10 ? month : '0' + month;  //month 두자리로 저장
-    var day = date.getDate();                   //d
-    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
-    return  year + '/' + month + '/' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
-}	
+
+
+	function getFormatDate(date) {
+		var year = date.getFullYear(); //yyyy
+		var month = (1 + date.getMonth()); //M
+		month = month >= 10 ? month : '0' + month; //month 두자리로 저장
+		var day = date.getDate(); //d
+		day = day >= 10 ? day : '0' + day; //day 두자리로 저장
+		return year + '/' + month + '/' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
+	}
 </script>
 </head>
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<br>
-			<br>
-			<br>
+			<br> <br> <br>
 		</div>
-			
+
 		<div class="row">
 			<div class="col">
 				<h3>
-					주간 스케줄 <br>
+					일간 스케줄 <br>
 					<button type="button" class="btn btn-outline-primary btn-sm"
 						disabled>
 						총 현황 <span class="badge badge-light" id="countDailyAll"></span>
@@ -193,26 +192,20 @@ function getFormatDate(date){
 				<hr>
 			</div>
 		</div>
-	
 
-		</div>
+
+	</div>
 		<div class="row">
-			<div class="col-9">
+			<div class="col-6">
 				<div id='calendar'></div>
 			</div>
-			<div class="col-3">
-				<div id="chart_div"></div>
-				<div class="container-fluid">
-					<div class="btn-group btn-group-toggle" data-toggle="buttons">
-						<label class="btn btn-secondary active"> <input
-							type="radio" name="options" id="option1" checked> 일
-						</label> <label class="btn btn-secondary"> <input type="radio"
-							name="options" id="option2"> 주
-						</label>
-					</div>
-				</div>
+			<div class="col-6">
+			<div class="container-fluid">
+				<div id="str"></div>
+				<div id="chart_div" style="width: 500px; height: 300px;"></div>
+				
 			</div>
 		</div>
-	
+	</div>
 </body>
 </html>

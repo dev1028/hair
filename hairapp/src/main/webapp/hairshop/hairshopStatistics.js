@@ -205,9 +205,8 @@ $(function() {
 		tr.append($("<th>").text("디자이너  "));
 		tr.append($("<th>").text("시술명 "));
 		tr.append($("<th>").text("카드  "));
-		tr.append($("<th>").text("현금  "));
-		tr.append($("<th>").text("카카오  "));
-		tr.append($("<th>").text("계좌  "));
+		tr.append($("<th>").text("포인트  "));
+		tr.append($("<th>").text("쿠폰  "));
 		tr.append($("<th>").text("총합  "));
 
 		table.append(tr);
@@ -223,37 +222,37 @@ $(function() {
 				},
 			  success:  function(obj) {
 					var card = 0;
-					var cash = 0;
-					var kakao = 0;
-					var account = 0;
-					var ammount = 0;
+					var point = 0;
+					var coupon = 0;
+				
+					var totalAmountRsv = 0;
 					console.log(obj);
 					obj.forEach(function(o, i, u) {
 
 						var tr = $("<tr />");
-						card += parseInt(o.cd);
-						cash += parseInt(o.cs);
-						kakao += parseInt(o.ka);
-						account += parseInt(o.ac);
-						ammount += parseInt(o.to);
-						tr.append($("<td>").text(o.mdrDt));
+						card += parseInt(o.card);
+						point += parseInt(o.point);
+						coupon += parseInt(o.coupon);
+					
+						totalAmountRsv += parseInt(o.totalAmountRsv);
+						tr.append($("<td>").text(o.mdrDate));
 						tr.append($("<td>").text(o.mdrNo));
-						tr.append($("<td>").text(o.memNm));
-						tr.append($("<td>").text(o.dsNm));
-						tr.append($("<td>").text(o.hNm));
-						tr.append($("<td>").text(o.cd));
-						tr.append($("<td>").text(o.cs));
-						tr.append($("<td>").text(o.ka));
-						tr.append($("<td>").text(o.ac));
-						tr.append($("<td>").text(o.to));
+						tr.append($("<td>").text(o.memName));
+						tr.append($("<td>").text(o.dsName));
+						tr.append($("<td>").text(o.hName));
+						tr.append($("<td>").text(o.card));
+						tr.append($("<td>").text(o.point));
+						tr.append($("<td>").text(o.coupon));
+					
+						tr.append($("<td>").text(o.totalAmountRsv));
 						table.append(tr);
 					})
 
 			var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
 					$("<td>").text(obj.length), $("<td>"), $("<td>"),
-					$("<td>").text(card), $("<td>").text(cash),
-					$("<td>").text(kakao), $("<td>").text(account),
-					$("<td>").text(ammount)
+					$("<td>").text(card), $("<td>").text(point),
+					$("<td>").text(coupon), 
+					$("<td>").text(totalAmountRsv)
 
 			).css('color', 'red');
 

@@ -368,7 +368,10 @@ public class MembersDAO {
 			pstmt.setString(1, vo.getMem_latitude_longitude());
 			pstmt.setString(2, vo.getMem_addr());
 			pstmt.setString(3, vo.getMem_addr());
-			pstmt.setString(4, vo.getMem_addr().split(" ")[2]);
+			if(vo.getMem_addr().split(" ").length > 2)
+				pstmt.setString(4, vo.getMem_addr().split(" ")[2]);
+			else
+				pstmt.setString(4, "");
 			pstmt.setString(5, vo.getMem_email());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -377,6 +380,23 @@ public class MembersDAO {
 		return r;
 	}
 
+	public int updateHairInfo(MembersVo vo) {
+		int r = 0;
+		try {
+			String sql = " UPDATE MEMBERS SET MEM_HAIR_LENGTH = ?, MEM_HAIR_STATUS = ? " 
+					   + " WHERE MEM_EMAIL = ?";
+			conn = ConnectionManager.getConnnect();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMem_hair_length());
+			pstmt.setString(2, vo.getMem_hair_status());
+			pstmt.setString(3, vo.getMem_email());
+			r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
+	
 	/**
 	 * 아이디 중복체크를 한다.
 	 * 

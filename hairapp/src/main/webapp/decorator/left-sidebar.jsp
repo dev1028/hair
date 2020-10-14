@@ -133,6 +133,14 @@
 	top: 64px;
 	color: red;
 }
+
+/* 맨위에 선 */
+#mainLine {
+	width:100%;
+	height: 5px;
+	background-color: #00B4CC;
+	z-index: 9999;
+}
 </style>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -184,6 +192,59 @@
 	});
 	 */
 </script>
+<script>
+/* ul */
+/* $(document).ready(function() {
+	  
+	  var $wrapper = $('.tab-wrapper'),
+	      $allTabs = $wrapper.find('.tab-menu > ul'),
+	      $tabMenu = $wrapper.find('.tab-menu li'),
+	      $line = $('<div class="line"></div>').appendTo($tabMenu);
+	  
+	  $allTabs.not(':first-of-type').hide();  
+	  $tabMenu.find(':first').width('100%');
+	  
+	  $tabMenu.each(function(i) {
+	    $(this).attr('data-tab', 'tab'+i);
+	  });
+	  
+	  $allTabs.each(function(i) {
+	    $(this).attr('data-tab', 'tab'+i);
+	  });
+	  
+	  $tabMenu.on('click', function() {
+	    
+	    var dataTab = $(this).data('tab'),
+	        $getWrapper = $(this).closest($wrapper);
+	    
+	    $getWrapper.find($tabMenu).removeClass('active');
+	    $(this).addClass('active');
+	    
+	    $getWrapper.find('.line').width(0);
+	    $(this).find($line).animate({'width':'100%'}, 'fast');
+	    $getWrapper.find($allTabs).hide();
+	    $getWrapper.find($allTabs).filter('[data-tab='+dataTab+']').show();
+	  });
+
+	});//end ready */
+	
+	
+	function menuGo1() {
+        location.href="myRegionSetting.do";
+    }
+	function menuGo2() {
+        location.href="gpsHairshopSearch.do";
+    }
+	function menuGo3() {
+        location.href="regionHairshopRank.do";
+    }
+	function menuGo4() {
+        location.href="regionDesignerRank.do";
+    }
+	function menuGo5() {
+        location.href="regionHairRank.do";
+    }
+</script>
 <decorator:head></decorator:head>
 </head>
 <body>
@@ -225,34 +286,54 @@
 			<!-- Logo -->
 			<div id="logo">
 				<h1>
-					<a class="mainLogo"
-						href="${pageContext.request.contextPath}/members/membersMain.do">UDONG</a>
+					<img src="../images/members/udong.png" style="width: 100px; height: 80px;">
+					<a class="mainLogo"href="${pageContext.request.contextPath}/members/membersMain.do">UDONG#</a>
 				</h1>
 			</div>
 
-			<!-- Nav -->
-			<div id="nav">
-				<ul>
-					<li><a
-						href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네설정</a>
+			<!-- tab-wrapper -->
+			<div class="tab-wrapper">
+				<ul class="tab-menu">
+					<li class="active" onclick="menuGo1()">
+						우리동네설정
 					</li>
-					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/gpsHairshopSearch.do">우리동네
-							미용실 모아보기</a></li>
-					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/regionHairshopRank.do">우리동네
-							미용실 순위</a></li>
-					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/regionDesignerRank.do">우리동네
-							디자이너 순위</a></li>
-
-					<li class="navi"><a
-						href="${pageContext.request.contextPath}/members/regionHairRank.do">인기
-							헤어 순위</a></li>
+					<li class="active" onclick="menuGo2()">
+						미용실 모아보기
+					</li>
+					<li class="active" onclick="menuGo3()">
+						미용실 순위
+					</li>
+					<li class="active" onclick="menuGo4()">
+						디자이너 순위
+					</li>
+					<li class="active" onclick="menuGo5()">
+						헤어 순위
+					</li>
 				</ul>
 			</div>
+			
+			<!-- 메뉴 -->
+			<%-- <div id="mainMenu">
+				<div>
+					<a href="${pageContext.request.contextPath}/members/myRegionSetting.do">우리동네 설정</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/members/gpsHairshopSearch.do">우리동네 미용실 모아보기</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/members/regionHairshopRank.do">우리동네 미용실 순위</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/members/regionDesignerRank.do">우리동네 디자이너 순위</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/members/regionHairRank.do">인기헤어 순위</a>
+				</div>
+			</div> --%>
+			
 		</div>
 	</div>
+	<div id="mainLine"></div><br>
 
 	<!-- Main -->
 	<div id="main">

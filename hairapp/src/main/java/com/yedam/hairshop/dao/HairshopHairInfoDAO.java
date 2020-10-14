@@ -82,15 +82,17 @@ public class HairshopHairInfoDAO {
 	}
 
 	// 헤어샵에 포함된 헤어정보 리스트
-	public List<HairshopHairInfoVo> selectListHairshopHairInfo_InHairshop(HairshopVo hairshopVo) {
+	public List<HairshopHairInfoVo> selectListHairshopHairInfo_InHairshop(HairshopVo hairshopVo, String status) {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
 		ResultSet rs = null;
 		try {
 			String sql = " SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no"
-					+ " FROM hairshop_hair_info hi, hairshop hs " + " WHERE hi.hs_no = hs.hs_no AND hs.hs_no = ?";
+					+ " FROM hairshop_hair_info hi, hairshop hs " + " WHERE hi.hs_no = hs.hs_no AND hs.hs_no = ? "
+					+ " AND hi.hhi_status = ?";
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hairshopVo.getHs_no());
+			pstmt.setString(2, status);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				HairshopHairInfoVo vo = new HairshopHairInfoVo();

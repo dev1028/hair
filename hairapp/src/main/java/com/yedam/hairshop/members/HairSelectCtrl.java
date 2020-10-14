@@ -28,7 +28,7 @@ public class HairSelectCtrl implements Controller{
 		HairshopVo vo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
 		if(vo != null)
 		{
-			List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo);
+			List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectListHairshopHairInfo_InHairshop(vo, "1");
 			request.setAttribute("list", list);
 			
 			

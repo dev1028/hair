@@ -23,6 +23,19 @@ body {
 	background-color: gray;
 	padding: 5px 15px;
 }
+
+.imagebox {
+	width: 80px;
+	height: 80px;
+	border-radius: 70%;
+	overflow: hidden;
+}
+
+.imageprofile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 </style>
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
@@ -36,8 +49,6 @@ body {
 <script type="text/javascript">
 var rsvjsonlist = ${rsvjsonlist};
 var salesjsonlist = ${salesjsonlist};var ratejsonlist = ${ratejsonlist};
-
-
 
 function chart() {
 
@@ -110,6 +121,8 @@ function chart() {
 					datatable.push([ datas.rank + "위",
 							parseInt(datas.hr_rate), datas.designer_name ]);
 				
+
+
 				//
 			}
 	
@@ -408,123 +421,143 @@ function chart() {
 		<div class="tab-content clearfix">
 			<div class="tab-pane active" id="1b">
 				<div id="chart_divrsv"></div>
-				<div class="table-responsive" id="result">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
-
-						<thead>
-							<tr>
-								<th>순위</th>
-								<th>사진</th>
-								<th>이름</th>
-								<th>예약수</th>
-
-								<th>전월대비</th>
-								<th>전월대비순위</th>
-							</tr>
-						</thead>
-						<tbody id="tbody">
-							<c:forEach items="${rsvlist }" var="l">
-								<tr>
-
-									<td>${ l.rank}</td>
-									<td>사진</td>
-									<td>${ l.designer_name}</td>
-
-									<td>${l.cnt }</td>
 
 
-
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<button id="excel">excel</button>
-					<button id="email">email</button>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-2">순위</div>
+						<div class="col-sm-2">사진</div>
+						<div class="col-sm-2">이름</div>
+						<div class="col-sm-2">예약수</div>
+						<div class="col-sm-2">전월대비</div>
+						<div class="col-sm-2">전월대비순위</div>
+					</div>
 				</div>
 
 
 
-			</div>
-			<div class="tab-pane" id="2b">
-				<div id="chart_divsales"></div>
-				<div class="table-responsive" id="result">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
 
-						<thead>
+
+
+				<c:forEach items="${rsvlist }" var="l">
+					<div class="row">
+						<div class="col-sm-3">${ l.rank}</div>
+						<div class="imagebox col-sm-3">
+							<img id="imgDes" onerror="this.src='../images/no_img.gif'"
+						
+								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+								class="img-fluid imageprofile">
+
+						</div>
+						<div class="col-sm-3">${ l.designer_name}</div>
+						<div class="col-sm-3">${l.cnt }</div>
+
+
+
+					</div>
+
+				</c:forEach>
+
+
+
+
+
+
+
+				<button id="excel">excel</button>
+				<button id="email">email</button>
+			</div>
+
+
+
+		</div>
+		<div class="tab-pane" id="2b">
+			<div id="chart_divsales"></div>
+			<div class="table-responsive" id="result">
+				<table class="table table-bordered" id="dataTable" width="100%"
+					cellspacing="0">
+
+					<thead>
+						<tr>
+							<th>순위</th>
+							<th>사진</th>
+							<th>이름</th>
+							<th>매출</th>
+
+							<th>전월대비</th>
+							<th>전월대비순위</th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+						<c:forEach items="${saleslist }" var="l">
 							<tr>
-								<th>순위</th>
-								<th>사진</th>
-								<th>이름</th>
-								<th>매출</th>
 
-								<th>전월대비</th>
-								<th>전월대비순위</th>
+								<td>${ l.rank}</td>
+								<td><img id="imgDes"
+									onerror="this.src='../images/no_img.gif'"
+									src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+									class="img-fluid"></td>
+								<td>${ l.designer_name}</td>
+
+								<td>${l.sales }</td>
+
+
+
 							</tr>
-						</thead>
-						<tbody id="tbody">
-							<c:forEach items="${saleslist }" var="l">
-								<tr>
-
-									<td>${ l.rank}</td>
-									<td>사진</td>
-									<td>${ l.designer_name}</td>
-
-									<td>${l.sales }</td>
-
-
-
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<button id="excel">excel</button>
-					<button id="email">email</button>
-				</div>
-			</div>
-			<div class="tab-pane" id="3b">
-				<div id="chart_divrate"></div>
-				<div class="table-responsive" id="result">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
-
-						<thead>
-							<tr>
-								<th>순위</th>
-								<th>사진</th>
-								<th>이름</th>
-								<th>평점</th>
-
-								<th>전월대비</th>
-								<th>전월대비순위</th>
-							</tr>
-						</thead>
-						<tbody id="tbody">
-							<c:forEach items="${ratelist }" var="l">
-								<tr>
-
-									<td>${ l.rank}</td>
-									<td>사진</td>
-									<td>${ l.designer_name}</td>
-
-									<td>${l.hr_rate }</td>
-
-
-
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<button id="excel">excel</button>
-					<button id="email">email</button>
-				</div>
-			</div>
-			<div class="tab-pane" id="4b">
-				<h3>We use css to change the background color of the content to
-					be equal to the tab</h3>
+						</c:forEach>
+					</tbody>
+				</table>
+				<button id="excel">excel</button>
+				<button id="email">email</button>
 			</div>
 		</div>
+		<div class="tab-pane" id="3b">
+			<div id="chart_divrate"></div>
+			<div class="table-responsive" id="result">
+				<table class="table table-bordered" id="dataTable" width="100%"
+					cellspacing="0">
+
+					<thead>
+						<tr>
+							<th>순위</th>
+							<th>사진</th>
+							<th>이름</th>
+							<th>평점</th>
+
+							<th>전월대비</th>
+							<th>전월대비순위</th>
+						</tr>
+					</thead>
+					<tbody id="tbody">
+
+						<c:forEach items="${ratelist }" var="l">
+
+							<tr>
+
+								<td>${ l.rank}</td>
+								<td><img id="imgDes"
+									onerror="this.src='../images/no_img.gif'"
+									src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+									class="img-fluid"></td>
+								<td>${ l.designer_name}</td>
+
+								<td>${l.hr_rate }</td>
+
+
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<button id="excel">excel</button>
+				<button id="email">email</button>
+			</div>
+		</div>
+		<div class="tab-pane" id="4b">
+			<h3>We use css to change the background color of the content to
+				be equal to the tab</h3>
+		</div>
+	</div>
 	</div>
 
 

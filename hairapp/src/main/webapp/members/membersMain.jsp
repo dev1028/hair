@@ -384,22 +384,39 @@ form.example::after {
 }
 
 
-/* 공지사항 큐앤에이 */
+/* 공지사항 큐앤에이와 맨 밑 */
 #qnaNotice {
 	justify-content: center; /* 가로에서 센터 */
 	align-items: center;	 /* 세로에서 센터 */
 	text-align: center;
 	display: flex;
+	background: #f5f5f5;
+	height: 200px
 }
 #notice {
 	float: left;
 	text-align: left;
-	margin:30px 50px 100px;
+	margin:110px 90px 100px;
 }
 #qna {
 	float: left;
 	text-align: left;
-	margin:30px 50px 100px;
+	margin:110px 90px 100px;
+}
+
+#copyrightMem {
+	text-align: center;
+    margin: 100px 0px 0px;
+    width: 100%;
+    height: 150px;
+    background: #f5f5f5;
+    font-size: 13.5px;
+    padding: 25px;
+    color: #585858;
+}
+
+#goHair {
+	text-align: end;
 }
 
 /* 더보기버튼 */
@@ -643,6 +660,17 @@ form.example::after {
 		
 		</div>
 		<!-- 여기까지 공지사항과 QnA 뿌려주는거 -->
+		
+		
+		<div id="copyrightMem">
+			상호 : UDONG#  |  만든이 : 김린아, 김강산, 김승연, 이상민, 이송현<br>
+			주소 : 대구 중구 국채보상로 537  |  git주소 : <a href="https://github.com/dev1028/hair" target="_blank">https://github.com/dev1028/hair</a><br>
+			서비스 이용문의 및 서비스 제휴문의 : udong1023@gmail.com<br>
+			<a href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do" target="_blank">혹시 미용실 사이트로 가시고 싶으시면 여기를 클릭해주세요</a><br><br><br>
+			Copyright © UDONG#. All Rights Reserved.
+		</div>
+		
+		
 		
 	</div>
 
