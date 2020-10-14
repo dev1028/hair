@@ -13,6 +13,28 @@
 	    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 	    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
 	    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+	    
+	    .buttons {
+		    width: 97%;
+		    font-size: 16px;
+		    font-weight: 600;
+		    color: #fff;
+		    cursor: pointer;
+		    margin: 20px;
+		    height: 55px;
+		    text-align:center;
+		    border: none;
+		    background-size: 300% 100%;
+		
+		    border-radius: 50px;
+		    moz-transition: all .4s ease-in-out;
+		    -o-transition: all .4s ease-in-out;
+		    -webkit-transition: all .4s ease-in-out;
+		    transition: all .4s ease-in-out;
+		    
+		    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+		    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+		}
 	</style>
 </head>
 <body>
@@ -126,7 +148,7 @@ marker.setMap(map);
 			<input type="hidden" name="lng" value = "0">
 			<input type="hidden" name="roadAddress" value = "">
 			<input type="hidden" name="addr" value = "">
-			<input type="button" value="버튼">
+			<input type="button" class="buttons" value="위치 갱신">
 </form>
 <script>
 		$( ".frmRegion" ).click(function() {

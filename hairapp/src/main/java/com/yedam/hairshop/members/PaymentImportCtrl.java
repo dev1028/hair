@@ -28,28 +28,37 @@ public class PaymentImportCtrl implements Controller {
 //		System.out.println(paid_amount);
 //		System.out.println(apply_num);
 		
-		if(suc.equals("suc"))
-		{
-			String mdrNo =  (String) request.getSession().getAttribute("mdrNo");
-			if(mdrNo != null) {
-				PaymentVo vo = new PaymentVo();
-				vo.setMdr_no(String.valueOf(mdrNo));
-				int r = PaymentDAO.getInstance().onlinePaySuc(vo);
-				System.out.println(r + "건 예약처리됨");
-			}else {
-				System.out.println("예약 번호를 확인할 수 없음.");
-			}
-		}else if(suc.equals("failed")) {
-			String mdrNo =  (String) request.getSession().getAttribute("mdrNo");
-			if(mdrNo != null) {
-				PaymentVo vo = new PaymentVo();
-				vo.setMdr_no(String.valueOf(mdrNo));
-				int r = PaymentDAO.getInstance().onlinePayFailed(vo);
-				System.out.println(r + "건 삭제됨");
-			}else {
-				System.out.println("예약 번호를 확인할 수 없음.");
-			}
+		PaymentVo payVo = (PaymentVo) request.getSession().getAttribute("payVo");
+		if(suc.equals("suc")) {
+			PaymentDAO.getInstance().onlinePayi1(payVo);
+			System.out.println("결제 완료 프로시저 실행");
+		}else {
+			int r = PaymentDAO.getInstance().onlinePayFailed(payVo);
+			System.out.println(r + "건 삭제됨");
 		}
+		
+//		if(suc.equals("suc"))
+//		{
+//			String mdrNo =  (String) request.getSession().getAttribute("mdrNo");
+//			if(mdrNo != null) {
+//				PaymentVo vo = new PaymentVo();
+//				vo.setMdr_no(String.valueOf(mdrNo));
+//				int r = PaymentDAO.getInstance().onlinePaySuc(vo);
+//				System.out.println(r + "건 예약처리됨");
+//			}else {
+//				System.out.println("예약 번호를 확인할 수 없음.");
+//			}
+//		}else if(suc.equals("failed")) {
+//			String mdrNo =  (String) request.getSession().getAttribute("mdrNo");
+//			if(mdrNo != null) {
+//				PaymentVo vo = new PaymentVo();
+//				vo.setMdr_no(String.valueOf(mdrNo));
+//				int r = PaymentDAO.getInstance().onlinePayFailed(vo);
+//				System.out.println(r + "건 삭제됨");
+//			}else {
+//				System.out.println("예약 번호를 확인할 수 없음.");
+//			}
+//		}
 	}
 
 }

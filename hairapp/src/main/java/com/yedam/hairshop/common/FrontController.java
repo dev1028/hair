@@ -260,18 +260,18 @@ public class FrontController extends HttpServlet {
 		list.put("/members/designerSelect.do", new DesignerSelectCtrl());
 		list.put("/members/designerSelectResult.do", new DesignerSelectResultCtrl());
 
-		list.put("/members/regionHairshopRank.do", new RegionHairshopRankCtrl()); // 우리동네 미용실 순위
-		list.put("/members/regionDesignerRank.do", new RegionDesignerRankCtrl()); // 우리동네 디자이너 순위
-		list.put("/members/regionHairRank.do", new RegionHairRankCtrl()); // 헤어 순위
+		list.put("/members/regionHairshopRank.do", new RegionHairshopRankCtrl()); 		// 우리동네 미용실 순위
+		list.put("/members/regionDesignerRank.do", new RegionDesignerRankCtrl()); 		// 우리동네 디자이너 순위
+		list.put("/members/regionHairRank.do", new RegionHairRankCtrl()); 				// 헤어 순위
 
 		list.put("/members/payment.do", new PaymentCtrl());
-		list.put("/members/paymentMember.do", new PaymentMemberCtrl()); // 회원결제
-		list.put("/members/paymentImport.do", new PaymentImportCtrl());
+		list.put("/members/paymentMember.do", new PaymentMemberCtrl()); 				// 회원결제
+		list.put("/members/paymentImport.do", new PaymentImportCtrl());					// 실제 결제 처리 페이지
 
-		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl()); // 리뷰 이동용
-		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());
-		list.put("/members/membersInsert.do", new TestController());
-		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());
+		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl()); 				// 리뷰 이동용
+		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());	// 헤ㅔ어샵 리뷰 삽입
+		list.put("/members/membersInsert.do", new TestController());					//
+		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());				// GSP 설정
 
 		list.put("/ajax/changeDesigner.do", new ChangeDesignerCtrl());
 		list.put("/ajax/chkCoupon.do", new ChkCouponCtrl());

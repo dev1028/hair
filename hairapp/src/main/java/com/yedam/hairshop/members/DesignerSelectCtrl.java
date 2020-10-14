@@ -38,6 +38,7 @@ public class DesignerSelectCtrl implements Controller{
 		
 		HttpSession session = request.getSession();
 		HairshopVo hairshopVo = (HairshopVo) session.getAttribute("selHairshopVo");
+		session.setAttribute("hs_dayoff", hairshopVo.getHs_dayoff());
 		
 		DesignerVo vo = new DesignerVo();
 		vo.setHs_no(hairshopVo.getHs_no());

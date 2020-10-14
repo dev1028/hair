@@ -81,7 +81,8 @@ public class MembersLoginSCtrl implements Controller {
 				
 				String addr = resultVO.getMem_addr();
 				if(addr != null) {
-					sess.setAttribute("township", addr.split(" ")[2]);
+					if(addr.split(" ").length > 2)
+						sess.setAttribute("township", addr.split(" ")[2]);
 				}
 				
 				request.getSession().setAttribute("login", resultVO);

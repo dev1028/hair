@@ -174,6 +174,11 @@ $(function() {
 		dateFormat : 'yy-mm-dd',
 		minDate: 0,
 	//	onSelect: changeDesigner
+		beforeShowDay: function(date){
+			var day = date.getDay();
+ 			return [("${sessionScope.hs_dayoff}".indexOf(day) == -1)]
+			//return [(day != 0 && day != 1 && day != 3 && day != 4 && day != 6)];
+		}
 	});
 	$("#date").datepicker( "setDate", new Date());
 	$('#timepicker_start').timepicker({
