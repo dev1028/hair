@@ -5,129 +5,223 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-	//비밀번호 확인
-	/* function isSame() {
-	 var pw = document.twin.wUserPW.value;
-	 var confirmPW = document.twin.wUserPWConfirm.value;
-	 if (pw.length < 6 || pw.length > 16) {
-	 window.alert('비밀번호는 6글자 이상, 16글자 이하만 이용 가능합니다.');
-	 document.getElementById('pw').value=document.getElementById('pwCheck').value='';
-	 document.getElementById('same').innerHTML='';
-	 }
-	 if(document.getElementById('pw').value!='' && document.getElementById('pwCheck').value!='') {
-	 if(document.getElementById('pw').value==document.getElementById('pwCheck').value) {
-	 document.getElementById('same').innerHTML='비밀번호가 일치합니다.';
-	 document.getElementById('same').style.color='blue';
-	 }
-	 else {
-	 document.getElementById('same').innerHTML='비밀번호가 일치하지 않습니다.';
-	 document.getElementById('same').style.color='red';
-	 }
-	 }
-	 }
-	
-	 /* 	function inputCheck() {
-	 // 필수입력 체크
-	 if (frm.phone.value == "") {
-	 window.alert("번호 입력 ㄱ");
-	 frm.phone.focus();
-	 return false;
-	 }
-	 if (frm.holiday.value == "") {
-	 alert("휴무일 입력ㄱ");
-	 frm.holiday.focus();
-	 return false;
-	 }
-	 if (frm.workstart.value == "") {
-	 alert("근무시작시간 입력 ㄱ");
-	 frm.workstart.focus();
-	 return false;
-	
-	 if (frm.workend.value == "") {
-	 alert("근무종료시간 입력ㄱ");
-	 frm.workend.focus();
-	 return false;
-	 }
-	 return true;
-	 } */
-</script>
+<script type="text/javascript">
+	function inputPhoneNumber(obj) {
 
+		var number = obj.value.replace(/[^0-9]/g, "");
+		var phone = "";
+
+		if (number.length < 4) {
+			return number;
+		} else if (number.length < 7) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3);
+		} else if (number.length < 11) {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 3);
+			phone += "-";
+			phone += number.substr(6);
+		} else {
+			phone += number.substr(0, 3);
+			phone += "-";
+			phone += number.substr(3, 4);
+			phone += "-";
+			phone += number.substr(7);
+		}
+		obj.value = phone;
+	}
+
+	// 필수 입력정보인 아이디, 비밀번호가 입력되었는지 확인하는 함수
+	function checkValue() {
+		if (document.frm.designer_phone.value == "") {
+			alert("전화번호 입력하지 않았습니다.")
+			document.frm.designer_phone.focus();
+			return false;
+		}
+		//비밀번호 입력여부 체크
+		if (document.frm.designer_pw.value == "") {
+			alert("비밀번호를 입력하지 않았습니다.")
+			document.frm.designer_pw.focus();
+			return false;
+		}
+
+		//비밀번호 길이 체크(4~8자 까지 허용)
+		if (document.frm.designer_pw.value.length<4 || document.frm.designer_pw.value.length>12) {
+			alert("비밀번호를 4~12자까지 입력해주세요.")
+			document.frm.designer_pw.focus();
+			document.frm.designer_pw.select();
+			return false;
+		}
+		//비밀번호와 비밀번호 확인 일치여부 체크
+		if (document.frm.designer_pw.value != document.frm.designer_pw2.value) {
+			alert("비밀번호가 일치하지 않습니다")
+			document.frm.designer_pw2.value = ""
+			document.frm.designer_pw2.focus();
+			return false;
+		}
+
+		if (document.frm.designer_dayoff.value == "") {
+			alert("휴무일 입력하지 않았습니다.")
+			document.frm.designer_dayoff.focus();
+			return false;
+		}
+		if (document.frm.work_start_time.value == "") {
+			alert("근무시작시간  입력하지 않았습니다.")
+			document.frm.work_start_time.focus();
+			return false;
+		}
+		if (document.frm.work_end_time.value == "") {
+			alert("근무종료시간 입력하지 않았습니다.")
+			document.frm.work_end_time.focus();
+			return false;
+		}
+
+		/* 		$(document).on("keyup", ".phoneNumber", function() { 
+		 $(this).val( $(this).val().replace(/[^0-9]/g, "")
+		 .replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
+		 */
+	}
+</script>
 </head>
 <body>
 	<div class="container">
+		<br> <br> <br>
 
-		<div class="row">
-			<br>
-			<br>
-			<br>
-		</div>
+		<form method="post" action="${pageContext.request.contextPath}/designer/designerUpdate.do"
+			id="frm" name="frm" onsubmit="return checkValue();">
+			<input type="hidden" name="designer_no"
+				value="${designer.designer_no}">
 
-		<h3>디자이너 정보 업데이트</h3>
-		<div class="row">
-			<form method="post"
-				action="${pageContext.request.contextPath}/designer/designerUpdate.do"
-				id="frm">
-				<input type="hidden" name="designer_no"
-					value="${ designer.designer_no}">
-				<table>
-					<tr>
-						<td>디자이너 번호</td>
-						<td>${designer.designer_no}</td>
-					</tr>
-					<tr>
-						<td>이름</td>
-						<td>${designer.designer_name}</td>
-					</tr>
-					<tr>
-						<td>전화번호</td>
-						<td><input id="designer_phone" name="designer_phone"
-							type="text" value="${designer.designer_phone }"></td>
-					</tr>
-					<tr>
-						<td>Email</td>
-						<td>${designer.designer_email}</td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" name="designer_pw"
-							id="designer_pw" onchange="isSame()"></td>
-					</tr>
-					<!-- 			<tr>
-				<td>비밀번호 확인</td>
-				<td><input type="password" name="wUserPWConfirm" id="pwCheck" onchange="isSame()" />&nbsp;&nbsp;<span id="same"></span></td>
-			</tr> -->
-					<tr>
-						<td>휴무일</td>
-						<td><input type="text" id="designer_dayoff"
-							name="designer_dayoff" value="${designer.designer_dayoff }"></td>
-					</tr>
-					<tr>
-						<td>근무시작시간</td>
-						<td><input id="work_start_time" name="work_start_time"
-							type="text" value="${designer.work_start_time}"></td>
-					</tr>
-					<tr>
-						<td>근무종료시간</td>
-						<td><input id="work_end_time" name="work_end_time"
-							type="text" value="${designer.work_end_time}"></td>
-					</tr>
-					<tr>
-						<td>입사날짜</td>
-						<td><input id="hire_date" name="hire_date" type="date"></td>
-					</tr>
-					<tr>
-						<td>프로필</td>
-						<td><textarea id="designer_profile" name="designer_profile"></textarea></td>
-					</tr>
-				</table>
-				<div class="row">
-					<button>수정하기</button>
-					<button type="reset">초기화</button>
+			<h3>입력하는 순간 노예 시작</h3>
+			<hr>
+			<div class="form-group">
+				<br> <label class="col-md-4 control-label">디자이너번호</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="" readonly
+							class="form-control" type="text" value="${designer.designer_no}">
+					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">디자이너 이름</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="" readonly
+							class="form-control" type="text"
+							value="${designer.designer_name}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">Email</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="" readonly
+							class="form-control" type="text"
+							value="${designer.designer_email}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">전화번호</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input id="phoneNum"
+							name="designer_phone" maxlength="13" class="form-control"
+							onKeyup="inputPhoneNumber(this);" type="text"
+							value="${designer.designer_phone }">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">비밀번호 설정</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="designer_pw"
+							placeholder="비밀번호를 4~12자까지 입력해주세요." class="form-control"
+							type="password" id="designer_pw">
+					</div>
+					<input name="designer_pw2" class="form-control" type="password"
+						id="designer_pw2">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">휴무일</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input
+							name="designer_dayoff" class="form-control" type="text"
+							id="designer_dayoff" value="${designer.designer_dayoff }">
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">근무시간</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input
+							name="work_start_time" class="form-control" type="text"
+							id="work_start_time" value="${designer.work_start_time}">
+					</div>
+					<div>
+						<input name="work_end_time" class="form-control" type="text"
+							id="work_end_time" value="${designer.work_end_time}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">입사날짜</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input id="hire_date"
+							name="hire_date" class="form-control" type="date">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label">프로필</label>
+				<div class="col-md-4 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-pencil"></i></span>
+						<textarea class="form-control" name="designer_profile"
+							id="designer_profile" placeholder=""></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-4">
+					<button class="btn btn-warning">
+						Update <span class="glyphicon glyphicon-send"></span>
+					</button>
+					<button type="reset" class="btn btn-warning">
+						Reset <span class="glyphicon glyphicon-send"></span>
+					</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

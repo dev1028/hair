@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +34,15 @@
 	display: block;
 	clear: both;
 } */
+
+.sidenavself{
+	 position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+   overflow-x: hidden;
+}
 </style>
 <decorator:head></decorator:head>
 <script>
@@ -51,12 +60,60 @@
 		var dated = new Date();  //or use any other date
 		var rounded = new Date(Math.ceil(dated.getTime() / coeff) * coeff)
 		setTimeout(IntervalOn, rounded-dated);
+		
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoFullList.do") != -1
+			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoInsert.do") != -1
+			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairNameRequest.do") != -1
+			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoList.do") != -1			 
+			|| fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoDetail.do") != -1 }'>
+			$("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+			$("#navbarDropdown1").addClass("active");
+		</c:if>
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeList.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/retiredEmployeeList.do") != -1 
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeCloseDayManage.do") != -1 }'>
+			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+			$("#navbarDropdown2").addClass("active");
+		</c:if>
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/salesStatistics.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/salesStatisticsByDesigner.do") != -1}'>
+			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+			$("#navbarDropdown3").addClass("active");
+		</c:if>
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisMonthly.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisByTreat.do") != -1 
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisDesignerTotal.do") != -1 }'>
+			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+				$("#navbarDropdown4").addClass("active");
+		</c:if>
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/dailyReservationList.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/weeklyReservationList.do") != -1 
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/monthlyReservationList.do") != -1 
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hairshopProcedureFinishList.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMyCustomer.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMyCustomerDetail.do") != -1 
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMycustomerRe.do") != -1 }'>
+			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+			$("#navbarDropdown5").addClass("active");
+		</c:if>
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCouponCtrl.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCouponListCtrl.do") != -1}'>
+			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+				$("#navbarDropdown6").addClass("active");
+		</c:if>	
+		<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopInfo.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopInfoUpdate.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopProfile.do") != -1
+			 || fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCloseDayManage.do") != -1}'>
+			 $("#navbarDropdown1,#navbarDropdown2,#navbarDropdown3,#navbarDropdown4,#navbarDropdown5,#navbarDropdown6,#navbarDropdown7").removeClass("active");
+			$("#navbarDropdown7").addClass("active");
+		</c:if>		 
 	});
 	
 	function IntervalOn(){
 		findNext();
 		setInterval(function() {
-			console.log("interval 반복중")
+			//console.log("interval 반복중")
 			findNext();
 		}, 300000);
 	}
@@ -212,35 +269,147 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-				<div class="sidebar-sticky">
+			<nav class="col-md-2 d-none d-md-block bg-light sidebar sidenavself">
+				<div class="sidebar-sticky ">
 					<div>
 						<br> <br>
 						<hr>
 					</div>
 
 					<div>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/hairshopMain.do") != -1}'>
+						
 						<ul class="nav flex-column">
-							<li class="nav-item"><a class="nav-link active" href="#">
-									<span data-feather="home"></span> Dashboard <span
-									class="sr-only">(current)</span>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/dailyReservationList.do"> <span
+									data-feather="hairinfo">일간예약</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="file"></span> Orders
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do"> <span
+									data-feather="hairinfo">주간예약</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="shopping-cart"></span> Products
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do"> <span
+									data-feather="hairinfo">월간예약</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="users"></span> Customers
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishList.do"> <span
+									data-feather="hairinfo">시술완료고객</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="bar-chart-2"></span> Reports
-							</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"> <span
-									data-feather="layers"></span> Integrations
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do"> <span
+									data-feather="hairinfo">예약자 찾기</span> 
 							</a></li>
 						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoFullList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoInsert.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hairNameRequest.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hairInfoDetail.do") != -1 }'>
+
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairInfoList.do"> <span
+									data-feather="hairinfo">시술목록</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairInfoInsert.do"> <span
+									data-feather="hairinfo">시술등록</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do"> <span
+									data-feather="hairinfo">시술명 신청</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/retiredEmployeeList.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/employeeCloseDayManage.do") != -1 }'>
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/employeeList.do"> <span
+									data-feather="hairinfo">직원목록</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/retiredEmployeeList.do"> <span
+									data-feather="hairinfo">퇴사자목록</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do"> <span
+									data-feather="hairinfo">디자이너 휴무일</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/salesStatistics.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/salesStatisticsByDesigner.do") != -1}'>
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/salesStatistics.do"> <span
+									data-feather="hairinfo">매출분석</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/salesStatisticsByDesigner.do"> <span
+									data-feather="hairinfo">직원별 매출</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisMonthly.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisByTreat.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/analysisDesignerTotal.do") != -1 }'>
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/analysisMonthly.do"> <span
+									data-feather="hairinfo">월별결산</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do"> <span
+									data-feather="hairinfo">시술별 통계</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do"> <span
+									data-feather="hairinfo">디자이너 통계</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/dailyReservationList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/weeklyReservationList.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/monthlyReservationList.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hairshopProcedureFinishList.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMyCustomer.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMyCustomerDetail.do") != -1 
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/hsFindMycustomerRe.do") != -1 }'>
+						
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/dailyReservationList.do"> <span
+									data-feather="hairinfo">일간예약</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/weeklyReservationList.do"> <span
+									data-feather="hairinfo">주간예약</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/monthlyReservationList.do"> <span
+									data-feather="hairinfo">월간예약</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairshopProcedureFinishList.do"> <span
+									data-feather="hairinfo">시술완료고객</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do"> <span
+									data-feather="hairinfo">예약자 찾기</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCouponCtrl.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCouponListCtrl.do") != -1}'>
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/HairshopCouponCtrl.do"> <span
+									data-feather="hairinfo">쿠폰등록</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/HairshopCouponListCtrl.do"> <span
+									data-feather="hairinfo">쿠폰리스트</span> 
+							</a></li>
+						</ul>
+						</c:if>
+						<c:if test='${fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopInfo.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopInfoUpdate.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/myHairshopProfile.do") != -1
+						 || fn:indexOf(pageContext.request.requestURI,"/hairshop/HairshopCloseDayManage.do") != -1}'>
+						<ul class="nav flex-column">
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/myHairshopInfo.do"> <span
+									data-feather="hairinfo">마이페이지</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/myHairshopProfile.do"> <span
+									data-feather="hairinfo">프로필</span> 
+							</a></li>
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/HairshopCloseDayManage.do"> <span
+									data-feather="hairinfo">미용실 휴무일</span> 
+							</a></li>
+				
+						</ul>
+						</c:if>
 						<div>
 							<hr>
 
@@ -282,7 +451,7 @@
 								tabindex="-1" aria-disabled="true">회원관리</a></li>
 
 								<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 시술관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -296,7 +465,7 @@
 								</div></li>
 	
 								<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown2"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 직원관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -309,7 +478,7 @@
 										class="dropdown-item" href="${pageContext.request.contextPath}/hairshop/employeeCloseDayManage.do">디자이너 휴무일</a>
 								</div></li>
 								<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 매출관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -319,7 +488,7 @@
 								</div></li>
 								
 								<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown4"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 분석통계 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -331,7 +500,7 @@
 								
 								
 							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown5"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 예약관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -351,7 +520,7 @@
 
 								
 							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown6"
 									role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 쿠폰관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -360,7 +529,7 @@
 								</div></li>
 
 									<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle active" href="#" id="navbarDropdown"
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown7"
 								role="button" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false"> 미용실정보관리 </a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -375,6 +544,7 @@
 								
 						</ul>
 						<!-- class="form-inline my-2 my-lg-0" -->
+						
 						<form id="siteSearchCustomerFrm"
 						action="${pageContext.request.contextPath}/hairshop/hsFindMyCustomer.do"
 							method="post">
@@ -384,7 +554,7 @@
 							<input type="text" id="siteInputSearch" name="inputSearch" placeholder="예약자찾기" aria-label="Search">
 							<button id="siteSearchCustomerBtn" type="button" class="btn btn-secondary btn-sm">Search</button>
 						</form>
-						<a href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
+						<a class="btn btn-primary btn-sm"href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
 					</div>
 				</nav>
 			</div>

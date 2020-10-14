@@ -299,9 +299,9 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		// list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
 
-		list.put("/hairshop/hairshopNoticeCtrl.do", new hairshopNoticeCtrl());
-		list.put("/hairshop/hairshopNoticeWriteCtrl.do", new hairshopNoticeWriteCtrl());
-		list.put("/hairshop/hairshopNoticeViewCtrl.do", new hairshopNoticeViewCtrl());
+		list.put("/hairshop/hairshopNotice.do", new hairshopNoticeCtrl());
+		list.put("/hairshop/hairshopNoticeWrite.do", new hairshopNoticeWriteCtrl());
+		list.put("/hairshop/hairshopNoticeView.do", new hairshopNoticeViewCtrl());
 
 		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
 		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
@@ -359,7 +359,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hsEventIntro.do", new MembersHsEventIntroCtrl()); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
 		list.put("/members/hsCouponIssuance.do", new MembersHsCouponICtrl()); // 헤어샵 안의 쿠폰 발급해주는 컨트롤러
 		list.put("/members/hsReviewIntro.do", new MembersHsReviewIntrolCtrl()); // 헤어샵 안의 리뷰보기 컨트롤러
-
+		
 		list.put("/members/membersNotice.do", new MembersNoticeCtrl()); // 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", new MembersNoticeWGCtrl()); // 공지사항 글쓰기로 이동하는 컨트롤러
 		list.put("/members/membersNoticeW.do", new MembersNoticeWCtrl()); // 공지사항 글쓰기 컨트롤러
