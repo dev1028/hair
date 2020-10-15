@@ -93,6 +93,7 @@ import com.yedam.hairshop.hairshop.AnalysisTreatTableCtrl;
 import com.yedam.hairshop.hairshop.AnalysisTreatTableGoCtrl;
 import com.yedam.hairshop.hairshop.ChangeReservationStatusAjCtrl;
 import com.yedam.hairshop.hairshop.ChartCtrl;
+import com.yedam.hairshop.hairshop.CheckDesignerTimeAjCtrl;
 import com.yedam.hairshop.hairshop.CheckSameHhiNameAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
@@ -551,6 +552,9 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myParkingChange.do", new MyParkingChangeCtrl()); //주차장 사용여부 변경
 		list.put("/hairshop/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", new MyHairshopInfoUpdateFrmFCtrl()); //미용실 정보업데이트처리
+		list.put("/ajax/checkDesignerTime.do" , new CheckDesignerTimeAjCtrl()); // 디자이너 시간 확인
+		
+		
 		
 		list.put("/ajax/imgView.do", new ImgViewCtrl()); //클라이언트에 이미지 다운로드 시키기 (뷰) //img_name, img_path
 		list.put("/ajax/hairDeslogout.do", new HairDesLogoutCtrl()); // 미용실,헤어샵 로그아웃 처리

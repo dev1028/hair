@@ -25,6 +25,23 @@ $(function(){
 			return false;
 		}
 		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/ajax/checkDesignerTime.do",
+			data : {
+				hs_starttime : $("#hs_starttime").val(),
+				hs_endtime : $("#hs_endtime").val()
+			},
+			dataType : "json",
+			method : "post",
+			success : function(data) {
+				if (data == 0) {
+					//가능
+				} else {
+					//불가능
+				}
+			}
+		});// end of ajax 
+		
 	});
 	
 	$("#hs_tel").on("focusout", nCheck);

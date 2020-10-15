@@ -465,5 +465,28 @@ public class DesignerDAO {
 		return list;
 	}
 	
-	
+	//2020.10.15 김승연
+	//영업시간 외 디자이너 근무시간 조회
+	public int selectDesStartEndTime(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT COUNT(*) FROM DESIGNER WHERE HS_NO = ? AND (WORK_START_TIME < ? OR WORK_END_TIME > ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dVo.getHs_no());
+			pstmt.setString(2, dVo.getWork_start_time());
+			pstmt.setString(3, dVo.getWork_end_time());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				r = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+		
+	}
 }
