@@ -16,8 +16,8 @@ public class BoardManageDAO {
 	final static String end =
 
 			" order by QNA_REF desc, QNA_REPOS asc, QNA_WRITEDATE desc" + " ) b) a where rn between 0 and 100";
-	final static String noticeFind = "select n.* ," + "            (select c.code_info \n" + "            from code c\n"
-			+ "            where c.secondary_code=n.notice_who)\"notice_whov\"\n" + " FROM notice n \r\n"
+	final static String noticeFind = "select n.* ,e.emp_alias, " + "            (select c.code_info \n" + "            from code c\n"
+			+ "            where c.secondary_code=n.notice_who)\"notice_whov\"\n" + " FROM notice n  join employees e on(n.emp_no = e.emp_no) \r\n"
 			+ "WHERE  notice_writedate BETWEEN ? AND TO_DATE(?,'YY-MM-DD HH24:MI:SS')\r\n" + " AND notice_who like'%'||?||'%'\n";
 
 	final static String notice_who = "AND NOTICE_who like'%'||?||'%' ";
@@ -384,6 +384,7 @@ public class BoardManageDAO {
 				resultVo.setNotice_whov(rs.getString("notice_whov"));
 				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
 				resultVo.setEmp_no(rs.getString("emp_no"));
+				resultVo.setEmp_alias(rs.getString("emp_alias"));
 				resultVo.setNotice_image(rs.getString("notice_image"));
 
 //				
@@ -400,5 +401,105 @@ public class BoardManageDAO {
 
 		return list;
 	}
+	public ArrayList<BoardManageVo> qnaAll() {
+		ResultSet rs = null;
+		ArrayList<BoardManageVo> list = new ArrayList<>();
+		String sql = "select a.* from (select rownum rn,b.* from ("
+				+ "select QNA_NO	,QNA_SHOP_CUSTOMER_NO	,QNA_TITLE	,QNA_CONTENTS	,QNA_WRITEDATE	,QNA_OPENSTATUS	,QNA_HITS,QNA_CATEGORY ,EMP_NO ,QNA_WHO ,QNA_REF,QNA_REPOS,QNA_LEVEL,QNA_WRITER ,\n"
+				+ "            (select c.code_info \n" + "            from code c\n"
+				+ "            where c.secondary_code=q.qna_who)\"qna_whov\",\n"
+				+ "            (select z.code_info from code z where z.secondary_code=q.qna_category)\"qna_categoryv\",\n"
+				+ "(select count(qna_no) from qna r where qna_ref=q.qna_no) as answerComplete " + "from qna q  "+" order by QNA_REF desc, QNA_REPOS asc, QNA_WRITEDATE desc" + " ) b) a where rn between 0 and 100";
+		try {
+			conn = ConnectionManager.getConnnect();
 
+			
+			pstmt = conn.prepareStatement(sql);
+			
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				BoardManageVo resultVo = new BoardManageVo();
+//				System.out.println(rs.getString("qna_no"));
+				resultVo.setQna_no(rs.getString("qna_no"));
+				resultVo.setQna_title(rs.getString("qna_title"));
+				resultVo.setQna_writedate(rs.getString("qna_writedate"));
+				resultVo.setQna_shop_customer_no(rs.getString("qna_shop_customer_no"));
+				resultVo.setQna_hits(rs.getString("qna_hits"));
+				resultVo.setQna_ref(rs.getString("qna_ref"));
+				resultVo.setQna_repos(rs.getString("qna_repos"));
+				resultVo.setQna_level(rs.getString("qna_level"));
+				resultVo.setQna_who(rs.getString("qna_who"));
+				resultVo.setQna_whov(rs.getString("qna_whov"));
+				resultVo.setQna_category(rs.getString("qna_category"));
+				resultVo.setQna_categoryv(rs.getString("qna_categoryv"));
+				resultVo.setExcludeAnswer(rs.getString("answerComplete"));
+
+				if (Integer.parseInt(resultVo.getExcludeAnswer()) > 1) {
+					resultVo.setAnswerStatus("답변완료");
+				} else {
+					resultVo.setAnswerStatus("미답변");
+				}
+				if (!(resultVo.getQna_no().equals(resultVo.getQna_ref()))) {
+					resultVo.setAnswerStatus("-");
+				}
+				list.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+
+		return list;
+	}
+
+	public ArrayList<BoardManageVo> noticeAll() {
+		ResultSet rs = null;
+		ArrayList<BoardManageVo> list = new ArrayList<>();
+		String sql = "select n.* ," + "  e.emp_alias    ,      (select c.code_info \n" + "            from code c\n"
+				+ "            where c.secondary_code=n.notice_who)\"notice_whov\"\n" + " FROM notice n join employees e on(e.emp_no = n.emp_no) \r\n";
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			
+
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				BoardManageVo resultVo = new BoardManageVo();
+
+				resultVo.setNotice_contents(rs.getString("notice_contents"));
+				resultVo.setNotice_hits(rs.getString("notice_hits"));
+				resultVo.setNotice_image(rs.getString("notice_image"));
+				resultVo.setNotice_no(rs.getString("notice_no"));
+				resultVo.setNotice_title(rs.getString("notice_title"));
+				resultVo.setNotice_who(rs.getString("notice_who"));
+				resultVo.setNotice_whov(rs.getString("notice_whov"));
+				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
+				resultVo.setEmp_no(rs.getString("emp_no"));
+				resultVo.setEmp_alias(rs.getString("emp_alias"));
+				resultVo.setNotice_image(rs.getString("notice_image"));
+
+//				
+
+				list.add(resultVo);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+
+		return list;
+	}
 }

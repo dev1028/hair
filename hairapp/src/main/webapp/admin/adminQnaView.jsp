@@ -34,15 +34,11 @@
 		console.log(str);
 		if (str !== "답변") {
 			$('.parent *').prop('readonly', true);
+			$("#update").css("display", "none");
 		} else {
-			$(".form-control").append
-
-			($("<input />").attr({
-				type : "submit",
-				text : "수정"
-			}))
-
-			;
+			$(".none").css("display", "none");
+			$("#update").css("display", "block");
+		
 
 		}
 
@@ -72,7 +68,7 @@
 
 					<div class="col-6">
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body parent">
 								<h4 class="card-title">qna 게시글 상세보기</h4>
 
 
@@ -132,13 +128,18 @@
 									<textarea v-model="model.post.body" name="qna_contents"
 										class="col-12 form-control" rows="10">${vo.qna_contents }</textarea>
 								</div>
+								<div class="form-group ">
 
+
+									<button type="submit" value="Submit" id="update"
+										class="btn btn-default col-12" style="border: 1px solid gray;">수정</button>
+								</div>
 							</div>
 						</div>
 					</div>
 
 					<!-- POST PREVIEW -->
-					<div class="col-6">
+					<div class="col-6 none">
 						<div class="card">
 							<div class="card-body">
 								<h4 class="card-title">qna 답변하기</h4>
@@ -160,7 +161,9 @@
 									<div class="form-group ">
 
 
-										<button type="submit" value="Submit" id="submit" class="btn btn-default col-12" style="border:1px solid gray;">등록</button>
+										<button type="submit" value="Submit" id="submit"
+											class="btn btn-default col-12"
+											style="border: 1px solid gray;">등록</button>
 									</div>
 
 								</div>
