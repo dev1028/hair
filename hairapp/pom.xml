@@ -8,6 +8,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hairapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -122,5 +126,6 @@
 	</dependencies>
 	<build>
 		<finalName>hairapp</finalName>
+
 	</build>
 </project>
