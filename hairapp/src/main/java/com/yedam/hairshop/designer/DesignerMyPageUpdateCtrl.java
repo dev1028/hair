@@ -42,7 +42,7 @@ public class DesignerMyPageUpdateCtrl implements Controller {
 
 		String fileName = FileUpload.upload(path, part);
 		designerVo.setFile_name(fileName);
-		
+
 //		Part part = request.getPart("file_name");
 //		String filename = getFilename(part);
 //		if (filename == null) {
@@ -58,11 +58,24 @@ public class DesignerMyPageUpdateCtrl implements Controller {
 //
 //		}
 
-		int resultVo = DesignerDAO.getInstance().mypageUpdate(designerVo);
-		request.setAttribute("designer", resultVo);
+		int r = DesignerDAO.getInstance().mypageUpdate(designerVo);
+
+//		if (resultVo == 1) {
+//			DesignerVo loginVo = (DesignerVo) request.getSession().getAttribute("login");
+//			loginVo.setDesigner_pw(designer_pw);
+//			loginVo.setDesigner_phone(designer_phone);
+//			loginVo.setDesigner_dayoff(designer_dayoff);
+//			loginVo.setWork_start_time(work_start_time);
+//			loginVo.setWork_end_time(work_end_time);
+//			loginVo.setDesigner_profile(designer_profile);
+//			loginVo.setFile_name(file_name);
+//			loginVo.setDesigner_no(designer_no);			
+//		}
+		request.getSession().setAttribute("login", designerVo);
+		request.setAttribute("designer", r);
 		request.getRequestDispatcher("/designer/designerMyPageOutput.jsp").forward(request, response);
 	}
-	
+
 //	private String getFilename(Part part) throws UnsupportedEncodingException {
 //		for (String cd : part.getHeader("Content-Disposition").split(";")) {
 //			if (cd.trim().startsWith("filename")) {

@@ -16,7 +16,7 @@ public class hairshopNoticeViewCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("공지사항 보기");
 
-		String admin = request.getSession().getAttribute("admin").toString();
+		//String admin = request.getSession().getAttribute("admin").toString();
 
 		// 파라미터
 		HairshopNoticeVo vo = new HairshopNoticeVo();
@@ -38,8 +38,8 @@ public class hairshopNoticeViewCtrl implements Controller {
 		request.getSession().setAttribute("view", resultVo);
 		request.getSession().setAttribute("viewNo", resultVo.getNotice_no());
 		request.getSession().setAttribute("hit", hitup);
-		request.getSession().setAttribute("admin", admin);
-		// request.setAttribute("view", resultVo);
+		//request.getSession().setAttribute("admin", admin);
+
 
 		request.getRequestDispatcher("hairshopNoticeView.jsp").forward(request, response);
 

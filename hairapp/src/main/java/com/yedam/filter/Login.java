@@ -130,10 +130,15 @@ public class Login implements Filter {
 		list.put("/designer/designerInfo.do", designerLoginPage);
 		list.put("/designer/designerLogin.do", null);
 		// list.put("/designer/customerJoinCtrl.do", designerLoginPage);
-		list.put("/hairshop/hairshopNoticeCtrl.do", designerLoginPage);
-		list.put("/hairshop/hairshopNoticeWriteCtrl.do", designerLoginPage);
-		list.put("/hairshop/hairshopNoticeViewCtrl.do", designerLoginPage);
 
+		list.put("/hairshop/hairshopNotice.do",  null);//공지사항
+	    list.put("/hairshop/hairshopNoticeWG.do",  null);
+		list.put("/hairshop/hairshopNoticeWrite.do",  null);
+		list.put("/hairshop/hairshopNoticeView.do",  null);
+		list.put("/hairshop/hairshopNoticeMG.do",  null);
+		list.put("/hairshop/hairshopNoticeM.do",  null);
+		list.put("/hairshop/hairshopNoticeD.do",  null);
+		
 		list.put("/designer/designerMyPageCtrl.do", designerLoginPage);
 		list.put("/designer/designerMyPageUpdateCtrl.do", designerLoginPage);
 		// list.put("/hairshop/hairshopNoticeCtrl.do", hairLoginPage);
@@ -149,8 +154,6 @@ public class Login implements Filter {
 		list.put("/hairshop/HairshopCloseDayManage.do",  hairLoginPage); //미용실 휴무일 설정
 		list.put("/hairshop/employeeCloseDayManage.do",  hairLoginPage); //디자이너목록 휴무일수정
 		
-		
-
 		list.put("/hairshop/HairshopCouponCtrl.do", hairLoginPage);
 
 		list.put("/hairshop/hairshopProcedureFinish.do", hairLoginPage);

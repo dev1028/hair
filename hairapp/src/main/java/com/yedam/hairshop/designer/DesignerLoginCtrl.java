@@ -37,9 +37,11 @@ public class DesignerLoginCtrl implements Controller {
 		// 3.결과 저장
 		String page = "";
 		if (resultVo == null) { // id 없음
-			request.setAttribute("errormsg", "해당 email이 없습니다.");
-			page = "/hairshop/hairshopDesignerLogin.jsp";
-
+//			request.setAttribute("errormsg", "해당 email이 없습니다.");
+//			page = "/hairshop/hairshopDesignerLogin.jsp";
+			response.getWriter().append("<script>").append("alert('아이디 또는 비밀번호가 틀렸습니다.');")
+					.append("location.href='" + request.getContextPath() + "/ajax/designerReturnToLogin.do';")
+					.append("</script>");
 		} else {
 			if (designerVo.getDesigner_pw().equals(resultVo.getDesigner_pw())) { // 로그인 성공
 				if (resultVo.getHs_no() != null) {
@@ -48,6 +50,9 @@ public class DesignerLoginCtrl implements Controller {
 					request.getSession().setAttribute("email", resultVo.getDesigner_email());
 
 					System.out.println("인증 :" + resultVo.getDesigner_access_status());
+					System.out.println("디자이너번호 : " + resultVo.getDesigner_no());
+					System.out.println("디자이너번호 : " + resultVo.getDesigner_name());
+					System.out.println("디자이너번호 : " + resultVo.getDesigner_email());
 					// 로그인 후 인증확인
 					// .do로 보낼땐 sendRedirect , forward로 보낼때 requestDispatcher
 					if (resultVo.getDesigner_access_status().equals("1")) {
@@ -71,10 +76,11 @@ public class DesignerLoginCtrl implements Controller {
 						request.getRequestDispatcher(page).forward(request, response);
 					}
 				} else {
-					//퇴사한 직원
-					request.setAttribute("errormsg", "퇴사한 직원입니다.");
-					page = "/hairshop/hairshopDesignerLogin.jsp";
-					request.getRequestDispatcher(page).forward(request, response);
+					// 퇴사한 직원
+					System.out.println("일로오면 퇴사체크(묭실번호) :" + resultVo.getHs_no());
+					response.getWriter().append("<script>").append("alert('퇴사한 직원입니다.');")
+							.append("location.href='" + request.getContextPath() + "/ajax/designerReturnToLogin.do';")
+							.append("</script>");
 				}
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "pw 불일치");

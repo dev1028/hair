@@ -36,123 +36,121 @@
 </script>
 <script>
 	/* 이거왜 안되노 */
-	$(document)
-			.ready(
-					function() {
-						$('#contact_form')
-								.bootstrapValidator(
-										{
-											// To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-											feedbackIcons : {
-												valid : 'glyphicon glyphicon-ok',
-												invalid : 'glyphicon glyphicon-remove',
-												validating : 'glyphicon glyphicon-refresh'
-											},
-											fields : {
-												hsc_name : {
-													validators : {
-														notEmpty : {
-															message : '쿠폰명 입력하세요'
-														}
-													}
-												},
-												hsc_issuedate : {
-													validators : {
-														notEmpty : {
-															message : '유효기간입력하세요'
-														}
-													}
-												},
-												hsc_expiredate : {
-													validators : {
-														notEmpty : {
-															message : '유효기간입력하세요'
-														}
+	/* 	$(document)
+	 .ready(
+	 function() {
+	 $('#contact_form')
+	 .bootstrapValidator(
+	 {
+	 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+	 feedbackIcons : {
+	 valid : 'glyphicon glyphicon-ok',
+	 invalid : 'glyphicon glyphicon-remove',
+	 validating : 'glyphicon glyphicon-refresh'
+	 },
+	 fields : {
+	 hsc_name : {
+	 validators : {
+	 notEmpty : {
+	 message : '쿠폰명 입력하세요'
+	 }
+	 }
+	 },
+	 hsc_issuedate : {
+	 validators : {
+	 notEmpty : {
+	 message : '유효기간입력하세요'
+	 }
+	 }
+	 },
+	 hsc_expiredate : {
+	 validators : {
+	 notEmpty : {
+	 message : '유효기간입력하세요'
+	 }
 
-													}
-												},
-												hsc_coupon_quantity : {
-													validators : {
-														notEmpty : {
-															message : 'Please supply your phone number'
-														}
+	 }
+	 },
+	 hsc_coupon_quantity : {
+	 validators : {
+	 notEmpty : {
+	 message : 'Please supply your phone number'
+	 }
 
-													}
-												},
-												address : {
-													validators : {
-														stringLength : {
-															min : 8,
-														},
-														notEmpty : {
-															message : 'Please supply your street address'
-														}
-													}
-												},
-												hsc_maxdiscount_pay : {
-													validators : {
-														notEmpty : {
-															message : 'Please supply your city'
-														}
-													}
-												},
-												hsc_discount_rate : {
-													validators : {
-														notEmpty : {
-															message : 'Please select your state'
-														}
-													}
-												},
+	 }
+	 },
+	 address : {
+	 validators : {
+	 stringLength : {
+	 min : 8,
+	 },
+	 notEmpty : {
+	 message : 'Please supply your street address'
+	 }
+	 }
+	 },
+	 hsc_maxdiscount_pay : {
+	 validators : {
+	 notEmpty : {
+	 message : 'Please supply your city'
+	 }
+	 }
+	 },
+	 hsc_discount_rate : {
+	 validators : {
+	 notEmpty : {
+	 message : 'Please select your state'
+	 }
+	 }
+	 },
 
-												comment : {
-													validators : {
-														stringLength : {
-															min : 10,
-															max : 200,
-															message : 'Please enter at least 10 characters and no more than 200'
-														},
-														notEmpty : {
-															message : 'Please supply a description of your project'
-														}
-													}
-												}
-											}
-										})
-								.on(
-										'success.form.bv',
-										function(e) {
-											$('#success_message').slideDown({
-												opacity : "show"
-											}, "slow") // Do something ...
-											$('#contact_form').data(
-													'bootstrapValidator')
-													.resetForm();
+	 comment : {
+	 validators : {
+	 stringLength : {
+	 min : 10,
+	 max : 200,
+	 message : 'Please enter at least 10 characters and no more than 200'
+	 },
+	 notEmpty : {
+	 message : 'Please supply a description of your project'
+	 }
+	 }
+	 }
+	 }
+	 })
+	 .on(
+	 'success.form.bv',
+	 function(e) {
+	 $('#success_message').slideDown({
+	 opacity : "show"
+	 }, "slow") // Do something ...
+	 $('#contact_form').data(
+	 'bootstrapValidator')
+	 .resetForm();
 
-											// Prevent form submission
-											e.preventDefault();
+	 // Prevent form submission
+	 e.preventDefault();
 
-											// Get the form instance
-											var $form = $(e.target);
+	 // Get the form instance
+	 var $form = $(e.target);
 
-											// Get the BootstrapValidator instance
-											var bv = $form
-													.data('bootstrapValidator');
+	 // Get the BootstrapValidator instance
+	 var bv = $form
+	 .data('bootstrapValidator');
 
-											// Use Ajax to submit form data
-											$.post($form.attr('action'), $form
-													.serialize(), function(
-													result) {
-												console.log(result);
-											}, 'json');
-										});
-					});
+	 // Use Ajax to submit form data
+	 $.post($form.attr('action'), $form
+	 .serialize(), function(
+	 result) {
+	 console.log(result);
+	 }, 'json');
+	 });
+	 }); */
 </script>
 </head>
 <body>
 	<div class="container">
-		<br>
-		<br>
-		<br>
+		<br> <br> <br>
 		<form method="post"
 			action="${pageContext.request.contextPath}/hairshop/HairshopCouponInsertCtrl.do"
 			id="contact_form" class="well form-horizontal" name="frm"

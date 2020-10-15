@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.admin.AdminAnalysisByTreatCtrl;
 import com.yedam.hairshop.admin.AdminAnalysisByTreatRankCtrl;
+import com.yedam.hairshop.admin.AdminCouponDeleteCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageCtrl;
@@ -130,6 +131,8 @@ import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
 import com.yedam.hairshop.hairshop.HairshopNextCustomerAjCtrl;
+import com.yedam.hairshop.hairshop.HairshopQnaCtrl;
+import com.yedam.hairshop.hairshop.HairshopQnaWGCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.HsFindMyCustomerCtrl;
 import com.yedam.hairshop.hairshop.HsFindMyCustomerDetailCtrl;
@@ -321,6 +324,12 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopNoticeMG.do", new hairshopNoticeMGCtrl());
 		list.put("/hairshop/hairshopNoticeM.do", new hairshopNoticeMCtrl());
 		list.put("/hairshop/hairshopNoticeD.do", new hairshopNoticeDCtrl());
+		
+		
+		list.put("/hairshop/hairshopQna.do", new HairshopQnaCtrl());
+		list.put("/hairshop/hairshopQnaWG.do", new HairshopQnaWGCtrl());
+		
+		
 
 		list.put("/designer/designerMyPageCtrl.do", new DesignerMyPageCtrl());
 		list.put("/designer/designerMyPageUpdateCtrl.do", new DesignerMyPageUpdateCtrl());
@@ -479,6 +488,7 @@ public class FrontController extends HttpServlet {
 
 		list.put("/admin/adminCouponManage.do", new AdminCouponManageCtrl());// 쿠폰
 		list.put("/admin/adminCouponInsert.do", new AdminCouponInsertCtrl());
+		list.put("/admin/adminCouponDelete.do", new AdminCouponDeleteCtrl());
 		list.put("/admin/adminCouponInsertSubmit.do", new AdminCouponInsertFCtrl());
 		list.put("/admin/ttCategoryRequest.do", new AdminTtCategoryRequestCtrl());//시술중분류 승인요청 조//
 		list.put("/admin/tmicApproval.do", new AdminTmicApprovalCtrl());//시술중분류 승인요청 조//

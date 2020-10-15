@@ -50,44 +50,48 @@
 </head>
 <body>
 	<div class="contatiner">
+		<br>
+		<br>
+		<br>
+		<div class="container">
+			<form method="post" name="frm" id="frm"
+				action="hairshopNoticeWrite.do" onsubmit="return inputCheck()"
+				enctype="multipart/form-data">
+				<h4 class="page_title">공지사항 등록</h4>
+				<hr>
 
-		<form method="post" name="frm" id="frm"
-			action="hairshopNoticeWrite.do" onsubmit="return inputCheck()"
-			enctype="multipart/form-data">
-			<h4 class="page_title">공지사항 등록</h4>
-			<hr>
-
-			<div class="col-5">
-				<label for="category">대분류</label> <select class="form-control"
-					id="notice_categoryname" name="notice_categoryname">
-					<option value="">선택</option>
-					<option value="b1">전체공지</option>
-					<option value="b2">미용실공지</option>
-					<option value="b3">일반회원공지</option>
-					<option value="b4">이벤트공지</option>
-				</select> <br>
-			</div>
-			<div class="col-auto">
-				<label for=title>제목</label> <input type="text" class="form-control"
-					id="notice_title" name="notice_title"> <br>
-			</div>
-			<div class="col-auto">
-				<label for="contents">내용</label>
-				<textarea class="form-control" id="notice_contents"
-					name="notice_contents" rows="3" cols="30">내용</textarea>
+				<div class="col-5">
+					<label for="category">대분류</label> <select class="form-control"
+						id="notice_categoryname" name="notice_categoryname">
+						<option value="">선택</option>
+						<option value="b1">전체공지</option>
+						<option value="b2">미용실공지</option>
+						<option value="b3">일반회원공지</option>
+						<option value="b4">이벤트공지</option>
+					</select> <br>
+				</div>
+				<div class="col-auto">
+					<label for=title>제목</label> <input type="text" class="form-control"
+						id="notice_title" name="notice_title"> <br>
+				</div>
+				<div class="col-auto">
+					<label for="contents">내용</label>
+					<textarea class="form-control" id="notice_contents"
+						name="notice_contents" rows="3" cols="30">내용</textarea>
+					<br>
+				</div>
+				<div>
+					<label for="image">첨부 파일 추가</label> <input type="file"
+						class="form-control-file" name="notice_image" size=30
+						accept=".gif, .jpg, .png"><br>
+				</div>
 				<br>
-			</div>
-			<div>
-				<label for="image">첨부 파일 추가</label> <input type="file"
-					class="form-control-file" name="notice_image" size=30
-					accept=".gif, .jpg, .png"><br>
-			</div>
-			<br>
-			<div>
-				<button type="reset" class="btn btn-outline-warning">초기화</button>
-				<button type="submit" class="btn btn-outline-info">등록</button>
-			</div>
-		</form>
+				<div>
+					<button type="reset" class="btn btn-outline-warning">초기화</button>
+					<button type="submit" class="btn btn-outline-info">등록</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

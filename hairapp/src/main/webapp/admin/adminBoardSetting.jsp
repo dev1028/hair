@@ -15,7 +15,7 @@
 	<h2>board list</h2>
 
 
-	<div class="table-responsive" id="result">
+	<div class="" id="result">
 		<table class="table table-bordered" id="dataTable" width="100%"
 			cellspacing="0">
 
@@ -37,10 +37,9 @@
 						<td>${i.board_id }</td>
 						<td>${ i.board_readable}/${i.board_writtable}</td>
 						<td>${i.nevv }/${i.total }</td>
-						<td><button id="goto"
+						<td><button class="btn btn-default " style="border: 1px solid gray;" id="goto"
 								onclick="location.href='${pageContext.request.contextPath}/admin/adminInsertNotice.do?notice_who=${i.board_who }&notice_whov=${i.board_whov }'">글쓰기</button>
-							<button>글삭제</button>
-							<button>고정</button></td>
+						</td>
 					</tr>
 				</c:forEach>
 

@@ -597,7 +597,5 @@ public class HairshopDAO {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
 		return list;
-
 	} // end
-
 }

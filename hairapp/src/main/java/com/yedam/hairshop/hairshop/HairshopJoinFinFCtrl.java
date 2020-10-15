@@ -82,7 +82,11 @@ public class HairshopJoinFinFCtrl implements Controller {
 						
 					if(hVo.getCheckOwnerDesEmailExist().equals("N")) {
 						//insert
+
+						DesignerDAO.getInstance();
+
 						r2 = DesignerDAO.getInstance().insertAll(dVo);
+
 					} else {
 						//update
 						r2 = DesignerDAO.getInstance().updateAll(dVo);

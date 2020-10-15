@@ -1,4 +1,4 @@
-package com.yedam.hairshop.designer;
+package com.yedam.hairshop.hairshop;
 
 import java.io.IOException;
 
@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
 
-public class DesReturnToLoginCtrl implements Controller {
+public class HairshopQnaWGCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/hairapp/hairshop/hairshopDesignerLogin.jsp");
 
+		request.getRequestDispatcher("/hairshop/hairshopQnaWrite.jsp").forward(request, response);
 	}
 
 }

@@ -171,30 +171,34 @@ public class MembersDAO {
 
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select * from members" + " ORDER BY mem_no";
+			String sql = "select MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_PHONE, MEM_BIRTH, " + 
+					"					 MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,MEM_LATITUDE_LONGITUDE,mem_city_latitude_longitude,mem_saved_money, " + 
+					"		 MEM_HAIR_STATUS, MEM_ACCESS_STATUS,MONTHS_BETWEEN(TRUNC(SYSDATE,'YEAR'),  TRUNC(mem_birth,'YEAR')) /12 +1 as age from members" + " ORDER BY mem_no";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				MembersVo members = new MembersVo();
-				members.setMem_no(rs.getString(1));
-				members.setMem_email(rs.getString(2));
-				members.setMem_pw(rs.getString(3));
-				members.setMem_name(rs.getString(4));
-				members.setMem_phone(rs.getString(5));
-				members.setMem_birth(rs.getString(6));
-				members.setMem_sex(rs.getString(7));
-				members.setMem_addr(rs.getString(8));
-				members.setMem_city(rs.getString(9));
-				members.setMem_country(rs.getString(10));
-				members.setMem_township(rs.getString(11));
-				members.setMem_latitude_longitude(rs.getString(12));
-				members.setMem_saved_money(rs.getString(13));
-				members.setMem_city_latitude_longitude(rs.getString(14));
-				members.setMem_hair_length(rs.getString(15));
-				members.setMem_hair_status(rs.getString(16));
-				members.setMem_zip(rs.getString(17));
-				members.setMem_access_status(rs.getString(18));
+				members.setMem_no(rs.getString("mem_no"));
+				members.setMem_email(rs.getString("mem_email"));
+				members.setMem_pw(rs.getString("mem_pw"));
+				members.setMem_name(rs.getString("mem_name"));
+				members.setMem_age(rs.getString("age"));
+				members.setMem_phone(rs.getString("mem_phone"));
+				members.setMem_birth(rs.getString("mem_birth"));
+				members.setMem_sex(rs.getString("mem_sex"));
+				
+				members.setMem_addr(rs.getString("mem_addr"));
+				members.setMem_city(rs.getString("mem_city"));
+				members.setMem_country(rs.getString("mem_country"));
+				members.setMem_township(rs.getString("mem_township"));
+				members.setMem_latitude_longitude(rs.getString("MEM_LATITUDE_LONGITUDE"));
+				members.setMem_saved_money(rs.getString("mem_saved_money"));
+				members.setMem_city_latitude_longitude(rs.getString("mem_city_latitude_longitude"));
+				members.setMem_hair_length(rs.getString("mem_hair_length"));
+				members.setMem_hair_status(rs.getString("mem_hair_status"));
+				members.setMem_zip(rs.getString("mem_zip"));
+				members.setMem_access_status(rs.getString("mem_access_status"));
 				list.add(members); // resultVo를 list에 담음
 			}
 		} catch (Exception e) {

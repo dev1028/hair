@@ -3,7 +3,7 @@ package com.yedam.hairshop.model;
 import lombok.Data;
 
 @Data
-public class DesignerVo {
+public class DesignerVo implements Cloneable{
 	private String rn;			//디자이너 랭크
 	private String distance;	//디자이너 거리
 	private String designer_no;
@@ -30,4 +30,12 @@ public class DesignerVo {
 	private String dli_leave_date;
 	private String dli_reason;
 	private String fin_position;
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+	
+	
+	
 }

@@ -77,7 +77,7 @@ $(function() {
 				<nav class="nav nav-masthead justify-content-center">
 					<a class="nav-link active" href="#">Home</a> <a class="nav-link" href="#">AboutUs</a>
 					<a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairshopNotice.do">공지사항</a> 
-						<a class="nav-link" href="#">QnA</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairshopQna.do">QnA</a>
 				</nav>
 			</div>
 		</header>

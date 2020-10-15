@@ -51,6 +51,27 @@ public class CouponDAO {
 			ConnectionManager.close(conn);
 		}
 	}
+	public void delete(CouponVo vo) {
+
+		try {
+			// 1.DB연결
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(" delete from hs_coupon where hsc_no =? "); // 예외처리
+			System.out.println(insert);
+			pstmt.setString(1, vo.getHsc_no());
+		
+			int r = pstmt.executeUpdate();
+			// 3.결과 처리
+			System.out.println(r + " 건이 처리됨");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 4. 연결해제(DB에 접속 session수는 제한적 그래서 해제해야됨)
+			ConnectionManager.close(conn);
+		}
+	}
 
 	public ArrayList<CouponVo> selectAll(CouponVo vo) {
 		ArrayList<CouponVo> list = new ArrayList<>();
@@ -58,7 +79,22 @@ public class CouponDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(selectAll);
+			pstmt = conn.prepareStatement("SELECT\n" + 
+					"    CASE\n" + 
+					"        WHEN hsc_coupon_quantity < 1  THEN\n" + 
+					"            '소진'\n" + 
+					"        WHEN hsc_expiredate < sysdate THEN\n" + 
+					"            '만료 '\n" + 
+					"        WHEN hsc_issuedate > sysdate  THEN\n" + 
+					"            '발급전 '\n" + 
+					"        WHEN hsc_expiredate > sysdate  THEN\n" + 
+					"            '발급중'\n" + 
+					"    END hsc_status,\n" + 
+					"    c.*,\n" + 
+					"    h.*\n" + 
+					"FROM\n" + 
+					"    hs_coupon   c\n" + 
+					"    JOIN hairshop    h ON ( h.hs_no = c.hs_no )");
 
 			rs = pstmt.executeQuery();
 			System.out.println("nqnasql");
@@ -67,10 +103,12 @@ public class CouponDAO {
 				CouponVo resultVo = new CouponVo();
 				resultVo.setHsc_no(rs.getString("hsc_no"));
 				resultVo.setHs_no(rs.getString("hs_no"));
+				resultVo.setHs_name(rs.getString("hs_name"));
+				resultVo.setHsc_status(rs.getString("hsc_status"));
 
 				resultVo.setHsc_name(rs.getString("HSC_NAME"));
-				resultVo.setHsc_issuedate(rs.getString("HSC_ISSUEDATE"));
-				resultVo.setHsc_expiredate(rs.getString("HSC_expiredate"));
+				resultVo.setHsc_issuedate(rs.getString("HSC_ISSUEDATE").substring(0,10));
+				resultVo.setHsc_expiredate(rs.getString("HSC_expiredate").substring(0,10));
 				resultVo.setHsc_coupon_quantity(rs.getString("HSC_coupon_quantity"));
 				resultVo.setHsc_discount_rate(rs.getString("HSC_DISCOUNT_RATE"));
 				resultVo.setHsc_maxdiscount_pay(rs.getString("HSC_MAXDISCOUNT_PAY"));

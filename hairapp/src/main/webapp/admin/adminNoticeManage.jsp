@@ -12,12 +12,22 @@
 <link
 	href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css"
 	rel="stylesheet" />
+
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
 	crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="adminNoticeManage.js">
+	
+</script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
 	crossorigin="anonymous"></script>
@@ -32,105 +42,130 @@
 <script
 	src="${pageContext.request.contextPath}/decorator/ges/dist/assets/demo/datatables-demo.js"></script>
 
-
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
-<script type="text/javascript" src="adminNoticeManage.js">
-	
-</script>
 </head>
 <body>
-	<h2 class="heading">공지사항 게시판 관리 </h2>
-	<form
-		action="${pageContext.request.contextPath}/admin/adminNoticeManageFind.do">
+	<div class="container">
 
-		<div class="form-group">
+		<h2 class="heading">공지사항 게시판 관리</h2>
+		<form
+			action="${pageContext.request.contextPath}/admin/adminNoticeManageFind.do">
 
-			<div class="control">
-				<label for="name">기간 </label>
-				<button type="button" value="0" class='dateBtn' id="all">전체
-				</button>
-				<button type="button" value="0" class='dateBtn' id="today">오늘
-				</button>
-				<button type="button" value="3" class='dateBtn' id="three">3일
-				</button>
-				<button type="button" value="7" class='dateBtn' id="seven">7일
-				</button>
-				<button type="button" value="30" class='dateBtn' id="month">1개월
-				</button>
-				<input type="date" id="start" name="startDate"> - <input
-					type="date" id="end" name="endDate">
+			<div class="form-group">
+
+				<div class="row">
+
+					<div class="col-2">
+						<label for="name">기간 </label>
+					</div>
+					<div class="col">
+
+						<button type="button" value="0" class="dateBtn form-control "
+							id="all">전체</button>
+					</div>
+					<div class="col">
+						<button type="button" value="0" class='dateBtn form-control'
+							id="today">오늘</button>
+					</div>
+					<div class="col">
+						<button type="button" value="3" class='dateBtn form-control'
+							id="three">3일</button>
+					</div>
+					<div class="col">
+						<button type="button" value="7" class='dateBtn form-control'
+							id="seven">7일</button>
+					</div>
+					<div class="col">
+						<button type="button" value="30" class='dateBtn form-control'
+							id="month">1개월</button>
+					</div>
+					<div class="col-2">
+						<input type="date" id="start" name="startDate"
+							class="form-control">
+					</div>
+					<div class="col-2">
+						<input type="date" id="end" name="endDate" class="form-control">
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-2">
+						<label>사용자 </label>
+					</div>
+					<div class="col">
+						<select name="who" id="who" class="form-control">
+							<option class="form-control form-check-input" value="all">전체사용자</option>
+							<option class="form-control form-check-input" value="j1">미용실</option>
+							<option class="form-control form-check-input" value="j2">일반회원</option>
+							<option class="form-control form-check-input" value="j3">디자이너</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-2">
+						<label>게시글 찾기</label>
+					</div>
+					<div class="input-group-prepend">
+						<select name="searchType" id="searchType" class="form-control ">
+							<option value="title">제목</option>
+							<option value="contents">내용</option>
+							<option value="writer">작성자</option>
+							<option value="id">ID</option>
+						</select> <input type="text" id="searchVal" name="searchVal"
+							class="form-control ">
+
+					</div>
+				<div class="col">
+
+					<button type="submit" value="Submit" id="submit"
+						class="btn btn-default col-3" style="border: 1px solid gray;">검색</button>
+				</div>
+				</div>
+
+
+
+
+
 			</div>
 
-			<div class="control">
-				<select name="who" id="who">
-					<option value="all">전체페이지</option>
-					<option value="j1">미용실</option>
-					<option value="j2">일반회원</option>
-					<option value="j3">디자이너</option>
-				</select>
-
-			</div>
-
-			<div class="control">
-				<label for="name">게시글 찾기 </label> <select name="searchType"
-					id="searchType">
-					<option value="title">제목</option>
-					<option value="contents">내용</option>
-					<option value="writer">작성자</option>
-					<option value="id">ID</option>
-				</select> <input type="text" id="searchVal" name="searchVal">
-
-			</div>
+		</form>
 
 
 
-
-
-			<button type="submit" value="Submit" id="submit" class="col-1-4">Submit</button>
-		</div>
-
-	</form>
-
-
-
-	<h2 class="heading">result</h2>
-	<div class="table-responsive" id="result">
-		<table class="table table-bordered" id="dataTable" width="100%"
-			cellspacing="0">
-			<thead>
-				<tr>
-					<th><input type="checkbox" name="all" id="all" class="chk"></th>
-					<th>번호</th>
-					<th>분류</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
-				</tr>
-			</thead>
-			<tbody id="tbody">
-				<c:forEach items="${list }" var="l">
+		<div class="table-responsive" id="result">
+			<table class="table table-bordered" id="dataTable" width="100%"
+				cellspacing="0">
+				<thead>
 					<tr>
-
-						<td><input type="checkbox" class="chk"></td>
-						<td>${ l.notice_no}</td>
-						<td>${ l.notice_whov}</td>
-						<td><a href="adminNoticeView.do?notice_no=${ l.notice_no}">${ l.notice_title}</a></td>
-
-						<td>${ l.emp_alias}</td>
-						<td>${ l.notice_writedate}</td>
-						<td>${ l.notice_hits}</td>
+						<th><input type="checkbox" name="all" id="all" class="chk"></th>
+						<th>번호</th>
+						<th>분류</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>조회수</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button id="excel">excel</button>
+				</thead>
+				<tbody id="tbody">
+					<c:forEach items="${list }" var="l">
+						<tr>
+
+							<td><input type="checkbox" class="chk"></td>
+							<td>${ l.notice_no}</td>
+							<td>${ l.notice_whov}</td>
+							<td><a href="adminNoticeView.do?notice_no=${ l.notice_no}">${ l.notice_title}</a></td>
+
+							<td>${ l.emp_alias}</td>
+							<td>${ l.notice_writedate}</td>
+							<td>${ l.notice_hits}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<button id="excel">excel</button>
+		</div>
 	</div>
-	<!-- <button type="button" id="excel">excel</button> -->
 
 </body>
 </html>

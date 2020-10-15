@@ -129,13 +129,15 @@ public class DesignerDAO {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, DESIGNER_ACCESS_STATUS,"
+			String sql = " SELECT DESIGNER_NO, DESIGNER_PW, DESIGNER_NAME, DESIGNER_EMAIL, DESIGNER_ACCESS_STATUS,"
 					+ " DESIGNER_PHONE, DESIGNER_DAYOFF, WORK_START_TIME, WORK_END_TIME, DESIGNER_PROFILE, "
 					+ " FILE_NAME, HS_NO "
-					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
+					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?" + " AND DESIGNER_PW = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_email());
+			pstmt.setString(2, designerVo.getDesigner_pw());
 			rs = pstmt.executeQuery();
+			System.out.println("디자이너 로그인");
 			if (rs.next()) { // 처음 커서 위치는 BOF
 				resultVo = new DesignerVo();
 				resultVo.setDesigner_no(rs.getString("DESIGNER_NO"));

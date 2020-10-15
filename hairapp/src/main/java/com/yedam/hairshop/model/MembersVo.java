@@ -27,6 +27,10 @@ public class MembersVo {
 	private String mem_hair_status;
 	private String mem_zip;
 	private String mem_access_status;
+	private String mem_age;
+	
+	
+	
 	
 	public MembersVo() {
 		super();
