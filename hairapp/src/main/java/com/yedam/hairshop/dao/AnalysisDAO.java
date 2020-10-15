@@ -42,7 +42,11 @@ public class AnalysisDAO {
 				+ "            mdr_no = r.mdr_no  and mdr_date  " + month + "    )), 0) DESC\n" + "    ) AS prevrank\n"
 				+ "FROM\n" + "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
+				+ "    LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + 
+				"    WHERE \r\n" + 
+				"    r.hs_no = ? \r\n" + 
+				"    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null\r\n" + 
+				"    or l.DLI_LEAVE_DATE is null " + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -106,7 +110,11 @@ public class AnalysisDAO {
 				+ month + " )) DESC\n" + "    ) AS prevrank\n" +"FROM\n"
 				+ "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
+				+ "     LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + 
+				"    WHERE \r\n" + 
+				"    r.hs_no = ? \r\n" + 
+				"    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null \r\n" + 
+				"    or l.DLI_LEAVE_DATE is null \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -155,7 +163,7 @@ public class AnalysisDAO {
 		ResultSet rs = null;
 		String sql = "SELECT d. designer_name, d.designer_no,  count(*) as rsv, d.file_name ,rank() over (order by count(*) desc) rank\r\n"
 				+ "FROM designer d \r\n" + "JOIN members_designer_rsv r ON(r.designer_no = d.designer_no)\r\n" + "\r\n"
-				+ "WHERE r.hs_no = ?\r\n" + "\r\n" + "group by d.designer_name, d.designer_no, d.file_name";
+				+ "WHERE r.hs_no = ?\r\n and d.hs_no is not null" + "\r\n" + "group by d.designer_name, d.designer_no, d.file_name";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();

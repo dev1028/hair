@@ -83,6 +83,7 @@ import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
 import com.yedam.hairshop.hairshop.AnalysisByTreatCtrl;
+import com.yedam.hairshop.hairshop.AnalysisDesignerMonthCtrl;
 import com.yedam.hairshop.hairshop.AnalysisDesignerRsvRankCtrl;
 import com.yedam.hairshop.hairshop.AnalysisDesignerTotalCtrl;
 import com.yedam.hairshop.hairshop.AnalysisGenderCtrl;
@@ -419,6 +420,7 @@ public class FrontController extends HttpServlet {
 
 		
 		list.put("/hairshop/analysisDesignerTotal.do", new AnalysisDesignerTotalCtrl());
+		list.put("/hairshop/analysisDesignerMonth.do", new AnalysisDesignerMonthCtrl());
 		list.put("/ajax/hairshop/analysisDesignerRsvRank.do", new AnalysisDesignerRsvRankCtrl());//
 		
 		
