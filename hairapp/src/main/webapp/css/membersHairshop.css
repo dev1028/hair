@@ -65,7 +65,9 @@
 #shopdata {
 	position:absolute;
 	left:2%;
-	top:30%;
+	top:15%;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 25px;
 }
 
 /* 바디 div */

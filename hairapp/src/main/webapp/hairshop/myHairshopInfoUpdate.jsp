@@ -24,9 +24,10 @@ $(function(){
 			alert("영업종료시간이 영업시작시간보다 이릅니다. 수정 후 등록하세요.");
 			return false;
 		}
-		
+		var isDesInTime = false;
 		$.ajax({
 			url : "${pageContext.request.contextPath}/ajax/checkDesignerTime.do",
+			async : false,
 			data : {
 				hs_starttime : $("#hs_starttime").val(),
 				hs_endtime : $("#hs_endtime").val()
@@ -35,12 +36,16 @@ $(function(){
 			method : "post",
 			success : function(data) {
 				if (data == 0) {
-					//가능
+					isDesInTime = true;
 				} else {
 					//불가능
+					alert("영업시간 외에 디자이너가 근무 할 수 없습니다. 디자이너 근무시간을 변경 후 처리해 주세요.");
 				}
 			}
 		});// end of ajax 
+		if(!isDesInTime){
+			return false;
+		}
 		
 	});
 	
@@ -127,7 +132,7 @@ function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
 
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="hs_starttime">영업시작시간</label> <select
+							<label for="hs_starttime">영업시작시간 <small>(디자이너의 근무시간을 먼저 수정 후 변경해 주세요)</small></label> <select
 								class="custom-select d-block w-100" id="hs_starttime" name="hs_starttime"
 								required>
 								<c:forEach begin="0" end="23" var="i">
@@ -136,7 +141,7 @@ function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
 							</select>
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="hs_endtime">영업종료시간 </label> <select
+							<label for="hs_endtime">영업종료시간  </label><small>(디자이너의 근무시간을 먼저 수정 후 변경해 주세요)</small> <select
 								class="custom-select d-block w-100" id="hs_endtime" name="hs_endtime"
 								required>
 								<c:forEach begin="0" end="23" var="i">

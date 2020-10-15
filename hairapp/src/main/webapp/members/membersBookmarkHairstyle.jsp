@@ -26,12 +26,24 @@
     position: absolute;
     margin:0 auto;
 } 
+.product-grid4 .pic-1{
+	opacity: 1;
+    transition: all .5s ease-out 0s;
+    width: 400px;
+    height: 300px;
+}
+.row {
+	background: #e9edff;
+	border: 1px solid #6d7fcc;
+	width: 1300px;
+}
 </style>
 <script src="../js/designerBookmark.js"></script>>
 </head>
 <body>
 <div id="wrap">
-	<h3>헤어샵 북마크 리스트</h3>
+	<br> <br> <h4 style="font-weight: bold;">헤어 북마크 리스트</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br>
 <%-- 	<c:forEach items="${list }" var="item"> --%>
 <%-- 		헤어샵번호: ${item.hs_no } <br> --%>
 <%-- 		헤어샵이름: ${item.hs_name} <br> --%>
@@ -42,6 +54,7 @@
     		<form class="col-md-3 col-sm-6" action="../members/hairshopInfo.do" method="post">
 		            <div class="product-grid4">
 		                <div class="product-image4">
+	<br>
 	                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
 <!-- 	                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg"> -->
 		                </div>
@@ -70,6 +83,7 @@
         </c:forEach>
     </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <div id="mypage">
    <%@include file="/decorator/membersMypage.jsp" %>

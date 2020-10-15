@@ -13,7 +13,42 @@
 </head>
 <body>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>   
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>  
+<style>
+/* 버튼 */
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 600px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+/* 버튼끝 */
+</style> 
 <script>
 
 function setCookie(name, value, expiredays){
@@ -75,6 +110,11 @@ function changePrice(){
 				parseInt($(".use_saved_money").val()) - 
 				parseInt($(".couponDiscount").val());
 	$(".realPrice").val(realPrice);
+}
+
+/* 예약내역 가기 */
+ function reservationGo() {
+	location.href="membersRD.do";
 }
 
 </script>
@@ -202,6 +242,9 @@ function changePrice(){
 	</div>
 	<br><br>
 	
+	<h1 style="text-align: center; font-family: 'Do Hyeon', sans-serif; color:#5468b3;">결제가 완료되었습니다</h1>
+	<h5 style="text-align: center; font-family: 'Do Hyeon', sans-serif;">자세한 내용은 예약내역 페이지에서 확인부탁드립니다</h5>
+	<br><br>
 <table class="tbl">
 	<tbody>
 		<tr>
@@ -209,7 +252,7 @@ function changePrice(){
 				예약자 이름
 			</th>
 			<td>
-				${list2.mem_name}
+				${sessionScope.login.mem_name}
 			</td>
 		</tr>
 		<tr>
@@ -254,9 +297,13 @@ function changePrice(){
 		</tr>
 	</tbody>
 </table>	
-
+<br><br>
 
 </form>
+<div class="wrap">
+  <button class="button" onclick="reservationGo();">예약내역으로 가기</button>
+</div>
+<br><br><br><br>
 
 
 </div> <!-- shopbody끝 -->

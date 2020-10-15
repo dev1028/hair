@@ -20,11 +20,9 @@ body {
 
 #exTab3 .tab-content {
 	color: white;
-	background-color: ;
+	background-color:;
 	padding: 5px 15px;
 }
-
-
 
 .avatar {
 	vertical-align: middle;
@@ -33,41 +31,39 @@ body {
 	border-radius: 50%;
 }
 
-
-
 .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+	background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+	background-color: #ccc;
 }
 
 /* Style the tab content */
 .tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
 }
 </style>
 
@@ -158,8 +154,15 @@ function chart() {
 		// Set chart options
 		var options = {
 			'title' : '매출순 ',
-			'width' :400,
-			'height' : 300
+			'width' :700,
+			'height' : 400,
+			annotations: {
+			     textStyle: {
+			         color: 'black',
+			         fontSize: 11,
+			     },
+			     alwaysOutside: true
+			}
 		};
 
 		// Instantiate and draw our chart, passing in some options.
@@ -199,10 +202,16 @@ function chart() {
 		// Set chart options
 		var options = {
 			'title' : '평점순위 ',
-			'width' :400,
-			'height' : 300
+			'width' :700,
+			'height' : 400,
+			annotations: {
+			     textStyle: {
+			         color: 'black',
+			         fontSize: 11,
+			     },
+			     alwaysOutside: true
+			}
 		};
-
 		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.ColumnChart(document
 				.getElementById('chart_divrate'));
@@ -238,10 +247,16 @@ function chart() {
 		// Set chart options
 		var options = {
 			'title' : '예약순위 ',
-			'width' :400,
-			'height' : 300
+			'width' :700,
+			'height' : 400,
+			annotations: {
+			     textStyle: {
+			         color: 'black',
+			         fontSize: 11,
+			     },
+			     alwaysOutside: true
+			}
 		};
-
 		// Instantiate and draw our chart, passing in some options.
 		var chart = new google.visualization.ColumnChart(document
 				.getElementById('chart_divrsv'));
@@ -250,8 +265,7 @@ function chart() {
 }
 	$(function() {
 		chart();
-		
-		period();
+	
 
 		$(document)
 				.on(
@@ -332,6 +346,16 @@ function chart() {
 		}
 
 
+$(document).on("click", '#daybtn', function() {
+			
+		});
+$(document).on("click", '#monthbtn', function() {
+	
+});
+
+
+var d = new Date();
+$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 </script>
 </head>
 <body>
@@ -339,16 +363,76 @@ function chart() {
 	<br>
 	<br>
 	<br>
+
+
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#daytab"><button
+					type="button" class="btn btn-default" id="daybtn">일</button></a></li>
+		<li><a data-toggle="tab" href="#weektab">
+				<button type="button" class="btn btn-default" id="weekbtn">주</button>
+		</a></li>
+		<li><a data-toggle="tab" href="#monthtab"><button
+					type="button" class="btn btn-default" id="monthbtn">월</button></a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div id="daytab" class="tab-pane fade in active">
+			<div class="row">
+				<div class="col-4">
+					<button type="button" class="btn btn-default" id="weekbtn"><</button>
+				</div>
+				<div class="col-4">
+					<input class="form-control " type="date">
+				</div>
+				<div class="col-4">
+					<button type="button" class="btn btn-default" id="weekbtn">></button>
+				</div>
+			</div>
+		</div>
+		<div id="weektab" class="tab-pane fade">
+			<div class="row">
+				<div class="col-3">
+					<button type="button" class="btn btn-default" id="weekbtn"><</button>
+				</div>
+				<div class="col-3">
+					<input type="month" class="form-control ">
+				</div>
+				<div class="col-3">
+					<select name="qna_who" id="qna_who" class="form-control ">
+						<option class="form-control form-check-input">1</option>
+						<option class="form-control form-check-input">2</option>
+						<option class="form-control form-check-input">3</option>
+						<option class="form-control form-check-input">4</option>
+						<option class="form-control form-check-input">5</option>
+					</select>
+				</div>
+				<div class="col-3">
+					<button type="button" class="btn btn-default" id="weekbtn">></button>
+				</div>
+			</div>
+		</div>
+		<div id="monthtab" class="tab-pane fade">
+			<div class="row">
+				<div class="col-4">
+					<button type="button" class="btn btn-default" id="weekbtn"><</button>
+				</div>
+				<div class="col-4">
+					<input type="month" class="form-control ">
+				</div>
+				<div class="col-4">
+					<button type="button" class="btn btn-default" id="weekbtn">></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<div class="container">
+
 		<form method="POST"
 			action="${pageContext.request.contextPath}/hairshop/AnalysisDesignerTotal.do">
 
 
-			<div class="control">
-				<label for="name">기간선택 </label> <input type="date" name="startdate">
-				<input type="date" name="enddate">
-				<div class="controls" id="range"></div>
-			</div>
 
 
 
@@ -384,95 +468,95 @@ function chart() {
 	</div>
 
 	<!-- Tab content -->
-<div id="London" class="tabcontent">
-<div id="chart_divrsv"></div>
+	<div id="London" class="tabcontent">
+		<div id="chart_divrsv"></div>
 
-					<div class="container">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>순위</th>
-									<th>디자이너</th>
-									<th>예약수</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${rsvlist }" var="l">
-									<tr>
-										<td>${ l.rank}/${l.prevrank }</td>
-										<td><img id="imgDes"
-											onerror="this.src='../images/no_img.gif'"
-											src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-											class="avatar">${ l.designer_name}</td>
-										<td>${l.rsv }/${l.prevrsv }</td>
-
-
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-
-					</div>
-</div>
-
-<div id="Paris" class="tabcontent">
-  <div id="chart_divsales"></div>
-					<div class="container">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>순위</th>
-									<th>디자이너</th>
-									<th>예약수</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${saleslist }" var="l">
-									<tr>
-										<td>${ l.rank}/${l.prevrank-l.rank }</td>
-										<td><img id="imgDes"
-											onerror="this.src='../images/no_img.gif'"
-											src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-											class="avatar">${ l.designer_name}</td>
-										<td>${l.sales }/${l.prevsales }</td>
+		<div class="container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>순위</th>
+						<th>디자이너</th>
+						<th>예약수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${rsvlist }" var="l">
+						<tr>
+							<td>${ l.rank}/${l.prevrank }</td>
+							<td><img id="imgDes"
+								onerror="this.src='../images/no_img.gif'"
+								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+								class="avatar">${ l.designer_name}</td>
+							<td>${l.rsv }/${l.prevrsv }</td>
 
 
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-</div>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
-<div id="Tokyo" class="tabcontent">
-<div id="chart_divrate"></div>
-					<div class="container">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>순위</th>
-									<th>디자이너</th>
-									<th>예약수</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${ratelist }" var="l">
-									<tr>
-										<td>${ l.rank}/${l.prevrank }</td>
-										<td><img id="imgDes"
-											onerror="this.src='../images/no_img.gif'"
-											src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-											class="avatar">${ l.designer_name}</td>
-										<td>${l.rate }/${l.prevrate }</td>
+		</div>
+	</div>
+
+	<div id="Paris" class="tabcontent">
+		<div id="chart_divsales"></div>
+		<div class="container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>순위</th>
+						<th>디자이너</th>
+						<th>예약수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${saleslist }" var="l">
+						<tr>
+							<td>${ l.rank}/${l.prevrank-l.rank }</td>
+							<td><img id="imgDes"
+								onerror="this.src='../images/no_img.gif'"
+								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+								class="avatar">${ l.designer_name}</td>
+							<td>${l.sales }/${l.prevsales }</td>
 
 
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-					</div>
-</div>
+	<div id="Tokyo" class="tabcontent">
+		<div id="chart_divrate"></div>
+		<div class="container">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>순위</th>
+						<th>디자이너</th>
+						<th>예약수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${ratelist }" var="l">
+						<tr>
+							<td>${ l.rank}/${l.prevrank }</td>
+							<td><img id="imgDes"
+								onerror="this.src='../images/no_img.gif'"
+								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+								class="avatar">${ l.designer_name}</td>
+							<td>${l.rate }/${l.prevrate }</td>
+
+
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->

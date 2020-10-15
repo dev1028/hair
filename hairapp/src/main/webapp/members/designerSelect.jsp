@@ -158,7 +158,7 @@ background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 
 #shopdata2 {
     position: absolute;
     left: 29%;
-    top: 2.3%;
+    top: 1.5%;
 }
 .datePick {
 	height:60px;

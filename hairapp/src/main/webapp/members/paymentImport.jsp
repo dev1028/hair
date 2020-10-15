@@ -28,9 +28,9 @@
 				apply_num: "444"
 			},
 			success : function(res) {
-				
 			}
 		})
+		location.href="http://localhost/hairapp/members/paymentS.do";
 		alert('결제가 완료되었습니다.');
 	}
 	

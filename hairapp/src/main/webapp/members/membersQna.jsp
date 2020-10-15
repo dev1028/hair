@@ -144,9 +144,9 @@
   	<td align="left">
   	<c:if test="${qna.qna_level > 0}">
 		<c:forEach begin="1" end="${qna.qna_level}">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<!-- 답변글일경우 글 제목 앞에 공백을 준다. -->
+			&emsp;&emsp;&emsp;	<!-- 답변글일경우 글 제목 앞에 공백을 준다. -->
 		</c:forEach>
-	&nbsp;&nbsp;&nbsp;&nbsp;RE :
+	&emsp;&emsp;<img src="../images/members/re.png" style="width: 20px; height: 20px;">&nbsp;
 	</c:if>
 	<c:if test="${qna.qna_openstatus == '0'}">	<!-- 비밀글에 자물쇠 담 -->
 	<img src="../images/members/lock.png" style="width: 13px; height: 13px;">

@@ -23,7 +23,8 @@
 </script>
 </c:if>
 <div class="container">
-    <h3 class="h3">지역별 디자이너 순위</h3>
+    <br> <br> <h4 style="font-weight: bold; text-align: center;">지역별 디자이너 순위</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br><br>
     <div class="row">
     	<c:forEach items="${list}" var="designerInfo" >
 <!--     		<form class="col-md-3 col-sm-6" action="../members/designerSelectResult.do" method="post"> -->
