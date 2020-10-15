@@ -659,13 +659,83 @@ label.valid:after {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script>
+var okToUseEmail = false;
 	$(function(){
+		$("#checkOwnerDesSame1").on("click", function(){
+				var hsemail = $('#owner_email').val();
+				if(hsemail != ""){
+					$.ajax({
+				        type:"POST",
+				        url:"${pageContext.request.contextPath}/ajax/designerEmailUse.do",
+				        data : {hs_email : hsemail},
+				        dataType : "json",
+				        success: function(data){
+				            if(data==0 || data==1){
+				            	$("#smallEmail").text("해당 메일은 사용가능합니다.");
+				            	$('#owner_email').attr("readonly", true);
+				            	if(data == 1){
+				            		$("#checkOwnerDesEmailExist").val("Y");
+				            	} else {
+				            		$("#checkOwnerDesEmailExist").val("N");
+				            	}
+				            	okToUseEmail = true;
+				            } else {
+				            	$("#smallEmail").text("해당 메일은 사용불가능 합니다.").css('color', 'red');
+				            	$('#owner_email').attr("readonly", false);
+				            	okToUseEmail = false;
+				            }
+				        }
+				    });
+				}
+			$("#staticBackdrop").modal('toggle');
+		});
+		
+		$("#btnDesignerInsert1").on("click", function(){
+			if(okToUseEmail){
+				$("#designer_email").val($('#owner_email').val());
+				$("#position").val($('#owner_position').val());
+				$("#designer_phone").val($('#owner_phone').val());
+				$("#staticBackdrop").modal('hide');
+			} else {
+				alert("이메일을 다시한번 확인해 주세요.");
+			}
+		});
+		
+		$("owner_email").on("focusout", function(){
+			var hsemail = $('#owner_email').val();
+			if(hsemail != ""){
+				$.ajax({
+			        type:"POST",
+			        url:"${pageContext.request.contextPath}/ajax/designerEmailUse.do",
+			        data : {hs_email : hsemail},
+			        dataType : "json",
+			        success: function(data){
+			            if(data==0 || data==1){
+			            	$("#smallEmail").text("해당 메일은 사용가능합니다.");
+			            	$('#owner_email').attr("readonly", true);
+			            	if(data == 1){
+			            		$("#checkOwnerDesEmailExist").val("Y");
+			            	} else {
+			            		$("#checkOwnerDesEmailExist").val("N");
+			            	}
+			            	okToUseEmail = true;
+			            } else {
+			            	$("#smallEmail").text("해당 메일은 사용불가능 합니다.").css('color', 'red');
+			            	$('#owner_email').attr("readonly", false);
+			            	okToUseEmail = false;
+			            }
+			        }
+			    });
+			}
+		});
+		
 		$("#hs_fulladdr").on("click", function(){
 			goPopup();
 			
 		});
-		
 		
 		$("#btnSubmit").on("click", function(){
 			//am pm 처리
@@ -680,8 +750,42 @@ label.valid:after {
 				endtime24 = 12;
 			}
 			$("#hs_endtime").val(parseInt(endtime24)+parseInt($("#hs_endtimebefore option:selected").val()));
+
+			
+			if($("#hs_fulladdr").val() == ''){
+				alert("주소를 입력해주세요.");
+				return;
+			}
+			if(parseInt($("#hs_starttime").val()) >= parseInt($("#hs_endtime").val())){
+				alert("영업종료시간이 영업시작시간보다 이릅니다. 수정 후 등록하세요.");
+				return;
+			} 
 			
 			
+			if(!$('input:radio[name=hs_resource_option]').is(':checked')){
+				alert("자재사용여부를 체크해주세요.");
+				return;
+			}
+			if(!$('input:radio[name=hs_parking]').is(':checked')){
+				alert("주차장 여부를 체크해주세요.");
+				return;
+			}
+			
+			if(!$('input:radio[name=checkOwnerDesSame]').is(':checked')){
+				alert("직원등록여부를 체크해주세요.");
+				return;
+			} else{
+				$("#checkOwnerDesSame1").prop('checked')
+				if(!okToUseEmail){
+					alert("직원등록의 이메일을 확인해 주세요.");
+					return;
+				}	
+			}
+			
+			if($("#owner_email").val() != $("#designer_email").val()){
+				$("#checkOwnerDesEmailSame").val("N");
+			}
+
 			//휴무일 처리
 			var dayoff = "";
 			for(var i =0; i<$("#hs_dayoffgroup").find(":checked").length-1; i++){
@@ -691,7 +795,8 @@ label.valid:after {
 			
 			$("#hs_dayoff").val(dayoff);
 			
-			$("#register-form").submit();
+			$("#register-form").submit();				
+					
 		});
 		
 		
@@ -812,8 +917,8 @@ label.valid:after {
 							</div>
 							<hr>
 							<div  class="form-group">
-								<span>자재관리 서비스를 이용하실건가요?</span><br> <input type="radio" name="hs_resource_option" value="1">
-								사용 <br>
+								<span>자재관리 서비스를 이용하실건가요?</span><br> <input type="radio" name="hs_resource_option" value="1" disabled>
+								사용 <small>(서비스 준비중입니다.)</small><br>
 								<input type="radio" name="hs_resource_option" value="0"> 안함
 							</div>
 							<hr>
@@ -822,6 +927,17 @@ label.valid:after {
 								있음 <br> <input type="radio" name="hs_parking" value="0"> 없음
 							</div>
 							<hr>
+							<div  class="form-group">
+								<span class="badge badge-pill badge-danger">중요</span><span> 본인을 디자이너로 등록할까요?</span><br> <input type="radio" id="checkOwnerDesSame1" name="checkOwnerDesSame" value="Y">
+								등록 <br> <input id="checkOwnerDesSame2" type="radio" name="checkOwnerDesSame" value="N"> 안함
+								
+								<input type="hidden" id ="designer_email" name="designer_email" value="">
+								<input type="hidden" id ="position" name="position" value="">
+								<input type="hidden" id ="designer_phone" name="designer_phone" value="">
+								<input type="hidden" id ="checkOwnerDesEmailSame" name="checkOwnerDesEmailSame" value="Y">
+								<input type="hidden" id ="checkOwnerDesEmailExist" name="checkOwnerDesEmailExist" value="N">
+								
+							</div>
 							<div  class="form-group">
 								<button class="btn btn-primary btn-sm" type="button" id="btnSubmit">회원가입 승인요청</button>
 							</div>
@@ -837,5 +953,62 @@ label.valid:after {
 			</div>
 		</div>
 	</div>
+	
+	<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+		data-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">본인을 디자이너로 추가 등록</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="designerInsertFrm"
+						action="#"
+						method="post">
+						<div class="form-group">
+							<span><strong>디자이너 이름</strong></span> <input
+								type="text" class="form-control" id="owner_name"
+								name="designer_name" placeholder="홍길동" value="${hairshop.hs_owner}" readonly>
+						</div>
+						<div class="form-group">
+							<span><strong>직급</strong></span> <input
+								type="text" class="form-control" id="owner_position"
+								name="position" placeholder="직급을 입력하세요." value="원장">
+						</div>
+						<div class="form-group">
+							<span><strong>이메일</strong></span> <input
+								type="email" class="form-control" id="owner_email"
+								name="designer_email" aria-describedby="emailHelp"
+								placeholder="name@example.com" value="${hairshop.hs_email}" readonly> <small
+								class="form-text text-muted" id="smallEmail"></small>
+						</div>
+						<div class="form-group">
+							<span><strong>비밀번호</strong></span> <input
+								type="password" class="form-control" id="owner_pw"
+								name="designer_pw" placeholder="디자이너가 로그인할 초기 비밀번호입니다." readonly value="${hairshop.hs_pw}">
+							<small id="emailHelp" class="form-text text-muted">비밀번호는 헤어샵 비밀번호와 동일합니다.</small>
+						</div>
+						<div class="form-group">
+							<span><strong>전화번호</strong></span> <input
+								type="text" class="form-control" id="owner_phone"
+								name="designer_phone" placeholder="010-0000-0000" value="${hairshop.hs_tel}">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary"
+						id="btnDesignerInsert1">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 </body>
 </html>

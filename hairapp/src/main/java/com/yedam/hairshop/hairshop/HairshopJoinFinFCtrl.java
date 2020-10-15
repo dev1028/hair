@@ -15,7 +15,9 @@ import org.locationtech.proj4j.ProjCoordinate;
 
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.SandEmail;
+import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.dao.HairshopDAO;
+import com.yedam.hairshop.model.DesignerVo;
 import com.yedam.hairshop.model.EmailVo;
 import com.yedam.hairshop.model.HairshopVo;
 
@@ -31,7 +33,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		}
-
+		
 		String xy = hVo.getHs_latlong();
 		String[] latlong = xy.split(",");
 
@@ -61,6 +63,33 @@ public class HairshopJoinFinFCtrl implements Controller {
 					.append("</script>");
 
 		} else {
+			String oDS = hVo.getCheckOwnerDesSame();
+			if(oDS.equals("Y")) {
+				if(hVo.getCheckOwnerDesEmailSame().equals("Y")) {
+						DesignerVo dVo = new DesignerVo();
+						dVo.setDesigner_name(hVo.getHs_owner());
+						dVo.setPosition(hVo.getPosition());
+						dVo.setDesigner_email(hVo.getDesigner_email());
+						dVo.setDesigner_dayoff(hVo.getHs_dayoff());
+						dVo.setDesigner_phone(hVo.getDesigner_phone());
+						dVo.setDesigner_pw(hVo.getHs_pw());
+						dVo.setWork_start_time(hVo.getHs_starttime());
+						dVo.setWork_end_time(hVo.getHs_endtime());
+						
+					if(hVo.getCheckOwnerDesEmailExist().equals("N")) {
+						//insert
+						DesignerDAO.getInstance()
+					} else {
+						//update
+						
+					}
+				}
+				
+			} else {
+				
+			}
+			
+			
 			Thread task = new Thread(new Runnable() {
 				public void run() {
 					SandEmail se = new SandEmail();

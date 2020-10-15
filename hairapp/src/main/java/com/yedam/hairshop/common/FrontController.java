@@ -97,6 +97,7 @@ import com.yedam.hairshop.hairshop.CheckDesignerTimeAjCtrl;
 import com.yedam.hairshop.hairshop.CheckSameHhiNameAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.DailyReservationListCtrl;
+import com.yedam.hairshop.hairshop.DesignerEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.EmployeeAuthFCtrl;
 import com.yedam.hairshop.hairshop.EmployeeListCtrl;
 import com.yedam.hairshop.hairshop.EmployeeSimpleJoinFCtrl;
@@ -551,8 +552,8 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/desFindHairInfo.do", new DesFindHairInfoCtrl()); //헤어시술검색 진퉁
 		list.put("/designer/desFindHairInfoGo.do", new DesFindHairInfoGoCtrl()); //헤어시술검색
 		
-		list.put("/ajax/hairshopEmailAuth.do", new HairshopEmailAuthCtrl());
-		
+		list.put("/ajax/hairshopEmailAuth.do", new HairshopEmailAuthCtrl()); //헤어샵이메일인증처리
+		list.put("/ajax/designerEmailUse.do", new DesignerEmailUseAjCtrl()); //디자이너에 헤어샵이메일있는지 체크
 
 		list.put("/hairshop/myHairshopProfile.do", new MyHairShopProfileCtrl()); // 미용실 프로필공지사항이미지 조회페이지
 		list.put("/hairshop/myHairshopProfileUpdate.do", new MyHairshopProfileUpdateFCtrl()); // 미용실 프로필공지사항이미지 수정처리
