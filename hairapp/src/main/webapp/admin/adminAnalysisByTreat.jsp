@@ -6,41 +6,24 @@
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+	datatable = [];
 	google.charts.load('current', {
 		'packages' : [ 'bar' ]
 	});
 	google.charts.setOnLoadCallback(drawStuff);
-
+	
 	function drawStuff() {
-		//     	  var datatable = [];
-		// 			//ajax
-		// 			$.ajax({
-		// 				async : false,
-		// 				url : "/hairapp/ajax/admin/analysisByHairshopCount.do",
-		// 				dataType : "json",
-		// 				success : function(datas) {
-		// 					console.log(datas);
-		// 					for (i = 0; i < datas.length; i++) {
-		// 						datatable.push([ datas[i].rank + "위",
-		// 								parseInt(datas[i].cnt), datas[i].hs_name ]);
-		// 					}
-		// 					//
-		// 				}
-		// 			});
-		// 			data.addRows(datatable);
-
-		datatable = [];
 		$.ajax({
 			async : false,
 			url : "../ajax/adminAnalysisByTreatRank.do",
 			dataType : "json",
 			success : function(datas) {
-				console.log(datas);
+// 				console.log(datas);
 				datatable.push(['Move', 'count'])
-				for(i=0; i<datas.length; ++i){
+				for(i=0; i<datas.length && i < 10; ++i){
 					datatable.push( [datas[i].hhi_name, parseInt(datas[i].cnt)]);
 				}
-				console.log(datatable);
+// 				console.log(datatable);
 
 				data = new google.visualization.arrayToDataTable(datatable);
 				var options = {
@@ -60,17 +43,33 @@
 				var chart = new google.charts.Bar(document.getElementById('top_x_div'));
 		        // Convert the Classic options to Material options.
 		        chart.draw(data, google.charts.Bar.convertOptions(options));
+		        
+		        for(i=10; i<datas.length; ++i){
+					datatable.push( [datas[i].hhi_name, parseInt(datas[i].cnt)]);
+				}
 			}
 		});
 		console.log(datatable);
-
-		
+		for(var i=1; i<datatable.length; ++i){
+			$(".table > tbody:last").append("<tr><td>" + i +"</td><td>" +  datatable[i][0]  + "</td><td>" +  datatable[i][1] +"</td></tr>")
+			
+		}
 	};
 </script>
 </head>
 <body>
-	<div id="top_x_div" style="width: 800px; height: 600px;"></div>
-	<div id="table">
-	</div>
+	<div id="top_x_div" style="width: 800px; height: 600px; margin-left: auto; margin-right: auto;"></div>
+	
+	<table class="table" style="width: 800px; margin-left: auto; margin-right: auto;">
+		<thead>
+			<tr>
+				<th>순위</th>
+				<th>헤어 이름</th>
+				<th>예약 수</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
 </body>
 </html>
