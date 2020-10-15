@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	alert("이메일 인증해");
+	alert("이메일 인증하세요");
 	location.href = "${pageContext.request.contextPath}/hairshop/hairshopDesignerLogin.jsp";
 </script>
 </head>

@@ -239,7 +239,7 @@ input[type="file"] {
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-pencil"></i></span>
 						<textarea class="form-control" name="designer_profile"
-							id="designer_profile" placeholder=""></textarea>
+							id="designer_profile">${designer.designer_profile}</textarea>
 					</div>
 				</div>
 			</div>

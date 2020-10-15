@@ -357,7 +357,8 @@ public class Login implements Filter {
 		list.put("/designer/desFindHairInfo.do",designerLoginPage);
 		list.put("/designer/desFindHairInfoGo.do", designerLoginPage);
 		list.put("/ajax/hairshopEmailAuth.do", null);
-
+		list.put("/ajax/checkDesignerTime.do" , hairLoginPage);
+		list.put("/ajax/designerEmailUse.do", null);
 	}
 
 	@Override

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.hairshop.common.Controller;
-import com.yedam.hairshop.dao.DesignerDAO;
 import com.yedam.hairshop.model.DesignerVo;
 
 public class DesignerMyPageCtrl implements Controller {
@@ -17,13 +16,19 @@ public class DesignerMyPageCtrl implements Controller {
 		System.out.println("디자이너 수정페이지 ");
 		request.setCharacterEncoding("utf-8");
 		// HttpSession session = request.getSession();
-		String designer_email = ((DesignerVo)request.getSession().getAttribute("login")).getDesigner_email();
-		
-		DesignerVo designerVo = new DesignerVo();
-		designerVo.setDesigner_email(designer_email);
-		
-		DesignerVo resultVo = DesignerDAO.getInstance().selectOneEmail(designerVo);
-		request.setAttribute("designer", resultVo);
+		DesignerVo designerVo = (DesignerVo) request.getSession().getAttribute("login");
+
+//		try {
+//			designerVo = (DesignerVo) ((DesignerVo) request.getSession().getAttribute("login")).clone();
+//		} catch (CloneNotSupportedException e) {
+//			e.printStackTrace();
+//		}
+
+		// DesignerVo resultVo = DesignerDAO.getInstance().selectOneEmail(designerVo);
+
+		System.out.println("여긴 디자이너 정보수정페이지");
+		System.out.println("디자이너정보 : " + designerVo.getDesigner_no() +" "+ designerVo.getDesigner_name() + " " + designerVo.getDesigner_phone());
+		request.setAttribute("designer", designerVo);
 		request.getRequestDispatcher("/designer/designerMyPage.jsp").forward(request, response);
 
 	}

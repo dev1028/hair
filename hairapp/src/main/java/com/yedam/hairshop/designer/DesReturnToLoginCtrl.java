@@ -12,7 +12,7 @@ public class DesReturnToLoginCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect(request.getContextPath()+"/hairshop/hairshopDesignerLogin.jsp");
+		response.sendRedirect("/hairapp/hairshop/hairshopDesignerLogin.jsp");
 
 	}
 

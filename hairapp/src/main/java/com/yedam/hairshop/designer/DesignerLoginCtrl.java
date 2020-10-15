@@ -23,62 +23,72 @@ public class DesignerLoginCtrl implements Controller {
 		designerVo.setDesigner_access_status(request.getParameter("status"));
 		designerVo.setDesigner_no(request.getParameter("designer_no"));
 		designerVo.setDesigner_name(request.getParameter("designer_name"));
-		
-		//test
+
+		// test
 		designerVo.setDesigner_phone(request.getParameter("designer_phone"));
 		designerVo.setDesigner_dayoff(request.getParameter("designer_dayoff"));
 		designerVo.setWork_start_time(request.getParameter("work_start_time"));
 		designerVo.setWork_end_time(request.getParameter("work_end_time"));
 		designerVo.setDesigner_profile(request.getParameter("designer_profile"));
 		designerVo.setFile_name(request.getParameter("file_name"));
-		
 
 		DesignerVo resultVo = DesignerDAO.getInstance().selectOneEmail(designerVo);
 
 		// 3.결과 저장
 		String page = "";
 		if (resultVo == null) { // id 없음
-			request.setAttribute("errormsg", "해당 email이 없습니다.");
-			page = "/hairshop/hairshopDesignerLogin.jsp";
-			
+//			request.setAttribute("errormsg", "해당 email이 없습니다.");
+//			page = "/hairshop/hairshopDesignerLogin.jsp";
+			response.getWriter().append("<script>").append("alert('아이디 또는 비밀번호가 틀렸습니다.');")
+					.append("location.href='" + request.getContextPath() + "/ajax/designerReturnToLogin.do';")
+					.append("</script>");
 		} else {
 			if (designerVo.getDesigner_pw().equals(resultVo.getDesigner_pw())) { // 로그인 성공
-				request.getSession().setAttribute("login", resultVo);
-				request.getSession().setAttribute("udong", "designer");
-				request.getSession().setAttribute("email", resultVo.getDesigner_email());
-				
-				System.out.println("인증 :" + resultVo.getDesigner_access_status());
-				// 로그인 후 인증확인
-				// .do로 보낼땐 sendRedirect , forward로 보낼때 requestDispatcher
-				if (resultVo.getDesigner_access_status().equals("1")) {
-					request.getSession().setAttribute("designerNo", resultVo.getDesigner_no()); //디자이너 번호 세션에 담기
-					
-					//미용실정보 담기
-					HairshopVo hSVo = new HairshopVo();
-					hSVo.setHs_no(resultVo.getHs_no());
-					hSVo = HairshopDAO.getInstance().selectOne(hSVo);
-					request.getSession().setAttribute("hairshopInfo", hSVo);
-					
-					page = request.getContextPath()+"/designer/designerMain.do";
-					response.sendRedirect(page);
-					
-				}else if (resultVo.getDesigner_access_status().equals("0")) {
-					page = request.getContextPath()+"/designer/designerInfo.do";
-					response.sendRedirect(page);
+				if (resultVo.getHs_no() != null) {
+					request.getSession().setAttribute("login", resultVo);
+					request.getSession().setAttribute("udong", "designer");
+					request.getSession().setAttribute("email", resultVo.getDesigner_email());
 
+					System.out.println("인증 :" + resultVo.getDesigner_access_status());
+					System.out.println("디자이너번호 : " + resultVo.getDesigner_no());
+					System.out.println("디자이너번호 : " + resultVo.getDesigner_name());
+					System.out.println("디자이너번호 : " + resultVo.getDesigner_email());
+					// 로그인 후 인증확인
+					// .do로 보낼땐 sendRedirect , forward로 보낼때 requestDispatcher
+					if (resultVo.getDesigner_access_status().equals("1")) {
+						request.getSession().setAttribute("designerNo", resultVo.getDesigner_no()); // 디자이너 번호 세션에 담기
+
+						// 미용실정보 담기
+						HairshopVo hSVo = new HairshopVo();
+						hSVo.setHs_no(resultVo.getHs_no());
+						hSVo = HairshopDAO.getInstance().selectOne(hSVo);
+						request.getSession().setAttribute("hairshopInfo", hSVo);
+
+						page = request.getContextPath() + "/designer/designerMain.do";
+						response.sendRedirect(page);
+
+					} else if (resultVo.getDesigner_access_status().equals("0")) {
+						page = request.getContextPath() + "/designer/designerInfo.do";
+						response.sendRedirect(page);
+
+					} else {
+						page = "/designer/designerLoginFail.jsp";
+						request.getRequestDispatcher(page).forward(request, response);
+					}
 				} else {
-					page = "/designer/designerLoginFail.jsp";
-					request.getRequestDispatcher(page).forward(request, response);
-				} 
-				
+					// 퇴사한 직원
+					System.out.println("일로오면 퇴사체크(묭실번호) :" + resultVo.getHs_no());
+					response.getWriter().append("<script>").append("alert('퇴사한 직원입니다.');")
+							.append("location.href='" + request.getContextPath() + "/ajax/designerReturnToLogin.do';")
+							.append("</script>");
+				}
 			} else { // 패스워드 불일치
 				request.setAttribute("errormsg", "pw 불일치");
 				page = "/hairshop/hairshopDesignerLogin.jsp";
 				request.getRequestDispatcher(page).forward(request, response);
 			}
 		}
-		
-		
+
 		// 4. 뷰페이지 이동(redirect,forward) 또는 뷰페이지 출력
 
 	}

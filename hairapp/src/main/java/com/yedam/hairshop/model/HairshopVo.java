@@ -3,7 +3,7 @@ package com.yedam.hairshop.model;
 import lombok.Data;
 
 @Data
-public class HairshopVo {
+public class HairshopVo implements Cloneable {
 	private String hs_rn;	//랭킹
 	private String hs_no;
 	private String hs_name;
@@ -30,4 +30,17 @@ public class HairshopVo {
 	
 	private String hs_book;
 	private String distance;
+	private String checkOwnerDesSame;
+	private String checkOwnerDesEmailSame;
+	private String checkOwnerDesEmailExist;
+	private String designer_email;
+	private String position;
+	private String designer_phone;
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return super.clone();
+	}
+	
 }

@@ -4,7 +4,7 @@ package com.yedam.hairshop.common;
 public class ChangeUtil {
 
 	public static String changeDayOffNumToStr(String dayoff) { // 숫자로 된 휴무일 변환
-		if(dayoff == null) {
+		if(dayoff == null || dayoff == "") {
 			return null;
 		}
 		String[] dayoffArr = dayoff.split(",");
@@ -22,7 +22,7 @@ public class ChangeUtil {
 	}
 
 	public static String changeDayOffStrToNum(String dayoff) { // 문자로 된 숫자로 변환
-		if(dayoff == null) {
+		if(dayoff == null || dayoff == "") {
 			return null;
 		}
 		String[] dayoffArr = dayoff.split(",");

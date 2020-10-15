@@ -129,13 +129,15 @@ public class DesignerDAO {
 		DesignerVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = " SELECT DESIGNER_NO, DESIGNER_PW,DESIGNER_NAME, DESIGNER_EMAIL, DESIGNER_ACCESS_STATUS,"
+			String sql = " SELECT DESIGNER_NO, DESIGNER_PW, DESIGNER_NAME, DESIGNER_EMAIL, DESIGNER_ACCESS_STATUS,"
 					+ " DESIGNER_PHONE, DESIGNER_DAYOFF, WORK_START_TIME, WORK_END_TIME, DESIGNER_PROFILE, "
 					+ " FILE_NAME, HS_NO "
-					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?";
+					+ " FROM DESIGNER WHERE DESIGNER_EMAIL = ?" + " AND DESIGNER_PW = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, designerVo.getDesigner_email());
+			pstmt.setString(2, designerVo.getDesigner_pw());
 			rs = pstmt.executeQuery();
+			System.out.println("디자이너 로그인");
 			if (rs.next()) { // 처음 커서 위치는 BOF
 				resultVo = new DesignerVo();
 				resultVo.setDesigner_no(rs.getString("DESIGNER_NO"));
@@ -465,5 +467,28 @@ public class DesignerDAO {
 		return list;
 	}
 	
-	
+	//2020.10.15 김승연
+	//영업시간 외 디자이너 근무시간 조회
+	public int selectDesStartEndTime(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT COUNT(*) FROM DESIGNER WHERE HS_NO = ? AND (WORK_START_TIME < ? OR WORK_END_TIME > ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dVo.getHs_no());
+			pstmt.setString(2, dVo.getWork_start_time());
+			pstmt.setString(3, dVo.getWork_end_time());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				r = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+		
+	}
 }
