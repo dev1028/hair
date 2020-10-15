@@ -24,6 +24,12 @@
     margin:0 auto;
 } 
 
+#form {
+	background: #e9edff;
+	border: 1px solid #6d7fcc;
+	width:1300px;
+}
+
 
 /* 슬라이더 */
 * {
@@ -169,15 +175,16 @@
 </head>
 <body>
 <div id="wrap">
-	<br> <br> <b><font size="6" color="gray">마이페이지톱</font></b> <br>
-	<hr><br>
+	<br> <br> <h4 style="font-weight: bold;">마이페이지톱</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br>
    
 	
 	<!-- 예약내역 -->
 	<form method="post" action="membersMypageTop.do" name="form" id="form">
+	<br>
 		<div id="wrap1">
-			<h4>예약중인 헤어샵</h4>	
-			<hr>
+			<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 예약중인 헤어샵</h5>	
+			<hr style="border: 1px solid #6d7fcc;"><br>
 			<c:if test="${ empty booking }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
 				예약중인 헤어샵이 없습니다
 			</c:if>
@@ -216,8 +223,8 @@
 		
 <br><br><br><br><br><br>
 <div id="wrap2">	<!-- wrap2시작 -->
-	<h4>예약한 적이 있는 헤어샵</h4>	
-	<hr>
+	<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 예약한 적이 있는 헤어샵</h5>	
+	<hr style="border: 1px solid #6d7fcc;"><br>
 	<c:if test="${ empty onevisit }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
 				예약한적이 있는 헤어샵이 없습니다
 	</c:if>	
@@ -243,9 +250,10 @@
 <!-- 슬라이더끝 -->
 			
 </div>	<!-- wrap2끝 -->
-<br><br><br><br><br><br>
+<br><br><br><br>
 		
 </form>
+<br><br>
 </div>
 
 <script>

@@ -24,7 +24,7 @@ public class DesignerVo implements Cloneable{
 	private String file_name;
 	private String designer_book;
 	private String hs_name;
-	
+	private String hs_email;
 	
 	// 디자이너 퇴사자 테이블 : DesignersLeaveInfoVo
 	private String dli_leave_date;

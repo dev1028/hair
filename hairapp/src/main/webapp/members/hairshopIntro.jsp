@@ -82,7 +82,9 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 #shopdata2 {
 	position:absolute;
 	left:2%;
-	top:30%;
+	top:15%;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 25px;
 }
 
 /* 바디 div */

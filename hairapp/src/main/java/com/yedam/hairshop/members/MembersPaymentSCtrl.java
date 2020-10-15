@@ -14,6 +14,7 @@ import com.yedam.hairshop.model.HairshopBookmarkVo;
 import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersHairshopVo;
 import com.yedam.hairshop.model.MembersReservationVo;
+import com.yedam.hairshop.model.PaymentVo;
 
 public class MembersPaymentSCtrl implements Controller {
 
@@ -22,11 +23,12 @@ public class MembersPaymentSCtrl implements Controller {
 		System.out.println("MembersPaymentSCtrl");
 		
 		HairshopVo hsVo = (HairshopVo) request.getSession().getAttribute("selHairshopVo");
-		MembersReservationVo payVo = (MembersReservationVo) request.getSession().getAttribute("payVo");
+		PaymentVo payVo = (PaymentVo) request.getSession().getAttribute("payVo");
+		System.out.println("payVo나와라: "+payVo);
 		
 		MembersReservationDAO dao = MembersReservationDAO.getInstance();
-		MembersReservationVo resultVo = dao.drHairshop(payVo);
-		MembersReservationVo resultVo2 = dao.drHairshop2(payVo);
+		MembersReservationVo resultVo = dao.drHairshop3(payVo);
+		MembersReservationVo resultVo2 = dao.drHairshop4(payVo);
 		System.out.println("resultVo: " + resultVo);
 		System.out.println("resultVo2: " + resultVo2);
 		
@@ -46,7 +48,7 @@ public class MembersPaymentSCtrl implements Controller {
 		request.setAttribute("shop3", shop3);
 
 		// 페이지 이동
-		request.getRequestDispatcher("paymentSuccess.jsp").forward(request, response);
+		request.getRequestDispatcher("/members/paymentSuccess.jsp").forward(request, response);
 
 	}
 

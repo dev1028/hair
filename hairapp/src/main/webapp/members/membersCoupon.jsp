@@ -28,7 +28,6 @@
 
 #wrap2{
 	top:100%;
-    position: absolute;
     margin:0 auto;
 } 
 
@@ -37,12 +36,16 @@
 	margin: 10px;
 	float: left;
 }
+#form {
+	background: #e9edff;
+	border: 1px solid #6d7fcc;
+	width:1300px;
+}
 
 /* 쿠폰박스 */
 .demo-card-square.mdl-card {
     width: 320px;
     height: 320px;
-    float: left;
     margin: 1rem;
     position: relative;
   }
@@ -64,17 +67,20 @@
 </head>
 <body>
 <div id="wrap">
-	<h2>쿠폰</h2>
-	<hr width="1000px" style="border: solid 1px">
-	<br><br>
+	<br> <br> <h4 style="font-weight: bold;">나의 쿠폰</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br>
 	
+	<div id="row">
 	<!-- 쿠폰 내역 -->
 	<form method="post" action="membersCoupon.do" name="form" id="form">
 		<div id="wrap1">
-			<h3>보유 쿠폰 내역</h3>	
-			<hr style="border: solid 1px">
+			<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 보유쿠폰내역</h5>
+			<hr style="border: 1px solid #6d7fcc;"><br>
 			
 				<!-- 보유중인 -->
+				<c:if test="${ empty holdingCoupon }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
+					<h5>&nbsp;보유중인 쿠폰내역이 없습니다</h5>
+				</c:if>
 				<c:forEach items="${holdingCoupon}" var="holding">
 				<div class="mdl-card mdl-shadow--2dp demo-card-square">
 					<div class="mdl-card__title mdl-card--expand">
@@ -94,8 +100,8 @@
 		
 		<div id="wrap2">
 		<br><br><br><br><br><br>
-			<h3>사용한 쿠폰 내역</h3>	
-			<hr style="border: solid 1px">
+			<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 사용한 쿠폰내역</h5>
+			<hr style="border: 1px solid #6d7fcc;"><br>
 
 				<!-- 사용한  -->
 				<c:forEach items="${usedCoupon}" var="used">
@@ -115,6 +121,8 @@
 			</div>
 	
 	</form>
+	
+	</div>
 </div> <!-- warp 끝 -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

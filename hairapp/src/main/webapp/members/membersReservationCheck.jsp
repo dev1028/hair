@@ -24,12 +24,21 @@
     margin:0 auto;
 } 
 
+#form {
+	background: #e9edff;
+	border: 1px solid #6d7fcc;
+	width:1300px;
+}
+
 /* css */
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 * {
 	box-sizing: border-box;
 }
+/* .courses-container {
+	width:1000px;
+} */
 
 .course {
 	background-color: #fff;
@@ -39,7 +48,6 @@
 	max-width: 100%;
 	margin: 20px;
 	overflow: hidden;
-	width: 700px;
 }
 
 .course h6 {
@@ -263,15 +271,16 @@ function openWriteDR(mdr_no) {
 
 	
     <div id="wrap">
-	<br> <b><font size="6" color="gray">예약 내역</font></b> <br>
-	<hr style="border: solid 1px"><br>
+	<br> <br> <h4 style="font-weight: bold;">예약내역</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br>
    
 	
 	<!-- 예약내역 -->
 	<form method="post" action="membersRD.do" name="form" id="form">
+	<br>
 		<div id="wrap1">
-			<h3>예약중인 헤어샵</h3>	
-			<hr style="border: solid 1px">
+			<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 예약중인 헤어샵</h5>	
+			<hr style="border: 1px solid #6d7fcc;"><br>
 			<c:if test="${ empty booking }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
 				예약중인 헤어샵이 없습니다
 			</c:if>
@@ -297,6 +306,7 @@ function openWriteDR(mdr_no) {
 		</div>
 	</div>
 </div>
+<hr>
 </c:forEach>
 </c:if>
 		
@@ -305,8 +315,8 @@ function openWriteDR(mdr_no) {
 <br><br><br><br>
 
 		<div id="wrap2">	<!-- wrap2 시작 -->
-			<h3>전체 예약 내역</h3>	
-			<hr style="border: solid 1px">
+			<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 전체 예약 내역</h5>	
+			<hr style="border: 1px solid #6d7fcc;"><br>
 			<c:if test="${ empty list2 }">	<%-- c:if 했을때 empty는 booking == null과 같은거 --%>
 				예약한 헤어샵이 없습니다
 			</c:if>
@@ -375,8 +385,8 @@ function openWriteDR(mdr_no) {
 
 	
 	</form>
+<br>
 </div>
-
 
 <script>
 let swiper = new Swiper ('.swiper-container', {

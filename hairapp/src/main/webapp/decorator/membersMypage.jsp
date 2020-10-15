@@ -32,13 +32,9 @@ $(document).ready(function () {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Do Hyeon', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -86,11 +82,14 @@ a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 280px;
+    max-width: 280px;
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 22px;
+    height: 1000px;
 }
 
 #sidebar.active {
@@ -100,11 +99,13 @@ a:focus {
 #sidebar .sidebar-header {
     padding: 20px;
     background: #6d7fcc;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 50px;
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    padding: 50px 0;
+    border-bottom: 1px solid #6d7fcc;
 }
 
 #sidebar ul p {
@@ -197,13 +198,12 @@ a.article:hover {
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>우리동네 미용실</h3>
+                UDONG#
             </div>
 
             <ul class="list-unstyled components">
-                <p>우동</p>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">마이페이지</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">&nbsp;마이페이지</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="${pageContext.request.contextPath}/members/membersMypageTop.do">마이페이지 톱</a>
@@ -214,10 +214,10 @@ a.article:hover {
                     </ul>
                 </li>
                 <li>
-                    <a href="${pageContext.request.contextPath}/members/membersRD.do">예약내역</a>
+                    <a href="${pageContext.request.contextPath}/members/membersRD.do">&nbsp;예약내역</a>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">북마크</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">&nbsp;북마크</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                             <a href="membersBookmarkHairshop.do">헤어샵</a>
@@ -231,7 +231,7 @@ a.article:hover {
                     </ul>
                 </li>
                 <li>
-                    <a href="membersCoupon.do">쿠폰</a>
+                    <a href="membersCoupon.do">&nbsp;쿠폰</a>
                 </li>
             </ul>
             <ul class="list-unstyled CTAs">

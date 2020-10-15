@@ -33,11 +33,13 @@ public class PaymentImportCtrl implements Controller {
 			PaymentDAO.getInstance().onlinePayi1(payVo);
 			System.out.println("결제 완료 프로시저 실행");
 			
-			request.getRequestDispatcher("paymentS.do").forward(request, response);
+//			response.sendRedirect("paymentS.do");
 		}else {
 			int r = PaymentDAO.getInstance().onlinePayFailed(payVo);
 			System.out.println(r + "건 삭제됨");
 		}
+		
+		//request.getRequestDispatcher("paymentS.do").forward(request, response);
 		
 //		if(suc.equals("suc"))
 //		{

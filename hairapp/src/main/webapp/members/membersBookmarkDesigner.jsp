@@ -26,12 +26,19 @@
     position: absolute;
     margin:0 auto;
 } 
+
+.row {
+	background: #e9edff;
+	border: 1px solid #6d7fcc;
+	width:1300px;
+}
 </style>
 <script src="../js/designerBookmark.js"></script>
 </head>
 <body>
 <div id="wrap">
-	<h3>헤어샵 북마크 리스트</h3>
+	<br> <br> <h4 style="font-weight: bold;">디자이너 북마크 리스트</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br>
 <%-- 	<c:forEach items="${list }" var="item"> --%>
 <%-- 		헤어샵번호: ${item.hs_no } <br> --%>
 <%-- 		헤어샵이름: ${item.hs_name} <br> --%>

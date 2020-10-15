@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminAnalysisByTreatCtrl;
+import com.yedam.hairshop.admin.AdminAnalysisByTreatRankCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageCtrl;
@@ -58,6 +60,7 @@ import com.yedam.hairshop.admin.hairAnalysisCtrl;
 import com.yedam.hairshop.admin.hairAnalysisFCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
+import com.yedam.hairshop.dao.AdminAnalysisDAO;
 import com.yedam.hairshop.designer.AnalysisSalesByDsCtrl;
 import com.yedam.hairshop.designer.AnalysisSalesByDsGoCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
@@ -83,6 +86,7 @@ import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
 import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
 import com.yedam.hairshop.hairshop.AnalysisByTreatCtrl;
+import com.yedam.hairshop.hairshop.AnalysisDesignerMonthCtrl;
 import com.yedam.hairshop.hairshop.AnalysisDesignerRsvRankCtrl;
 import com.yedam.hairshop.hairshop.AnalysisDesignerTotalCtrl;
 import com.yedam.hairshop.hairshop.AnalysisGenderCtrl;
@@ -301,6 +305,10 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
 
 		list.put("/hairshop/hairNameRequest.do", new HairNameRequestCtrl()); // 헤어 시술명 중분류 등록.
+		list.put("/admin/adminAnalysisByTreat.do", new AdminAnalysisByTreatCtrl());
+		list.put("/ajax/adminAnalysisByTreatRank.do", new AdminAnalysisByTreatRankCtrl());
+		
+		
 		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());
@@ -398,6 +406,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersQnaM.do", new MembersQnaMCtrl()); // Qna 수정하는 컨트롤러
 		list.put("/members/membersQnaD.do", new MembersQnaDCtrl()); // Qna 삭제 컨트롤러
 
+		
 		// 강산
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());// 로그인
 		list.put("/admin/adminMain.do", new adminMainCtrl());//
@@ -428,6 +437,7 @@ public class FrontController extends HttpServlet {
 
 		
 		list.put("/hairshop/analysisDesignerTotal.do", new AnalysisDesignerTotalCtrl());
+		list.put("/hairshop/analysisDesignerMonth.do", new AnalysisDesignerMonthCtrl());
 		list.put("/ajax/hairshop/analysisDesignerRsvRank.do", new AnalysisDesignerRsvRankCtrl());//
 		
 		
@@ -497,7 +507,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl()); // 직원정보수정
 		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl()); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl()); // 직원퇴사처리
-		list.put("/hairshop/employeeAuth.do", new EmployeeAuthFCtrl()); // 직원 인증 처리
+		list.put("/ajax/employeeAuth.do", new EmployeeAuthFCtrl()); // 직원 인증 처리
 		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl()); // 회원가입
 		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl()); // 회원가입
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); // 회원가입
@@ -570,7 +580,6 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", new MyHairshopInfoUpdateFrmFCtrl()); //미용실 정보업데이트처리
 		list.put("/ajax/checkDesignerTime.do" , new CheckDesignerTimeAjCtrl()); // 디자이너 시간 확인
-		
 		
 		
 		list.put("/ajax/imgView.do", new ImgViewCtrl()); //클라이언트에 이미지 다운로드 시키기 (뷰) //img_name, img_path

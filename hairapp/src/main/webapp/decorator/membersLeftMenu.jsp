@@ -26,13 +26,9 @@ $(document).ready(function () {
 */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-}
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Do Hyeon', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -85,6 +81,8 @@ a:focus {
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 19px;
 }
 
 #sidebar.active {
@@ -97,8 +95,8 @@ a:focus {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    padding: 30px 10px;
+    border-bottom: 1px solid #6d7fcc;
 }
 
 #sidebar ul p {
@@ -107,7 +105,7 @@ a:focus {
 }
 
 #sidebar ul li a {
-    padding: 10px;
+    padding: 13px;
     font-size: 1.1em;
     display: block;
 }
@@ -191,7 +189,7 @@ a.article:hover {
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>우리동네 미용실</h3>
+                <h3>UDONG#</h3>
             </div>
 
             <ul class="list-unstyled components">

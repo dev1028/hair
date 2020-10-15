@@ -704,7 +704,7 @@ var okToUseEmail = false;
 			}
 		});
 		
-		$("owner_email").on("focusout", function(){
+		$("#owner_email").on("focusout", function(){
 			var hsemail = $('#owner_email').val();
 			if(hsemail != ""){
 				$.ajax({
@@ -715,7 +715,6 @@ var okToUseEmail = false;
 			        success: function(data){
 			            if(data==0 || data==1){
 			            	$("#smallEmail").text("해당 메일은 사용가능합니다.");
-			            	$('#owner_email').attr("readonly", true);
 			            	if(data == 1){
 			            		$("#checkOwnerDesEmailExist").val("Y");
 			            	} else {
