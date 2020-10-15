@@ -2,7 +2,11 @@
 <Context>
 	<Resource name="jdbc/oracle" auth="Container"
 		type="javax.sql.DataSource" driverClassName="oracle.jdbc.OracleDriver"
+<<<<<<< HEAD
 url="jdbc:oracle:thin:@192.168.0.57:1521:xe" 
+=======
+url="jdbc:oracle:thin:@192.168.0.57:1521:xe"
+>>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 		username="hair3"
 		password="hair3" maxTotal="20" maxIdle="10" maxWaitMillis="-1" /> <!-- -1 무한대기 -->
 </Context>

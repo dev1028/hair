@@ -33,14 +33,14 @@ public class SalesDAO {
 			+ "where mdr_no=r.mdr_no) as ammount\r\n" + "\r\n" + "FROM \r\n" + "members_designer_rsv r \r\n"
 			+ "JOIN mem_designer_rsv_info i\r\n" + "ON(r.mdr_no = i.mdr_no)\r\n" + "JOIN hairshop_hair_info h\r\n"
 			+ "ON(i.hhi_no=h.hhi_no)\r\n" + "JOIN designer  d \r\n" + "ON (r.designer_no=d.designer_no)  \r\n"
-			+ "JOIN MEMBERs m\r\n" + "ON(m.mem_no = r.mem_no)\r\n" + "WHERE r.mdr_date BETWEEN ?\r\n" + "AND  ?\r\n"
+			+ "JOIN MEMBERs m\r\n" + "ON(m.mem_no = r.mem_no)\r\n" + "WHERE r.mdr_date BETWEEN ?\r\n " + "AND  ?\r\n"
 			+ "and r.mdr_status  = 'i4' and hs_no=?  ";
 	final static String addDs = " and r.designer_no=? order by mdr_no ";
 	final static String chart = "\r\n" + "SELECT   d.designer_no,sum(\r\n"
 			+ "			 (   SELECT  nvl(sum(mdp_price),0)  \r\n" + "				 FROM members_detail_paylist   \r\n"
 			+ "				 WHERE mdr_no=r.mdr_no\r\n" + "			 and r.mdr_date between to_char(sysdate,'yy-mm-dd') and to_char(sysdate+1,'yy-mm-dd') \r\n"
 			+ "				 ))as ammount     	 \r\n" + "FROM  \r\n" + "	members_designer_rsv r   \r\n"
-			+ "JOIN designer  d  \r\n" + " ON (r.designer_no=d.designer_no)\r\n" + " where d.hs_no = ?  and d.DESIGNER_ACCESS_STATUS=1\r\n"
+			+ "JOIN designer  d  \r\n" + " ON (r.designer_no=d.designer_no)\r\n" + " where d.hs_no = ?  and d.DESIGNER_ACCESS_STATUS=1 and r.mdr_status  In( 'i4','i3','i5') \r\n"
 			+ " GROUP BY d.designer_no";
 
 	public static SalesDAO getInstance() {

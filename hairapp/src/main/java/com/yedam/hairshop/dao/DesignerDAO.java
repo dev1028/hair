@@ -295,7 +295,63 @@ public class DesignerDAO {
 		}
 		return r;
 	}
-	
+	// 디자이너 전체등록 김승연
+		// 2020.10.15
+		public int insertAll(DesignerVo dVo) {
+			ResultSet rs = null; // 초기화
+			int r = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "insert into designer (DESIGNER_NO,DESIGNER_NAME,DESIGNER_PHONE,DESIGNER_EMAIL,DESIGNER_PW,DESIGNER_DAYOFF," + 
+						"                      WORK_START_TIME,WORK_END_TIME,POSITION,HIRE_DATE,HS_NO,DESIGNER_ACCESS_STATUS)" + 
+						" values(DESIGNER_NO_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,sysdate,?,-1)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dVo.getDesigner_name());
+				pstmt.setString(2, dVo.getDesigner_phone());
+				pstmt.setString(3, dVo.getDesigner_email());
+				pstmt.setString(4, dVo.getDesigner_pw());
+				pstmt.setString(5, dVo.getDesigner_dayoff());
+				pstmt.setString(6, dVo.getWork_start_time());
+				pstmt.setString(7, dVo.getWork_end_time());
+				pstmt.setString(8, dVo.getPosition());
+				pstmt.setString(9, dVo.getHs_no());
+				r = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return r;
+		}
+		
+		// 디자이너 전체업데이트 김승연
+		// 2020.10.15
+		public int updateAll(DesignerVo dVo) {
+			ResultSet rs = null; // 초기화
+			int r = 0;
+			try {
+				conn = ConnectionManager.getConnnect();
+				String sql = "UPDATE DESIGNER SET DESIGNER_NAME=?,DESIGNER_PHONE=?,DESIGNER_PW=?,DESIGNER_DAYOFF=?,WORK_START_TIME=?,WORK_END_TIME=?,POSITION=?," + 
+						"                HIRE_DATE= SYSDATE,HS_NO =(SELECT HS_NO FROM HAIRSHOP WHERE HS_EMAIL = ?), DESIGNER_ACCESS_STATUS=-1" + 
+						"WHERE DESIGNER_EMAIL = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, dVo.getDesigner_name());
+				pstmt.setString(2, dVo.getDesigner_phone());
+				pstmt.setString(3, dVo.getDesigner_pw());
+				pstmt.setString(4, dVo.getDesigner_dayoff());
+				pstmt.setString(5, dVo.getWork_start_time());
+				pstmt.setString(6, dVo.getWork_end_time());
+				pstmt.setString(7, dVo.getPosition());
+				pstmt.setString(8, dVo.getDesigner_email());
+				pstmt.setString(9, dVo.getDesigner_email());
+				r = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionManager.close(rs, pstmt, conn);
+			}
+			return r;
+		}
 	
 	//2020.10.13 김승연
 	//퇴사직원 재입사 처리 
@@ -465,5 +521,28 @@ public class DesignerDAO {
 		return list;
 	}
 	
-	
+	//2020.10.15 김승연
+	//영업시간 외 디자이너 근무시간 조회
+	public int selectDesStartEndTime(DesignerVo dVo) {
+		ResultSet rs = null; // 초기화
+		int r = 0;
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "SELECT COUNT(*) FROM DESIGNER WHERE HS_NO = ? AND (WORK_START_TIME < ? OR WORK_END_TIME > ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dVo.getHs_no());
+			pstmt.setString(2, dVo.getWork_start_time());
+			pstmt.setString(3, dVo.getWork_end_time());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				r = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return r;
+		
+	}
 }
