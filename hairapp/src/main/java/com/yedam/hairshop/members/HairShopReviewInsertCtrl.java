@@ -10,6 +10,8 @@ import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairShopReviewDAO;
 import com.yedam.hairshop.dao.MembersReservationDAO;
 import com.yedam.hairshop.model.HairShopReviewVo;
+import com.yedam.hairshop.model.HairshopHairInfoVo;
+import com.yedam.hairshop.model.HairshopVo;
 import com.yedam.hairshop.model.MembersReservationVo;
 
 public class HairShopReviewInsertCtrl implements Controller {
@@ -45,6 +47,7 @@ public class HairShopReviewInsertCtrl implements Controller {
 					HairShopReviewDAO.getInstance().updateReview(vo);
 			}
 		}
+		request.getRequestDispatcher("/members/autuClose.jsp").forward(request, response);
 	}
 
 }
