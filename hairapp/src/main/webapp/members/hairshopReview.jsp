@@ -9,8 +9,8 @@
 <script>
 
 function closeSelf(){
-	//document.forms['certform'].submit();
-    //close();
+	document.forms['certform'].submit();
+    window.open("about:blank", "_self").close();
 }
 $(function(){
 	$('#hr_rate').val("${reviewVo.hr_rate}").prop("selected", true);
@@ -18,7 +18,7 @@ $(function(){
 </script>
 </head>
 <body>
-	<form name="certform" action="../members/hairshopReviewInsert.do" onsubmit="return closeSelf(this)">
+	<form name="certform" action="../popup/hairshopReviewInsert.do">
 		<div>
 			<div>
 				<label>별점:</label>
@@ -36,7 +36,7 @@ $(function(){
 		</div>
 		<div>
 			<button>등록</button>
-			<input type="reset">
+<!-- 			<input type="reset"> -->
 		</div>
 	</form>
 </body>

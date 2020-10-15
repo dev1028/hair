@@ -163,7 +163,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
                 </div>
                 <div class="product-content" >
-                	-------------------------------------
+<!--                 	------------------------------------- -->
 						<c:if test="${not empty sessionScope.login }">
 							<a href='javascript: like_func("${hairInfo.hhi_no}")'> 
 								<c:if test="${hairInfo.hhi_book == 1 }">

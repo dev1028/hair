@@ -52,18 +52,54 @@
 	    
 	    // 생성된 마커를 배열에 추가합니다
 	    markers.push(marker);
+	    
+		return marker;
+	}
+	
+	function makeClickListener(map, marker, infowindow) {
+		return function(){
+			infowindow.open(map, marker);
+		}		
+	}
+	
+	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+	function makeOverListener(map, marker, infowindow) {
+	    return function() {
+	        infowindow.open(map, marker);
+	    };
+	}
+
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow) {
+	    return function() {
+	        infowindow.close();
+	    };
 	}
 	
 	function addMarkerLatlng(lat, lng){
 		addMarker(new kakao.maps.LatLng(lat, lng));
 	}
 
+ 	function addMarkserWithInfo(lat, lng, hs_name, hs_no){
+ 		var marker = addMarker(new kakao.maps.LatLng(lat, lng));
+		var infowindow = new kakao.maps.InfoWindow({
+			content: '<div><a href=http://localhost/hairapp/members/hairshopInfo.do?hsNo=' + hs_no + '>' + hs_name + '</a></div>' // 인포윈도우에 표시할 내용
+	    });
+		
+		//http://localhost/hairapp/members/hairshopInfo.do?hsNo=12
+				
+				
+		//kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+		//kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
+	}
+	
 	// 마커를 생성하고 지도위에 표시하는 함수입니다
 	// 배열에 추가된 마커들을 지도에 표시하거나 삭제하는 함수입니다
 	function setMarkers(map) {
 	    for (var i = 0; i < markers.length; i++) {
 	        markers[i].setMap(map);
-	    }            
+	    }
 	}
 	
 	// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
@@ -88,9 +124,11 @@
 	<c:forEach items="${list}" var="item">
 		<script>
 			latlng = "${item.hs_latlong}";
+			hs_name = "${item.hs_name}";
+			hs_no = "${item.hs_no}";
 			lat = latlng.split(',')[0]
 			lng = latlng.split(',')[1]
-			addMarkerLatlng(lat, lng);
+			addMarkserWithInfo(lat, lng, hs_name, hs_no);
 		</script>
 	</c:forEach>
 </c:if>

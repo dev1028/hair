@@ -274,7 +274,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/paymentImport.do", new PaymentImportCtrl());					// 실제 결제 처리 페이지
 
 		list.put("/popup/hairshopReview.do", new HairShopReviewCtrl()); 				// 리뷰 이동용
-		list.put("/members/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());	// 헤ㅔ어샵 리뷰 삽입
+		list.put("/popup/hairshopReviewInsert.do", new HairShopReviewInsertCtrl());	// 헤ㅔ어샵 리뷰 삽입
 		list.put("/members/membersInsert.do", new TestController());					//
 		list.put("/members/myRegionSetting.do", new MyRegionSettingCtrl());				// GSP 설정
 
