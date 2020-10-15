@@ -5,6 +5,13 @@ import lombok.Data;
 @Data
 public class AnalysisVo {
 	String date;		//날짜
+	String startdate;
+	String enddate;
+	String prevrate;
+	String prevrank;
+	String prevsales;
+	String prevrsv;
+	String rsv;
 	String hs_no;		//헤어샵번호
 	String hs_name;		//헤어샵이름
 	String sales;		//금액
@@ -25,4 +32,5 @@ public class AnalysisVo {
 	String designer_no;
 	String file_name;
 	String hr_rate;		
+	String rate;
 }

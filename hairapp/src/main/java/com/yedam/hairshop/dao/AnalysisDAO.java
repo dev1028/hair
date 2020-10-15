@@ -12,6 +12,9 @@ public class AnalysisDAO {
 
 	static Connection conn;
 	PreparedStatement pstmt;
+	static String day = "between to_date(?)-1 and to_date(?)-1";
+	static String week = "between to_date(?)-7 and to_date(?)-7";
+	static String month = "between add_months(?,-1) and add_months(?,-1)";
 
 	static AnalysisDAO instance = null;
 
@@ -26,10 +29,17 @@ public class AnalysisDAO {
 
 		String sql = "SELECT\n" + "    d.designer_name,d.file_name, d.designer_no, \n" + "    nvl(avg((\n"
 				+ "        SELECT\n" + "            avg(hr_rate)\n" + "        FROM\n"
-				+ "            hairshop_reviews\n" + "        WHERE\n" + "            mdr_no = r.mdr_no\n"
-				+ "    )), 0) AS rate,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n"
-				+ "        SELECT\n" + "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n"
-				+ "        WHERE\n" + "            mdr_no = r.mdr_no\n" + "    )), 0) DESC\n" + "    ) AS rank\n"
+				+ "            hairshop_reviews\n" + "        WHERE\n"
+				+ "            mdr_no = r.mdr_no  and mdr_date  between ? and ? \n" + "    )), 0) AS rate,\n"
+				+ "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n" + "        SELECT\n"
+				+ "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
+				+ "            mdr_no = r.mdr_no  and mdr_date  between ? and ? \n" + "    )), 0) DESC\n"
+				+ "    ) AS rank\n" + "  ,  nvl(avg((\n" + "        SELECT\n" + "            avg(hr_rate)\n"
+				+ "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
+				+ "            mdr_no = r.mdr_no  and mdr_date  " + month + "    )), 0) AS prevrate,\n"
+				+ "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n" + "        SELECT\n"
+				+ "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
+				+ "            mdr_no = r.mdr_no  and mdr_date  " + month + "    )), 0) DESC\n" + "    ) AS prevrank\n"
 				+ "FROM\n" + "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
 				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
@@ -40,8 +50,17 @@ public class AnalysisDAO {
 			conn = ConnectionManager.getConnnect();
 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getStartdate());
+			pstmt.setString(2, vo.getEnddate());
+			pstmt.setString(3, vo.getStartdate());
+			pstmt.setString(4, vo.getEnddate());
 
-			pstmt.setString(1, vo.getHs_no());
+			pstmt.setString(5, vo.getStartdate());
+			pstmt.setString(6, vo.getEnddate());
+
+			pstmt.setString(7, vo.getStartdate());
+			pstmt.setString(8, vo.getEnddate());
+			pstmt.setString(9, vo.getHs_no());
 			rs = pstmt.executeQuery();
 			System.out.println("nnsql");
 
@@ -49,7 +68,9 @@ public class AnalysisDAO {
 
 				AnalysisVo resultVo = new AnalysisVo();
 				resultVo.setRank(rs.getString("rank"));
-				resultVo.setHr_rate(rs.getString("rate"));
+				resultVo.setPrevrank(rs.getString("prevrank"));
+				resultVo.setRate(rs.getString("rate"));
+				resultVo.setPrevrate(rs.getString("prevrate"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
 				resultVo.setFile_name(rs.getString("file_name"));
 				resultVo.setDesigner_no(rs.getString("designer_no"));
@@ -70,11 +91,19 @@ public class AnalysisDAO {
 		ResultSet rs = null;
 		String sql = "SELECT\n" + "    d.designer_name, d.designer_no, d.file_name ,\n" + "    SUM((\n"
 				+ "        SELECT\n" + "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n"
-				+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no\n"
+				+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no and mdr_date  between ? and ? \n"
 				+ "    )) AS sales,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            SUM((\n"
 				+ "                SELECT\n" + "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
 				+ "                    members_detail_paylist\n" + "                WHERE\n"
-				+ "                    mdr_no = r.mdr_no\n" + "            )) DESC\n" + "    ) AS rank\n" + "FROM\n"
+				+ "                    mdr_no = r.mdr_no and mdr_date  between ? and ? \n" + "            )) DESC\n" + "    ) AS rank\n" +  " ,   SUM((\n"
+				+ "        SELECT\n" + "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n"
+				+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no\n"+"and mdr_date  " 
+				+ month 
+				+ "    )) AS prevsales,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            SUM((\n"
+				+ "                SELECT\n" + "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
+				+ "                    members_detail_paylist\n" + "                WHERE\n"
+				+ "                    mdr_no = r.mdr_no and mdr_date  " 
+				+ month + " )) DESC\n" + "    ) AS prevrank\n" +"FROM\n"
 				+ "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
 				+ "    where r.hs_no = ? \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
@@ -85,8 +114,17 @@ public class AnalysisDAO {
 			conn = ConnectionManager.getConnnect();
 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getStartdate());
+			pstmt.setString(2, vo.getEnddate());
+			pstmt.setString(3, vo.getStartdate());
+			pstmt.setString(4, vo.getEnddate());
 
-			pstmt.setString(1, vo.getHs_no());
+			pstmt.setString(5, vo.getStartdate());
+			pstmt.setString(6, vo.getEnddate());
+
+			pstmt.setString(7, vo.getStartdate());
+			pstmt.setString(8, vo.getEnddate());
+			pstmt.setString(9, vo.getHs_no());
 			rs = pstmt.executeQuery();
 			System.out.println("nnsql");
 
@@ -95,8 +133,9 @@ public class AnalysisDAO {
 				AnalysisVo resultVo = new AnalysisVo();
 				resultVo.setRank(rs.getString("rank"));
 				resultVo.setSales(rs.getString("sales"));
+				resultVo.setPrevsales(rs.getString("prevsales"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
-				resultVo.setFile_name(rs.getString("file_name"));
+				resultVo.setPrevrank(rs.getString("prevrank"));
 				resultVo.setFile_name(rs.getString("file_name"));
 				resultVo.setDesigner_no(rs.getString("designer_no"));
 				System.out.println("vo" + resultVo.getCnt());
@@ -114,7 +153,7 @@ public class AnalysisDAO {
 
 	public ArrayList<AnalysisVo> designerRsvRank(AnalysisVo vo) {
 		ResultSet rs = null;
-		String sql = "SELECT d. designer_name, d.designer_no,  count(*) as cnt, d.file_name ,rank() over (order by count(*) desc) rank\r\n"
+		String sql = "SELECT d. designer_name, d.designer_no,  count(*) as rsv, d.file_name ,rank() over (order by count(*) desc) rank\r\n"
 				+ "FROM designer d \r\n" + "JOIN members_designer_rsv r ON(r.designer_no = d.designer_no)\r\n" + "\r\n"
 				+ "WHERE r.hs_no = ?\r\n" + "\r\n" + "group by d.designer_name, d.designer_no, d.file_name";
 
@@ -134,7 +173,7 @@ public class AnalysisDAO {
 
 				AnalysisVo resultVo = new AnalysisVo();
 				resultVo.setRank(rs.getString("rank"));
-				resultVo.setCnt(rs.getString("cnt"));
+				resultVo.setRsv(rs.getString("rsv"));
 				resultVo.setFile_name(rs.getString("file_name"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
 				resultVo.setFile_name(rs.getString("file_name"));

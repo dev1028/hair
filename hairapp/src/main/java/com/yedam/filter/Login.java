@@ -103,7 +103,7 @@ public class Login implements Filter {
 		list.put("/members/paymentImport.do", memberLoginPage);
 
 		list.put("/popup/hairshopReview.do", memberLoginPage); 	// 리뷰 이동용
-		list.put("/members/hairshopReviewInsert.do", memberLoginPage);
+		list.put("/popup/hairshopReviewInsert.do", memberLoginPage);
 		list.put("/members/membersInsert.do", memberLoginPage);
 		list.put("/members/myRegionSetting.do", null);
 

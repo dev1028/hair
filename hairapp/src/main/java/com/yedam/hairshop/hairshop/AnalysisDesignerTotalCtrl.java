@@ -19,8 +19,13 @@ public class AnalysisDesignerTotalCtrl implements Controller {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String hs_no = request.getSession().getAttribute("hsno").toString();
+		
+		String startdate = request.getParameter("startdate");
+		String enddate = request.getParameter("enddate");
 		AnalysisVo vo = new AnalysisVo();
 		vo.setHs_no(hs_no);
+		vo.setStartdate("2020-09-01");
+		vo.setEnddate("2020-10-01");
 		ArrayList<AnalysisVo> rsvlist = AnalysisDAO.getInstance().designerRsvRank(vo);
 		request.setAttribute("rsvlist", rsvlist);
 		request.setAttribute("rsvjsonlist", JSONArray.fromObject(rsvlist).toString());

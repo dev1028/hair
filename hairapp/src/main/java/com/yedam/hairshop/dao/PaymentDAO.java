@@ -1,6 +1,5 @@
 package com.yedam.hairshop.dao;
 
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,7 +28,7 @@ public class PaymentDAO {
 		int result = -1;
 		try {
 			conn = ConnectionManager.getConnnect();
-			CallableStatement pstmt = conn.prepareCall("{call memberPayi0(?,?,?,?,?,?,?,?)}");
+			CallableStatement pstmt = conn.prepareCall("{call memberPayi0(?,?,?,?,?,?,?,?,?)}");
 			pstmt.setString(1, vo.getMem_no());
 			pstmt.setString(2, vo.getHs_no());
 			pstmt.setString(3, vo.getDesigner_no());
@@ -37,9 +36,10 @@ public class PaymentDAO {
 			pstmt.setString(5, vo.getHhi_no2());
 			pstmt.setString(6, vo.getHhi_no3());
 			pstmt.setString(7, vo.getMdr_date());
-			pstmt.registerOutParameter(8, Types.INTEGER);
+			pstmt.setString(8, vo.getMdr_request());
+			pstmt.registerOutParameter(9, Types.INTEGER);
 			pstmt.executeUpdate();
-			result = pstmt.getInt(8);
+			result = pstmt.getInt(9);
 			System.out.println("RESULT: " + result);
 		}catch(SQLException e) {
 			e.printStackTrace();

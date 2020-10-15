@@ -84,7 +84,7 @@
 		</div>
 		<br> <br>
 		<div align="center">
-			<button id="btn" onclick="${pageContext.request.contextPath}/hairshop/hairshopMain.do'" type="button" class="btn btn-primary">Home</button>
+			<a id="btn" href="${pageContext.request.contextPath}/hairshop/hairshopMain.do" class="btn btn-primary">Home</a>
 		</div>
 	</div>
 </body>

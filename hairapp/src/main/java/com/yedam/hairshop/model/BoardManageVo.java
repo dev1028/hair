@@ -22,7 +22,7 @@ public class BoardManageVo {
 	String who;
 	
 	
-	
+	String emp_alias;
 	public String notice_no;
 	public String notice_title;
 	public String notice_contents;

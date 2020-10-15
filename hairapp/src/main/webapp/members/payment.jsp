@@ -77,6 +77,15 @@ function changePrice(){
 	$(".realPrice").val(realPrice);
 }
 
+$(function(){
+	$('.hairLength').val("${login.mem_hair_length}").prop("selected", true);
+	$('.hairStatus').val("${login.mem_hair_status}").prop("selected", true);
+	
+<%--
+	//alert("${login.mem_hair_length}");
+	//$('.hairLength').val("${login.mem_hair_length}").prop("selected", true);
+--%>
+})
 </script>
 
 <%--
@@ -269,8 +278,8 @@ function changePrice(){
 				헤어 기장
 			</th>
 			<td>
-				<select name="hairLength">
-					<option value="U1">숏</option>
+				<select class="hairLength" name="hairLength">
+					<option value="U1" >숏</option>
 					<option value="U2">턱선아래</option>
 					<option value="U3">어깨선아래</option>
 					<option value="U4">가슴선아래</option>
@@ -282,7 +291,7 @@ function changePrice(){
 				머릿결 상태
 			</th>
 			<td>
-				<select name="hairStatus">
+				<select class="hairStatus" name="hairStatus">
 					<option value="O1">정상모발</option>
 					<option value="O2">손상모발</option>
 					<option value="O3">극손상모발</option>
@@ -295,7 +304,7 @@ function changePrice(){
 				요청 사항
 			</th>
 			<td>
-				<textarea id="reqHairshop" name="reqHairshop" rows="4" cols="50" placeholder="요청사항을 적어주세요."></textarea>
+				<textarea id="mdr_request" name="mdr_request" rows="4" cols="50" placeholder="요청사항을 적어주세요."></textarea>
 			</td>
 		</tr>
 	</tbody>
