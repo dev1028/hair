@@ -22,13 +22,20 @@
     position: absolute;
     margin:0 auto;
 } 
+#form {
+	background: #e9edff;
+	border: 1px solid #6d7fcc;
+	width:1300px;
+}
 </style>
 </head>
 <body>
 <div id="wrap">
-	<h3>헤어샵 북마크 리스트</h3>
+	<br> <br> <h4 style="font-weight: bold;">헤어샵 북마크 리스트</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br>
 	<c:forEach items="${list}" var="item">
-		<form action="../members/hairshopSelectResult.do" method="post">
+		<form action="../members/hairshopSelectResult.do" method="post" id="form">
+		<br>
 			<div class="course" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">
 				<div class="course-preview">
 					<h6>미용실이름</h6>
@@ -56,13 +63,14 @@
 							</c:if>
 						</a>
 					</c:if>
+			<input type="hidden" name="hsNo" value="${item.hs_no}">
 				</div>
 			</div>
-			<input type="hidden" name="hsNo" value="${item.hs_no}">
-		</form>
-		<hr>
+	</form>
 	</c:forEach>
+<br>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <div id="mypage">
    <%@include file="/decorator/membersMypage.jsp" %>

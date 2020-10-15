@@ -15,6 +15,7 @@ div.course{
 	padding: 10px;
 	margin:0 auto;
 }
+
 </style>
 <script src="../js/hairshopBookmark.js"></script>
 <script src="../js/locationFromIP.js"></script>
@@ -34,7 +35,8 @@ div.course{
 
 <div class="container">
 	<div class="container_horrizon">
-    	<h3 class="h3">지역별 헤어샵 순위</h3>
+    	<br> <br> <h4 style="font-weight: bold;">지역별 헤어샵 순위</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br><br>
     </div>
     
     <div class="row">

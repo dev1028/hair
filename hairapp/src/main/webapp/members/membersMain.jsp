@@ -90,14 +90,16 @@
 }
 
 #radioCh {
-	width: 600px;
+	width: 700px;
     left: 39%;
     display: block;
     position: absolute;
+    font-family: 'Do Hyeon', sans-serif;
+	font-size: 20px;
 }
 
 #date {
-	width: 215px;
+	width: 235px;
   border: 3px solid #00B4CC;
   padding: 5px;
   height: 40px;
@@ -166,6 +168,8 @@
 #timepi {
   position: absolute;
   left: 39%;
+  font-family: 'Do Hyeon', sans-serif;
+	font-size: 20px;
 }
 
 </style>
@@ -324,6 +328,19 @@ http://stackoverflow.com/a/34696029/383904
 	text-decoration: none;
 }
 
+#s11 {
+	background: url(../images/members/back2.png);
+}
+#s22 {
+	background: url(../images/members/back3.png);
+}
+#s33 {
+	background: url(../images/members/back4.png);
+}
+#s44 {
+	background: url(../images/members/back5.png);
+}
+
 
 
 body {
@@ -397,11 +414,15 @@ form.example::after {
 	float: left;
 	text-align: left;
 	margin:110px 90px 100px;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 18px;
 }
 #qna {
 	float: left;
 	text-align: left;
 	margin:110px 90px 100px;
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 18px;
 }
 
 #copyrightMem {
@@ -551,19 +572,19 @@ form.example::after {
   <s id="s4"></s>
 
   <div class="slider">
-    <div style="background:#5b8;">
+    <div id="s11">
 			<h2>우리동네 미용실 <b>우동</b> 에 오신것을 환영합니다</h2>
 			<p>예약을 희망하는 날짜를 선택하여 검색해서 예약하세요!<br>　<br>　</p>
 		</div>
-    <div style="background:#85b;">
+    <div id="s22">
 			<h2>헤어샵 예약 사이트 부문고객 만족도 1위!</h2>
 			<p>우동은 언제나 고객과 함께합니다<br>　<br>　</p>
 		</div>
-    <div style="background:#e95;">
+    <div id="s33">
 			<h2>우동과 함께라면 언제 어디서는 간편 예약 OK!</h2>
 			<p>내가 원하는 시간과 장소에 맞춰서 모든 헤어샵 예약이 가능합니다<br>　<br>　</p>
 		</div>
-    <div style="background:#e59;">
+    <div id="s44">
 			<h2>우리동네는 어떤 헤어가 유행일까?</h2>
 			<p>우리동네 지역별 인기 순위도 한 눈에 확인 하세요<br>　<br>　</p>
 		</div>
@@ -600,13 +621,13 @@ form.example::after {
 			<div id="radioCh">
 				날짜선택&emsp;<input autocomplete="off" type="text" name="date" id="date" size="12" />
 				<label class="radio-inline">&emsp;
-		     	<input type="radio" name="radioDate" class="option-input radio" value="day0">오늘
+		     	<input type="radio" name="radioDate" class="option-input radio" value="day0">오늘&nbsp;
 		    	</label>
 		    	<label class="radio-inline">
-		      		<input type="radio" name="radioDate" class="option-input radio" value="day1" >내일
+		      		<input type="radio" name="radioDate" class="option-input radio" value="day1" >내일&nbsp;
 		    	</label>
 		    	<label class="radio-inline">
-		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모레
+		      		<input type="radio" name="radioDate" class="option-input radio" value="day2">모레&nbsp;
 		    	</label>
 		    	<br>
     		</div>
@@ -624,6 +645,7 @@ form.example::after {
 		
 		<!-- 여기서부터 공지사항과 QnA 뿌려주는거 -->
 		<div id="qnaNotice">
+		<img src="../images/members/notice.png" style="width: 100px; height: 100px;">
 		<div id="notice">
 		공지사항
 		<c:if test="${not empty loginid}">
@@ -657,7 +679,7 @@ form.example::after {
 				</c:forEach>
 			</ul>
 		</div>
-		
+		&emsp;<img src="../images/members/qna.png" style="width: 100px; height: 100px;">
 		</div>
 		<!-- 여기까지 공지사항과 QnA 뿌려주는거 -->
 		

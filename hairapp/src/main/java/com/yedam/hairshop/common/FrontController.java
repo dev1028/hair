@@ -388,6 +388,7 @@ public class FrontController extends HttpServlet {
 		list.put("/members/membersQnaM.do", new MembersQnaMCtrl()); // Qna 수정하는 컨트롤러
 		list.put("/members/membersQnaD.do", new MembersQnaDCtrl()); // Qna 삭제 컨트롤러
 
+		
 		// 강산
 		list.put("/admin/adminLogin.do", new adminLoginCtrl());// 로그인
 		list.put("/admin/adminMain.do", new adminMainCtrl());//

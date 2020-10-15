@@ -14,7 +14,8 @@
 </head>
 <body>
 	<div class="container">
-		<h3 class="h3">헤어 순위</h3>
+		<br> <br> <h4 style="font-weight: bold; text-align: center;">지역별 헤어 순위</h4>
+	<hr style="border: 2px solid #6d7fcc;"><br><br>
 			<div class="row">
 				<c:forEach items="${list}" var="hairInfo">
 				<form action="../members/hairshopInfo.do" method="post">
