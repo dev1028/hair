@@ -81,19 +81,12 @@
 keyframes blink {
 	from {color: white;
 }
-
 30%
 {
 color
-
-
 :
 
- 
-
 yellow
-
-
 ;
 }
 to {
@@ -148,7 +141,7 @@ to {
 						<td>${view.notice_no}</td>
 					</tr>
 
-					<tr>
+					<tr>	
 						<th>제목</th>
 						<td>${view.notice_title}</td>
 					</tr>

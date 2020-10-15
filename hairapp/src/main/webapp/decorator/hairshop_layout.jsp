@@ -58,8 +58,8 @@
             bottom: 0; 
             width: 100%; 
             /* Height of the footer*/  
-            height: 40px; 
-            background: grey; 
+            height: 50px; 
+             
         } 
 </style>
 <decorator:head></decorator:head>
@@ -566,10 +566,12 @@
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 				<decorator:body></decorator:body>			
 				
+			<div>
+			<br><br><br>
+			</div>
 			</main>
-			<div id="footer">This is a footer. 
-                      This stays at the bottom of the page. 
-                  </div> 
+			<div id="footer">
+            </div> 
 		</div>
 
 	</div>

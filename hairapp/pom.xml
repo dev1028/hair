@@ -122,8 +122,8 @@
 			<artifactId>orai18n</artifactId>
 			<version>19.7.0.0</version>
 		</dependency>
-
 	</dependencies>
+	
 	<build>
 		<finalName>hairapp</finalName>
 		<plugins>
