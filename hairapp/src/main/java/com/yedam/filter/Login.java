@@ -283,7 +283,7 @@ public class Login implements Filter {
 		list.put("/hairshop/employeeUpdate.do", hairLoginPage); // 직원정보수정
 		list.put("/ajax/findEmployees.do", hairLoginPage); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", hairLoginPage); // 직원퇴사처리
-		list.put("/hairshop/employeeAuth.do", null); // 직원 인증 처리
+		list.put("/ajax/employeeAuth.do", null); // 직원 인증 처리
 		list.put("/ajax/hairshopJoin.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinPre.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinFin.do", null); // 회원가입
@@ -356,6 +356,7 @@ public class Login implements Filter {
 		list.put("/ajax/hairshopEmailAuth.do", null);
 		list.put("/ajax/checkDesignerTime.do" , hairLoginPage);
 		list.put("/ajax/designerEmailUse.do", null);
+		
 	}
 
 	@Override

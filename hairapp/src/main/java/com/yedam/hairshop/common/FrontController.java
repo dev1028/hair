@@ -489,7 +489,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/employeeUpdate.do", new EmployeeUpdateFCtrl()); // 직원정보수정
 		list.put("/ajax/findEmployees.do", new FindEmployeesAjCtrl()); // 직원목록 들고오기
 		list.put("/hairshop/fireEmployee.do", new FireEmployeeFCtrl()); // 직원퇴사처리
-		list.put("/hairshop/employeeAuth.do", new EmployeeAuthFCtrl()); // 직원 인증 처리
+		list.put("/ajax/employeeAuth.do", new EmployeeAuthFCtrl()); // 직원 인증 처리
 		list.put("/ajax/hairshopJoin.do", new hairshopJoinCtrl()); // 회원가입
 		list.put("/ajax/hairshopJoinPre.do", new HairshopJoinPreFCtrl()); // 회원가입
 		list.put("/ajax/hairshopJoinFin.do", new HairshopJoinFinFCtrl()); // 회원가입
@@ -562,7 +562,6 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/myHairshopInfoUpdate.do", new MyHairshopInfoUpdate()); //미용실 정보업데이트페이지
 		list.put("/hairshop/myHairshopInfoUpdateFrm.do", new MyHairshopInfoUpdateFrmFCtrl()); //미용실 정보업데이트처리
 		list.put("/ajax/checkDesignerTime.do" , new CheckDesignerTimeAjCtrl()); // 디자이너 시간 확인
-		
 		
 		
 		list.put("/ajax/imgView.do", new ImgViewCtrl()); //클라이언트에 이미지 다운로드 시키기 (뷰) //img_name, img_path
