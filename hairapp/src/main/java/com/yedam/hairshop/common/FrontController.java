@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.admin.AdminAnalysisByTreatCtrl;
+import com.yedam.hairshop.admin.AdminAnalysisByTreatRankCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertCtrl;
 import com.yedam.hairshop.admin.AdminCouponInsertFCtrl;
 import com.yedam.hairshop.admin.AdminCouponManageCtrl;
@@ -58,6 +60,7 @@ import com.yedam.hairshop.admin.hairAnalysisCtrl;
 import com.yedam.hairshop.admin.hairAnalysisFCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
+import com.yedam.hairshop.dao.AdminAnalysisDAO;
 import com.yedam.hairshop.designer.AnalysisSalesByDsCtrl;
 import com.yedam.hairshop.designer.AnalysisSalesByDsGoCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
@@ -298,6 +301,10 @@ public class FrontController extends HttpServlet {
 		list.put("/members/hsHairIntro.do", new MembersHairIntroCtrl());
 
 		list.put("/hairshop/hairNameRequest.do", new HairNameRequestCtrl()); // 헤어 시술명 중분류 등록.
+		list.put("/admin/adminAnalysisByTreat.do", new AdminAnalysisByTreatCtrl());
+		list.put("/ajax/adminAnalysisByTreatRank.do", new AdminAnalysisByTreatRankCtrl());
+		
+		
 		
 		// 송현
 		list.put("/designer/designerUpdate.do", new DesignerUpdateCtrl());

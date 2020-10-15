@@ -20,9 +20,9 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-		crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	crossorigin="anonymous"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -124,7 +124,7 @@
 						</a>
 
 
-						
+
 
 
 						<div class="sb-sidenav-menu-heading">통계</div>
@@ -133,11 +133,15 @@
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> 헤어샵별 통계
+						</a> <a class="nav-link"
+							href="${pageContext.request.contextPath}/admin/adminAnalysisByTreat.do">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> 헤어 시술별 통계
 						</a>
-						
-						
-						
-					<%-- 	<a class="nav-link"
+
+
+						<%-- 	<a class="nav-link"
 							href="${pageContext.request.contextPath}/admin/designerAnalysis.do">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
@@ -205,13 +209,14 @@
 						<div class="collapse" id="collapsePages1"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-							<%-- 	<a class="nav-link"
+								<%-- 	<a class="nav-link"
 									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술분류 관리
-								 </a> --%> <a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술 분류 관리
-									</a> <a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/ttCategoryRequest.do">시술 요청 관리
-									</a> 
+								 </a> --%>
+								<a class="nav-link"
+									href="${pageContext.request.contextPath}/admin/ttCategoryManage.do">시술
+									분류 관리 </a> <a class="nav-link"
+									href="${pageContext.request.contextPath}/admin/ttCategoryRequest.do">시술
+									요청 관리 </a>
 							</nav>
 						</div>
 						<!-- 
