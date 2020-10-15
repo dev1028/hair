@@ -16,4 +16,8 @@ public class CouponVo {
 	
 	public int first;
 	public int last;
+	
+	
+	String hs_name;
+	String hsc_status;
 }

@@ -17,9 +17,7 @@ public class AdminCouponInsertCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<HairshopVo> list = new ArrayList<>();
-		list = HairshopDAO.getInstance().selectAll();
-		System.out.println(list.get(0).getHs_name());
-		request.setAttribute("list", list);
+		
 		request.getRequestDispatcher("/admin/couponInsert.jsp").forward(request, response);
 	}
 }

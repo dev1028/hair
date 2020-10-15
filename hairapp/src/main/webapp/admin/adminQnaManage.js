@@ -1,6 +1,20 @@
-var toggleBool;
 $(function() {
-
+	 $('#dataTabl').dataTable( {
+	        
+	        "paging": true, //페이징처리
+	        "ordering": true, //칼럼별 정렬기능
+	        //"autoWidth": false, //가로자동
+	        "lengthChange": false, //데이터건수 변경
+	        "pageLength": 25, //기본 데이터건수
+	        //"lengthMenu": [[50, 100, 1000], [50, 100, "Max(1000)"]], //데이터건수옵션
+	       // "order": [15,'desc'], //기본 정렬칼럼
+	        "searching": false, //검색
+	        "columnDefs" : [//칼럼조작
+	        	//가로길이         //칼럼제목   //데이터타겟    //해당칼럼만 정렬기능사용안함
+	        	    {"width":"1em",  "targets":1, "orderable": false},
+	        	    {"width":"1em", "targets":2}
+	        	]
+	    } );
 	$("#start").attr('value', '');
 	var date = new Date();
 	endDate(date);
@@ -121,82 +135,4 @@ $(function() {
 			})
 
 });
-//var index; // cell index
-//
-//function gwanshic(tbody, index) {
-//	console.log(tbody.length);
-//
-//	this.index = index;
-//
-//	console.log(index);
-//
-//	var datas = new Array();
-//
-//	var tbodyLength = tbody.children().length;
-//	console.log(tbodyLength);
-//	for (var i = 0; i < tbodyLength; i++) {
-//
-//		datas[i] = tbody.children().eq(i);
-//
-//	}
-//
-//	// sort by cell[index]
-//
-//	datas.sort(compareCells);
-//
-//	for (var i = 0; i < tbody.children().length; i++) {
-//
-//		// rearrange table rows by sorted rows
-//
-//		$("tbody").append(datas[i]);
-//
-//	}
-//
-//}
-//
-//function compareCells(a, b) {
-//
-//	var aVal = a.children().eq(index).text();
-//
-//	var bVal = b.children().eq(index).text();
-//
-//	console.log(a);
-//
-//	aVal = aVal.replace(/\,/g, '');
-//
-//	bVal = bVal.replace(/\,/g, '');
-//
-//	if (toggleBool) {
-//
-//		var temp = aVal;
-//
-//		aVal = bVal;
-//
-//		bVal = temp;
-//
-//	}
-//
-//	if (aVal.match(/^[0-9]+$/) && bVal.match(/^[0-9]+$/)) {
-//
-//		return parseFloat(aVal) - parseFloat(bVal);
-//
-//	}
-//
-//	else {
-//
-//		if (aVal < bVal) {
-//
-//			return -1;
-//
-//		} else if (aVal > bVal) {
-//
-//			return 1;
-//
-//		} else {
-//
-//			return 0;
-//
-//		}
-//
-//}
-//}
+

@@ -14,19 +14,26 @@ import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.model.CouponVo;
 import com.yedam.hairshop.model.HairshopVo;
 
-public class AdminCouponManageCtrl implements Controller {
+public class AdminCouponDeleteCtrl implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String[] hsc_nolist = request.getParameterValues("hsc_no");
+
+		for (String hsc_no : hsc_nolist) {
+
+			CouponVo vo = new CouponVo();
+			vo.setHsc_no(hsc_no);
+			CouponDAO.getInstance().delete(vo);
+
+		}
 		ArrayList<CouponVo> list = new ArrayList<>();
 		List<HairshopVo> hairshoplist = new ArrayList<>();
 		list = CouponDAO.getInstance().selectAll(null);
 		request.setAttribute("list", list);
-		 hairshoplist = HairshopDAO.getInstance().selectAll();
+		hairshoplist = HairshopDAO.getInstance().selectAll();
 		System.out.println(list.get(0).getHs_name());
 		request.setAttribute("hairshoplist", hairshoplist);
 		request.getRequestDispatcher("/admin/adminCouponManage.jsp").forward(request, response);
-
 	}
-
 }
