@@ -42,6 +42,14 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 
 #slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2) { left:0; display:block; }
 /* 슬라이더끝 */
+
+/*  */
+.designer1 {
+	float: left;
+	padding: 20px;
+}
+
+
 </style>
 </head>
 <body>
@@ -159,7 +167,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 		디자이너가 없습니다<br><br>
 	</c:if>
 	<c:forEach items="${intro}" var="in">
-        <div class="col-md-3 col-sm-6">
+        <div class="designer1">
             <div class="product-grid4">
                 <div class="product-image4">
                 	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${in.designer_no}/profile&img_name=${in.file_name}"
