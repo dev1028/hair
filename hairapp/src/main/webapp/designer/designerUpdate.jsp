@@ -94,7 +94,7 @@
 			<input type="hidden" name="designer_no"
 				value="${designer.designer_no}">
 
-			<h3>입력하는 순간 노예 시작</h3>
+			<h3>디자이너 정보 입력</h3>
 			<hr>
 			<div class="form-group">
 				<br> <label class="col-md-4 control-label">디자이너번호</label>
