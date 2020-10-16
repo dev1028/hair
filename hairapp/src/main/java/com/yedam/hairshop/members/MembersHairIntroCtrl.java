@@ -27,7 +27,8 @@ public class MembersHairIntroCtrl implements Controller {
 		MembersVo loginVo = (MembersVo) request.getSession().getAttribute("login");
 		HairshopHairInfoVo hairVo = new HairshopHairInfoVo();
 		hairVo.setHs_no(hairshopVo.getHs_no());
-		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectHairInfoList(hairVo);
+//		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectHairInfoList(hairVo);
+		List<HairshopHairInfoVo> list = HairshopHairInfoDAO.getInstance().selectHairInfoListWithFileName(hairVo);
 		if(list == null || list.size() == 0) {
 			System.out.println("list size is zero : " + hairVo.getHs_no());
 		}

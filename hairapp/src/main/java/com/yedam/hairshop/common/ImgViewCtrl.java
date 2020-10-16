@@ -14,8 +14,10 @@ public class ImgViewCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filename = request.getParameter("img_name"); //파일이름
-		if(filename == null || filename.equals(""))
+		if(filename == null || filename.equals("")) {
+			System.out.println("filename is null");
 			return;
+		}
 		
 		String pathLocation = request.getParameter("img_path"); //중간 경로 이름쓰기
 		String realPath = "C:/hairapp" + pathLocation + "/" +filename;
@@ -25,6 +27,7 @@ public class ImgViewCtrl implements Controller {
 		
 		//파일이 없으면 종료
 		if(! file.exists() ) {
+			System.out.println("not find image: " + file.getPath());
 			return;
 		}
 		// 응답 헤더를 다운로드로 설정

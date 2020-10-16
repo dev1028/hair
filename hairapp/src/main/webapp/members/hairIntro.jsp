@@ -164,7 +164,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
         <div class="col-md-3 col-sm-6">
             <div class="product-grid4">
                 <div class="product-image4">
-                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hair/${hairInfo.hhi_no}/profile&img_name=${hairInfo.hhmi_file}"
+                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairInfo.hs_no}/hairinfo&img_name=${hairInfo.hhmi_file}"
 		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
                 </div>
                 <div class="product-content" >
