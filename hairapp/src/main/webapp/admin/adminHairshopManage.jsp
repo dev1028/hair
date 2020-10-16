@@ -145,8 +145,9 @@
 </script>
 </head>
 <body>
+<div class="container">
 	<h2 class="heading">헤어샵회원관리</h2>
-	<form
+<%-- 	<form
 		action="${pageContext.request.contextPath}/admin/adminHairshopManageFind.do">
 		<div class="form-group">
 			<div class="control">
@@ -167,7 +168,7 @@
 			</div>
 		</div>
 
-	</form>
+	</form> --%>
 	<div class="table-responsive" id="result">
 		<table class="table table-bordered" id="dataTable" width="100%"
 			cellspacing="0">
@@ -200,8 +201,8 @@
 			</tbody>
 		</table>
 		<button id="excel">excel</button>
-		<button id="email">email</button>
-	</div>
+<!-- 		<button id="email">email</button> -->
+	</div>	</div>
 
 		<div class="modal fade" id="myModal" data-backdrop="static"
 			data-keyboard="false" tabindex="-1"

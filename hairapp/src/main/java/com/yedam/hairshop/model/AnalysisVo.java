@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class AnalysisVo {
 	String date;		//날짜
+	String month;
 	String startdate;
 	String enddate;
 	String prevrate;

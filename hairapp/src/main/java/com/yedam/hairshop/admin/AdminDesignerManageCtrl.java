@@ -12,6 +12,8 @@ import com.yedam.hairshop.dao.AdminMemberManageDAO;
 import com.yedam.hairshop.model.BoardManageVo;
 import com.yedam.hairshop.model.DesignerVo;
 
+import net.sf.json.JSONArray;
+
 public class AdminDesignerManageCtrl implements Controller {
 
 	@Override
@@ -23,6 +25,7 @@ public class AdminDesignerManageCtrl implements Controller {
 		vo.setSearchType(searchType);
 		ArrayList<DesignerVo> list = AdminMemberManageDAO.getInstance().selectDs(null);
 		request.setAttribute("list", list);
+		request.setAttribute("jsonlist", JSONArray.fromObject(list));
 		request.setAttribute("searchVal", searchVal);
 		request.getRequestDispatcher("/admin/adminDesignerManage.jsp").forward(request, response);
 	}

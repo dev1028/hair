@@ -264,6 +264,9 @@ function chart() {
 	}
 }
 	$(function() {
+		
+		
+		$("#frm").submit();
 		chart();
 	
 
@@ -365,7 +368,7 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 	<br>
 
 
-	<ul class="nav nav-tabs">
+	<!-- <ul class="nav nav-tabs">
 		<li class="active"><a data-toggle="tab" href="#daytab"><button
 					type="button" class="btn btn-default" id="daybtn">일</button></a></li>
 		<li><a data-toggle="tab" href="#weektab">
@@ -425,19 +428,22 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 			</div>
 		</div>
 	</div>
-
+ -->
 
 	<div class="container">
 
-		<form method="POST"
-			action="${pageContext.request.contextPath}/hairshop/AnalysisDesignerTotal.do">
+		<form method="POST" id="frm" 
+			action="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">
 
+<div class="row"><div class="col">
+					<input type="month" class="form-control " name = "month" value="2020-10">
+</div>
+<div class="col">
 
-
-
-
-			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
-
+					<button type="submit" value="Submit" id="submit"
+						class="btn btn-default col-3" style="border: 1px solid gray;">검색</button>
+				</div>
+</div>
 		</form>
 
 	</div>
@@ -483,12 +489,12 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 				<tbody>
 					<c:forEach items="${rsvlist }" var="l">
 						<tr>
-							<td>${ l.rank}/${l.prevrank }</td>
+							<td>${ l.rank}</td>
 							<td><img id="imgDes"
 								onerror="this.src='../images/no_img.gif'"
 								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
 								class="avatar">${ l.designer_name}</td>
-							<td>${l.rsv }/${l.prevrsv }</td>
+							<td>${l.rsv }</td>
 
 
 						</tr>
@@ -513,12 +519,12 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 				<tbody>
 					<c:forEach items="${saleslist }" var="l">
 						<tr>
-							<td>${ l.rank}/${l.prevrank-l.rank }</td>
+							<td>${ l.rank}</td>
 							<td><img id="imgDes"
 								onerror="this.src='../images/no_img.gif'"
 								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
 								class="avatar">${ l.designer_name}</td>
-							<td>${l.sales }/${l.prevsales }</td>
+							<td>${l.sales }</td>
 
 
 						</tr>
@@ -542,12 +548,12 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 				<tbody>
 					<c:forEach items="${ratelist }" var="l">
 						<tr>
-							<td>${ l.rank}/${l.prevrank }</td>
+							<td>${ l.rank}</td>
 							<td><img id="imgDes"
 								onerror="this.src='../images/no_img.gif'"
 								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
 								class="avatar">${ l.designer_name}</td>
-							<td>${l.rate }/${l.prevrate }</td>
+							<td>${l.rate }</td>
 
 
 						</tr>

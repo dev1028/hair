@@ -1,5 +1,20 @@
 $(function() {
-	
+	 $('#dataTable').dataTable( {
+	        
+	        "paging": true, //페이징처리
+	        "ordering": true, //칼럼별 정렬기능
+	        //"autoWidth": false, //가로자동
+	        "lengthChange": false, //데이터건수 변경
+	        "pageLength": 25, //기본 데이터건수
+	        //"lengthMenu": [[50, 100, 1000], [50, 100, "Max(1000)"]], //데이터건수옵션
+	       // "order": [15,'desc'], //기본 정렬칼럼
+	        "searching": false, //검색
+	        "columnDefs" : [//칼럼조작
+	        	//가로길이         //칼럼제목   //데이터타겟    //해당칼럼만 정렬기능사용안함
+	        	    {"width":"1em",  "targets":1, "orderable": false},
+	        	    {"width":"1em", "targets":2}
+	        	]
+	    } );
 	period();
 //	$("button").attr('class','btn btn-secondary btn-sm');
 //	$("input").attr('class','btn btn-secondary btn-sm');
@@ -10,7 +25,7 @@ $(function() {
 
 				var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
 				var table_html = encodeURIComponent(document
-						.getElementById('test').outerHTML);
+						.getElementById('dataTable').outerHTML);
 
 				var a = document.createElement('a');
 				a.href = data_type + ',%EF%BB%BF' + table_html;
@@ -39,7 +54,7 @@ $(function() {
 		if ($(this).is("#year") === true) {
 			yearfun();
 		} else if ($(this).is("#period") === true) {
-			periodfun();
+			period();
 		} else if ($(this).is("#quarter") === true) {
 			quarterfun();
 		} else if ($(this).is("#month") === true) {
@@ -195,8 +210,9 @@ $(function() {
 //			var url = "/hairapp/admin/adminSales.do"
 		var table = $("<table />").attr({
 			'border' : '1',
-			'id' : 'test',
-			'class' : 'table table-bordered table-hover table-sm text-center'
+			'id' : 'dataTable',
+			'class' : 'table table-bordered table-hover table-sm text-center',
+			
 		});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));

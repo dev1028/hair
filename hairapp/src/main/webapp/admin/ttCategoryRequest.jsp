@@ -9,29 +9,78 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
-		$("#approval").on("click", status(1))
-		$("#reject").on("click", status(3))
-		$("#hold").on("click", status(2))
+ 		$("#approval").on("click", function(){
+ 			var $finTr = $(this).closest("tr").children();
+ 			console.log($finTr);
+ 			console.log($(this));
+ 			var finUpdate1 = $finTr.eq(0).text();
+ 			console.log(finUpdate1);
+ 			
+
+ 			$.ajax({
+ 				url : "${pageContext.request.contextPath}/ajax/admin/tmicUpdate.do",
+ 				data : {
+ 							tmic_no : finUpdate1,
+ 							tmic_status : 1
+ 						},
+ 						type : "post",
+ 						dataType : "json",
+ 					});
+ 		})
+ 		$("#reject").on("click", function(){
+ 			var $finTr = $(this).closest("tr").children();
+ 			console.log($finTr);
+ 			console.log($(this));
+ 			var finUpdate1 = $finTr.eq(0).text();
+ 			console.log(finUpdate1);
+ 			
+
+ 			$.ajax({
+ 				url : "${pageContext.request.contextPath}/ajax/admin/tmicUpdate.do",
+ 				data : {
+ 							tmic_no : finUpdate1,
+ 							tmic_status : 3
+ 						},
+ 						type : "post",
+ 						dataType : "json",
+ 					});
+ 		})
+ 		$("#hold").on("click", function(){
+ 			var $finTr = $(this).closest("tr").children();
+ 			console.log($finTr);
+ 			console.log($(this));
+ 			var finUpdate1 = $finTr.eq(0).text();
+ 			console.log(finUpdate1);
+ 			
+
+ 			$.ajax({
+ 				url : "${pageContext.request.contextPath}/ajax/admin/tmicUpdate.do",
+ 				data : {
+ 							tmic_no : finUpdate1,
+ 							tmic_status : 2
+ 						},
+ 						type : "post",
+ 						dataType : "json",
+ 					});
+ 		})
 	});
 
-	function status(tmic_status) {
+	function status() {
 		var $finTr = $(this).closest("tr").children();
 		console.log($finTr);
 		console.log($(this));
 		var finUpdate1 = $finTr.eq(0).text();
 		console.log(finUpdate1);
+		
 
-		$
-				.ajax({
-					url : "${pageContext.request.contextPath}/ajax/admin/tmicUpdate.do",
-					data : {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/ajax/admin/tmicUpdate.do",
+			data : {
 						tmic_no : finUpdate1,
 						tmic_status : tmic_status
-
 					},
 					type : "post",
 					dataType : "json",
-
 				});
 	}
 </script>

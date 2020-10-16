@@ -310,7 +310,7 @@
 		<main>
 			<div class="container-fluid">
 				<h1 class="mt-4">월별결산</h1>
-				<input type="month" id="date" value="2020-09">
+				<input type="month" id="date" value="2020-10">
 				<button id="find">조회</button>
 
 

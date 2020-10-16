@@ -30,8 +30,8 @@
 				          width: 800,
 				          legend: { position: 'none' },
 				          chart: {
-				            title: 'Chess opening moves',
-				            subtitle: 'popularity by percentage' },
+				            title: '인기헤어순위 ',
+				            subtitle: '' },
 				          axes: {
 				            x: {
 				              0: { side: 'top', label: 'White to move'} // Top x-axis.

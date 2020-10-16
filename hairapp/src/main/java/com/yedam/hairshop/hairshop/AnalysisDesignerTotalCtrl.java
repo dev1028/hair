@@ -22,7 +22,10 @@ public class AnalysisDesignerTotalCtrl implements Controller {
 		
 		String startdate = request.getParameter("startdate");
 		String enddate = request.getParameter("enddate");
+		String month = request.getParameter("month");
+		
 		AnalysisVo vo = new AnalysisVo();
+		vo.setMonth(month);
 		vo.setHs_no(hs_no);
 		vo.setStartdate("2020-09-01");
 		vo.setEnddate("2020-10-01");

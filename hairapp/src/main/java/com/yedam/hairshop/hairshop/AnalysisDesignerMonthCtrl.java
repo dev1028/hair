@@ -21,10 +21,12 @@ String hs_no = request.getSession().getAttribute("hsno").toString();
 		
 		String startdate = request.getParameter("startdate");
 		String enddate = request.getParameter("enddate");
+		String month = request.getParameter("month");
 		AnalysisVo vo = new AnalysisVo();
 		vo.setHs_no(hs_no);
 		vo.setStartdate("2020-09-01");
 		vo.setEnddate("2020-10-01");
+		vo.setMonth(month);
 		ArrayList<AnalysisVo> rsvlist = AnalysisDAO.getInstance().designerRsvRank(vo);
 		request.setAttribute("rsvlist", rsvlist);
 		request.setAttribute("rsvjsonlist", JSONArray.fromObject(rsvlist).toString());

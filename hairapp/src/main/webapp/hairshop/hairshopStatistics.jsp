@@ -14,8 +14,30 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/hairshop/hairshopStatistics.js">
-	
-</script>
+<link
+href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css"
+rel="stylesheet" />
+<link
+href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
+rel="stylesheet" crossorigin="anonymous" />
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+crossorigin="anonymous"></script>
+<script
+src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+crossorigin="anonymous"></script>
+<script
+src="${pageContext.request.contextPath}/decorator/ges/dist/js/scripts.js"></script>
+<script
+src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+crossorigin="anonymous"></script>
+<script
+src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+crossorigin="anonymous"></script>
+<script
+src="${pageContext.request.contextPath}/decorator/ges/dist/assets/demo/datatables-demo.js"></script>
+
+
 </head>
 <body> 
 <br><br><br>
@@ -52,7 +74,8 @@
 
 
 	<h2 class="heading"></h2>
-	<div class="form-group" id="result"></div>
+	<div class="table-responsive" id="result">
+		</div>
 	<!-- <button type="button" id="excel">excel</button> -->
 
 
