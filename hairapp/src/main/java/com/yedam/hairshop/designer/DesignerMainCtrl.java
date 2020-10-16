@@ -35,18 +35,28 @@ public class DesignerMainCtrl implements Controller {
 		hVo.setHs_no(designerVo.getHs_no());
 		hVo = HairshopDAO.getInstance().selectOne(hVo);
 		String dayoffListString = hVo.getHs_dayoff();
-		String[] dayoffList = dayoffListString.split(",");
+		List<String> list;
 		String[] dayonList = { "0", "1", "2", "3", "4", "5", "6" };
-		List<String> list = new ArrayList<>(Arrays.asList(dayonList));
-
-		for (int j = 0; j < dayoffList.length; j++) {
-
-			for (int i = 0; i < list.size(); i++) {
-				if (dayoffList[j].equals(list.get(i))) {
-					list.remove(i);
-					break;
+		if(dayoffListString != null) {
+			String[] dayoffList = new String[7];
+			if(dayoffListString.length() == 1) {
+				dayoffList[0] = dayoffListString;
+			} else {
+				dayoffList = dayoffListString.split(",");
+			}
+			list = new ArrayList<>(Arrays.asList(dayonList));
+			
+			for (int j = 0; j < dayoffList.length; j++) {
+				
+				for (int i = 0; i < list.size(); i++) {
+					if (dayoffList[j].equals(list.get(i))) {
+						list.remove(i);
+						break;
+					}
 				}
 			}
+		} else {
+			list = new ArrayList<>(Arrays.asList(dayonList));
 		}
 		request.setAttribute("dayonList", JSONArray.fromObject(list));
 		request.setAttribute("start", hVo.getHs_starttime() + ":00");
