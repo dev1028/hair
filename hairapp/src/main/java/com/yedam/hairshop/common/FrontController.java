@@ -22,6 +22,7 @@ import com.yedam.hairshop.admin.AdminDesignerManageCFtrl;
 import com.yedam.hairshop.admin.AdminDesignerManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageCtrl;
 import com.yedam.hairshop.admin.AdminHairshopManageFCtrl;
+import com.yedam.hairshop.admin.AdminMyContentCtrl;
 import com.yedam.hairshop.admin.AdminMypageCtrl;
 import com.yedam.hairshop.admin.AdminNewHairshopApprovalCtrl;
 import com.yedam.hairshop.admin.AdminNewHairshopCtrl;
@@ -61,7 +62,6 @@ import com.yedam.hairshop.admin.hairAnalysisCtrl;
 import com.yedam.hairshop.admin.hairAnalysisFCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
-import com.yedam.hairshop.dao.AdminAnalysisDAO;
 import com.yedam.hairshop.designer.AnalysisSalesByDsCtrl;
 import com.yedam.hairshop.designer.AnalysisSalesByDsGoCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
@@ -308,7 +308,7 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairNameRequest.do", new HairNameRequestCtrl()); // 헤어 시술명 중분류 등록.
 		list.put("/admin/adminAnalysisByTreat.do", new AdminAnalysisByTreatCtrl());
 		list.put("/ajax/adminAnalysisByTreatRank.do", new AdminAnalysisByTreatRankCtrl());
-		
+		list.put("/admin/adminMyContent.do", new AdminMyContentCtrl());
 		
 		
 		// 송현
