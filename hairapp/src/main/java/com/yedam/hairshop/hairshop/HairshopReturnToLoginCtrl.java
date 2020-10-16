@@ -12,7 +12,7 @@ public class HairshopReturnToLoginCtrl implements Controller{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendRedirect("/hairapp/hairshop/hairshopDesignerLogin.jsp");
+		response.sendRedirect(request.getContextPath()+"/ajax/hairshopLoginPageGo.do");
 	}
 	
 }

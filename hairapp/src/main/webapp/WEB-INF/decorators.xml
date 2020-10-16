@@ -20,6 +20,9 @@
 		<pattern>/members/membersDR*</pattern>
 	</excludes>
 
-
+	<excludes>
+		<pattern>/hairshop/hairshopNot*</pattern>
+		<pattern>/hairshop/hairshopQn*</pattern>
+	</excludes>
 
 </decorators>

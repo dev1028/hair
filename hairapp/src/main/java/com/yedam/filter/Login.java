@@ -278,6 +278,7 @@ public class Login implements Filter {
 		// 승연
 		list.put("/hairshop/hairshopMain.do", hairLoginPage); // 헤어샵 로그인 후 메인페이지
 		list.put("/hairshop/hairshopDesignerLogin.do", null); // 헤어샵,디자이너 로그인페이지 -> 최종메인페이지 // 필요
+		list.put("/ajax/aboutUs.do", null);
 		list.put("/hairshop/employeeList.do", hairLoginPage); // 디자이너 직원목록
 		list.put("/hairshop/employeeSimpleJoin.do", hairLoginPage); // 디자이너 간편등록
 		list.put("/hairshop/retiredEmployeeList.do", hairLoginPage); // 디자이너 퇴사명단
@@ -291,7 +292,7 @@ public class Login implements Filter {
 		list.put("/ajax/hairshopJoinPre.do", null); // 회원가입
 		list.put("/ajax/hairshopJoinFin.do", null); // 회원가입
 		list.put("/ajax/hairshopEmailUse.do", null); // 미용실 이메일 사용여부
-
+		
 		list.put("/ajax/memberReservationInfo.do", hairLoginPage); // 예약상세정보확인
 		list.put("/ajax/updateMdriMemo.do", hairLoginPage); // 상세예약정보 메모
 		list.put("/ajax/changeReservationStatus.do", hairLoginPage); // 예약상태변경
