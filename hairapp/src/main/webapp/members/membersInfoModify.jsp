@@ -377,24 +377,24 @@ label.light {
           <legend><span class="number">2</span>Your hair status</legend><br>
           
           <label>기장 선택:</label><br>
-          <input type="radio" name="modifyhairlengths" value="숏" <c:if test="${modify.mem_hair_length=='숏'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairlengths" value="u1" <c:if test="${modify.mem_hair_length=='u1'}">checked="checked"</c:if>>
           <label for="under_13" class="light">숏</label><br>
-          <input type="radio" name="modifyhairlengths" value="jawline" <c:if test="${modify.mem_hair_length=='턱선아래'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairlengths" value="u2" <c:if test="${modify.mem_hair_length=='u2'}">checked="checked"</c:if>>
           <label for="over_13" class="light">턱선아래</label><br>
-          <input type="radio" name="modifyhairlengths" value="shoulderline" <c:if test="${modify.mem_hair_length=='어깨선아래'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairlengths" value="u3" <c:if test="${modify.mem_hair_length=='u3'}">checked="checked"</c:if>>
           <label for="over_13" class="light">어깨선아래</label><br>
-          <input type="radio" name="modifyhairlengths" value="chestline" <c:if test="${modify.mem_hair_length=='가슴선아래'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairlengths" value="u4" <c:if test="${modify.mem_hair_length=='u4'}">checked="checked"</c:if>>
           <label for="over_13" class="light">가슴선아래</label><br>
           
           
           <br><label>머릿결 상태:</label><br>
-          <input type="radio" name="modifyhairstatus" value="정상모발" <c:if test="${modify.mem_hair_status=='normal'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairstatus" value="o1" <c:if test="${modify.mem_hair_status=='o1'}">checked="checked"</c:if>>
           <label for="under_13" class="light">정상모발</label><br>
-          <input type="radio" name="modifyhairstatus" value="손상모발" <c:if test="${modify.mem_hair_status=='damaged'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairstatus" value="o2" <c:if test="${modify.mem_hair_status=='o2'}">checked="checked"</c:if>>
           <label for="over_13" class="light">손상모발</label><br>
-          <input type="radio" name="modifyhairstatus" value="극손상모발" <c:if test="${modify.mem_hair_status=='extremedamage'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairstatus" value="o3" <c:if test="${modify.mem_hair_status=='o3'}">checked="checked"</c:if>>
           <label for="over_13" class="light">극손상모발</label><br>
-          <input type="radio" name="modifyhairstatus" value="탈색모모발" <c:if test="${modify.mem_hair_status=='bleachedhair'}">checked="checked"</c:if>>
+          <input type="radio" name="modifyhairstatus" value="o4" <c:if test="${modify.mem_hair_status=='o4'}">checked="checked"</c:if>>
           <label for="over_13" class="light">탈색모모발</label><br>
 
         </fieldset><br>

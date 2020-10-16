@@ -23,7 +23,7 @@
     position:absolute;
     margin:0 auto;
     }
-    
+
     
 /* 조인css부분 */
 *, *:before, *:after {
@@ -37,7 +37,7 @@ body {
 }
 
 #formjoin {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 10px auto;
   padding: 10px 20px;
   background: #f4f7f8;
@@ -228,7 +228,8 @@ label.light {
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="wrap">
-		<br> <br> <b><font size="5" color="gray">회원가입</font></b> <br><hr><br>
+		<br> <br> <h4 style="font-weight: bold;">회원가입</h4>
+		<hr style="border: 2px solid #6d7fcc;"><br>
 
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
@@ -378,17 +379,17 @@ label.light {
           <legend><span class="number">2</span>Your hair status</legend><br>
           
           <label>기장 선택:</label><br>
-          <input type="radio" name="joinhairlengths" value="U1" checked><label for="under_13" class="light">숏</label><br>
-          <input type="radio" name="joinhairlengths" value="U2"><label for="over_13" class="light">턱선아래</label><br>
-          <input type="radio" name="joinhairlengths" value="U3"><label for="over_13" class="light">어깨선아래</label><br>
-          <input type="radio" name="joinhairlengths" value="U4"><label for="over_13" class="light">가슴선아래</label><br>
+          <input type="radio" name="joinhairlengths" value="u1" checked><label for="under_13" class="light">숏</label><br>
+          <input type="radio" name="joinhairlengths" value="u2"><label for="over_13" class="light">턱선아래</label><br>
+          <input type="radio" name="joinhairlengths" value="u3"><label for="over_13" class="light">어깨선아래</label><br>
+          <input type="radio" name="joinhairlengths" value="u4"><label for="over_13" class="light">가슴선아래</label><br>
           
           
           <br><label>머릿결 상태:</label><br>
-          <input type="radio" name="joinhairstatus" value="O1" checked><label for="under_13" class="light">정상모발</label><br>
-          <input type="radio" name="joinhairstatus" value="O2"><label for="over_13" class="light">손상모발</label><br>
-          <input type="radio" name="joinhairstatus" value="O3"><label for="over_13" class="light">극손상모발</label><br>
-          <input type="radio" name="joinhairstatus" value="O4"><label for="over_13" class="light">탈색모모발</label><br>
+          <input type="radio" name="joinhairstatus" value="o1" checked><label for="under_13" class="light">정상모발</label><br>
+          <input type="radio" name="joinhairstatus" value="o2"><label for="over_13" class="light">손상모발</label><br>
+          <input type="radio" name="joinhairstatus" value="o3"><label for="over_13" class="light">극손상모발</label><br>
+          <input type="radio" name="joinhairstatus" value="o4"><label for="over_13" class="light">탈색모모발</label><br>
 
         </fieldset><br>
         

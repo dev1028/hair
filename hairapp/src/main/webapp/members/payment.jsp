@@ -130,6 +130,8 @@ $(function(){
 <!-- 미용실정보 -->
 <br>
 <div id="shopInfo">
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<img src="../images/members/curling-hair.png" style="width: 95px; height: 95px;">
 	<div id="shopName">
 		<div id="hsname">
 			<h4><b>${shop.hs_name}</b></h4>
@@ -186,6 +188,10 @@ $(function(){
 			</c:when>
 		</c:choose>
 	</div>
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<img src="../images/members/curling-hair.png" style="width: 95px; height: 95px;">
 </div>
 
 <!-- 바디안에 메뉴바 -->
@@ -279,10 +285,10 @@ $(function(){
 			</th>
 			<td>
 				<select class="hairLength" name="hairLength">
-					<option value="U1" >숏</option>
-					<option value="U2">턱선아래</option>
-					<option value="U3">어깨선아래</option>
-					<option value="U4">가슴선아래</option>
+					<option value="u1" >숏</option>
+					<option value="u2">턱선아래</option>
+					<option value="u3">어깨선아래</option>
+					<option value="u4">가슴선아래</option>
 				</select>
 			</td>
 		</tr>
@@ -292,10 +298,10 @@ $(function(){
 			</th>
 			<td>
 				<select class="hairStatus" name="hairStatus">
-					<option value="O1">정상모발</option>
-					<option value="O2">손상모발</option>
-					<option value="O3">극손상모발</option>
-					<option value="O4">탈색모모발</option>
+					<option value="o1">정상모발</option>
+					<option value="o2">손상모발</option>
+					<option value="o3">극손상모발</option>
+					<option value="o4">탈색모모발</option>
 				</select>
 			</td>
 		</tr>

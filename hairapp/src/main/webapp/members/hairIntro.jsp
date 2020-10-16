@@ -43,6 +43,12 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 
 #slide2:checked ~ #controls label:nth-child(1), #slide3:checked ~ #controls label:nth-child(2) { left:0; display:block; }
 /* 슬라이더끝 */
+
+.designer1 {
+	float: left;
+	padding: 20px;
+}
+
 </style>
 </head>
 <body>
@@ -78,6 +84,8 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 <!-- 미용실정보 -->
 <br>
 <div id="shopInfo">
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<img src="../images/members/curling-hair.png" style="width: 95px; height: 95px;">
 	<div id="shopName">
 		<div id="hsname">
 			<h4><b>${shop.hs_name}</b></h4>
@@ -134,7 +142,10 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 			</c:when>
 		</c:choose>
 	</div>
-
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<img src="../images/members/curling-hair.png" style="width: 95px; height: 95px;">
 </div>
 
 <!-- 바디안에 메뉴바 -->
@@ -156,10 +167,10 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 	
 	
 	<c:forEach items="${list}" var="hairInfo">
-        <div class="col-md-3 col-sm-6">
+        <div class="designer1">
             <div class="product-grid4">
                 <div class="product-image4">
-                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hair/${hairInfo.hhi_no}/profile&img_name=${hairInfo.hhmi_file}"
+                	<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairInfo.hs_no}/hairinfo&img_name=${hairInfo.hhmi_file}"
 		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
                 </div>
                 <div class="product-content" >

@@ -35,7 +35,10 @@ public class DesignerUpdateCtrl implements Controller{
 		designerVo.setDesigner_profile(designer_profile);
 		designerVo.setDesigner_no(designer_no);
 		
+		
 		int resultVo = DesignerDAO.getInstance().update(designerVo);
+		
+		request.getSession().setAttribute("login", designerVo);
 		request.setAttribute("designer", resultVo);
 		request.getRequestDispatcher("/designer/designerMain.do").forward(request, response);
 	}

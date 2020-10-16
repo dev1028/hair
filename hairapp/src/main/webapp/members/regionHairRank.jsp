@@ -10,6 +10,11 @@
 <link rel="stylesheet" type="text/css" href="../css/designerCard.css">
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
 <script src="../js/hairBookmark.js"></script>
+<style>
+body {
+	background: url(../images/members/hairshopselect.png);
+}
+</style>
 	
 </head>
 <body>
@@ -22,8 +27,10 @@
 					<div class="col-md-3 col-sm-6">
 						<div class="product-grid4">
 							<div class="product-image4">
-								<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg">
+<!-- 								<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg"> -->
 <!-- 								<img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg"> -->
+									<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairInfo.hs_no}/hairinfo&img_name=${hairInfo.hhmi_file}"
+							                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
 							</div>
 							<div class="product-content">
 								<c:if test="${not empty sessionScope.login }">

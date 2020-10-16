@@ -88,16 +88,16 @@
 <body>
 
 
-<br><br><br><br>
+<br><br><br>
 <div class="contatiner">
 <form method="post" name="frm2" id="frm2" action="membersQnaV.do">
 
 <div id="list">
-<h3 class="page_title">Qna</h3>
+<h3 style="font-weight: bold;">Q&A</h3>
+	<hr style="border: 2px solid #6d7fcc; width:900px;"><br>
 </div>
 
-<hr>
-<br><br>
+<br>
 <table class="table table-striped table-bordered table-hover">
 <colgroup>
     <col width="5%"/>

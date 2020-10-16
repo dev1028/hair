@@ -44,8 +44,8 @@ function inputCheck() {
 <div class="contatiner">
 
 <form method="post" name="frm" id="frm" action="membersNoticeW.do" onsubmit="return inputCheck()" enctype="multipart/form-data">
-<h4 class="page_title">공지사항 등록</h4>
-<hr>
+<br><h3 style="font-weight: bold; text-align: center;">공지사항 등록</h3>
+<hr style="border: 2px solid #6d7fcc; width:900px;"><br>
 
 	<div class="col-5">
 		<label for="category">대분류</label>
