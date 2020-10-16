@@ -84,6 +84,7 @@ import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerDetailCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
+import com.yedam.hairshop.hairshop.AboutUsCtrl;
 import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
 import com.yedam.hairshop.hairshop.AnalysisByTreatCtrl;
@@ -130,6 +131,7 @@ import com.yedam.hairshop.hairshop.HairshopEmailAuthCtrl;
 import com.yedam.hairshop.hairshop.HairshopEmailUseAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
+import com.yedam.hairshop.hairshop.HairshopLoginPageGoCtrl;
 import com.yedam.hairshop.hairshop.HairshopNextCustomerAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopQnaCtrl;
 import com.yedam.hairshop.hairshop.HairshopQnaWGCtrl;
@@ -142,6 +144,7 @@ import com.yedam.hairshop.hairshop.MonthlyReservationListAjCtrl;
 import com.yedam.hairshop.hairshop.MonthlyReservationListCtrl;
 import com.yedam.hairshop.hairshop.MyHairShopProfileCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopInfoCtrl;
+import com.yedam.hairshop.hairshop.MyHairshopInfoUpdate;
 import com.yedam.hairshop.hairshop.MyHairshopInfoUpdateFrmFCtrl;
 import com.yedam.hairshop.hairshop.MyHairshopProfileUpdateFCtrl;
 import com.yedam.hairshop.hairshop.MyParkingChangeCtrl;
@@ -165,7 +168,6 @@ import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishSDCtrl;
 import com.yedam.hairshop.hairshop.salesCtrl;
 import com.yedam.hairshop.hairshop.salesStatisticsCtrl;
-import com.yedam.hairshop.harishop.MyHairshopInfoUpdate;
 import com.yedam.hairshop.members.ChangeDesignerCtrl;
 import com.yedam.hairshop.members.ChkCouponCtrl;
 import com.yedam.hairshop.members.DesignerBookmarkCtrl;
@@ -500,7 +502,9 @@ public class FrontController extends HttpServlet {
 		// 승연
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); // 헤어샵 로그인 후 메인페이지
 		list.put("/hairshop/hairshopDesignerLogin.do", new HairshopDesignerLoginCtrl()); // 헤어샵,디자이너 로그인페이지 -> 최종메인페이지
-																							// 필요
+		list.put("/ajax/aboutUs.do", new AboutUsCtrl());
+		
+		list.put("/ajax/hairshopLoginPageGo.do", new HairshopLoginPageGoCtrl());
 		list.put("/hairshop/employeeList.do", new EmployeeListCtrl()); // 디자이너 직원목록
 		list.put("/hairshop/employeeSimpleJoin.do", new EmployeeSimpleJoinFCtrl()); // 디자이너 간편등록
 		list.put("/hairshop/retiredEmployeeList.do", new RetiredEmployeeListCtrl()); // 디자이너 퇴사명단
