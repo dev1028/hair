@@ -83,6 +83,28 @@
 		 .replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
 		 */
 	}
+	function inputNumberAutoComma(obj) {
+		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+		var deleteComma = obj.value.replace(/\,/g, "");
+		// 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+		if (isFinite(deleteComma) == false) {
+			alert("문자는 입력하실 수 없습니다.");
+			obj.value = "";
+			return false;
+		}
+		// 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
+		obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
+	}
+	// 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
+	function inputNumberWithComma(str) {
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{1})+(?!\d))/g, "$1,");
+	}
+	// 콤마( , )가 들어간 값에 콤마를 제거하는 함수
+	function inputNumberRemoveComma(str) {
+		str = String(str);
+		return str.replace(/[^\d]+/g, "");
+	}
 </script>
 <style>
 .fileUpload {
@@ -97,34 +119,35 @@
 	position: relative;
 	text-align: center;
 	width: 147px;
-   cursor: pointer;
+	cursor: pointer;
 }
 
 .fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    width: 148px;
-    height: 46px;
-  cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity = 0);
+	width: 148px;
+	height: 46px;
+	cursor: pointer;
 }
 
 input[type="file"] {
-    position: fixed;
-    right: 100%;
-    bottom: 100%;
+	position: fixed;
+	right: 100%;
+	bottom: 100%;
 }
+
 .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
 }
 </style>
 </head>
@@ -195,11 +218,11 @@ input[type="file"] {
 					<div class="input-group">
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user"></i></span> <input name="designer_pw"
-							 placeholder="비밀번호를 4~12자까지 입력해주세요."
-							class="form-control" type="password" id="designer_pw">
+							placeholder="비밀번호를 4~12자까지 입력해주세요." class="form-control"
+							type="password" id="designer_pw">
 					</div>
-					<input  name="designer_pw2" class="form-control"
-						type="password" id="designer_pw2">
+					<input name="designer_pw2" class="form-control" type="password"
+						id="designer_pw2">
 				</div>
 			</div>
 
@@ -210,6 +233,7 @@ input[type="file"] {
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user"></i></span> <input
 							name="designer_dayoff" class="form-control" type="text"
+							onKeyup="inputNumberAutoComma(this);"
 							id="designer_dayoff" value="${designer.designer_dayoff }">
 					</div>
 				</div>
@@ -260,8 +284,8 @@ input[type="file"] {
 					<div class="fileUpload">
 
 						<input type="file" id="image" name="file_name" class="upload"
-							accept=".gif, .jpg, .png" onchange="setThumbnail(event);" />
-							<span>File Upload</span>
+							accept=".gif, .jpg, .png" onchange="setThumbnail(event);" /> <span>File
+							Upload</span>
 					</div>
 					<div id="image_container"></div>
 				</div>

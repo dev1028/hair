@@ -21,7 +21,7 @@ public class BoardManageVo {
 	String excludeAnswer;
 	String who;
 	
-	
+	String emp_name;
 	String emp_alias;
 	public String notice_no;
 	public String notice_title;

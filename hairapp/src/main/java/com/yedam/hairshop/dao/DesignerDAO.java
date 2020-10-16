@@ -468,7 +468,7 @@ public class DesignerDAO {
 		List<DesignerVo> list = new ArrayList<DesignerVo>();
 		String sql = 
 				" SELECT rn, distance, designer_no, designer_name, work_start_time, hs_no, " +
-				"       work_end_time, designer_profile, NVL2((SELECT mem_no " + 
+				"       work_end_time, designer_profile, file_name, NVL2((SELECT mem_no " + 
 				"										       FROM favor_designer " + 
 				"										       WHERE designer_no = d.designer_no AND mem_no = ?), 1, 0) as book " +
 				" FROM (SELECT rownum rn, k.*  " + 
@@ -503,6 +503,7 @@ public class DesignerDAO {
 				tmpVo.setDesigner_profile(rs.getString("designer_profile"));
 				tmpVo.setDesigner_book(rs.getString("book"));
 				tmpVo.setHs_no(rs.getString("hs_no"));
+				tmpVo.setFile_name(rs.getString("file_name"));
 				list.add(tmpVo);
 			}
 		} catch (SQLException e) {

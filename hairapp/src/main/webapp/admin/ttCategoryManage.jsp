@@ -133,8 +133,7 @@
 																		.text(
 																				data.tmic_explication);
 
-																
-															} 
+															}
 														}
 													});
 										});
@@ -496,7 +495,7 @@
 <body>
 	<div class="container">
 		<br>
-		<h3 class="font-weight-bold">시술 분류 관리 </h3>
+		<h3 class="font-weight-bold">시술 분류 관리</h3>
 		<hr>
 		<form id="tmic_insert_frm">
 			<div>
@@ -515,47 +514,49 @@
 
 
 
-							<div id="codelisttable" class="dataTables_scrollHeadInner">
-								<table
-									class="table table-bordered table-hover table-sm text-center TABLE table-bordered"
-									id="dataTable1" width="100%" cellspacing="0"> 
-									<thead class="thead-dark">
-										<tr>
-											<th scope="row">중분류번호</th>
-											<th scope="row">대분류</th>
-											<th scope="row">중분류 설명</th>
-											<th scope="row">인증상태</th>
-											<th scope="row">수정/삭제</th>
-										</tr>
+			<div id="codelisttable" class="dataTables_scrollHeadInner">
+				<table
+					class="table table-bordered table-hover table-sm text-center TABLE table-bordered"
+					id="dataTable1" width="100%" cellspacing="0">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="row">중분류번호</th>
+							<th scope="row">대분류</th>
+							<th scope="row">중분류 설명</th>
+							<th scope="row">인증상태</th>
+							<th scope="row">수정/삭제</th>
+						</tr>
 
-									</thead>
+					</thead>
 
-									<tbody id="codelisttable_tbody" class="table table-striped  ">
-										<c:forEach items="${ilist}" var="a">
-											<tr>
-												<td>${a.tmic_no}</td>
-												<td>${a.tmac_name }</td>
-												<td>${a.tmic_explication}</td>
-												<td><c:choose>
-														<c:when test="${a.tmic_status ==1}">승인완료</c:when>
-														<c:when test="${a.tmic_status ==0 }">미승인<button
-																id="approval">승인</button>
-														</c:when>
-													</c:choose></td>
-												<td><div class="btn-group btn-group-sm" role="group"
-														aria-label="Basic example">
-														<button type="button"
-															class="btn btn-secondary btncodeUpdate">수정</button>
-														<button type="button" class="btn btn-danger btncodeDelete">삭제</button>
-													</div></td>
-											</tr>
-										</c:forEach>
+					<tbody id="codelisttable_tbody" class="table table-striped  ">
+						<c:forEach items="${ilist}" var="a">
+							<tr>
+								<td>${a.tmic_no}</td>
+								<td>${a.tmac_name }</td>
+								<td>${a.tmic_explication}</td>
+								<td><c:choose>
+										<c:when test="${a.tmic_status ==1}">승인완료</c:when>
+										<c:when test="${a.tmic_status ==0 }">미승인<button
+												id="approval">승인</button></c:when>
+											<c:when test="${a.tmic_status ==2 }">보류</c:when>
+											<c:when test="${a.tmic_status ==3 }">거절</c:when>
+											
+										
+									</c:choose></td>
+								<td><div class="btn-group btn-group-sm" role="group"
+										aria-label="Basic example">
+										<button type="button" class="btn btn-secondary btncodeUpdate">수정</button>
+										<button type="button" class="btn btn-danger btncodeDelete">삭제</button>
+									</div></td>
+							</tr>
+						</c:forEach>
 
-									</tbody>
-								</table>
-							</div>
-					</div>
-				</div>
-				<hr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<hr>
 </body>
 </html>

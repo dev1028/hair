@@ -33,17 +33,72 @@
 
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script>
+<script>	
+var jsonlist = ${jsonlist};
+var empOne;
+var clickcnt = 0;
+var thisTr;
 	$(function() {
 
-		var jsonlist = $
-		{
-			jsonlist
-		}
-		;
-		var empOne;
-		var clickcnt = 0;
-		var thisTr;
+		$("#tbody").on("click","tr",function(){
+			if(clickcnt == 0){
+				thisTr = $(this);
+				setTimeout(function(){
+					clickcnt = 0;
+				}, 500);
+				clickcnt++;
+			} else if(clickcnt == 1 && $(this).attr("id") == thisTr.attr("id")){
+				for(var key of jsonlist){
+					if(key.mem_no == thisTr.attr("id")){
+						empOne = key;
+					}
+				}
+				
+				$("#modal_title").text(empOne.mem_name+" 상세정보");
+				$("#mem_no").val(empOne.mem_no);
+				$("#mem_name").val(empOne.mem_name);
+				$("#mem_phone").val(empOne.mem_phone);
+				$("#mem_email").val(empOne.mem_email);
+				$("#mem_pw").val(empOne.mem_pw);
+				$("#mem_addr").val(empOne.mem_addr);
+				$("#mem_regdate").val(empOne.mem_regdate);
+				if(empOne.mem_sex === 'female'){
+					
+				$("#mem_sex").val("여자");
+				}else{
+					$("#mem_sex").val("남자");
+				}
+				$("#mem_birth").val(empOne.mem_birth.substring(0,10));
+				$("#mem_age").val(empOne.mem_age);
+				$("#mem_saved_money").val(empOne.mem_saved_money);
+				$("#mem_zip").val(empOne.mem_zip);
+				$("#myModal").modal('toggle');
+				clickcnt = 0;
+			} else if(clickcnt == 1 && $(this).attr("id") != thisTr.attr("id")){
+				clickcnt = 0;
+			}
+				
+		});//tr on click event
+		
+		$("#myModal").on('hide.bs.modal', function(){
+			$("#modal_title").text("");
+			empOne = null;
+		
+			
+		
+		 });
+		
+		
+		
+		
+		$("#staticBackdrop").on('hide.bs.modal', function(){
+			$("#insertmem_phoneSpan").remove();
+			$("#insertmem_pwSpan").remove();
+			$("#insertmem_emailSpan").remove();
+			$("#insertmem_nameSpan").remove();
+		 });
+		
+		var arrayBeforeUpdate = [];
 		$("#all").on("click", function() {
 
 			var check = $("#all").prop("checked");
@@ -89,49 +144,50 @@
 </script>
 </head>
 <body>
-	<h2 class="heading">일반회원관리</h2>
+	<div class="container">
+		<h2 class="heading">일반회원관리</h2>
 
-	<div class="table-responsive" id="result">
-		<table class="table table-bordered" id="dataTable" width="100%"
-			cellspacing="0">
-			<thead>
-				<tr>
-					<th><input type="checkbox" name="all" id="all" class="chk"></th>
-					<th>회원번호</th>
-					<th>회원이름</th>
-					<th>이메일</th>
-					<th>전화번호</th>
-					<th>성별</th>
-					<th>나이</th>
-					<th>지역</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list }" var="l">
+		<div class="table-responsive" id="result">
+			<table class="table table-bordered" id="dataTable" width="100%"
+				cellspacing="0">
+				<thead>
 					<tr>
-
-						<td><input type="checkbox" class="chk"></td>
-						<td>${ l.mem_no}</td>
-						<td id="name">${ l.mem_name}</td>
-						<td id="email">${ l.mem_email}</td>
-						<td>${ l.mem_phone}</td>
-						<td><c:choose>
-								<c:when test="${ l.mem_sex == 'female'}">여자</c:when>
-								<c:when test="${ l.mem_sex == 'male'}">남자</c:when>
-							</c:choose></td>
-						<td>${ l.mem_age}</td>
-						<td>${ l.mem_city}</td>
+						<th><input type="checkbox" name="all" id="all" class="chk"></th>
+						<th>회원번호</th>
+						<th>회원이름</th>
+						<th>이메일</th>
+						<th>전화번호</th>
+						<th>성별</th>
+						<th>나이</th>
+						<th>지역</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody id="tbody">
+					<c:forEach items="${list }" var="l">
+						<tr id="${l.mem_no }">
 
-		<button id="excel">excel</button>
-		<button id="email">email</button>
+							<td><input type="checkbox" class="chk"></td>
+							<td>${ l.mem_no}</td>
+							<td id="name">${ l.mem_name}</td>
+							<td id="email">${ l.mem_email}</td>
+							<td>${ l.mem_phone}</td>
+							<td><c:choose>
+									<c:when test="${ l.mem_sex == 'female'}">여자</c:when>
+									<c:when test="${ l.mem_sex == 'male'}">남자</c:when>
+								</c:choose></td>
+							<td>${ l.mem_age}</td>
+							<td>${ l.mem_city}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+			<button id="excel">excel</button>
+			<button id="email">email</button>
+		</div>
+
+
 	</div>
-
-
-
 
 
 	<div class="modal fade" id="myModal" data-backdrop="static"
@@ -158,53 +214,56 @@
 								<div class="card-body">
 									<div class="form-group">
 										<div class="form-group">
-											<label for="hs_name">회원번호</label> <input class="form-control"
-												type="text" name="hs_name" id="hs_no" value="" />
+											<label for="mem_name">회원번호</label> <input
+												class="form-control" type="text" name="mem_name" id="mem_no"
+												value="" />
 										</div>
-										<label for="hs_name">이름</label> <input class="form-control"
-											type="text" name="hs_name" id="hs_name" value="" />
+										<label for="mem_name">이름</label> <input class="form-control"
+											type="text" name="mem_name" id="mem_name" value="" />
 									</div>
 									<div class="form-group">
-										<label for="hs_comp_no">이메일</label> <input
-											class="form-control" type="text" name=hs_comp_no
-											id="hs_comp_no" value="" />
+										<label for="mem_email">이메일</label> <input class="form-control"
+											type="text" name=mem_email id="mem_email" value="" />
 									</div>
 									<div class="form-group">
-										<label for="hs_owner">비밀번호</label> <input class="form-control"
-											type="text" name="hs_owner" id="hs_owner" value="" />
+										<label for="mem_owner">비밀번호</label> <input
+											class="form-control" type="text" name="mem_pw" id="mem_pw"
+											value="" />
 									</div>
 									<div class="form-group">
 
-										<label for="hs_email">전화번호</label> <input class="form-control"
-											type="email" name="hs_email" id="hs_email" value=""
-											placeholder="이메일을 입력하세요." /> <span id="emailChecking"></span>
+										<label for="mem_phone">전화번호</label> <input
+											class="form-control" type="email" name="mem_phone"
+											id="mem_phone" value="" placeholder="이메일을 입력하세요." /> <span
+											id="emailChecking"></span>
 									</div>
 									<div class="form-group">
-										<label for="hs_pw">성별</label> <input class="form-control"
-											type="text" name="hs_pw" id="hs_pw" value=""
+										<label for="mem_sex">성별</label> <input class="form-control"
+											type="text" name="mem_sex" id="mem_sex"  value=""
 											placeholder="비밀번호를 입력하세요." />
 									</div>
 									<div class="form-group">
-										<label for="hs_name">생년월일</label> <input class="form-control"
-											type="text" name="hs_name" id="hs_fulladdr" value="" />
+										<label for="mem_name">생년월일</label> <input class="form-control"
+											type="text" name="mem_name" id="mem_birth" value="" />
 									</div>
 									<div class="form-group">
-										<label for="hs_name">나이</label> <input class="form-control"
-											type="text" name="hs_name" id="hs_approval" value="" />
+										<label for="mem_name">나이</label> <input class="form-control"
+											type="text" name="mem_name" id="mem_age" value="" />
 									</div>
 									<div class="form-group">
-										<label for="hs_tel">적립금</label> <input class="form-control"
-											type="text" name="hs_tel" id="hs_tel" value=""
-											placeholder="전화번호를 입력하세요." />
+										<label for="mem_tel">적립금</label> <input class="form-control"
+											type="text" name="mem_tel" id="MEM_SAVED_MONEY" value=""
+											 />
 									</div>
 									<div class="form-group">
-										<label for="hs_comp_no">주소</label> <input class="form-control"
-											type="text" name=hs_comp_no id="hs_comp_no" value="" />
+										<label for="mem_comp_no">주소</label> <input
+											class="form-control" type="text" name=mem_comp_no
+											id="mem_addr" value="" />
 									</div>
 									<div class="form-group">
-										<label for="hs_comp_no">우편번호</label> <input
-											class="form-control" type="text" name=hs_comp_no
-											id="hs_comp_no" value="" />
+										<label for="mem_comp_no">우편번호</label> <input
+											class="form-control" type="text" name=mem_comp_no
+											id="mem_zip" value="" />
 									</div>
 
 								</div>

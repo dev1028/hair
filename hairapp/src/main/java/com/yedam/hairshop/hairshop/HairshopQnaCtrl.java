@@ -21,7 +21,7 @@ public class HairshopQnaCtrl implements Controller {
 		// 파라미터
 		String p = request.getParameter("p");
 
-		//String admin = request.getSession().getAttribute("admin").toString();
+		//String login = request.getSession().getAttribute("login").toString();
 
 		// 유효성 체크
 		int page = 1;
@@ -37,7 +37,7 @@ public class HairshopQnaCtrl implements Controller {
 		// 파라미터 VO에 담기
 		QnaVo vo = new QnaVo();
 		HairshopQnaDAO dao = new HairshopQnaDAO();
-
+		
 		paging.setTotalRecord(dao.count(vo)); // dao.count() 쓰면 first,last paging에서 알아서 계산다해주고 카운트에도 넘김
 		vo.setFirst(paging.getFirst()); // first를 dept에 담음
 		vo.setLast(paging.getLast()); // last를 dept에 담음
@@ -46,11 +46,11 @@ public class HairshopQnaCtrl implements Controller {
 
 		// DB 조회
 		ArrayList<QnaVo> list = dao.selectPaging(vo);
-
+		
 		// 결과 저장
 		request.setAttribute("write", list);
 		request.setAttribute("paging", paging);
-		//request.getSession().setAttribute("admin", admin);
+		//request.getSession().setAttribute("login", login);
 		request.getRequestDispatcher("/hairshop/hairshopQna.jsp").forward(request, response);
 
 	}

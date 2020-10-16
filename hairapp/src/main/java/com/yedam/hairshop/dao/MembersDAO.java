@@ -172,7 +172,7 @@ public class MembersDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "select MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_PHONE, MEM_BIRTH, " + 
-					"					 MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,MEM_LATITUDE_LONGITUDE,mem_city_latitude_longitude,mem_saved_money, " + 
+					"					 MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,MEM_LATITUDE_LONGITUDE,mem_city_latitude_longitude,nvl(mem_saved_money,0) as mem_saved_money, " + 
 					"		 MEM_HAIR_STATUS, MEM_ACCESS_STATUS,MONTHS_BETWEEN(TRUNC(SYSDATE,'YEAR'),  TRUNC(mem_birth,'YEAR')) /12 +1 as age from members" + " ORDER BY mem_no";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
