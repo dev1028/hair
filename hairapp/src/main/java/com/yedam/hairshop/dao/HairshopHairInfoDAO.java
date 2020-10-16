@@ -86,9 +86,19 @@ public class HairshopHairInfoDAO {
 		List<HairshopHairInfoVo> list = new ArrayList<HairshopHairInfoVo>();
 		ResultSet rs = null;
 		try {
-			String sql = " SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no"
-					+ " FROM hairshop_hair_info hi, hairshop hs " + " WHERE hi.hs_no = hs.hs_no AND hs.hs_no = ? "
-					+ " AND hi.hhi_status = ?";
+//			String sql = 
+//					" SELECT hi.hhi_no, hi.hhi_name, hi.hhi_price, hi.hhi_time, hi.hs_no"
+//					+ " FROM hairshop_hair_info hi, hairshop hs " 
+//					+ " WHERE hi.hs_no = hs.hs_no AND hs.hs_no = ? "
+//					+ " AND hi.hhi_status = ?";
+			String sql = 
+					"SELECT hhi.hhi_no, hhi.hhi_name, hhi.hhi_price, hhi.hhi_time, hhi.hs_no, hhmi.hhmi_file\r\n" + 
+					"FROM hairshop_hair_info hhi \r\n" + 
+					"JOIN hairshop hs \r\n" + 
+					"ON hs.hs_no = hhi.hs_no\r\n" + 
+					"LEFT JOIN hairshop_hair_more_info hhmi\r\n" + 
+					"ON hhmi.hhi_no = hhi.hhi_no\r\n" + 
+					"WHERE hs.hs_no = ? AND hhi_status = ? \r\n";
 			conn = ConnectionManager.getConnnect();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hairshopVo.getHs_no());
@@ -101,6 +111,7 @@ public class HairshopHairInfoDAO {
 				vo.setHhi_price(rs.getString(3));
 				vo.setHhi_time(rs.getString(4));
 				vo.setHs_no(rs.getString(5));
+				vo.setHhmi_file(rs.getString(6));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
