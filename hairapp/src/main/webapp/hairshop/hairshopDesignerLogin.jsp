@@ -48,7 +48,6 @@
 	}
 }
 
-
 #toptop {
   width: 100%;
   height: 100%;
@@ -60,15 +59,13 @@
   width: 100%;
   height: 100%;
   content: "";
-  background: url("../images/hairshop/hairshopmain2.png");
+  background: url("${pageContext.request.contextPath}/images/hairshop/hairshopmain2.png");
   position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
   opacity: 0.9;
 }
-
-
 
 #hairshopCol, #desCol{
 	background-color: rgba(108, 122, 137, 0.8);

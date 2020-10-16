@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Imagination by TEMPLATED</title>
+<title>우리동네 미용실 UDONG#</title>
 
 <style>
 .reveal {
@@ -26,10 +26,10 @@
 	width: 70px;
 	height: 100px;
 	overflow: auto;
-	/* left: calc(100% - 100px); */
 	right: 0px;
 	top: 0px;
 	cursor: pointer;
+	font-family: 'Do Hyeon', sans-serif;
 	z-index: 1000;
 }
 
@@ -54,7 +54,7 @@
 	display: none;
 	margin: 70px 80px;
 	text-decoration: none;
-	font-family: Arial, sans-serif;
+	font-family: 'Do Hyeon', sans-serif;
 	font-weight: 100;
 	font-size: 20px;
 	text-transform: uppercase;
@@ -260,10 +260,10 @@
 				<a>${sessionScope.township}</a> |
 			</c:if>
 			<c:if test="${empty loginid}">
-				<a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a>
+				<font style="color: #6d7fcc; font-weight: bold;"><a href="${pageContext.request.contextPath}/members/membersLogin.do">로그인</a></font>
 			</c:if>
 			<c:if test="${not empty loginid }">
-				<%=session.getAttribute("memName")%>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+				<font style="color: #6d7fcc; font-weight: bold;"><%=session.getAttribute("memName")%></font>님 로그인 되었습니다 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 				<div>
 					<a class="hamburger-shell">
 						<div class="hamb top"></div>

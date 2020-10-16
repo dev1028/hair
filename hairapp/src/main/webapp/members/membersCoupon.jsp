@@ -74,6 +74,7 @@
 	<!-- 쿠폰 내역 -->
 	<form method="post" action="membersCoupon.do" name="form" id="form">
 		<div id="wrap1">
+		<br>
 			<h5 style="font-weight: bold;">&nbsp;<img src="../images/members/square.png" style="width: 35px; height: 35px;"> 보유쿠폰내역</h5>
 			<hr style="border: 1px solid #6d7fcc;"><br>
 			
