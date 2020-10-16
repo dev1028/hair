@@ -688,7 +688,9 @@ form.example::after {
 			상호 : UDONG#  |  만든이 : 김린아, 김강산, 김승연, 이상민, 이송현<br>
 			주소 : 대구 중구 국채보상로 537  |  git주소 : <a href="https://github.com/dev1028/hair" target="_blank">https://github.com/dev1028/hair</a><br>
 			서비스 이용문의 및 서비스 제휴문의 : udong1023@gmail.com<br>
-			<a href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do" target="_blank">혹시 미용실 사이트로 가시고 싶으시면 여기를 클릭해주세요</a><br><br><br>
+			<a href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do" target="_blank">미용실 사이트</a>  |  
+			<a href="${pageContext.request.contextPath}/admin/adminLogin.jsp" target="_blank">어드민 사이트</a>
+			<br><br><br>
 			Copyright © UDONG#. All Rights Reserved.
 		</div>
 		

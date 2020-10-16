@@ -22,6 +22,10 @@
     position:absolute;
     margin:0 auto;
 } 
+body {
+	background: url(../images/members/login2.png);
+	background-size: cover;
+}
 
 /* 로그인 css */
 @import 'https://fonts.googleapis.com/css?family=Open+Sans|Quicksand:400,700';
@@ -511,7 +515,7 @@ $(window).on('resize', function(){
             <input type='checkbox' value='TRUE' title='Keep me Signed in' /> Keep me Signed in
           </label>
 
-        	<input type='submit' id='do_login' value='GET STARTED' title='Get Started' />
+        	<input type='submit' id='do_login' value='LOGIN' title='Get Started' />
       </div>
     </div>
   </div>

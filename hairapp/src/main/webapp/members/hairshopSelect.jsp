@@ -14,6 +14,10 @@ div.course{
 	padding: 10px;
 	margin:0 auto;
 }
+
+body {
+	background: url(../images/members/hairshopselect.png);
+}
 </style>
 <script src="../js/hairshopBookmark.js"></script>
 <script src="../js/locationFromIP.js"></script>
