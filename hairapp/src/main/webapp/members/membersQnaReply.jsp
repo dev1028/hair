@@ -49,8 +49,8 @@ function inputCheck() {
 <div class="contatiner">
 
 <form method="post" name="frm" id="frm" action="membersQnaRe.do?page=${page}" onsubmit="return inputCheck()">
-<h4 class="page_title">답변 등록</h4>
-<hr>
+<br><h3 style="font-weight: bold; text-align: center;">Q&A 답변등록</h3>
+<hr style="border: 2px solid #6d7fcc; width:900px;"><br>
 
 	<input type="hidden" name="qna_writer" value="${re.qna_writer}"/>
     <input type="hidden" name="qna_no" value="${re.qna_no}"/>

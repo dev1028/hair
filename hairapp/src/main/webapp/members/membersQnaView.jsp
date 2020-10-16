@@ -103,11 +103,11 @@
 <form method="post" name="frm" id="frm" action="">
 
 <div id="list">
-<h3 class="page_title">QnA 글 보기</h3>
+<h3 style="font-weight: bold;">Q&A</h3>
+<hr style="border: 2px solid #6d7fcc; width:900px;"><br>
 </div>
 
-<hr>
-<br><br>
+<br>
 <table class="table table-striped table-bordered table-hover">
 <thead>
 </thead>

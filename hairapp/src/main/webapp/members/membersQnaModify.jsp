@@ -49,8 +49,8 @@ function inputCheck() {
 <div class="contatiner">
 
 <form method="post" name="frm" id="frm" action="membersQnaM.do" onsubmit="return inputCheck()">
-<h4 class="page_title">Qna 수정</h4>
-<hr>
+<br><h3 style="font-weight: bold; text-align: center;">Q&A 수정</h3>
+<hr style="border: 2px solid #6d7fcc; width:900px;"><br>
 
 	<div class="col-5">
 		<label for="category">문의유형 선택</label>

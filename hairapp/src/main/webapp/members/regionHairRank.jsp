@@ -10,6 +10,11 @@
 <link rel="stylesheet" type="text/css" href="../css/designerCard.css">
 <link rel="stylesheet" href="../decorator/membersDesigner.css">
 <script src="../js/hairBookmark.js"></script>
+<style>
+body {
+	background: url(../images/members/hairshopselect.png);
+}
+</style>
 	
 </head>
 <body>

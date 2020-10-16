@@ -23,7 +23,7 @@
     position:absolute;
     margin:0 auto;
     }
-    
+
     
 /* 조인css부분 */
 *, *:before, *:after {
@@ -37,7 +37,7 @@ body {
 }
 
 #formjoin {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 10px auto;
   padding: 10px 20px;
   background: #f4f7f8;
