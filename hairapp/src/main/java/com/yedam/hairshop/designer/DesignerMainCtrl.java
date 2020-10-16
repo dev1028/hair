@@ -38,8 +38,10 @@ public class DesignerMainCtrl implements Controller {
 		List<String> list;
 		String[] dayonList = { "0", "1", "2", "3", "4", "5", "6" };
 		if(dayoffListString != null) {
-			String[] dayoffList = new String[7];
+			String[] dayoffList;
 			if(dayoffListString.length() == 1) {
+				System.out.println("하루만 쉰다");
+				dayoffList = new String[1];
 				dayoffList[0] = dayoffListString;
 			} else {
 				dayoffList = dayoffListString.split(",");
@@ -58,6 +60,7 @@ public class DesignerMainCtrl implements Controller {
 		} else {
 			list = new ArrayList<>(Arrays.asList(dayonList));
 		}
+		System.out.println("우리는 이만큼 출근함 "+list);
 		request.setAttribute("dayonList", JSONArray.fromObject(list));
 		request.setAttribute("start", hVo.getHs_starttime() + ":00");
 		request.setAttribute("end", hVo.getHs_endtime() + ":00");

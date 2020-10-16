@@ -32,7 +32,7 @@ public class EmployeeSimpleJoinFCtrl implements Controller {
 		dVo.setHs_no(hs_no);
 		
 		DesignerVo deseExVo = new DesignerVo();
-		deseExVo = DesignerDAO.getInstance().selectOneEmail(dVo);
+		deseExVo = DesignerDAO.getInstance().selectOneEmail2(dVo);
 		int r1 = 0;
 		String alertSay;
 		if(deseExVo == null) {
