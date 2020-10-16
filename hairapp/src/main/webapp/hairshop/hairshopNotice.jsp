@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
@@ -143,9 +143,9 @@ to {
 
 				<!-- 글쓰기버튼 적용-->
 				<%-- <c:if test="${admin == '2'}"> --%>
-				<div id="write">
+<!-- 				<div id="write">
 					<a class="btn btn-default pull-right" onclick="noticeWriteGo()">글쓰기</a>
-				</div>
+				</div> -->
 				<%--  </c:if> --%>
 
 			</form>

@@ -61,7 +61,6 @@ import com.yedam.hairshop.admin.hairAnalysisCtrl;
 import com.yedam.hairshop.admin.hairAnalysisFCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisCtrl;
 import com.yedam.hairshop.admin.hairshopAnalysisFCtrl;
-import com.yedam.hairshop.dao.AdminAnalysisDAO;
 import com.yedam.hairshop.designer.AnalysisSalesByDsCtrl;
 import com.yedam.hairshop.designer.AnalysisSalesByDsGoCtrl;
 import com.yedam.hairshop.designer.DesDailyReservationListAjCtrl;
@@ -132,6 +131,8 @@ import com.yedam.hairshop.hairshop.HairshopJoinFinFCtrl;
 import com.yedam.hairshop.hairshop.HairshopJoinPreFCtrl;
 import com.yedam.hairshop.hairshop.HairshopNextCustomerAjCtrl;
 import com.yedam.hairshop.hairshop.HairshopQnaCtrl;
+import com.yedam.hairshop.hairshop.HairshopQnaVCtrl;
+import com.yedam.hairshop.hairshop.HairshopQnaWCtrl;
 import com.yedam.hairshop.hairshop.HairshopQnaWGCtrl;
 import com.yedam.hairshop.hairshop.HairshopReturnToLoginCtrl;
 import com.yedam.hairshop.hairshop.HsFindMyCustomerCtrl;
@@ -163,6 +164,7 @@ import com.yedam.hairshop.hairshop.hairshopNoticeWriteCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishListCtrl;
 import com.yedam.hairshop.hairshop.hairshopProcedureFinishSDCtrl;
+import com.yedam.hairshop.hairshop.hairshopQnaReGCtrl;
 import com.yedam.hairshop.hairshop.salesCtrl;
 import com.yedam.hairshop.hairshop.salesStatisticsCtrl;
 import com.yedam.hairshop.harishop.MyHairshopInfoUpdate;
@@ -326,8 +328,11 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopNoticeD.do", new hairshopNoticeDCtrl());
 		
 		
-		list.put("/hairshop/hairshopQna.do", new HairshopQnaCtrl());
-		list.put("/hairshop/hairshopQnaWG.do", new HairshopQnaWGCtrl());
+		list.put("/hairshop/hairshopQna.do", new HairshopQnaCtrl()); //qna
+		list.put("/hairshop/hairshopQnaWG.do", new HairshopQnaWGCtrl()); //writeGo
+		list.put("/hairshop/hairshopQnaW.do", new HairshopQnaWCtrl()); //write
+		list.put("/hairshop/hairshopQnaV.do", new HairshopQnaVCtrl()); //view
+		list.put("/hairshop/hairshopQnaReG.do", new hairshopQnaReGCtrl()); //view
 		
 		
 

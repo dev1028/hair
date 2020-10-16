@@ -55,7 +55,7 @@ public class HairshopQnaDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT QNA_NO, QNA_SHOP_CUSTOMER_NO, QNA_TITLE, QNA_CONTENTS, QNA_WRITEDATE, QNA_OPENSTATUS,"
 					+ " QNA_HITS, QNA_CATEGORY, EMP_NO," + " QNA_REF, QNA_REPOS, QNA_LEVEL, QNA_WRITER" + " FROM QNA "
-					+ " WHERE QNA_WHO = 'j1'" + " AND QNA_NO = ? ";
+					+ " WHERE QNA_NO = ? ";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qna_no);
 			rs = pstmt.executeQuery();

@@ -33,120 +33,56 @@
 		str = String(str);
 		return str.replace(/[^\d]+/g, "");
 	}
+	
+	
+	
+	// 필수 입력정보인 쿠폰정보
+	function checkValue() {
+		if (document.frm.hsc_name.value == "") {
+			alert("쿠폰명 입력하세요")
+			document.frm.hsc_name.focus();
+			return false;
+		}
+		//유효기간 입력여부 체크
+		if (document.frm.hsc_issuedate.value == "") {
+			alert("유효기간 입력하세요.")
+			document.frm.hsc_issuedate.focus();
+			return false;
+		}
+
+		//유효기간 입력여부 체크
+		if (document.frm.hsc_expiredate.value == "") {
+			alert("유효기간 입력하세요.")
+			document.frm.hsc_expiredate.focus();
+			return false;
+		}
+		
+		if (document.frm.hsc_coupon_quantity.value == "") {
+			alert("쿠폰갯수 입력하세요.")
+			document.frm.hsc_coupon_quantity.focus();
+			return false;
+		}
+
+		if (document.frm.hsc_maxdiscount_pay.value == "") {
+			alert("최대할인금액 입력하세요.")
+			document.frm.hsc_maxdiscount_pay.focus();
+			return false;
+		}
+		
+		if (document.frm.hsc_discount_rate.value == "") {
+			alert("할인율 입력하세요")
+			document.frm.hsc_discount_rate.focus();
+			return false;
+		}
+
+		/* 		$(document).on("keyup", ".phoneNumber", function() { 
+		 $(this).val( $(this).val().replace(/[^0-9]/g, "")
+		 .replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") ); });
+		 */
+	}
+
 </script>
-<script>
-	/* 이거왜 안되노 */
-	/* 	$(document)
-	 .ready(
-	 function() {
-	 $('#contact_form')
-	 .bootstrapValidator(
-	 {
-	 // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
-	 feedbackIcons : {
-	 valid : 'glyphicon glyphicon-ok',
-	 invalid : 'glyphicon glyphicon-remove',
-	 validating : 'glyphicon glyphicon-refresh'
-	 },
-	 fields : {
-	 hsc_name : {
-	 validators : {
-	 notEmpty : {
-	 message : '쿠폰명 입력하세요'
-	 }
-	 }
-	 },
-	 hsc_issuedate : {
-	 validators : {
-	 notEmpty : {
-	 message : '유효기간입력하세요'
-	 }
-	 }
-	 },
-	 hsc_expiredate : {
-	 validators : {
-	 notEmpty : {
-	 message : '유효기간입력하세요'
-	 }
 
-	 }
-	 },
-	 hsc_coupon_quantity : {
-	 validators : {
-	 notEmpty : {
-	 message : 'Please supply your phone number'
-	 }
-
-	 }
-	 },
-	 address : {
-	 validators : {
-	 stringLength : {
-	 min : 8,
-	 },
-	 notEmpty : {
-	 message : 'Please supply your street address'
-	 }
-	 }
-	 },
-	 hsc_maxdiscount_pay : {
-	 validators : {
-	 notEmpty : {
-	 message : 'Please supply your city'
-	 }
-	 }
-	 },
-	 hsc_discount_rate : {
-	 validators : {
-	 notEmpty : {
-	 message : 'Please select your state'
-	 }
-	 }
-	 },
-
-	 comment : {
-	 validators : {
-	 stringLength : {
-	 min : 10,
-	 max : 200,
-	 message : 'Please enter at least 10 characters and no more than 200'
-	 },
-	 notEmpty : {
-	 message : 'Please supply a description of your project'
-	 }
-	 }
-	 }
-	 }
-	 })
-	 .on(
-	 'success.form.bv',
-	 function(e) {
-	 $('#success_message').slideDown({
-	 opacity : "show"
-	 }, "slow") // Do something ...
-	 $('#contact_form').data(
-	 'bootstrapValidator')
-	 .resetForm();
-
-	 // Prevent form submission
-	 e.preventDefault();
-
-	 // Get the form instance
-	 var $form = $(e.target);
-
-	 // Get the BootstrapValidator instance
-	 var bv = $form
-	 .data('bootstrapValidator');
-
-	 // Use Ajax to submit form data
-	 $.post($form.attr('action'), $form
-	 .serialize(), function(
-	 result) {
-	 console.log(result);
-	 }, 'json');
-	 });
-	 }); */
-</script>
 </head>
 <body>
 	<div class="container">
@@ -172,9 +108,8 @@
 						</div>
 					</div>
 				</div>
-
-				<!-- Text input-->
-
+				
+			<!-- Text input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label">쿠폰사용 기간</label>
 					<div class="col-md-4 inputGroupContainer">
