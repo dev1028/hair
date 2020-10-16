@@ -12,10 +12,10 @@
 <body>
 <div id="myMap" style="width:100%;height:350px;"></div>
 <p>
-    <button onclick="hideMarkers()">마커 감추기</button>
-    <button onclick="showMarkers()">마커 보이기</button>
+<!--     <button onclick="hideMarkers()">마커 감추기</button> -->
+<!--     <button onclick="showMarkers()">마커 보이기</button> -->
 </p> 
-<em>클릭한 위치에 마커가 표시됩니다!</em>
+<!-- <em>클릭한 위치에 마커가 표시됩니다!</em> -->
     
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463"></script>
 <script type="text/javascript" src="http://jsgetip.appspot.com"></script>
