@@ -228,7 +228,8 @@ label.light {
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="wrap">
-		<br> <br> <b><font size="5" color="gray">회원가입</font></b> <br><hr><br>
+		<br> <br> <h4 style="font-weight: bold;">회원가입</h4>
+		<hr style="border: 2px solid #6d7fcc;"><br>
 
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->
