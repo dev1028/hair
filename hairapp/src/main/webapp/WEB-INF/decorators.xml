@@ -11,10 +11,11 @@
 		<pattern>/admin/*</pattern>
 	</decorator>
 	<decorator name="user" page="left-sidebar.jsp">
-		<pattern>/members*</pattern>
 		<pattern>/members/*</pattern>
 	</decorator>
 
+	<decorator name="no" page=""></decorator>
+	
 	<excludes>
 		<pattern>/ajax/*</pattern>
 		<pattern>/members/membersDR*</pattern>

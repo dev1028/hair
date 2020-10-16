@@ -110,7 +110,7 @@ public class TtCategoryDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT * "
-					+ " from tt_middle_category tmic join tt_main_category tmac on(tmic.tmac_no=tmac.tmac_no)" +
+					+ " from tt_middle_category tmic join tt_main_category tmac on(tmic.tmac_no=tmac.tmac_no)" + " WHERE tmic_status = 1\r\n" + 
 
 					" ORDER BY TMIC_No";
 			pstmt = conn.prepareStatement(sql);

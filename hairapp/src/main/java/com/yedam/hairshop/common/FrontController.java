@@ -487,7 +487,7 @@ public class FrontController extends HttpServlet {
 		list.put("/admin/hairshopAnalysisFind.do", new hairshopAnalysisFCtrl());// 분석
 		list.put("/admin/designerAnalysisFind.do", new designerAnalysisFCtrl());
 		list.put("/admin/hairshopAnalysis.do", new hairshopAnalysisCtrl());
-		list.put("/ajax/admin/analysisByHairshopCount.do", new AnalysisByHairshopCount());
+		list.put("/admin/analysisByHairshopCount.do", new AnalysisByHairshopCount());
 		list.put("/ajax/admin/analysisByNew.do", new AnalysisByNewCtrl());//
 
 		list.put("/admin/hairAnalysisFind.do", new hairAnalysisFCtrl());

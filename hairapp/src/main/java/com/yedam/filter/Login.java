@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.yedam.hairshop.members.MembersHsReviewIntrolCtrl;
+import com.yedam.hairshop.members.MembersPaymentSCtrl;
+
 
 
 
@@ -171,8 +174,8 @@ public class Login implements Filter {
 		list.put("/members/membersPwSearch.do", null); // PW 찾기 페이지 이동 컨트롤러
 		list.put("/members/membersPwSearchS.do", null); // PW 찾기 넘어가는 컨트롤러
 		list.put("/members/membersPwEnd.do", null); // PW 찾기 완료 페이지 이동하는 컨트롤러
-		list.put("/members/membersPwEmail.do", memberLoginPage); // PW EMAIL 인증 클릭 컨트롤러
-		list.put("/members/membersPwModify.do", memberLoginPage); // PW 수정 처리하는 컨트롤러
+		list.put("/members/membersPwEmail.do", null); // PW EMAIL 인증 클릭 컨트롤러
+		list.put("/members/membersPwModify.do", null); // PW 수정 처리하는 컨트롤러
 
 		list.put("/members/membersJoin.do", null); // 회원가입 페이지 이동 컨트롤러
 		list.put("/members/membersJoinS.do", null); // 회원가입 넘어가는 컨트롤러
@@ -196,6 +199,7 @@ public class Login implements Filter {
 		list.put("/members/hsEventIntro.do", null); // 헤어샵 안의 쿠폰 보여주는 컨트롤러
 		list.put("/members/hsCouponIssuance.do", memberLoginPage); // 헤어샵 안의 쿠폰 발급해주는 컨트롤러
 		list.put("/members/hsReviewIntro.do", null); // 헤어샵 안의 리뷰보기 컨트롤러
+		list.put("/members/paymentS.do", null);	// 헤어샵 예약완료 후 결제완료 페이지로 이동
 
 		list.put("/members/membersNotice.do", memberLoginPage); // 공지사항 목록 컨트롤러
 		list.put("/members/membersNoticeWG.do", memberLoginPage); // 공지사항 글쓰기로 이동하는 컨트롤러

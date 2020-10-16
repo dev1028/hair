@@ -16,7 +16,7 @@ public class BoardManageDAO {
 	final static String end =
 
 			" order by QNA_REF desc, QNA_REPOS asc, QNA_WRITEDATE desc" + " ) b) a where rn between 0 and 100";
-	final static String noticeFind = "select n.* ,e.emp_alias, " + "            (select c.code_info \n" + "            from code c\n"
+	final static String noticeFind = "select n.* ,e.emp_alias,e.emp_name, " + "            (select c.code_info \n" + "            from code c\n"
 			+ "            where c.secondary_code=n.notice_who)\"notice_whov\"\n" + " FROM notice n  join employees e on(n.emp_no = e.emp_no) \r\n"
 			+ "WHERE  notice_writedate BETWEEN ? AND TO_DATE(?,'YY-MM-DD HH24:MI:SS')\r\n" + " AND notice_who like'%'||?||'%'\n";
 
@@ -383,7 +383,7 @@ public class BoardManageDAO {
 				resultVo.setNotice_who(rs.getString("notice_who"));
 				resultVo.setNotice_whov(rs.getString("notice_whov"));
 				resultVo.setNotice_writedate(rs.getString("notice_writedate"));
-				resultVo.setEmp_no(rs.getString("emp_no"));
+				resultVo.setEmp_no(rs.getString("emp_no"));	resultVo.setEmp_name(rs.getString("emp_name"));
 				resultVo.setEmp_alias(rs.getString("emp_alias"));
 				resultVo.setNotice_image(rs.getString("notice_image"));
 

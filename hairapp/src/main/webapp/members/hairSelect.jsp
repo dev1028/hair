@@ -250,8 +250,10 @@ function check_cart(){
 					<div class="col-md-3 col-sm-6">
 						<div class="product-grid4">
 							<div class="product-image4">
-								<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg"
-								 			   onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
+<!-- 								<img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo5/images/img-1.jpg" -->
+<!-- 								 			   onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'"> -->
+									<img class="pic-1" src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/hairshop/${hairInfo.hs_no}/hairinfo&img_name=${hairInfo.hhmi_file}"
+		                			onerror="this.src='http://bestjquery.com/tutorial/product-grid/demo5/images/img-2.jpg'">
 							</div>
 							<div class="product-content">
 								<c:if test="${not empty sessionScope.login }">

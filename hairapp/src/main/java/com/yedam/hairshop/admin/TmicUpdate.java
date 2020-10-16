@@ -1,6 +1,7 @@
 package com.yedam.hairshop.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +31,18 @@ public class TmicUpdate implements Controller {
 		vo.setTmic_status(tmic_status);
 		if (tmac_name == null) {
 			TtCategoryDAO.getInstance().updateTmicStatus(vo);
+			List<TtCategoryVo> list = TtCategoryDAO.getInstance().selectListRequstTmic();
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("/admin/ttCategoryRequest.jsp").forward(request, response);
+
 		} else {
 			TtCategoryDAO.getInstance().updateTmic(vo);
 
+			vo = TtCategoryDAO.getInstance().selectTmicOne(vo);
+			System.out.println(vo.getTmic_no());
+			response.getWriter().print(JSONObject.fromObject(vo).toString());
+
 		}
-		vo = TtCategoryDAO.getInstance().selectTmicOne(vo);
-		System.out.println(vo.getTmic_no());
-		response.getWriter().print(JSONObject.fromObject(vo).toString());
 
 	}
 

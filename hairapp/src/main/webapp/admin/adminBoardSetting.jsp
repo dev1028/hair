@@ -12,6 +12,7 @@
 </script>
 </head>
 <body>
+	<div class="container">
 	<h2>board list</h2>
 
 
@@ -37,7 +38,8 @@
 						<td>${i.board_id }</td>
 						<td>${ i.board_readable}/${i.board_writtable}</td>
 						<td>${i.nevv }/${i.total }</td>
-						<td><button class="btn btn-default " style="border: 1px solid gray;" id="goto"
+						<td><button class="btn btn-default "
+								style="border: 1px solid gray;" id="goto"
 								onclick="location.href='${pageContext.request.contextPath}/admin/adminInsertNotice.do?notice_who=${i.board_who }&notice_whov=${i.board_whov }'">글쓰기</button>
 						</td>
 					</tr>
@@ -55,6 +57,7 @@
 			</tbody>
 
 		</table>
+	</div>
 	</div>
 </body>
 </html>

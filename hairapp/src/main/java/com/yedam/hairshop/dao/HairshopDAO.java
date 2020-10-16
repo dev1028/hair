@@ -33,7 +33,8 @@ public class HairshopDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = "SELECT HS_NO,HS_NAME,HS_OWNER,HS_TEL,HS_EMAIL,HS_PW,HS_COMP_NO,HS_PROFILE,HS_NOTICE,"
 					+ " HS_FULLADDR,HS_CITYADDR, HS_TOWNADDR,HS_STREETADDR,HS_LATLONG,HS_DAYOFF,HS_STARTTIME,"
-					+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC,HS_REGDATE, HS_APPROVAL" + " FROM HAIRSHOP"
+					+ " HS_ENDTIME,HS_RESOURCE_OPTION,HS_PARKING,HS_ETC,HS_REGDATE, HS_APPROVAL" 
+					+ " FROM HAIRSHOP"
 					+ " WHERE HS_NO = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hsVo.getHs_no());
