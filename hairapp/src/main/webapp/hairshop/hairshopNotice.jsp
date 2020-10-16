@@ -9,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
@@ -146,7 +148,7 @@ to {
 <!-- 				<div id="write">
 					<a class="btn btn-default pull-right" onclick="noticeWriteGo()">글쓰기</a>
 				</div> -->
-				<%--  </c:if> --%>
+
 
 			</form>
 

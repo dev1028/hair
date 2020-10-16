@@ -15,6 +15,11 @@
 <title>지역별 디자이너 순위</title>
 <script src="../js/designerBookmark.js"></script>
 <script src="../js/locationFromIP.js"></script>
+<style>
+body {
+	background: url(../images/members/hairshopselect.png);
+}
+</style>
 </head>
 <body>
 <c:if test="${empty lat }">

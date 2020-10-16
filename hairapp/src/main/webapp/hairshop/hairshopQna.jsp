@@ -1,17 +1,17 @@
+
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags"%>
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HairshopQna.jsp</title>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <!-- 이거만지니깐 페이징 이상한데가네 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
@@ -84,15 +84,9 @@ keyframes blink {
 30%
 {
 color
-
-
 :
-
  
-
 yellow
-
-
 ;
 }
 to {
@@ -117,17 +111,15 @@ to {
 
 	<br>
 	<br>
-	<br>
-	<br>
 	<div class="container">
 		<form method="post" name="frm2" id="frm2" action="hairshopQnaV.do">
-
 			<div id="list">
 				<h3 class="page_title">Qna</h3>
 			</div>
 
 			<hr>
-			<br> <br>
+			<br>
+			<br>
 			<table class="table table-striped table-bordered table-hover">
 				<colgroup>
 					<col width="5%" />
@@ -167,10 +159,10 @@ to {
 
 							<td align="left"><c:if test="${qna.qna_level > 0}">
 									<c:forEach begin="1" end="${qna.qna_level}">
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<!-- 답변글일경우 글 제목 앞에 공백을 준다. -->
-															</c:forEach>
-							&nbsp;&nbsp;&nbsp;&nbsp;RE :
-							</c:if> <c:if test="${qna.qna_openstatus == '0'}">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<!-- 답변글일경우 글 제목 앞에 공백을 준다. -->
+									</c:forEach>
+	&nbsp;&nbsp;&nbsp;&nbsp;RE :
+	</c:if> <c:if test="${qna.qna_openstatus == '0'}">
 									<!-- 공개여부 비밀글에 자물쇠 담 -->
 									<img src="../images/members/lock.png"
 										style="width: 13px; height: 13px;">
@@ -178,21 +170,22 @@ to {
 								href="hairshopQnaV.do?qna_no=${qna.qna_no}&qna_hit=${qna.qna_hits}">${qna.qna_title}</a>
 							</td>
 
-							<td>관리자<%-- ${qna.qna_writer} --%></td>
+							<td>${qna.qna_writer}</td>
 							<td>${qna.qna_writedate}</td>
 							<td>${qna.qna_hits}</td>
-						</tr>
+						<tr>
 					</c:forEach>
 				</tbody>
 			</table>
 
 			<hr />
-			
-			<c:if test="${not empty sessionScope.login}">
-				<div id="write">
-					<a class="btn btn-default pull-right" onclick="qnaWriteGo()">글쓰기</a>
-				</div>
-			</c:if>
+
+			<%-- <c:if test="${admin == '1' || admin == '2'}"> --%>
+			<div id="write">
+				<a class="btn btn-default pull-right" onclick="qnaWriteGo()">글쓰기</a>
+			</div>
+			<%--  </c:if> --%>
+
 		</form>
 
 		<!-- 페이징 -->

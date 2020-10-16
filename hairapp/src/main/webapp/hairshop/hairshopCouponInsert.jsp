@@ -34,8 +34,6 @@
 		return str.replace(/[^\d]+/g, "");
 	}
 	
-	
-	
 	// 필수 입력정보인 쿠폰정보
 	function checkValue() {
 		if (document.frm.hsc_name.value == "") {
@@ -83,7 +81,6 @@
 
 </script>
 
-</head>
 <body>
 	<div class="container">
 		<br> <br> <br>
@@ -108,8 +105,8 @@
 						</div>
 					</div>
 				</div>
-				
-			<!-- Text input-->
+
+				<!-- Text input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label">쿠폰사용 기간</label>
 					<div class="col-md-4 inputGroupContainer">

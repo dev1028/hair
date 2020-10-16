@@ -78,6 +78,8 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 <!-- 미용실정보 -->
 <br>
 <div id="shopInfo">
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<img src="../images/members/curling-hair.png" style="width: 95px; height: 95px;">
 	<div id="shopName">
 		<div id="hsname">
 			<h4><b>${shop.hs_name}</b></h4>
@@ -134,7 +136,10 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 			</c:when>
 		</c:choose>
 	</div>
-
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<img src="../images/members/curling-hair.png" style="width: 95px; height: 95px;">
 </div>
 
 <!-- 바디안에 메뉴바 -->

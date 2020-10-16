@@ -23,7 +23,7 @@
     position:absolute;
     margin:0 auto;
     }
-    
+
     
 /* 조인css부분 */
 *, *:before, *:after {
@@ -37,7 +37,7 @@ body {
 }
 
 #formjoin {
-  max-width: 1000px;
+  max-width: 1400px;
   margin: 10px auto;
   padding: 10px 20px;
   background: #f4f7f8;
@@ -228,7 +228,8 @@ label.light {
 <body>
 	<!-- div 왼쪽, 오른쪽 바깥여백을 auto로 주면 중앙정렬된다.  -->
 	<div id="wrap">
-		<br> <br> <b><font size="5" color="gray">회원가입</font></b> <br><hr><br>
+		<br> <br> <h4 style="font-weight: bold;">회원가입</h4>
+		<hr style="border: 2px solid #6d7fcc;"><br>
 
 
 		<!-- 입력한 값을 전송하기 위해 form 태그를 사용한다 -->

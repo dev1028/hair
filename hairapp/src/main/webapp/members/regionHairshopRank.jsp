@@ -15,6 +15,9 @@ div.course{
 	padding: 10px;
 	margin:0 auto;
 }
+body {
+	background: url(../images/members/hairshopselect.png);
+}
 
 </style>
 <script src="../js/hairshopBookmark.js"></script>
@@ -42,8 +45,8 @@ div.course{
     <div class="row">
 	<c:forEach items="${list}" var="item">
 		<form action="../members/hairshopSelectResult.do" method="post">
-			<div class="course" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">
-				<div class="course-preview">
+			<div class="course">
+				<div class="course-preview" onclick="location.href='hairshopInfo.do?hsNo=${item.hs_no}';" style="cursor: pointer;">
 					<h6>미용실이름</h6>
 					<h4>${item.hs_name }</h4>
 				</div>
