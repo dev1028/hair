@@ -322,7 +322,7 @@ public class FrontController extends HttpServlet {
 		list.put("/designer/designerLogin.do", new DesignerLoginCtrl());
 		// list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
 		
-		list.put("/hairshop/hairshopNotice.do", new hairshopNoticeCtrl());//공지사항
+		list.put("/ajax/hairshopNotice.do", new hairshopNoticeCtrl());//공지사항
 	    list.put("/hairshop/hairshopNoticeWG.do", new hairshopNoticeWGCtrl());
 		list.put("/hairshop/hairshopNoticeWrite.do", new hairshopNoticeWriteCtrl());
 		list.put("/hairshop/hairshopNoticeView.do", new hairshopNoticeViewCtrl());
@@ -331,10 +331,10 @@ public class FrontController extends HttpServlet {
 		list.put("/hairshop/hairshopNoticeD.do", new hairshopNoticeDCtrl());
 		
 		
-		list.put("/hairshop/hairshopQna.do", new HairshopQnaCtrl()); //qna
-		list.put("/hairshop/hairshopQnaWG.do", new HairshopQnaWGCtrl()); //writeGo
-		list.put("/hairshop/hairshopQnaW.do", new HairshopQnaWCtrl()); //write
-		list.put("/hairshop/hairshopQnaV.do", new HairshopQnaVCtrl()); //view
+		list.put("/ajax/hairshopQna.do", new HairshopQnaCtrl()); //qna
+		list.put("/ajax/hairshopQnaWG.do", new HairshopQnaWGCtrl()); //writeGo
+		list.put("/ajax/hairshopQnaW.do", new HairshopQnaWCtrl()); //write
+		list.put("/ajax/hairshopQnaV.do", new HairshopQnaVCtrl()); //view
 		list.put("/hairshop/hairshopQnaReG.do", new hairshopQnaReGCtrl()); //view
 		
 		
