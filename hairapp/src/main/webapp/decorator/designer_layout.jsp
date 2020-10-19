@@ -432,7 +432,7 @@
 								aria-expanded="false"> 마이페이지</a>
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item"
-										href="#">프로필</a>
+										href="#" >프로필</a>
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/designerMyPageCtrl.do">내정보 수정</a>
 								</div></li>
@@ -451,8 +451,9 @@
 							<input type="text" id="siteInputSearch" name="inputSearch"
 								placeholder="예약자찾기" aria-label="Search">
 							<button id="siteSearchCustomerBtn" type="button"
-								class="btn btn-secondary btn-sm">Search</button>
+								class="btn btn-info btn-sm">Search</button>
 						</form>
+						<a class="btn btn-secondary btn-sm"href="${pageContext.request.contextPath}/ajax/hairshopLoginPageGo.do">메인페이지로</a>
 						<a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
 					</div>
 				</nav>
