@@ -237,10 +237,10 @@ $(function() {
 					<br>
 						
 						<c:if test="${sessionScope.udong eq 'hairshop'}">
-						<a href="${pageContext.request.contextPath}/hairshop/hairshopMain.do" class="btn btn-primary">메인페이지로 이동</a>
+						<a href="${pageContext.request.contextPath}/hairshop/hairshopMain.do" class="btn btn-primary">미용실 홈페이지로 이동</a>
 						</c:if>
 						<c:if test="${sessionScope.udong eq 'designer'}">
-						<a href="${pageContext.request.contextPath}/designer/designerMain.do" class="btn btn-primary">메인페이지로 이동</a>
+						<a href="${pageContext.request.contextPath}/designer/designerMain.do" class="btn btn-primary">디자이너 홈페이지로 이동</a>
 					</c:if>
 						<hr>
 					</div>

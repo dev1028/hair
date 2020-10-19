@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Charts - SB Admin</title>
+<title>월별 결산</title>
 <link
 	href="${pageContext.request.contextPath}/decorator/ges/dist/css/styles.css"
 	rel="stylesheet" />
@@ -304,8 +304,8 @@
 </script>
 </head>
 <body class="sb-nav-fixed">
-
-
+	<br><br><br>
+	
 	<div id="layoutSidenav_content">
 		<main>
 			<div class="container-fluid">

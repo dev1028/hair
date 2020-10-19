@@ -257,31 +257,33 @@ $(function() {
 				var coupon = 0;
 			
 				var totalAmountRsv = 0;
-				console.log(obj);
-				obj.forEach(function(o, i, u) {
-
-					var tr = $("<tr />");
-					card += parseInt(o.card);
-					point += parseInt(o.point);
-					coupon += parseInt(o.coupon);
-					totalAmountRsv += parseInt(o.totalAmountRsv);
-					dsNm = o.dsName;
-					console.log(o.dsNm);
-					console.log(dsNm);
-
-					tr.append($("<td>").text(o.mdrDate));
-					tr.append($("<td>").text(o.mdrNo));
-					tr.append($("<td>").text(o.memName));
-					tr.append($("<td>").text(o.dsName));
-					tr.append($("<td>").text(o.hName));
-					tr.append($("<td>").text(o.card));
-					tr.append($("<td>").text(o.point));
-					tr.append($("<td>").text(o.coupon));
 				
-					tr.append($("<td>").text(o.totalAmountRsv));
-					table.append(tr);
-				})
-$("#result").append($("<p />").text(dsNm));
+					obj.forEach(function(o, i, u) {
+
+						var tr = $("<tr />");
+						card += parseInt(o.card);
+						point += parseInt(o.point);
+						coupon += parseInt(o.coupon);
+						totalAmountRsv += parseInt(o.totalAmountRsv);
+						dsNm = o.dsName;
+						console.log(o.dsNm);
+						console.log(dsNm);
+
+						tr.append($("<td>").text(o.mdrDate));
+						tr.append($("<td>").text(o.mdrNo));
+						tr.append($("<td>").text(o.memName));
+						tr.append($("<td>").text(o.dsName));
+						tr.append($("<td>").text(o.hName));
+						tr.append($("<td>").text(o.card));
+						tr.append($("<td>").text(o.point));
+						tr.append($("<td>").text(o.coupon));
+					
+						tr.append($("<td>").text(o.totalAmountRsv));
+						table.append(tr);
+				
+				
+				});
+				$("#result").append($("<p />").text(dsNm));
 				var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
 						$("<td>").text(obj.length), $("<td>"), $("<td>"),
 						$("<td>").text(card), $("<td>").text(point),
@@ -295,7 +297,7 @@ console.log(dsNm);
 			}
 		});
 		
-
+		
 		$("#result").append($(table));
 	//	$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 
