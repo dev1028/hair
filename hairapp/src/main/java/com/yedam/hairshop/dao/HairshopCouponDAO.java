@@ -35,7 +35,7 @@ public class HairshopCouponDAO {
 			System.out.println("쿠폰리스트");
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1; // 물음표값 동적으로 하려고 변수선언
-			//pstmt.setString(1, couponVo.getHs_no());
+			pstmt.setString(1, couponVo.getHs_no());
 			System.out.println("헤어샵번호: " + couponVo.getHs_no());
 			pstmt.setInt(pos++, couponVo.getFirst()); // 물음표부분이 pos++로 인해 동적으로 늘어남
 			pstmt.setInt(pos++, couponVo.getLast());
