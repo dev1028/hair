@@ -10,7 +10,7 @@
     
 </head>
 <body>
-<div id="myMap" style="width:100%;height:350px;"></div>
+<div id="myMap" style="width:100%;height:700px;"></div>
 <p>
 <!--     <button onclick="hideMarkers()">마커 감추기</button> -->
 <!--     <button onclick="showMarkers()">마커 보이기</button> -->

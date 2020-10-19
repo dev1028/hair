@@ -186,7 +186,7 @@ public class Login implements Filter {
 		list.put("/members/membersJoinEmail.do", null); // 회원가입 이메일 인증하는 컨트롤러
 		list.put("/members/membersJoinEnd.do", null); // 회원가입 완료 페이지 이동하는 컨트롤러
 
-		list.put("/members/membersInfoModify.do", memberLoginPage); // 회원수정 컨트롤러
+		list.put("/members/membersInfoModify.do", null); // 회원수정 컨트롤러
 		list.put("/members/membersInfoView.do", memberLoginPage); // 회원수정 정보확인 컨트롤러
 		list.put("/members/membersRD.do", memberLoginPage); // 예약내역 컨트롤러
 		list.put("/members/membersDR.do", memberLoginPage); // 예약 상세 확인 컨트롤러

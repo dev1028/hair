@@ -423,7 +423,7 @@ function cancelCoupon(){
 				실제결제 금액
 			</th>
 			<td>
-				<input type="text" class="realPrice" name="realPrice" value="${sessionScope.sumPrice}" disabled>
+				<input type="text" class="realPrice" name="realPrice" value="${sessionScope.sumPrice}" readonly>
 			</td>
 		</tr>
 	</tbody>
