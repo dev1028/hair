@@ -33,12 +33,21 @@
 						return;
 					}
 				} else if(returnData == -3){
-					alert("예약시간 한 시간 전입니다. 변경 할 수 없습니다.");
+					alert("예약시간보다 시간이 많이 이릅니다. 변경 할 수 없습니다.");
 				} else if(returnData == 2){
-					alert("시술이 잘 완료되었나요? 해당 예약에 대한 기록을 남겨두세요.");
+					if(mdrStatus == "i3"){
+						alert("시술이 시작되었습니다.");
+					} else {
+						alert("시술이 잘 완료되었나요? 해당 예약에 대한 기록을 남겨두세요.");
+					}
+	
 					alertZero(callAjax(mdrNo, mdrStatus, "Y"));
 				} else if(returnData == 3){
-					alert("시술이 잘 완료되었나요? 해당 예약에 대한 기록을 남겨두세요.");
+					if(mdrStatus == "i3"){
+						alert("다음부터는 정보를 정확한 시간에 반영 해주세요.");
+					} else {
+						alert("시술이 잘 완료되었나요? 해당 예약에 대한 기록을 남겨두세요.");
+					}
 					alertZero(callAjax(mdrNo, mdrStatus, "Y"));
 				} 	
 			} else {

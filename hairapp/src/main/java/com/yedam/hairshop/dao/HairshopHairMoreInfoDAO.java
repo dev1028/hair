@@ -58,7 +58,7 @@ public class HairshopHairMoreInfoDAO {
 			String sql = " insert into hairshop_hair_more_info (hhmi_no,hhi_no,hhmi_file,designer_no)" + 
 					" VALUES ((select nvl(max(hhmi_no),0)" + 
 					" from hairshop_hair_more_info" + 
-					" where hhi_no = ?), ?, ?, ?)";
+					" where hhi_no = ?)+1, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(hhmiVo.getHhi_no()));
 			pstmt.setInt(2, Integer.parseInt(hhmiVo.getHhi_no()));
