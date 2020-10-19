@@ -68,10 +68,11 @@ public class DesignerLoginCtrl implements Controller {
 						response.sendRedirect(page);
 
 					} else if (resultVo.getDesigner_access_status().equals("0")) {
+						System.out.println("인증값" + resultVo.getDesigner_access_status());
 						page = request.getContextPath() + "/designer/designerInfo.do";
-						response.sendRedirect(page);
-
-					} else {
+						//response.sendRedirect(page);
+						request.getRequestDispatcher("/designer/designerInfo.do").forward(request, response);
+						} else {
 						page = "/designer/designerLoginFail.jsp";
 						request.getRequestDispatcher(page).forward(request, response);
 					}

@@ -40,6 +40,6 @@ public class DesignerUpdateCtrl implements Controller{
 		
 		request.getSession().setAttribute("login", designerVo);
 		request.setAttribute("designer", resultVo);
-		request.getRequestDispatcher("/designer/designerMain.do").forward(request, response);
+		request.getRequestDispatcher("/designer/designerMain.jsp").forward(request, response);
 	}
 }

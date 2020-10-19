@@ -95,6 +95,21 @@
 		// 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
 		obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
 	}
+	
+	
+	//근무시간 test
+	function inputNumberAuto(obj) {
+		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+		var deleteComma = obj.value.replace(/\,/g, "");
+		// 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+		if (isFinite(deleteComma) == false) {
+			alert("문자는 입력하실 수 없습니다.");
+			obj.value = "";
+			return false;
+		}
+	}
+	
+	
 	// 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
 	function inputNumberWithComma(str) {
 		str = String(str);
@@ -233,7 +248,7 @@ input[type="file"] {
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user"></i></span> <input
 							name="designer_dayoff" class="form-control" type="text"
-							onKeyup="inputNumberAutoComma(this);"
+							onKeyup="inputNumberAutoComma(this);" maxlength ="12"
 							id="designer_dayoff" value="${designer.designer_dayoff }">
 					</div>
 				</div>
@@ -247,10 +262,12 @@ input[type="file"] {
 						<span class="input-group-addon"><i
 							class="glyphicon glyphicon-user"></i></span> <input
 							name="work_start_time" class="form-control" type="text"
+							onKeyup="inputNumberAuto(this);" maxlength="2"
 							id="work_start_time" value="${designer.work_start_time}">
 					</div>
 					<div>
 						<input name="work_end_time" class="form-control" type="text"
+						onKeyup="inputNumberAuto(this);" maxlength="2"
 							id="work_end_time" value="${designer.work_end_time}">
 					</div>
 				</div>

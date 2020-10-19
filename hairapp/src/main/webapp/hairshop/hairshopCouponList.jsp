@@ -19,9 +19,9 @@
 		</div>
 		<div class="row">
 			<h3>Coupon List</h3>
-			<br> <br>
 		</div>
-		<br>
+	
+		<hr>
 		<table>
 			<thead>
 				<tr>
