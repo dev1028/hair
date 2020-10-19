@@ -9,17 +9,28 @@
 <head>
 <meta charset="UTF-8">
 <title>HairshopQna.jsp</title>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<!-- 이거만지니깐 페이징 이상한데가네 -->
+
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.5/examples/cover/">
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+	<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
 <!-- <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
 <style>
 #container {
@@ -99,7 +110,7 @@ to {
 }
 </style>
 
-
+<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
 <script>
 	function qnaWriteGo() {
 		location.href = "hairshopQnaWG.do";
@@ -107,12 +118,20 @@ to {
 </script>
 </head>
 <body>
-
+	<nav class="site-header sticky-top py-1">
+		<div
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2" href="#" aria-label="Product"> </a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
+		</div>
+	</nav>
 
 	<br>
 	<br>
 	<div class="container">
-		<form method="post" name="frm2" id="frm2" action="hairshopQnaV.do">
+		<form method="post" name="frm2" id="frm2" action="${pageContext.request.contextPath}/ajax/hairshopQnaV.do">
 			<div id="list">
 				<h3 class="page_title">Qna</h3>
 			</div>
@@ -167,7 +186,7 @@ to {
 									<img src="../images/members/lock.png"
 										style="width: 13px; height: 13px;">
 								</c:if> <!--  --> <a
-								href="hairshopQnaV.do?qna_no=${qna.qna_no}&qna_hit=${qna.qna_hits}">${qna.qna_title}</a>
+								href="${pageContext.request.contextPath}/ajax/hairshopQnaV.do?qna_no=${qna.qna_no}&qna_hit=${qna.qna_hits}">${qna.qna_title}</a>
 							</td>
 
 							<td>${qna.qna_writer}</td>
@@ -179,12 +198,11 @@ to {
 			</table>
 
 			<hr />
-
-			<%-- <c:if test="${admin == '1' || admin == '2'}"> --%>
-			<div id="write">
-				<a class="btn btn-default pull-right" onclick="qnaWriteGo()">글쓰기</a>
-			</div>
-			<%--  </c:if> --%>
+		<c:if test="${not empty sessionScope.login && (sessionScope.udong eq 'hairshop' || sessionScope.udong eq 'designer')}">
+		   <div id="write">
+		   <a class="btn btn-default pull-right" onclick="qnaWriteGo()">글쓰기</a>
+		</div>
+		</c:if>
 
 		</form>
 
