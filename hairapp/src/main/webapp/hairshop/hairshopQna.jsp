@@ -131,6 +131,7 @@ to {
 	<br>
 	<br>
 	<div class="container">
+		<div class=""></div>
 		<form method="post" name="frm2" id="frm2" action="${pageContext.request.contextPath}/ajax/hairshopQnaV.do">
 			<div id="list">
 				<h3 class="page_title">Qna</h3>
@@ -140,14 +141,14 @@ to {
 			<br>
 			<br>
 			<table class="table table-striped table-bordered table-hover">
-				<colgroup>
+<%-- 				<colgroup>
 					<col width="5%" />
 					<col width="10%" />
 					<col width="50%" />
 					<col width="10%" />
 					<col width="10%" />
 					<col width="5%" />
-				</colgroup>
+				</colgroup> --%>
 				<thead>
 					<tr>
 						<th>번호</th>
