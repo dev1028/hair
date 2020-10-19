@@ -70,7 +70,6 @@
 #paging {
 	text-align: center;
 }
-
 .hit {
 	animation-name: blink;
 	animation-duration: 1.5s;
@@ -79,14 +78,12 @@
 	/* 위 속성들을 한 줄로 표기하기 */
 	/* -webkit-animation: blink 1.5s ease infinite; */
 }
-
 /* 애니메이션 지점 설정하기 */
 /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
 @
 keyframes blink {
 	from {color: white;
 }
-
 30%
 {
 color

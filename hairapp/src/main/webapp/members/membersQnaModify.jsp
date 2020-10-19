@@ -60,6 +60,7 @@ function inputCheck() {
     	<option value="m2" <c:if test="${qnaModify.qna_category=='m2'}">selected="selected"</c:if>>사이트 관련 문의</option>
     	<option value="m3" <c:if test="${qnaModify.qna_category=='m3'}">selected="selected"</c:if>>이벤트 관련 문의</option>
     	<option value="m4" <c:if test="${qnaModify.qna_category=='m4'}">selected="selected"</c:if>>고객의 소리</option>
+    	<option value="m5" <c:if test="${qnaModify.qna_category=='m4'}">selected="selected"</c:if>>답변</option>
   		</select>
   		<br>
   	</div>

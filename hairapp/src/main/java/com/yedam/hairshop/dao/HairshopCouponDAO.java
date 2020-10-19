@@ -30,8 +30,8 @@ public class HairshopCouponDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = " SELECT A.* from (SELECT rownum rn,b.* from ("
 					+ "SELECT HSC_NO, HS_NO, HSC_ISSUEDATE, HSC_EXPIREDATE, HSC_COUPON_QUANTITY, "
-					+ " HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME " + " FROM HS_COUPON " 
-					+ " ) b ) a where rn between ? and ?";
+					+ " HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME " + " FROM HS_COUPON " + " ORDER BY LPAD(HSC_NO,30,'0')"
+					+ " ) b ) a where rn between ? and ?" ;
 			System.out.println("쿠폰리스트");
 			pstmt = conn.prepareStatement(sql);
 			int pos = 1; // 물음표값 동적으로 하려고 변수선언

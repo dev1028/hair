@@ -471,7 +471,6 @@ public class MembersDAO {
 		} finally {
 			ConnectionManager.close(rs, pstmt, conn);
 		}
-		System.out.println("members는 뭐불로오노:" + members.getMem_email());
 		return members; // 값을 리턴해줌
 	} // id찾기 끝
 
