@@ -65,8 +65,8 @@
 	
 			<script>
 				function gopage(p) {
-					searchFrm.p.value = p;
-					searchFrm.submit();
+					frm.p.value = p;
+					frm.submit();
 					//location.href="deptSelectAll?p=" + p;
 				}
 			</script>
