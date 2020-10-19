@@ -22,4 +22,6 @@ public class PaymentVo {
 	
 	String mc_no;				//회원별 쿠폰 고유 번호
 	String use_saved_money;		//마일리지 사용금액
+	
+	String realPrice;				//결제 금액
 }
