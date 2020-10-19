@@ -80,6 +80,7 @@
 // 					msg += '결제 금액 : ' + rsp.paid_amount;
 // 					msg += '카드 승인번호 : ' + rsp.apply_num;
 				})
+				location.href="http://localhost/hairapp/members/paymentS.do";
 				var msg = '결제가 완료되었습니다.';
 			} else {
 				jQuery.ajax({
