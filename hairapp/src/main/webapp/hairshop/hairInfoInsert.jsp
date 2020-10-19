@@ -231,13 +231,15 @@ function is_number(v) {
 		</div>
 
 		<footer class="my-5 pt-5 text-muted text-center text-small">
-			<p class="mb-1">&copy; 2017-{{ site.time | date: "%Y" }} Company
-				Name</p>
+			<p class="mb-1">상호 : UDONG#  |  만든이 : 김린아, 김강산, 김승연, 이상민, 이송현<br>
+			주소 : 대구 중구 국채보상로 537  |  git주소 : <a href="https://github.com/dev1028/hair" target="_blank">https://github.com/dev1028/hair</a><br>
+			서비스 이용문의 및 서비스 제휴문의 : udong1023@gmail.com<br>
 			<ul class="list-inline">
-				<li class="list-inline-item"><a href="#">Privacy</a></li>
-				<li class="list-inline-item"><a href="#">Terms</a></li>
-				<li class="list-inline-item"><a href="#">Support</a></li>
+				<li class="list-inline-item"><a href="${pageContext.request.contextPath}/admin/adminLogin.jsp">Admin</a></li>
+				<li class="list-inline-item"><a href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Hairshop</a></li>
+				<li class="list-inline-item"><a href="${pageContext.request.contextPath}/members/membersMain.do">Members</a></li>
 			</ul>
+					Copyright © UDONG#. All Rights Reserved.
 		</footer>
 	</div>
 

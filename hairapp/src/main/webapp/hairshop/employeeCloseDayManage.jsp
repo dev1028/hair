@@ -266,7 +266,7 @@ $(document).ready(function(){
 		<!-- 클릭이벤트 -->
 		<div class="designerSearch">
 		<br><br>
-  				<p>여기는 디자이너 수정버튼눌렀을때 나오는곳</p>
+  				<p>현재 디자이너 휴무정보</p>
 		  <div class="row">
   				<br>
   				<table>
