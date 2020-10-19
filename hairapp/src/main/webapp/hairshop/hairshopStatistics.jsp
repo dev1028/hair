@@ -76,47 +76,6 @@ src="${pageContext.request.contextPath}/decorator/ges/dist/assets/demo/datatable
 	<h2 class="heading"></h2>
 	<div class="table-responsive" id="result">
 		</div>
-=======
-	
-</script>
-</head>
-<body> 
-<br><br><br>
-	<h2 class="heading">매출결산</h2>
-	<form method="POST"
-		action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do">
-		<!--  search -->
-		<div class="form-group">
-
-			<div class="control">
-				<label for="name">검색구분 </label>
-				<button type="button" value="Submit" class='search' id="period">기간내결산</button>
-				<button type="button" value="Submit" class='search' id="year">년도별
-					결산</button>
-				<button type="button" value="Submit" class='search' id="quarter">분기별
-					결산</button>
-				<button type="button" value="Submit" class='search' id="month">월별
-					결산</button>
-			</div>
-
-			<div class="control">
-				<label for="name">기간선택 </label>
-				<div class="controls" id="range"></div>
-			</div>
-
-			
-
-			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
-		</div>
-	</form>
-	<!--  result -->
-	<!-- 매출 -->
-
-
-
-	<h2 class="heading"></h2>
-	<div class="form-group" id="result"></div>
->>>>>>> branch 'master' of https://github.com/dev1028/hair.git
 	<!-- <button type="button" id="excel">excel</button> -->
 
 
