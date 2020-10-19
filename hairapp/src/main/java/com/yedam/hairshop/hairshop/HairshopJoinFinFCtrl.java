@@ -110,7 +110,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 						em.setContentType("text/html; charset=UTF-8");
 						String contents = "<h3>디자이너 인증요청</h3>" + "<span><strong>" + hVo.getHs_owner()
 								+ "</strong>님 회원가입을 축하합니다.</span><br>"
-								+ "<a href='http://192.168.0.104/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>인증완료</a>";
+								+ "<a href='http://192.168.0.57/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>인증완료</a>";
 						// 나중에 이메일 인증 ip주소는 웹서버껄로 바꿔야함
 						em.setContents(contents);
 						se.sand(em);
@@ -132,7 +132,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 						String contents = "<h3>미용실 인증요청</h3>" + "<span><strong>" + hVo.getHs_owner()
 								+ "</strong>님 회원가입을 축하합니다.</span><br>"
 								+ "</strong>본인의 디자이너 등록을 실패했습니다. 인증완료 후 미용실ERP에서 다시 등록해 주세요.</span><br>"
-								+ "<a href='http://192.168.0.104/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>인증완료</a>";
+								+ "<a href='http://192.168.0.57/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>인증완료</a>";
 						// 나중에 이메일 인증 ip주소는 웹서버껄로 바꿔야함
 						em.setContents(contents);
 						se.sand(em);
@@ -155,8 +155,8 @@ public class HairshopJoinFinFCtrl implements Controller {
 							em.setContentType("text/html; charset=UTF-8");
 							String contents = "<h3>미용실, 디자이너  인증요청</h3>" + "<span><strong>" + hVo.getHs_owner()
 									+ "</strong>님 회원가입을 축하합니다.</span><br>"
-									+ "<a href='http://192.168.0.104/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>미용실 인증완료</a>"
-											+ "<br><a href='http://192.168.0.104/hairapp/ajax/employeeAuth.do?designer_email="+ hVo.getDesigner_email() + "'>디자이너 인증완료</a>";
+									+ "<a href='http://192.168.0.57/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>미용실 인증완료</a>"
+											+ "<br><a href='http://192.168.0.57/hairapp/ajax/employeeAuth.do?designer_email="+ hVo.getDesigner_email() + "'>디자이너 인증완료</a>";
 							// 나중에 이메일 인증 ip주소는 웹서버껄로 바꿔야함
 							em.setContents(contents);
 							se.sand(em);
@@ -179,7 +179,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 							em.setContentType("text/html; charset=UTF-8");
 							String contents = "<h3>미용실 인증요청</h3>" + "<span><strong>" + hVo.getHs_owner()
 									+ "</strong>님 회원가입을 축하합니다.</span><br>"
-									+ "<a href='http://192.168.0.104/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>인증완료</a>";
+									+ "<a href='http://192.168.0.57/hairapp/ajax/hairshopEmailAuth.do?hs_email="+ hVo.getHs_email() + "'>인증완료</a>";
 								
 							// 나중에 이메일 인증 ip주소는 웹서버껄로 바꿔야함
 							em.setContents(contents);
@@ -193,7 +193,7 @@ public class HairshopJoinFinFCtrl implements Controller {
 							em2.setContentType("text/html; charset=UTF-8");
 							String contents2 = "<h3>디자이너 인증요청</h3>" + "<span><strong>" + hVo.getHs_owner()
 									+ "</strong>님 회원가입을 축하합니다.</span><br>"
-											+ "<a href='http://192.168.0.104/hairapp/ajax/employeeAuth.do?designer_email="+ hVo.getDesigner_email() + "'>인증완료</a>";
+											+ "<a href='http://192.168.0.57/hairapp/ajax/employeeAuth.do?designer_email="+ hVo.getDesigner_email() + "'>인증완료</a>";
 							// 나중에 이메일 인증 ip주소는 웹서버껄로 바꿔야함
 							em2.setContents(contents2);
 							se2.sand(em2);
