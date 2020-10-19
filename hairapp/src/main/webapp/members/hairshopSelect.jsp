@@ -45,7 +45,7 @@ body {
 					<h6>공지사항</h6>
 					<h2>${item.hs_notice}</h2>
 					<h6>영업시간</h6>
-					<h2>${item.hs_starttime}시 -${item.hs_endtime}시</h2>
+					<h2>${item.hs_starttime}시 - ${item.hs_endtime}시</h2>
 					<h6>주소</h6>
 					<h2>${item.hs_fulladdr }</h2>
 					
