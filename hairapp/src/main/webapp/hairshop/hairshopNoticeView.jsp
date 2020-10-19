@@ -12,9 +12,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.5/examples/cover/">
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
 	integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -23,9 +28,8 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
 	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
 	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!-- <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
 <style>
 #container {
 	width: 70%;
@@ -119,11 +123,19 @@ to {
 </script>
 </head>
 <body>
+		<nav class="site-header sticky-top py-1">
+		<div
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2" href="#" aria-label="Product"> </a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
+		</div>
+	</nav>
 	<br>
 	<br>
 	<br>
-	<br>
-	<div class="contatiner">
+	<div class="container">
 		<form method="post" name="frm" id="frm" action="">
 
 			<div id="list">
@@ -179,15 +191,17 @@ to {
 		<button type="button" class="btn btn-outline-primary"
 			onclick="noticeGo()">목록으로</button>
 
-
+		<br>
+		<br>
+		<br>
 		<!--  -->
 		<%-- <c:if test="${admin == '2'}"> --%>
-			<div id="upde">
+			<%-- <div id="upde">
 				<button type="button" class="btn btn-outline-primary"
 					onclick="noticeModifyGo()">수정</button>
 				<button type="button" class="btn btn-outline-danger"
 					data-toggle="modal" data-target="#staticBackdrop">삭제</button>
-			</div>
+			</div> --%>
 		<%-- </c:if> --%>
 
 

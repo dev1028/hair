@@ -41,7 +41,7 @@ public class hairshopNoticeViewCtrl implements Controller {
 		//request.getSession().setAttribute("admin", admin);
 
 
-		request.getRequestDispatcher("hairshopNoticeView.jsp").forward(request, response);
+		request.getRequestDispatcher("/hairshop/hairshopNoticeView.jsp").forward(request, response);
 
 	}
 

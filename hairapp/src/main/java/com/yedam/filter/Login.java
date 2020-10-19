@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.yedam.hairshop.members.MembersHsReviewIntrolCtrl;
-import com.yedam.hairshop.members.MembersPaymentSCtrl;
 
 
 
@@ -134,13 +132,18 @@ public class Login implements Filter {
 		list.put("/designer/designerLogin.do", null);
 		// list.put("/designer/customerJoinCtrl.do", designerLoginPage);
 
-		list.put("/hairshop/hairshopNotice.do",  null);//공지사항
-	    list.put("/hairshop/hairshopNoticeWG.do",  null);
-		list.put("/hairshop/hairshopNoticeWrite.do",  null);
-		list.put("/hairshop/hairshopNoticeView.do",  null);
-		list.put("/hairshop/hairshopNoticeMG.do",  null);
-		list.put("/hairshop/hairshopNoticeM.do",  null);
-		list.put("/hairshop/hairshopNoticeD.do",  null);
+		list.put("/ajax/hairshopNotice.do",  null);//공지사항
+	    list.put("/ajax/hairshopNoticeWG.do",  null);
+		list.put("/ajax/hairshopNoticeWrite.do",  null);
+		list.put("/ajax/hairshopNoticeView.do",  null);
+		list.put("/ajax/hairshopNoticeMG.do",  null);
+		list.put("/ajax/hairshopNoticeM.do",  null);
+		list.put("/ajax/hairshopNoticeD.do",  null);
+		list.put("/ajax/hairshopQna.do", null); //qna
+		list.put("/ajax/hairshopQnaWG.do", null); //writeGo
+		list.put("/ajax/hairshopQnaW.do", null); //write
+		list.put("/ajax/hairshopQnaV.do", null); //view
+		list.put("/hairshop/hairshopQnaReG.do", null); //view
 		
 		list.put("/designer/designerMyPageCtrl.do", designerLoginPage);
 		list.put("/designer/designerMyPageUpdateCtrl.do", designerLoginPage);

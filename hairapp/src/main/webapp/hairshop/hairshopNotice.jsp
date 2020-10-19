@@ -8,15 +8,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>헤어샵/미용실 공지사항</title>
 
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.5/examples/cover/">
 
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+	<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -103,9 +112,17 @@ to {
 </head>
 <body>
 
+			<nav class="site-header sticky-top py-1">
+		<div
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2" href="#" aria-label="Product"> </a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
+		</div>
+	</nav>
 	<div class="container">
 		<br> <br> <br>
-		
 			<form method="post" name="frm2" id="frm2"
 				action="hairshopNoticeView.do">
 
@@ -133,7 +150,7 @@ to {
 							<tr>
 								<td>${board.notice_no}</td>
 								<td><a
-									href="hairshopNoticeView.do?notice_no=${board.notice_no}&notice_hit=${board.notice_hits}">${board.notice_title}</a></td>
+									href="${pageContext.request.contextPath}/ajax/hairshopNoticeView.do?notice_no=${board.notice_no}&notice_hit=${board.notice_hits}">${board.notice_title}</a></td>
 								<td>관리자</td>
 								<td>${board.notice_writedate}</td>
 								<td>${board.notice_hits}</td>

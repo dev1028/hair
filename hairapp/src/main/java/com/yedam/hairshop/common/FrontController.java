@@ -323,12 +323,12 @@ public class FrontController extends HttpServlet {
 		// list.put("/designer/customerJoinCtrl.do", new CustomerJoinCtrl());
 		
 		list.put("/ajax/hairshopNotice.do", new hairshopNoticeCtrl());//공지사항
-	    list.put("/hairshop/hairshopNoticeWG.do", new hairshopNoticeWGCtrl());
-		list.put("/hairshop/hairshopNoticeWrite.do", new hairshopNoticeWriteCtrl());
-		list.put("/hairshop/hairshopNoticeView.do", new hairshopNoticeViewCtrl());
-		list.put("/hairshop/hairshopNoticeMG.do", new hairshopNoticeMGCtrl());
-		list.put("/hairshop/hairshopNoticeM.do", new hairshopNoticeMCtrl());
-		list.put("/hairshop/hairshopNoticeD.do", new hairshopNoticeDCtrl());
+	    list.put("/ajax/hairshopNoticeWG.do", new hairshopNoticeWGCtrl());
+		list.put("/ajax/hairshopNoticeWrite.do", new hairshopNoticeWriteCtrl());
+		list.put("/ajax/hairshopNoticeView.do", new hairshopNoticeViewCtrl());
+		list.put("/ajax/hairshopNoticeMG.do", new hairshopNoticeMGCtrl());
+		list.put("/ajax/hairshopNoticeM.do", new hairshopNoticeMCtrl());
+		list.put("/ajax/hairshopNoticeD.do", new hairshopNoticeDCtrl());
 		
 		
 		list.put("/ajax/hairshopQna.do", new HairshopQnaCtrl()); //qna

@@ -70,7 +70,7 @@
       100% {color:red; font-weight: bold;} */
     }
 </style>
-
+<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
 
 <script>
 	function qnaModifyGo() {
@@ -96,9 +96,17 @@
 </script>
 </head>
 <body>
+		<nav class="site-header sticky-top py-1">
+		<div
+			class="container d-flex flex-column flex-md-row justify-content-between">
+			<a class="py-2" href="#" aria-label="Product"> </a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
+		</div>
+	</nav>
 
-
-<br><br><br><br>
+<br><br><br>
 <div class="container">
 <form method="post" name="frm" id="frm" action="">
 
