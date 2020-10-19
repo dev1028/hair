@@ -26,14 +26,24 @@ public class MembersIdSearchSCtrl implements Controller {
 		membersVo.setMem_birth(idbirth);
 		System.out.println("1:"+membersVo);
 		
-        MembersDAO dao = new MembersDAO();
-        MembersVo resultVo = dao.findId(membersVo);		// 리턴값이 있는애는 resultVo가 있어야지 리턴이 가능함
-        System.out.println("2:"+membersVo);
+		MembersDAO dao = new MembersDAO();
+		MembersVo resultVo = dao.findId(membersVo);		// 리턴값이 있는애는 resultVo가 있어야지 리턴이 가능함
+		
+        if(resultVo == null) {
+        	response.getWriter().append("<script>")
+								.append("alert('잘못된 내용을 기재하였습니다');")
+								.append("</script>");
+        	request.getRequestDispatcher("membersIdSearch.do").forward(request, response);
+        	
+        	
+        } else {
+        	System.out.println("2:"+membersVo);
+        	request.setAttribute("members", resultVo);
+        	System.out.println("3:"+resultVo);
+        	
+        	request.getRequestDispatcher("/members/membersIdS.jsp").forward(request, response);
+        }
         
-        request.setAttribute("members", resultVo);
-        System.out.println("3:"+resultVo);
-        
-        request.getRequestDispatcher("/members/membersIdS.jsp").forward(request, response);
 		
 
 
