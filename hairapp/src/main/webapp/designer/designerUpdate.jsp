@@ -327,6 +327,7 @@ function inputNumberRemoveComma(str) {
 							class="glyphicon glyphicon-user"></i></span> <input
 							name="designer_dayoff" class="form-control" type="text"
 							onKeyup="inputNumberAutoComma(this);" maxlength ="12"
+							placeholder="숫자로 입력. 일요일기준 0번입니다."
 							id="designer_dayoff" value="${designer.designer_dayoff }">
 					</div>
 				</div>
