@@ -26,7 +26,7 @@
 			<thead>
 				<tr>
 					<th scope="col">쿠폰번호</th>
-					<th scope="col">미용실번호</th>
+					<!-- <th scope="col">미용실번호</th> -->
 					<th scope="col">쿠폰발급생성일</th>
 					<th scope="col">쿠폰발급만료일</th>
 					<th scope="col">쿠폰개수</th>
@@ -39,7 +39,7 @@
 				<c:forEach items="${list}" var="coupon">
 					<tr>
 						<td data-label="Account">${coupon.hsc_no }</td>
-						<td data-label="Due Date">${coupon.hs_no }</td>
+						<%-- <td data-label="Due Date">${coupon.hs_no }</td> --%>
 						<td data-label="Amount">${coupon.hsc_issuedate }</td>
 						<td data-label="Period">${coupon.hsc_expiredate }</td>
 						<td>${coupon.hsc_coupon_quantity }</td>
