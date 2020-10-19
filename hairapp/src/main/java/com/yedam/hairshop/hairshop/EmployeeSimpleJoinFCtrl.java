@@ -79,7 +79,7 @@ public class EmployeeSimpleJoinFCtrl implements Controller {
 					em.setContentType("text/html; charset=UTF-8");
 					String contents = "<h3>디자이너 인증요청</h3>"
 							+ "<span>임시비밀번호: <strong>"+dVo.getDesigner_pw()+"</strong></span><br>"
-							+ "<a href='http://192.168.0.104/hairapp/ajax/employeeAuth.do?designer_email="+dVo.getDesigner_email()+"'>인증완료</a>";
+							+ "<a href='http://192.168.0.57/hairapp/ajax/employeeAuth.do?designer_email="+dVo.getDesigner_email()+"'>인증완료</a>";
 						//나중에 이메일 인증 ip주소는 웹서버껄로 바꿔야함
 					em.setContents(contents);
 					se.sand(em);
