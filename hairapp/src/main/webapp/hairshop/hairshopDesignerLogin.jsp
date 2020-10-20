@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
@@ -123,12 +124,12 @@ $(function() {
 						d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" /></svg>
 			</a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
 				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
-				class="py-2 d-none d-md-inline-block" href="#">공지사항</a> <a
-				class="py-2 d-none d-md-inline-block" href="#">QnA</a>
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
 		</div>
 	</nav>
 		</header>
-
+		<c:if test="${empty sessionScope.login || !(sessionScope.udong eq 'hairshop' || sessionScope.udong eq 'designer')}">
 		<main role="main" class="inner cover" id="innercover">
 
 			<div class="container">
@@ -210,7 +211,43 @@ $(function() {
 				</div>
 			</div>
 		</main>
+		</c:if>
+		<c:if test="${not empty sessionScope.login && (sessionScope.udong eq 'hairshop' || sessionScope.udong eq 'designer')}">
+		<main role="main" class="inner cover" id="innercover">
 
+			<div class="container">
+				<div class="row justify-content-sm-center" >
+					<div class="col-md-auto">
+					</div>
+				</div>
+				<div class="row justify-content-sm-center">
+					<div class="col-6" id="rounddivforbtn">
+							
+							<hr>
+					<c:if test="${sessionScope.udong eq 'hairshop'}">
+						<h4>${sessionScope.login.hs_name}</h4>
+					</c:if>
+					<c:if test="${sessionScope.udong eq 'designer'}">
+						<h4>${sessionScope.login.designer_name} 디자이너</h4>
+					</c:if>
+					</div>
+				</div>
+				<div id="loginHairshop" class="row justify-content-sm-center">
+					<div class="col-6" id="hairshopCol">
+					<br>
+						
+						<c:if test="${sessionScope.udong eq 'hairshop'}">
+						<a href="${pageContext.request.contextPath}/hairshop/hairshopMain.do" class="btn btn-primary">메인페이지로 이동</a>
+						</c:if>
+						<c:if test="${sessionScope.udong eq 'designer'}">
+						<a href="${pageContext.request.contextPath}/designer/designerMain.do" class="btn btn-primary">메인페이지로 이동</a>
+					</c:if>
+						<hr>
+					</div>
+				</div>
+				</div>
+		</main>
+		</c:if>
 		<footer class="mastfoot mt-auto">
 			<div class="inner">
 				<p>

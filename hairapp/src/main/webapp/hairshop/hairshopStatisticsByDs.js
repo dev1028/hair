@@ -226,7 +226,7 @@ $(function() {
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test',
-			'class' : 'table table-bordered table-hover table-sm text-center'
+			'class' : 'table table-bordered table-hover table-sm text-center  table card-table table-vcenter text-nowrap datatable'
 		});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));
@@ -273,7 +273,7 @@ $(function() {
 					tr.append($("<td>").text(o.mdrNo));
 					tr.append($("<td>").text(o.memName));
 					tr.append($("<td>").text(o.dsName));
-					tr.append($("<td>").text(o.hName));
+					tr.append($("<td>").text(o.HName));
 					tr.append($("<td>").text(o.card));
 					tr.append($("<td>").text(o.point));
 					tr.append($("<td>").text(o.coupon));

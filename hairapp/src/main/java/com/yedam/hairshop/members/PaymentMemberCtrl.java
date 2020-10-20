@@ -36,6 +36,10 @@ public class PaymentMemberCtrl implements Controller {
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
 		
 		try {
+			String realPrice = request.getParameter("realPrice");
+			if(realPrice == null)
+				throw new Exception("realPrice is null");
+			
 			if(memVo == null)
 				throw new Exception("memVo is null");
 
@@ -83,11 +87,11 @@ public class PaymentMemberCtrl implements Controller {
 			payVo.setMdr_date(date + " " + hour);
 			payVo.setUse_saved_money(use_saved_money);
 			payVo.setMdr_request(mdr_request);
-			System.out.println(payVo.getMdr_date());
 			payVo.setHhi_no1("-1");
 			payVo.setHhi_no2("-1");
 			payVo.setHhi_no3("-1");
-			
+			payVo.setRealPrice(realPrice);
+			System.out.println(realPrice);
 			
 			if(listHairInfoVo.size() > 0)
 				payVo.setHhi_no1(listHairInfoVo.get(0).getHhi_no());
@@ -99,14 +103,14 @@ public class PaymentMemberCtrl implements Controller {
 			
 			int mdrNo = PaymentDAO.getInstance().onlinePayi0(payVo);
 			if(mdrNo >= 0) {
-				request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
 				payVo.setMdr_no(String.valueOf(mdrNo));
 				session.setAttribute("payVo", payVo);
 				System.out.println("결제 대기 상태로 돌임");
+				request.getRequestDispatcher("/members/paymentImport.jsp").forward(request, response);
 			}
 			else {
-				request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
 				System.out.println("예약 불가능한 시간.");
+				request.getRequestDispatcher("/members/paymentError.jsp").forward(request, response);
 			}
 			
 //			int mdrNo = PaymentDAO.getInstance().onlinePay(payVo);

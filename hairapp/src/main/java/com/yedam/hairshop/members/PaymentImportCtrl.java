@@ -5,9 +5,12 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.hairshop.common.Controller;
+import com.yedam.hairshop.dao.MembersDAO;
 import com.yedam.hairshop.dao.PaymentDAO;
+import com.yedam.hairshop.model.MembersVo;
 import com.yedam.hairshop.model.PaymentVo;
 
 public class PaymentImportCtrl implements Controller {
@@ -28,7 +31,10 @@ public class PaymentImportCtrl implements Controller {
 //		System.out.println(paid_amount);
 //		System.out.println(apply_num);
 		
-		PaymentVo payVo = (PaymentVo) request.getSession().getAttribute("payVo");
+		HttpSession sess = request.getSession();
+		MembersVo loginVo = (MembersVo) sess.getAttribute("login");
+		
+		PaymentVo payVo = (PaymentVo) sess.getAttribute("payVo");
 		if(suc.equals("suc")) {
 			PaymentDAO.getInstance().onlinePayi1(payVo);
 			System.out.println("결제 완료 프로시저 실행");
@@ -39,6 +45,9 @@ public class PaymentImportCtrl implements Controller {
 			System.out.println(r + "건 삭제됨");
 		}
 		
+		//갱신
+		loginVo = MembersDAO.getInstance().loginSelectOne(loginVo);
+		sess.setAttribute("login", loginVo);
 		//request.getRequestDispatcher("paymentS.do").forward(request, response);
 		
 //		if(suc.equals("suc"))

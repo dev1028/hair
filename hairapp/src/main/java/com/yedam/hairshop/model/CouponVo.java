@@ -7,6 +7,7 @@ public class CouponVo {
 
 	String hsc_no;
 	String hs_no;
+	
 	String hsc_issuedate;
 	String hsc_expiredate;
 	String hsc_coupon_quantity;

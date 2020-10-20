@@ -15,7 +15,7 @@
 	</decorator>
 
 	<decorator name="no" page=""></decorator>
-	
+
 	<excludes>
 		<pattern>/ajax/*</pattern>
 		<pattern>/members/membersDR*</pattern>
@@ -24,6 +24,7 @@
 	<excludes>
 		<pattern>/hairshop/hairshopNot*</pattern>
 		<pattern>/hairshop/hairshopQn*</pattern>
+		<pattern>/designer/designerLogi*</pattern>
 	</excludes>
 
 </decorators>

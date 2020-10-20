@@ -1,7 +1,6 @@
 package com.yedam.hairshop.common;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,8 +22,9 @@ public class ConnectionManager {
 			Context initContext = new InitialContext();
 			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/oracle");
 			conn = ds.getConnection();
-			if(conn == null)
-				System.out.println("접속 실패!!!");
+			if(conn == null) {
+				//System.out.println("접속 실패!!!");
+			}
 			// conn 을 할당받음 System.out.println("dbcp에서 conn 할당");
 
 		} catch (Exception e) {

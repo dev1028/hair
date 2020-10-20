@@ -15,49 +15,43 @@ public class AnalysisDAO {
 	static String day = "between to_date(?)-1 and to_date(?)-1";
 	static String week = "between to_date(?)-7 and to_date(?)-7";
 	static String month = "between add_months(?,-1) and add_months(?,-1)";
-	static String rateprev =  "SELECT\n" + "    d.designer_name,d.file_name, d.designer_no, \n" + "    nvl(avg((\n"
-			+ "        SELECT\n" + "            avg(hr_rate)\n" + "        FROM\n"
-			+ "            hairshop_reviews\n" + "        WHERE\n"
-			+ "            mdr_no = r.mdr_no  and mdr_date  between ? and ? \n" + "    )), 0) AS rate,\n"
-			+ "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n" + "        SELECT\n"
-			+ "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
-			+ "            mdr_no = r.mdr_no  and mdr_date  between ? and ? \n" + "    )), 0) DESC\n"
-			+ "    ) AS rank\n" + "  ,  nvl(avg((\n" + "        SELECT\n" + "            avg(hr_rate)\n"
-			+ "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
+	static String rateprev = "SELECT\n" + "    d.designer_name,d.file_name, d.designer_no, \n" + "    nvl(avg((\n"
+			+ "        SELECT\n" + "            avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n"
+			+ "        WHERE\n" + "            mdr_no = r.mdr_no  and mdr_date  between ? and ? \n"
+			+ "    )), 0) AS rate,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n"
+			+ "        SELECT\n" + "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n"
+			+ "        WHERE\n" + "            mdr_no = r.mdr_no  and mdr_date  between ? and ? \n"
+			+ "    )), 0) DESC\n" + "    ) AS rank\n" + "  ,  nvl(avg((\n" + "        SELECT\n"
+			+ "            avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
 			+ "            mdr_no = r.mdr_no  and mdr_date  " + month + "    )), 0) AS prevrate,\n"
 			+ "    RANK() OVER(\n" + "        ORDER BY\n" + "            nvl(avg((\n" + "        SELECT\n"
 			+ "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
 			+ "            mdr_no = r.mdr_no  and mdr_date  " + month + "    )), 0) DESC\n" + "    ) AS prevrank\n"
 			+ "FROM\n" + "    members_designer_rsv   r\n"
 			+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-			+ "    LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + 
-			"    WHERE \r\n" + 
-			"    r.hs_no = ? \r\n" + 
-			"    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null\r\n" + 
-			"    or l.DLI_LEAVE_DATE is null " + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
-	static String salesprev ="SELECT\n" + "    d.designer_name, d.designer_no, d.file_name ,\n" + "    SUM((\n"
+			+ "    LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + "    WHERE \r\n"
+			+ "    r.hs_no = ? \r\n" + "    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null\r\n"
+			+ "    or l.DLI_LEAVE_DATE is null " + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
+	static String salesprev = "SELECT\n" + "    d.designer_name, d.designer_no, d.file_name ,\n" + "    SUM((\n"
 			+ "        SELECT\n" + "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n"
-			+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n"
+			+ "            members_detail_paylist\n" + "        WHERE\n"
+			+ "            mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n"
 			+ "    )) AS sales,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            SUM((\n"
 			+ "                SELECT\n" + "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
 			+ "                    members_detail_paylist\n" + "                WHERE\n"
-			+ "                    mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n" + "            )) DESC\n" + "    ) AS rank\n" +  " ,   SUM((\n"
-			+ "        SELECT\n" + "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n"
-			+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no\n"+"and mdr_date  " 
-			+ month 
+			+ "                    mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n"
+			+ "            )) DESC\n" + "    ) AS rank\n" + " ,   SUM((\n" + "        SELECT\n"
+			+ "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n" + "            members_detail_paylist\n"
+			+ "        WHERE\n" + "            mdr_no = r.mdr_no\n" + "and mdr_date  " + month
 			+ "    )) AS prevsales,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            SUM((\n"
 			+ "                SELECT\n" + "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
 			+ "                    members_detail_paylist\n" + "                WHERE\n"
-			+ "                    mdr_no = r.mdr_no and mdr_date  " 
-			+ month + " )) DESC\n" + "    ) AS prevrank\n" +"FROM\n"
-			+ "    members_designer_rsv   r\n"
+			+ "                    mdr_no = r.mdr_no and mdr_date  " + month + " )) DESC\n" + "    ) AS prevrank\n"
+			+ "FROM\n" + "    members_designer_rsv   r\n"
 			+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-			+ "     LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + 
-			"    WHERE \r\n" + 
-			"    r.hs_no = ? \r\n" + 
-			"    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null \r\n" + 
-			"    or l.DLI_LEAVE_DATE is null \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
-
+			+ "     LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + "    WHERE \r\n"
+			+ "    r.hs_no = ? \r\n" + "    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null \r\n"
+			+ "    or l.DLI_LEAVE_DATE is null \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
 
 	static AnalysisDAO instance = null;
 
@@ -73,18 +67,16 @@ public class AnalysisDAO {
 		String sql = "SELECT\n" + "    d.designer_name,d.file_name, d.designer_no, \n" + "    round(nvl(avg((\n"
 				+ "        SELECT\n" + "            avg(hr_rate)\n" + "        FROM\n"
 				+ "            hairshop_reviews\n" + "        WHERE\n"
-				+ "            mdr_no = r.mdr_no  and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =?  \n" + "    )), 0)) AS rate,\n"
-				+ "    RANK() OVER(\n" + "        ORDER BY\n" + "           round( nvl(avg((\n" + "        SELECT\n"
-				+ "         avg(hr_rate)\n" + "        FROM\n" + "            hairshop_reviews\n" + "        WHERE\n"
-				+ "            mdr_no = r.mdr_no   and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =?  \n" + "    )), 0) )DESC\n"
-				+ "    ) AS rank\n" 
-				+ "FROM\n" + "    members_designer_rsv   r\n"
+				+ "            mdr_no = r.mdr_no  and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =?  \n"
+				+ "    )), 0)) AS rate,\n" + "    RANK() OVER(\n" + "        ORDER BY\n"
+				+ "           round( nvl(avg((\n" + "        SELECT\n" + "         avg(hr_rate)\n" + "        FROM\n"
+				+ "            hairshop_reviews\n" + "        WHERE\n"
+				+ "            mdr_no = r.mdr_no   and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =?  \n"
+				+ "    )), 0) )DESC\n" + "    ) AS rank\n" + "FROM\n" + "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-				+ "    LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + 
-				"    WHERE \r\n" + 
-				"    r.hs_no = ? \r\n" + 
-				"    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null\r\n" + 
-				"    or l.DLI_LEAVE_DATE is null " + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
+				+ "    LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + "    WHERE \r\n"
+				+ "    r.hs_no = ? \r\n" + "    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null\r\n"
+				+ "    or l.DLI_LEAVE_DATE is null " + "GROUP BY\n" + "    d.designer_name,d.file_name, d.designer_no";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -94,7 +86,7 @@ public class AnalysisDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMonth());
 			pstmt.setString(2, vo.getMonth());
-		
+
 			pstmt.setString(3, vo.getHs_no());
 			rs = pstmt.executeQuery();
 			System.out.println("nnsql");
@@ -103,9 +95,9 @@ public class AnalysisDAO {
 
 				AnalysisVo resultVo = new AnalysisVo();
 				resultVo.setRank(rs.getString("rank"));
-			//	resultVo.setPrevrank(rs.getString("prevrank"));
+				// resultVo.setPrevrank(rs.getString("prevrank"));
 				resultVo.setRate(rs.getString("rate"));
-				//resultVo.setPrevrate(rs.getString("prevrate"));
+				// resultVo.setPrevrate(rs.getString("prevrate"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
 				resultVo.setFile_name(rs.getString("file_name"));
 				resultVo.setDesigner_no(rs.getString("designer_no"));
@@ -126,18 +118,18 @@ public class AnalysisDAO {
 		ResultSet rs = null;
 		String sql = "SELECT\n" + "    d.designer_name, d.designer_no, d.file_name ,\n" + "    SUM((\n"
 				+ "        SELECT\n" + "            nvl(SUM(mdp_price), 0)\n" + "        FROM\n"
-				+ "            members_detail_paylist\n" + "        WHERE\n" + "            mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n"
+				+ "            members_detail_paylist\n" + "        WHERE\n"
+				+ "            mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n"
 				+ "    )) AS sales,\n" + "    RANK() OVER(\n" + "        ORDER BY\n" + "            SUM((\n"
 				+ "                SELECT\n" + "                    nvl(SUM(mdp_price), 0)\n" + "                FROM\n"
 				+ "                    members_detail_paylist\n" + "                WHERE\n"
-				+ "                    mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n" + "            )) DESC\n" + "    ) AS rank\n"  +"FROM\n"
-				+ "    members_designer_rsv   r\n"
+				+ "                    mdr_no = r.mdr_no and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =? \n"
+				+ "            )) DESC\n" + "    ) AS rank\n" + "FROM\n" + "    members_designer_rsv   r\n"
 				+ "    JOIN designer               d ON ( r.designer_no = d.designer_no )\n"
-				+ "     LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + 
-				"    WHERE \r\n" + 
-				"    r.hs_no = ? \r\n" + 
-				"    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null \r\n" + 
-				"    or l.DLI_LEAVE_DATE is null \n" + "GROUP BY\n" + "    d.designer_name, d.designer_no, d.file_name";
+				+ "     LEFT OUTER JOIN designers_leave_info l ON(r.designer_no = l.designer_no)\r\n" + "    WHERE \r\n"
+				+ "    r.hs_no = ? \r\n" + "    AND  r. mdr_date > l.DLI_LEAVE_DATE and d.hs_no is not null \r\n"
+				+ "    or l.DLI_LEAVE_DATE is null \n" + "GROUP BY\n"
+				+ "    d.designer_name, d.designer_no, d.file_name";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -147,7 +139,7 @@ public class AnalysisDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getMonth());
 			pstmt.setString(2, vo.getMonth());
-		
+
 			pstmt.setString(3, vo.getHs_no());
 			rs = pstmt.executeQuery();
 			System.out.println("nnsql");
@@ -157,9 +149,9 @@ public class AnalysisDAO {
 				AnalysisVo resultVo = new AnalysisVo();
 				resultVo.setRank(rs.getString("rank"));
 				resultVo.setSales(rs.getString("sales"));
-				//resultVo.setPrevsales(rs.getString("prevsales"));
+				// resultVo.setPrevsales(rs.getString("prevsales"));
 				resultVo.setDesigner_name(rs.getString("designer_name"));
-				//resultVo.setPrevrank(rs.getString("prevrank"));
+				// resultVo.setPrevrank(rs.getString("prevrank"));
 				resultVo.setFile_name(rs.getString("file_name"));
 				resultVo.setDesigner_no(rs.getString("designer_no"));
 				System.out.println("vo" + resultVo.getCnt());
@@ -175,14 +167,13 @@ public class AnalysisDAO {
 		return list;
 	}
 
-	
-	
-	
 	public ArrayList<AnalysisVo> designerRsvRank(AnalysisVo vo) {
 		ResultSet rs = null;
 		String sql = "SELECT d. designer_name, d.designer_no,  count(*) as rsv, d.file_name ,rank() over (order by count(*) desc) rank\r\n"
 				+ "FROM designer d \r\n" + "JOIN members_designer_rsv r ON(r.designer_no = d.designer_no)\r\n" + "\r\n"
-				+ "WHERE r.hs_no = ?\r\n and d.hs_no is not null" + " and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =?\r\n" + "group by d.designer_name, d.designer_no, d.file_name";
+				+ "WHERE r.hs_no = ?\r\n and d.hs_no is not null"
+				+ " and substr( to_char(r.mdr_date,'yyyy-mm'),0,8)    =?\r\n"
+				+ "group by d.designer_name, d.designer_no, d.file_name";
 
 		System.out.println(sql);
 		ArrayList<AnalysisVo> list = new ArrayList<>();
@@ -279,6 +270,60 @@ public class AnalysisDAO {
 				list.add(resultVo);
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(rs, pstmt, conn);
+		}
+		return list;
+	}
+
+	public ArrayList<AnalysisVo> designerChart(String designer_no) {
+		ArrayList<AnalysisVo> list = new ArrayList<>();
+		String sql = "SELECT\n" + "    SUM(p.mdp_price) as sales,\n" + "   COUNT(*) as rsv,\n" + "    CASE\n"
+				+ "        WHEN to_char(mdr_date,'yy-mm-dd') = to_char(sysdate,'yy-mm-dd') THEN\n"
+				+ "            '오늘'\n"
+				+ "        WHEN to_char(mdr_date,'yy-mm-dd') = to_char(sysdate-1,'yy-mm-dd')       THEN\n"
+				+ "            '어제'\n"
+				+ "            WHEN to_char(mdr_date,'yy-mm-dd') = to_char(sysdate+1,'yy-mm-dd')      THEN\n"
+				+ "            '내일'\n" + "            end as day\n" + "FROM\n" + " designer d\n" + "   JOIN \n"
+				+ "    members_designer_rsv    \n" + "   r ON ( d.designer_no = r.designer_no )\n"
+				+ "   JOIN members_detail_paylist   p ON ( r.mdr_no = p.mdr_no )\n" + "WHERE\n"
+				+ "    d.designer_no = ?\n"
+				+ "    AND mdr_date BETWEEN to_char(sysdate-1,'yy-mm-dd')  AND to_char(sysdate+1,'yy-mm-dd') \n"
+				+ "    AND mdr_status IN (\n" + "        'i2',\n" + "        'i3',\n" + "        'i4'\n" + "    )\n"
+				+ "GROUP BY\n" +
+
+				" r.mdr_date, "
+
+				+ "    (CASE\n" + "        WHEN to_char(mdr_date,'yy-mm-dd') = to_char(sysdate,'yy-mm-dd') THEN\n"
+				+ "            '오늘'\n"
+				+ "        WHEN to_char(mdr_date,'yy-mm-dd') = to_char(sysdate-1,'yy-mm-dd')       THEN\n"
+				+ "            '어제'\n"
+				+ "            WHEN to_char(mdr_date,'yy-mm-dd') = to_char(sysdate+1,'yy-mm-dd')      THEN\n"
+				+ "            '내일'\n" + "            end )\n"
+
+				+ "ORDER BY\n" + "    mdr_date";
+
+		ResultSet rs = null;
+
+		try {
+			conn = ConnectionManager.getConnnect();
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, designer_no);
+
+			rs = pstmt.executeQuery();
+			System.out.println("nnsql");
+			while (rs.next()) {
+
+				AnalysisVo vo = new AnalysisVo();
+				vo.setDate(rs.getString("day"));
+				vo.setRsv(rs.getString("rsv"));
+				vo.setSales(rs.getString("sales"));
+				list.add(vo);
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

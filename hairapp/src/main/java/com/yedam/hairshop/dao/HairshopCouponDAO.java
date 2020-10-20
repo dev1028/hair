@@ -30,11 +30,11 @@ public class HairshopCouponDAO {
 			conn = ConnectionManager.getConnnect();
 			String sql = " SELECT A.* from (SELECT rownum rn,b.* from ("
 					+ "SELECT HSC_NO, HS_NO, HSC_ISSUEDATE, HSC_EXPIREDATE, HSC_COUPON_QUANTITY, "
-					+ " HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME " + " FROM HS_COUPON WHERE HS_NO = ?"  + " ORDER BY HSC_NO DESC"
-					+ " ) b ) a where rn between ? and ?";
+					+ " HSC_DISCOUNT_RATE, HSC_MAXDISCOUNT_PAY, HSC_NAME " + " FROM HS_COUPON " + " ORDER BY LPAD(HSC_NO,30,'0')"
+					+ " ) b ) a where rn between ? and ?" ;
 			System.out.println("쿠폰리스트");
 			pstmt = conn.prepareStatement(sql);
-			int pos = 2; // 물음표값 동적으로 하려고 변수선언
+			int pos = 1; // 물음표값 동적으로 하려고 변수선언
 			pstmt.setString(1, couponVo.getHs_no());
 			System.out.println("헤어샵번호: " + couponVo.getHs_no());
 			pstmt.setInt(pos++, couponVo.getFirst()); // 물음표부분이 pos++로 인해 동적으로 늘어남
@@ -50,6 +50,7 @@ public class HairshopCouponDAO {
 				resultVo.setHsc_discount_rate(rs.getString("hsc_discount_rate"));
 				resultVo.setHsc_maxdiscount_pay(rs.getString("hsc_maxdiscount_pay"));
 				resultVo.setHsc_name(rs.getString("hsc_name"));
+				
 				list.add(resultVo);
 			}
 		} catch (Exception e) {

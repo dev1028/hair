@@ -264,8 +264,7 @@ function chart() {
 	}
 }
 	$(function() {
-<<<<<<< HEAD
-		
+
 		
 		$("#frm").submit();
 		chart();
@@ -433,18 +432,20 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 
 	<div class="container">
 
-		<form method="POST" id="frm" 
+		<form method="POST" id="frm"
 			action="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">
 
-<div class="row"><div class="col">
-					<input type="month" class="form-control " name = "month" value="2020-10">
-</div>
-<div class="col">
+			<div class="row">
+				<div class="col">
+					<input type="month" class="form-control " name="month"
+						value="2020-10">
+				</div>
+				<div class="col">
 
 					<button type="submit" value="Submit" id="submit"
 						class="btn btn-default col-3" style="border: 1px solid gray;">검색</button>
 				</div>
-</div>
+			</div>
 		</form>
 
 	</div>
@@ -555,296 +556,12 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
 								class="avatar">${ l.designer_name}</td>
 							<td>${l.rate }</td>
-		chart();
-	
-
-		$(document)
-				.on(
-						"click",
-						"#excel",
-						function() {
-
-							var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
-							var table_html = encodeURIComponent(document
-									.getElementById('test').outerHTML);
-
-							var a = document.createElement('a');
-							a.href = data_type + ',%EF%BB%BF' + table_html;
-							a.download = 'test' + '_excel' + '.xls';
-							a.click();
-
-						})
-	
-		});
-	
-
-		
-		
-		function month() {
-			$("#range").attr('class', 'month');
-			$("#range").html("");
-			year = $("<select/>").attr('id', 'selectYear');
-			;
-			for (var i = 2020; i > 2000; i--) {
-
-				year.append($("<option />").text(i + " 년").val(i));
-			}
-			$("#range").append(year);
-			month = $("<select/>").attr('id', 'selectMonth');
-			;
-			for (var i = 0; i < 12; i++) {
-
-				month.append($("<option />").text(i + 1 + " 월").val(i));
-			}
-			$("#range").append(month);
-		}
-		function startDate(d) {
-			$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
-		}
-		function endDate(d) {
-			$("#end").attr('value', moment(d).format('YYYY-MM-DD'));
-		}
-		function today() {
-			var d = new Date();
-
-			startDate(d);
-			endDate(d);
-			console.log(d);
-
-		}
-		function yester() {
-			var d = new Date();
-			d.setDate(d.getDate() - 1);
-			startDate(d);
-			endDate(d);
-			console.log(d);
-
-		}
-		function week() {
-			var d = new Date();
-			endDate(d);
-			startDate(d.setDate(d.getDate() - 7));
-			console.log(d);
-
-		}
-		function mon() {
-			var d = new Date();
-			endDate(d);
-
-			startDate(d.setMonth(d.getMonth() - 1));
-			console.log(d);
-
-		}
-
-
-$(document).on("click", '#daybtn', function() {
-			
-		});
-$(document).on("click", '#monthbtn', function() {
-	
-});
-
-
-var d = new Date();
-$("#start").attr('value', moment(d).format('YYYY-MM-DD'));
-</script>
-</head>
-<body>
-
-	<br>
-	<br>
-	<br>
-
-
-	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#daytab"><button
-					type="button" class="btn btn-default" id="daybtn">일</button></a></li>
-		<li><a data-toggle="tab" href="#weektab">
-				<button type="button" class="btn btn-default" id="weekbtn">주</button>
-		</a></li>
-		<li><a data-toggle="tab" href="#monthtab"><button
-					type="button" class="btn btn-default" id="monthbtn">월</button></a></li>
-	</ul>
-
-	<div class="tab-content">
-		<div id="daytab" class="tab-pane fade in active">
-			<div class="row">
-				<div class="col-4">
-					<button type="button" class="btn btn-default" id="weekbtn"><</button>
-				</div>
-				<div class="col-4">
-					<input class="form-control " type="date">
-				</div>
-				<div class="col-4">
-					<button type="button" class="btn btn-default" id="weekbtn">></button>
-				</div>
-			</div>
-		</div>
-		<div id="weektab" class="tab-pane fade">
-			<div class="row">
-				<div class="col-3">
-					<button type="button" class="btn btn-default" id="weekbtn"><</button>
-				</div>
-				<div class="col-3">
-					<input type="month" class="form-control ">
-				</div>
-				<div class="col-3">
-					<select name="qna_who" id="qna_who" class="form-control ">
-						<option class="form-control form-check-input">1</option>
-						<option class="form-control form-check-input">2</option>
-						<option class="form-control form-check-input">3</option>
-						<option class="form-control form-check-input">4</option>
-						<option class="form-control form-check-input">5</option>
-					</select>
-				</div>
-				<div class="col-3">
-					<button type="button" class="btn btn-default" id="weekbtn">></button>
-				</div>
-			</div>
-		</div>
-		<div id="monthtab" class="tab-pane fade">
-			<div class="row">
-				<div class="col-4">
-					<button type="button" class="btn btn-default" id="weekbtn"><</button>
-				</div>
-				<div class="col-4">
-					<input type="month" class="form-control ">
-				</div>
-				<div class="col-4">
-					<button type="button" class="btn btn-default" id="weekbtn">></button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="container">
-
-		<form method="POST"
-			action="${pageContext.request.contextPath}/hairshop/AnalysisDesignerTotal.do">
-
-
-
-
-
-			<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
-
-		</form>
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<div class="tab row">
-		<div class="col-4">
-			<button class="tablinks" onclick="openCity(event, 'London')">예약수</button>
-		</div>
-		<div class="col-4">
-			<button class="tablinks" onclick="openCity(event, 'Paris')">매출순위</button>
-		</div>
-		<div class="col-4">
-
-			<button class="tablinks" onclick="openCity(event, 'Tokyo')">평점순위</button>
-		</div>
-	</div>
-
-	<!-- Tab content -->
-	<div id="London" class="tabcontent">
-		<div id="chart_divrsv"></div>
-
-		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>순위</th>
-						<th>디자이너</th>
-						<th>예약수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${rsvlist }" var="l">
-						<tr>
-							<td>${ l.rank}/${l.prevrank }</td>
-							<td><img id="imgDes"
-								onerror="this.src='../images/no_img.gif'"
-								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-								class="avatar">${ l.designer_name}</td>
-							<td>${l.rsv }/${l.prevrsv }</td>
-
-
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 
-		</div>
-	</div>
 
-	<div id="Paris" class="tabcontent">
-		<div id="chart_divsales"></div>
-		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>순위</th>
-						<th>디자이너</th>
-						<th>예약수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${saleslist }" var="l">
-						<tr>
-							<td>${ l.rank}/${l.prevrank-l.rank }</td>
-							<td><img id="imgDes"
-								onerror="this.src='../images/no_img.gif'"
-								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-								class="avatar">${ l.designer_name}</td>
-							<td>${l.sales }/${l.prevsales }</td>
-
-
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-	<div id="Tokyo" class="tabcontent">
-		<div id="chart_divrate"></div>
-		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>순위</th>
-						<th>디자이너</th>
-						<th>예약수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${ratelist }" var="l">
-						<tr>
-							<td>${ l.rank}/${l.prevrank }</td>
-							<td><img id="imgDes"
-								onerror="this.src='../images/no_img.gif'"
-								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-								class="avatar">${ l.designer_name}</td>
-							<td>${l.rate }/${l.prevrate }</td>
-
-
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
 
 		</div>
 	</div>

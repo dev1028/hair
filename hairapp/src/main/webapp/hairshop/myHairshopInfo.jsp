@@ -239,7 +239,7 @@ html, body {
 								href="${pageContext.request.contextPath}/hairshop/myParkingChange.do?hs_parking=0">주차장
 								여부 변경</a>
 						</c:if>
-						<c:if test="${hairshop.hs_parking eq '0'}">
+						<c:if test="${hs1.hs_parking eq '0'}">
 							<a class="btn btn-sm btn-outline-success"
 								href="${pageContext.request.contextPath}/hairshop/myParkingChange.do?hs_parking=1">주차장
 								여부 변경</a>

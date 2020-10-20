@@ -88,8 +88,8 @@
 			class="container d-flex flex-column flex-md-row justify-content-between">
 			<a class="py-2" href="#" aria-label="Product"> </a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
 				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
-				class="py-2 d-none d-md-inline-block" href="#">공지사항</a> <a
-				class="py-2 d-none d-md-inline-block" href="#">QnA</a>
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
+				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
 		</div>
 	</nav>
 

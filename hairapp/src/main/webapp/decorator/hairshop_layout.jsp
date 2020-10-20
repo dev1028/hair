@@ -557,8 +557,9 @@
 							<!--  class="btn btn-outline-success my-2 my-sm-0" -->
 							<input type="hidden" name="divisionSearch" value="name">
 							<input type="text" id="siteInputSearch" name="inputSearch" placeholder="예약자찾기" aria-label="Search">
-							<button id="siteSearchCustomerBtn" type="button" class="btn btn-secondary btn-sm">Search</button>
+							<button id="siteSearchCustomerBtn" type="button" class="btn btn-info btn-sm">Search</button>
 						</form>
+						<a class="btn btn-secondary btn-sm"href="${pageContext.request.contextPath}/ajax/hairshopLoginPageGo.do">메인페이지로</a>
 						<a class="btn btn-primary btn-sm"href="${pageContext.request.contextPath}/ajax/hairDeslogout.do">로그아웃</a>
 					</div>
 				</nav>

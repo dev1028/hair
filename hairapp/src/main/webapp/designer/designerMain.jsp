@@ -5,12 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>디자이너 메인페이지</title>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 document
 .addEventListener(
 		'DOMContentLoaded',
 		function() {
 
+			google.charts.load('current', {
+				'packages' : [ 'corechart' ]
+			});
+			google.charts.setOnLoadCallback(drawStuff);
 			var calendarEl = document.getElementById('calendar');
 			var calendar = new FullCalendar.Calendar(
 					calendarEl,
@@ -154,6 +160,83 @@ var day = date.getDate(); //d
 day = day >= 10 ? day : '0' + day; //day 두자리로 저장
 return year + '/' + month + '/' + day; //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
 }
+
+
+
+function drawStuff() {
+	
+
+	var today = new Map();
+	var yesterday = new Map();
+	var tomorrow = new Map();
+
+	today.set("rsv", 0);
+	today.set("sales", 0);
+	yesterday.set("rsv", 0);
+	yesterday.set("sales", 0);
+	tomorrow.set("rsv", 0);
+	tomorrow.set("sales", 0);
+
+
+	var datatable = [];
+	$.ajax({
+		async : false,
+		url : "/hairapp/ajax/designer/designerChart.do",
+		dataType : "json",
+		success : function(datas) {
+
+			console.log(datas);
+			for (var i = 0; i < datas.length; i++) {
+
+				if (datas[i].date === '오늘') {
+					today.set("rsv", parseInt(datas[i].rsv));
+					today.set("sales", parseInt(datas[i].sales));
+				} else if (datas[i].date === '내일') {
+					tomorrow.set("rsv", parseInt(datas[i].rsv));
+					tomorrow.set("sales", parseInt(datas[i].sales));
+				} else if (datas[i].date === '어제') {
+					yesterday.set("rsv", parseInt(datas[i].rsv));
+					yesterday.set("sales", parseInt(datas[i].sales));
+				}
+			}
+		}
+
+	});
+
+	var data = google.visualization.arrayToDataTable([
+			[ 'day', '매출', '예약자수' ],
+			[ '어제', yesterday.get("sales"), yesterday.get("rsv") ],
+			[ '오늘', today.get("sales"), yesterday.get("rsv") ],
+			[ '내일', tomorrow.get("sales"), tomorrow.get("rsv") ] ]);
+
+	data.addRows(datatable);
+	// Set chart options
+	var options = {
+			//height: 800,
+		title : '',
+		vAxis : {
+			0: {format: 'currency'},
+			1: {}
+			},
+		hAxis : {
+			
+		},
+		//seriesType : 'bars',
+		series : {
+			0:{ type: "bars", targetAxisIndex: 0 },
+               1: { type: "line", targetAxisIndex: 1}
+		}
+	};
+
+	var chart = new google.visualization.ComboChart(document
+			.getElementById('chart_div'));
+	chart.draw(data, options);
+
+}
+
+
+
+
 </script>
 </head>
 <body>
@@ -196,7 +279,9 @@ return year + '/' + month + '/' + day; //'-' 추가하여 yyyy-mm-dd 형태 생�
 				<div id='calendar'></div>
 			</div>
 			<div class="col-4">
-				
+				<div id="chart_div"
+		style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;"></div>
+
 			</div>
 		</div>
 </body>

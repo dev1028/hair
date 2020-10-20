@@ -17,9 +17,17 @@ public class HairshopQnaVCtrl implements Controller {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("qna 보기");
+		HairshopVo hairshopVo = null;
+		DesignerVo designerVo = null;
+		String className = request.getSession().getAttribute("login").getClass().getName();
+		if(className.equals("com.yedam.hairshop.model.HairshopVo")) {
+			 hairshopVo =  (HairshopVo) request.getSession().getAttribute("login");			
+		} else {
+			
+			designerVo = (DesignerVo) request.getSession().getAttribute("login");
+		}
 		
-		HairshopVo hairshopVo =  (HairshopVo) request.getSession().getAttribute("login");
-		DesignerVo designerVo = (DesignerVo) request.getSession().getAttribute("login");
+		
 		//String admin = request.getSession().getAttribute("admin").toString();
 		//String loginId = request.getSession().getAttribute("loginid").toString();
 		//String mem_name = request.getSession().getAttribute("memName").toString();
@@ -46,8 +54,12 @@ public class HairshopQnaVCtrl implements Controller {
 		request.getSession().setAttribute("qnaNo", qnaNo);
 		request.getSession().setAttribute("viewNo", resultVo.getQna_no());
 		request.getSession().setAttribute("hit", hitup);
+		
+		
 		request.setAttribute("hairshop", hairshopVo);
 		request.setAttribute("designer", designerVo);
+		
+		
 		request.getRequestDispatcher("/hairshop/hairshopQnaView.jsp").forward(request, response);
 		
 		//request.getSession().setAttribute("admin", admin);

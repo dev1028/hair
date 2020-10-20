@@ -11,8 +11,15 @@
 <script>
 
 	$(function(){
-// 		startImport();
-		testSuc();
+// 		alert("${payVo.realPrice}")
+// 		alert("${login.mem_email}")
+// 		alert("${login.mem_name}")
+// 		alert("${login.mem_phone}")
+// 		alert("${login.mem_addr}")
+			
+			
+		startImport();
+// 		testSuc();
 	});
 	
 	function testSuc(){
@@ -42,12 +49,13 @@
 			pg : 'inicis', // version 1.1.0부터 지원.
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '주문명:결제테스트',
-			amount : "10",
-			buyer_email : 'iamport@siot.do',
-			buyer_name : '구매자이름',
-			buyer_tel : '010-1234-5678',
-			buyer_addr : '서울특별시 강남구 삼성동',
+			name : '우동 결제',
+			//amount : "${payVo.realPrice}",
+			amount : "100",
+			buyer_email : "${login.mem_email}",
+			buyer_name : "${login.mem_name}",
+			buyer_tel : "${login.mem_phone}",
+			buyer_addr : "${login.mem_addr}",
 			buyer_postcode : '123-456',
 // 			m_redirect_url : 'http://localhost/hairapp/members/paymentImport.do'
 		}, function(rsp) {	
@@ -72,6 +80,7 @@
 // 					msg += '결제 금액 : ' + rsp.paid_amount;
 // 					msg += '카드 승인번호 : ' + rsp.apply_num;
 				})
+				location.href="http://localhost/hairapp/members/paymentS.do";
 				var msg = '결제가 완료되었습니다.';
 			} else {
 				jQuery.ajax({

@@ -1,8 +1,8 @@
 $(function() {
-	$("button").attr('class','btn btn-secondary btn-sm');
-	$("input").attr('class','btn btn-secondary btn-sm');
-	
-	period();
+	// $("button").attr('class','btn btn-secondary btn-sm');
+	// $("input").attr('class','btn btn-secondary btn-sm');
+
+	periodf();
 	$("#all").on("click", function() {
 
 		var check = $("#all").prop("checked");
@@ -25,25 +25,21 @@ $(function() {
 			})
 	$(document).on("click", '#submit', function() {
 
-		
 		$("#result").html("");
-		
-					if ($("#range").is(".yearResult") === true) {
 
-						yearResult();
+		if ($("#range").is(".yearResult") === true) {
 
-					} else if ($("#range").is(".quarter") === true) {
-						quarterResult();
-					} else if ($("#range").is(".month") === true) {
-						monthResult();
+			yearResult();
 
-					} else if ($("#range").is(".period") === true) {
-						periodResult();
+		} else if ($("#range").is(".quarter") === true) {
+			quarterResult();
+		} else if ($("#range").is(".month") === true) {
+			monthResult();
 
-					}
+		} else if ($("#range").is(".period") === true) {
+			periodResult();
 
-				
-		
+		}
 
 	});
 	$(document).on("click", '.search', function() {
@@ -51,13 +47,13 @@ $(function() {
 		console.log($(this).attr('id'));
 
 		if ($(this).is("#year") === true) {
-			year();
+			yearf();
 		} else if ($(this).is("#period") === true) {
-			period();
+			periodf();
 		} else if ($(this).is("#quarter") === true) {
-			quarter();
+			quarterf();
 		} else if ($(this).is("#month") === true) {
-			month();
+			monthf();
 		}
 	});
 
@@ -87,15 +83,16 @@ $(function() {
 		result(start, end);
 	}
 
-	function period() {
+	function periodf() {
 		$("#range").html("");
-		$("#range").attr('class', 'period');
+		$("#range").attr('class', 'period form-selectgroup');
 		$("#range")
 				.append(
 						$("<input />").attr({
 							'type' : 'date',
 							'name' : 'start',
-							'id' : 'start'
+							'id' : 'start',
+//								'class' : 'form-control flatpickr-input'
 						}),
 						$("<span />").html(' - '),
 						$("<input />").attr({
@@ -103,18 +100,18 @@ $(function() {
 							'name' : 'end',
 							'id' : 'end'
 						}),
-						$("<input />").attr('type', 'button').val("당일").click(
+						$("<input />").attr({'type': 'button', 'class': 'search btn btn-secondary btn' }).val("당일").click(
 								today),
-						$("<input />").attr('type', 'button').val("어제 ").click(
+						$("<input />").attr({'type': 'button', 'class': 'search btn btn-secondary btn' }).val("어제 ").click(
 								yester),
-						$("<input />").attr('type', 'button').val("최근 1주 ")
+						$("<input />").attr({'type': 'button', 'class': 'search btn btn-secondary btn' }).val("최근 1주 ")
 								.click(week),
-						$("<input />").attr('type', 'button').val("최근 1달 ")
+						$("<input />").attr({'type': 'button', 'class': 'search btn btn-secondary btn' }).val("최근 1달 ")
 								.click(mon)
 
 				);
 	}
-	function year() {
+	function yearf() {
 		$("#range").attr('class', 'yearResult');
 		$("#range").html("");
 		select = $("<select/>").attr('id', 'selectYear');
@@ -126,7 +123,7 @@ $(function() {
 		$("#range").append(select);
 
 	}
-	function quarter() {
+	function quarterf() {
 		$("#range").attr('class', 'quarter');
 		$("#range").html("");
 		year = $("<select/>").attr('id', 'selectYear');
@@ -145,7 +142,7 @@ $(function() {
 		$("#range").append(quarter);
 
 	}
-	function month() {
+	function monthf() {
 		$("#range").attr('class', 'month');
 		$("#range").html("");
 		year = $("<select/>").attr('id', 'selectYear');
@@ -208,7 +205,7 @@ $(function() {
 		var table = $("<table />").attr({
 			'border' : '1',
 			'id' : 'test',
-			'class' : 'table table-bordered table-hover table-sm text-center'
+			'class' : 'table table-bordered table-hover table-sm text-center table table-hover table-outline table-vcenter text-nowrap card-table'
 		});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));
@@ -229,7 +226,7 @@ $(function() {
 			data : {
 				start : moment(start).format('YYYY-MM-DD'),
 				end : moment(end).format('YYYY-MM-DD'),
-				
+
 			},
 			traditional : true,
 			success : function(obj) {
@@ -237,7 +234,7 @@ $(function() {
 				var card = 0;
 				var point = 0;
 				var coupon = 0;
-			
+
 				var totalAmountRsv = 0;
 				console.log(obj);
 				obj.forEach(function(o, i, u) {
@@ -248,26 +245,25 @@ $(function() {
 					coupon += parseInt(o.coupon);
 					totalAmountRsv += parseInt(o.totalAmountRsv);
 					dsNm = o.dsName;
-				//	console.log(o.dsNo);
+					// console.log(o.dsNo);
 
 					tr.append($("<td>").text(o.mdrDate));
 					tr.append($("<td>").text(o.mdrNo));
 					tr.append($("<td>").text(o.memName));
 					tr.append($("<td>").text(o.dsName));
-					tr.append($("<td>").text(o.hName));
+					tr.append($("<td>").text(o.HName));
 					tr.append($("<td>").text(o.card));
 					tr.append($("<td>").text(o.point));
 					tr.append($("<td>").text(o.coupon));
-				
+
 					tr.append($("<td>").text(o.totalAmountRsv));
 					table.append(tr);
 				})
 
-			var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
+				var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
 						$("<td>").text(obj.length), $("<td>"), $("<td>"),
 						$("<td>").text(card), $("<td>").text(point),
-						$("<td>").text(coupon), 
-						$("<td>").text(totalAmountRsv)
+						$("<td>").text(coupon), $("<td>").text(totalAmountRsv)
 
 				).css('color', 'red');
 

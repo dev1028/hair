@@ -208,10 +208,16 @@ $(function(){
 function check(frm){
 	var week = ['일', '월', '화', '수', '목', '금', '토'];
 	var dayOfWeek = week[new Date($("input[name='date']").val()).getDay()];
+	
+	hsDayOfWeek = new Date($("input[name='date']").val()).getDay()
+	if("${shop.hs_dayoff}".indexOf(hsDayOfWeek) != -1){
+		alert("헤어샵 휴무일입니다.");
+		return false;
+	}
+	
 	var dayoff = frm.dayoff.value;
-		
 	if(dayoff.indexOf(dayOfWeek) != -1) {
-		alert("휴무일입니다.");
+		alert("디자이너 휴무일입니다.");
 		return false;
 	}
 	
@@ -220,11 +226,20 @@ function check(frm){
 	
 	startHour = parseInt($("input[name='hs_starttime']").val());
 	endHour = parseInt($("input[name='hs_endtime']").val());
+
+	hs_start_time = parseInt("${shop.hs_starttime}");
+	hs_end_time = parseInt("${shop.hs_endtime}");
+	if( startHour >= hs_start_time && startHour < hs_end_time &&
+		endHour > hs_start_time && endHour <= hs_end_time){
+	}else{
+		alert('헤어샵이 오픈한 시간이 아닙니다.');
+		return false;
+	}
 	
 	if( startHour >= work_start_time && startHour < work_end_time &&
 		endHour > work_start_time && endHour <= work_end_time){
 	}else{
-		alert('예약 불가능한 시간입니다.');
+		alert('디자이너가 일하는 시간이 아닙니다.');
 		return false;
 	}
 	
@@ -364,7 +379,7 @@ function check(frm){
 	    	<form action="designerSelect.do" method="post">
 	    		<img src="../images/members/date.png" style="width: 70px; height: 70px;">
 	    		&emsp;&emsp;
-			    <input autocomplete="off" type="text" name="date" id="date" size="12" class="datePick" />
+			    <input autocomplete="off" type="text" name="date" id="date" size="12" class="datePick" placeholder="00-00-00"/>
 			    &emsp;&emsp;
 				<input autocomplete="off" id="timepicker_start"  type="text" name="hs_starttime" value="00" style="width:100px" class="datePick">
 				&emsp;-&emsp;
