@@ -305,16 +305,24 @@
 </head>
 <body class="sb-nav-fixed">
 	<br><br><br>
-	
 	<div id="layoutSidenav_content">
 		<main>
 			<div class="container-fluid">
-				<h1 class="mt-4">월별결산</h1>
+				<div class="row">
+				<div class="col">
+				<h2 class="mt-4">월별 결산</h2>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col">
+				<div class="input-group mb-3">
 				<input type="month" id="date" value="2020-10">
 				<input type="month" id="date" value="2020-09">
-				<button id="find">조회</button>
-
-
+				<button id="find" class="btn btn-primary btn-sm">조회</button>
+				</div>
+				</div>
+			</div>
+				<hr>
 
 
 
@@ -328,7 +336,7 @@
                         고객만족도 고객 재방문율,리뷰개수 추이, 평점추이,  
                         디자이너 분석 매출순위, 접객순위, 리뷰개수, 평점, 재예약
                         -->
-
+				<div class="row">
 				<div class="col-lg-6">
 					<div class="card mb-4">
 
@@ -338,7 +346,7 @@
 
 					</div>
 				</div>
-
+				</div>
 				<div class="row">
 
 					<div class="col-lg-6">
@@ -369,8 +377,6 @@
 		</main>
 
 	</div>
-	</div>
-
 
 </body>
 </html>
