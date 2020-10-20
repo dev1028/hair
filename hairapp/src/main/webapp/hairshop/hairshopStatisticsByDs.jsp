@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>직원별 매출결산</title>
+
 
 
 <link rel="stylesheet"
@@ -57,86 +58,78 @@
 	<br>
 	<br>
 	<br>
-	<div class="container">
-		<h5 class=" heading">매출결산</h5>
 
+
+
+
+	<div class="container">
+		<br> <br> <br>
+		<div class="row">
+			<h2 class="heading">직원별 매출결산</h2>
+		</div>
+		<hr>
 		<form method="POST"
 			action="${pageContext.request.contextPath}/hairshop/salesStatisticsResult.do">
 			<!--  search -->
 			<div class="form-group">
-
-
-
-
-<!-- 
-<div class="row row-sm align-items-center mb-3">
-                  <div class="col">
-                    <div class="input-group">
-                      <span class="input-group-text">
-                        $
-                      </span>
-                      <input type="text" class="form-control" placeholder="from" value="3">
-                    </div>
-                  </div>
-                  <div class="col-auto">—</div>
-                  <div class="col">
-                    <div class="input-group">
-                      <span class="input-group-text">
-                        $
-                      </span>
-                      <input type="text" class="form-control" placeholder="to">
-                    </div>
-                  </div>
-                </div> -->
-
-
-
-
-
-
-				<div class="control">
-					<label for="name">검색구분 </label>
-					<button type="button" value="Submit" class='search' id="period">기간내결산</button>
-					<button type="button" value="Submit" class='search' id="year">년도별
-						결산</button>
-					<button type="button" value="Submit" class='search' id="quarter">분기별
-						결산</button>
-					<button type="button" value="Submit" class='search' id="month">월별
-						결산</button>
+				<div class="row">
+					<div class="control">
+						<label for="name"><strong>검색구분: &nbsp;&nbsp;</strong></label>
+						<button type="button" value="Submit"
+							class='search btn btn-primary btn-sm' id="period">기간내결산</button>
+						<button type="button" value="Submit"
+							class='search btn btn-secondary btn-sm' id="year">년도별 결산</button>
+						<button type="button" value="Submit"
+							class='search btn btn-secondary btn-sm' id="quarter">분기별
+							결산</button>
+						<button type="button" value="Submit"
+							class='search btn btn-secondary btn-sm' id="month">월별 결산</button>
+					</div>
 				</div>
-
-				<div class="control">
-					<label for="name">기간선택 </label>
-					<div class="controls" id="range"></div>
+				<hr>
+				<div class="row">
+					<div class="control">
+						<label for="name"><strong>기간선택 </strong></label>
+						<div class="controls" id="range"></div>
+					</div>
 				</div>
+				<hr>
+				<div class="row">
+					<div class="control">
 
-				<div class="control">
+						<label for="name"><strong>직원선택 &nbsp;&nbsp;</strong> </label> <input
+							type="checkbox" name="designer_name" value="all" id="all">전체직원&nbsp;|
+						<c:forEach items="${list }" var="i">
 
-					<label for="name">직원선택 </label> <input type="checkbox"
-						name="designer_name" value="all" id="all">전체직원|
-					<c:forEach items="${list }" var="i">
-
-						<input type="checkbox" name="designer_name"
-							id="${i.designer_name }" value="${i.designer_no}">${i.designer_name } |
+							<input type="checkbox" name="designer_name"
+								id="${i.designer_name }" value="${i.designer_no}">${i.designer_name } &nbsp;|
 			</c:forEach>
 
+					</div>
 
-					<div class="controls"></div>
+					<div class="row">
+						<button type="button" value="Submit" id="submit"
+							class="btn btn-primary">검색</button>
+					</div>
 				</div>
 
-				<button type="button" value="Submit" id="submit" class="col-1-4">Submit</button>
 			</div>
+
+
 		</form>
+
+
+
+
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
 					<h3 class="card-title">매출</h3>
 				</div>
-			
-					<div class="table-responsive" id="result"></div>
-			
-			</div>
 
+				<div class="table-responsive" id="result"></div>
+
+			</div>
 		</div>
 	</div>
 </body>

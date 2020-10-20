@@ -19,12 +19,14 @@ $(function(){
 				employeelist = data;
 
 				for(var i = 0; i<data.length; i++){
-					var trForFire = $("<tr>").attr("id", data[i].designer_no);
-					trForFire.append($("<td>").text(data[i].designer_no));
-					trForFire.append($("<td>").text(data[i].position));
-					trForFire.append($("<td>").text(data[i].designer_name));
-					trForFire.append($("<td>").text(data[i].designer_phone));
-					$("#selectForFire").append(trForFire);
+					if(data[i].position != '원장'){
+						var trForFire = $("<tr>").attr("id", data[i].designer_no);
+						trForFire.append($("<td>").text(data[i].designer_no));
+						trForFire.append($("<td>").text(data[i].position));
+						trForFire.append($("<td>").text(data[i].designer_name));
+						trForFire.append($("<td>").text(data[i].designer_phone));
+						$("#selectForFire").append(trForFire);
+					}
 				}
 					
 			}

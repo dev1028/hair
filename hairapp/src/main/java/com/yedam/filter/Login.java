@@ -143,7 +143,7 @@ public class Login implements Filter {
 		list.put("/ajax/hairshopQnaWG.do", null); //writeGo
 		list.put("/ajax/hairshopQnaW.do", null); //write
 		list.put("/ajax/hairshopQnaV.do", null); //view
-		list.put("/hairshop/hairshopQnaReG.do", null); //view
+		list.put("/ajax/hairshopQnaReG.do", null); //view
 		
 		list.put("/designer/designerMyPageCtrl.do", designerLoginPage);
 		list.put("/designer/designerMyPageUpdateCtrl.do", designerLoginPage);

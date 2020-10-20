@@ -79,10 +79,10 @@ $(function() {
 	$(document).on("click", '#submit', function() {
 		var ds = [];
 		$("input[name='designer_name']:checked").each(function() {
-		//	if (!($(this).attr('id', 'all'))) {
+			// if (!($(this).attr('id', 'all'))) {
 
-				ds.push($(this).val());
-			//}
+			ds.push($(this).val());
+			// }
 		});
 		$("#result").html("");
 		for (i = 0; i < ds.length; i++) {
@@ -220,14 +220,15 @@ $(function() {
 	}
 
 	function result(start, end) {
-		
 
 		var url = "/hairapp/ajax/hairshop/salesByDesigner.do"
-		var table = $("<table />").attr({
-			'border' : '1',
-			'id' : 'test',
-			'class' : 'table table-bordered table-hover table-sm text-center  table card-table table-vcenter text-nowrap datatable'
-		});
+		var table = $("<table />")
+				.attr(
+						{
+							'border' : '1',
+							'id' : 'test',
+							'class' : 'table table-bordered table-hover table-sm text-center  table card-table table-vcenter text-nowrap datatable'
+						});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));
 		tr.append($("<th>").text("예약번호 "));
@@ -255,9 +256,8 @@ $(function() {
 				var card = 0;
 				var point = 0;
 				var coupon = 0;
-			
 				var totalAmountRsv = 0;
-				console.log(obj);
+				// console.log(obj);
 				obj.forEach(function(o, i, u) {
 
 					var tr = $("<tr />");
@@ -277,27 +277,27 @@ $(function() {
 					tr.append($("<td>").text(o.card));
 					tr.append($("<td>").text(o.point));
 					tr.append($("<td>").text(o.coupon));
-				
+
 					tr.append($("<td>").text(o.totalAmountRsv));
 					table.append(tr);
-				})
-$("#result").append($("<p />").text(dsNm));
+
+				});
+				$("#result").append($("<p />").text(dsNm));
 				var tr = $("<tr />").append($("<td>").text("총합 "), $("<td>"),
 						$("<td>").text(obj.length), $("<td>"), $("<td>"),
 						$("<td>").text(card), $("<td>").text(point),
-						$("<td>").text(coupon), 
-						$("<td>").text(totalAmountRsv)
+						$("<td>").text(coupon), $("<td>").text(totalAmountRsv)
 
 				).css('color', 'red');
-console.log(dsNm);
-		
+				console.log(dsNm);
+
 				table.append(tr);
 			}
 		});
-		
 
 		$("#result").append($(table));
-	//	$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
+		// $("#result").append($("<button />").attr('id', 'excel').text("엑셀로
+		// 저장"));
 
 	}
 
