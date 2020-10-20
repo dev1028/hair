@@ -153,7 +153,7 @@ public class MembersReservationDAO {
 		MembersReservationVo resultVo = null;
 		try {
 			conn = ConnectionManager.getConnnect();
-			String sql = "select m.mem_no,m.mem_hair_length,m.mem_hair_status,r.mdr_no"
+			String sql = "select m.mem_no, change_code(m.mem_hair_length), change_code(m.mem_hair_status), r.mdr_no"
 					+ " from members m join members_designer_rsv r" 
 					+ " on(m.mem_no=r.mem_no) "
 					+ " where r.mdr_no = ?";
