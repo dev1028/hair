@@ -84,6 +84,7 @@ import com.yedam.hairshop.designer.DesignerUpdateCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerDetailCtrl;
 import com.yedam.hairshop.designer.FindMyCustomerReCtrl;
+import com.yedam.hairshop.designer.designerChart;
 import com.yedam.hairshop.hairshop.AboutUsCtrl;
 import com.yedam.hairshop.hairshop.AnalysisAgeCtrl;
 import com.yedam.hairshop.hairshop.AnalysisByHairshopCount;
@@ -504,6 +505,7 @@ public class FrontController extends HttpServlet {
 		list.put("/ajax/admin/tmicUpdate.do", new TmicUpdate());//시술중분류 승인요청 조//
 		list.put("/ajax/admin/tmicDelete.do", new TmicDelete());//시술중분류 승인요청 조//
 		list.put("/ajax/admin/tmicInsert.do", new TmicInsert());//시술중분류 승인요청 조//
+		list.put("/ajax/designer/designerChart.do", new designerChart());//시술중분류 승인요청 조//
 
 		// 승연
 		list.put("/hairshop/hairshopMain.do", new hairshopMainCtrl()); // 헤어샵 로그인 후 메인페이지

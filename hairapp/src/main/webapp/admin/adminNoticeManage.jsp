@@ -132,7 +132,7 @@
 		</form>
 
 
-
+${list }
 		<div class="table-responsive" id="result">
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
