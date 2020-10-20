@@ -138,7 +138,7 @@
   	<c:if test="${view.qna_category == 'a2'}">
   	<td>단순문의</td>
   	</c:if>
-  	<c:if test="${view.qna_category == '33'}">
+  	<c:if test="${view.qna_category == 'a3'}">
   	<td>불만문의</td>
   	</c:if>
   </tr>

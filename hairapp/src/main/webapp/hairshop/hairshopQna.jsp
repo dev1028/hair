@@ -17,12 +17,14 @@
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/hairshop/product.css"
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -95,9 +97,15 @@ keyframes blink {
 30%
 {
 color
+
+
 :
+
  
+
 yellow
+
+
 ;
 }
 to {
@@ -110,7 +118,8 @@ to {
 }
 </style>
 
-<link href="${pageContext.request.contextPath}/hairshop/product.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/hairshop/product.css"
+	rel="stylesheet">
 <script>
 	function qnaWriteGo() {
 		location.href = "hairshopQnaWG.do";
@@ -121,10 +130,15 @@ to {
 	<nav class="site-header sticky-top py-1">
 		<div
 			class="container d-flex flex-column flex-md-row justify-content-between">
-			<a class="py-2" href="#" aria-label="Product"> </a> <a class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a> <a
-				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among Us</a> <a
-				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a> <a
-				class="py-2 d-none d-md-inline-block" href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
+			<a class="py-2" href="#" aria-label="Product"> </a> <a
+				class="py-2 d-none d-md-inline-block"
+				href="${pageContext.request.contextPath}/ajax/hairshopReturnToLogin.do">Home</a>
+			<a class="py-2 d-none d-md-inline-block"
+				href="${pageContext.request.contextPath}/ajax/aboutUs.do">Among
+				Us</a> <a class="py-2 d-none d-md-inline-block"
+				href="${pageContext.request.contextPath}/ajax/hairshopNotice.do">공지사항</a>
+			<a class="py-2 d-none d-md-inline-block"
+				href="${pageContext.request.contextPath}/ajax/hairshopQna.do">QnA</a>
 		</div>
 	</nav>
 
@@ -132,16 +146,16 @@ to {
 	<br>
 	<div class="container">
 		<div class=""></div>
-		<form method="post" name="frm2" id="frm2" action="${pageContext.request.contextPath}/ajax/hairshopQnaV.do">
+		<form method="post" name="frm2" id="frm2"
+			action="${pageContext.request.contextPath}/ajax/hairshopQnaV.do">
 			<div id="list">
 				<h3 class="page_title">Qna</h3>
 			</div>
 
 			<hr>
-			<br>
-			<br>
+			<br> <br>
 			<table class="table table-striped table-bordered table-hover">
-<%-- 				<colgroup>
+				<%-- 				<colgroup>
 					<col width="5%" />
 					<col width="10%" />
 					<col width="50%" />
@@ -165,6 +179,15 @@ to {
 						<%--   <input type="hidden" name="noticeNo" value="${board.notice_no}"> --%>
 						<%--   <input type="hidden" name="noticeHit" value="${board.notice_hits}"> --%>
 						<tr>
+				<%-- 		<td>
+								<c:choose >
+									<c:when test="${qna.qna_category == 'a1'}">입점문의</c:when>
+									<c:when test="${qna.qna_category == 'a2'}">단순문의</c:when>
+									<c:when test="${qna.qna_category == 'a3'}">불만문의</c:when>
+								</c:choose>
+							</td> --%>
+
+
 							<td>${qna.qna_no}</td>
 							<c:if test="${qna.qna_category == 'a1'}">
 								<td>입점문의</td>
@@ -178,6 +201,7 @@ to {
 
 
 							<td align="left"><c:if test="${qna.qna_level > 0}">
+								
 									<c:forEach begin="1" end="${qna.qna_level}">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<!-- 답변글일경우 글 제목 앞에 공백을 준다. -->
 									</c:forEach>
@@ -199,11 +223,12 @@ to {
 			</table>
 
 			<hr />
-		<c:if test="${not empty sessionScope.login && (sessionScope.udong eq 'hairshop' || sessionScope.udong eq 'designer')}">
-		   <div id="write">
-		   <a class="btn btn-default pull-right" onclick="qnaWriteGo()">글쓰기</a>
-		</div>
-		</c:if>
+			<c:if
+				test="${not empty sessionScope.login && (sessionScope.udong eq 'hairshop' || sessionScope.udong eq 'designer')}">
+				<div id="write">
+					<a class="btn btn-default pull-right" onclick="qnaWriteGo()">글쓰기</a>
+				</div>
+			</c:if>
 
 		</form>
 
