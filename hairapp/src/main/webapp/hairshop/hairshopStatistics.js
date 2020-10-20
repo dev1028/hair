@@ -89,8 +89,8 @@ $(function() {
 							'id' : 'end'
 						}),
 						$("<input />").attr({
-							'type' : 'button',
-							'class' : 'form-control'
+							'type' : 'button'
+						
 						}).val("당일").click(today),
 						$("<input />").attr('type', 'button').val("어제 ").click(
 								yester),
