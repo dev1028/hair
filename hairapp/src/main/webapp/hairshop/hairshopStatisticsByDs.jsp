@@ -9,11 +9,6 @@
 <title>직원별 매출결산</title>
 
 
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script
@@ -26,9 +21,7 @@
 			});
 </script>
 <!-- Dashboard Core -->
-<link
-	href="${pageContext.request.contextPath}/decorator/tabler-gh-pages/assets/css/dashboard.css"
-	rel="stylesheet" />
+
 <script
 	src="${pageContext.request.contextPath}/decorator/tabler-gh-pages/assets/js/dashboard.js"></script>
 <!-- c3.js Charts Plugin -->
@@ -63,9 +56,9 @@
 
 
 	<div class="container">
-		<br> <br> <br>
+
 		<div class="row">
-			<h2 class="heading">직원별 매출결산</h2>
+			<h5 class="heading">직원별 매출결산</h5>
 		</div>
 		<hr>
 		<form method="POST"
@@ -76,7 +69,7 @@
 					<div class="control">
 						<label for="name"><strong>검색구분: &nbsp;&nbsp;</strong></label>
 						<button type="button" value="Submit"
-							class='search btn btn-primary btn-sm' id="period">기간내결산</button>
+							class='search btn btn-secondary btn-sm' id="period">기간내결산</button>
 						<button type="button" value="Submit"
 							class='search btn btn-secondary btn-sm' id="year">년도별 결산</button>
 						<button type="button" value="Submit"
@@ -89,8 +82,10 @@
 				<hr>
 				<div class="row">
 					<div class="control">
-						<label for="name"><strong>기간선택 </strong></label>
-						<div class="controls" id="range"></div>
+					<label for="name"><strong>기간선택 </strong></label>
+						<div class="controls" id="range">
+							
+						</div>
 					</div>
 				</div>
 				<hr>
@@ -107,10 +102,11 @@
 
 					</div>
 
-					<div class="row">
-						<button type="button" value="Submit" id="submit"
-							class="btn btn-primary">검색</button>
-					</div>
+
+				</div>
+				<div class="row">
+					<button type="button" value="Submit" id="submit"
+						class="btn btn-primary">검색</button>
 				</div>
 
 			</div>
@@ -124,7 +120,7 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h3 class="card-title">매출</h3>
+					<h5 class="card-title">매출</h5>
 				</div>
 
 				<div class="table-responsive" id="result"></div>

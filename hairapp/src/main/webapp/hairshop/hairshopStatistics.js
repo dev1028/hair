@@ -88,8 +88,10 @@ $(function() {
 							'name' : 'end',
 							'id' : 'end'
 						}),
-						$("<input />").attr('type', 'button').val("당일").click(
-								today),
+						$("<input />").attr({
+							'type' : 'button'
+						
+						}).val("당일").click(today),
 						$("<input />").attr('type', 'button').val("어제 ").click(
 								yester),
 						$("<input />").attr('type', 'button').val("최근 1주 ")
@@ -190,11 +192,13 @@ $(function() {
 
 		$("#result").html("");
 		var url = "/hairapp/ajax/hairshop/sales.do"
-		var table = $("<table />").attr({
-			'border' : '1',
-			'id' : 'test',
-			'class' : 'table table-bordered table-hover table-sm text-center datatable'
-		});
+		var table = $("<table />")
+				.attr(
+						{
+							'border' : '1',
+							'id' : 'test',
+							'class' : 'table table-bordered table-hover table-sm text-center datatable'
+						});
 		var tr = $("<tr />");
 		tr.append($("<th>").text("시술날짜 "));
 		tr.append($("<th>").text("예약번호 "));

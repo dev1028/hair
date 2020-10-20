@@ -35,7 +35,8 @@ public class HairshopQnaWCtrl implements Controller {
 		HairshopQnaDAO dao = new HairshopQnaDAO();
 
 		vo.setQna_no(dao.getSeq());
-		//vo.setQna_shop_customer_no(memNo);
+	//	String hs_no = request.getSession().getAttribute("hsno").toString();
+		//vo.setQna_shop_customer_no(hs_no);
 		//vo.setQna_writer(mem_name);
 		System.out.println("글vo : " + vo);
 

@@ -50,6 +50,25 @@ public class SalesDAO {
 	}
 
 	public List<Map<String, String>> chart(String hs_no) {
+		String sql = "SELECT d.designer_no,d.designer_name,\r\n" + 
+				"	SUM(\r\n" + 
+				"	(\r\n" + 
+				"		SELECT SUM(mdp_price)\r\n" + 
+				"		FROM members_detail_paylist\r\n" + 
+				"		WHERE mdr_no = r.mdr_no\r\n" + 
+				"	)\r\n" + 
+				"	)AS ammount\r\n" + 
+				"FROM members_designer_rsv r\r\n" + 
+				"JOIN designer d\r\n" + 
+				"ON\r\n" + 
+				"	(\r\n" + 
+				"		r.designer_no = d.designer_no\r\n" + 
+				"	)\r\n" + 
+				"WHERE d.hs_no                      = ?\r\n" + 
+				"AND d.DESIGNER_ACCESS_STATUS       = 1\r\n" + 
+				"AND r.mdr_status                  IN( 'i2','i3','i4')\r\n" + 
+				"AND TO_CHAR(r.mdr_date,'yy-mm-dd') = TO_CHAR(SYSDATE,'yy-mm-dd')\r\n" + 
+				"GROUP BY d.designer_no, d.designer_name";
 		ResultSet rs = null;
 		ArrayList<SalesVo> list = dsList(hs_no);
 		ArrayList<SalesVo> list1 = new ArrayList<>();
@@ -61,7 +80,7 @@ public class SalesDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 
-			pstmt = conn.prepareStatement(chart);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, hs_no);
 //			pstmt.setString(2, date.toString());
 
@@ -70,7 +89,7 @@ public class SalesDAO {
 			while (rs.next()) {
 
 				resultVo = new SalesVo();
-
+				resultVo.setDsName(rs.getString("designer_name"));
 				resultVo.setDsNo(rs.getString("designer_no"));
 				resultVo.setTotalAmountRsv(rs.getString("ammount"));
 
