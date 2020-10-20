@@ -407,8 +407,8 @@
 									<a class="dropdown-item"
 										href="${pageContext.request.contextPath}/designer/analysisSalesGo.do">매출정보</a>
 									
-									<a class="dropdown-item"
-										href="#">통계정보</a>
+<!-- 									<a class="dropdown-item" -->
+<!-- 										href="#">통계정보</a> -->
 								</div></li>
 					
 							<li class="nav-item dropdown"><a

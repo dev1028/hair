@@ -431,7 +431,13 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
  -->
 
 	<div class="container">
-
+		<div class="row">
+			
+			<div class="col">
+			<h3>디자이너 통계</h3>
+			</div>
+		</div>
+		<hr>
 		<form method="POST" id="frm"
 			action="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">
 
@@ -443,8 +449,9 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 				<div class="col">
 
 					<button type="submit" value="Submit" id="submit"
-						class="btn btn-default col-3" style="border: 1px solid gray;">검색</button>
+						class="btn btn-default col-3" style="border: 1px solid gray;">선택</button>
 				</div>
+				<hr>
 			</div>
 		</form>
 
@@ -461,7 +468,11 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 
 
 
-
+	<div class="container">
+	<div class="row">
+		<div class="col"><span><strong>위에 통계 분석 할 달을 선택 한 후 원하는 통계를 눌러주세요.</strong></span></div>
+	</div>
+		<hr>
 	<div class="tab row">
 		<div class="col-4">
 			<button class="tablinks" onclick="openCity(event, 'London')">예약수</button>
@@ -474,7 +485,8 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 			<button class="tablinks" onclick="openCity(event, 'Tokyo')">평점순위</button>
 		</div>
 	</div>
-
+	</div>
+	<div class="container">
 	<!-- Tab content -->
 	<div id="London" class="tabcontent">
 		<div id="chart_divrsv"></div>
@@ -562,7 +574,7 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
 			</table>
 
 
-
+		</div>
 		</div>
 	</div>
 	<!-- Bootstrap core JavaScript
