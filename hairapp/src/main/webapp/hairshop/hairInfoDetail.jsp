@@ -16,7 +16,7 @@
 			slideWidth : 600
 		});
 		$("#imgList").on("click", "img", function() {
-			alert("달리");
+			//alert("달리");
 		});
 		$("#searchCustomerBtn").on("click", function() {
 			if ($("#inputSearch").val() == "") {
