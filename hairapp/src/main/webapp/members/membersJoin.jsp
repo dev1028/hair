@@ -204,7 +204,7 @@ label.light {
 		//경로는 시스템에 맞게 수정하여 사용
 		//호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를
 		//호출하게 됩니다.
-		var pop = window.open("../popup/jusoPopup.jsp", "pop",
+		var pop = window.open("../popup/jusolatlongPopup.jsp", "pop",
 				"width=570,height=420, scrollbars=yes, resizable=yes");
 		//** 2017년 5월 모바일용 팝업 API 기능 추가제공 **/
 		// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서
@@ -214,13 +214,15 @@ label.light {
 	function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
 			roadAddrPart2, engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,
 			detBdNmList, bdNm, bdKdcd, siNm, sggNm, emdNm, liNm, rn, udrtYn,
-			buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
+			buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo, entX, entY) {
 		// 2017년 2월 제공항목이 추가되었습니다. 원하시는 항목을 추가하여 사용하시면 됩니다.
 		document.formjoin.roadFullAddr.value = roadFullAddr;
 		document.formjoin.roadAddrPart1.value = roadAddrPart1;
 		document.formjoin.roadAddrPart2.value = roadAddrPart2;
 		document.formjoin.addrDetail.value = addrDetail;
 		document.formjoin.zipNo.value = zipNo;
+		document.formjoin.mem_latitude_longitude = (entX + "," + entY);
+		
 	}
 </script>
 
@@ -369,7 +371,7 @@ label.light {
         
         <label>참고주소:</label>
         <input type="text" id="roadAddrPart2" name="roadAddrPart2" />
-        
+        <input type="hidden" id="mem_latitude_longitude" name="mem_latitude_longitude">
         <label>우편번호:</label>
         <input type="text" id="zipNo" name="zipNo" />
         

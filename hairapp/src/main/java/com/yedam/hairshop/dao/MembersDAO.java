@@ -312,8 +312,8 @@ public class MembersDAO {
 			// 2. sql 구문 실행
 			String sql = "insert into members(MEM_NO, MEM_EMAIL, MEM_PW, MEM_NAME, MEM_PHONE, MEM_BIRTH,"
 					+ " MEM_SEX, MEM_ADDR, MEM_CITY, MEM_COUNTRY, MEM_TOWNSHIP, MEM_ZIP, MEM_HAIR_LENGTH,"
-					+ " MEM_HAIR_STATUS, MEM_ACCESS_STATUS) "
-					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,-1)";
+					+ " MEM_HAIR_STATUS, MEM_ACCESS_STATUS, mem_latitude_longitude) "
+					+ " values(members_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,-1,?)";
 
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			psmt.setString(1, membersVo.getMem_email());
@@ -329,6 +329,7 @@ public class MembersDAO {
 			psmt.setString(11, membersVo.getMem_zip());
 			psmt.setString(12, membersVo.getMem_hair_length());
 			psmt.setString(13, membersVo.getMem_hair_status());
+			psmt.setString(14, membersVo.getMem_latitude_longitude());
 
 			psmt.executeUpdate();
 
