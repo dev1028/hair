@@ -17,6 +17,31 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/hairshop/hairshopStatistics.js"></script>
 
+
+
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link
+	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
+	rel="stylesheet" crossorigin="anonymous" />
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+	crossorigin="anonymous"></script>
+
+
+
+
+
 </head>
 <body>
 	<br>
@@ -28,8 +53,7 @@
 
 		<h5 class="card-title">매출결산</h5>
 
-		<table
-			class="table table-bordered table-sm text-center datatable">
+		<table class="table table-bordered table-sm text-center datatable">
 			<tr>
 
 				<td><label for="name">검색구분 </label></td>

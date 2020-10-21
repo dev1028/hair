@@ -90,7 +90,7 @@ $(function() {
 						}),
 						$("<input />").attr({
 							'type' : 'button'
-						
+
 						}).val("당일").click(today),
 						$("<input />").attr('type', 'button').val("어제 ").click(
 								yester),
@@ -261,25 +261,71 @@ $(function() {
 		console.log($("#result"));
 		$("#result").append($("<button />").attr('id', 'excel').text("엑셀로 저장"));
 		$('#test').dataTable({
-
-			"paging" : true, // 페이징처리
+			"scrollY" : "500px",
+			fixedColumns : {
+				leftColumns : 10,
+				heightMatch : 'none'
+			},
+			"paging" : false, // 페이징처리
 			"ordering" : true, // 칼럼별 정렬기능
-			// "autoWidth": false, //가로자동
+			"autoWidth" : true, // 가로자동
 			"lengthChange" : false, // 데이터건수 변경
 			"pageLength" : 25, // 기본 데이터건수
 			// "lengthMenu": [[50, 100, 1000], [50, 100, "Max(1000)"]],
 			// //데이터건수옵션
-			// "order": [15,'desc'], //기본 정렬칼럼
+			"order" : [ 0, 'desc' ], // 기본 정렬칼럼
 			"searching" : false, // 검색
-			"columnDefs" : [// 칼럼조작
-			// 가로길이 //칼럼제목 //데이터타겟 //해당칼럼만 정렬기능사용안함
+			"language" : {
+				"emptyTable" : "일치하는 데이터가 없습니다. ",
+				"lengthMenu" : "페이지당 _MENU_ 개씩 보기",
+				"info" : " _START_ - _END_ / _TOTAL_건",
+				"infoEmpty" : "",
+				"infoFiltered" : "( _MAX_건의 데이터에서 필터링됨 )",
+				"search" : "에서 검색: ",
+				"zeroRecords" : "일치하는 데이터가 없습니다. ",
+				"loadingRecords" : "로딩중...",
+				"processing" : "잠시만 기다려 주세요...",
+				"paginate" : {
+					"next" : "다음",
+					"previous" : "이전"
+				}
+			},
+			"columnDefs" : [
+
 			{
 				"width" : "1em",
+				"targets" : 0,
+				"orderable" : true
+			}, {
+				"width" : "1em",
 				"targets" : 1,
-				"orderable" : false
+				"orderable" : true
 			}, {
 				"width" : "1em",
 				"targets" : 2
+			}, {
+				"width" : "1em",
+				"targets" : 3,
+				"orderable" : true
+			}, {
+				"width" : ".5em",
+				"targets" : 4,
+				"orderable" : false
+			}, {
+				"width" : ".5em",
+				"targets" : 5,
+				"orderable" : false
+			}, {
+				"width" : "1em",
+				"targets" : 6,
+				"orderable" : true
+			}, {
+				"width" : "1em",
+				"targets" : 7
+			}, {
+				"width" : "1em",
+				"targets" : 8,
+				"orderable" : true
 			} ]
 		});
 	}
