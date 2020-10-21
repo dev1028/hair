@@ -19,7 +19,7 @@ function startImport() {
 		if (rsp.success) {
 			// 아작스를 통해서 서버에 처리결과를 통보해줌.
 			jQuery.ajax({
-				url : "http://localhost/hairapp/members/paymentImport.do",
+				url : "http://192.168.0.83/hairapp/members/paymentImport.do",
 				method : "POST",
 				dataType : "json",
 				data : {
@@ -39,7 +39,7 @@ function startImport() {
 			var msg = '결제가 완료되었습니다.';
 		} else {
 			jQuery.ajax({
-				url : "http://localhost/hairapp/members/paymentImport.do",
+				url : "http://192.168.0.83/hairapp/members/paymentImport.do",
 				method : "POST",
 				dataType : "json",
 				data : {

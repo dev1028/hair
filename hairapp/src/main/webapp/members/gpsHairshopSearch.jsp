@@ -83,7 +83,7 @@
  	function addMarkserWithInfo(lat, lng, hs_name, hs_no){
  		var marker = addMarker(new kakao.maps.LatLng(lat, lng));
 		var infowindow = new kakao.maps.InfoWindow({
-			content: '<div><a href=http://localhost/hairapp/members/hairshopInfo.do?hsNo=' + hs_no + '>' + hs_name + '</a></div>' // 인포윈도우에 표시할 내용
+			content: '<div><a href=http://192.168.0.83/hairapp/members/hairshopInfo.do?hsNo=' + hs_no + '>' + hs_name + '</a></div>' // 인포윈도우에 표시할 내용
 	    });
 		
 		//http://localhost/hairapp/members/hairshopInfo.do?hsNo=12
