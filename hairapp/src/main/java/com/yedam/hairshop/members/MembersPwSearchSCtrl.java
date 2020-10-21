@@ -54,7 +54,7 @@ public class MembersPwSearchSCtrl implements Controller {
     		em.setTitle("우리동네 미용실 우동 비밀번호 인증 메일");
     		em.setContentType("text/html; charset=UTF-8");
     		String contents = "<h3>우리동네 미용실 우동</h3>"
-    				+ "<a href='http://192.168.0.57/hairapp/members/membersPwEmail.do?mem_email="+resultVo.getMem_email()+"'>누르시면 비밀번호 변경 페이지가 오픈됩니다.</a>";
+    				+ "<a href='http://192.168.0.83/hairapp/members/membersPwEmail.do?mem_email="+resultVo.getMem_email()+"'>누르시면 비밀번호 변경 페이지가 오픈됩니다.</a>";
     		em.setContents(contents);
     		se.sand(em);
 
