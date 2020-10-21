@@ -176,9 +176,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
                 <div class="product-content">
                     <h3 class="title">${in.designer_name}</h3>
                     <h3 class="title">${in.position}</h3>
-                    <div class="price">
-                        ${in.designer_profile}
-                    </div>
+                    <div class="price">${in.designer_profile} &nbsp;</div>
                     <c:if test="${not empty sessionScope.login }">
                     	<a href='javascript: like_func("${in.designer_no}")'>
                     	<c:if test="${in.designer_book == 1 }">

@@ -419,7 +419,7 @@ public class DesignerDAO {
 		ResultSet rs = null; // 초기화
 		int r = 0;
 		String sql = "UPDATE DESIGNER SET POSITION = ?, SALARY = ?, INCENTIVE = ?, DESIGNER_PHONE = ?, DESIGNER_DAYOFF = ?,"
-				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, DESIGNER_PROFILE = ?, FILE_NAME = ?"
+				+ " WORK_START_TIME = ?, WORK_END_TIME = ?, DESIGNER_PROFILE = ?"
 				+ " WHERE DESIGNER_NO = ?";
 		try {
 			conn = ConnectionManager.getConnnect();
@@ -432,8 +432,8 @@ public class DesignerDAO {
 			pstmt.setString(6, designerVo.getWork_start_time());
 			pstmt.setString(7, designerVo.getWork_end_time());
 			pstmt.setString(8, designerVo.getDesigner_profile());
-			pstmt.setString(9, designerVo.getFile_name());
-			pstmt.setString(10, designerVo.getDesigner_no());
+			
+			pstmt.setString(9, designerVo.getDesigner_no());
 			r = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
