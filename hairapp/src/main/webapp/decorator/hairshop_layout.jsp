@@ -316,7 +316,7 @@
 									data-feather="hairinfo">시술등록</span> 
 							</a></li>
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do"> <span
-									data-feather="hairinfo">시술명 신청</span> 
+									data-feather="hairinfo">시술선택명 신청</span> 
 							</a></li>
 						</ul>
 						</c:if>
@@ -353,9 +353,7 @@
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/analysisMonthly.do"> <span
 									data-feather="hairinfo">월별결산</span> 
 							</a></li>
-							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/analysisByTreat.do"> <span
-									data-feather="hairinfo">시술별 통계</span> 
-							</a></li>
+						
 							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do"> <span
 									data-feather="hairinfo">디자이너 통계</span> 
 							</a></li>
@@ -466,7 +464,7 @@
 										href="${pageContext.request.contextPath}/hairshop/hairInfoInsert.do">시술등록</a>
 										<div class="dropdown-divider"></div>
 									<a class="dropdown-item"
-										href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do">시술명신청</a>
+										href="${pageContext.request.contextPath}/hairshop/hairNameRequest.do">시술선택명 신청</a>
 								</div></li>
 	
 								<li class="nav-item dropdown"><a
