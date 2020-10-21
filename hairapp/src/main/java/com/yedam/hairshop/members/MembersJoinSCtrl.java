@@ -77,7 +77,7 @@ public class MembersJoinSCtrl implements Controller {
 			em.setTitle("우리동네 미용실 우동 회원가입 인증요청 메일");
 			em.setContentType("text/html; charset=UTF-8");
 			String contents = "<h3>우리동네 미용실 우동 회원가입 인증을 해주세요.</h3>"
-					+ "<a href='http://192.168.0.57/hairapp/members/membersJoinEmail.do?mem_email="+members.getMem_email()+"'>누르시면 인증이 완료됩니다</a>";
+					+ "<a href='http://192.168.0.83/hairapp/members/membersJoinEmail.do?mem_email="+members.getMem_email()+"'>누르시면 인증이 완료됩니다</a>";
 				
 			em.setContents(contents);
 			se.sand(em);

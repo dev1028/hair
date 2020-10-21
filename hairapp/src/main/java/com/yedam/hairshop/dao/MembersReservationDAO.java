@@ -193,14 +193,14 @@ public class MembersReservationDAO {
 						+ " on(r.designer_no=d.designer_no) join hairshop_hair_info i "
 						+ " on(d.hs_no=i.hs_no) join hairshop h " 
 						+ " on(i.hs_no=h.hs_no)" 
-						+ " where r.mdr_no = ?";
+						+ " where r.mdr_no = ? AND e.mdp_code = 'd1'";
 				pstmt = conn.prepareStatement(sql);
 				// System.out.println(sql);
 				//System.out.println(membersReservationVo.getMdr_no());
 				pstmt.setString(1, paymentVo.getMdr_no()); // ?의 첫번째 자리에 올 값 지정
 				rs = pstmt.executeQuery();
 				System.out.println(sql);
-				while (rs.next()) {
+				if (rs.next()) {
 					resultVo = new MembersReservationVo();
 					String hsName = rs.getString(1);
 					resultVo.setHs_name(hsName);
