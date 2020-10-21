@@ -24,7 +24,7 @@
 	
 	function testSuc(){
 		$.ajax({
-			url: "http://localhost/hairapp/members/paymentImport.do",
+			url: "http://192.168.0.83/hairapp/members/paymentImport.do",
 			type: "POST",
 			dataType : "json",
 			data: {
@@ -37,7 +37,7 @@
 			success : function(res) {
 			}
 		})
-		location.href="http://localhost/hairapp/members/paymentS.do";
+		location.href="http://192.168.0.83/hairapp/members/paymentS.do";
 		alert('결제가 완료되었습니다.');
 	}
 	
@@ -57,13 +57,13 @@
 			buyer_tel : "${login.mem_phone}",
 			buyer_addr : "${login.mem_addr}",
 			buyer_postcode : '123-456',
-// 			m_redirect_url : 'http://localhost/hairapp/members/paymentImport.do'
+// 			m_redirect_url : 'http://192.168.0.83/hairapp/members/paymentImport.do'
 		}, function(rsp) {	
 			//결제 성공시
 			if (rsp.success) {
 				//아작스를 통해서 서버에 처리결과를 통보해줌.
 				jQuery.ajax({
-			          url: "http://localhost/hairapp/members/paymentImport.do",
+			          url: "http://192.168.0.83/hairapp/members/paymentImport.do",
 			          method: "POST",
 			          dataType : "json",
 			          data: {
@@ -80,11 +80,11 @@
 // 					msg += '결제 금액 : ' + rsp.paid_amount;
 // 					msg += '카드 승인번호 : ' + rsp.apply_num;
 				})
-				location.href="http://localhost/hairapp/members/paymentS.do";
+				location.href="http://192.168.0.83/hairapp/members/paymentS.do";
 				var msg = '결제가 완료되었습니다.';
 			} else {
 				jQuery.ajax({
-					url: "http://localhost/hairapp/members/paymentImport.do",
+					url: "http://192.168.0.83/hairapp/members/paymentImport.do",
 				    method: "POST",
 				    dataType : "json",
 				    data: {

@@ -6,6 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.locationtech.proj4j.BasicCoordinateTransform;
+import org.locationtech.proj4j.CRSFactory;
+import org.locationtech.proj4j.CoordinateReferenceSystem;
+import org.locationtech.proj4j.ProjCoordinate;
+
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.common.SandEmail;
 import com.yedam.hairshop.dao.MembersDAO;
@@ -37,7 +42,30 @@ public class MembersJoinSCtrl implements Controller {
 		String zipNo = request.getParameter("zipNo");
 		String joinhairlengths = request.getParameter("joinhairlengths");
 		String joinhairstatus = request.getParameter("joinhairstatus");
+		String memLatitudeLongitude = request.getParameter("mem_latitude_longitude");
 		
+		//좌표 변환
+		String xy = memLatitudeLongitude;
+		String[] latlong = xy.split(",");
+
+		double x = Double.parseDouble(latlong[0]);// x좌표
+		double y = Double.parseDouble(latlong[1]);// y좌표
+
+		CRSFactory factory = new CRSFactory();
+		CoordinateReferenceSystem srcCrs = factory.createFromName("EPSG:5179");// 현재 좌표
+		CoordinateReferenceSystem dstCrs = factory.createFromName("EPSG:4326");// 변경할 좌표
+
+		BasicCoordinateTransform transform = new BasicCoordinateTransform(srcCrs, dstCrs);
+
+		ProjCoordinate srcCoord = new ProjCoordinate(x, y);
+		ProjCoordinate dstCoord = new ProjCoordinate();
+
+		transform.transform(srcCoord, dstCoord);// 좌표변환
+		System.out.println(dstCoord.y + "," + dstCoord.x);// 변환된 좌표
+		
+		members.setMem_latitude_longitude(dstCoord.y + "," + dstCoord.x);
+		//처리완료
+	
 		members.setMem_email(joinemail);
 		members.setMem_pw(joinpw);
 		members.setMem_name(joinname);
@@ -68,19 +96,26 @@ public class MembersJoinSCtrl implements Controller {
 								.append("location.href='membersJoin.do';")
 								.append("</script>");
 		} else {
+			Thread task = new Thread(new Runnable() {
+				public void run() {
+					SandEmail se = new SandEmail();
+					EmailVo em = new EmailVo();
+					System.out.println();
+					em.setReceiverMail(members.getMem_email());
+					em.setReceiverName(members.getMem_name());
+					em.setTitle("우리동네 미용실 우동 회원가입 인증요청 메일");
+					em.setContentType("text/html; charset=UTF-8");
+					String contents = "<h3>우리동네 미용실 우동 회원가입 인증을 해주세요.</h3>"
+							+ "<a href='http://192.168.0.83/hairapp/members/membersJoinEmail.do?mem_email="+members.getMem_email()+"'>누르시면 인증이 완료됩니다</a>";
+						
+					em.setContents(contents);
+					se.sand(em);
+				}
+
+			});
 			
-			SandEmail se = new SandEmail();
-			EmailVo em = new EmailVo();
-			System.out.println();
-			em.setReceiverMail(members.getMem_email());
-			em.setReceiverName(members.getMem_name());
-			em.setTitle("우리동네 미용실 우동 회원가입 인증요청 메일");
-			em.setContentType("text/html; charset=UTF-8");
-			String contents = "<h3>우리동네 미용실 우동 회원가입 인증을 해주세요.</h3>"
-					+ "<a href='http://192.168.0.83/hairapp/members/membersJoinEmail.do?mem_email="+members.getMem_email()+"'>누르시면 인증이 완료됩니다</a>";
-				
-			em.setContents(contents);
-			se.sand(em);
+			task.start();
+			
 			// 목록으로 이동
 			//request.getRequestDispatcher("membersJoinSuccess.jsp").forward(request, response);
 			response.sendRedirect("membersJoinEnd.do");

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>시술선택명 신청</title>
 </head>
 <body>
 	<div class="container">
@@ -15,9 +15,9 @@
 			<br>
 		</div>
 		<div class="py-5 text-center">
-			<h2>시술명 신청</h2>
+			<h2>시술선택명 신청</h2>
 			<p class="lead">
-				중분류 시술명을 신청합니다.
+				시술선택명을 신청합니다.
 			</p>
 		</div>
 
@@ -28,7 +28,7 @@
 				enctype="multipart/form-data">
 					<div class="row">
 						<div class="col-md-3 mb-3">
-							<label for="tmac_no">대분류 <span class="badge badge-pill badge-danger">필수</span></label> 
+							<label for="tmac_no">시술분류 <span class="badge badge-pill badge-danger">필수</span></label> 
 							<select class="custom-select d-block w-100" id="tmac_no" name="tmac_no" required>
 								<option value="">선택하세요.</option>
 								<c:forEach items="${tmacList}" var="tmac">
@@ -37,7 +37,7 @@
 							</select>
 						</div>
 						<div class="col-md-3 mb-3">
-							<label for="tmic_no">중분류<span class="badge badge-pill badge-danger">필수</span></label> 
+							<label for="tmic_no">시술선택명<span class="badge badge-pill badge-danger">필수</span></label> 
 							<input type='text' class="custom d-block w-100" id="tmic_name" name="tmic_name" required>
 						</div>
 						
@@ -54,14 +54,14 @@
 		</div>
 
 		<div class="py-5 text-center">
-			<h2>시술명 신청현황</h2>
+			<h2>시술선택명 신청현황</h2>
 		</div>
 		
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">대분류</th>
-					<th scope="col">증분류</th>
+					<th scope="col">시술분류</th>
+					<th scope="col">시술선택명</th>
 					<th scope="col">설명</th>
 					<th scope="col">상태</th>
 				</tr>

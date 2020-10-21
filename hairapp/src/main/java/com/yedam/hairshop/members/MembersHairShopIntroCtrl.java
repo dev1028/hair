@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.hairshop.common.ChangeUtil;
 import com.yedam.hairshop.common.Controller;
 import com.yedam.hairshop.dao.HairshopDAO;
 import com.yedam.hairshop.dao.MembersHairshopDAO;
@@ -41,6 +42,9 @@ public class MembersHairShopIntroCtrl implements Controller {
 		}
 		else {
 			// 결과 저장
+			request.setAttribute("intro_dayoff",ChangeUtil.changeDayOffNumToStr(intro.getHs_dayoff()));
+			
+			
 			request.setAttribute("intro", intro);
 			request.setAttribute("intro2", intro2);
 			request.setAttribute("intro3", intro3);

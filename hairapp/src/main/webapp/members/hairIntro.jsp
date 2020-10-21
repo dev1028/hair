@@ -47,6 +47,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 .designer1 {
 	float: left;
 	padding: 20px;
+	height: 400px;
 }
 
 </style>
