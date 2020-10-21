@@ -48,7 +48,7 @@ public class MembersPaymentSCtrl implements Controller {
 		request.setAttribute("shop3", shop3);
 
 		// 페이지 이동
-		request.getRequestDispatcher("/members/paymentSuccess.jsp").forward(request, response);
+		request.getRequestDispatcher("paymentSuccess.jsp").forward(request, response);
 
 	}
 
