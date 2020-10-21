@@ -93,6 +93,7 @@ text-align:center; font-family:Helvetica; font-size:3em; color:white;}
 	left:21%;
 	top:100%;
 }
+#shopbody th{text-align: center;}
 </style>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=750dd3f9eb4c747d5737b8872e6f6463&libraries=services"></script>
 <script>
@@ -316,7 +317,7 @@ $(function(){
 
 				<tr>
 					<th>휴무일</th>
-					<td>${intro.hs_dayoff} 일</td>
+					<td>${intro_dayoff}</td>
 				</tr>
 
 				<tr>
@@ -326,7 +327,7 @@ $(function(){
 
 				<tr>
 					<th>주차장유무</th>
-					<td>${intro.hs_parking}</td>
+					<td><c:if test="${intro.hs_parking == 0}">없음</c:if><c:if test="${intro.hs_parking == 1}">있음</c:if></td>
 				</tr>
 
 				<tr>
