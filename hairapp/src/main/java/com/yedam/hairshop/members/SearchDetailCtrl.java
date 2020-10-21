@@ -31,7 +31,7 @@ public class SearchDetailCtrl implements Controller {
 		vo.setHs_starttime(hs_starttime);
 		vo.setHs_endtime(hs_endtime);
 		
-		if(!request.getSession().getAttribute("udong").equals("member")) {
+		if(request.getSession().getAttribute("udong") !=null && (request.getSession().getAttribute("udong").equals("hairshop") || request.getSession().getAttribute("udong").equals("designer"))) {
 			request.getSession().invalidate();
 		}
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
