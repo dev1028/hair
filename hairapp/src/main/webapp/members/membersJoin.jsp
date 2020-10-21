@@ -221,7 +221,7 @@ label.light {
 		document.formjoin.roadAddrPart2.value = roadAddrPart2;
 		document.formjoin.addrDetail.value = addrDetail;
 		document.formjoin.zipNo.value = zipNo;
-		document.formjoin.mem_latitude_longitude = (entX + "," + entY);
+		document.formjoin.mem_latitude_longitude.value = (entX + "," + entY);
 		
 	}
 </script>
