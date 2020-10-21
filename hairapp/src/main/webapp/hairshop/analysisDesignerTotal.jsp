@@ -431,150 +431,154 @@ $("#start").attr('value', moment(d).format('YYYY-MM-DD'));
  -->
 
 	<div class="container">
-		<div class="row">
-			
-			<div class="col">
-			<h3>디자이너 통계</h3>
-			</div>
-		</div>
-		<hr>
-		<form method="POST" id="frm"
-			action="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">
+		<div class="container">
+			<div class="row">
 
+				<div class="col">
+					<h3>디자이너 통계</h3>
+				</div>
+			</div>
+			<hr>
+			<form method="POST" id="frm"
+				action="${pageContext.request.contextPath}/hairshop/analysisDesignerTotal.do">
+
+				<div class="row">
+					<div class="col">
+						<input type="month" class="form-control " name="month"
+							value="2020-10">
+					</div>
+					<div class="col">
+
+						<button type="submit" value="Submit" id="submit"
+							class="btn btn-default col-3" style="border: 1px solid gray;">선택</button>
+					</div>
+					<hr>
+				</div>
+			</form>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+		<div class="container">
 			<div class="row">
 				<div class="col">
-					<input type="month" class="form-control " name="month"
-						value="2020-10">
+					<span><strong>위에 통계 분석 할 달을 선택 한 후 원하는 통계를 눌러주세요.</strong></span>
 				</div>
-				<div class="col">
-
-					<button type="submit" value="Submit" id="submit"
-						class="btn btn-default col-3" style="border: 1px solid gray;">선택</button>
-				</div>
-				<hr>
 			</div>
-		</form>
+			<hr>
+			<div class="tab row">
+				<div class="col-4">
+					<button class="tablinks" onclick="openCity(event, 'London')">예약수</button>
+				</div>
+				<div class="col-4">
+					<button class="tablinks" onclick="openCity(event, 'Paris')">매출순위</button>
+				</div>
+				<div class="col-4">
 
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-	<div class="container">
-	<div class="row">
-		<div class="col"><span><strong>위에 통계 분석 할 달을 선택 한 후 원하는 통계를 눌러주세요.</strong></span></div>
-	</div>
-		<hr>
-	<div class="tab row">
-		<div class="col-4">
-			<button class="tablinks" onclick="openCity(event, 'London')">예약수</button>
+					<button class="tablinks" onclick="openCity(event, 'Tokyo')">평점순위</button>
+				</div>
+			</div>
 		</div>
-		<div class="col-4">
-			<button class="tablinks" onclick="openCity(event, 'Paris')">매출순위</button>
-		</div>
-		<div class="col-4">
-
-			<button class="tablinks" onclick="openCity(event, 'Tokyo')">평점순위</button>
-		</div>
-	</div>
-	</div>
-	<div class="container">
-	<!-- Tab content -->
-	<div id="London" class="tabcontent">
-		<div id="chart_divrsv"></div>
-
 		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>순위</th>
-						<th>디자이너</th>
-						<th>예약수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${rsvlist }" var="l">
-						<tr>
-							<td>${ l.rank}</td>
-							<td><img id="imgDes"
-								onerror="this.src='../images/no_img.gif'"
-								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-								class="avatar">${ l.designer_name}</td>
-							<td>${l.rsv }</td>
+			<!-- Tab content -->
+			<div id="London" class="tabcontent">
+				<div id="chart_divrsv"></div>
+
+				<div class="container">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>디자이너</th>
+								<th>예약수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${rsvlist }" var="l">
+								<tr>
+									<td>${ l.rank}</td>
+									<td><img id="imgDes"
+										onerror="this.src='../images/no_img.gif'"
+										src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+										class="avatar">${ l.designer_name}</td>
+									<td>${l.rsv }</td>
 
 
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 
-		</div>
-	</div>
+				</div>
+			</div>
 
-	<div id="Paris" class="tabcontent">
-		<div id="chart_divsales"></div>
-		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>순위</th>
-						<th>디자이너</th>
-						<th>예약수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${saleslist }" var="l">
-						<tr>
-							<td>${ l.rank}</td>
-							<td><img id="imgDes"
-								onerror="this.src='../images/no_img.gif'"
-								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-								class="avatar">${ l.designer_name}</td>
-							<td>${l.sales }</td>
-
-
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
-
-	<div id="Tokyo" class="tabcontent">
-		<div id="chart_divrate"></div>
-		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>순위</th>
-						<th>디자이너</th>
-						<th>예약수</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${ratelist }" var="l">
-						<tr>
-							<td>${ l.rank}</td>
-							<td><img id="imgDes"
-								onerror="this.src='../images/no_img.gif'"
-								src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
-								class="avatar">${ l.designer_name}</td>
-							<td>${l.rate }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+			<div id="Paris" class="tabcontent">
+				<div id="chart_divsales"></div>
+				<div class="container">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>디자이너</th>
+								<th>매출</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${saleslist }" var="l">
+								<tr>
+									<td>${ l.rank}</td>
+									<td><img id="imgDes"
+										onerror="this.src='../images/no_img.gif'"
+										src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+										class="avatar">${ l.designer_name}</td>
+									<td>${l.sales }</td>
 
 
-		</div>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div id="Tokyo" class="tabcontent">
+				<div id="chart_divrate"></div>
+				<div class="container">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>순위</th>
+								<th>디자이너</th>
+								<th>평균평점</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${ratelist }" var="l">
+								<tr>
+									<td>${ l.rank}</td>
+									<td><img id="imgDes"
+										onerror="this.src='../images/no_img.gif'"
+										src="${pageContext.request.contextPath}/ajax/imgView.do?img_path=/designer/${l.designer_no }/profile&img_name=${l.file_name }"
+										class="avatar">${ l.designer_name}</td>
+									<td>${l.rate }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Bootstrap core JavaScript
