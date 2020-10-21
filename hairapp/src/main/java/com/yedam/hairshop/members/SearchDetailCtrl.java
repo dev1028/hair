@@ -30,6 +30,10 @@ public class SearchDetailCtrl implements Controller {
 		vo.setLabel(label);
 		vo.setHs_starttime(hs_starttime);
 		vo.setHs_endtime(hs_endtime);
+		
+		if(!request.getSession().getAttribute("udong").equals("member")) {
+			request.getSession().invalidate();
+		}
 		MembersVo memVo = (MembersVo) request.getSession().getAttribute("login");
 		if(memVo != null){
 			vo.setMem_no(memVo.getMem_no());
