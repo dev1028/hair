@@ -27,8 +27,8 @@ public class HairshopCouponListCtrl implements Controller {
 		
 		//Paging
 		Paging paging = new Paging();
-		paging.setPageUnit(10); //default 10 
-		paging.setPageSize(10); //페이지 번호수
+		paging.setPageUnit(20); //default 10 
+		paging.setPageSize(20); //페이지 번호수
 		paging.setPage(page);
 		
 		CouponVo vo = new CouponVo();
