@@ -9,7 +9,7 @@ $(function() {
 
 				var data_type = 'data:application/vnd.ms-excel;charset=utf-8';
 				var table_html = encodeURIComponent(document
-						.getElementById('dataTable').outerHTML);
+						.getElementById('test').outerHTML);
 
 				var a = document.createElement('a');
 				a.href = data_type + ',%EF%BB%BF' + table_html;
