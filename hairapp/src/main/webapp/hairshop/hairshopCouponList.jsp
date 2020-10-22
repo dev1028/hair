@@ -6,11 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>쿠폰리스트</title>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="hairshopCoupon.css">
+<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <style>
 
 </style>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
 </head>
 <body>
 	<div class="container">
@@ -22,7 +29,7 @@
 		</div>
 	
 		<hr>
-		<table>
+		<table id="myTable" class="table stripe" style="width:100%">
 			<thead>
 				<tr>
 					<th scope="col">쿠폰번호</th>
