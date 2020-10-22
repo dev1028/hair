@@ -44,19 +44,26 @@ public class MembersPwSearchSCtrl implements Controller {
     		System.out.println("3:" + resultVo);
 
     		//request.getRequestDispatcher("/members/memberPwS.jsp").forward(request, response);
-    		
     		// 이메일
-    		SandEmail se = new SandEmail();
-    		EmailVo em = new EmailVo();
-    		System.out.println();
-    		em.setReceiverMail(resultVo.getMem_email());
-    		em.setReceiverName(resultVo.getMem_name());
-    		em.setTitle("우리동네 미용실 우동 비밀번호 인증 메일");
-    		em.setContentType("text/html; charset=UTF-8");
-    		String contents = "<h3>우리동네 미용실 우동</h3>"
-    				+ "<a href='http://192.168.0.83/hairapp/members/membersPwEmail.do?mem_email="+resultVo.getMem_email()+"'>누르시면 비밀번호 변경 페이지가 오픈됩니다.</a>";
-    		em.setContents(contents);
-    		se.sand(em);
+    		Thread task = new Thread (new Runnable() {
+				public void run() {
+					SandEmail se = new SandEmail();
+		    		EmailVo em = new EmailVo();
+		    		System.out.println();
+		    		em.setReceiverMail(resultVo.getMem_email());
+		    		em.setReceiverName(resultVo.getMem_name());
+		    		em.setTitle("우리동네 미용실 우동 비밀번호 인증 메일");
+		    		em.setContentType("text/html; charset=UTF-8");
+		    		String contents = "<h3>우리동네 미용실 우동</h3>"
+		    				+ "<a href='http://192.168.0.83/hairapp/members/membersPwEmail.do?mem_email="+resultVo.getMem_email()+"'>누르시면 비밀번호 변경 페이지가 오픈됩니다.</a>";
+		    		em.setContents(contents);
+		    		se.sand(em);
+				}
+			});
+			
+			task.start();
+    		
+    		
 
     		response.sendRedirect("membersPwEnd.do");
         }
