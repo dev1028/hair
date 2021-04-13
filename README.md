@@ -39,6 +39,12 @@ ADMIN - 메인, 로그인, Q&A 게시물 관리, members 통계, 게시판 설�
 <br>
 ## 개발구성도
 ![image](https://user-images.githubusercontent.com/64175774/114573032-fbf23b80-9cb2-11eb-8ab0-6c7273703fd7.png)
+<br>
+<br>
+## 개발기대효과
+![image](https://user-images.githubusercontent.com/64175774/114573192-20e6ae80-9cb3-11eb-8b62-fcdf4fd59af1.png)
+
+
 
 
 
