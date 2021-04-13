@@ -35,5 +35,11 @@ ADMIN - 메인, 로그인, Q&A 게시물 관리, members 통계, 게시판 설�
 
 ## 구축환경
 ![image](https://user-images.githubusercontent.com/64175774/114572854-d5cc9b80-9cb2-11eb-8325-b231a14fa0e5.png)
+<br>
+<br>
+## 개발구성도
+![image](https://user-images.githubusercontent.com/64175774/114573032-fbf23b80-9cb2-11eb-8ab0-6c7273703fd7.png)
+
+
 
 
